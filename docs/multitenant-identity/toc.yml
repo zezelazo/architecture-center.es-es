@@ -1,0 +1,30 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: Administración de identidades en aplicaciones multiinquilino
+  items:
+    - name: Introducción
+      href: index.md
+    - name: El escenario de Tailspin
+      href: tailspin.md
+    - name: Autenticación
+      href: authenticate.md
+    - name: Identidad basada en notificaciones
+      href: claims.md
+    - name: Registro de inquilinos
+      href: signup.md
+    - name: Roles de la aplicación
+      href: app-roles.md
+    - name: Autorización
+      href: authorize.md
+    - name: Protección de una web API
+      href: web-api.md
+    - name: Almacenamiento en caché de los tokens de acceso
+      href: token-cache.md
+    - name: Aserción de cliente
+      href: client-assertion.md
+    - name: Protección de los secretos de aplicación
+      href: key-vault.md
+    - name: Federación con un servicio AD FS de un cliente
+      href: adfs.md
+    - name: Ejecución de la aplicación Surveys
+      href: run-the-app.md

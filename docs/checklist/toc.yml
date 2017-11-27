@@ -1,0 +1,12 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: Listas de comprobación de la revisión de diseño
+  items:
+    - name: Disponibilidad
+      href: availability.md
+    - name: DevOps
+      href: dev-ops.md
+    - name: Resistencia
+      href: resiliency.md
+    - name: Escalabilidad
+      href: scalability.md

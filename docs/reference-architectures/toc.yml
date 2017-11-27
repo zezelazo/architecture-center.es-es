@@ -1,0 +1,75 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: Arquitecturas de referencia
+  href: index.md
+  items:
+    - name: Aplicación web de App Service
+      href: app-service-web-app/index.md
+      items:
+        - name: Aplicación web básica
+          href: app-service-web-app/basic-web-app.md
+        - name: Escalabilidad mejorada
+          href: app-service-web-app/scalable-web-app.md
+        - name: Implementación en varias regiones
+          href: app-service-web-app/multi-region.md
+    - name: Administración de identidades
+      href: identity/index.md
+      items:
+        - name: ¿Qué debo elegir?
+          href: identity/considerations.md
+        - name: Integración de AD local con Azure AD
+          href: identity/azure-ad.md
+        - name: Extensión de AD DS a Azure
+          href: identity/adds-extend-domain.md
+        - name: Creación de un bosque de AD DS en Azure
+          href: identity/adds-forest.md
+        - name: Extensión de AD FS a Azure
+          href: identity/adfs.md
+    - name: Red híbrida
+      href: hybrid-networking/index.md
+      items:
+        - name: ¿Qué debo elegir?
+          href: hybrid-networking/considerations.md
+        - name: VPN
+          href: hybrid-networking/vpn.md
+        - name: ExpressRoute
+          href: hybrid-networking/expressroute.md
+        - name: ExpressRoute con conmutación por error de VPN
+          href: hybrid-networking/expressroute-vpn-failover.md
+        - name: Topología en estrella tipo hub-and-spoke
+          href: hybrid-networking/hub-spoke.md
+    - name: Red perimetral
+      href: dmz/index.md
+      items:
+        - name: Red perimetral entre Azure y una red local
+          href: dmz/secure-vnet-hybrid.md
+        - name: Red perimetral entre Internet y Azure
+          href: dmz/secure-vnet-dmz.md
+        - name: Aplicaciones virtuales de red de alta disponibilidad
+          href: dmz/nva-ha.md
+    - name: Cargas de trabajo de máquinas virtuales (Linux)
+      href: virtual-machines-linux/index.md
+      items:
+        - name: Máquina virtual única
+          href: virtual-machines-linux/single-vm.md
+        - name: Máquinas virtuales con equilibrio de carga
+          href: virtual-machines-linux/multi-vm.md
+        - name: Aplicación de n niveles
+          href: virtual-machines-linux/n-tier.md
+        - name: Aplicación para varias regiones
+          href: virtual-machines-linux/multi-region-application.md
+    - name: Cargas de trabajo de máquinas virtuales (Windows)
+      href: virtual-machines-windows/index.md
+      items:
+        - name: Máquina virtual única
+          href: virtual-machines-windows/single-vm.md
+        - name: Máquinas virtuales con equilibrio de carga
+          href: virtual-machines-windows/multi-vm.md
+        - name: Aplicación de n niveles
+          href: virtual-machines-windows/n-tier.md
+        - name: Aplicación para varias regiones
+          href: virtual-machines-windows/multi-region-application.md
+    - name: SAP NetWeaver y SAP HANA
+      href: sap/index.md
+    - name: SharePoint Server 2016
+      href: sharepoint/index.md

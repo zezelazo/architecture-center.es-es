@@ -1,0 +1,24 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: Diseño para lograr resistencia
+  items:
+    - name: Diseño de aplicaciones resistentes
+      href: index.md
+    - name: Lista de comprobación de resistencia
+      href: ../checklist/resiliency.md?toc=/azure/architecture/resiliency/toc.json
+    - name: Análisis del modo de error
+      href: failure-mode-analysis.md
+    - name: Información adicional
+      items:
+        - name: Recuperación ante desastres
+          href: disaster-recovery-azure-applications.md
+        - name: Alta disponibilidad
+          href: high-availability-azure-applications.md
+        - name: Recuperación ante datos dañados o eliminación accidental
+          href: recovery-data-corruption.md
+        - name: Recuperación ante errores locales
+          href: recovery-local-failures.md
+        - name: Recuperación ante una interrupción del servicio en toda la región
+          href: recovery-loss-azure-region.md
+        - name: Recuperación desde un centro de datos local a Azure
+          href: recovery-on-premises-azure.md
