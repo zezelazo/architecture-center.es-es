@@ -1,0 +1,60 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: Guía de la arquitectura de aplicaciones
+  href: index.md
+  items:
+    - name: Estilos de arquitectura
+      href: architecture-styles/index.md
+      items:
+        - name: Aplicación de n niveles
+          href: architecture-styles/n-tier.md
+        - name: Web-Cola-Trabajo
+          href: architecture-styles/web-queue-worker.md
+        - name: Microservicios
+          href: architecture-styles/microservices.md
+        - name: CQRS
+          href: architecture-styles/cqrs.md
+        - name: Arquitectura basada en eventos
+          href: architecture-styles/event-driven.md
+        - name: Big Data
+          href: architecture-styles/big-data.md
+        - name: Big Compute
+          href: architecture-styles/big-compute.md
+    - name: Opciones de tecnología
+      href: technology-choices/index.md
+      items:
+        - name: Información general de las opciones de proceso
+          href: technology-choices/compute-overview.md
+        - name: Comparación de procesos
+          href: technology-choices/compute-comparison.md
+        - name: Información general sobre el almacén de datos
+          href: technology-choices/data-store-overview.md
+        - name: Comparación de almacenes de datos
+          href: technology-choices/data-store-comparison.md
+    - name: Principios de diseño
+      href: design-principles/index.md
+      items:
+        - name: Diseño para la recuperación automática
+          href: design-principles/self-healing.md
+        - name: Hacer que todo sea redundante
+          href: design-principles/redundancy.md
+        - name: Minimizar la coordinación
+          href: design-principles/minimize-coordination.md
+        - name: Diseño de escalado horizontal
+          href: design-principles/scale-out.md
+        - name: Partición alrededor de límites
+          href: design-principles/partition.md
+        - name: Diseño para las operaciones
+          href: design-principles/design-for-operations.md
+        - name: Uso de servicios administrados
+          href: design-principles/managed-services.md
+        - name: Uso del mejor almacén de datos para el trabajo
+          href: design-principles/use-the-best-data-store.md
+        - name: Diseño para evolucionar
+          href: design-principles/design-for-evolution.md
+        - name: Compilación para las necesidades de negocio
+          href: design-principles/build-for-business.md
+    - name: Fundamentos de calidad del software
+      href: pillars.md
+    - name: Patrones de diseño
+      href: ../patterns/index.md?toc=/azure/architecture/guide/toc.json
