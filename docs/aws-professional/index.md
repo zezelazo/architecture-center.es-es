@@ -5,11 +5,11 @@ keywords: "Expertos de AWS, comparación de Azure, comparación de AWS, diferenc
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 251489e7a6d78d82f3ed70ca2df6c88f8759f9a5
-ms.sourcegitcommit: fbcf9a1c25db13b2627a8a58bbc985cd01ea668d
+ms.openlocfilehash: 75fda82ee5ca7ca3665501fe428d1d01995e7422
+ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 11/23/2017
 ---
 # <a name="azure-for-aws-professionals"></a>Azure para profesionales de AWS
 
@@ -21,7 +21,7 @@ Aprenderá a realizar los siguientes procedimientos:
 * Cómo se estructuran las soluciones disponibles en Azure
 * En qué se diferencian los servicios principales de Azure de los servicios de AWS
 
- Azure y AWS crean sus funcionalidades de manera independiente en el tiempo, así que cada uno presenta importantes diferencias tanto en implementación como en diseño.
+Azure y AWS crean sus funcionalidades de manera independiente en el tiempo, así que cada uno presenta importantes diferencias tanto en implementación como en diseño.
 
 ## <a name="overview"></a>Información general
 
@@ -62,7 +62,7 @@ Estos límites se pueden aumentar hasta el máximo mediante la [presentación de
 
 El término "recurso" en Azure se usa de la misma manera que en AWS, con el significado de cualquier instancia de proceso, objeto de almacenamiento, dispositivo de red u otra entidad que se puede crear o configurar dentro de la plataforma.
 
-Los recursos de Azure se implementan y administran mediante dos modelos: [Azure Resource Manager o el [modelo de implementación clásica](/azure/azure-resource-manager/resource-manager-deployment-model) más antiguo de Azure.
+Los recursos de Azure se implementan y administran mediante dos modelos: [Azure Resource Manager](/azure/azure-resource-manager/resource-group-overview) o el [modelo de implementación clásica](/azure/azure-resource-manager/resource-manager-deployment-model) de Azure más antiguo.
 Los nuevos recursos se crean mediante el modelo de Resource Manager.
 
 ### <a name="resource-groups"></a>Grupos de recursos
@@ -166,7 +166,7 @@ Aunque los tipos de instancia de AWS y los tamaños de máquina virtual de Azure
 
 A diferencia de la facturación por segundo de AWS, las máquinas virtuales de Azure a petición se facturan por minuto.
 
-Azure no tiene ningún equivalente a las instancias activas, las instancias reservadas o los hosts dedicados de EC2.
+Azure no tiene equivalente a las instancias activas o a los hosts dedicados de EC2.
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>EBS y Azure Storage para discos de máquina virtual
 
@@ -232,16 +232,18 @@ En la plataforma AWS, el almacenamiento en la nube se compone de tres servicios:
 En Azure Storage, las [cuentas de almacenamiento](https://azure.microsoft.com/documentation/articles/storage-create-storage-account/) enlazadas a la suscripción le permiten crear y administrar los siguientes servicios de almacenamiento:
 
 -   [Blob Storage](https://azure.microsoft.com/documentation/articles/storage-create-storage-account/): almacena cualquier tipo de dato de texto o binario, como un documento, un archivo multimedia o un instalador de aplicaciones. Se puede configurar para el acceso privado o compartir el contenido públicamente en Internet. Blob Storage tiene la misma finalidad que AWS S3 y EBS.
-
 -   [Table Storage](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-table-storage/): almacena conjuntos de datos estructurados. Se trata de un almacén de datos de clave-atributo NoSQL, que permite el desarrollo rápido de grandes cantidades de datos y el acceso inmediato a ellos. Es parecido a los servicios SimpleDB y DynamoDB de AWS.
 
 -   [Queue Storage](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-queues/): ofrece una solución de mensajería para el procesamiento de flujos de trabajo y para la comunicación entre los componentes de los servicios en la nube.
 
 -   [File Storage](https://azure.microsoft.com/documentation/articles/storage-java-how-to-use-file-storage/): ofrece almacenamiento compartido para aplicaciones heredadas que usan el protocolo de bloque de mensajes del servidor (SMB). File Storage se usa de manera parecida a EFS en la plataforma AWS.
 
-#### <a name="glacier-and-azure-storage"></a>Glacier y Azure Storage
 
-Azure Storage no ofrece un equivalente directo al almacenamiento Glacier de archivo a largo plazo de AWS. Para los datos de acceso poco frecuente y larga duración, Azure ofrece la [capa de almacenamiento de blobs esporádico de Azure](https://azure.microsoft.com/documentation/articles/storage-blob-storage-tiers/).
+
+
+ 
+#### <a name="glacier-and-azure-storage"></a>Glacier y Azure Storage 
+El [archivo estándar de Azure Storage](/azure/storage/blobs/storage-blob-storage-tiers) ofrece un equivalente directo al almacenamiento Glacier de archivo a largo plazo de AWS. Para los datos de acceso poco frecuente y larga duración, Azure ofrece la [capa de almacenamiento de blobs esporádico de Azure](/azure/storage/blobs/storage-blob-storage-tiers).
 El almacenamiento esporádico proporciona almacenamiento más barato y de menor rendimiento que al almacenamiento de blobs estándar, y es comparable a S3 - Acceso poco frecuente de AWS.
 
 #### <a name="see-also"></a>Otras referencias
@@ -284,13 +286,17 @@ Azure proporciona conexiones dedicadas de sitio a sitio parecidas mediante su se
 
 ### <a name="database-services"></a>Servicios de base de datos
 
-#### <a name="rds-and-azure-sql-database-service"></a>RDS y Azure SQL Database
+#### <a name="rds-and-azure-relational-database-services"></a>RDS y servicios de base de datos relacionales de Azure
 
-AWS y Azure tienen diferentes enfoques sobre las ofertas de bases de datos relacionales en la nube. AWS Relational Database Service (RDS) admite la creación de instancias mediante varios motores de base de datos diferentes, como Oracle y MySQL.
+Azure proporciona varios servicios de bases de datos relacionales diferentes equivalentes al servicio de base de datos relacional (RDS) de AWS.
 
-[SQL Database](https://azure.microsoft.com/documentation/articles/sql-database-technical-overview/) es la oferta de base de datos en la nube de Azure. Proporciona almacenamiento de datos relacionales con una alta escalabilidad, mediante un servicio administrado. SQL Database usa su propio motor y no admite la creación de otros tipos de base de datos. Otros motores de base de datos, como [SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/), [Oracle](https://azure.microsoft.com/campaigns/oracle/) o [MySQL](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-classic-mysql-2008r2/) se pueden implementar mediante instancias de máquina virtual de Azure.
+-   [SQL Database](https://docs.microsoft.com/azure/sql-database/sql-database-technical-overview)
+-   [Azure Database for MySQL](https://docs.microsoft.com/azure/mysql/overview)
+-   [Azure Database para PostgreSQL](https://docs.microsoft.com/azure/postgresql/overview)
 
-Los costes de AWS RDS vienen determinados por la cantidad de recursos de hardware que utiliza la instancia, como CPU, RAM, almacenamiento y ancho de banda de red. En el servicio SQL Database, el coste depende del tamaño de su base de datos, el número de conexiones simultáneas y los niveles de rendimiento.
+Se pueden implementar otros motores de base de datos, como [SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/), [Oracle](https://azure.microsoft.com/campaigns/oracle/) y [MySQL](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-classic-mysql-2008r2/) mediante instancias de máquina virtual de Azure.
+
+Los costes de AWS RDS vienen determinados por la cantidad de recursos de hardware que utiliza la instancia, como CPU, RAM, almacenamiento y ancho de banda de red. En los servicios de base de datos de Azure, el costo depende del tamaño de la base de datos, del número de conexiones simultáneas y de los niveles de rendimiento.
 
 #### <a name="see-also"></a>Otras referencias
 
