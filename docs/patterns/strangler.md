@@ -1,0 +1,54 @@
+---
+title: "Patrón Strangler"
+description: "Migra de forma incremental un sistema heredado reemplazando gradualmente funciones específicas por los servicios y aplicaciones nuevas."
+author: dragon119
+ms.date: 06/23/2017
+ms.openlocfilehash: d03e8a1ef9077b6e00ea5a17423bf7e09b68111a
+ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 11/14/2017
+---
+# <a name="strangler-pattern"></a><span data-ttu-id="e4ba3-103">Patrón Strangler</span><span class="sxs-lookup"><span data-stu-id="e4ba3-103">Strangler pattern</span></span>
+
+<span data-ttu-id="e4ba3-104">Migra de forma incremental un sistema heredado reemplazando gradualmente funciones específicas por los servicios y aplicaciones nuevas.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-104">Incrementally migrate a legacy system by gradually replacing specific pieces of functionality with new applications and services.</span></span> <span data-ttu-id="e4ba3-105">A medida que se reemplaza el sistema heredado, el nuevo sistema sustituye eventualmente todas las características del sistema anterior, suprimiéndolo y permitiéndole su desmantelamiento.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-105">As features from the legacy system are replaced, the new system eventually replaces all of the old system's features, strangling the old system and allowing you to decommission it.</span></span> 
+
+## <a name="context-and-problem"></a><span data-ttu-id="e4ba3-106">Contexto y problema</span><span class="sxs-lookup"><span data-stu-id="e4ba3-106">Context and problem</span></span>
+
+<span data-ttu-id="e4ba3-107">Los sistemas envejecen y, simultáneamente, las herramientas de desarrollo, la tecnología de hospedaje e incluso las arquitecturas de sistema donde estaban construidos pueden quedarse también poco a poco obsoletas.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-107">As systems age, the development tools, hosting technology, and even system architectures they were built on can become increasingly obsolete.</span></span> <span data-ttu-id="e4ba3-108">A medida que se agregan características y funcionalidades, la complejidad de estas aplicaciones aumenta considerablemente,dificultando su mantenimiento o la incorporación de nuevas características.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-108">As new features and functionality are added, the complexity of these applications can increase dramatically, making them harder to maintain or add new features to.</span></span>
+
+<span data-ttu-id="e4ba3-109">La sustitución completa de un sistema puede ser una tarea enorme.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-109">Completely replacing a complex system can be a huge undertaking.</span></span> <span data-ttu-id="e4ba3-110">A menudo, requerirá la migración gradual a un nuevo sistema mientras conserva el sistema antiguo para controlar las características que aún no se hayan migrado.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-110">Often, you will need a gradual migration to a new system, while keeping the old system to handle features that haven't been migrated yet.</span></span> <span data-ttu-id="e4ba3-111">Sin embargo, la ejecución de dos versiones distintas de una aplicación implica que los clientes deben conocer dónde se encuentra una característica determinada.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-111">However, running two separate versions of an application means that clients have to know where particular features are located.</span></span> <span data-ttu-id="e4ba3-112">Cada vez que se migra una característica o un servicio, los clientes deben actualizarse para apuntar a la nueva ubicación.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-112">Every time a feature or service is migrated, clients need to be updated to point to the new location.</span></span>
+
+## <a name="solution"></a><span data-ttu-id="e4ba3-113">Solución</span><span class="sxs-lookup"><span data-stu-id="e4ba3-113">Solution</span></span>
+
+<span data-ttu-id="e4ba3-114">Reemplace de forma incremental elementos específicos de funcionalidad por las aplicaciones y los servicios nuevos.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-114">Incrementally replace specific pieces of functionality with new applications and services.</span></span> <span data-ttu-id="e4ba3-115">Cree una fachada que intercepte las solicitudes que van al sistema heredado de back-end.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-115">Create a façade that intercepts requests going to the backend legacy system.</span></span> <span data-ttu-id="e4ba3-116">La fachada enruta estas solicitudes a la aplicación heredada o a los nuevos servicios.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-116">The façade routes these requests either to the legacy application or the new services.</span></span> <span data-ttu-id="e4ba3-117">Las características existentes se pueden migrar al nuevo sistema gradualmente, y los consumidores pueden seguir usando la misma interfaz sin ser conscientes de que se ha producido una migración.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-117">Existing features can be migrated to the new system gradually, and consumers can continue using the same interface, unaware that any migration has taken place.</span></span>
+
+![](./_images/strangler.png)  
+
+<span data-ttu-id="e4ba3-118">Este patrón ayuda a minimizar el riesgo de la migración y distribuir el esfuerzo de desarrollo a lo largo del tiempo.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-118">This pattern helps to minimize risk from the migration, and spread the development effort over time.</span></span> <span data-ttu-id="e4ba3-119">Dado que la fachada enruta de manera segura a los usuarios a la aplicación correcta, puede agregar funcionalidad al nuevo sistema al ritmo que desee, asegurándose al mismo tiempo de que la aplicación heredada sigue funcionando.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-119">With the façade safely routing users to the correct application, you can add functionality to the new system at whatever pace you like, while ensuring the legacy application continues to function.</span></span> <span data-ttu-id="e4ba3-120">Con el tiempo, a medida que las características se migren al nuevo sistema, el sistema heredado acabará siendo "suprimido" y dejará de ser necesario.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-120">Over time, as features are migrated to the new system, the legacy system is eventually "strangled" and is no longer necessary.</span></span> <span data-ttu-id="e4ba3-121">Una vez completado este proceso, el sistema se puede retirar sin riesgo alguno.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-121">Once this process is complete, the legacy system can safely be retired.</span></span>
+
+## <a name="issues-and-considerations"></a><span data-ttu-id="e4ba3-122">Problemas y consideraciones</span><span class="sxs-lookup"><span data-stu-id="e4ba3-122">Issues and considerations</span></span>
+
+- <span data-ttu-id="e4ba3-123">Piense en cómo administrar los servicios y los almacenes de datos que potencialmente pueden utilizar tanto los sistemas nuevos como los heredados.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-123">Consider how to handle services and data stores that are potentially used by both new and legacy systems.</span></span> <span data-ttu-id="e4ba3-124">Asegúrese de que ambos pueden tener acceso a estos recursos en paralelo.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-124">Make sure both can access these resources side-by-side.</span></span>
+- <span data-ttu-id="e4ba3-125">Estructure las nuevas aplicaciones y servicios de forma que se puedan interceptar y reemplazar fácilmente en el futuro por migraciones de Strangler.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-125">Structure new applications and services in a way that they can easily be intercepted and replaced in future strangler migrations.</span></span>
+- <span data-ttu-id="e4ba3-126">En algún momento, una vez completada la migración, la fachada de Strangler desaparecerá o evolucionará hacia un adaptador para clientes heredados.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-126">At some point, when the migration is complete, the strangler façade will either go away or evolve into an adaptor for legacy clients.</span></span>
+- <span data-ttu-id="e4ba3-127">Asegúrese de que la fachada se mantiene al día con la migración.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-127">Make sure the façade keeps up with the migration.</span></span>
+- <span data-ttu-id="e4ba3-128">Asegúrese de que la fachada no se convierte en un único punto de error o un cuello de botella para el rendimiento.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-128">Make sure the façade doesn't become a single point of failure or a performance bottleneck.</span></span>
+
+## <a name="when-to-use-this-pattern"></a><span data-ttu-id="e4ba3-129">Cuándo usar este patrón</span><span class="sxs-lookup"><span data-stu-id="e4ba3-129">When to use this pattern</span></span>
+
+<span data-ttu-id="e4ba3-130">Utilice este patrón cuando migre gradualmente una aplicación de back-end a una nueva arquitectura.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-130">Use this pattern when gradually migrating a back-end application to a new architecture.</span></span>
+
+<span data-ttu-id="e4ba3-131">Este patrón puede no ser adecuado:</span><span class="sxs-lookup"><span data-stu-id="e4ba3-131">This pattern may not be suitable:</span></span>
+
+- <span data-ttu-id="e4ba3-132">Cuando no se pueden interceptar las solicitudes dirigidas al sistema de back-end.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-132">When requests to the back-end system cannot be intercepted.</span></span>
+- <span data-ttu-id="e4ba3-133">En sistemas más pequeños donde la complejidad de reemplazar todo el conjunto es limitada.</span><span class="sxs-lookup"><span data-stu-id="e4ba3-133">For smaller systems where the complexity of wholesale replacement is low.</span></span>
+
+## <a name="related-guidance"></a><span data-ttu-id="e4ba3-134">Instrucciones relacionadas</span><span class="sxs-lookup"><span data-stu-id="e4ba3-134">Related guidance</span></span>
+
+- <span data-ttu-id="e4ba3-135">[Anti-Corruption Layer pattern](./anti-corruption-layer.md) (Patrón Anti-Corruption Layer)</span><span class="sxs-lookup"><span data-stu-id="e4ba3-135">[Anti-Corruption Layer pattern](./anti-corruption-layer.md)</span></span>
+- <span data-ttu-id="e4ba3-136">[Gateway Routing pattern](./gateway-routing.md) (Patrón Gateway Routing)</span><span class="sxs-lookup"><span data-stu-id="e4ba3-136">[Gateway Routing pattern](./gateway-routing.md)</span></span>
+
+
+ 
+
