@@ -2,15 +2,15 @@
 title: "Ejecución de máquinas virtuales Linux para una aplicación de n niveles en Azure"
 description: "Cómo ejecutar máquinas virtuales Linux para una arquitectura de n niveles en Microsoft Azure."
 author: MikeWasson
-ms.date: 11/22/2016
+ms.date: 11/22/2017
 pnp.series.title: Linux VM workloads
 pnp.series.next: multi-region-application
 pnp.series.prev: multi-vm
-ms.openlocfilehash: 673e090e306ffc421603371658c8273b10b980d4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 98814685e0f33f2a1258bf8307a86f92d8a81968
+ms.sourcegitcommit: 583e54a1047daa708a9b812caafb646af4d7607b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 11/28/2017
 ---
 # <a name="run-linux-vms-for-an-n-tier-application"></a>Ejecución de máquinas virtuales Linux para una aplicación de n niveles
 
@@ -24,7 +24,7 @@ En esta arquitectura de referencia se muestra un conjunto de prácticas demostra
 
 Hay muchas maneras de implementar una arquitectura de n niveles. En el diagrama se muestra una aplicación web típica de tres niveles. Esta arquitectura se basa en [Ejecución de máquinas virtuales de carga equilibrada para escalabilidad y disponibilidad][multi-vm]. Los niveles Web y Business usan máquinas virtuales de carga equilibrada.
 
-* **Conjuntos de disponibilidad**. Cree un [conjunto de disponibilidad][azure-availability-sets] para cada nivel y aprovisione al menos dos máquinas virtuales en cada nivel.  Esto hace que las máquinas virtuales sean aptas para un [Acuerdo de Nivel de Servicio (SLA)][vm-sla] mayor.
+* **Conjuntos de disponibilidad**. Cree un [conjunto de disponibilidad][azure-availability-sets] para cada nivel y aprovisione al menos dos máquinas virtuales en cada nivel.  Esto hace que las máquinas virtuales sean aptas para un [Acuerdo de Nivel de Servicio (SLA)][vm-sla] mayor. Puede implementar una sola máquina virtual en un conjunto de disponibilidad, pero esta no reunirá los requisitos de la garantía de SLA a menos que use Azure Premium Storage en todos los sistemas operativos y discos de datos.  
 * **Subredes**. Cree una subred independiente para cada nivel. Especifique el intervalo de direcciones y la máscara de subred con la notación [CIDR]. 
 * **Equilibradores de carga.** Use un [equilibrador de carga con conexión a Internet][load-balancer-external] para distribuir el tráfico entrante de Internet al nivel Web y un [equilibrador de carga interno][load-balancer-internal] para distribuir el tráfico de red del nivel Web al nivel Business.
 * **JumpBox.** También se denomina [host bastión]. Se trata de una máquina virtual segura en la red que usan los administradores para conectarse al resto de máquinas virtuales. El JumpBox tiene un NSG que solo permite el tráfico remoto que procede de direcciones IP públicas de una lista segura. El NSG debe permitir el tráfico a través de Secure Shell (SSH).
@@ -113,31 +113,59 @@ Simplifique la administración de todo el sistema mediante las herramientas de a
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-Hay disponible una implementación de esta arquitectura en [GitHub][github-folder]. La arquitectura se implementa en tres fases. Para implementar la arquitectura, siga estos pasos: 
+Hay disponible una implementación de esta arquitectura de referencia en [GitHub][github-folder]. 
 
-1. Haga clic en el botón a continuación:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fvirtual-machines%2Fn-tier-linux%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
-2. Una vez que el vínculo se abre en Azure Portal, escriba los valores siguientes: 
-   * El nombre del **Grupo de recursos** ya está definido en el archivo de parámetros, así que seleccione **Crear nuevo** y escriba `ra-ntier-cassandra-rg` en el cuadro de texto.
-   * Seleccione la región en el cuadro de lista desplegable **Ubicación**.
-   * No modifique los cuadros de texto **URI raíz de plantilla** o **URI raíz de parámetro**.
-   * Revise los términos y condiciones, y haga clic en la casilla **Acepto los términos y condiciones indicados anteriormente**.
-   * Haga clic en el botón **Comprar**.
-3. Busque una notificación en Azure Portal con un mensaje que indique que la implementación se ha completado.
-4. Los archivos de parámetros incluyen nombres de usuario y contraseñas de administrador codificados de forma rígida, y es muy recomendable que cambie ambos inmediatamente. Haga clic en cada máquina virtual en Azure Portal y después en **Restablecer contraseña** en la hoja **Soporte técnico y solución de problemas**. Seleccione **Restablecer contraseña** en el cuadro de lista desplegable **Modo**, seleccione un **Nombre de usuario** y una **Contraseña**. Haga clic en el botón **Actualizar** para conservar el nuevo nombre de usuario y contraseña.
+### <a name="prerequisites"></a>Requisitos previos
+
+Antes de poder implementar la arquitectura de referencia en su propia suscripción, debe realizar los pasos siguientes.
+
+1. Clone, bifurque o descargue el archivo ZIP para el repositorio de GitHub de [arquitecturas de referencia de AzureCAT][ref-arch-repo].
+
+2. Asegúrese de que tiene la CLI de Azure 2.0 instalada en el equipo. Para instalar la CLI, siga las instrucciones de [Instalación de la CLI de Azure 2.0][azure-cli-2].
+
+3. Instale el paquete de NPM de [Azure Building Blocks][azbb].
+
+  ```bash
+  npm install -g @mspnp/azure-building-blocks
+  ```
+
+4. Desde un símbolo del sistema, un símbolo del sistema de Bash o un símbolo del sistema de PowerShell, inicie sesión en la cuenta de Azure con alguno de los comandos siguientes y siga las indicaciones.
+
+  ```bash
+  az login
+  ```
+
+### <a name="deploy-the-solution-using-azbb"></a>Implementación de la solución con AZBB
+
+Para implementar las máquinas virtuales de Linux en una arquitectura de referencia de la aplicación de N niveles, siga estos pasos:
+
+1. Vaya a la carpeta `virtual-machines\n-tier-linux` del repositorio que clonó en el paso 1 donde se detallaron los requisitos previos.
+
+2. El archivo de parámetros especifica un nombre de usuario administrador y una contraseña predeterminados para cada máquina virtual de la implementación. Debe cambiar estos datos antes de implementar la arquitectura de referencia. Abra el archivo `n-tier-linux.json` y reemplace los campos **adminUsername** y **adminPassword** con la nueva configuración.   Guarde el archivo .
+
+3. Implemente la arquitectura de referencia mediante la herramienta de línea de comandos **azbb** tal y como se muestra a continuación.
+
+  ```bash
+  azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-linux.json --deploy
+  ```
+
+Para obtener más información sobre la implementación de esta arquitectura de referencia de ejemplo mediante Azure Bulding Blocks, visite el [repositorio de GitHub][git].
 
 <!-- links -->
 [multi-dc]: multi-region-application.md
 [dmz]: ../dmz/secure-vnet-dmz.md
 [multi-vm]: ./multi-vm.md
 [naming conventions]: /azure/guidance/guidance-naming-conventions
-
+[azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
 [azure-administration]: /azure/automation/automation-intro
 [azure-availability-sets]: /azure/virtual-machines/virtual-machines-linux-manage-availability
+[azure-cli-2]: https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest
 [host bastión]: https://en.wikipedia.org/wiki/Bastion_host
 [cassandra-in-azure]: https://docs.datastax.com/en/datastax_enterprise/4.5/datastax_enterprise/install/installAzure.html
 [CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
 [chef]: https://www.chef.io/solutions/azure/
 [datastax]: http://www.datastax.com/products/datastax-enterprise
+[git]: https://github.com/mspnp/template-building-blocks
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/n-tier-linux
 [lb-external-create]: /azure/load-balancer/load-balancer-get-started-internet-portal
 [lb-internal-create]: /azure/load-balancer/load-balancer-get-started-ilb-arm-portal
@@ -150,6 +178,7 @@ Hay disponible una implementación de esta arquitectura en [GitHub][github-folde
 [private-ip-space]: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
 [dirección IP pública]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
 [puppet]: https://puppetlabs.com/blog/managing-azure-virtual-machines-puppet
+[ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
 [vnet faq]: /azure/virtual-network/virtual-networks-faq
 [visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
