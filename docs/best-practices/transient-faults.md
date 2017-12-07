@@ -4,11 +4,11 @@ description: "Guía de reintentos para el control de errores transitorios."
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 05558abad8938788d09caa5df8b1f088ce3b5bdc
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9562e3447b2219fe2f3df96cfca24b845efa39b0
+ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 11/23/2017
 ---
 # <a name="transient-fault-handling"></a>Control de errores transitorios
 
@@ -93,7 +93,7 @@ Las directrices siguientes le ayudarán a diseñar un mecanismo de control de er
 * **Otras consideraciones**
   
   * Al decidir los valores para el número de reintentos y los intervalos de reintento para una directiva, tenga en cuenta si la operación del servicio o recurso forma parte de una operación de ejecución prolongada o de varios pasos. Puede ser difícil o costoso compensar los demás pasos operativos que ya se han realizado correctamente cuando uno falla. En este caso, un intervalo muy largo y un gran número de reintentos pueden ser aceptables siempre y cuando no bloquee otras operaciones manteniendo o bloqueando recursos insuficientes.
-  * Tenga en cuenta si al volver a intentar la misma operación pueden producirse incoherencias en los datos. Si se repiten algunas partes de un proceso de varios pasos y las operaciones no son idempotentes, puede darse como resultado una incoherencia. Por ejemplo, una operación que incrementa un valor, si se repite, generará un resultado no válido. Repetir una operación que envía un mensaje a una cola puede provocar una incoherencia en el consumidor de mensajes si no puede detectar mensajes duplicados. Para evitarlo, asegúrese de diseñar cada paso como una operación idempotente. Para obtener más información acerca de la idempotencia, consulte [Patrones de idempotencia](http://blog.jonathanoliver.com/2010/04/idempotency-patterns/).
+  * Tenga en cuenta si al volver a intentar la misma operación pueden producirse incoherencias en los datos. Si se repiten algunas partes de un proceso de varios pasos y las operaciones no son idempotentes, puede darse como resultado una incoherencia. Por ejemplo, una operación que incrementa un valor, si se repite, generará un resultado no válido. Repetir una operación que envía un mensaje a una cola puede provocar una incoherencia en el consumidor de mensajes si no puede detectar mensajes duplicados. Para evitarlo, asegúrese de diseñar cada paso como una operación idempotente. Para obtener más información acerca de la idempotencia, consulte [Patrones de idempotencia][idempotency-patterns].
   * Tenga en cuenta el ámbito de las operaciones que se volverán a intentar. Por ejemplo, puede ser más fácil de implementar el código de reintento en un nivel que abarca varias operaciones y reintentarlos de nuevo todos si se produce un error en uno. Sin embargo, esto podría provocar problemas de idempotencia u operaciones de reversión innecesarias.
   * Si elige un ámbito de reintento que abarca varias operaciones, tenga en cuenta la latencia total de todos ellos al determinar los intervalos de reintento, al supervisar el tiempo que tardan y antes de generar alertas para los errores.
   * Tenga en cuenta cómo puede afectar su estrategia de reintento a vecinos y otros inquilinos de una aplicación compartida o al usar servicios y recursos compartidos. Las directivas de reintento agresivas puede ocasionar un número creciente de errores transitorios a estos otros usuarios y para las aplicaciones que comparten los recursos y servicios. Del mismo modo, es posible que la aplicación se vea afectada por las directivas de reintento implementadas por otros usuarios de los servicios y recursos. Para las aplicaciones críticas, puede decidir usar servicios Premium que no se comparten. Esto le brinda un mayor control sobre la carga y la consiguiente limitación de estos recursos y servicios, que pueden ayudar a justificar el coste adicional.
@@ -103,5 +103,7 @@ Las directrices siguientes le ayudarán a diseñar un mecanismo de control de er
 * [Bloque de aplicación de control de errores transitorios](http://msdn.microsoft.com/library/hh680934.aspx)
 * [Patrón de disyuntor](http://msdn.microsoft.com/library/dn589784.aspx)
 * [Patrón de transacción de compensación](http://msdn.microsoft.com/library/dn589804.aspx)
-* [Patrones de idempotencia](http://blog.jonathanoliver.com/2010/04/idempotency-patterns/)
+* [Patrones de idempotencia][idempotency-patterns]
+
+[idempotency-patterns]: http://blog.jonathanoliver.com/idempotency-patterns/
 

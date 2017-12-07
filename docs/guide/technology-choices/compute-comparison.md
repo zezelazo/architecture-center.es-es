@@ -3,11 +3,11 @@ title: "Criterios para elegir una opción de proceso de Azure"
 description: "Compare los servicios de proceso de Azure a través de varios ejes."
 author: MikeWasson
 layout: LandingPage
-ms.openlocfilehash: 640793b56c1713f63456bab75ab4b9289d22a53c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 36b57d1fb674b5a1452a0e8208de836963b2b01b
+ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 11/23/2017
 ---
 # <a name="criteria-for-choosing-an-azure-compute-option"></a>Criterios para elegir una opción de proceso de Azure
 
@@ -17,12 +17,12 @@ El término *proceso* hace referencia al modelo de hospedaje para los recursos i
 
 | Criterios | Máquinas virtuales | App Service | Service Fabric | Azure Functions | Azure Container Service | Cloud Services | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
-| Composición de la aplicación | Independiente | Aplicaciones | Ejecutables de invitado, servicios | Functions | Contenedores | Roles | Scheduled jobs  |
+| Composición de la aplicación | Independiente | Aplicaciones | Ejecutables de invitado, servicios, contenedores | Functions | Contenedores | Roles | Scheduled jobs  |
 | Densidad | Independiente | Varias aplicaciones por instancia a través de los planes de aplicación | Varios servicios por VM | Sin instancias dedicadas <a href="#note1"><sup>1</sup></a> | Varios contenedores por VM | Una instancia de rol por VM | Varias aplicaciones por VM |
 | Número mínimo de nodos | 1 <a href="#note2"><sup>2</sup></a>  | 1 | 5 <a href="#note3"><sup>3</sup></a> | Sin nodos dedicados <a href="#note1"><sup>1</sup></a> | 3 | 2 | 1 <a href="#note4"><sup>4</sup></a> |
 | Administración de estados | Con o sin estado | Sin estado | Con o sin estado | Sin estado | Con o sin estado | Sin estado | Sin estado |
-| Hospedaje web | Independiente | Integrado | Autohospedaje, IIS en contenedores | No aplicable | Independiente | Integrado (IIS) | No |
-| SO | Windows, Linux | Windows, Linux (versión preliminar)  | Windows, Linux (versión preliminar) | No aplicable | Windows, Linux | Windows | Windows, Linux |
+| Hospedaje web | Independiente | Integrado | Independiente | No aplicable | Independiente | Integrado (IIS) | No |
+| SO | Windows, Linux | Windows, Linux  | Windows, Linux | No aplicable | Windows (versión preliminar), Linux | Windows | Windows, Linux |
 | ¿Se puede implementar en una red virtual dedicada? | Compatible | Compatible <a href="#note5"><sup>5</sup></a> | Compatible | No compatible | Compatible | Compatible <a href="#note6"><sup>6</sup></a> | Compatible |
 | Conectividad híbrida | Compatible | Compatible <a href="#note1"><sup>7</sup></a>  | Compatible | No compatible | Compatible | Compatible <a href="#note8"><sup>8</sup></a> | Compatible |
 
