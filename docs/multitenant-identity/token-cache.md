@@ -6,11 +6,11 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: web-api
 pnp.series.next: adfs
-ms.openlocfilehash: ed0def244f3229bbd3fdd0976574d13a345f9aee
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: cffc15686ef9d77fafb40982efdbcd4a79f5aaf2
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="cache-access-tokens"></a>Almacenamiento en caché de los tokens de acceso
 
@@ -18,7 +18,7 @@ ms.lasthandoff: 11/14/2017
 
 Es relativamente costoso obtener un token acceso de OAuth, porque requiere una solicitud HTTP al punto de conexión del token. Por lo tanto, es bueno almacenar tokens en caché siempre que sea posible. La [biblioteca de autenticación de Azure AD][ADAL] almacena automáticamente en caché los tokens obtenidos de Azure AD, incluidos los tokens de actualización.
 
-ADAL proporciona una implementación de caché de tokens predeterminada. Sin embargo, esta caché de tokens está diseñada para aplicaciones cliente nativas y *no* es adecuada para aplicaciones web:
+ADAL proporciona una implementación de caché de tokens predeterminada. Sin embargo, esta caché de tokens está diseñada para aplicaciones cliente nativas y **no** es adecuada para aplicaciones web:
 
 * Es una instancia estática y no es segura para subprocesos.
 * No se escala a un gran número de usuarios, ya que los tokens de todos los usuarios van en el mismo diccionario.

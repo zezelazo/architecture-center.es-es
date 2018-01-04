@@ -6,11 +6,11 @@ author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories: resiliency
-ms.openlocfilehash: f8337717c4afd6b558f0da8e1ded3a8071340db7
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a822de990d6ce933024207073b110e98f8da40bf
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="compensating-transaction-pattern"></a>Patrón Compensating Transaction (Transacción de compensación)
 
@@ -38,7 +38,7 @@ Un enfoque común es usar un flujo de trabajo para implementar una operación de
 
 > Este enfoque es similar a la estrategia de Sagas que se describe en el [blog de Clemens Vasters](http://vasters.com/clemensv/2012/09/01/Sagas.aspx).
 
-Una transacción de compensación es asimismo una operación de coherencia definitiva y también podría dar error. El sistema debería poder reanudar la transacción de compensación en el punto de error y continuar. Como podría ser necesario repetir un paso que no se pudo realizar, los pasos de una transacción de compensación deben definirse como comandos idempotentes. Para más información, consulte los [patrones de idempotencia](http://blog.jonathanoliver.com/2010/04/idempotency-patterns/) en el blog de Jonathan Oliver.
+Una transacción de compensación es asimismo una operación de coherencia definitiva y también podría dar error. El sistema debería poder reanudar la transacción de compensación en el punto de error y continuar. Como podría ser necesario repetir un paso que no se pudo realizar, los pasos de una transacción de compensación deben definirse como comandos idempotentes. Para más información, consulte los [patrones de idempotencia](http://blog.jonathanoliver.com/idempotency-patterns/) en el blog de Jonathan Oliver.
 
 En algunos casos, puede que no sea posible recuperarse de un paso que ha dado error si no es mediante intervención manual. En estas situaciones el sistema debe generar una alerta y proporcionar tanta información como sea posible sobre el motivo del error.
 
@@ -93,7 +93,7 @@ En muchas soluciones empresariales, que un único paso produzca error no signifi
 
 Los patrones y las directrices siguientes también pueden ser importantes a la hora de implementar este modelo:
 
-- [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Manual básico de coherencia de datos) El patrón Compensating Transaction se usa a menudo para deshacer operaciones que implementan el modelo de coherencia definitiva. En este manual se proporciona información sobre las ventajas e inconvenientes de la coherencia definitiva.
+- [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Manual básico de coherencia de datos). El patrón Compensating Transaction se usa a menudo para deshacer operaciones que implementan el modelo de coherencia definitiva. En este manual se proporciona información sobre las ventajas e inconvenientes de la coherencia definitiva.
 
 - [Patrón Scheduler-Agent-Supervisor](scheduler-agent-supervisor.md). Describe cómo implementar sistemas resistentes que realicen operaciones empresariales en las que se usen recursos y servicios distribuidos. En ocasiones, podría ser necesario deshacer el trabajo realizado por una operación mediante el uso de una transacción de compensación.
 

@@ -3,11 +3,11 @@ title: "Ejecución de una granja de servidores de SharePoint Server 2016 de alta
 description: Procedimientos de demostrada eficacia para configurar una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure.
 author: njray
 ms.date: 08/01/2017
-ms.openlocfilehash: a3d47eea15f1e7e8cecf2bf1be55d8c3a9bb9bdc
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0c0e9a7b2ae12a2d12919548f91304e6cbd2d8a6
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>Ejecución de una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure
 
@@ -17,7 +17,7 @@ Esta arquitectura de referencia muestra un conjunto de procedimientos de demostr
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Arquitectura
+## <a name="architecture"></a>Architecture
 
 Esta arquitectura se basa en la que se muestra en [Run Windows VMs for an N-tier application][windows-n-tier] (Ejecución de máquinas virtuales Windows para una aplicación de n niveles). Implementa una granja de servidores de SharePoint Server 2016 con alta disponibilidad dentro de una red virtual (VNet) de Azure. Esta arquitectura es adecuada para un entorno de pruebas o producción, una infraestructura híbrida de SharePoint con Office 365 o como base para un escenario de recuperación ante desastres.
 
@@ -29,7 +29,7 @@ La arquitectura consta de los siguientes componentes:
 
 - **Máquinas virtuales (VM)**. Las máquinas virtuales se implementan en la red virtual y se les asignan direcciones IP estáticas privadas a todas ellas. Se recomiendan las direcciones IP estáticas para las máquinas virtuales que ejecutan SQL Server y SharePoint Server 2016, a fin de evitar problemas con el almacenamiento en caché de direcciones IP y los cambios de direcciones después de un reinicio.
 
-- **Conjuntos de disponibilidad**. Coloque las máquinas virtuales de cada rol de SharePoint en distintos [conjuntos de disponibilidad][availability-set] y aprovisione al menos dos máquinas virtuales (VM) para cada rol. De esta forma, las máquinas virtuales son aptas para un Acuerdo de Nivel de Servicio (SLA) mayor. 
+- **Conjuntos de disponibilidad**. Coloque las máquinas virtuales de cada rol de SharePoint en distintos [conjuntos de disponibilidad][availability-set] y aprovisione al menos dos máquinas virtuales (VM) para cada rol. Esto hace que las máquinas virtuales sean aptas para un Acuerdo de Nivel de Servicio (SLA) mayor. 
 
 - **Equilibrador de carga interno**. El [equilibrador de carga][load-balancer] distribuye el tráfico de solicitudes de SharePoint desde la red local hasta los servidores web front-end de la granja de servidores de SharePoint. 
 
@@ -49,7 +49,7 @@ La arquitectura consta de los siguientes componentes:
 
 ## <a name="recommendations"></a>Recomendaciones
 
-Los requisitos pueden diferir de los de la arquitectura aquí descrita. Use estas recomendaciones como punto de partida.
+Los requisitos pueden diferir de los de la arquitectura que se describe aquí. Use estas recomendaciones como punto de partida.
 
 ### <a name="resource-group-recommendations"></a>Recomendaciones para grupos de recursos
 
@@ -169,16 +169,16 @@ Además, siempre es conveniente planear la protección de seguridad. Otras recom
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-Los scripts de implementación de esta arquitectura de referencia están disponibles en [Github][github]. 
+Los scripts de implementación de esta arquitectura de referencia están disponibles en [GitHub][github]. 
 
-Puede implementar esta arquitectura de forma incremental o de una vez. La primera vez, se recomienda una implementación incremental para que pueda ver lo que hace cada implementación. Especifique el incremento mediante uno de los siguientes parámetros *mode*.
+Esta arquitectura se puede implementar de forma incremental o toda de una vez. La primera vez, se recomienda una implementación incremental para que pueda ver lo que hace cada implementación. Especifique el incremento mediante uno de los siguientes parámetros *mode*.
 
 | Mode           | Qué hace                                                                                                            |
 |----------------|-------------------------------------------------------------------------------------------------------------------------|
 | onprem         | (Opcional) Implementa un entorno de red local simulado para pruebas o evaluación. Este paso no conecta a una red local real. |
 | infrastructure | Implementa la infraestructura de red de SharePoint 2016 y JumpBox en Azure.                                                |
 | createvpn      | Implementa una puerta de enlace de red virtual para redes locales y de SharePoint y se conecta a ellas. Ejecute este paso solo si ha ejecutado el paso `onprem`.                |
-| workload       | Implementa los servidores de SharePoint en la red de SharePoint.                                                               |
+| carga de trabajo       | Implementa los servidores de SharePoint en la red de SharePoint.                                                               |
 | security       | Implementa el grupo de seguridad de red en la red de SharePoint.                                                           |
 | todas            | Implementa todas las implementaciones anteriores.                            
 
@@ -188,18 +188,18 @@ Para implementar la arquitectura de manera incremental con un entorno de red loc
 1. onprem
 2. infrastructure
 3. createvpn
-4. workload
+4. carga de trabajo
 5. security
 
 Para implementar la arquitectura de manera incremental sin un entorno de red local simulado, ejecute los pasos siguientes en orden:
 
 1. infrastructure
-2. workload
+2. carga de trabajo
 3. security
 
 Para implementar todo en un solo paso, use `all`. Tenga en cuenta que todo el proceso puede tardar varias horas.
 
-### <a name="prerequisites"></a>Requisitos previos
+### <a name="prerequisites"></a>requisitos previos
 
 * Instale la versión más reciente de [Azure PowerShell][azure-ps].
 
