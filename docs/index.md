@@ -2,11 +2,11 @@
 title: Azure Architecture Center
 description: "Azure Architecture Center es el centro oficial para obtener instrucciones, planos, patrones y procedimientos recomendados para crear soluciones con Microsoft Azure. El equipo de patrones y prácticas de Microsoft es el que selecciona este material."
 layout: LandingPage
-ms.openlocfilehash: 3afe907b8ea1fe59d6c2eb9505ddb34775fdcd62
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: d48861a1001c9bef8cad152a3664077f2ad915c6
+ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/29/2017
 ---
 # <a name="azure-architecture-center"></a>Azure Architecture Center
 
@@ -84,20 +84,20 @@ ms.lasthandoff: 11/14/2017
             </div>
         </a>
     </li>
-    <!-- Performance anti-practices -->
+    <!-- Microservices -->
     <li>
-        <a href="/azure/architecture/antipatterns">
+        <a href="/azure/architecture/microservices">
             <div class="cardSize">
                 <div class="cardPadding">
                     <div class="card">
                         <div class="cardImageOuter">
                             <div class="cardImage">
-                                <img src="_images/performance.svg" alt="Performance antipatterns" />
+                                <img src="_images/new-content.svg" alt="Designing, building, and operating microservices on Azure" />
                             </div>
                         </div>
                         <div class="cardText">
-                            <h3>Antipatrones de rendimiento</h3>
-                            <p>Procedimiento para detectar y corregir algunas causas comunes de problemas de rendimiento y escalabilidad en las aplicaciones en la nube.</p>
+                            <h3>Creación de microservicios en Azure</h3>
+                            <p>Esta serie de varias partes le guiará por el proceso de diseñar y crear una arquitectura de microservicios en Azure. Se incluye una implementación de referencia.</p>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,27 @@ ms.lasthandoff: 11/14/2017
             </div>
         </a>
     </li>
-    <!-- Azure for AWS Professionals -->
+    <!-- Azure Virtual Datacenter -->
+    <li>
+        <a href="https://aka.ms/vdc">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/virtual-datacenter.svg" alt="Azure Virtual Datacenter e-book" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Libro electrónico de Azure Virtual Datacenter</h3>
+                            <p>Este libro electrónico muestra cómo implementar cargas de trabajo empresariales en la plataforma de nube de Azure, al tiempo que se respetan las directivas existentes de red y de seguridad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+        <!-- Azure for AWS Professionals -->
     <li>
         <a href="/azure/architecture/aws-professional">
             <div class="cardSize">
@@ -178,6 +198,26 @@ ms.lasthandoff: 11/14/2017
                         <div class="cardText">
                             <h3>Bloques de creación de Azure</h3>
                             <p>Simplifique la implementación de recursos de Azure. Con un archivo de configuración único, implemente arquitecturas complejas en Azure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <!-- Performance anti-practices -->
+    <li>
+        <a href="/azure/architecture/antipatterns">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/performance.svg" alt="Performance antipatterns" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Antipatrones de rendimiento</h3>
+                            <p>Procedimiento para detectar y corregir algunas causas comunes de problemas de rendimiento y escalabilidad en las aplicaciones en la nube.</p>
                         </div>
                     </div>
                 </div>
@@ -238,26 +278,6 @@ ms.lasthandoff: 11/14/2017
                         <div class="cardText">
                             <h3>Administración de identidades en aplicaciones multiinquilino</h3>
                             <p>Conozca los procedimientos recomendados para la arquitectura multiinquilino durante el uso de Azure AD para la administración de las identidades.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- ElasticSearch -->
-    <li>
-        <a href="/azure/architecture/elasticsearch">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/elasticsearch.svg" alt="Run Elasticsearch on Azure" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Ejecución de Elasticsearch en Azure</h3>
-                            <p>Aprenda a implementar, administrar y optimizar un clúster de Elasticsearch en Azure.</p>
                         </div>
                     </div>
                 </div>
