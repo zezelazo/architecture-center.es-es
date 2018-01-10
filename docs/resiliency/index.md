@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
 pnp.series.title: Design for Resiliency
-ms.openlocfilehash: 31a685e46da02fb59d93a210e6f14da5c68331de
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0cbcf0a8af1a8e20f2a1c024f5146a37176c5d1e
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Diseño de aplicaciones resistentes de Azure
 
@@ -25,13 +25,17 @@ En este artículo se introduce a la creación de aplicaciones resistentes en Mic
 Dos aspectos importantes de la resistencia son la alta disponibilidad y la recuperación ante desastres.
 
 * **Alta disponibilidad** (HA) es la capacidad de la aplicación de seguir ejecutándose en un estado correcto, sin tiempo de inactividad relevante. Por "estado correcto," queremos decir que la aplicación responde y los usuarios pueden conectarse e interactuar con ella.  
-* La **recuperación ante desastres** es la capacidad de recuperación de incidentes importantes pero poco frecuentes: errores a gran escala no transitorios, tales como una interrupción del servicio que afecta a toda la región. La recuperación ante desastres incluye la copia de seguridad y el archivado de datos, y puede incluir la intervención manual, como la restauración manual de una base de datos a partir de la copia de seguridad. 
+* La **recuperación ante desastres** es la capacidad de recuperación de incidentes importantes pero poco frecuentes: errores a gran escala no transitorios, tales como una interrupción del servicio que afecta a toda la región. La recuperación ante desastres incluye la copia de seguridad y el archivado de datos, y puede incluir la intervención manual, como la restauración manual de una base de datos a partir de la copia de seguridad.
 
-Una manera de pensar en alta disponibilidad frente a la recuperación ante desastres es que esta se inicia cuando el impacto de un error supera la capacidad del diseño de alta disponibilidad de controlarlo. Por ejemplo, colocar varias máquinas virtuales detrás de un equilibrador de carga proporcionará disponibilidad si se produce un error en una máquina virtual, pero no si todas ellas producen errores al mismo tiempo. 
+Una manera de pensar en alta disponibilidad frente a la recuperación ante desastres es que esta se inicia cuando el impacto de un error supera la capacidad del diseño de alta disponibilidad de controlarlo.  
 
-Cuando se diseña una aplicación para que sea resistente, se deben comprender los requisitos de disponibilidad. ¿Cuánto tiempo de inactividad es aceptable? Depende en parte del costo. ¿Cuánto le costará el tiempo de inactividad potencial a su negocio? ¿Cuánto debe invertir para que la aplicación tenga alta disponibilidad? También debe definir lo que significa que la aplicación esté disponible. Por ejemplo, ¿se considera que la aplicación está "fuera de servicio" si un cliente puede enviar un pedido pero el sistema no puede procesarlo en el período de tiempo normal? También considere la probabilidad de que ocurra un determinado tipo de interrupción y si una estrategia de mitigación es rentable.
+Si va a diseñar la resistencia, debe conocer los requisitos de disponibilidad. ¿Cuánto tiempo de inactividad es aceptable? Depende en parte del costo. ¿Cuánto le costará el tiempo de inactividad potencial a su negocio? ¿Cuánto debe invertir para que la aplicación tenga alta disponibilidad? También debe definir lo que significa que la aplicación esté disponible. Por ejemplo, ¿se considera que la aplicación está "fuera de servicio" si un cliente puede enviar un pedido pero el sistema no puede procesarlo en el período de tiempo normal? También considere la probabilidad de que ocurra un determinado tipo de interrupción y si una estrategia de mitigación es rentable.
 
-Otro término común es la **continuidad del negocio**, que consiste en la capacidad de realizar funciones empresariales esenciales durante y después de condiciones adversas, como un desastre natural o un servicio que ha dejado de funcionar. La continuidad de negocio cubre toda la operación de la empresa, incluidas las instalaciones físicas, las personas, las comunicaciones, el transporte e IT. Este artículo se centra en las aplicaciones en la nube, pero el planeamiento de la resistencia debe realizarse en el contexto de los requisitos generales de la continuidad del negocio. Para más información, consulte la [guía de planeamiento de contingencia][capacity-planning-guide] del National Institute of Science and Technology (NIST).
+Otro término común es la **continuidad del negocio**, que consiste en la capacidad de realizar funciones empresariales esenciales durante y después de condiciones adversas, como un desastre natural o un servicio que ha dejado de funcionar. La continuidad de negocio cubre toda la operación de la empresa, incluidas las instalaciones físicas, las personas, las comunicaciones, el transporte e IT. Este artículo se centra en las aplicaciones en la nube, pero el planeamiento de la resistencia debe realizarse en el contexto de los requisitos generales de la continuidad del negocio. 
+
+Las **copias de seguridad de datos** constituyen una parte fundamental de la recuperación ante desastres. Si se produce un error en los componentes sin estado de una aplicación, siempre puede implementarlos de nuevo. Sin embargo, si se pierden los datos, el sistema no podrá volver a un estado estable. Por tanto, es necesario hacer copias de seguridad, y lo ideal es hacerlo en una región diferente por si se produjera un desastre que afectara a toda una región. 
+
+Las copias de seguridad no son lo mismo que la **replicación de datos**. La replicación de datos implica copiar datos casi en tiempo real, por lo que el sistema puede conmutar por error a una réplica rápidamente. Muchos sistemas de bases de datos admiten la replicación; por ejemplo, SQL Server es compatible con Grupos de disponibilidad Always On de SQL Server. La replicación de datos puede reducir el tiempo necesario para recuperarse de una interrupción, ya que garantiza que siempre hay una réplica de datos disponible. Sin embargo, la replicación de datos no sirve de protección frente a los errores humanos. Si los datos resultan dañados por un error humano, se copiarán en las réplicas. Por tanto, necesitará incorporar también las copias de seguridad a largo plazo en la estrategia de recuperación ante desastres. 
 
 ## <a name="process-to-achieve-resiliency"></a>Proceso para lograr resistencia
 La resistencia no es un complemento. Deberá diseñarse en el sistema y aplicarse en la práctica operativa. Este es un modelo general para seguir:
@@ -64,6 +68,7 @@ Considere también la posibilidad de patrones de uso. ¿Hay ciertos períodos cr
 Dos métricas importantes a tener en cuenta son el objetivo de tiempo de recuperación (RTO) y el objetivo de punto de recuperación (RPO).
 
 * **Objetivo de tiempo de recuperación** (RTO) es el tiempo máximo aceptable que una aplicación puede no estar disponible después de un incidente. Si el RTO es de 90 minutos, debe ser capaz de restaurar la aplicación a un estado en ejecución en un plazo de 90 minutos desde el inicio de un desastre. Si tiene un RTO muy bajo, puede mantener una segunda implementación ejecutándose continuamente en modo de espera, para protegerse contra una interrupción regional.
+
 * **Objetivo de punto de recuperación** (RPO) es la duración máxima de la pérdida de datos que es aceptable durante un desastre. Por ejemplo, si se almacenan datos en una única base de datos, sin replicación en otras bases de datos y se realizan copias de seguridad por hora, se podría perder hasta una hora de datos. 
 
 RTO y el RPO son requisitos empresariales. Llevar a cabo una evaluación de riesgos puede ayudarle a definir el RTO y el RPO de la aplicación. Otra medida común es el **tiempo medio para recuperación** (MTTR), que es el tiempo medio que se tarda en restaurar la aplicación después de un error. MTTR es un hecho empírico acerca de un sistema. Si MTTR excede el RTO, un error en el sistema causará una interrupción inaceptable del negocio, porque no será posible restaurar el sistema dentro del RTO definido. 
@@ -134,6 +139,33 @@ Además, la conmutación por error no es instantánea y puede dar lugar un ciert
 
 El número calculado del Acuerdo de Nivel de Servicio es una base de referencia útil, pero no indica la historia completa sobre la disponibilidad. A menudo, una aplicación puede degradarse correctamente cuando se produce un error en una ruta no crítica. Considere una aplicación que muestre un catálogo de libros. Si la aplicación no puede recuperar la imagen en miniatura de la portada, puede que muestre una imagen de marcador de posición. En ese caso, no obtener la imagen no reduce el tiempo de actividad de la aplicación, aunque afecta a la experiencia del usuario.  
 
+## <a name="redundancy-and-designing-for-failure"></a>Redundancia y diseño en caso de error
+
+El alcance de los errores puede variar. Algunos errores de hardware, como un problema en un disco, pueden afectar a un único equipo host. Un error en un conmutador de red podría afectar a todo un bastidor del servidor. Menos frecuentes son los errores que afectan a todo un centro de datos, como los problemas de alimentación. Aún más improbables son los problemas por los que toda una región dejaría de estar disponible.
+
+Uno de los mecanismos para conseguir que una aplicación sea resistente es la redundancia. Sin embargo, esta redundancia debe planearse al diseñar la aplicación. Además, el nivel de redundancia necesario dependerá de los requisitos de la compañía: no todas las aplicaciones necesitan tener redundancia entre regiones para protegerse contra una interrupción regional. En general, hay que buscar el equilibrio, ya que una mayor redundancia y confiabilidad implica una mayor complejidad y unos costos más elevados.  
+
+Azure dispone de una serie de características que permiten hacer que la aplicación sea redundante sea cual sea el nivel del error, desde los que se producen en una única máquina virtual hasta los que tienen lugar en toda una región. 
+
+![](./images/redundancy.svg)
+
+**Una única máquina virtual**. Azure proporciona un Acuerdo de Nivel de Servicio de tiempo de actividad para máquinas virtuales individuales. Aunque se puede conseguir un Acuerdo de Nivel de Servicio mayor ejecutando dos o más máquinas virtuales, una única máquina virtual puede resultar suficientemente confiable con algunas cargas de trabajo. En las cargas de trabajo de producción, se recomienda usar dos o más máquinas virtuales para tener redundancia. 
+
+**Conjuntos de disponibilidad**. Para protegerse frente a errores de hardware localizados, como un error en un conmutador de red o un disco, implemente dos o más máquinas virtuales en un conjunto de disponibilidad. Un conjunto de disponibilidad se compone de dos o más *dominios de error* que comparten una fuente de alimentación y un conmutador de red. Las máquinas virtuales incluidas en un conjunto de disponibilidad se distribuyen entre los dominios de error, por lo que, si un error de hardware afecta a un dominio de error, el tráfico de la red puede enrutarse a las máquinas virtuales de otros dominios de error. Para más información acerca de los conjuntos disponibilidad, consulte [Administración de la disponibilidad de las máquinas virtuales Windows en Azure](/azure/virtual-machines/windows/manage-availability).
+
+**Zonas de disponibilidad (versión preliminar)**.  Una zona de disponibilidad es una zona separada físicamente dentro de una región de Azure. Cada zona de disponibilidad tiene una fuente de alimentación, una red y un sistema de refrigeración distintos. Cuando las máquinas virtuales están implementadas en diferentes zonas de disponibilidad, es más fácil proteger una aplicación frente a errores que afectan a todo el centro de datos. 
+
+**Regiones emparejadas**. Para proteger una aplicación frente a una interrupción regional, puede implementar la aplicación en varias regiones y utilizar Azure Traffic Manager para distribuir el tráfico de Internet en las distintas regiones. Cada región de Azure está emparejada con otra región. Juntas, forman un [par regional](/azure/best-practices-availability-paired-regions). A excepción del Sur de Brasil, los pares regionales se encuentran en la misma ubicación geográfica para, de este modo, cumplir los requisitos de residencia de datos a efectos de jurisdicción fiscal y aplicación de las leyes.
+
+Si diseña una aplicación para varias regiones, tenga en cuenta que la latencia de red entre regiones es mayor que dentro de una región. Por ejemplo, si va a replicar una base de datos para habilitar la conmutación por error, utilice la replicación de datos sincrónica dentro de una misma región y la replicación asincrónica de datos entre diferentes regiones.
+
+| &nbsp; | Conjunto de disponibilidad | Zona de disponibilidad | Región emparejada |
+|--------|------------------|-------------------|---------------|
+| Alcance del error | Bastidor | Centro de datos | Region |
+| Enrutamiento de solicitudes | Load Balancer | Equilibrador de carga entre zonas | Traffic Manager |
+| Latencia de red | Muy baja | Bajo | Media-alta |
+| Red virtual  | VNet | VNet | Emparejamiento de VNet entre regiones (versión preliminar) |
+
 ## <a name="designing-for-resiliency"></a>Diseño para lograr resistencia
 Durante la fase de diseño, se debe realizar un análisis del modo de error (FMA). El objetivo del análisis del modo de error es identificar los posibles puntos de error y definir cómo responderá la aplicación a esos errores.
 
@@ -168,12 +200,11 @@ Para más información, consulte [Retry Pattern][retry-pattern] (Patrón Retry).
 ### <a name="load-balance-across-instances"></a>Equilibrio de carga entre instancias
 Para ofrecer escalabilidad, una aplicación en la nube debe ser capaz de escalar horizontalmente agregando más instancias. Este enfoque también mejora la resistencia, ya que los casos con estado incorrecto se pueden quitar de la rotación.  
 
-Por ejemplo:
+Por ejemplo: 
 
 * Coloque dos o más máquinas virtuales detrás de un equilibrador de carga. El equilibrador de carga distribuye el tráfico a todas las máquinas virtuales. Consulte [Run load-balanced VMs for scalability and availability][ra-multi-vm] (Ejecución de máquinas virtuales con equilibrio de carga por escalabilidad y disponibilidad).
 * Escale horizontalmente una aplicación de Azure App Service en varias instancias. App Service equilibra automáticamente la carga entre instancias. Consulte [Basic web application][ra-basic-web] (Aplicación web básica).
 * Use [Azure Traffic Manager][tm] para distribuir el tráfico a través de un conjunto de puntos de conexión.
-
 
 ### <a name="replicate-data"></a>Replicación de datos
 La replicación de datos es una estrategia general para tratar errores no transitorios en un almacén de datos. Muchas tecnologías de almacenamiento proporcionan replicación integrada, como Azure SQL Datase y Cosmos DB y Apache Cassandra.  
@@ -183,7 +214,7 @@ Es importante tener en cuenta las rutas de lectura y escritura. Según la tecnol
 Para maximizar la disponibilidad, las réplicas pueden colocarse en varias regiones. Sin embargo, esto aumenta la latencia al replicar los datos. Por lo general, la replicación entre las regiones se realiza de forma asincrónica, lo que implica un modelo de coherencia final y la posible pérdida de datos si se produce un error en una réplica. 
 
 ### <a name="degrade-gracefully"></a>Degradación correcta
-Si se produce un error en un servicio y no hay ninguna ruta de conmutación por error, es posible que la aplicación pueda degradarse correctamente y al mismo tiempo proporcionar una experiencia de usuario aceptable. Por ejemplo:
+Si se produce un error en un servicio y no hay ninguna ruta de conmutación por error, es posible que la aplicación pueda degradarse correctamente y al mismo tiempo proporcionar una experiencia de usuario aceptable. Por ejemplo: 
 
 * Coloque un elemento de trabajo en una cola, para su tratamiento posterior. 
 * Devuelva un valor estimado.

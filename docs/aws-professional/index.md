@@ -5,11 +5,11 @@ keywords: "Expertos de AWS, comparación de Azure, comparación de AWS, diferenc
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 75fda82ee5ca7ca3665501fe428d1d01995e7422
-ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
+ms.openlocfilehash: b576b11bc152ef721f56e79609cb7a03f2d31dd3
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/23/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="azure-for-aws-professionals"></a>Azure para profesionales de AWS
 
@@ -237,14 +237,12 @@ En Azure Storage, las [cuentas de almacenamiento](https://azure.microsoft.com/do
 -   [Queue Storage](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-queues/): ofrece una solución de mensajería para el procesamiento de flujos de trabajo y para la comunicación entre los componentes de los servicios en la nube.
 
 -   [File Storage](https://azure.microsoft.com/documentation/articles/storage-java-how-to-use-file-storage/): ofrece almacenamiento compartido para aplicaciones heredadas que usan el protocolo de bloque de mensajes del servidor (SMB). File Storage se usa de manera parecida a EFS en la plataforma AWS.
-
-
-
-
  
 #### <a name="glacier-and-azure-storage"></a>Glacier y Azure Storage 
-El [archivo estándar de Azure Storage](/azure/storage/blobs/storage-blob-storage-tiers) ofrece un equivalente directo al almacenamiento Glacier de archivo a largo plazo de AWS. Para los datos de acceso poco frecuente y larga duración, Azure ofrece la [capa de almacenamiento de blobs esporádico de Azure](/azure/storage/blobs/storage-blob-storage-tiers).
-El almacenamiento esporádico proporciona almacenamiento más barato y de menor rendimiento que al almacenamiento de blobs estándar, y es comparable a S3 - Acceso poco frecuente de AWS.
+
+[Azure Archive Blob Storage](/azure/storage/blobs/storage-blob-storage-tiers#archive-access-tier) es comparable al servicio de almacenamiento AWS Glaciar. Está diseñado para los datos con acceso infrecuente que se almacenan durante 180 días, como mínimo, y pueden tolerar varias horas de latencia de recuperación. 
+
+Para los datos a los que se accede con poca frecuencia, pero deben estar disponibles inmediatamente entonces, la [capa de Azure Blog Storage de acceso esporádico](/azure/storage/blobs/storage-blob-storage-tiers#cool-access-tier) proporciona un almacenamiento más económico que el de blob estándar. Este nivel de almacenamiento es comparable al servicio de almacenamiento de acceso infrecuente de AWS S3.
 
 #### <a name="see-also"></a>Otras referencias
 
@@ -418,7 +416,7 @@ Notification Hubs no admite el envío de mensajes de correo electrónico o SMS, 
 -   [Plantillas de inicio rápido de Azure Resource Manager](https://azure.microsoft.com/documentation/templates/)
 
 
-## <a name="next-steps"></a>Pasos siguientes
+## <a name="next-steps"></a>pasos siguientes
 
 -   [Rellenar la matriz de comparación de servicios de AWS y Azure](https://aka.ms/azure4aws-services)
 

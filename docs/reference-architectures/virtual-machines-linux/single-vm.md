@@ -2,15 +2,15 @@
 title: "Ejecución de una VM con Linux en Azure"
 description: "Cómo ejecutar una única máquina virtual en Azure teniendo en cuenta la escalabilidad, resistencia, manejabilidad y seguridad."
 author: telmosampaio
-ms.date: 11/16/2017
+ms.date: 12/12/2017
 pnp.series.title: Linux VM workloads
 pnp.series.next: multi-vm
 pnp.series.prev: ./index
-ms.openlocfilehash: f538958be934ad2e9ea8d53791814b1e963c1a20
-ms.sourcegitcommit: 115db7ee008a0b1f2b0be50a26471050742ddb04
+ms.openlocfilehash: a51e0d7ed4e35c5331241cf78d1715e63f9b4d86
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/17/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="run-a-linux-vm-on-azure"></a>Ejecución de una VM con Linux en Azure
 
@@ -20,19 +20,20 @@ En esta arquitectura de referencia se muestra un conjunto de prácticas demostra
 
 *Descargue un [archivo de Visio][visio-download] que contenga este diagrama de arquitectura.*
 
-## <a name="architecture"></a>Arquitectura
+## <a name="architecture"></a>Architecture
 
 El aprovisionamiento de una máquina virtual de Azure requiere componentes adicionales, como recursos de proceso, de red y de almacenamiento.
 
-* **Grupo de recursos.** Un [*grupo de recursos*][resource-manager-overview] es un contenedor que incluye recursos relacionados. En general, debería agrupar los recursos de una solución en función de su duración y de quién vaya a administrarlos. Para una carga de trabajo de máquina virtual única, es posible que quiera crear un único grupo de recursos para todos los recursos.
+* **Grupo de recursos.** Un [grupo de recursos][resource-manager-overview] es un contenedor que incluye recursos relacionados. En general, debería agrupar los recursos de una solución en función de su duración y de quién vaya a administrarlos. Para una carga de trabajo de máquina virtual única, es posible que quiera crear un único grupo de recursos para todos los recursos.
 * **Máquina virtual**. Puede aprovisionar una máquina virtual desde una lista de imágenes publicadas, desde una imagen administrada personalizada o desde un archivo de disco duro virtual (VHD) cargado en Azure Blob Storage. Azure admite la ejecución de varias distribuciones Linux conocidas, como CentOS, Debian, Red Hat Enterprise, Ubuntu y FreeBSD. Para más información, consulte [Azure y Linux][azure-linux].
 * **Disco del sistema operativo.** El disco del sistema operativo es un disco duro virtual almacenado en [Azure Storage][azure-storage], por lo que se conserva incluso cuando la máquina host está inactiva. Para máquinas virtuales con Linux, el disco del sistema operativo es `/dev/sda1`.
-* **Disco temporal.** La máquina virtual se crea con un disco temporal. Este disco se almacena en una unidad física del equipo host. *No* se guarda en Azure Storage y es posible que se elimine durante los reinicios y otros eventos del ciclo de vida de la máquina virtual. Use este disco solo para datos temporales, como archivos de paginación o de intercambio. Para máquinas virtuales con Linux, el disco temporal es `/dev/sdb1` y se monta en `/mnt/resource` o `/mnt`.
+* **Disco temporal.** La máquina virtual se crea con un disco temporal. Este disco se almacena en una unidad física del equipo host. **No** se guarda en Azure Storage y es posible que se elimine durante los reinicios y otros eventos del ciclo de vida de la máquina virtual. Use este disco solo para datos temporales, como archivos de paginación o de intercambio. Para máquinas virtuales con Linux, el disco temporal es `/dev/sdb1` y se monta en `/mnt/resource` o `/mnt`.
 * **Discos de datos.** Un [disco de datos][data-disk] es un VHD persistente usado para los datos de la aplicación. Los discos de datos se almacenan en Azure Storage, como el disco del sistema operativo.
 * **Red virtual y subred.** Cada máquina virtual de Azure se implementa en una red virtual que se puede dividir en varias subredes.
 * **Dirección IP pública.** Se necesita una dirección IP pública para comunicarse con la máquina virtual &mdash;; por ejemplo, a través de SSH.
+* **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.  
 * **Interfaz de red (NIC)**. Un adaptador de red asignado permite que la máquina virtual se comunique con la red virtual.
-* **Grupo de seguridad de red (NSG)**. [Los NSG][nsg] se utilizan para permitir o denegar el tráfico de red a un recurso de red. Puede asociar un NSG a una NIC individual o a una subred. Si se asocia con una subred, las reglas NSG se aplican a todas las máquinas virtuales de esa subred.
+* **Grupo de seguridad de red (NSG)**. [Los grupos de seguridad de red][nsg] se utilizan para permitir o denegar el tráfico de red a un recurso de red. Puede asociar un NSG a una NIC individual o a una subred. Si se asocia con una subred, las reglas NSG se aplican a todas las máquinas virtuales de esa subred.
 * **Diagnóstico.** El registro de diagnóstico es fundamental para administrar y solucionar problemas de la VM.
 
 ## <a name="recommendations"></a>Recomendaciones
@@ -59,13 +60,13 @@ Habilite la supervisión y el diagnóstico, como las métricas básicas de estad
 
 Para un mejor rendimiento de la E/S de disco, se recomienda [Premium Storage][premium-storage], que almacena los datos en unidades de estado sólido (SSD). El costo se basa en la capacidad del disco aprovisionado. Las E/S por segundo y el rendimiento (es decir, la velocidad de transferencia de datos), también dependen del tamaño del disco, por lo que al aprovisionar un disco, debería tener en cuenta los tres factores (capacidad, E/S por segundo y rendimiento). 
 
-También se recomienda usar [Managed Disks](/azure/storage/storage-managed-disks-overview). Managed Disks no requiere una cuenta de almacenamiento. Solo debe especificar el tamaño y el tipo de disco, y se implementará como un recurso de alta disponibilidad.
+También se recomienda usar [Managed Disks](/azure/storage/storage-managed-disks-overview). Los discos administrados no requieren una cuenta de almacenamiento. Solo debe especificar el tamaño y el tipo de disco, y se implementará como un recurso de alta disponibilidad.
 
 Si usa discos no administrados, cree cuentas de almacenamiento de Azure distintas para cada máquina virtual para almacenar los discos duros virtuales (VHD) con el fin de evitar alcanzar los [límites de IOPS][vm-disk-limits] para cuentas de almacenamiento.
 
 Agregue uno o más discos de datos. Cuando se crea un disco duro virtual, no tiene formato. Inicie sesión en la VM para dar formato al disco. Si no usa Managed Disks y tiene un gran número de discos de datos, tenga en cuenta los límites de E/S totales de la cuenta de almacenamiento. Para más información, consulte [Límites de discos de máquinas virtuales][vm-disk-limits].
 
-En el shell de Linux, se muestran los discos de datos como `/dev/sdc`, `/dev/sdd`, y así sucesivamente. Puede ejecutar `lsblk` para mostrar los dispositivos de bloques, lo que incluye los discos. Para utilizar un disco de datos, cree una partición y un sistema de archivos y monte el disco. Por ejemplo:
+En el shell de Linux, se muestran los discos de datos como `/dev/sdc`, `/dev/sdd`, y así sucesivamente. Puede ejecutar `lsblk` para mostrar los dispositivos de bloques, lo que incluye los discos. Para utilizar un disco de datos, cree una partición y un sistema de archivos y monte el disco. Por ejemplo: 
 
 ```bat
 # Create a partition.
@@ -90,7 +91,7 @@ Para optimizar el rendimiento, cree una cuenta de almacenamiento independiente p
 La dirección IP pública puede ser dinámica o estática. El valor predeterminado es dinámica.
 
 * Reserve una [dirección IP estática][static-ip] si necesita una dirección IP fija que no cambie; por ejemplo, si tiene que crear un registro D en DNS o necesita que la dirección IP se agregue a una lista segura.
-* También puede crear un nombre de dominio completo (FQDN) para la dirección IP. Después, puede registrar un [registro CNAME][cname-record] en DNS que apunte al nombre de dominio completo. Para más información, consulte [Crear un nombre de dominio completo en Azure Portal][fqdn].
+* También puede crear un nombre de dominio completo (FQDN) para la dirección IP. Después, puede registrar un [registro CNAME][cname-record] en DNS que apunte al nombre de dominio completo. Para más información, consulte [Crear un nombre de dominio completo en Azure Portal][fqdn]. Puede usar [Azure DNS][ azure-dns] u otro servicio DNS.
 
 Todos los NSG contienen un conjunto de [reglas predeterminadas][nsg-default-rules], incluida una que bloquea todo el tráfico de entrada de Internet. No se puede eliminar las reglas predeterminadas, pero otras reglas pueden reemplazarlas. Para permitir el tráfico de Internet, cree reglas que permitan el tráfico entrante a puertos específicos; por ejemplo, el puerto 80 para HTTP.
 
@@ -102,7 +103,7 @@ Puede escalar o reducir verticalmente una máquina virtual [cambiando su tamaño
 
 ## <a name="availability-considerations"></a>Consideraciones sobre disponibilidad
 
-Para una mayor disponibilidad, implemente varias máquinas virtuales en un conjunto de disponibilidad. Este procedimiento también ofrece un [acuerdo de nivel de servicio][vm-sla] (SLA) superior.
+Para una mayor disponibilidad, implemente varias máquinas virtuales en un conjunto de disponibilidad. Este procedimiento también ofrece un [Acuerdo de Nivel de Servicio (SLA)][vm-sla] superior.
 
 La máquina virtual puede verse afectada por un [mantenimiento planeado][planned-maintenance] o un [mantenimiento no planeado][manage-vm-availability]. Puede usar [registros de reinicio de máquina virtual][reboot-logs] para determinar si se produjo un reinicio de la máquina virtual por un mantenimiento planeado.
 
@@ -118,7 +119,7 @@ Para protegerse de la pérdida accidental de datos durante las operaciones norma
 
 **Detención de una máquina virtual.** Azure hace una distinción entre los estados "Detenido" y "Desasignado". Se le cobra cuando el estado de la máquina virtual se detiene, pero no cuando se desasigna la máquina virtual.
 
-En Azure Portal, con el botón **Detener**, se desasigna la máquina virtual. Si apaga desde dentro del sistema operativo mientras tiene la sesión iniciada, la VM se detiene pero *no* se desasigna, por lo que se le seguirá cobrando.
+En Azure Portal, con el botón **Detener**, se desasigna la máquina virtual. Si apaga desde dentro del sistema operativo mientras tiene la sesión iniciada, la VM se detiene pero **no** se desasigna, por lo que se le seguirá cobrando.
 
 **Eliminación de una máquina virtual.** Si elimina una VM, no se eliminarán los discos duros virtuales. Esto significa que puede eliminar de forma segura la VM sin perder datos. Sin embargo, se le seguirá cobrando por el almacenamiento. Para eliminar el VHD, elimine el archivo de [Blob Storage][blob-storage].
 
@@ -150,7 +151,7 @@ Hay disponible una implementación de esta arquitectura en [GitHub][github-folde
   * Una máquina virtual en la que se ejecuta la última versión de Ubuntu 16.04.3 LTS.
   * Extensión de script personalizada de ejemplo que da formato a los dos discos de datos e implementa el servidor HTTP de Apache en la máquina virtual Ubuntu.
 
-### <a name="prerequisites"></a>Requisitos previos
+### <a name="prerequisites"></a>requisitos previos
 
 Antes de poder implementar la arquitectura de referencia en su propia suscripción, debe realizar los pasos siguientes.
 
@@ -187,7 +188,7 @@ Para implementar el ejemplo de carga de trabajo con una única máquina virtual,
 
 Para más información sobre la implementación de esta arquitectura de referencia de ejemplo, visite el [repositorio de GitHub][git].
 
-## <a name="next-steps"></a>Pasos siguientes
+## <a name="next-steps"></a>pasos siguientes
 
 - Obtenga información sobre [Azure Building Blocks][azbbv2].
 - Implemente [varias máquinas virtuales][multi-vm] en Azure.
@@ -207,6 +208,7 @@ Para más información sobre la implementación de esta arquitectura de referenc
 [data-disk]: /azure/virtual-machines/virtual-machines-linux-about-disks-vhds
 [disk-encryption]: /azure/security/azure-security-disk-encryption
 [enable-monitoring]: /azure/monitoring-and-diagnostics/insights-how-to-use-diagnostics
+[azure-dns]: /azure/dns/dns-overview
 [fqdn]: /azure/virtual-machines/virtual-machines-linux-portal-create-fqdn
 [git]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/single-vm
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/single-vm

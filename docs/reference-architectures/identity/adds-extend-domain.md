@@ -6,11 +6,11 @@ ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: azure-ad
 pnp.series.next: adds-forest
-ms.openlocfilehash: 7f771f77c7fa7f266dcce9f5b45e5be658213b8d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 216c59a0a5912d0fe90011e49ad20eb017ada6be
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>Extensión de Active Directory Domain Services (AD DS) a Azure
 
@@ -24,9 +24,9 @@ AD DS se usa para autenticar usuarios, equipos, aplicaciones u otras entidades q
 
 Esta arquitectura suele usarse cuando la red local y la red virtual de Azure están conectadas mediante una conexión VPN o ExpressRoute. Esta arquitectura también admite la replicación bidireccional, lo que significa que los cambios se pueden realizar en el entorno local o en la nube, de tal forma que se mantiene la coherencia de ambos orígenes. Los usos típicos de esta arquitectura incluyen aplicaciones híbridas en las que la funcionalidad se distribuye entre el entorno local y Azure, y las aplicaciones y los servicios que realizan la autenticación con Active Directory.
 
-Para obtener consideraciones adicionales, vea [Selección de una solución para la integración de Active Directory local con Azure][considerations]. 
+Para consideraciones adicionales, consulte [Selección de una solución para la integración de Active Directory local con Azure][considerations]. 
 
-## <a name="architecture"></a>Arquitectura 
+## <a name="architecture"></a>Architecture 
 
 Esta arquitectura extiende la arquitectura mostrada en [Red perimetral entre Internet y Azure][implementing-a-secure-hybrid-network-architecture-with-internet-access]. Tiene los siguientes componentes.
 
@@ -88,7 +88,7 @@ Implemente las máquinas virtuales que ejecutan AD DS en un [conjunto de disponi
 
 Realice copias de seguridad periódicas de AD DS. No basta con copiar los archivos VHD de los controladores de dominio en lugar de realizar copias de seguridad periódicas, dado que el archivo de base de datos de AD DS del disco duro virtual puede no tener un estado coherente cuando se copia, lo que puede hacer que sea imposible reiniciar la base de datos.
 
-No apague una máquina virtual del controlador de dominio mediante Azure Portal. En su lugar, apague y reinicie desde el sistema operativo invitado. Si se apaga en Azure Portal, se produce la desasignación de la máquina virtual, lo que restablece `VM-GenerationID` y `invocationID` en el repositorio de Active Directory. Esto descarta el grupo de identificadores relativos (RID) de AD DS y marca SYSVOL como no autoritativo; además, puede requerir la reconfiguración del controlador de dominio.
+No apague una máquina virtual del controlador de dominio mediante Azure Portal. En su lugar, apague y reinicie desde el sistema operativo invitado. Si la operación de apagado se realiza desde el portal, la máquina virtual se desasigna, lo que hace que `VM-GenerationID` y `invocationID` se restablezcan en el repositorio de Active Directory. Esto descarta el grupo de identificadores relativos (RID) de AD DS y marca SYSVOL como no autoritativo; además, puede requerir la reconfiguración del controlador de dominio.
 
 ## <a name="security-considerations"></a>Consideraciones sobre la seguridad
 
@@ -100,9 +100,9 @@ Utilice BitLocker o Azure Disk Encryption para cifrar el disco que hospeda la ba
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-Hay disponible una solución en [Github][github] para implementar esta arquitectura de referencia. Necesitará la última versión de la [CLI de Azure][azure-powershell] para ejecutar el script de Powershell que implementa la solución. Para implementar la arquitectura de referencia, siga estos pasos:
+Hay una solución disponible en [GitHub][github] para implementar esta arquitectura de referencia. Necesitará la versión más reciente de la [CLI de Azure][azure-powershell] para ejecutar el script de Powershell que implementa la solución. Para implementar la arquitectura de referencia, siga estos pasos:
 
-1. Descargue o clone la carpeta de soluciones de [Github][github] en la máquina local.
+1. Descargue o clone la carpeta de soluciones de [GitHub][github] en la máquina local.
 
 2. Abra la CLI de Azure y navegue hasta la carpeta local de la solución.
 
@@ -122,7 +122,7 @@ Hay disponible una solución en [Github][github] para implementar esta arquitect
 
 4. Espere a que la implementación se complete. Si va a realizar la implementación `All`, tardará varias horas.
 
-## <a name="next-steps"></a>Pasos siguientes
+## <a name="next-steps"></a>pasos siguientes
 
 * Conozca los procedimientos recomendados para [crear un bosque de recursos de AD DS][adds-resource-forest] en Azure.
 * Conozca los procedimientos recomendados para [crear una infraestructura de Active Directory Federation Services (AD FS)][adfs] en Azure.

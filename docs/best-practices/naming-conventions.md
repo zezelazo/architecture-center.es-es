@@ -4,11 +4,11 @@ description: "Convenciones de nomenclatura para los recursos de Azure. Qué nomb
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 5084fc2ba5a18707de1213276111c53203b6cdd7
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 20f090c4cc39f96887cd58ffd2a9c7736e77de57
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="naming-conventions"></a>Convenciones de nomenclatura
 
@@ -60,7 +60,7 @@ Los afijos pueden hacer referencia a distintos aspectos que describen los recurs
 | Aspecto | Ejemplo | Notas |
 | --- | --- | --- |
 | Environment |desarrollo, producción, control de calidad |Identifica el entorno del recurso |
-| Ubicación |uw (Oeste de EE. UU.), ue (este de EE. UU.) |Identifica la región en que se implementa el recurso |
+| La ubicación |uw (Oeste de EE. UU.), ue (este de EE. UU.) |Identifica la región en que se implementa el recurso |
 | Instance |01, 02 |Para los recursos que tienen más de una instancia con nombre (servidores web, etc.). |
 | Producto o servicio |Azure |Identifica el producto, la aplicación o el servicio que admite el recurso |
 | Rol |sql, web, mensajería |Identifica el rol del recurso asociado |
@@ -73,38 +73,53 @@ Cada tipo de recurso o servicio de Azure exige un conjunto de restricciones y un
 
 En general, evite tener caracteres especiales (`-` o `_`) como primer o último carácter en ningún nombre. Estos caracteres harán que la mayoría de las reglas de validación produzcan un error.
 
-| Categoría | Servicio o entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| El grupos de recursos |El grupos de recursos |Global |1-64 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado, paréntesis, guión, punto (excepto al final) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
-| Grupo de recursos |Conjunto de disponibilidad |El grupos de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado y guión |`<service-short-name>-<context>-as` |`profx-sql-as` |
-| General |Etiqueta |Entidad asociada |512 (nombre), 256 (valor) |No distingue mayúsculas de minúsculas |Alfanuméricas |`"key" : "value"` |`"department" : "Central IT"` |
-| Proceso |Máquina virtual |Grupo de recursos |1-15 (Windows), 1-64 (Linux) |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado y guión |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
-| Proceso |Function App | Global |1-60 |No distingue mayúsculas de minúsculas |Alfanuméricos y guión |`<name>-func` |`calcprofit-func` |
-| Storage |Nombre de cuenta de almacenamiento (datos) |Global |3-24 |Minúscula |Alfanuméricas |`<globally unique name><number>` (utilice una función para calcular un GUID único para asignar nombres a las cuentas de almacenamiento) |`profxdata001` |
-| Storage |Nombre de cuenta de almacenamiento (discos) |Global |3-24 |Minúscula |Alfanuméricas |`<vm name without dashes>st<number>` |`profxsql001st0` |
-| Storage | Nombre del contenedor |Cuenta de almacenamiento |3-63 |Minúscula |Alfanuméricos y guión |`<context>` |`logs` |
-| Storage |Nombre de blob | Contenedor |1-1024 |Distingue mayúsculas de minúsculas |Cualquier carácter de dirección URL |`<variable based on blob usage>` |`<variable based on blob usage>` |
-| Storage |Nombre de cola |Cuenta de almacenamiento |3-63 |Minúscula |Alfanuméricos y guión |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
-| Storage |Nombre de tabla | Cuenta de almacenamiento |3-63 |No distingue mayúsculas de minúsculas |Alfanuméricas |`<service short name><context>` |`awesomeservicelogs` |
-| Storage |Nombre de archivo | Cuenta de almacenamiento |3-63 |Minúscula | Alfanuméricas |`<variable based on blob usage>` |`<variable based on blob usage>` |
-| Storage |Data Lake Store | Global |3-24 |Minúscula | Alfanuméricas |`<name>-dtl` |`telemetry-dtl` |
-| Redes |Virtual Network |Grupo de recursos |2-64 |No distingue mayúsculas de minúsculas. |Alfanuméricos, guión, carácter de subrayado y punto |`<service short name>-vnet` |`profx-vnet` |
-| Redes |Subred |Red virtual principal |2-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado, guión y punto |`<descriptive context>` |`web` |
-| Redes |Interfaz de red |El grupos de recursos |1-80 |No distingue mayúsculas de minúsculas. |Alfanuméricos, guión, carácter de subrayado y punto |`<vmname>-nic<num>` |`profx-sql1-nic1` |
-| Redes |Grupo de seguridad de red (NSG) |El grupos de recursos |1-80 |No distingue mayúsculas de minúsculas. |Alfanuméricos, guión, carácter de subrayado y punto |`<service short name>-<context>-nsg` |`profx-app-nsg` |
-| Redes |Regla de grupo de seguridad de red |El grupos de recursos |1-80 |No distingue mayúsculas de minúsculas. |Alfanuméricos, guión, carácter de subrayado y punto |`<descriptive context>` |`sql-allow` |
-| Redes |Dirección IP pública |El grupos de recursos |1-80 |No distingue mayúsculas de minúsculas. |Alfanuméricos, guión, carácter de subrayado y punto |`<vm or service name>-pip` |`profx-sql1-pip` |
-| Redes |Equilibrador de carga |El grupos de recursos |1-80 |No distingue mayúsculas de minúsculas. |Alfanuméricos, guión, carácter de subrayado y punto |`<service or role>-lb` |`profx-lb` |
-| Redes |Configuración de reglas de carga equilibrada |Equilibrador de carga |1-80 |No distingue mayúsculas de minúsculas. |Alfanuméricos, guión, carácter de subrayado y punto |`<descriptive context>` |`http` |
-| Redes |Azure Application Gateway |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas. |Alfanuméricos, guión, carácter de subrayado y punto |`<service or role>-agw` |`profx-agw` |
-| Redes |Perfil del Administrador de tráfico |Grupo de recursos |1-63 |No distingue mayúsculas de minúsculas. |Alfanuméricos, guión y punto |`<descriptive context>` |`app1` |
+### <a name="general"></a>General
+
+| Entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
+| --- | --- | --- | --- | --- | --- | --- |
+|Grupo de recursos |La suscripción |1-90 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado, paréntesis, guión, punto (excepto al final) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
+|Conjunto de disponibilidad |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado y guión |`<service-short-name>-<context>-as` |`profx-sql-as` |
+|Etiqueta |Entidad asociada |512 (nombre), 256 (valor) |No distingue mayúsculas de minúsculas |Alfanuméricas |`"key" : "value"` |`"department" : "Central IT"` |
+
+### <a name="compute"></a>Proceso
+
+| Entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
+| --- | --- | --- | --- | --- | --- | --- |
+|Máquina virtual |Grupo de recursos |1-15 (Windows), 1-64 (Linux) |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado y guión |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
+|Function App | Global |1-60 |No distingue mayúsculas de minúsculas |Alfanuméricos y guión |`<name>-func` |`calcprofit-func` |
 
 > [!NOTE]
 > Las máquinas virtuales en Azure tiene dos nombres distintos: el nombre de la máquina virtual y el nombre de host. Cuando se crea una máquina virtual en el portal, se utiliza el mismo nombre para el nombre de host y el nombre de recurso de máquina virtual. Las restricciones anteriores son para el nombre de host. El nombre de recurso real puede tener hasta 64 caracteres.
 
-Microsoft agrega nuevos servicios en Azure con frecuencia. La tabla anterior incluye los servicios de red, proceso y almacenamiento usados con más frecuencia. Para otros servicios, considere la posibilidad de usar un sufijo de 3 letras adecuado.
+### <a name="storage"></a>Storage
 
-## <a name="organizing-resources-with-tags"></a>Organización de recursos mediante etiquetas
+| Entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
+| --- | --- | --- | --- | --- | --- | --- |
+|Nombre de cuenta de almacenamiento (datos) |Global |3-24 |Minúsculas |Alfanuméricas |`<globally unique name><number>` (utilice una función para calcular un GUID único para asignar nombres a las cuentas de almacenamiento) |`profxdata001` |
+|Nombre de cuenta de almacenamiento (discos) |Global |3-24 |Minúsculas |Alfanuméricas |`<vm name without dashes>st<number>` |`profxsql001st0` |
+| Nombre del contenedor |Cuenta de almacenamiento |3-63 |Minúsculas |Alfanuméricos y guión |`<context>` |`logs` |
+|Nombre de blob | Contenedor |1-1024 |Distingue mayúsculas de minúsculas |Cualquier carácter de dirección URL |`<variable based on blob usage>` |`<variable based on blob usage>` |
+|Nombre de cola |Cuenta de almacenamiento |3-63 |Minúsculas |Alfanuméricos y guión |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
+|Nombre de tabla | Cuenta de almacenamiento |3-63 |No distingue mayúsculas de minúsculas |Alfanuméricas |`<service short name><context>` |`awesomeservicelogs` |
+|Nombre de archivo | Cuenta de almacenamiento |3-63 |Minúsculas | Alfanuméricas |`<variable based on blob usage>` |`<variable based on blob usage>` |
+|Almacén de Data Lake | Global |3-24 |Minúsculas | Alfanuméricas |`<name>-dls` |`telemetry-dls` |
+
+### <a name="networking"></a>Redes
+
+| Entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
+| --- | --- | --- | --- | --- | --- | --- |
+|Virtual Network |Grupo de recursos |2-64 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<service short name>-vnet` |`profx-vnet` |
+|Subred |Red virtual principal |2-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado, guión y punto |`<descriptive context>` |`web` |
+|Interfaz de red |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<vmname>-nic<num>` |`profx-sql1-nic1` |
+|Grupo de seguridad de red (NSG) |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<service short name>-<context>-nsg` |`profx-app-nsg` |
+|Regla de grupo de seguridad de red |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<descriptive context>` |`sql-allow` |
+|Dirección IP pública |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<vm or service name>-pip` |`profx-sql1-pip` |
+|Load Balancer |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<service or role>-lb` |`profx-lb` |
+|Configuración de reglas de carga equilibrada |Load Balancer |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<descriptive context>` |`http` |
+|Azure Application Gateway |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<service or role>-agw` |`profx-agw` |
+|Perfil del Administrador de tráfico |Grupo de recursos |1-63 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión y punto |`<descriptive context>` |`app1` |
+
+## <a name="organize-resources-with-tags"></a>Organización de recursos con etiquetas
 
 Azure Resource Manager admite entidades de etiquetado con cadenas de texto arbitrarias para identificar el contexto y simplificar la automatización.  Por ejemplo, la etiqueta `"sqlVersion: "sql2014ee"` puede identificar todas las máquinas virtuales de una implementación que ejecutan SQL Server 2014 Enterprise Edition con el fin de ejecutar un script automático en ellas.  Las etiquetas se deben utilizar para aumentar y mejorar el contexto en las convenciones de nomenclatura elegidas.
 
@@ -130,8 +145,8 @@ Un ejemplo de varios enfoques de etiquetado comunes:
 | --- | --- | --- | --- |
 | Facturar a/ID de contracargo interno |billTo |`IT-Chargeback-1234` |Un código de facturación o de E/S internos |
 | Operador o individuo directamente responsable (DRI) |managedBy |`joe@contoso.com` |Alias o dirección de correo electrónico |
-| Nombre de proyecto |project-name |`myproject` |Nombre del proyecto o de la línea de producto |
-| Versión de proyecto |project-version |`3.4` |Versión del proyecto o de la línea de producto |
+| Nombre de proyecto |projectName |`myproject` |Nombre del proyecto o de la línea de producto |
+| Versión de proyecto |projectVersion |`3.4` |Versión del proyecto o de la línea de producto |
 | Environment |Environment |`<Production, Staging, QA >` |Identificador de entorno |
 | Nivel: |Nivel: |`Front End, Back End, Data` |Identificación de nivel o rol/contexto |
 | Perfil de datos |dataProfile |`Public, Confidential, Restricted, Internal` |Confidencialidad de los datos almacenados en el recurso |

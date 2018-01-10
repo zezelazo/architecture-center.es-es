@@ -6,11 +6,11 @@ ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: adds-forest
 cardTitle: Extend AD FS to Azure
-ms.openlocfilehash: b24f4e72b13331437d92f20a228e3ba8121db90a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: b8c9ae0621c087c68d449dd13e60046104c01513
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>Extensión de Servicios de federación de Active Directory (AD FS) a Azure
 
@@ -39,7 +39,7 @@ Esta arquitectura de referencia se centra en la *federación pasiva*, en la que 
 
 Para consideraciones adicionales, consulte [Selección de una solución para la integración de Active Directory local con Azure][considerations]. 
 
-## <a name="architecture"></a>Arquitectura
+## <a name="architecture"></a>Architecture
 
 Esta arquitectura amplía la implementación que se describe en [Extensión de AD DS a Azure][extending-ad-to-azure]. Contiene los componentes siguientes:
 
@@ -214,9 +214,9 @@ Considere usar un conjunto de aplicaciones de red virtual que registre informaci
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-Hay disponible una solución en [Github][github] para implementar esta arquitectura de referencia. Necesitará la versión más reciente de la [CLI de Azure][azure-cli] para ejecutar el script de Powershell que implementa la solución. Para implementar la arquitectura de referencia, siga estos pasos:
+Hay una solución disponible en [GitHub][github] para implementar esta arquitectura de referencia. Necesitará la versión más reciente de la [CLI de Azure][azure-cli] para ejecutar el script de Powershell que implementa la solución. Para implementar la arquitectura de referencia, siga estos pasos:
 
-1. Descargue o clone la carpeta de soluciones de [Github][github] en la máquina local.
+1. Descargue o clone la carpeta de soluciones de [GitHub][github] en la máquina local.
 
 2. Abra la CLI de Azure y navegue hasta la carpeta local de la solución.
 
@@ -280,7 +280,7 @@ Hay disponible una solución en [Github][github] para implementar esta arquitect
 
 13. Siga las instrucciones que muestra el script para probar la configuración del proxy completo.
 
-## <a name="next-steps"></a>Pasos siguientes
+## <a name="next-steps"></a>pasos siguientes
 
 * Información acerca de [Azure Active Directory][aad].
 * Información acerca de [Azure Active Directory B2C][aadb2c].

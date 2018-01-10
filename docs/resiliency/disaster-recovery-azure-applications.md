@@ -3,21 +3,30 @@ title: "Recuperación ante desastres para aplicaciones de Azure"
 description: "Información general técnica y detallada sobre cómo diseñar aplicaciones para recuperación ante desastres en Microsoft Azure."
 author: adamglick
 ms.date: 05/26/2017
-ms.openlocfilehash: d415b27dd7928996e2a6dc7fd8fcf6a77c835768
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 5ed6e2cec149571724f1545b40f628d6bbe1ad71
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
-[!INCLUDE [header](../_includes/header.md)]
 # <a name="disaster-recovery-for-azure-applications"></a>Recuperación ante desastres para aplicaciones de Azure
-Las estrategias de alta disponibilidad y resistencia están diseñadas para controlar condiciones de error temporales. La recuperación ante desastres se ocupa de recuperarse tras una pérdida catastrófica de funcionalidad de la aplicación. Por ejemplo, si una región de Azure que hospeda la aplicación deja de estar disponible, necesita un plan para ejecutar la aplicación o acceder a los datos en otra región. La ejecución de este plan implica a personas, procesos y aplicaciones auxiliares que permiten que el sistema siga funcionando. En el plan deben ensayarse errores y probarse la recuperación de bases de datos para garantizar que el plan sea efectivo. Los propietarios de negocios y tecnología, que definen el modo operativo del sistema para un desastre, determinan también el nivel de funcionalidad del servicio necesario durante un desastre. El nivel de funcionalidad puede adoptar diversas formas: total falta de disponibilidad, disponibilidad parcial (funcionalidad reducida o procesamiento diferido) o disponibilidad total.
+
+La recuperación ante desastres se ocupa de recuperarse tras una pérdida catastrófica de funcionalidad de la aplicación. Por ejemplo, si una región de Azure que hospeda la aplicación deja de estar disponible, necesita un plan para ejecutar la aplicación o acceder a los datos en otra región. 
+
+Los propietarios de la tecnología y el negocio deberán determinar qué grado de funcionalidad es necesario durante un desastre. El nivel de funcionalidad puede adoptar diversas formas: total falta de disponibilidad, disponibilidad parcial (funcionalidad reducida o procesamiento diferido) o disponibilidad total.
+
+Las estrategias de alta disponibilidad y resistencia están diseñadas para controlar condiciones de error temporales.  La ejecución de este plan implica a personas, procesos y aplicaciones auxiliares que permiten que el sistema siga funcionando. En el plan deben ensayarse errores y probarse la recuperación de bases de datos para garantizar que el plan sea efectivo. 
 
 ## <a name="azure-disaster-recovery-features"></a>Características de recuperación ante desastres de Azure
+
 Al igual que sucede con las consideraciones de disponibilidad, Azure ofrece [manuales técnicos de resistencia](./index.md) diseñados para dar soporte técnico para la recuperación ante desastres. También existe una relación entre las características de disponibilidad de Azure y la recuperación ante desastres. Por ejemplo, la administración de roles en dominios de error aumenta la disponibilidad de una aplicación. Sin esa administración, un error de hardware no controlado se convertiría en un escenario de "desastre". La utilización de estas características y estrategias de disponibilidad desempeña un importante papel a la hora de preparar una aplicación a prueba de desastres. Sin embargo, este artículo va más allá de los problemas de disponibilidad general, ya que trata eventos de desastres más graves (y menos frecuentes).
 
 ## <a name="multiple-datacenter-regions"></a>Regiones con varios centros de datos
 Azure mantiene centros de datos en muchas regiones del mundo. Esta infraestructura da soporte a varios escenarios de recuperación ante desastres, como la replicación geográfica que proporciona el sistema de Azure Storage a regiones secundarias. También se puede implementar fácil y económicamente un servicio en la nube en varias ubicaciones de todo el mundo. Compare esto con el costo y la dificultad que supone crear y mantener sus propios centros de datos en varias regiones. La implementación de datos y servicios en varias regiones contribuye a proteger la aplicación frente a interrupciones importantes en una sola región. Al diseñar el plan de recuperación ante desastres, es importante comprender el concepto de regiones emparejadas. Para más información, consulte [Continuidad empresarial y recuperación ante desastres (BCDR): regiones emparejadas de Azure](/azure/best-practices-availability-paired-regions).
+
+## <a name="azure-site-recovery"></a>Azure Site Recovery
+
+[Azure Site Recovery](/azure/site-recovery/) cuenta con un sencillo mecanismo para replicar máquinas virtuales de Azure entre regiones. La sobrecarga de administración es mínima, ya que no es necesario aprovisionar otros recursos en la región secundaria. Cuando se habilita la replicación, Site Recovery crea automáticamente los recursos necesarios en la región de destino, con arreglo a la configuración de la máquina virtual de origen. Proporciona una replicación continua y automatizada, y permite realizar la conmutación por error de las aplicaciones con un solo clic. También puede ejecutar simulacros de recuperación ante desastres con conmutaciones por error de prueba, sin que la replicación en curso o las cargas de trabajo de producción se vean afectadas. 
 
 ## <a name="azure-traffic-manager"></a>Administrador de tráfico de Azure
 Si se produce un error en una región concreta, el tráfico debe redirigirse a los servicios o implementaciones de otra región. Es más eficaz controlar esta situación a través de servicios como Azure Traffic Manager, que automatiza la conmutación por error del tráfico de usuario en otra región si se produce un error en la región principal. Es importante entender los conceptos básicos de Traffic Manager al diseñar una estrategia eficaz de recuperación ante desastres.
@@ -69,9 +78,7 @@ Con cada servicio dependiente, debe comprender las implicaciones de una interrup
 Los anteriores han sido principalmente errores que pueden administrarse en la misma región de Azure. Sin embargo, también debe prepararse para la posibilidad de que se produzca una interrupción del servicio en toda la región. Si se produce una interrupción del servicio en toda la región, las copias redundantes locales de los datos no estarán disponibles. Si ha habilitado la replicación geográfica, hay tres copias adicionales de los blobs y las tablas en una región distinta. Si Microsoft declara la región perdida, Azure reasignará todas las entradas de DNS a la región con replicación geográfica.
 
 > [!NOTE]
-> Tenga en cuenta que no tiene ningún control sobre este proceso y que solo se producirá si se produce una interrupción del servicio en toda la región. Por este motivo, debe confiar en otras estrategias de copia de seguridad específicas de la aplicación para lograr el máximo nivel de disponibilidad. Para más información, consulte la sección sobre las [estrategias de datos para la recuperación ante desastres](#data-strategies-for-disaster-recovery).
-> 
-> 
+> Tenga en cuenta que no tiene ningún control sobre este proceso y que solo se producirá si se produce una interrupción del servicio en toda la región. Considere la posibilidad de utilizar [Azure Site Recovery](/azure/site-recovery/) para conseguir un RPO y un RTO más altos. Site Recovery deja que la aplicación decida qué se considera una interrupción aceptable y cuándo debe conmutar por error a las máquinas virtuales replicadas.
 
 ### <a name="azure-wide-service-disruption"></a>Interrupción de un servicio en todo Azure
 En el planeamiento de desastres, es preciso tener en cuenta toda la gama de posibles desastres. Una de las interrupciones de servicio más graves implicaría a todas las regiones de Azure de manera simultánea. Al igual que con otras interrupciones de servicio, puede decidir asumir el riesgo de una inactividad temporal del evento. Las interrupciones de servicio generalizadas que abarcan regiones son mucho menos habituales que las aisladas que afectan a servicios dependientes o regiones individuales.
@@ -179,6 +186,18 @@ Debe idear un plan para implementar su aplicación en varias regiones, salvo en 
 
 Examinemos varias estrategias concretas para admitir la conmutación por error en diferentes regiones. Todos estos ejemplos utilizan dos regiones para describir el proceso.
 
+### <a name="failover-using-azure-site-recovery"></a>Conmutación por error con Azure Site Recovery
+
+Cuando se habilita la replicación de máquinas virtuales de Azure con Azure Site Recovery, se crean varios recursos en la región secundaria:
+
+- Un grupo de recursos
+- Una red virtual (VNet)
+- Una cuenta de almacenamiento 
+- Unos conjuntos de disponibilidad que albergan las máquinas virtuales después de la conmutación por error
+
+Las escrituras de datos que se realizan en los discos de las máquinas virtuales de la región primaria se transfieren de forma continuada a la cuenta de almacenamiento de la región secundaria. Cada pocos minutos se generan puntos de recuperación en la cuenta de almacenamiento de destino. Cuando se inicia una conmutación por error, las máquinas virtuales recuperadas se crean en el grupo de recursos, VNet y el conjunto de disponibilidad de destino. Durante una conmutación por error, puede elegir cualquier punto de recuperación disponible.
+
+
 ### <a name="redeployment-to-a-secondary-azure-region"></a>Reimplementación en una región de Azure secundaria
 En la estrategia de reimplementación en una región secundaria, solo la región principal tiene aplicaciones y bases de datos en ejecución. La región secundaria no está configurada para una conmutación por error automática. Por consiguiente, si se produce un desastre, será preciso poner en marcha todas las partes del servicio en la nueva región. Esto incluye la carga de un servicio en la nube en Azure, la implementación del servicio en la nube, la restauración de los datos y el cambio del DNS para reenrutar el tráfico.
 
@@ -268,6 +287,8 @@ Las pruebas de simulación implican la creación de situaciones reales a pequeñ
 Considere la posibilidad de incluir algún tipo de "panel de control" en la aplicación para simular manualmente problemas de disponibilidad. Por ejemplo, a través de una conmutación suave, desencadene excepciones de acceso a la base de datos en un módulo de pedidos, que hacen que no funcione correctamente. Se pueden adoptar otros enfoques ligeros similares para otros módulos en el nivel de interfaz de red.
 
 La simulación resalta todos los problemas que no se hayan abordado correctamente. Los escenarios simulados deben ser completamente controlables, lo que significa que, aunque parezca que el plan de recuperación no funciona, debe ser posible devolver la situación a un estado normal sin provocar daños importantes. También es importante que informar a la dirección de alto nivel de cómo y cuándo se van a realizar los ejercicios de simulación. Este plan debe detallar el tiempo o los recursos afectados durante la simulación. Defina también cómo medir el éxito de las pruebas del plan de recuperación ante desastres.
+
+Si utiliza Azure Site Recovery, puede ejecutar una conmutación por error de prueba en Azure para comprobar la estrategia de replicación o realizar un simulacro de recuperación ante desastres sin que se pierda ningún dato y sin tiempos de inactividad. La conmutación por error de prueba no afecta a la replicación de la máquina virtual en curso ni al entorno de producción.
 
 Existen varias técnicas más para probar planes de recuperación ante desastres. Sin embargo, la mayor parte de ellas son simples variaciones de estas técnicas básicas. El propósito de esta prueba es evaluar la viabilidad del plan de recuperación. Las pruebas de recuperación ante desastres se centran en los detalles para detectar lapsos en el plan de recuperación básico.
 

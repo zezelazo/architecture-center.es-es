@@ -4,11 +4,11 @@ description: "Instrucciones específicas de servicios para establecer el mecanis
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 6aba60dc3a60e96e59e2034d4a1e380e0f1c996a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0a416bc6297c7406de92fbc695b62c39c637de8f
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="retry-guidance-for-specific-services"></a>Guía de reintentos para servicios específicos
 
@@ -28,8 +28,8 @@ En la tabla siguiente se resumen las características de reintento de los servic
 | **[Azure Redis Cache](#azure-redis-cache-retry-guidelines)** |Nativo en el cliente |Programático |Cliente |TextWriter |
 | **[API de DocumentDB](#documentdb-api-retry-guidelines)** |Nativo en servicio |No configurable |Global |TraceSource |
 | **[Azure Search](#azure-storage-retry-guidelines)** |Nativo en el cliente |Programático |Cliente |ETW o personalizado |
-| **[Azure Active Directory](#azure-active-directory-retry-guidelines)** |Nativo en la biblioteca ADAL |Insertado en la biblioteca ADAL |Interno |Ninguna |
-| **[Service Fabric](#service-fabric-retry-guidelines)** |Nativo en el cliente |Programático |Cliente |Ninguna | 
+| **[Azure Active Directory](#azure-active-directory-retry-guidelines)** |Nativo en la biblioteca ADAL |Insertado en la biblioteca ADAL |Interno |None |
+| **[Service Fabric](#service-fabric-retry-guidelines)** |Nativo en el cliente |Programático |Cliente |None | 
 | **[Azure Event Hubs](#azure-event-hubs-retry-guidelines)** |Nativo en el cliente |Programático |Cliente |None |
 
 > [!NOTE]
@@ -59,7 +59,7 @@ TableRequestOptions interactiveRequestOption = new TableRequestOptions()
   // For Read-access geo-redundant storage, use PrimaryThenSecondary.
   // Otherwise set this to PrimaryOnly.
   LocationMode = LocationMode.PrimaryThenSecondary,
-  // Maximum execution time based on the business use case. Maximum value up to 10 seconds.
+  // Maximum execution time based on the business use case. 
   MaximumExecutionTime = TimeSpan.FromSeconds(2)
 };
 ```
@@ -96,11 +96,30 @@ Además de indicar si se puede volver a intentar un error, las directivas de rei
 
 La siguiente tabla muestra la configuración predeterminada de las directivas de reintento integradas.
 
-| **Contexto** | **Configuración** | **Valor predeterminado** | **Significado** |
-| --- | --- | --- | --- |
-| Tabla / Blob / Archivo<br />QueueRequestOptions |MaximumExecutionTime<br /><br />ServerTimeout<br /><br /><br /><br /><br />LocationMode<br /><br /><br /><br /><br /><br /><br />RetryPolicy |120 segundos<br /><br />None<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />ExponentialPolicy |Tiempo de ejecución máximo para la solicitud, incluidos todos los posibles reintentos.<br />Intervalo de tiempo de espera del servidor para la solicitud (el valor se redondea en segundos). Si no se especifica, usará el valor predeterminado para todas las solicitudes al servidor. Normalmente, la mejor opción es omitir este valor para que se utilice la configuración predeterminada del servidor.<br />Si la cuenta de almacenamiento se crea con la opción de replicación del almacenamiento con redundancia geográfica de acceso de lectura (RA-GRS), puede usar el modo de ubicación para indicar qué ubicación debe recibir la solicitud. Por ejemplo, si se especifica **PrimaryThenSecondary** , las solicitudes siempre se envían a la ubicación principal en primer lugar. Si se produce un error en una solicitud, se envía a la ubicación secundaria.<br />Consulte a continuación los detalles de cada opción. |
-| Directiva exponencial |maxAttempt<br />deltaBackoff<br /><br /><br />MinBackoff<br /><br />MaxBackoff |3<br />4 segundos<br /><br /><br />3 segundos<br /><br />120 segundos |Número de reintentos.<br />Intervalo de espera entre reintentos. Se usarán múltiplos de este período de tiempo, incluyendo un elemento aleatorio, para los reintentos posteriores.<br />Agregado a todos los intervalos de reintento calculados a partir de deltaBackoff. No se puede cambiar este valor.<br />MaxBackoff se usa si el intervalo de reintento calculado es mayor que MaxBackoff. No se puede cambiar este valor. |
-| Directiva lineal |maxAttempt<br />deltaBackoff |3<br />30 segundos |Número de reintentos.<br />Intervalo de espera entre reintentos. |
+**Opciones de solicitud**
+
+| **Configuración** | **Valor predeterminado** | **Significado** |
+| --- | --- | --- |
+| MaximumExecutionTime | 120 segundos | Tiempo de ejecución máximo para la solicitud, incluidos todos los posibles reintentos. |
+| ServerTimeout | None | Intervalo de tiempo de espera del servidor para la solicitud (el valor se redondea en segundos). Si no se especifica, usará el valor predeterminado para todas las solicitudes al servidor. Normalmente, la mejor opción es omitir este valor para que se utilice la configuración predeterminada del servidor. | 
+| LocationMode | None | Si la cuenta de almacenamiento se crea con la opción de replicación del almacenamiento con redundancia geográfica de acceso de lectura (RA-GRS), puede usar el modo de ubicación para indicar qué ubicación debe recibir la solicitud. Por ejemplo, si se especifica **PrimaryThenSecondary** , las solicitudes siempre se envían a la ubicación principal en primer lugar. Si se produce un error en una solicitud, se envía a la ubicación secundaria. |
+| RetryPolicy | ExponentialPolicy | Consulte a continuación los detalles de cada opción. |
+
+**Directiva exponencial** 
+
+| **Configuración** | **Valor predeterminado** | **Significado** |
+| --- | --- | --- |
+| maxAttempt | 3 | Número de reintentos. |
+| deltaBackoff | 4 segundos | Intervalo de espera entre reintentos. Se usarán múltiplos de este período de tiempo, incluyendo un elemento aleatorio, para los reintentos posteriores. |
+| MinBackoff | 3 segundos | Agregado a todos los intervalos de reintento calculados a partir de deltaBackoff. No se puede cambiar este valor.
+| MaxBackoff | 120 segundos | MaxBackoff se usa si el intervalo de reintento calculado es mayor que MaxBackoff. No se puede cambiar este valor. |
+
+**Directiva lineal**
+
+| **Configuración** | **Valor predeterminado** | **Significado** |
+| --- | --- | --- |
+| maxAttempt | 3 | Número de reintentos. |
+| deltaBackoff | 30 segundos | Intervalo de espera entre reintentos. |
 
 ### <a name="retry-usage-guidance"></a>Instrucciones de uso del reintento
 Al obtener acceso a los servicios de almacenamiento de Azure mediante la API de cliente de almacenamiento, tenga en cuenta las siguientes directrices:
@@ -149,7 +168,7 @@ namespace RetryCodeSamples
                 // For Read-access geo-redundant storage, use PrimaryThenSecondary.
                 // Otherwise set this to PrimaryOnly.
                 LocationMode = LocationMode.PrimaryThenSecondary,
-                // Maximum execution time based on the business use case. Maximum value up to 10 seconds.
+                // Maximum execution time based on the business use case. 
                 MaximumExecutionTime = TimeSpan.FromSeconds(2)
             };
 
@@ -270,7 +289,14 @@ Para obtener más información, consulte [Configuración basada en código (EF6 
 
 La siguiente tabla muestra la configuración predeterminada de las directivas de reintento integradas cuando se usa EF6.
 
-![Tabla de instrucciones de reintento](./images/retry-service-specific/RetryServiceSpecificGuidanceTable4.png)
+| Configuración | Valor predeterminado | Significado |
+|---------|---------------|---------|
+| Directiva | Exponencial | Retroceso exponencial. |
+| MaxRetryCount | 5 | El número máximo de reintentos. |
+| MaxDelay | 30 segundos | El retraso máximo entre los reintentos. Este valor no afecta al modo en que se calcula la serie de retrasos. Solo define un límite superior. |
+| DefaultCoefficient | 1 segundo | El coeficiente para el cálculo del retroceso exponencial. No se puede cambiar este valor. |
+| DefaultRandomFactor | 1.1 | El multiplicador utilizado para agregar un retraso aleatorio para cada entrada. No se puede cambiar este valor. |
+| DefaultExponentialBase | 2 | El multiplicador utilizado para calcular el retraso siguiente. No se puede cambiar este valor. |
 
 ### <a name="retry-usage-guidance"></a>Instrucciones de uso del reintento
 Al obtener acceso a la SQL Database mediante EF6, tenga en cuenta las siguientes directrices:
@@ -510,7 +536,15 @@ client.RetryPolicy = new RetryExponential(minBackoff: TimeSpan.FromSeconds(0.1),
 No se puede establecer la directiva de reintentos en el nivel de operación individual. Se aplica a todas las operaciones para el cliente de mensajería.
 La siguiente tabla muestra la configuración predeterminada de la directiva de reintento integrada.
 
-![Tabla de instrucciones de reintento](./images/retry-service-specific/RetryServiceSpecificGuidanceTable7.png)
+| Configuración | Valor predeterminado | Significado |
+|---------|---------------|---------|
+| Directiva | Exponencial | Retroceso exponencial. |
+| MinimalBackoff | 0 | El intervalo de retroceso mínimo. Se agrega al intervalo de reintento calculado a partir de deltaBackoff. |
+| MaximumBackoff | 30 segundos | El intervalo de retroceso máximo. MaximumBackoff se usa si el intervalo de reintento calculado es mayor que MaxBackoff. |
+| DeltaBackoff | 3 segundos | Intervalo de espera entre reintentos. Se usará múltiplos de este período de tiempo para los intentos de reintentos posteriores. |
+| TimeBuffer | 5 segundos | El búfer del tiempo de finalización asociado con el reintento. Si el tiempo restante es menor que TimeBuffer, se abandonan los intentos de reintento. |
+| MaxRetryCount | 10 | El número máximo de reintentos. |
+| ServerBusyBaseSleepTime | 10 segundos | Si la última excepción encontrada fue **ServerBusyException**, este valor se agregará al intervalo de reintento calculado. No se puede cambiar este valor. |
 
 ### <a name="retry-usage-guidance"></a>Instrucciones de uso del reintento
 Cuando se usa Service Bus, tenga en cuenta las siguientes directrices:
@@ -520,7 +554,12 @@ Cuando se usa Service Bus, tenga en cuenta las siguientes directrices:
 
 Considere la posibilidad de comenzar con la configuración siguiente para volver a intentar las operaciones. Esta es la configuración de propósito general, y debe supervisar las operaciones y ajustar los valores para adaptarlos a su propio escenario.
 
-![Tabla de instrucciones de reintento](./images/retry-service-specific/RetryServiceSpecificGuidanceTable8.png)
+| Context | Latencia máxima de ejemplo | Directiva de reintentos | Configuración | Cómo funciona |
+|---------|---------|---------|---------|---------|
+| Interactivo, interfaz de usuario o primer plano | 2 segundos*  | Exponencial | MinimumBackoff = 0 <br/> MaximumBackoff = 30 s <br/> DeltaBackoff = 300 ms <br/> TimeBuffer = 300 ms <br/> MaxRetryCount = 2 | Intento 1: retraso de 0 s <br/> Intento 2: retraso de ~300 ms <br/> Intento 3: retraso de ~900 ms |
+| Segundo plano o lote | 30 segundos | Exponencial | MinimumBackoff = 1 <br/> MaximumBackoff = 30 s <br/> DeltaBackoff = 1,75 s <br/> TimeBuffer = 5 s <br/> MaxRetryCount = 3 | Intento 1: retraso de ~1 s <br/> Intento 2: retraso de ~3 s <br/> Intento 3: retraso de ~6 ms <br/> Intento 4: retraso de ~13 ms |
+
+\*Sin incluir el retraso adicional que se suma si se recibe una respuesta de servidor ocupado.
 
 ### <a name="telemetry"></a>Telemetría
 Service Bus registra reintentos como eventos ETW mediante un **EventSource**. Debe asociar un **EventListener** al origen de eventos para capturar los eventos y verlos en el Visor de rendimiento o escribirlos en un registro de destino adecuado. Puede usar el [Bloque de aplicación de registro semántico](http://msdn.microsoft.com/library/dn775006.aspx) para ello. Los eventos de reintento tienen la forma siguiente:
@@ -831,7 +870,7 @@ Si Cosmos DB limita el cliente, devuelve un error HTTP 429. Compruebe el código
 ### <a name="policy-configuration"></a>Configuración de directivas
 La siguiente tabla muestra la configuración predeterminada de la clase `RetryOptions`.
 
-| Configuración | Valor predeterminado | Description |
+| Configuración | Valor predeterminado | DESCRIPCIÓN |
 | --- | --- | --- |
 | MaxRetryAttemptsOnThrottledRequests |9 |Número máximo de reintentos si se produce un error en la solicitud porque Cosmos DB aplicó la limitación de velocidad en el cliente. |
 | MaxRetryWaitTimeInSeconds |30 |El tiempo de reintentos máximo en segundos. |
@@ -880,7 +919,7 @@ Realice un seguimiento con ETW o mediante el registro de un proveedor de seguimi
 Azure Active Directory (Azure AD) es una solución de nube de administración de identidades y accesos integral que combina servicios de directorio de núcleo, gobierno de identidades avanzado, seguridad y administración de acceso a aplicaciones. Azure AD también ofrece a los desarrolladores una plataforma de administración de identidades para proporcionar control de acceso a sus aplicaciones, según las reglas y directivas centralizadas.
 
 ### <a name="retry-mechanism"></a>Mecanismo de reintento
-Hay un mecanismo de reintento integrado para Azure Active Directory en la biblioteca de autenticación de Active Directory (ADAL). Para evitar bloqueos inesperados, se recomienda que las bibliotecas de terceros y el código de la aplicación *no* reintenten las conexiones con error y que dejen que ADAL controle los reintentos. 
+Hay un mecanismo de reintento integrado para Azure Active Directory en la biblioteca de autenticación de Active Directory (ADAL). Para evitar bloqueos inesperados, se recomienda que las bibliotecas de terceros y el código de la aplicación **no** reintenten las conexiones con error y que dejen que ADAL controle los reintentos. 
 
 ### <a name="retry-usage-guidance"></a>Instrucciones de uso del reintento
 Tenga en cuenta las siguientes directrices cuando use Azure Active Directory:
@@ -967,7 +1006,7 @@ Al obtener acceso a los servicios de Azure o de terceros, tenga en cuenta lo sig
 ### <a name="retry-strategies"></a>Estrategia de reintento
 Estos son los tipos típicos de intervalos de estrategia de reintento:
 
-* **Exponencial**: directiva de reintentos que realiza un número especificado de reintentos, usando un enfoque de retroceso exponencial aleatorio para determinar el intervalo entre reintentos. Por ejemplo:
+* **Exponencial**: directiva de reintentos que realiza un número especificado de reintentos, usando un enfoque de retroceso exponencial aleatorio para determinar el intervalo entre reintentos. Por ejemplo: 
 
         var random = new Random();
 
@@ -977,11 +1016,11 @@ Estos son los tipos típicos de intervalos de estrategia de reintento:
         var interval = (int)Math.Min(checked(this.minBackoff.TotalMilliseconds + delta),
                        this.maxBackoff.TotalMilliseconds);
         retryInterval = TimeSpan.FromMilliseconds(interval);
-* **Incremental**: estrategia de reintentos con un número especificado de reintentos y un intervalo de tiempo incremental entre los reintentos. Por ejemplo:
+* **Incremental**: estrategia de reintentos con un número especificado de reintentos y un intervalo de tiempo incremental entre los reintentos. Por ejemplo: 
 
         retryInterval = TimeSpan.FromMilliseconds(this.initialInterval.TotalMilliseconds +
                        (this.increment.TotalMilliseconds * currentRetryCount));
-* **LinearRetry**: directiva de reintentos que realiza un número especificado de reintentos, usando un intervalo de tiempo fijo especificado entre los reintentos. Por ejemplo:
+* **LinearRetry**: directiva de reintentos que realiza un número especificado de reintentos, usando un intervalo de tiempo fijo especificado entre los reintentos. Por ejemplo: 
 
         retryInterval = this.deltaBackoff;
 

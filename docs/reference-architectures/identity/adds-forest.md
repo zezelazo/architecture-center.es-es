@@ -7,11 +7,11 @@ pnp.series.title: Identity management
 pnp.series.prev: adds-extend-domain
 pnp.series.next: adfs
 cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: bb7e57af2afacf1faa7679c854bf49217918eba8
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: b946afa91e8bd303c51f97e18be170c4105cc8c5
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>Creación de un bosque de recursos de Active Directory Domain Services (AD DS) en Azure
 
@@ -25,9 +25,9 @@ Active Directory Domain Services (AD DS) almacena información de identidad en u
 
 Los usos habituales de esta arquitectura incluyen el mantenimiento de la separación de seguridad de objetos e identidades mantenida en la nube y la migración de dominios individuales del entorno local a la nube. 
 
-Para obtener consideraciones adicionales, consulte [Selección de una solución para la integración de Active Directory local con Azure][considerations]. 
+Para consideraciones adicionales, consulte [Selección de una solución para la integración de Active Directory local con Azure][considerations]. 
 
-## <a name="architecture"></a>Arquitectura
+## <a name="architecture"></a>Architecture
 
 La arquitectura tiene los siguientes componentes.
 
@@ -87,9 +87,9 @@ Para conocer las consideraciones sobre seguridad específicas de Active Director
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-Hay disponible una solución en [Github][github] para implementar esta arquitectura de refeerencia. Necesitará la versión más reciente de la CLI de Azure para ejecutar el script de Powershell que implementa la solución. Para implementar la arquitectura de referencia, siga estos pasos:
+Hay una solución disponible en [GitHub][github] para implementar esta arquitectura de referencia. Necesitará la versión más reciente de la CLI de Azure para ejecutar el script de Powershell que implementa la solución. Para implementar la arquitectura de referencia, siga estos pasos:
 
-1. Descargue o clone la carpeta de soluciones de [Github][github] en la máquina local.
+1. Descargue o clone la carpeta de soluciones de [GitHub][github] en la máquina local.
 
 2. Abra la CLI de Azure y navegue hasta la carpeta local de la solución.
 
@@ -133,7 +133,7 @@ Hay disponible una solución en [Github][github] para implementar esta arquitect
 
 9. Espere unos minutos a que finalicen los pasos anteriores y luego conéctese a una máquina virtual local y siga los pasos descritos en el artículo [Comprobación de una confianza][verify-a-trust] para determinar si la relación de confianza entre los dominios *contoso.com* y *treyresearch.com* está configurada correctamente.
 
-## <a name="next-steps"></a>Pasos siguientes
+## <a name="next-steps"></a>pasos siguientes
 
 * Conozca los procedimientos recomendados para [extender el dominio de AD DS local a Azure][adds-extend-domain]
 * Conozca los procedimientos recomendados para [crear una infraestructura de AD FS][adfs] en Azure.

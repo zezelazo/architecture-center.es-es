@@ -4,11 +4,11 @@ description: "Orientación sobre las tareas en segundo plano que se ejecutan ind
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 62266b822a238ee53b62e74e91d753dc5da308b4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: d8c1d4dfe12208b72fd6991def805f90a830b5f0
+ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/29/2017
 ---
 # <a name="background-jobs"></a>Trabajos en segundo plano
 [!INCLUDE [header](../_includes/header.md)]
@@ -100,7 +100,7 @@ Azure WebJobs tiene las siguientes características:
 * **Registro**: Console.Out se considera (marca) como INFO. Console.Error se trata como ERROR. Puede tener acceso a la información de diagnóstico y supervisión mediante el Portal de Azure. Puede descargar los archivos de registro directamente del sitio. Se guardan en las siguientes ubicaciones:
   * Para la ejecución desencadenada: Vfs/data/jobs/triggered/jobName
   * Para la ejecución continua: Vfs/data/jobs/continuous/jobName
-* **Configuración**: puede configurar WebJobs mediante el portal, la API de REST y PowerShell. Puede usar un archivo de configuración denominado settings.job en el mismo directorio raíz que el script de trabajo para proporcionar la información de configuración de un trabajo. Por ejemplo:
+* **Configuración**: puede configurar WebJobs mediante el portal, la API de REST y PowerShell. Puede usar un archivo de configuración denominado settings.job en el mismo directorio raíz que el script de trabajo para proporcionar la información de configuración de un trabajo. Por ejemplo: 
   * { "stopping_wait_time": 60 }
   * { "is_singleton": true }
 
@@ -129,7 +129,7 @@ Consulte la sección anterior [Desencadenadores](#triggers) para más informaci�
 Tenga en cuenta los siguientes puntos cuando decida si va a implementar tareas en segundo plano en una máquina virtual de Azure:
 
 * El hospedaje de tareas en segundo plano en una máquina virtual de Azure diferente proporciona flexibilidad y permite un control preciso sobre la iniciación, ejecución, programación y asignación de recursos. Sin embargo, aumentará el costo de tiempo de ejecución si una máquina virtual se debe implementar solo para ejecutar tareas en segundo plano.
-* No existe ninguna utilidad que permita supervisar las tareas en Azure Portal ni ninguna funcionalidad de reinicio automatizado para las tareas con error; sin embargo, puede supervisar el estado básico de la máquina virtual y administrarla con los [cmdlets de Azure Service Management](https://msdn.microsoft.com/en-us/library/mt125356.aspx). No obstante, no hay funcionalidad para controlar los procesos y subprocesos en los nodos de proceso. Normalmente, el uso de una máquina virtual requiere un esfuerzo adicional para implementar un mecanismo que recopile datos de instrumentación en la tarea y del sistema operativo en la máquina virtual. Una solución que podría ser adecuada es usar el [paquete de administración de System Center para Azure](https://www.microsoft.com/en-us/download/details.aspx?id=50013).
+* No existe ninguna utilidad que permita supervisar las tareas en Azure Portal ni ninguna funcionalidad de reinicio automatizado para las tareas con error; sin embargo, puede supervisar el estado básico de la máquina virtual y administrarla con los [cmdlets de Azure Service Management](https://msdn.microsoft.com/library/mt125356.aspx). No obstante, no hay funcionalidad para controlar los procesos y subprocesos en los nodos de proceso. Normalmente, el uso de una máquina virtual requiere un esfuerzo adicional para implementar un mecanismo que recopile datos de instrumentación en la tarea y del sistema operativo en la máquina virtual. Una solución que podría ser adecuada es usar el [paquete de administración de System Center para Azure](https://www.microsoft.com/download/details.aspx?id=50013).
 * Considere la posibilidad de crear sondeos de supervisión que se exponen a través de puntos de conexión HTTP. El código para estos sondeos podría realizar comprobaciones de estado, recopilar información operativa y estadísticas o intercalar información de error y devolverla a una aplicación de administración. Para más información, consulte el artículo sobre el [patrón de supervisión del extremo de estado](http://msdn.microsoft.com/library/dn589789.aspx).
 
 #### <a name="more-information"></a>Más información
@@ -180,7 +180,7 @@ Puede ejecutar tareas en segundo plano dentro de un rol web o en un rol de traba
 
 Hay varias maneras de implementar tareas en segundo plano dentro de un rol de Cloud Services:
 
-* Crear una implementación de la clase **RoleEntryPoint** en el rol y usar sus métodos para ejecutar tareas en segundo plano. Las tareas se ejecutan en el contexto de WaIISHost.exe. Pueden usar el método **GetSetting** de la clase **CloudConfigurationManager** para cargar las opciones de configuración. Para más información, consulte el artículo sobre el [ciclo de vida (Cloud Services)](#lifecycle-cloud-services).
+* Crear una implementación de la clase **RoleEntryPoint** en el rol y usar sus métodos para ejecutar tareas en segundo plano. Las tareas se ejecutan en el contexto de WaIISHost.exe. Pueden usar el método **GetSetting** de la clase **CloudConfigurationManager** para cargar las opciones de configuración. Para más información, consulte [Ciclo de vida](#lifecycle).
 * Use las tareas de inicio para ejecutar tareas en segundo plano al iniciarse la aplicación. Para forzar que las tareas sigan ejecutándose en segundo plano, establezca la propiedad **taskType** en **background** (si no lo hace, el proceso de inicio de la aplicación se detendrá y esperará a que finalice la tarea). Para más información, consulte [Ejecutar tareas de inicio en Azure](/azure/cloud-services/cloud-services-startup-tasks).
 * Use el SDK de WebJobs para implementar tareas en segundo plano como WebJobs que se inician como tarea de inicio. Para más información, consulte cómo [crear un trabajo web de .NET en Azure App Service](/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started).
 * Use una tarea de inicio para instalar un servicio de Windows que ejecuta una o más tareas en segundo plano. Debe establecer la propiedad **taskType** en **background** para que el servicio se ejecute en segundo plano. Para más información, consulte [Ejecutar tareas de inicio en Azure](/azure/cloud-services/cloud-services-startup-tasks).
@@ -321,9 +321,8 @@ Las tareas en segundo plano deben ofrecer un rendimiento suficiente como para as
 * [Ejecutar tareas en segundo plano](http://msdn.microsoft.com/library/ff803365.aspx)
 * [Ciclo de vida de inicio de roles de Azure](http://blog.syntaxc4.net/post/2011/04/13/windows-azure-role-startup-life-cycle.aspx) (entrada de blog)
 * [Ciclo de vida del rol de Azure Cloud Services](http://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Windows-Azure-Cloud-Services-Role-Lifecycle) (vídeo)
-* [Qué es el SDK de Azure WebJobs](https://docs.microsoft.com/en-us/azure/app-service-web/websites-dotnet-webjobs-sdk)
-* [Creación de un WebJob .NET en Azure App Service](https://docs.microsoft.com/en-us/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started)
-* [Ejecución de tareas en segundo plano con WebJobs](https://docs.microsoft.com/en-us/azure/app-service-web/web-sites-create-web-jobs)
-* [Colas de Azure y colas de Service Bus: comparación y diferencias](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
-* [Cómo habilitar diagnósticos en un servicio en la nube](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-dotnet-diagnostics)
+* [Qué es el SDK de Azure WebJobs](https://docs.microsoft.com/azure/app-service-web/websites-dotnet-webjobs-sdk)
+* [Ejecución de tareas en segundo plano con WebJobs](https://docs.microsoft.com/azure/app-service-web/web-sites-create-web-jobs)
+* [Colas de Azure y colas de Service Bus: comparación y diferencias](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
+* [Cómo habilitar diagnósticos en un servicio en la nube](https://docs.microsoft.com/azure/cloud-services/cloud-services-dotnet-diagnostics)
 

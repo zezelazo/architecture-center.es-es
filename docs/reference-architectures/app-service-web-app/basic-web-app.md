@@ -2,13 +2,13 @@
 title: "Aplicación web básica"
 description: "Arquitectura recomendada para una aplicación web básica que se ejecuta en Microsoft Azure."
 author: MikeWasson
-ms.date: 11/23/2016
+ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: b7475c4087a184bb7608d0c45ffecee912c920d7
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 598eb547f0e96ae334af391183a792637caa8631
+ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/02/2018
 ---
 # <a name="basic-web-application"></a>Aplicación web básica
 [!INCLUDE [header](../../_includes/header.md)]
@@ -19,7 +19,7 @@ Esta arquitectura de referencia muestra un conjunto de prácticas demostradas pa
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Arquitectura 
+## <a name="architecture"></a>Architecture 
 
 > [!NOTE]
 > Esta arquitectura no se centra en el desarrollo de aplicaciones y no supone ningún marco de trabajo de la aplicación concreto. El objetivo es comprender cómo encajan entre sí los distintos servicios de Azure.
@@ -29,15 +29,23 @@ Esta arquitectura de referencia muestra un conjunto de prácticas demostradas pa
 La arquitectura consta de los siguientes componentes:
 
 * **Grupo de recursos**. Un [grupo de recursos](/azure/azure-resource-manager/resource-group-overview) es un contenedor lógico de recursos de Azure.
+
 * **Aplicación de App Service**. [Azure App Service][app-service] es una plataforma completamente administrada para crear e implementar aplicaciones en la nube.     
+
 * **Plan de App Service**. Un [plan de App Service][app-service-plans] proporciona las máquinas virtuales (VM) administradas que hospedan su aplicación. Todas las aplicaciones asociadas con un plan se ejecutan en las mismas instancias de máquina virtual.
 
 * **Ranuras de implementación**.  Una [ranura de implementación][deployment-slots] permite preconfigurar una implementación y, posteriormente, intercambiarla con la implementación de producción. De este modo, evita realizar la implementación directamente en producción. Consulte la sección [Manejabilidad](#manageability-considerations) para obtener recomendaciones específicas.
 
-* **Dirección IP**. La aplicación de App Service tiene una dirección IP pública y un nombre de dominio. El nombre de dominio es un subdominio de `azurewebsites.net`, como `contoso.azurewebsites.net`. Para usar un nombre de dominio personalizado, como `contoso.com`, cree registros de servicio de nombre de dominio (DNS) que asignen el nombre de dominio personalizado a la dirección IP. Para más información, consulte [Configurar un nombre de dominio personalizado en Azure App Service][custom-domain-name].
+* **Dirección IP**. La aplicación de App Service tiene una dirección IP pública y un nombre de dominio. El nombre de dominio es un subdominio de `azurewebsites.net`, como `contoso.azurewebsites.net`.  
+
+* **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure. Para usar un nombre de dominio personalizado, como `contoso.com`, cree registros DNS que asignen el nombre de dominio personalizado a la dirección IP. Para más información, consulte [Configurar un nombre de dominio personalizado en Azure App Service][custom-domain-name].  
+
 * **Azure SQL Database**. [SQL Database][sql-db] es una base de datos como servicio relacional en la nube.
+
 * **Servidor lógico**. En Azure SQL Database, un servidor lógico hospeda las bases de datos. Se pueden crear varias bases de datos por servidor lógico.
+
 * **Azure Storage**. Cree una cuenta de almacenamiento de Azure con un contenedor de blobs para almacenar los registros de diagnóstico.
+
 * **Azure Active Directory** (Azure AD). Use Azure AD u otro proveedor de identidades para la autenticación.
 
 ## <a name="recommendations"></a>Recomendaciones
@@ -102,7 +110,7 @@ Para más información, consulte el tema sobre la [continuidad del negocio en la
 App Service proporciona una característica de [copia de seguridad y restauración][web-app-backup] para los archivos de la aplicación. Sin embargo, tenga en cuenta que los archivos de los que se realiza la copia de seguridad incluyen la configuración de la aplicación en texto sin formato y pueden incluir información confidencial, como cadenas de conexión. Evite usar la característica de copia de seguridad de App Service para realizar una copia de seguridad de las bases de datos SQL, ya que exporta la base de datos a un archivo .bacpac de SQL, que consume unidades [DTU][sql-dtu]. En su lugar, use la restauración a un momento dado de SQL Database descrita anteriormente.
 
 ## <a name="manageability-considerations"></a>Consideraciones sobre la manejabilidad
-Cree grupos de recursos independientes para los entornos de producción, desarrollo y pruebas. Esto facilita la administración de implementaciones, la eliminación de implementaciones de prueba y la asignación de derechos de acceso.
+Cree grupos de recursos independientes para entornos de producción, desarrollo y pruebas. Esto facilita la administración de implementaciones, la eliminación de implementaciones de prueba y la asignación de derechos de acceso.
 
 Al asignar recursos a grupos de recursos, tenga en cuenta lo siguiente:
 
@@ -215,6 +223,7 @@ Para más información, consulte [Implementación de recursos con las plantillas
 [app-service-security]: /azure/app-service-web/web-sites-security
 [app-settings]: /azure/app-service-web/web-sites-configure
 [arm-template]: /azure/azure-resource-manager/resource-group-overview#resource-groups
+[azure-dns]: /azure/dns/dns-overview
 [custom-domain-name]: /azure/app-service-web/web-sites-custom-domain-name
 [deploy]: /azure/app-service-web/web-sites-deploy
 [deploy-arm-template]: /azure/resource-group-template-deploy
@@ -223,7 +232,7 @@ Para más información, consulte [Implementación de recursos con las plantillas
 [kudu]: https://azure.microsoft.com/blog/windows-azure-websites-online-tools-you-should-know-about/
 [monitoring-guidance]: ../../best-practices/monitoring.md
 [new-relic]: http://newrelic.com/
-[paas-basic-arm-template]: https://github.com/mspnp/reference-architectures/tree/master/app-service-web-app/basic-web-app/Paas-Basic/Templates
+[paas-basic-arm-template]: https://github.com/mspnp/reference-architectures/tree/master/managed-web-app/basic-web-app/Paas-Basic/Templates
 [perf-analysis]: https://github.com/mspnp/performance-optimization/blob/master/Performance-Analysis-Primer.md
 [rbac]: /azure/active-directory/role-based-access-control-what-is
 [resource-group]: /azure/azure-resource-manager/resource-group-overview

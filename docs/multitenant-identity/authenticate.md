@@ -6,11 +6,11 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: 74f4e85e282799b7eee92caf2da083fb264f8733
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: e85817626675cec4d126921c19a31a0983ecd62d
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>Autenticación con Azure AD y OpenID Connect
 
@@ -131,7 +131,7 @@ Este es el proceso de autenticación:
 Si la autenticación se realiza correctamente, el software intermedio OIDC crea un vale de autenticación, que contiene una entidad de seguridad de notificaciones con las notificaciones del usuario. Puede tener acceso al vale en **AuthenticationValidated** o el evento **TicketReceived**.
 
 > [!NOTE]
-> Hasta que se complete el flujo de autenticación en su totalidad, `HttpContext.User` sigue contando con una entidad de seguridad anónima, *no* con el usuario autenticado. La entidad de seguridad anónima tiene una colección vacía de notificaciones. Una vez que la autenticación se completa y la aplicación realiza la redirección, el software intermedio de cookies deserializa la cookie de autenticación y establece `HttpContext.User` en una entidad de seguridad de notificaciones que representa al usuario autenticado.
+> Hasta que se complete el flujo de autenticación en su totalidad, `HttpContext.User` sigue albergando una entidad de seguridad anónima, **no** el usuario autenticado. La entidad de seguridad anónima tiene una colección vacía de notificaciones. Una vez que la autenticación se completa y la aplicación realiza la redirección, el software intermedio de cookies deserializa la cookie de autenticación y establece `HttpContext.User` en una entidad de seguridad de notificaciones que representa al usuario autenticado.
 > 
 > 
 
@@ -170,7 +170,7 @@ Cuando el software intermedio OIDC redirige al punto de conexión de autorizaci�
 * response_type  = "code id_token". Esto especifica el flujo híbrido.
 * response_mode = "form_post". Esto especifica la respuesta de envío de formulario.
 
-Para especificar un flujo diferente, establezca la propiedad **ResponseType** en las opciones. Por ejemplo:
+Para especificar un flujo diferente, establezca la propiedad **ResponseType** en las opciones. Por ejemplo: 
 
 ```csharp
 app.UseOpenIdConnectAuthentication(options =>

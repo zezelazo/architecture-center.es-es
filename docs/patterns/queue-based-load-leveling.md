@@ -10,11 +10,11 @@ pnp.pattern.categories:
 - availability
 - performance-scalability
 - resiliency
-ms.openlocfilehash: d8b010648d4ec0edcfbb24f9b03243a79a34a40b
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 99b226511fe14bffdab3cdcf65d4e6cffe89bba6
+ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 12/08/2017
 ---
 # <a name="queue-based-load-leveling-pattern"></a>Patrón Queue-Based Load Leveling
 
@@ -67,7 +67,7 @@ Un rol web de Microsoft Azure almacena datos con un servicio de almacenamiento i
 ![Figura 2: un servicio que está experimentando una sobrecarga por un gran número de solicitudes simultáneas de instancias de un rol web](./_images/queue-based-load-leveling-overwhelmed.png)
 
 
-Para resolver esto, puede usar una cola para equilibrar la carga entre las instancias de rol web y el servicio de almacenamiento. En cambio, el servicio de almacenamiento está diseñado para aceptar solicitudes sincrónicas y no puede modificarse fácilmente para leer mensajes y administrar el rendimiento. Puede introducir un rol de trabajo para actuar como un servicio de proxy que recibe solicitudes de la cola y las reenvía al servicio de almacenamiento. La lógica de aplicación del rol de trabajo puede controlar la frecuencia a la que pasa solicitudes al servicio de almacenamiento para evitar que este se sobrecargue. En esta figura se ilustra el uso de una cola y un rol de trabajo para equilibrar la carga entre instancias del rol web y el servicio.
+Para resolver esto, puede usar una cola para equilibrar la carga entre las instancias de rol web y el servicio de almacenamiento. En cambio, el servicio de almacenamiento está diseñado para aceptar solicitudes sincrónicas y no puede modificarse fácilmente para leer mensajes y administrar el rendimiento. Puede introducir un rol de trabajo para actuar como un servicio de proxy que recibe solicitudes de la cola y las reenvía al servicio de almacenamiento. La lógica de aplicación del rol de trabajo puede controlar la frecuencia a la que pasa solicitudes al servicio de almacenamiento para evitar que este se sobrecargue. En esta ilustración, se muestra el uso de una cola y un rol de trabajo para equilibrar la carga entre instancias del rol web y el servicio.
 
 ![Figura 3: uso de una cola y un rol de trabajo para equilibrar la carga entre instancias del rol web y el servicio](./_images/queue-based-load-leveling-worker-role.png)
 
