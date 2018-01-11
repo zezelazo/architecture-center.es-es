@@ -5,11 +5,11 @@ keywords: "Expertos de AWS, comparación de Azure, comparación de AWS, diferenc
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: b576b11bc152ef721f56e79609cb7a03f2d31dd3
-ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
+ms.openlocfilehash: ac96110e3fe69b4bb69714e18fd0f193208bc244
+ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="azure-for-aws-professionals"></a>Azure para profesionales de AWS
 
@@ -103,36 +103,45 @@ La sintaxis y la estructura de estas interfaces son diferentes a las de sus equi
 
 ## <a name="regions-and-zones-high-availability"></a>Regiones y zonas (alta disponibilidad)
 
-En AWS, la disponibilidad se centra en el concepto de zonas de disponibilidad. En Azure, intervienen dominios de error y conjuntos de disponibilidad en la creación de soluciones de alta disponibilidad. Las regiones emparejadas proporcionan funcionalidades adicionales de recuperación ante desastres.
+El alcance de los errores puede variar. Algunos errores de hardware, como un problema en un disco, pueden afectar a un único equipo host. Un error en un conmutador de red podría afectar a todo un bastidor del servidor. Menos frecuentes son los errores que afectan a todo un centro de datos, como los problemas de alimentación. Aún más improbables son los problemas por los que toda una región dejaría de estar disponible.
 
-### <a name="availability-zones-azure-fault-domains-and-availability-sets"></a>Zonas de disponibilidad, dominios de error de Azure y conjuntos de disponibilidad
+Uno de los mecanismos para conseguir que una aplicación sea resistente es la redundancia. Sin embargo, esta redundancia debe planearse al diseñar la aplicación. Además, el nivel de redundancia necesario dependerá de los requisitos de la compañía: no todas las aplicaciones necesitan tener redundancia entre regiones para protegerse contra una interrupción regional. En general, hay que buscar el equilibrio, ya que una mayor redundancia y confiabilidad implica una mayor complejidad y unos costos más elevados.  
 
-En AWS, una región se divide en dos o más zonas de disponibilidad. Una zona de disponibilidad se corresponde con un centro de datos físicamente aislado en la región geográfica.
-Si implementa los servidores de aplicaciones en distintas zonas de disponibilidad, la interrupción del hardware o de la conectividad que afecte a una zona no afectará a los servidores hospedados en otras zonas.
+En AWS, una región se divide en dos o más zonas de disponibilidad. Una zona de disponibilidad se corresponde con un centro de datos físicamente aislado en la región geográfica. Azure dispone de varias características para hacer que una aplicación sea redundante en todos los niveles de error. Entre estas características cabe destacar los **conjuntos de disponibilidad**, las **zonas de disponibilidad** y las **regiones emparejadas**. 
 
-En Azure, un [dominio de error](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-manage-availability/) define un grupo de máquinas virtuales que comparte una fuente de alimentación física y un conmutador de red.
-Los [conjuntos de disponibilidad](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-manage-availability/) se usan para repartir las máquinas virtuales entre varios dominios de error. Cuando se asignan instancias al mismo conjunto de disponibilidad, Azure las distribuye uniformemente entre varios dominios de error. Si se produce un error de alimentación o una interrupción de la red en un dominio de error, como algunas de las máquinas virtuales del conjunto están en otro dominio de error no se verán afectadas por la interrupción.
+![](../resiliency/images/redundancy.svg)
 
-![Comparación de las zonas de disponibilidad de AWS con los dominios de error y los conjuntos de disponibilidad de Azure](./images/zone-fault-domains.png "Comparación de las zonas de disponibilidad de AWS con los dominios de error y los conjuntos de disponibilidad de Azure")
-<br/>*Comparación de las zonas de disponibilidad de AWS con los dominios de error y los conjuntos de disponibilidad de Azure*
-<br/><br/>
+En la tabla siguiente se resume cada opción.
 
-Los conjuntos de disponibilidad se deben organizar mediante el rol de la instancia de la aplicación para garantizar que una instancia de cada rol esté operativa. Por ejemplo, en una aplicación web de tres niveles estándar, deseará crear un conjunto de disponibilidad independiente para instancias de aplicación, datos y front-end.
+| &nbsp; | Conjunto de disponibilidad | Zona de disponibilidad | Región emparejada |
+|--------|------------------|-------------------|---------------|
+| Alcance del error | Bastidor | Centro de datos | Region |
+| Enrutamiento de solicitudes | Load Balancer | Equilibrador de carga entre zonas | Traffic Manager |
+| Latencia de red | Muy baja | Bajo | Media-alta |
+| Redes virtuales  | VNet | VNet | Emparejamiento de VNet entre regiones (versión preliminar) |
+
+### <a name="availability-sets"></a>Conjuntos de disponibilidad 
+
+Para protegerse frente a errores de hardware localizados, como un error en un conmutador de red o un disco, implemente dos o más máquinas virtuales en un conjunto de disponibilidad. Un conjunto de disponibilidad se compone de dos o más *dominios de error* que comparten una fuente de alimentación y un conmutador de red. Las máquinas virtuales incluidas en un conjunto de disponibilidad se distribuyen entre los dominios de error, por lo que, si un error de hardware afecta a un dominio de error, el tráfico de la red puede enrutarse a las máquinas virtuales de otros dominios de error. Para más información acerca de los conjuntos disponibilidad, consulte [Administración de la disponibilidad de las máquinas virtuales Windows en Azure](/azure/virtual-machines/windows/manage-availability).
+
+Cuando se agregan instancias de máquina virtual a conjuntos de disponibilidad, también se asignan a un [dominio de actualización](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-manage-availability/). Un dominio de actualización es un grupo de máquinas virtuales que están configuradas para eventos de mantenimiento planeado al mismo tiempo. Distribuir máquinas virtuales entre varios dominios de actualización garantiza que, en cualquier momento dado, los eventos de actualización planeada y aplicación de revisiones solo afectan a un subconjunto de estas máquinas virtuales.
+
+Los conjuntos de disponibilidad se deben organizar mediante el rol de la instancia de la aplicación para garantizar que una instancia de cada rol esté operativa. Por ejemplo, en una aplicación web de tres niveles, puede crear conjuntos de disponibilidad diferentes para los niveles de front-end, aplicación y datos.
 
 ![Conjuntos de disponibilidad de Azure para cada rol de aplicación](./images/three-tier-example.png "Conjuntos de disponibilidad para cada rol de aplicación")
-<br/>*Conjuntos de disponibilidad de Azure para cada rol de aplicación*
-<br/><br/>
 
-Cuando se agregan instancias de máquina virtual a conjuntos de disponibilidad, también se asignan a un [dominio de actualización](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-manage-availability/).
-Un dominio de actualización es un grupo de máquinas virtuales que están configuradas para eventos de mantenimiento planeado al mismo tiempo. Distribuir máquinas virtuales entre varios dominios de actualización garantiza que, en cualquier momento dado, los eventos de actualización planeada y aplicación de revisiones solo afectan a un subconjunto de estas máquinas virtuales.
+### <a name="availability-zones-preview"></a>Zonas de disponibilidad (versión preliminar)
+
+Una [zona de disponibilidad](/azure/availability-zones/az-overview) es una zona separada físicamente dentro de una región de Azure. Cada zona de disponibilidad tiene una fuente de alimentación, una red y un sistema de refrigeración distintos. Cuando las máquinas virtuales están implementadas en diferentes zonas de disponibilidad, es más fácil proteger una aplicación frente a errores que afectan a todo el centro de datos. 
 
 ### <a name="paired-regions"></a>Regiones emparejadas
 
-En Azure, use [regiones emparejadas](https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/) para permitir la redundancia entre dos regiones geográficas predefinidas. De esta forma se garantiza que incluso si una interrupción afecta a toda una región de Azure, la solución sigue estando disponible.
+Para proteger una aplicación frente a una interrupción regional, puede implementar la aplicación en varias regiones y utilizar [Azure Traffic Manager][traffic-manager] para distribuir el tráfico de Internet en las distintas regiones. Cada región de Azure está emparejada con otra región. Juntas, forman un [par regional][paired-regions]. A excepción del Sur de Brasil, los pares regionales se encuentran en la misma ubicación geográfica para, de este modo, cumplir los requisitos de residencia de datos a efectos de jurisdicción fiscal y aplicación de las leyes.
 
-A diferencia de las zonas de disponibilidad de AWS, que están físicamente alejadas de los centros de datos pero que pueden estar relativamente cerca de áreas geográficas, las regiones emparejadas suelen estar alejadas unas de otras 500 km como mínimo. La finalidad de ello es asegurarse de que los desastres a escala más grande solo afecten a una de las regiones del par. Los pares vecinos pueden establecerse para sincronizar los datos del servicio de base de datos y almacenamiento, y están configurados de tal modo que las actualizaciones de la plataforma solo se implementan en una región del par a la vez.
+A diferencia de las zonas de disponibilidad, que están físicamente alejadas de los centros de datos pero que pueden estar relativamente cerca de áreas geográficas, las regiones emparejadas suelen estar alejadas unas de otras 500 km como mínimo. La finalidad de ello es asegurarse de que los desastres a escala más grande solo afecten a una de las regiones del par. Los pares vecinos pueden establecerse para sincronizar los datos del servicio de base de datos y almacenamiento, y están configurados de tal modo que las actualizaciones de la plataforma solo se implementan en una región del par a la vez.
 
 El [almacenamiento con redundancia geográfica](https://azure.microsoft.com/documentation/articles/storage-redundancy/#geo-redundant-storage) de Azure se copia automáticamente en la región emparejada apropiada. En el caso de todos los demás recursos, la creación de una solución completamente redundante mediante regiones emparejadas implica la creación de una copia completa de la solución en ambas regiones.
+
 
 ### <a name="see-also"></a>Otras referencias
 
@@ -144,7 +153,7 @@ El [almacenamiento con redundancia geográfica](https://azure.microsoft.com/docu
 
 -   [Mantenimiento planeado de máquinas virtuales Linux en Azure](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-planned-maintenance/)
 
-## <a name="services"></a>Services
+## <a name="services"></a>Servicios
 
 Consulte la [matriz completa de comparación de servicios de AWS y Azure](https://aka.ms/azure4aws-services) para ver un listado completo de cómo todos los servicios se asignan entre plataformas.
 
@@ -268,7 +277,7 @@ En AWS, Route 53 proporciona servicios de administración de nombres DNS, enruta
 
 -   [Azure DNS](https://azure.microsoft.com/documentation/services/dns/): proporciona administración de dominios y DNS.
 
--   [Traffic Manager](https://azure.microsoft.com/documentation/articles/traffic-manager-overview/): proporciona funcionalidades de enrutamiento de tráfico de nivel DNS, equilibrio de carga y conmutación por error.
+-   [Traffic Manager][traffic-manager] proporciona funcionalidades de enrutamiento de tráfico de nivel DNS, equilibrio de carga y conmutación por error.
 
 #### <a name="direct-connect-and-azure-expressroute"></a>Direct Connect y Azure ExpressRoute
 
@@ -431,3 +440,9 @@ Notification Hubs no admite el envío de mensajes de correo electrónico o SMS, 
 -   [Patrones y procedimientos: guía para Azure](https://azure.microsoft.com/documentation/articles/guidance/)
 
 -   [Curso en línea gratuito: Microsoft Azure for AWS Experts](http://aka.ms/azureforaws) (Microsoft Azure para expertos de AWS)
+
+
+<!-- links -->
+
+[paired-regions]: https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/
+[traffic-manager]: /azure/traffic-manager/

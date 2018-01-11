@@ -3,17 +3,17 @@ title: "Diseño, compilación y operación de microservicios en Azure con Kubern
 description: "Diseño, compilación y operación de microservicios en Azure"
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: c279546552d731a01ed970e7942ad7d4a56157da
-ms.sourcegitcommit: 94c769abc3d37d4922135ec348b5da1f4bbcaa0a
+ms.openlocfilehash: 857e91a8eeefec18b459f2e66fde9a4f8bbe7b21
+ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/13/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="designing-building-and-operating-microservices-on-azure"></a>Diseño, compilación y operación de microservicios en Azure
 
 ![](./images/drone.svg)
 
-Los microservicios se han convertido en un estilo arquitectónico popular para la compilación de aplicaciones en la nube resistentes, altamente escalables y que evolucionan rápidamente. Sin embargo, para que sean algo más que la palabra de moda, los microservicios requieren un enfoque diferente para diseñar y compilar aplicaciones. 
+Los microservicios se han convertido en un estilo arquitectónico popular para la compilación de aplicaciones en la nube resistentes, altamente escalables, que se pueden implementar de forma independiente y que evolucionan rápidamente. Sin embargo, para que sean algo más que la palabra de moda, los microservicios requieren un enfoque diferente para diseñar y compilar aplicaciones. 
 
 En esta serie de artículos, exploramos cómo compilar y ejecutar una arquitectura de microservicios en Azure. Contenido de los temas:
 
@@ -35,7 +35,7 @@ Pero primero, empecemos con los conceptos básicos. ¿Qué son los microservicio
 En una arquitectura de microservicios, la aplicación se compone de muchos servicios pequeños e independientes. Estas son algunas de las características que definen los microservicios:
 
 - Cada servicio implementa una sola funcionalidad empresarial.
-- Un microservicio es lo suficientemente pequeño para que un único equipo reducido de programadores, normalmente de 5&ndash;10 personas, pueda escribir y mantenerlo.
+- Un microservicio es lo suficientemente pequeño como para que un único equipo reducido de programadores lo pueda escribir y mantener.
 - Los microservicios se ejecutan en procesos independientes, que se comunican mediante API bien definidas o patrones de mensajería. 
 - Los microservicios no comparten los almacenes de datos ni los esquemas de datos. Cada microservicio es responsable de administrar sus propios datos. 
 - Los microservicios tienen bases de código independientes y no comparten el código fuente. Sin embargo, pueden usar bibliotecas de utilidades comunes.
