@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 11/22/2016
 pnp.series.title: Linux VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: 3b68f6fc79ba4b29e41ba2b04537b834bb8859b0
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 7d720a004d21edbffc0ddeba54e291aa817550e0
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="run-linux-vms-in-multiple-regions-for-high-availability"></a>Ejecución de máquinas virtuales Linux en varias regiones para conseguir alta disponibilidad
 
@@ -19,11 +19,12 @@ Esta arquitectura de referencia muestra un conjunto de procedimientos de demostr
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Arquitectura 
+## <a name="architecture"></a>Architecture 
 
 Esta arquitectura se basa en la que se muestra en [Run Linux VMs for an N-tier application](n-tier.md) (Ejecución de máquinas virtuales Linux para una aplicación de N niveles). 
 
 * **Regiones primarias y secundarias** Use dos regiones para lograr una mayor disponibilidad. Una es la región primaria y la otra para la conmutación por error.
+* **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
 * **Azure Traffic Manager**. [Traffic Manager][traffic-manager] enruta las solicitudes entrantes a una de las regiones. Durante las operaciones normales enruta las solicitudes a la región primaria. Si dicha región no está disponible, Traffic Manager conmuta por error a la región secundaria. Para más información, consulte la sección [Configuración de Traffic Manager](#traffic-manager-configuration).
 * **Grupos de recursos**. Cree [grupos de recursos][resource groups] independientes para la región primaria, la región secundaria y para Traffic Manager. De esta manera, obtiene la flexibilidad para administrar cada región como una única colección de recursos. Por ejemplo, podría volver a implementar una región, sin quitar la otra. [Vincule los grupos de recursos][resource-group-links], de modo que pueda ejecutar una consulta para obtener una lista de todos los recursos de la aplicación.
 * **Redes virtuales**. Cree una red virtual independiente para cada región. Asegúrese de que los espacios de direcciones no se superpongan.
@@ -128,7 +129,7 @@ Medición de los tiempos de recuperación y comprobación de que cumplen los req
 
 <!-- Links -->
 [hybrid-vpn]: ../hybrid-networking/vpn.md
-
+[azure-dns]: /azure/dns/dns-overview
 [cassandra-in-azure]: https://academy.datastax.com/resources/deployment-guide-azure
 [cassandra-consistency]: http://docs.datastax.com/en/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html
 [cassandra-replication]: http://www.planetcassandra.org/data-replication-in-nosql-databases-explained/

@@ -4,11 +4,11 @@ description: Arquitectura recomendada para aplicaciones web con alta disponibili
 author: MikeWasson
 ms.date: 11/23/2016
 cardTitle: Run in multiple regions
-ms.openlocfilehash: 2d7d0c38bef3efc73a7ba2dd61e4190d07deb1b5
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 60caa121d0ce2f1aa2638650229bed8048804c22
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>Ejecución de una aplicación web en varias regiones
 [!INCLUDE [header](../../_includes/header.md)]
@@ -19,11 +19,12 @@ Esta arquitectura de referencia muestra cómo ejecutar una aplicación de Azure 
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Arquitectura 
+## <a name="architecture"></a>Architecture 
 
 Esta arquitectura se basa en la que se muestra en [Improve scalability in a web application][guidance-web-apps-scalability] (Mejora de la escalabilidad en una aplicación web). Las principales diferencias son:
 
 * **Regiones primarias y secundarias** Esta arquitectura emplea dos regiones para lograr una mayor disponibilidad. La aplicación se implementa en cada región. Durante las operaciones normales, el tráfico de red se enruta a la región primaria. Si la región primaria deja de estar disponible, el tráfico se enruta a la región secundaria. 
+* **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
 * **Azure Traffic Manager**. [Traffic Manager][traffic-manager] enruta las solicitudes entrantes a la región primaria. Si la aplicación que se ejecuta en dicha región no está disponible, Traffic Manager conmuta por error a la región secundaria.
 * **Replicación geográfica** de SQL Database y Cosmos DB. 
 
@@ -85,7 +86,7 @@ Para Queue Storage, cree una cola de copia de seguridad en la región secundaria
 ## <a name="availability-considerations"></a>Consideraciones sobre disponibilidad
 
 
-### <a name="traffic-manager"></a>Administrador de tráfico
+### <a name="traffic-manager"></a>Traffic Manager
 
 Traffic Manager conmuta por error automáticamente si la región primaria deja de estar disponible. Cuando Traffic Manager conmuta por error, hay un período de tiempo en que los clientes no pueden comunicarse con la aplicación. La duración viene determinada por los siguientes factores:
 
@@ -94,7 +95,7 @@ Traffic Manager conmuta por error automáticamente si la región primaria deja d
 
 Para más información, consulte [Acerca de la supervisión de Traffic Manager][tm-monitoring].
 
-Traffic Manager es un posible punto de error en el sistema. Si el servicio no funciona, los clientes no pueden acceder a la aplicación durante el tiempo de inactividad. Revise el [Acuerdo de Nivel de Servicio (SLA) de Traffic Manager] [tm-sla] y determine si el uso de Traffic Manager por sí solo cumple sus requisitos empresariales de alta disponibilidad. Si no es así, considere la posibilidad de agregar otra solución de administración de tráfico como una conmutación por recuperación. Si el servicio Azure Traffic Manager no funciona, cambie los registros de nombre canónico (CNAME) en DNS para que apunten a otro servicio de administración del tráfico. Este paso debe realizarse manualmente, y la aplicación dejará de estar disponible hasta que se propaguen los cambios de DNS.
+Traffic Manager es un posible punto de error en el sistema. Si el servicio no funciona, los clientes no pueden acceder a la aplicación durante el tiempo de inactividad. Revise el [Acuerdo de Nivel de Servicio (SLA) de Traffic Manager] [tm-sla] y determine si el uso de Traffic Manager por sí solo cumple sus requisitos empresariales de alta disponibilidad. Si no es así, considere la posibilidad de agregar otra solución de administración de tráfico como conmutación por recuperación. Si el servicio Azure Traffic Manager no funciona, cambie los registros de nombre canónico (CNAME) en DNS para que apunten a otro servicio de administración del tráfico. Este paso debe realizarse manualmente, y la aplicación dejará de estar disponible hasta que se propaguen los cambios de DNS.
 
 ### <a name="sql-database"></a>SQL Database
 El objetivo de punto de recuperación (RPO) y el tiempo de recuperación estimado (ERT) de SQL Database se documentan en [Introducción a la continuidad empresarial con Azure SQL Database][sql-rpo]. 
@@ -116,7 +117,7 @@ Para más información, consulte [Qué hacer si se produce una interrupción del
 
 ## <a name="manageability-considerations"></a>Consideraciones sobre manejabilidad
 
-### <a name="traffic-manager"></a>Administrador de tráfico
+### <a name="traffic-manager"></a>Traffic Manager
 
 Si Traffic Manager conmuta por error, se recomienda realizar una conmutación por recuperación manual en lugar de implementar una automática. En caso contrario, puede crear una situación donde la aplicación va y viene incesantemente entre regiones. Compruebe que todos los subsistemas de aplicación tengan un estado correcto antes de la conmutación por recuperación.
 
@@ -147,6 +148,7 @@ Si se produce un error en la base de datos principal, realice una conmutación p
 <!-- links -->
 
 [azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
+[azure-dns]: /azure/dns/dns-overview
 [docdb-geo]: /azure/documentdb/documentdb-distribute-data-globally
 [guidance-web-apps-scalability]: ./scalable-web-app.md
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx

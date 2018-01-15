@@ -6,11 +6,11 @@ ms.date: 12/12/2017
 pnp.series.title: Linux VM workloads
 pnp.series.next: multi-vm
 pnp.series.prev: ./index
-ms.openlocfilehash: a51e0d7ed4e35c5331241cf78d1715e63f9b4d86
-ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
+ms.openlocfilehash: 7caef46e53b42011b5a12ef53384c0352b9b9a72
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="run-a-linux-vm-on-azure"></a>Ejecución de una VM con Linux en Azure
 
@@ -31,7 +31,7 @@ El aprovisionamiento de una máquina virtual de Azure requiere componentes adici
 * **Discos de datos.** Un [disco de datos][data-disk] es un VHD persistente usado para los datos de la aplicación. Los discos de datos se almacenan en Azure Storage, como el disco del sistema operativo.
 * **Red virtual y subred.** Cada máquina virtual de Azure se implementa en una red virtual que se puede dividir en varias subredes.
 * **Dirección IP pública.** Se necesita una dirección IP pública para comunicarse con la máquina virtual &mdash;; por ejemplo, a través de SSH.
-* **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.  
+* **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
 * **Interfaz de red (NIC)**. Un adaptador de red asignado permite que la máquina virtual se comunique con la red virtual.
 * **Grupo de seguridad de red (NSG)**. [Los grupos de seguridad de red][nsg] se utilizan para permitir o denegar el tráfico de red a un recurso de red. Puede asociar un NSG a una NIC individual o a una subred. Si se asocia con una subred, las reglas NSG se aplican a todas las máquinas virtuales de esa subred.
 * **Diagnóstico.** El registro de diagnóstico es fundamental para administrar y solucionar problemas de la VM.
@@ -151,7 +151,7 @@ Hay disponible una implementación de esta arquitectura en [GitHub][github-folde
   * Una máquina virtual en la que se ejecuta la última versión de Ubuntu 16.04.3 LTS.
   * Extensión de script personalizada de ejemplo que da formato a los dos discos de datos e implementa el servidor HTTP de Apache en la máquina virtual Ubuntu.
 
-### <a name="prerequisites"></a>requisitos previos
+### <a name="prerequisites"></a>Requisitos previos
 
 Antes de poder implementar la arquitectura de referencia en su propia suscripción, debe realizar los pasos siguientes.
 

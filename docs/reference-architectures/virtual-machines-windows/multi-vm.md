@@ -6,11 +6,11 @@ ms.date: 11/16/2017
 pnp.series.title: Windows VM workloads
 pnp.series.next: n-tier
 pnp.series.prev: single-vm
-ms.openlocfilehash: c9b1e52044d38348ecf1bd29cb24b3c20d1d6a45
-ms.sourcegitcommit: 115db7ee008a0b1f2b0be50a26471050742ddb04
+ms.openlocfilehash: 14e7e023afd7cb7cbe0e8db8e224ba777f6fe863
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/17/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="run-load-balanced-vms-for-scalability-and-availability"></a>Ejecución de máquinas virtuales de carga equilibrada para conseguir escalabilidad y disponibilidad
 
@@ -20,7 +20,7 @@ En esta arquitectura de referencia se muestra un conjunto de prácticas demostra
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Arquitectura
+## <a name="architecture"></a>Architecture
 
 Esta arquitectura se basa en la [arquitectura de referencia de una única máquina virtual][single-vm]. Estas recomendaciones se aplican también a esta arquitectura.
 
@@ -32,6 +32,7 @@ La arquitectura consta de los siguientes componentes:
 * **Red virtual y subred.** Cada máquina virtual de Azure se implementa en una red virtual que se puede dividir en varias subredes.
 * **Azure Load Balancer**. El [equilibrador de carga][load-balancer] distribuye las solicitudes entrantes de Internet a las instancias de máquina virtual. 
 * **Dirección IP pública**. Se necesita una dirección IP pública para que el equilibrador de carga reciba tráfico de Internet.
+* **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
 * **Conjunto de escalado de máquinas virtuales**. Un [conjunto de escalado de máquinas virtuales][vm-scaleset] es un conjunto de máquinas virtuales idénticas que se utiliza para hospedar una carga de trabajo. Los conjuntos de escalado permiten reducir o escalar horizontalmente el número de máquinas virtuales de forma manual, o bien automáticamente en función de reglas predefinidas.
 * **Conjunto de disponibilidad**. El [conjunto de disponibilidad][availability-set] contiene las máquinas virtuales, por lo que estas son aptas para un [Acuerdo de Nivel de Servicio (SLA)][vm-sla] superior. Para que el SLA superior se aplique, el conjunto de disponibilidad debe incluir un mínimo de dos máquinas virtuales. Los conjuntos de disponibilidad están implícitos en los conjuntos de escalado. Si crea máquinas virtuales fuera de un conjunto de escalado, debe crear un conjunto de disponibilidad independiente.
 * **Managed Disks**. Azure Managed Disks administra los archivos de disco duro virtual (VHD) de los discos de máquina virtual. 
@@ -78,7 +79,7 @@ Para enrutar el tráfico a una máquina virtual específica, use las reglas NAT.
 
 ### <a name="storage-account-recommendations"></a>Recomendaciones sobre las cuentas de almacenamiento
 
-Se recomienda usar [Managed Disks](/azure/storage/storage-managed-disks-overview) con [Premium Storage][premium]. Managed Disks no requiere una cuenta de almacenamiento. Solo debe especificar el tamaño y el tipo de disco, y se implementará como un recurso de alta disponibilidad.
+Se recomienda usar [Managed Disks](/azure/storage/storage-managed-disks-overview) con [Premium Storage][premium]. Los discos administrados no requieren una cuenta de almacenamiento. Solo debe especificar el tamaño y el tipo de disco, y se implementará como un recurso de alta disponibilidad.
 
 Si usa discos no administrados, cree cuentas de almacenamiento de Azure distintas para cada máquina virtual para almacenar los discos duros virtuales (VHD) con el fin de evitar alcanzar los límites de operaciones de entrada/salida por segundo [(IOPS)][vm-disk-limits] para cuentas de almacenamiento.
 
@@ -169,6 +170,7 @@ Para más información sobre la implementación de esta arquitectura de referenc
 [azure-automation]: /azure/automation/automation-intro
 [azure-cli]: /azure/virtual-machines-command-line-tools
 [azure-cli-2]: /azure/install-azure-cli?view=azure-cli-latest
+[azure-dns]: /azure/dns/dns-overview
 [git]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/multi-vm
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/multi-vm
 [health-probe-log]: /azure/load-balancer/load-balancer-monitor-log

@@ -7,11 +7,11 @@ pnp.series.prev: basic-web-app
 pnp.series.next: multi-region-web-app
 ms.date: 11/23/2016
 cardTitle: Improve scalability
-ms.openlocfilehash: b875b89b87edd5636d90da8b7f8211f965b39937
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 1fdaf6e3695cb814fa4c275a4a273f9fa9a7b71b
+ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="improve-scalability-in-a-web-application"></a>Mejora de la escalabilidad en una aplicación web
 
@@ -21,7 +21,7 @@ Esta arquitectura de referencia muestra procedimientos de demostrada eficacia pa
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Arquitectura  
+## <a name="architecture"></a>Architecture  
 
 Esta arquitectura se basa en la que se muestra en [Aplicación web básica][basic-web-app]. Incluye los siguientes componentes:
 
@@ -34,6 +34,7 @@ Esta arquitectura se basa en la que se muestra en [Aplicación web básica][basi
 * **Almacenamiento de datos**. Use [Azure SQL Database][sql-db] con datos relacionales. Con datos no relacionales, podría usar un almacén NoSQL, como [Cosmos DB][documentdb].
 * **Azure Search**. Use [Azure Search][azure-search] para agregar funcionalidad de búsqueda, como sugerencias de búsqueda, búsqueda aproximada y búsqueda específica del idioma. Azure Search se usa normalmente en combinación con otro almacén de datos, en especial si el almacén de datos principal requiere una coherencia estricta. En este enfoque, almacene los datos acreditado en el otro almacén de datos y el índice de búsqueda en Azure Search. Azure Search también se puede usar para consolidar un índice de búsqueda sencillo desde varios almacenes de datos.  
 * **Correo electrónico/SMS**. Use un servicio de terceros como SendGrid o Twilio para enviar correo electrónico o mensajes SMS en lugar de generar esta funcionalidad directamente en la aplicación.
+* **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
 
 ## <a name="recommendations"></a>Recomendaciones
 
@@ -127,6 +128,7 @@ Use [Cifrado de datos transparente][sql-encryption] si necesita cifrar los datos
 [app-service-api-app]: /azure/app-service-api/app-service-api-apps-why-best-platform
 [app-service-pricing]: https://azure.microsoft.com/pricing/details/app-service/
 [azure-cdn]: https://azure.microsoft.com/services/cdn/
+[azure-dns]: /azure/dns/dns-overview
 [azure-redis]: https://azure.microsoft.com/services/cache/
 [azure-search]: https://azure.microsoft.com/documentation/services/search/
 [azure-search-scaling]: /azure/search/search-capacity-planning

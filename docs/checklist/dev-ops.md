@@ -1,8 +1,6 @@
 # <a name="devops-checklist"></a>Lista de comprobación de DevOps
 
-DevOps es la integración de desarrollo, control de calidad y operaciones de TI en una referencia cultural unificada y un conjunto de procesos para la entrega de software. 
-
-Utilice esta lista de comprobación como un punto de partida para evaluar su referencia cultural y proceso de DevOps.
+DevOps es la integración de desarrollo, control de calidad y operaciones de TI en una referencia cultural unificada y un conjunto de procesos para la entrega de software. Utilice esta lista de comprobación como un punto de partida para evaluar su referencia cultural y proceso de DevOps.
 
 ## <a name="culture"></a>Referencia cultural
 
@@ -58,7 +56,7 @@ Después de la versión inicial, hay que ejecutar las pruebas de capacidad y ren
 
 **Realice pruebas automatizadas de continuidad empresarial.** Desarrolle pruebas de continuidad empresarial a gran escala, lo que incluye la conmutación por error y la recuperación de copias de seguridad. Configure procesos automatizados para realizar estas pruebas de forma periódica.
 
-## <a name="release"></a>Lanzamiento
+## <a name="release"></a>Release
 
 **Automatice las implementaciones.** Automatice la implementación de la aplicación en los entornos de prueba, almacenamiento provisional y producción. La automatización permite que las implementaciones sean más rápidas y confiables, y garantiza que sean coherentes en todos los entornos compatibles. Elimina el riesgo de error humano que conllevan las implementaciones manuales. También facilita que los lanzamientos se programen para los momentos más apropiados, lo que reduce los efectos de un posible tiempo de inactividad.
 
