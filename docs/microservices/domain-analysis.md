@@ -3,11 +3,11 @@ title: "Análisis de dominios para microservicios"
 description: "Análisis de dominios para microservicios"
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: dc07c5195299c88a946accbe4e13a997afaaff90
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.openlocfilehash: c3c353a6b30507369357af4b520a51f8afc2fb8d
+ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/29/2017
+ms.lasthandoff: 01/11/2018
 ---
 # <a name="designing-microservices-domain-analysis"></a>Diseño de microservicios: análisis de dominios 
 
@@ -27,7 +27,7 @@ En este capítulo y en el siguiente, usaremos los siguientes pasos con la aplica
 
 3. Dentro de un contexto delimitado, se aplican los modelos tácticos de diseño basado en dominios para definir las entidades, los agregados y los servicios de dominio. 
  
-4. Use los resultados del paso anterior para identificar los microservicios en la aplicación.
+4. Use los resultados del paso anterior para identificar los microservicios de la aplicación.
 
 En este capítulo, trataremos los tres primeros pasos, relacionados principalmente con el diseño basado en dominios. En el próximo capítulo, se identificarán los microservicios. Sin embargo, es importante recordar que el diseño basado en dominios es un proceso iterativo y en curso. Los límites del servicio no son fijos. A medida que una aplicación evolucione, puede decidir dividir un servicio en varios menores.
 

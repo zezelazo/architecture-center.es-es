@@ -3,11 +3,11 @@ title: "Identificación de los límites de los microservicios"
 description: "Identificación de los límites de los microservicios"
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 046749191bd565813218b3834cb4674c4c5100e2
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.openlocfilehash: e4f11da9f970724c55ad99824f808a10c4558971
+ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/29/2017
+ms.lasthandoff: 01/08/2018
 ---
 # <a name="designing-microservices-identifying-microservice-boundaries"></a>Diseño de microservicios: identificación de los límites de los microservicios
 
@@ -116,7 +116,7 @@ Estos son algunos de los factores a considerar a la hora de elegir entre un enfo
 
 **Portabilidad**. Todos los orquestadores enumerados aquí (Kubernetes, DC/OS, Docker Swarm y Service Fabric) se pueden ejecutar de forma local o en varias nubes públicas. 
 
-**Integración de aplicaciones**. Puede resultar complicado crear una aplicación compleja con una arquitectura sin servidor. Una opción en Azure consiste en usar [Azure Logic Apps](/azure/logic-apps/) para coordinar un conjunto de Azure Functions. Para encontrar un ejemplo de este enfoque consulte [Creación de una función que se integre con Azure Logic Apps](/azure/azure-functions/functions-twitter-email.)
+**Integración de aplicaciones**. Puede resultar complicado crear una aplicación compleja con una arquitectura sin servidor. Una opción en Azure consiste en usar [Azure Logic Apps](/azure/logic-apps/) para coordinar un conjunto de Azure Functions. Para encontrar un ejemplo de este enfoque, consulte [Creación de una función que se integre con Azure Logic Apps](/azure/azure-functions/functions-twitter-email).
 
 **Costo**. Con un orquestador, se paga por las máquinas virtuales que se ejecutan en el clúster. Con una aplicación sin servidor, solo se paga por el consumo real de los recursos de proceso. En ambos casos, debe tener en cuenta el costo de los servicios adicionales, como almacenamiento, bases de datos y servicios de mensajería.
 

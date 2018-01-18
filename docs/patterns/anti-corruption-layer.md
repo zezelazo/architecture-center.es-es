@@ -3,15 +3,15 @@ title: "Patrón Anti-Corruption Layer"
 description: "Implementa una capa de fachada o de adaptador entre una aplicación moderna y un sistema heredado."
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 590d5f3676c92f5f18661360106e2b2fdd4efbe1
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: e41f080abbef772596ee7f8b10ad72bb03a3b829
+ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/05/2018
 ---
 # <a name="anti-corruption-layer-pattern"></a>Patrón Anti-Corruption Layer
 
-Implementa una capa de fachada o de adaptador entre una aplicación moderna y un sistema heredado del que depende. Esta capa traduce solicitudes entre la aplicación moderna y el sistema heredado. Use este patrón para asegurarse de que el diseño de la aplicación no se vea limitado por dependencias de sistemas heredados.
+Implementa una capa de fachada o de adaptador entre una aplicación moderna y un sistema heredado del que depende. Esta capa traduce solicitudes entre la aplicación moderna y el sistema heredado. Use este patrón para asegurarse de que el diseño de la aplicación no se vea limitado por dependencias de sistemas heredados. Eric Evans describió por primera vez este patrón en *Domain-Driven Design* (Diseño basado en dominios).
 
 ## <a name="context-and-problem"></a>Contexto y problema
 
@@ -42,7 +42,7 @@ La comunicación entre la aplicación moderna y la capa para evitar daños siemp
 
 ## <a name="when-to-use-this-pattern"></a>Cuándo usar este patrón
 
-Use este patrón cuando:
+Use este patrón en los siguientes supuestos:
 
 - Se haya planificado una migración en varias fases, pero deba mantenerse la integración entre el sistema nuevo y el heredado.
 - El sistema nuevo y el heredado usen una semántica diferente, pero necesiten comunicarse.

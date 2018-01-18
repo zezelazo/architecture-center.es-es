@@ -4,11 +4,11 @@ description: "Orientación sobre el almacenamiento en caché para mejorar el ren
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: f8bc25ef10847e8308e830b745e87a176438d200
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 7968c1578dfef2c7ad28576b9aafbbe2b6672cd9
+ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/11/2018
 ---
 # <a name="caching"></a>Almacenamiento en caché
 
@@ -105,7 +105,7 @@ Algunas cachés permiten especificar el período de expiración como un valor ab
 
 También es posible que la caché se rellene si se permite que los datos permanezcan residentes durante mucho tiempo. En este caso, las solicitudes para agregar nuevos elementos a la caché podrían provocar que se forzara la eliminación de algunos elementos en un proceso conocido como expulsión. Los servicios de caché normalmente expulsan los datos menos usados recientemente (LRU), pero normalmente puede invalidar esta directiva y evitar que se expulsen los elementos. Sin embargo, si adopta este enfoque, se arriesga a que se supere la memoria que está disponible en la caché. Una aplicación que intente agregar un elemento a la caché producirá una excepción.
 
-Algunas implementaciones de almacenamiento en caché podrían proporcionar directivas de expulsión adicionales. Hay varios tipos de directivas de expulsión. Entre ellos se incluyen los siguientes:
+Algunas implementaciones de almacenamiento en caché podrían proporcionar directivas de expulsión adicionales. Hay varios tipos de directivas de expulsión. Entre ellas se incluyen las siguientes:
 
 * Una directiva de usados más recientemente (en la expectativa de que los datos no volverán a ser necesarios).
 * Una directiva de primero en entrar primero en salir (los datos más antiguos se expulsan primero).
@@ -185,23 +185,13 @@ Si necesita restringir el acceso a los subconjuntos de los datos en caché, pued
 También debe proteger los datos que fluyen dentro y fuera de la caché. Para ello, depende de las características de seguridad proporcionadas por la infraestructura de red que usan las aplicaciones cliente para conectarse a la caché. Si la caché se implementa mediante un servidor local en la misma organización que hospeda las aplicaciones cliente, el aislamiento de la propia red podría no requerir que lleve a cabo pasos adicionales. Si la caché se encuentra ubicada de manera remota y requiere una conexión TCP o HTTP mediante una red pública (como Internet), considere la posibilidad de implementar SSL.
 
 ## <a name="considerations-for-implementing-caching-with-microsoft-azure"></a>Consideraciones para implementar el almacenamiento en caché con Microsoft Azure
-Azure ofrece Azure Redis Cache. Se trata de una implementación de la caché de Redis de código fuente que se ejecuta como servicio en un centro de datos de Azure. Ofrece un servicio de almacenamiento en caché al que se puede acceder desde cualquier aplicación de Azure, ya se implementa la aplicación como servicio en la nube, un sitio web o dentro de una máquina virtual de Azure. Las memorias caché pueden compartirse entre aplicaciones cliente que dispongan de la clave de acceso adecuado.
+
+[Azure Redis Cache](/azure/redis-cache/) es una implementación de la caché de Redis de código abierto que se ejecuta como un servicio en un centro de datos de Azure. Ofrece un servicio de almacenamiento en caché al que se puede acceder desde cualquier aplicación de Azure, ya se implementa la aplicación como servicio en la nube, un sitio web o dentro de una máquina virtual de Azure. Las memorias caché pueden compartirse entre aplicaciones cliente que dispongan de la clave de acceso adecuado.
 
 Azure Redis Cache es una solución de almacenamiento en caché de alto rendimiento que ofrece disponibilidad, escalabilidad y seguridad. Normalmente se ejecuta como un servicio distribuido entre una o varias máquinas dedicadas. Su función es intentar almacenar tanta información como sea posible en la memoria para garantizar un acceso rápido. Esta arquitectura está pensada para ofrecer baja latencia y alto rendimiento al reducir la necesidad de realizar operaciones lentas de E/S.
 
  Azure Redis Cache es compatible con muchas de las distintas API que usan las aplicaciones cliente. Si tiene aplicaciones existentes que ya usan Azure Redis Cache localmente, este servicio ofrece una ruta de migración rápida para el almacenamiento en caché en la nube.
 
-> [!NOTE]
-> Azure también ofrece el servicio Managed Cache Service Este servicio se basa en el motor de caché de Azure Service Fabric. Le permite crear una caché distribuida que se puede compartir entre aplicaciones de acoplamiento flexible. La memoria caché se hospeda en servidores de alto rendimiento que se ejecutan en un centro de datos de Azure.
-> Sin embargo, ya no se recomienda esta opción y solo se proporciona para admitir aplicaciones existentes que se han creado para usarla. Para todo el desarrollo nuevo, use en su lugar Azure Redis Cache.
-> 
-> Además, Azure admite el almacenamiento en caché en rol. Esta característica le permite crear una caché específica para un servicio en la nube.
-> La caché se hospeda en instancias de un rol web o de trabajo y solo los roles que funcionan como parte de la misma unidad de implementación del servicio en la nube pueden tener acceso a ella. (Una unidad de implementación es el conjunto de instancias de rol que se implementan como un servicio de nube en una región específica). La memoria caché está agrupada y todas las instancias del rol dentro de la misma unidad de implementación que hospedan la memoria caché se convierten en parte del mismo clúster de caché. Sin embargo, ya no se recomienda esta opción y solo se proporciona para admitir aplicaciones existentes que se han creado para usarla. Para todo el desarrollo nuevo, use en su lugar Azure Redis Cache.
-> 
-> Tanto Azure Managed Cache Service como el Caché en rol de Azure actualmente están programados para su retirada el 16 de noviembre de 2016.
-> Se recomienda que migre a Azure Redis Cache con vistas a prepararse para la mencionada retirada. Para más información, visite la página [¿Qué oferta y tamaño de Azure Redis Cache debo utilizar?](/azure/redis-cache/cache-faq#what-redis-cache-offering-and-size-should-i-use).
-> 
-> 
 
 ### <a name="features-of-redis"></a>Características de Redis
  Redis es más que un simple servidor de caché. Proporciona una base de datos en memoria distribuida con un conjunto extenso de comandos que admite muchos escenarios comunes. Estos métodos se describen más adelante en este documento, en la sección Uso del almacenamiento en caché de Redis. En esta sección se resumen algunas de las características clave que ofrece Redis.

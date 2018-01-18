@@ -3,15 +3,15 @@ title: "Patrón Backends for Frontends"
 description: Crea servicios independientes de back-end que determinadas aplicaciones de front-end o interfaces puedan usar.
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: dd71b65e99ae21dff1443f5728ae5f0f54f8122c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 87acd39d021c5e44594a2e7c9574e4dd363ce83b
+ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/05/2018
 ---
 # <a name="backends-for-frontends-pattern"></a>Patrón Backends for Frontends
 
-Crea servicios independientes de back-end que determinadas aplicaciones de front-end o interfaces puedan usar. Este patrón es útil cuando desea evitar personalizar un único back-end para varias interfaces.
+Crea servicios independientes de back-end que determinadas aplicaciones de front-end o interfaces puedan usar. Este patrón es útil cuando desea evitar personalizar un único back-end para varias interfaces. Sam Newman describió por primera vez este patrón.
 
 ## <a name="context-and-problem"></a>Contexto y problema
 
@@ -33,6 +33,8 @@ Cree un back-end por interfaz de usuario. Ajuste el comportamiento y el rendimie
 
 Como cada back-end es específico de una interfaz, se puede optimizar para esa interfaz. En consecuencia, será más pequeño, menos complejo y es probable que más rápido que un back-end genérico que intenta satisfacer los requisitos de todas las interfaces. Cada equipo de la interfaz tiene autonomía para controlar su propio back-end y no se apoya en un equipo de desarrollo de back-end centralizado. Esto proporciona flexibilidad al equipo de la interfaz en la selección del lenguaje, el ritmo de lanzamiento, la priorización de la carga de trabajo y la integración de características en el back-end.
 
+Para más información, consulte [Pattern: Backends For Frontends](http://samnewman.io/patterns/architectural/bff/) (Patrón: servidores back-end para servidores front-end).
+
 ## <a name="issues-and-considerations"></a>Problemas y consideraciones
 
 - Tenga en cuenta cuántos servidores back-end va a implementar.
@@ -44,7 +46,7 @@ Como cada back-end es específico de una interfaz, se puede optimizar para esa i
 
 ## <a name="when-to-use-this-pattern"></a>Cuándo usar este patrón
 
-Use este patrón cuando:
+Use este patrón en los siguientes supuestos:
 
 - Un servicio back-end de uso general o compartido debe mantenerse con una sobrecarga de desarrollo importante.
 - Desea optimizar el back-end para los requisitos de interfaces de cliente específicas.

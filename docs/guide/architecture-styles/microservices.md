@@ -2,15 +2,15 @@
 title: Estilo de arquitectura de microservicios
 description: Describe las ventajas, las dificultades y los procedimientos recomendados para las arquitecturas de microservicios en Azure.
 author: MikeWasson
-ms.openlocfilehash: 6426b3342a319832baf5eec35e9c783ba9348bdd
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 08fd39b6cf0b3c88af654b27e21b2d7dd9fb19b1
+ms.sourcegitcommit: 7764a804f000180c37a4f8dbab946b525f784f58
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/09/2018
 ---
 # <a name="microservices-architecture-style"></a>Estilo de arquitectura de microservicios
 
-Una arquitectura de microservicios consta de una colección de servicios autónomos y pequeños. Los servicios son independientes entre sí y cada uno debe implementar una funcionalidad de negocio individual. 
+Una arquitectura de microservicios consta de una colección de servicios autónomos y pequeños. Los servicios son independientes entre sí y cada uno debe implementar una funcionalidad de negocio individual. Para obtener instrucciones detalladas sobre cómo crear una arquitectura de microservicios en Azure, consulte [Designing, building, and operating microservices on Azure](../../microservices/index.md) (Diseño, creación y funcionamiento de microservicios en Azure).
 
 ![](./images/microservices-logical.svg)
  
@@ -89,7 +89,7 @@ Considere este estilo de arquitectura para:
 
 - **Conjunto de habilidades**. Los microservicios son sistemas muy distribuidos. Evalúe cuidadosamente si el equipo tiene los conocimientos y la experiencia para desenvolverse correctamente.
 
-## <a name="best-practices"></a>Prácticas recomendadas
+## <a name="best-practices"></a>Procedimientos recomendados
 
 - Adapte los servicios al dominio empresarial. 
 
@@ -111,7 +111,7 @@ Considere este estilo de arquitectura para:
 
 ## <a name="microservices-using-azure-container-service"></a>Microservicios que utilizan Azure Container Service 
 
-Puede usar Azure Container Service para configurar y aprovisionar un clúster de Docker. Azure Container Service admite diferentes orquestadores de contenedores populares, como Kubernetes, DC/OS y Docker Swarm.
+Puede usar [Azure Container Service](/azure/container-service/) para configurar y aprovisionar un clúster de Docker. Azure Container Service admite diferentes orquestadores de contenedores populares, como Kubernetes, DC/OS y Docker Swarm.
 
 ![](./images/microservices-acs.png)
  
@@ -133,11 +133,11 @@ El siguiente diagrama muestra tres nodos que ejecutan cuatro servicios diferente
 
 ## <a name="microservices-using-azure-service-fabric"></a>Microservicios que utilizan Azure Service Fabric
 
-El siguiente diagrama muestra una arquitectura de microservicios que utiliza Azure Service Fabric.
+El siguiente diagrama muestra una arquitectura de microservicios que usa [Azure Service Fabric](/azure/service-fabric/).
 
 ![](./images/service-fabric.png)
 
-El clúster de Service Fabric se implementa en uno o varios conjuntos de escalado de máquina virtual. Puede que tenga más de un conjunto de escalado de máquina virtual en el clúster, con el fin de tener una combinación de tipos de máquinas virtuales. Una puerta de enlace de API se coloca delante del clúster de Service Fabric, con un equilibrador de carga externo para recibir las solicitudes de cliente.
+El clúster de Service Fabric se implementa en uno o varios conjuntos de escalado de máquinas virtuales. Puede que tenga más de un conjunto de escalado de máquina virtual en el clúster, con el fin de tener una combinación de tipos de máquinas virtuales. Una puerta de enlace de API se coloca delante del clúster de Service Fabric, con un equilibrador de carga externo para recibir las solicitudes de cliente.
 
 El tiempo de ejecución de Service Fabric se ocupa de la administración del clúster; esto es, la selección de ubicación de los servicios, la conmutación por error de los nodos y el seguimiento de los estados, entre otros. El tiempo de ejecución se implementa en los propios nodos del clúster. No hay un conjunto independiente de máquinas virtuales de administración del clúster.
 
