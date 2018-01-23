@@ -4,11 +4,11 @@ description: "Orientación sobre el almacenamiento en caché para mejorar el ren
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 7968c1578dfef2c7ad28576b9aafbbe2b6672cd9
-ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
+ms.openlocfilehash: fde1c3e8c65d357746e4ccaddebeebace943cf9d
+ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 01/19/2018
 ---
 # <a name="caching"></a>Almacenamiento en caché
 
@@ -131,7 +131,7 @@ Evite usar una caché como repositorio principal de los datos; esta es la funci�
 
 Tenga cuidado de no introducir dependencias críticas en la disponibilidad de un servicio de caché compartida en sus soluciones. Una aplicación debe poder seguir funcionando si el servicio que proporciona la caché compartida no está disponible. La aplicación no debería bloquearse ni producir error mientras espera a que el servicio de caché se reanude.
 
-Por tanto, la aplicación debe estar preparada para detectar la disponibilidad del servicio de caché y revertir al almacén de datos original si la memoria caché no está accesible. El [patrón de interruptor](http://msdn.microsoft.com/library/dn589784.aspx) es útil para controlar este escenario. El servicio que proporciona la caché se puede recuperar y, una vez que está disponible, la caché se puede volver a llenar a medida que se leen datos del almacén de datos original, siguiendo una estrategia como el [patrón cache-aside](http://msdn.microsoft.com/library/dn589799.aspx).
+Por tanto, la aplicación debe estar preparada para detectar la disponibilidad del servicio de caché y revertir al almacén de datos original si la memoria caché no está accesible. El [patrón de interruptor](http://msdn.microsoft.com/library/dn589784.aspx) es útil para controlar este escenario. El servicio que proporciona la caché se puede recuperar y, una vez que está disponible, la caché se puede volver a llenar a medida que se leen datos del almacén de datos original mediante una estrategia como la del [patrón cache-aside](http://msdn.microsoft.com/library/dn589799.aspx).
 
 Sin embargo, podría haber un impacto en la escalabilidad del sistema si la aplicación retrocede al almacén de datos original cuando la caché deja de estar temporalmente disponible.
 Mientras el almacén de datos de se recupera, el almacén de datos original podría inundarse de solicitudes de datos, dando lugar a tiempos de espera y conexiones con error.
