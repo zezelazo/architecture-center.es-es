@@ -4,11 +4,11 @@ description: "Lista de comprobación que ofrece una guía para las inquietudes s
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: b66968f8e0e4cdde9b5ce9aea11c2b4011958b38
-ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
+ms.openlocfilehash: 324d8200d822eb1a7dce95ba4b2a7f29b00fb291
+ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 01/19/2018
 ---
 # <a name="availability-checklist"></a>Lista de comprobación de disponibilidad
 
@@ -18,7 +18,7 @@ La disponibilidad es la proporción de tiempo que un sistema es funcional y func
 
 **Evitar los puntos únicos de error.** Todos los componentes, servicios, recursos e instancias de procesos deben implementarse como varias instancias para impedir que un único punto de error afecte a la disponibilidad. Esto incluye mecanismos de autenticación. Diseñe la aplicación para que se configure para usar varias instancias y para detectar errores automáticamente y redirigir las solicitudes a instancias sin errores donde la plataforma no lo hace automáticamente.
 
-**Descomponer las cargas de trabajo por objetivo de nivel de servicio.** Si un servicio se compone de cargas de trabajo críticas y menos críticas, adminístrelas de manera diferente y especifique las características de servicio y el número de instancias para satisfacer sus requisitos de disponibilidad.
+**Descomponga las cargas de trabajo por objetivo de nivel de servicio.** Si un servicio se compone de cargas de trabajo críticas y menos críticas, adminístrelas de manera diferente y especifique las características de servicio y el número de instancias para satisfacer sus requisitos de disponibilidad.
 
 **Minimizar y comprender las dependencias de servicio.** Minimice el número de servicios diferentes que se usan siempre que sea posible y asegúrese de que comprende todas las dependencias de características y servicios que existen en el sistema. Esto incluye la naturaleza de estas dependencias y el impacto del error o la reducción del rendimiento de cada una de ellas en la aplicación general. Consulte [Definición de los requisitos de resistencia](../resiliency/index.md#defining-your-resiliency-requirements).
 
