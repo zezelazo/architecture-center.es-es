@@ -3,11 +3,11 @@ title: "Antipatrón Improper Instantiation"
 description: "Evite la creación continua de nuevas instancias de un objeto que pretenda crearse una vez y después compartirse."
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: d6ea27b0ea88ad7527353d263d900626c0aff720
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 4b217f7fc644901eb5c3e77319d151caed30eef1
+ms.sourcegitcommit: cf207fd10110f301f1e05f91eeb9f8dfca129164
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 01/29/2018
 ---
 # <a name="improper-instantiation-antipattern"></a>Antipatrón Improper Instantiation
 
