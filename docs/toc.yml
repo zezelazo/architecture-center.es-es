@@ -17,12 +17,14 @@
 - name: Arquitecturas de referencia
   href: reference-architectures/index.md
   items:
+    - name: Aplicaciones web de App Service
+      href: reference-architectures/app-service-web-app/index.md
+    - name: Redes híbridas
+      href: reference-architectures/hybrid-networking/index.md
     - name: Administración de identidades
       href: reference-architectures/identity/index.md
-    - name: Red híbrida
-      href: reference-architectures/hybrid-networking/index.md
-    - name: Aplicación web de App Service
-      href: reference-architectures/app-service-web-app/index.md
+    - name: Servidor Jenkins
+      href: reference-architectures/jenkins/index.md
     - name: Red perimetral
       href: reference-architectures/dmz/index.md
     - name: SAP NetWeaver y SAP HANA
