@@ -5,11 +5,11 @@ keywords: "Expertos de AWS, comparación de Azure, comparación de AWS, diferenc
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: ac96110e3fe69b4bb69714e18fd0f193208bc244
-ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
+ms.openlocfilehash: e5f7cb5062b0b4a8526f3b29a9fa4ddaff399fc0
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="azure-for-aws-professionals"></a>Azure para profesionales de AWS
 
@@ -153,7 +153,7 @@ El [almacenamiento con redundancia geográfica](https://azure.microsoft.com/docu
 
 -   [Mantenimiento planeado de máquinas virtuales Linux en Azure](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-planned-maintenance/)
 
-## <a name="services"></a>Servicios
+## <a name="services"></a>Services
 
 Consulte la [matriz completa de comparación de servicios de AWS y Azure](https://aka.ms/azure4aws-services) para ver un listado completo de cómo todos los servicios se asignan entre plataformas.
 
@@ -197,7 +197,7 @@ Sin embargo, la funcionalidad de Lambda también se solapa con otros servicios d
 
 El escalado automático en Azure se controla mediante dos servicios:
 
--   [Conjuntos de escalado de máquinas virtuales](https://azure.microsoft.com/documentation/articles/virtual-machine-scale-sets-overview/): le permiten implementar y administrar un conjunto idéntico de máquinas virtuales. El número de instancias se puede escalar automáticamente en función de las necesidades de rendimiento.
+-   [VM Scale Sets](https://azure.microsoft.com/documentation/articles/virtual-machine-scale-sets-overview/): permite implementar y administrar un conjunto idéntico de máquinas virtuales. El número de instancias se puede escalar automáticamente en función de las necesidades de rendimiento.
 
 -   [Escalado automático de App Service](https://azure.microsoft.com/documentation/articles/web-sites-scale/): ofrece la funcionalidad para escalar automáticamente soluciones de Azure App Service.
 
@@ -311,7 +311,7 @@ Los costes de AWS RDS vienen determinados por la cantidad de recursos de hardwar
 
 -   [Configuración de replicación geográfica activa para Azure SQL Database en Azure Portal](https://azure.microsoft.com/documentation/articles/sql-database-geo-replication-portal/)
 
--   [Introducción a Azure Cosmos DB: una base de datos JSON NoSQL](https://azure.microsoft.com/documentation/articles/documentdb-introduction/)
+-   [Introducción a Azure Cosmos DB: una base de datos JSON NoSQL](/azure/cosmos-db/sql-api-introduction)
 
 -   [Uso de Azure Table Storage en Node.js](https://azure.microsoft.com/documentation/articles/storage-nodejs-how-to-use-table-storage/)
 
