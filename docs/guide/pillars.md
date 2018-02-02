@@ -2,17 +2,17 @@
 title: Fundamentos de calidad del software
 description: "Describe cinco fundamentos de calidad del software: la escalabilidad, la disponibilidad, la resistencia, la administración y la seguridad."
 author: MikeWasson
-ms.openlocfilehash: 78e613368a07718f5923d619ace335d399b0cc80
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 1d5e30602cafa0d39f92de3101974e77ae258595
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="pillars-of-software-quality"></a>Fundamentos de calidad del software 
 
 Una aplicación correcta en la nube se centrará en estos cinco fundamentos de calidad del software: la escalabilidad, la disponibilidad, la resistencia, la administración y la seguridad.
 
-| Fundamento | Descripción |
+| Fundamento | DESCRIPCIÓN |
 |--------|-------------|
 | Escalabilidad | La capacidad de un sistema para controlar el aumento de la carga. |
 | Disponibilidad | La proporción de tiempo que un sistema es funcional y está en funcionamiento. |
@@ -61,7 +61,7 @@ La disponibilidad a menudo se describe en términos de la cantidad de "9"; por e
 | 99,9 % | 10 minutos | 43,2 minutos | 8,76 horas |
 | 99,95 % | 5 minutos | 21,6 minutos | 4,38 horas |
 | 99,99% | 1 minuto | 4,32 minutos | 52,56 minutos |
-| 99.999% | 6 segundos | 26 segundos | 5,26 minutos |
+| 99,999 % | 6 segundos | 26 segundos | 5,26 minutos |
 
 Tenga en cuenta que un tiempo de actividad del 99 % podría traducirse en una interrupción del servicio de casi 2 horas por semana. Para muchas aplicaciones, especialmente aquellas orientadas al consumidor, no es un objetivo de nivel de servicio aceptable. Por otro lado, cinco 9 (99,999 %) significa que no hay más de 5 minutos de tiempo de inactividad en un *año*. Resulta difícil simplemente detectar un problema con tanta rapidez, por no hablar de solucionarlo. Para obtener una disponibilidad muy alta (99,99 % o superior), la recuperación de un error no puede depender de la intervención manual. La aplicación debe diagnosticarse y recuperarse por sí misma, y es en ese punto en el que la resistencia se convierte en fundamental.
 
@@ -153,7 +153,7 @@ Las aplicaciones en la nube suelen utilizar servicios administrados que tienen c
 
 Asegúrese de que los datos permanecen en la zona geopolítica correcta al utilizar la alta disponibilidad de Azure. El almacenamiento con replicación geográfica de Azure usa el concepto de [región emparejada][paired-region] en la misma región geopolítica. 
 
-Use Key Vault para proteger los secretos y las claves criptográficas. Al usar Key Vault, podrá cifrar claves y secretos mediante el uso de claves que están protegidas por los módulos de seguridad de hardware (HSM). Muchos servicios de base de datos y almacenamiento de Azure admiten el cifrado de datos en reposo; por ejemplo, [Azure Storage][storage-encryption], [Azure SQL Database][sql-db-encryption], [Azure SQL Data Warehouse][data-warehouse-encryption] y [Cosmos DB][documentdb-encryption].
+Use Key Vault para proteger los secretos y las claves criptográficas. Al usar Key Vault, podrá cifrar claves y secretos mediante el uso de claves que están protegidas por los módulos de seguridad de hardware (HSM). Muchos servicios de base de datos y almacenamiento de Azure admiten el cifrado de datos en reposo; por ejemplo, [Azure Storage][storage-encryption], [Azure SQL Database][sql-db-encryption], [Azure SQL Data Warehouse][data-warehouse-encryption] y [Cosmos DB][cosmosdb-encryption].
 
 ### <a name="security-resources"></a>Recursos de seguridad
 
@@ -171,7 +171,7 @@ Use Key Vault para proteger los secretos y las claves criptográficas. Al usar K
 
 [ad-subscriptions]: /azure/active-directory/active-directory-how-subscriptions-associated-directory
 [data-warehouse-encryption]: /azure/data-lake-store/data-lake-store-security-overview#data-protection
-[documentdb-encryption]: /azure/documentdb/documentdb-nosql-database-security
+[cosmosdb-encryption]: /azure/cosmos-db/database-security
 [rbac]: /azure/active-directory/role-based-access-control-what-is
 [paired-region]: /azure/best-practices-availability-paired-regions
 [resource-manager-auditing]: /azure/azure-resource-manager/resource-group-audit

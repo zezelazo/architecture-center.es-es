@@ -7,11 +7,11 @@ pnp.series.prev: basic-web-app
 pnp.series.next: multi-region-web-app
 ms.date: 11/23/2016
 cardTitle: Improve scalability
-ms.openlocfilehash: 1fdaf6e3695cb814fa4c275a4a273f9fa9a7b71b
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 4ad12fb041a79fcb706530c9968fd0f96211d7f9
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="improve-scalability-in-a-web-application"></a>Mejora de la escalabilidad en una aplicación web
 
@@ -31,7 +31,7 @@ Esta arquitectura se basa en la que se muestra en [Aplicación web básica][basi
 * **Cola**. En la arquitectura que se muestra aquí, la aplicación pone en cola las tareas en segundo plano mediante la colocación de un mensaje en una cola de [Azure Queue Storage][queue-storage]. El mensaje desencadena una función en el trabajo web. Como alternativa, puede usar colas de Service Bus. Para ver una comparación, consulte [Colas de Storage y de Service Bus: comparación y diferencias][queues-compared].
 * **Caché**. Almacene datos parcialmente estáticos en [Azure Redis Cache][azure-redis].  
 * **CDN**. Use [Azure Content Delivery Network][ azure-cdn] (CDN) para almacenar en caché el contenido disponible públicamente y así reducir latencia y acelerar la entrega de contenido.
-* **Almacenamiento de datos**. Use [Azure SQL Database][sql-db] con datos relacionales. Con datos no relacionales, podría usar un almacén NoSQL, como [Cosmos DB][documentdb].
+* **Almacenamiento de datos**. Use [Azure SQL Database][sql-db] con datos relacionales. Con datos no relacionales, podría usar un almacén NoSQL, como [Cosmos DB][cosmosdb].
 * **Azure Search**. Use [Azure Search][azure-search] para agregar funcionalidad de búsqueda, como sugerencias de búsqueda, búsqueda aproximada y búsqueda específica del idioma. Azure Search se usa normalmente en combinación con otro almacén de datos, en especial si el almacén de datos principal requiere una coherencia estricta. En este enfoque, almacene los datos acreditado en el otro almacén de datos y el índice de búsqueda en Azure Search. Azure Search también se puede usar para consolidar un índice de búsqueda sencillo desde varios almacenes de datos.  
 * **Correo electrónico/SMS**. Use un servicio de terceros como SendGrid o Twilio para enviar correo electrónico o mensajes SMS en lugar de generar esta funcionalidad directamente en la aplicación.
 * **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
@@ -140,7 +140,7 @@ Use [Cifrado de datos transparente][sql-encryption] si necesita cifrar los datos
 [cdn-storage-account]: /azure/cdn/cdn-create-a-storage-account-with-cdn
 [cdn-guidance]: ../../best-practices/cdn.md
 [cors]: /azure/app-service-api/app-service-api-cors-consume-javascript
-[documentdb]: https://azure.microsoft.com/documentation/services/documentdb/
+[cosmosdb]: /azure/cosmos-db/
 [queue-storage]: /azure/storage/storage-dotnet-how-to-use-queues
 [queues-compared]: /azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted
 [resource-group]: /azure/azure-resource-manager/resource-group-overview#resource-groups
