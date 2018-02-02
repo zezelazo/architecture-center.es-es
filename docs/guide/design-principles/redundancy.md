@@ -3,11 +3,11 @@ title: Hacer que todo sea redundante
 description: "Cree redundancia en la aplicación para evitar los puntos únicos de error."
 author: MikeWasson
 layout: LandingPage
-ms.openlocfilehash: 89a1e6d2d3b1217ab07c9a99a4c4fb3e8cd2cd29
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 05ccf78c2cfbcd4e2d26200e70463d388d54f671
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="make-all-things-redundant"></a>Hacer que todo sea redundante
 
@@ -25,7 +25,7 @@ Las aplicaciones resistentes esquivan los errores al enrutar. Identifique las ru
 
 **Replique las bases de datos**. Azure SQL Database y Cosmos DB replican automáticamente los datos dentro de una región y se puede habilitar la replicación geográfica de una región a otra. Si utiliza una solución de base de datos de IaaS, elija una que admita la replicación y la conmutación por error, como los [grupos de disponibilidad AlwaysOn (SQL Server)][sql-always-on]. 
 
-**Habilite la replicación geográfica**. La replicación geográfica para [Azure SQL Database][sql-geo-replication] y [Cosmos DB][docdb-geo-replication] crea réplicas legibles secundarias de los datos en una o varias regiones secundarias. Si se produce una interrupción, la base de datos puede conmutar por error en la región secundaria para las operaciones de escritura.
+**Habilite la replicación geográfica**. La replicación geográfica para [Azure SQL Database][sql-geo-replication] y [Cosmos DB][cosmosdb-geo-replication] crea réplicas legibles secundarias de los datos en una o varias regiones secundarias. Si se produce una interrupción, la base de datos puede conmutar por error en la región secundaria para las operaciones de escritura.
 
 **Cree particiones para conseguir disponibilidad**. La creación de particiones de base de datos se suele usar para mejorar la escalabilidad, pero también puede mejorar la disponibilidad. Aunque una partición deje de funcionar, puede acceder a las demás particiones. Un error en una partición solo provocará la interrupción en un subconjunto de transacciones. 
 
@@ -46,6 +46,6 @@ Las aplicaciones resistentes esquivan los errores al enrutar. Identifique las ru
 [multi-vm-blueprint]: ../../reference-architectures/virtual-machines-windows/multi-vm.md
 
 [cassandra]: http://cassandra.apache.org/
-[docdb-geo-replication]: /azure/documentdb/documentdb-distribute-data-globally
+[cosmosdb-geo-replication]: /azure/cosmos-db/distribute-data-globally
 [sql-always-on]: https://msdn.microsoft.com/library/hh510230.aspx
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
