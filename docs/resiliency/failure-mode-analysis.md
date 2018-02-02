@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 03/24/2017
 ms.custom: resiliency
 pnp.series.title: Design for Resiliency
-ms.openlocfilehash: 09d09468eebe5c6fe1c9cdab14e142ff46cf0b25
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: aca2088cb007728c5717a968969000c0a19bcd07
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="failure-mode-analysis"></a>Análisis del modo de error
 [!INCLUDE [header](../_includes/header.md)]
@@ -133,7 +133,7 @@ La directiva de reintentos predeterminada usa la interrupción exponencial. Para
 * El SDK vuelve a ejecutar automáticamente los intentos erróneos. Para establecer el número de reintentos y el tiempo de espera máximo, configure `ConnectionPolicy.RetryOptions`. Las excepciones que genera el cliente se encuentran más allá de la directiva de reintentos o no son errores transitorios.
 * Si Cosmos DB limita el cliente, devuelve un error HTTP 429. Compruebe el código de estado en `DocumentClientException`. Si recibe el error 429 constantemente, considere la posibilidad de aumentar el valor de rendimiento de la colección.
     * Si está utilizando la API de MongoDB, el servicio devuelve el código de error 16500 durante la limitación.
-* Replique la base de datos de Cosmos DB en dos o más regiones. Todas las réplicas son legibles. Con los SDK de cliente, especifique el parámetro `PreferredLocations`. Se trata de una lista ordenada de las regiones de Azure. Todas las lecturas se enviarán a la primera región disponible en la lista. Si se produce un error en la solicitud, el cliente intentará las demás regiones en la lista, en orden. Para más información, consulte [Configuración de la distribución global de Azure Cosmos DB con la API de DocumentDB][docdb-multi-region].
+* Replique la base de datos de Cosmos DB en dos o más regiones. Todas las réplicas son legibles. Con los SDK de cliente, especifique el parámetro `PreferredLocations`. Se trata de una lista ordenada de las regiones de Azure. Todas las lecturas se enviarán a la primera región disponible en la lista. Si se produce un error en la solicitud, el cliente intentará las demás regiones en la lista, en orden. Para más información, consulte [Configuración de la distribución global de Azure Cosmos DB con la API de SQL][cosmosdb-multi-region].
 
 **Diagnóstico**. Registre todos los errores en el lado cliente.
 
@@ -145,7 +145,7 @@ La directiva de reintentos predeterminada usa la interrupción exponencial. Para
 * El SDK vuelve a ejecutar automáticamente los intentos erróneos. Para establecer el número de reintentos y el tiempo de espera máximo, configure `ConnectionPolicy.RetryOptions`. Las excepciones que genera el cliente se encuentran más allá de la directiva de reintentos o no son errores transitorios.
 * Si Cosmos DB limita el cliente, devuelve un error HTTP 429. Compruebe el código de estado en `DocumentClientException`. Si recibe el error 429 constantemente, considere la posibilidad de aumentar el valor de rendimiento de la colección.
 * Replique la base de datos de Cosmos DB en dos o más regiones. Si se produce un error en la región primaria, se promoverá otra región para la escritura. También puede desencadenar una conmutación por error manualmente. El SDK realiza la detección y el enrutamiento automáticos, por lo que el código de la aplicación continúa funcionando después de una conmutación por error. Durante el período de conmutación por error (normalmente minutos), las operaciones de escritura tendrán una latencia superior, según va encontrando el SDK la nueva región de escritura.
-  Para más información, consulte [Configuración de la distribución global de Azure Cosmos DB con la API de DocumentDB][docdb-multi-region].
+  Para más información, consulte [Configuración de la distribución global de Azure Cosmos DB con la API de SQL][cosmosdb-multi-region].
 * Como acción de reserva, conserve el documento en una cola de copia de seguridad y procese la cola más adelante.
 
 **Diagnóstico**. Registre todos los errores en el lado cliente.
@@ -200,7 +200,7 @@ Considere la posibilidad de usar colas de mensajería de Azure Service Bus, lo q
 
 **Diagnóstico**. Utilice el registro de aplicaciones.
 
-## <a name="redis-cache"></a>Redis Cache
+## <a name="redis-cache"></a>Caché en Redis
 ### <a name="reading-from-the-cache-fails"></a>Se produce un error de lectura en la memoria caché.
 **Detección**. Detecte `StackExchange.Redis.RedisConnectionException`.
 
@@ -339,7 +339,7 @@ Para más información, consulte [Información general de colas de mensajes fall
 
 1. Reintente la operación para recuperarse de errores transitorios. La [directiva de reintentos][Storage.RetryPolicies] en el SDK de cliente trata esto automáticamente.
 2. Implemente el patrón Circuit Breaker para evitar sobrecargar el almacenamiento.
-3. Si se produce un error en N reintentos, realice una acción de reserva correcta. Por ejemplo:
+3. Si se produce un error en N reintentos, realice una acción de reserva correcta. Por ejemplo: 
 
    * Almacene los datos en una memoria caché local y reenvíe las escrituras al almacenamiento más adelante, cuando el servicio esté disponible.
    * Si la acción de escritura se encontraba en un ámbito transaccional, compense la transacción.
@@ -434,7 +434,7 @@ Para más información, consulte [Información general de colas de mensajes fall
 
 **Diagnóstico**. Registre todos los errores de llamadas remotas.
 
-## <a name="next-steps"></a>Pasos siguientes
+## <a name="next-steps"></a>pasos siguientes
 Para más información sobre el proceso FMA, consulte [Resilience by design for cloud services][resilience-by-design-pdf] [Resistencia mediante diseño para servicios en la nube] (descarga de PDF).
 
 <!-- links -->
@@ -453,7 +453,7 @@ Para más información sobre el proceso FMA, consulte [Resilience by design for 
 [BrokeredMessage.TimeToLive]: https://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.timetolive.aspx
 [cassandra-error-handling]: http://www.datastax.com/dev/blog/cassandra-error-handling-done-right
 [circuit-breaker]: https://msdn.microsoft.com/library/dn589784.aspx
-[docdb-multi-region]: /azure/documentdb/documentdb-developing-with-multiple-regions/
+[cosmosdb-multi-region]: /azure/cosmos-db/tutorial-global-distribution-sql-api
 [elasticsearch-azure]: ../elasticsearch/index.md
 [elasticsearch-client]: https://www.elastic.co/guide/en/elasticsearch/client/index.html
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx

@@ -4,11 +4,11 @@ description: "Orientación sobre las tareas en segundo plano que se ejecutan ind
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: d8c1d4dfe12208b72fd6991def805f90a830b5f0
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.openlocfilehash: 10c24afee4b880cfbf8ee534f4d7f945d2b046a9
+ms.sourcegitcommit: 3426a9c5ed937f097725c487cf3d073ae5e2a347
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/29/2017
+ms.lasthandoff: 02/01/2018
 ---
 # <a name="background-jobs"></a>Trabajos en segundo plano
 [!INCLUDE [header](../_includes/header.md)]
@@ -244,7 +244,7 @@ Tenga en cuenta los siguientes puntos si está implementando tareas en segundo p
     }
     ```
     
-    * Agregue la definición de la opción **Freeze** como un valor booleano a los archivos ServiceDefinition.csdef y ServiceConfiguration.*.cscfg para el rol y establézcala en **false**. Si el rol entra en un modo de reinicio repetido, puede cambiar la opción a **true** para inmovilizar la ejecución del rol y permitir que se intercambie con una versión anterior.
+  * Agregue la definición de la opción **Freeze** como un valor booleano a los archivos ServiceDefinition.csdef y ServiceConfiguration.\*.cscfg para el rol y establézcala en **false**. Si el rol entra en un modo de reinicio repetido, puede cambiar la opción a **true** para inmovilizar la ejecución del rol y permitir que se intercambie con una versión anterior.
 
 #### <a name="more-information"></a>Más información
 * [Patrón de consolidación de recursos de proceso](http://msdn.microsoft.com/library/dn589778.aspx)

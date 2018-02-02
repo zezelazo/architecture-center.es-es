@@ -4,16 +4,16 @@ description: "Orientación sobre Content Delivery Network (CDN) para entregar co
 author: dragon119
 ms.date: 09/30/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 94036c803552d5e7061f99e6dd0ca9e563a32690
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: fffe0b0523c0a9c817f4346744ff3b5e3f11dede
+ms.sourcegitcommit: cf207fd10110f301f1e05f91eeb9f8dfca129164
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/29/2018
 ---
 # <a name="content-delivery-network"></a>Content Delivery Network
 [!INCLUDE [header](../_includes/header.md)]
 
-Microsoft Azure Content Delivery Network (CDN) ofrece a los desarrolladores una solución global para entregar contenido con alto ancho de banda que se hospeda en Azure o en cualquier otra ubicación. Con la red CDN, puede almacenar en caché objetos disponibles públicamente cargados desde Almacenamiento de blobs de Azure, una aplicación web, una máquina virtual, una carpeta de la aplicación u otra ubicación HTTP/HTTPS. La caché de CDN puede mantenerse en ubicaciones estratégicas, con el fin de proporcionar el ancho de banda máximo para entregar contenido a los usuarios. La red CDN se suele usar para entregar el contenido estático, como imágenes, hojas de estilo, documentos, archivos, scripts de cliente y páginas HTML.
+Microsoft Azure [Content Delivery Network (CDN)](/azure/cdn/cdn-overview) ofrece a los desarrolladores una solución global para entregar contenido con alto ancho de banda que se hospeda en Azure o en cualquier otra ubicación. Con la red CDN, puede almacenar en caché objetos disponibles públicamente cargados desde Almacenamiento de blobs de Azure, una aplicación web, una máquina virtual, una carpeta de la aplicación u otra ubicación HTTP/HTTPS. La caché de CDN puede mantenerse en ubicaciones estratégicas, con el fin de proporcionar el ancho de banda máximo para entregar contenido a los usuarios. La red CDN se suele usar para entregar el contenido estático, como imágenes, hojas de estilo, documentos, archivos, scripts de cliente y páginas HTML.
 
 La red CDN también se puede usar como una memoria caché para servir contenido dinámico, como un informe en PDF o un gráfico basados en las entradas especificadas; si diferentes usuarios proporcionan los mismos valores de entrada, el resultado debería ser el mismo.
 
@@ -74,7 +74,7 @@ Escenarios donde puede resultar útil incluir la red CDN:
 El uso de la red CDN es una buena manera de minimizar la carga en la aplicación y maximizar la disponibilidad y el rendimiento. Considere la posibilidad de adoptar esta estrategia para todo el contenido adecuado y los recursos que usa la aplicación. Al diseñar la estrategia de uso de la red CDN, considere los puntos de las siguientes secciones:  
 
 ### <a name="origin"></a>Origen
-La implementación de contenido a través de la red CDN requiere que se especifique un punto de conexión HTTP o HTTPS que usará el servicio de la red CDN para obtener acceso al contenido y almacenarlo en la caché.
+La implementación de contenido a través de la red CDN requiere que se especifique un [punto de conexión](/azure/cdn/cdn-create-new-endpoint) HTTP o HTTPS que usará el servicio de la red CDN para obtener acceso al contenido y almacenarlo en la caché.
 
 El punto de conexión puede especificar un contenedor de Almacenamiento de blobs de Azure que contiene el contenido estático que se va a entregar a través de la red CDN. El contenedor debe marcarse como público. Solo los blobs de un contenedor público con acceso de lectura público están disponibles a través de la red CDN.
 

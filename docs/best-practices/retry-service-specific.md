@@ -4,11 +4,11 @@ description: "Instrucciones específicas de servicios para establecer el mecanis
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 0a416bc6297c7406de92fbc695b62c39c637de8f
-ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
+ms.openlocfilehash: da1145e2f2f91befd69505ae9ef2734d6110c1d0
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="retry-guidance-for-specific-services"></a>Guía de reintentos para servicios específicos
 
@@ -26,7 +26,7 @@ En la tabla siguiente se resumen las características de reintento de los servic
 | **[SQL Database con ADO.NET](#sql-database-using-adonet-retry-guidelines)** |[Polly](#transient-fault-handling-with-polly) |Declarativo y programático |Instrucciones únicas o bloques de código |Personalizado |
 | **[Service Bus](#service-bus-retry-guidelines)** |Nativo en el cliente |Programático |Administrador de espacio de nombres, fábrica de mensajería y cliente |ETW |
 | **[Azure Redis Cache](#azure-redis-cache-retry-guidelines)** |Nativo en el cliente |Programático |Cliente |TextWriter |
-| **[API de DocumentDB](#documentdb-api-retry-guidelines)** |Nativo en servicio |No configurable |Global |TraceSource |
+| **[Cosmos DB](#cosmos-db-retry-guidelines)** |Nativo en servicio |No configurable |Global |TraceSource |
 | **[Azure Search](#azure-storage-retry-guidelines)** |Nativo en el cliente |Programático |Cliente |ETW o personalizado |
 | **[Azure Active Directory](#azure-active-directory-retry-guidelines)** |Nativo en la biblioteca ADAL |Insertado en la biblioteca ADAL |Interno |None |
 | **[Service Fabric](#service-fabric-retry-guidelines)** |Nativo en el cliente |Programático |Cliente |None | 
@@ -554,7 +554,7 @@ Cuando se usa Service Bus, tenga en cuenta las siguientes directrices:
 
 Considere la posibilidad de comenzar con la configuración siguiente para volver a intentar las operaciones. Esta es la configuración de propósito general, y debe supervisar las operaciones y ajustar los valores para adaptarlos a su propio escenario.
 
-| Context | Latencia máxima de ejemplo | Directiva de reintentos | Configuración | Cómo funciona |
+| Context | Latencia máxima de ejemplo | Directiva de reintentos | Settings | Cómo funciona |
 |---------|---------|---------|---------|---------|
 | Interactivo, interfaz de usuario o primer plano | 2 segundos*  | Exponencial | MinimumBackoff = 0 <br/> MaximumBackoff = 30 s <br/> DeltaBackoff = 300 ms <br/> TimeBuffer = 300 ms <br/> MaxRetryCount = 2 | Intento 1: retraso de 0 s <br/> Intento 2: retraso de ~300 ms <br/> Intento 3: retraso de ~900 ms |
 | Segundo plano o lote | 30 segundos | Exponencial | MinimumBackoff = 1 <br/> MaximumBackoff = 30 s <br/> DeltaBackoff = 1,75 s <br/> TimeBuffer = 5 s <br/> MaxRetryCount = 3 | Intento 1: retraso de ~1 s <br/> Intento 2: retraso de ~3 s <br/> Intento 3: retraso de ~6 ms <br/> Intento 4: retraso de ~13 ms |
@@ -858,9 +858,9 @@ Para obtener más ejemplos, consulte [Configuración](http://github.com/StackExc
 ### <a name="more-information"></a>Más información
 * [Sitio web de Redis](http://redis.io/)
 
-## <a name="documentdb-api-retry-guidelines"></a>Directrices de reintento de DocumentDB API
+## <a name="cosmos-db-retry-guidelines"></a>Directrices de reintento de Cosmos DB
 
-Cosmos DB es una base de datos multimodelo completamente administrada que admite datos JSON sin esquema mediante [DocumentDB API][documentdb-api]. Ofrece un rendimiento confiable y configurable, procesamiento transaccional de JavaScript nativo y se ha creado para la nube con la escala elástica.
+Cosmos DB es una base de datos multimodelo completamente administrada que admite datos JSON sin esquema. Ofrece un rendimiento confiable y configurable, procesamiento transaccional de JavaScript nativo y se ha creado para la nube con la escala elástica.
 
 ### <a name="retry-mechanism"></a>Mecanismo de reintento
 La clase `DocumentClient` reintenta automáticamente los intentos con error. Para establecer el número de reintentos y el tiempo de espera máximo, configure [ConnectionPolicy.RetryOptions]. Las excepciones que genera el cliente se encuentran más allá de la directiva de reintentos o no son errores transitorios.
@@ -897,7 +897,7 @@ Por ejemplo, si agrega lo siguiente al archivo App.config, se generarán seguimi
     <sources>
       <source name="DocDBTrace" switchName="SourceSwitch" switchType="System.Diagnostics.SourceSwitch" >
         <listeners>
-          <add name="MyTextListener" type="System.Diagnostics.TextWriterTraceListener" traceOutputOptions="DateTime,ProcessId,ThreadId" initializeData="DocumentDBTrace.txt"></add>
+          <add name="MyTextListener" type="System.Diagnostics.TextWriterTraceListener" traceOutputOptions="DateTime,ProcessId,ThreadId" initializeData="CosmosDBTrace.txt"></add>
         </listeners>
       </source>
     </sources>
@@ -1036,7 +1036,6 @@ Estos son los tipos típicos de intervalos de estrategia de reintento:
 [autorest]: https://github.com/Azure/autorest/tree/master/docs
 [circuit-breaker]: ../patterns/circuit-breaker.md
 [ConnectionPolicy.RetryOptions]: https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.connectionpolicy.retryoptions.aspx
-[documentdb-api]: /azure/documentdb/documentdb-introduction
 [dotnet-foundation]: https://dotnetfoundation.org/
 [polly]: http://www.thepollyproject.org
 [redis-cache-troubleshoot]: /azure/redis-cache/cache-how-to-troubleshoot

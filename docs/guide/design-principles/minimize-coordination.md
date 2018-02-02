@@ -3,11 +3,11 @@ title: "Minimizar la coordinación"
 description: "Minimizar la coordinación entre los servicios de aplicación para lograr escalabilidad"
 author: MikeWasson
 layout: LandingPage
-ms.openlocfilehash: 1f8caa8b7cd85593c937f1d99d582492d4cf9a8b
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 3cab05b539612234fd8e66517b140ac5257c3e70
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="minimize-coordination"></a>Minimizar la coordinación 
 
@@ -49,7 +49,7 @@ Estos dos patrones se complementan entre sí. Si el almacén de solo escritura e
 
 **Usar simultaneidad optimista siempre que sea posible**. El control de simultaneidad pesimista usa bloqueos de base de datos para evitar conflictos. Esto puede provocar un rendimiento deficiente y reducir la disponibilidad. Con el control de simultaneidad optimista, cada transacción modifica una copia o instantánea de los datos. Cuando la transacción se confirma, el motor de base de datos la valida y rechaza las transacciones que podrían afectar a la coherencia de la base de datos. 
 
-Azure SQL Database y SQL Server admiten la simultaneidad optimista gracias al [aislamiento de instantáneas][sql-snapshot-isolation]. Algunos servicios de almacenamiento de Azure admiten la simultaneidad optimista mediante el uso de valores ETag, como la [API de DocumentDB][docdb-faq] y [Azure Storage][storage-concurrency].
+Azure SQL Database y SQL Server admiten la simultaneidad optimista gracias al [aislamiento de instantáneas][sql-snapshot-isolation]. Algunos servicios de almacenamiento de Azure admiten la simultaneidad optimista mediante el uso de valores ETag, como [Azure Cosmos DB][cosmosdb-faq] y [Azure Storage][storage-concurrency].
 
 **Considerar MapReduce u otros algoritmos distribuidos paralelos**. En función de los datos y el tipo de trabajo que se va a realizar, puede que tenga que dividir el trabajo en tareas independientes que puedan realizar varios nodos que funcionan en paralelo. Consulte [Big compute architecture style][big-compute] (Estilo de arquitectura Big Compute).
 
@@ -62,7 +62,7 @@ Azure SQL Database y SQL Server admiten la simultaneidad optimista gracias al [a
 [compensating-transaction]: ../../patterns/compensating-transaction.md
 [cqrs-style]: ../architecture-styles/cqrs.md
 [cqrs-pattern]: ../../patterns/cqrs.md
-[docdb-faq]: /azure/documentdb/documentdb-faq
+[cosmosdb-faq]: /azure/cosmos-db/faq
 [domain-event]: https://martinfowler.com/eaaDev/DomainEvent.html
 [event-sourcing]: ../../patterns/event-sourcing.md
 [leader-election]: ../../patterns/leader-election.md

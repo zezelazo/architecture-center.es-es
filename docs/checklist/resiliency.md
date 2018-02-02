@@ -4,11 +4,11 @@ description: "Lista de comprobación que ofrece una guía para las preocupacione
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 66ff802c1f7b35db147ffe4279982c827570c3c1
-ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
+ms.openlocfilehash: 51f807715d0ac929806b9a5a13da4efa00566592
+ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 01/30/2018
 ---
 # <a name="resiliency-checklist"></a>Lista de comprobación de resistencia
 
@@ -124,7 +124,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Seleccione el tamaño adecuado de la máquina virtual para la aplicación.** Mida la CPU, la memoria, el disco y la E/S reales de las máquinas virtuales en producción y compruebe que el tamaño de la máquina virtual seleccionado sea suficiente. Si no es así, la aplicación puede experimentar problemas de capacidad a medida que las máquinas virtuales se acercan a sus límites. Los tamaños de las máquinas virtuales se describen con detalle en [Tamaños de máquinas virtuales en Azure](/azure/virtual-machines/virtual-machines-windows-sizes/?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-**Determine si la carga de trabajo de la aplicación es estable o fluctúa con el tiempo.** Si la carga de trabajo fluctúa con el tiempo, utilice los conjuntos de escalado de máquinas virtuales de Azure para escalar automáticamente el número de instancias de máquinas virtuales. De lo contrario, tendrá que aumentar o disminuir de manera manual el número de máquinas virtuales. Para más información, consulte [Introducción a los conjuntos de escalado de máquinas virtuales](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview/).
+**Determine si la carga de trabajo de la aplicación es estable o fluctúa con el tiempo.** Si la carga de trabajo fluctúa con el tiempo, utilice Azure VM Scale Sets para escalar automáticamente el número de instancias de máquinas virtuales. De lo contrario, tendrá que aumentar o disminuir de manera manual el número de máquinas virtuales. Para más información, consulte [Introducción a los conjuntos de escalado de máquinas virtuales](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview/).
 
 **Seleccione el nivel de servicio correcto para Azure SQL Database.** Si la aplicación utiliza Azure SQL Database, asegúrese de que ha seleccionado el nivel de servicio apropiado. Si selecciona un nivel que no es capaz de controlar los requisitos de la unidad de transmisión de datos (DTU) de la aplicación, el uso de datos estará limitado. Si quiere obtener más información sobre cómo seleccionar el plan de servicio correcto, consulte [Opciones y rendimiento de SQL Database: comprender lo que está disponible en cada nivel de servicio](/azure/sql-database/sql-database-service-tiers/).
 
@@ -203,7 +203,7 @@ Los siguientes elementos de la lista de comprobación se aplican a servicios esp
 
 ### <a name="cosmos-db"></a>Cosmos DB
 
-**Replique la base de datos en todas las regiones.** Cosmos DB permite asociar cualquier número de regiones de Azure con una cuenta de base de datos de Cosmos DB. Una base de datos Cosmos DB puede tener una región de escritura y varias regiones de lectura. Si se produce un error en la región de escritura, puede leer desde otra réplica. El SDK de cliente lo trata automáticamente. También puede conmutar por error la región de escritura a otra región. Para más información, consulte [Cómo se distribuyen datos globalmente con Azure Cosmos DB](/azure/documentdb/documentdb-distribute-data-globally).
+**Replique la base de datos en todas las regiones.** Cosmos DB permite asociar cualquier número de regiones de Azure con una cuenta de base de datos de Cosmos DB. Una base de datos Cosmos DB puede tener una región de escritura y varias regiones de lectura. Si se produce un error en la región de escritura, puede leer desde otra réplica. El SDK de cliente lo trata automáticamente. También puede conmutar por error la región de escritura a otra región. Para más información, consulte [Cómo se distribuyen datos globalmente con Azure Cosmos DB](/azure/cosmos-db/distribute-data-globally).
 
 ### <a name="redis-cache"></a>Caché en Redis
 
