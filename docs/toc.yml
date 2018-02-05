@@ -123,6 +123,8 @@
       href: multitenant-identity/index.md
     - name: Migración de Cloud Services a Service Fabric
       href: service-fabric/migrate-from-cloud-services.md
+    - name: Refactorización de una aplicación de Azure Service Fabric migrada de Azure Cloud Services
+      href: service-fabric/refactor-migrated-app.md
     - name: Ejecución de Elasticsearch en Azure
       href: elasticsearch/index.md
     - name: Extensión de las funciones de la plantilla de Azure Resource Manager
