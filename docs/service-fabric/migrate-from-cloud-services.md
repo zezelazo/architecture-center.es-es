@@ -3,11 +3,11 @@ title: "Migrar una aplicación de Azure Cloud Services a Azure Service Fabric"
 description: "Cómo migrar una aplicación de Azure Cloud Services a Azure Service Fabric."
 author: MikeWasson
 ms.date: 04/27/2017
-ms.openlocfilehash: 22b6cca0d4714dd4cde0fd7449340d6e1f45e65b
-ms.sourcegitcommit: fbcf9a1c25db13b2627a8a58bbc985cd01ea668d
+ms.openlocfilehash: 73e34c53ffd2f2eeb466d12a5f6c65dcfdaae389
+ms.sourcegitcommit: 2c9a8edf3e44360d7c02e626ea8ac3b03fdfadba
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/16/2017
+ms.lasthandoff: 02/03/2018
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>Migrar una aplicación de Azure Cloud Services a Azure Service Fabric 
 
@@ -176,7 +176,7 @@ Un servicio debe crear explícitamente los agentes de escucha para cada punto de
 
  Un servicio en la nube contiene los archivos de paquete y de configuración siguientes:
 
-| Archivo | Descripción |
+| Archivo | DESCRIPCIÓN |
 |------|-------------|
 | Definición de servicio (.csdef) | Configuración que usa Azure para configurar el servicio en la nube. Define los roles, los puntos de conexión, las tareas de inicio y los nombres de los valores de configuración. |
 | Configuración del servicio (.cscfg) | Configuración por implementación, incluido el número de instancias de rol, los números de puerto de los puntos de conexión y los valores de configuración. 
@@ -198,7 +198,7 @@ El paquete de aplicación es lo que se implementa. Contiene uno o varios paquete
 
 Una aplicación de Service Fabric contiene los archivos de configuración siguientes:
 
-| Archivo | Ubicación | Descripción |
+| Archivo | La ubicación | DESCRIPCIÓN |
 |------|----------|-------------|
 | ApplicationManifest.xml | Paquete de aplicación | Define los servicios que componen la aplicación. |
 | ServiceManifest.xml | Paquete de servicio| Describe uno o varios servicios. |
@@ -289,9 +289,9 @@ La migración de la aplicación Surveys a Service Fabric era un proceso bastante
 
 Además, la implementación cambió de Cloud Services a un clúster de Service Fabric que se ejecutaba en un conjunto de escalado de máquinas virtuales.
 
-Sin embargo, llegado este punto, la aplicación no obtiene todas las ventajas de los microservicios, como el control de versiones y la implementación de servicios independientes. Para sacar el máximo provecho de Service Fabric, Tailspin debe optimizarse un poco más.
+## <a name="next-steps"></a>pasos siguientes
 
-
+Una vez portada correctamente la aplicación Surveys, Tailspin desea aprovechar las características de Service Fabric, como el control de versiones y la implementación de servicios independientes. Vea cómo Tailspin ha descompuesto estos servicios en una arquitectura más pormenorizada para aprovechar estas características de Service Fabric en [Refactorización de una aplicación de Azure Service Fabric migrada de Azure Cloud Services][refactor-surveys].
 
 <!-- links -->
 
@@ -308,6 +308,7 @@ Sin embargo, llegado este punto, la aplicación no obtiene todas las ventajas de
 [kestrel]: https://docs.microsoft.com/aspnet/core/fundamentals/servers/kestrel
 [lb-probes]: /azure/load-balancer/load-balancer-custom-probe-overview
 [owin]: https://www.asp.net/aspnet/overview/owin-and-katana
+[refactor-surveys]: refactor-migrated-app.md
 [sample-code]: https://github.com/mspnp/cloud-services-to-service-fabric
 [sf-application-model]: /azure/service-fabric/service-fabric-application-model
 [sf-aspnet-core]: /azure/service-fabric/service-fabric-add-a-web-frontend
