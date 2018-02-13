@@ -53,7 +53,7 @@
                 - name: 'Explicación: ¿Qué es una red virtual de Azure?'
                   href: /azure/virtual-network/virtual-networks-overview?toc=/azure/architecture/cloud-adoption-guide/toc.json
                 - name: Implementación de una red virtual en Azure
-                  href: /azure/virtual-network/virtual-networks-create-vnet-arm-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-network/virtual-networks-create-vnet-arm-pportal?toc=/azure/architecture/cloud-adoption-guide/toc.json
                 - name: Implementación de una única carga de trabajo IaaS de máquina virtual Windows en Azure
                   href: /azure/virtual-machines/windows/quick-create-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
                 - name: 'Guía: Procedimientos recomendados para la implementación de una máquina virtual Windows en Azure'
