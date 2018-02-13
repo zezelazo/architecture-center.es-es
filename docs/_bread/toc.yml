@@ -2,7 +2,7 @@
   tocHref: /azure/
   topicHref: /azure
   items:
-    - name: Arquitectura
+    - name: Architecture
       tocHref: /azure/architecture/
       topicHref: /azure/architecture
       items:
@@ -32,6 +32,9 @@
         - name: Recursos
           tocHref: /azure/architecture/resources
           topicHref: /azure/architecture/resources
+        - name: Guía de adopción
+          tocHref: /azure/architecture/cloud-adoption-guide/
+          topicHref: /azure/architecture/cloud-adoption-guide
         - name: Guía
           tocHref: /azure/architecture/guide
           topicHref: /azure/architecture/guide
