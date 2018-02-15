@@ -1,0 +1,60 @@
+{
+    "series": [
+        {
+            "title": "Cargas de trabajo de máquinas virtuales Windows",
+            "url": "./virtual-machines-windows/index.md",
+            "image": "./virtual-machines-windows/images/n-tier.svg",
+            "summary": "Esta serie comienza con los procedimientos recomendados para ejecutar una sola máquina virtual Windows, posteriormente, varias máquinas virtuales con equilibrio de carga y, por último, una aplicación de n niveles de varias regiones."
+        },
+        {
+            "title": "Cargas de trabajo de máquinas virtuales Linux",
+            "url": "./virtual-machines-linux/index.md",
+            "image": "./virtual-machines-linux/images/n-tier.svg",
+            "summary": "Esta serie comienza con los procedimientos recomendados para ejecutar una sola máquina virtual Linux, posteriormente, varias máquinas virtuales con equilibrio de carga y, por último, una aplicación de n niveles de varias regiones."
+        },
+        {
+            "title": "Red híbrida",
+            "url": "./hybrid-networking/index.md",
+            "image": "./hybrid-networking/images/vpn.svg",
+            "summary": "Esta serie muestra opciones para crear una conexión de red entre una red local y Azure."
+        },
+        {
+            "title": "Red perimetral",
+            "url": "./dmz/index.md",
+            "image": "./dmz/images/secure-vnet-dmz.svg",
+            "summary": "Esta serie muestra cómo crear una red perimetral para proteger el límite entre una red virtual de Azure y una red local o Internet."
+        },
+        {
+            "title": "Administración de identidades",
+            "url": "./identity/index.md",
+            "image": "./identity/images/adds-extend-domain.svg",
+            "summary": "Esta serie muestra opciones para integrar el entorno local de Active Directory (AD) con una red de Azure."
+        },
+        {
+            "title": "Aplicación web de App Service",
+            "url": "./app-service-web-app/index.md",
+            "image": "./app-service-web-app/images/scalable-web-app.svg",
+            "summary": "Esta serie muestra los procedimientos recomendados para las aplicaciones web que utilizan Azure App Service."
+        }
+    ],
+    "individuals": [
+        {
+            "title": "Servidor de compilación de Jenkins",
+            "url": "./jenkins/index.md",
+            "image": "./jenkins/images/logo.svg",
+            "summary": "Implemente y haga funcionar un servidor Jenkins escalable y de nivel empresarial en Azure."
+        },
+        {
+            "title": "Granja de SharePoint Server 2016",
+            "url": "./sharepoint/index.md",
+            "image": "./sharepoint/images/sharepoint.svg",
+            "summary": "Implemente y ejecute una granja de alta disponibilidad de SharePoint Server 2016 en Azure con los grupos de disponibilidad AlwaysOn de SQL Server."
+        },
+        {
+            "title": "SAP NetWeaver y SAP HANA",
+            "url": "./sap/index.md",
+            "image": "./sap/images/sap.svg",
+            "summary": "Implemente y ejecute SAP NetWeaver y SAP HANA en un entorno de alta disponibilidad en Azure."
+        }
+    ]
+}
