@@ -2,14 +2,14 @@
 title: "Implementación de una topología de red en estrella tipo hub-and-spoke en Azure"
 description: "Cómo implementar una topología de red en estrella tipo hub-and-spoke en Azure."
 author: telmosampaio
-ms.date: 05/05/2017
+ms.date: 02/14/2018
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: e6f07a7962dd5728226b023700268340590d97a3
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: c03ecd4ba5ddbe50cfb17e56d75c18102b751cfb
+ms.sourcegitcommit: 475064f0a3c2fac23e1286ba159aaded287eec86
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/19/2018
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke en Azure
 
@@ -32,7 +32,7 @@ Los usos habituales de esta arquitectura incluyen:
 * Cargas de trabajo que no requieren conectividad entre sí, pero requieren acceso a los servicios compartidos.
 * Empresas que requieren el control centralizado sobre aspectos de seguridad, como un firewall en el concentrador como una red perimetral, así como la administración segregada de las cargas de trabajo en cada radio.
 
-## <a name="architecture"></a>Arquitectura
+## <a name="architecture"></a>Architecture
 
 La arquitectura consta de los siguientes componentes:
 
@@ -114,7 +114,7 @@ También tenga en cuenta qué servicios se comparten en el concentrador, para as
 
 Hay disponible una implementación de esta arquitectura en [GitHub][ref-arch-repo]. Usa máquinas virtuales Ubuntu en cada red virtual para probar la conectividad. No hay ningún servicio real hospedado en la subred de **servicios compartidos** de la **red virtual del concentrador**.
 
-### <a name="prerequisites"></a>Requisitos previos
+### <a name="prerequisites"></a>requisitos previos
 
 Antes de poder implementar la arquitectura de referencia en su propia suscripción, debe realizar los pasos siguientes.
 
@@ -339,68 +339,6 @@ Para verificar si funciona la topología en estrella tipo hub-and-spoke conectad
 
   ```bash
   ping 10.1.1.37
-  ```
-
-### <a name="add-connectivity-between-spokes"></a>Adición de conectividad entre radios
-
-Si desea permitir que los radios se conecten entre sí, debe implementar UDR en cada radio que reenvía tráfico destinado a otros radios a la puerta de enlace de la red virtual del concentrador. Realice los pasos siguientes para verificar que actualmente no puede conectarse de un radio a otro y después implemente UDR y vuelva a probar la conectividad.
-
-1. Repita los pasos 1 a 4 anteriores, si ya no está conectado a la máquina virtual del JumpBox.
-
-2. Conéctese a uno de los servidores web del radio 1.
-
-  ```bash
-  ssh 10.1.1.37
-  ```
-
-3. Pruebe la conectividad entre el radio 1 y el radio 2. Debe producirse un error.
-
-  ```bash
-  ping 10.1.2.37
-  ```
-
-4. Vuelva al símbolo del sistema del equipo.
-
-5. Cambie a la carpeta `hybrid-networking\hub-spoke\spokes` del repositorio que descargó en el paso de requisitos previos anterior.
-
-6. Ejecute el comando de Bash o de PowerShell siguiente para implementar una UDR en el primer radio. Sustituya los valores con su suscripción, el nombre del grupo de recursos y la región de Azure.
-
-  ```bash
-  sh ./spoke.udr.deploy.sh --subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-    --resourcegroup ra-spoke1-rg \
-    --location westus \
-    --spoke 1
-  ```
-
-  ```powershell
-  ./spoke.udr.deploy.ps1 -Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx `
-    -ResourceGroup ra-spoke1-rg `
-    -Location westus `
-    -Spoke 1
-  ```
-
-7. Ejecute el comando de Bash o de PowerShell siguiente para implementar una UDR en el segundo radio. Sustituya los valores con su suscripción, el nombre del grupo de recursos y la región de Azure.
-
-  ```bash
-  sh ./spoke.udr.deploy.sh --subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-    --resourcegroup ra-spoke2-rg \
-    --location westus \
-    --spoke 2
-  ```
-
-  ```powershell
-  ./spoke.udr.deploy.ps1 -Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx `
-    -ResourceGroup ra-spoke2-rg `
-    -Location westus `
-    -Spoke 2
-  ```
-
-8. Vuelva a cambiar al terminal SSH.
-
-9. Pruebe la conectividad entre el radio 1 y el radio 2. Debe ser correcta.
-
-  ```bash
-  ping 10.1.2.37
   ```
 
 <!-- links -->
