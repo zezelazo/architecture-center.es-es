@@ -19,6 +19,8 @@
       href: guide/pillars.md
     - name: Patrones de diseño
       href: patterns/index.md?toc=/azure/architecture/guide/toc.json
+- name: Guía de arquitectura de datos
+  href: data-guide/index.md
 - name: Arquitecturas de referencia
   href: reference-architectures/index.md
   items:

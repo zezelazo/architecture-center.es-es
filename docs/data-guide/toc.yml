@@ -1,0 +1,93 @@
+- name: Azure Architecture Center
+  href: /azure/architecture
+- name: Guía de arquitectura de datos
+  href: index.md
+  items:
+    - name: RDBMS tradicional
+      items:
+        - name: Conceptos
+          items:
+            - name: Datos relacionales
+              href: concepts/relational-data.md
+            - name: Datos transaccionales
+              href: concepts/transactional-data.md
+            - name: Modelos semánticos
+              href: concepts/semantic-modeling.md
+        - name: Escenarios
+          items:
+            - name: Procesamiento de transacciones en línea (OLTP)
+              href: scenarios/online-transaction-processing.md
+            - name: Procesamiento analítico en línea (OLAP)
+              href: scenarios/online-analytical-processing.md
+            - name: Almacenamiento de datos
+              href: scenarios/data-warehousing.md
+            - name: 'Extracción, transformación y carga de datos (ETL)'
+              href: scenarios/etl.md
+        - name: Opciones de tecnología
+          items:
+            - name: Almacenamientos de datos
+              href: technology-choices/data-warehouses.md
+            - name: Procesamiento analítico en línea (OLAP)
+              href: technology-choices/olap-data-stores.md
+            - name: Procesamiento de transacciones en línea (OLTP)
+              href: technology-choices/oltp-data-stores.md
+    - name: Macrodatos y NoSQL
+      items:
+        - name: Conceptos
+          items:
+            - name: Almacenes de datos no relacionales
+              href: concepts/non-relational-data.md
+            - name: Uso de archivos CSV y JSON
+              href: concepts/csv-and-json.md
+            - name: Arquitecturas de macrodatos
+              href: concepts/big-data.md
+            - name: Análisis avanzado
+              href: concepts/advanced-analytics.md
+            - name: Aprendizaje automático a escala
+              href: concepts/machine-learning-at-scale.md
+        - name: Escenarios
+          items:
+            - name: Procesamiento por lotes
+              href: scenarios/batch-processing.md
+            - name: Procesamiento en tiempo real
+              href: scenarios/real-time-processing.md
+            - name: Búsqueda de texto de forma libre
+              href: scenarios/search.md
+            - name: Exploración interactiva de datos
+              href: scenarios/interactive-data-exploration.md
+            - name: Procesamiento de lenguaje natural
+              href: scenarios/natural-language-processing.md
+            - name: Soluciones de serie temporal
+              href: scenarios/time-series.md
+        - name: Opciones de tecnología
+          items:
+            - name: Almacenes de datos analíticos
+              href: technology-choices/analytical-data-stores.md
+            - name: Análisis e informes
+              href: technology-choices/analysis-visualizations-reporting.md
+            - name: Procesamiento por lotes
+              href: technology-choices/batch-processing.md
+            - name: Cognitive Services
+              href: technology-choices/cognitive-services.md
+            - name: Almacenamiento de datos
+              href: technology-choices/data-storage.md
+            - name: Machine Learning
+              href: technology-choices/data-science-and-machine-learning.md
+            - name: Procesamiento de lenguaje natural
+              href: technology-choices/natural-language-processing.md
+            - name: Orquestación de canalizaciones
+              href: technology-choices/pipeline-orchestration-data-movement.md
+            - name: Ingesta de mensajes en tiempo real
+              href: technology-choices/real-time-ingestion.md
+            - name: Buscar almacenes de datos
+              href: technology-choices/search-options.md
+            - name: Procesamiento de flujos
+              href: technology-choices/stream-processing.md
+    - name: Problemas transversales
+      items:
+        - name: Transferencia de datos
+          href: scenarios/data-transfer.md
+        - name: Ampliación de las soluciones de datos locales a la nube
+          href: scenarios/hybrid-on-premises-and-cloud.md
+        - name: Soluciones de protección de datos
+          href: scenarios/securing-data-solutions.md
