@@ -6,11 +6,11 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: bf385ccc988a709a61d9bee5fb1ee084a133138d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a5dc25a4b61ffd13d86f1abb2b839054e5fb4c7f
+ms.sourcegitcommit: 475064f0a3c2fac23e1286ba159aaded287eec86
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/19/2018
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>Federación con un servicio AD FS de un cliente
 
@@ -55,7 +55,7 @@ Para obtener un ejemplo del uso de WS-Federation con ASP.NET 4, consulte el [eje
 ## <a name="limitations"></a>Limitaciones
 De forma predeterminada, la aplicación de usuario de confianza recibe solo un conjunto fijo de notificaciones disponibles en id_token, que se muestra en la tabla siguiente. Con AD FS 2016, puede personalizar el valor de id_token en escenarios de OpenID Connect. Para obtener más información, vea [Tokens de identificador personalizado en AD FS](/windows-server/identity/ad-fs/development/customize-id-token-ad-fs-2016).
 
-| Notificación | Descripción |
+| Notificación | DESCRIPCIÓN |
 | --- | --- |
 | aud |Audiencia. La aplicación para que la que se emitieron las notificaciones. |
 | authenticationinstant |[Instante de autenticación]. La hora en que se produjo la autenticación. |
@@ -63,7 +63,7 @@ De forma predeterminada, la aplicación de usuario de confianza recibe solo un c
 | exp |[Fecha de expiración]. El momento después del cual el token ya no se aceptará. |
 | iat |Emitido a las. La hora a la que se generó el token. |
 | iss |Emisor. El valor de esta notificación siempre es el servicio AD FS del asociado de recursos. |
-| name |Nombre de usuario. Ejemplo: `john@corp.fabrikam.com`. |
+| Nombre |Nombre de usuario. Ejemplo: `john@corp.fabrikam.com`. |
 | nameidentifier |[Identificador de nombre]. El identificador para el nombre de la entidad para la que se emitió el token. |
 | valor de seguridad |Nonce de sesión. Un valor único generado por AD FS para ayudar a evitar ataques de reproducción. |
 | upn |Nombre principal de usuario (UPN). Ejemplo: john@corp.fabrikam.com |

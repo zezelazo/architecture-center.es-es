@@ -1,3 +1,15 @@
+---
+title: "Lista de comprobación de DevOps"
+description: "Lista de comprobación que proporciona guía relacionada con DevOps."
+author: dragon119
+ms.date: 01/10/2018
+ms.custom: checklist
+ms.openlocfilehash: c435ea0aed9571cb6508d7d23f93414a138998fe
+ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 02/14/2018
+---
 # <a name="devops-checklist"></a>Lista de comprobación de DevOps
 
 DevOps es la integración de desarrollo, control de calidad y operaciones de TI en una referencia cultural unificada y un conjunto de procesos para la entrega de software. Utilice esta lista de comprobación como un punto de partida para evaluar su referencia cultural y proceso de DevOps.
@@ -16,7 +28,7 @@ DevOps es la integración de desarrollo, control de calidad y operaciones de TI 
 
 **Aprenda de los errores.** Los errores son inevitables, así que lo importante es aprender de ellos para no repetirlos. Si se produce un error de funcionamiento, evalúe las prioridades el problema, documente la causa y la solución, comparta todo lo que haya aprendido. Siempre que sea posible, actualice los procesos de compilación para detectar automáticamente ese tipo de error en el futuro.
 
-**Optimize la velocidad de los datos y su recopilación.** Toda mejora planeada es una hipótesis. Trabaje en los menos incrementos posibles. Trate las ideas nuevas como experimentos. Instrumente los experimentos para que pueda recopilar datos de producción para evaluar su eficacia. Esté preparado para que se produzca un error rápidamente si la hipótesis es incorrecta.
+**Optimize la velocidad de los datos y su recopilación.** Toda mejora planeada es una hipótesis. Trabaje en los menos incrementos posibles. Trate las ideas nuevas como experimentos. Instrumente los experimentos para que pueda recopilar datos de producción para evaluar su eficacia. Esté preparado para que se produzca un fracaso y responder rápido a los errores si la hipótesis es incorrecta.
 
 **Deje tiempo para el aprendizaje.** Tanto los errores como los aciertos proporcionan buenas oportunidades para el aprendizaje. Antes de pasar a nuevos proyectos, deje tiempo suficiente para recopilar las lecciones importantes y asegúrese de que el equipo las absorbe. Dé también tiempo al equipo para desarrollar habilidades, experimentar y obtener información acerca de las nuevas herramientas y técnicas. 
 

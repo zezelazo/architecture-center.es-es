@@ -3,11 +3,11 @@ title: "Refactorización de una aplicación de Azure Service Fabric migrada de A
 description: "Cómo refactorizar una aplicación de Azure Service Fabric existente migrada de Azure Cloud Services"
 author: petertay
 ms.date: 01/30/2018
-ms.openlocfilehash: 4889fae8f157b0f1205e7d8223f125974be59ba9
-ms.sourcegitcommit: 2c9a8edf3e44360d7c02e626ea8ac3b03fdfadba
+ms.openlocfilehash: 18af7c7fe0c0933b1a2a132ee2ee0d8479d41b2a
+ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/03/2018
+ms.lasthandoff: 02/09/2018
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a>Refactorización de una aplicación de Azure Service Fabric migrada de Azure Cloud Services
 
@@ -64,15 +64,15 @@ El siguiente diagrama muestra la arquitectura de la aplicación Surveys refactor
 
 **Tailspin.Web** es un servicio sin estado que autohospeda una aplicación de ASP.NET MVC que los clientes de Tailspin visitan para crear encuestas y ver resultados de encuestas. Este servicio comparte la mayor parte de su código con el servicio *Tailspin.Web* de la aplicación de Service Fabric portada. Como se mencionó anteriormente, este servicio utiliza ASP.NET Core y pasa de utilizar Kestrel como front-end web a implementar WebListener.
 
-**Tailspin.Web.Surveys.Public** es un servicio sin estado que también autohospeda un sitio de ASP.NET MVC. Los usuarios visitan este sitio para seleccionar encuestas de una lista y completarlas. Este servicio comparte la mayor parte de su código con el servicio *Tailspin.Web.Survey.Public* de la aplicación de Service Fabric portada. Este servicio también utiliza ASP.NET Core y pasa de utilizar Kestrel como front-end web a implementar WebListener.
+**Tailspin.Web.Survey.Public** es un servicio sin estado que también autohospeda un sitio de ASP.NET MVC. Los usuarios visitan este sitio para seleccionar encuestas de una lista y completarlas. Este servicio comparte la mayor parte de su código con el servicio *Tailspin.Web.Survey.Public* de la aplicación de Service Fabric portada. Este servicio también utiliza ASP.NET Core y pasa de utilizar Kestrel como front-end web a implementar WebListener.
 
-**Tailspin.SurveyResponseService** es un servicio con estado que almacena las respuestas de las encuestas en Azure Blob Storage. También combina respuestas en los datos de análisis de encuestas. El servicio se implementa como un servicio con estado porque utiliza [ReliableConcurrentQueue][reliable-concurrent-queue] para procesar respuestas de encuesta en lotes. Esta funcionalidad estaba implementada originalmente en el servicio *Tailspin.Web.Survey.Public* en la aplicación de Service Fabric portada. Tailspin refactorizó la funcionalidad original en este servicio para que pueda escalarse de forma independiente.
+**Tailspin.SurveyResponseService** es un servicio con estado que almacena las respuestas de las encuestas en Azure Blob Storage. También combina respuestas en los datos de análisis de encuestas. El servicio se implementa como un servicio con estado porque utiliza [ReliableConcurrentQueue][reliable-concurrent-queue] para procesar respuestas de encuesta en lotes. Esta funcionalidad estaba implementada originalmente en el servicio *Tailspin.AnswerAnalysisService* en la aplicación de Service Fabric portada.
 
-**Tailspin.SurveyManagementService** es un servicio sin estado que almacena y recupera encuestas y preguntas de encuesta. El servicio utiliza Azure Blob Storage. Esta funcionalidad también estaba implementada originalmente en el servicio *Tailspin.AnswerAnalysisService* en la aplicación de Service Fabric portada. Tailspin refactorizó la funcionalidad original en este servicio para que también pueda escalarse de forma independiente.
+**Tailspin.SurveyManagementService** es un servicio sin estado que almacena y recupera encuestas y preguntas de encuesta. El servicio utiliza Azure Blob Storage. Esta funcionalidad estaba también implementada originalmente en los componentes de acceso a datos de los servicios *Tailspin.Web* y *Tailspin.Web.Survey.Public* en la aplicación de Service Fabric portada. Tailspin refactorizó la funcionalidad original en este servicio para que pueda escalarse de forma independiente.
 
-**Tailspin.SurveyAnswerService** es un servicio sin estado que recupera respuestas y análisis de encuestas. El servicio también utiliza Azure Blob Storage. Esta funcionalidad también estaba implementada originalmente en el servicio *Tailspin.AnswerAnalysisService* en la aplicación de Service Fabric portada. Tailspin refactorizó la funcionalidad original en este servicio porque espera menos carga y desea usar menos instancias para conservar recursos.
+**Tailspin.SurveyAnswerService** es un servicio sin estado que recupera respuestas y análisis de encuestas. El servicio también utiliza Azure Blob Storage. Esta funcionalidad estaba también implementada originalmente en los componentes de acceso a datos del servicio *Tailspin.Web* en la aplicación de Service Fabric portada. Tailspin refactorizó la funcionalidad original en este servicio porque espera menos carga y desea usar menos instancias para conservar recursos.
 
-**Tailspin.SurveyAnalysisService** es un servicio sin estado que conserva datos de resumen de respuestas de encuestas en una instancia de Redis Cache para recuperarlos rápidamente. Mediante *Tailspin.SurveyResponseService*, se llama a este servicio cada vez que se responde una encuesta y los nuevos datos de respuesta de la encuesta se combinan en los datos de resumen. Este servicio incluye la funcionalidad restante en el servicio *Tailspin.SurveyAnalysisService* de la aplicación de Service Fabric portada.
+**Tailspin.SurveyAnalysisService** es un servicio sin estado que conserva datos de resumen de respuestas de encuestas en una instancia de Redis Cache para recuperarlos rápidamente. Mediante *Tailspin.SurveyResponseService*, se llama a este servicio cada vez que se responde una encuesta y los nuevos datos de respuesta de la encuesta se combinan en los datos de resumen. Este servicio incluye la funcionalidad implementada originalmente en el servicio *Tailspin.AnswerAnalysisService* en la aplicación de Service Fabric portada.
 
 ## <a name="stateless-versus-stateful-services"></a>Servicios sin estado y con estado
 

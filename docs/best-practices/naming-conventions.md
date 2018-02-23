@@ -4,11 +4,11 @@ description: "Convenciones de nomenclatura para los recursos de Azure. Qué nomb
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 364735dec9658b4d2a9d21330f38c57f6fa694bd
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: f814201901af69b816d7f1588e58057b252b22db
+ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 02/09/2018
 ---
 # <a name="naming-conventions"></a>Convenciones de nomenclatura
 
@@ -96,7 +96,7 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 | Entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
 | --- | --- | --- | --- | --- | --- | --- |
 |Nombre de cuenta de almacenamiento (datos) |Global |3-24 |Minúsculas |Alfanuméricas |`<globally unique name><number>` (utilice una función para calcular un GUID único para asignar nombres a las cuentas de almacenamiento) |`profxdata001` |
-|Nombre de cuenta de almacenamiento (discos) |Global |3-24 |Minúsculas |Alfanuméricas |`<vm name without dashes>st<number>` |`profxsql001st0` |
+|Nombre de cuenta de almacenamiento (discos) |Global |3-24 |Minúsculas |Alfanuméricas |`<vm name without hyphens>st<number>` |`profxsql001st0` |
 | Nombre del contenedor |Cuenta de almacenamiento |3-63 |Minúsculas |Alfanuméricos y guión |`<context>` |`logs` |
 |Nombre de blob | Contenedor |1-1024 |Distingue mayúsculas de minúsculas |Cualquier carácter de dirección URL |`<variable based on blob usage>` |`<variable based on blob usage>` |
 |Nombre de cola |Cuenta de almacenamiento |3-63 |Minúsculas |Alfanuméricos y guión |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
@@ -108,15 +108,15 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 
 | Entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
 | --- | --- | --- | --- | --- | --- | --- |
-|Virtual Network |Grupo de recursos |2-64 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<service short name>-vnet` |`profx-vnet` |
-|Subred |Red virtual principal |2-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<descriptive context>` |`web` |
-|Interfaz de red |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<vmname>-nic<num>` |`profx-sql1-nic1` |
-|Grupo de seguridad de red (NSG) |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<service short name>-<context>-nsg` |`profx-app-nsg` |
-|Regla de grupo de seguridad de red |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<descriptive context>` |`sql-allow` |
-|Dirección IP pública |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<vm or service name>-pip` |`profx-sql1-pip` |
-|Load Balancer |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<service or role>-lb` |`profx-lb` |
-|Configuración de reglas de carga equilibrada |Load Balancer |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<descriptive context>` |`http` |
-|Azure Application Gateway |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, carácter de subrayado y punto |`<service or role>-agw` |`profx-agw` |
+|Virtual Network |Grupo de recursos |2-64 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<service short name>-vnet` |`profx-vnet` |
+|Subred |Red virtual principal |2-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<descriptive context>` |`web` |
+|Interfaz de red |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<vmname>-nic<num>` |`profx-sql1-nic1` |
+|Grupo de seguridad de red (NSG) |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<service short name>-<context>-nsg` |`profx-app-nsg` |
+|Regla de grupo de seguridad de red |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<descriptive context>` |`sql-allow` |
+|Dirección IP pública |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<vm or service name>-pip` |`profx-sql1-pip` |
+|Load Balancer |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<service or role>-lb` |`profx-lb` |
+|Configuración de reglas de carga equilibrada |Load Balancer |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<descriptive context>` |`http` |
+|Azure Application Gateway |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<service or role>-agw` |`profx-agw` |
 |Perfil del Administrador de tráfico |Grupo de recursos |1-63 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión y punto |`<descriptive context>` |`app1` |
 
 ## <a name="organize-resources-with-tags"></a>Organización de recursos con etiquetas
