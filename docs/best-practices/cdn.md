@@ -4,11 +4,11 @@ description: "Orientación sobre Content Delivery Network (CDN) para entregar co
 author: dragon119
 ms.date: 02/02/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 73da41edec246b672564dd4a52b317eacf8ad649
-ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
+ms.openlocfilehash: 9ee9099c85818af9486408f6ece41d3f6fcd9b44
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="best-practices-for-using-content-delivery-networks-cdns"></a>Procedimientos recomendados para el uso de redes de entrega de contenido (CDN)
 
@@ -95,5 +95,3 @@ Si entrega recursos estáticos, tales como archivos de fuentes, mediante la red 
 
 ### <a name="cdn-fallback"></a>Reserva de red CDN
 Debe considerar la forma en que la aplicación hará frente a un error o a la no disponibilidad temporal de la red CDN. Las aplicaciones cliente pueden usar copias de los recursos almacenados en la caché local (en el cliente) durante las solicitudes anteriores, o bien, se puede incluir código que detecte errores y, en su lugar, solicite recursos del origen (la carpeta de aplicaciones o el contenedor de blobs de Azure que contiene los recursos) si la red CDN no está disponible.
-
-El ejemplo siguiente muestra una mecánica de plan alternativo:

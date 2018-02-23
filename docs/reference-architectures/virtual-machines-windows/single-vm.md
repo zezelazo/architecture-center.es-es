@@ -6,11 +6,11 @@ ms.date: 12/12/2017
 pnp.series.title: Windows VM workloads
 pnp.series.next: multi-vm
 pnp.series.prev: ./index
-ms.openlocfilehash: 71eeebae1f557ecbb6f33c4a7e37a278204f3dcd
-ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
+ms.openlocfilehash: ffc8ddcbdd5422f1e38922fc6735ab1579289c7b
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="run-a-windows-vm-on-azure"></a>Ejecución de una VM con Windows en Azure
 
@@ -193,7 +193,7 @@ Para más información sobre la implementación de esta arquitectura de referenc
 [fqdn]: /azure/virtual-machines/virtual-machines-windows-portal-create-fqdn
 [git]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/single-vm
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/single-vm
-[group-policy]: https://technet.microsoft.com/en-us/library/dn595129.aspx
+[group-policy]: https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn595129(v=ws.11)
 [log-collector]: https://azure.microsoft.com/blog/simplifying-virtual-machine-troubleshooting-using-azure-log-collector/
 [manage-vm-availability]: /azure/virtual-machines/virtual-machines-windows-manage-availability
 [multi-vm]: multi-vm.md

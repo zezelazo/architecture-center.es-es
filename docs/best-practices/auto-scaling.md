@@ -4,11 +4,11 @@ description: "Orientación sobre cómo usar el escalado automático para asignar
 author: dragon119
 ms.date: 05/17/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: f2d42e9d6f4baa2da111c61fe12b48fdec785b92
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a8489aaabab2b8523fbc9f026f4f435bb6d1ad29
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="autoscaling"></a>Escalado automático
 [!INCLUDE [header](../_includes/header.md)]
@@ -43,9 +43,9 @@ Azure ofrece mecanismos de escalado automático integrados que abordan escenario
 
 Azure proporciona escalado automático integrado para la mayoría de las opciones de proceso.
 
-* **Virtual Machines** admite el escalado automático mediante el uso de [conjuntos de escalado de máquinas virtuales][vm-scale-sets], que son una forma de administrar un conjunto de máquinas virtuales de Azure como un grupo. Consulte [Procedimiento para usar el escalado automático y los conjuntos de escalado de máquinas virtuales][vm-scale-sets-autoscale].
+* **Virtual Machines** admite el escalado automático mediante [VM Scale Sets][vm-scale-sets], que es una forma de administrar un conjunto de máquinas virtuales de Azure como un grupo. Consulte [Procedimiento para usar el escalado automático y los conjuntos de escalado de máquinas virtuales][vm-scale-sets-autoscale].
 
-* **Service Fabric** también admite el escalado automático mediante los conjuntos de escalado de máquinas virtuales. Cada tipo de nodo en un clúster de Service Fabric está configurado como un conjunto de escalado de máquinas virtuales independiente. De este modo, cada tipo de nodo se puede escalar horizontalmente por separado. Consulte [Escalado o reducción horizontal de un clúster de Service Fabric usando reglas de escalado automático][service-fabric-autoscale].
+* **Service Fabric** también admite el escalado automático mediante VM Scale Sets. Cada tipo de nodo en un clúster de Service Fabric está configurado como un conjunto de escalado de máquinas virtuales independiente. De este modo, cada tipo de nodo se puede escalar horizontalmente por separado. Consulte [Escalado o reducción horizontal de un clúster de Service Fabric usando reglas de escalado automático][service-fabric-autoscale].
 
 * **Azure App Service** tiene escalado automático integrado. La configuración de escalado automático se aplica a todas las aplicaciones dentro de una instancia de App Service. Consulte [Escalado manual o automático del número de instancias][app-service-autoscale].
 
@@ -61,7 +61,7 @@ Si satisfacen sus requisitos, use las características de escalado automático i
 
 ## <a name="use-azure-monitor-autoscale"></a>Uso del escalado automático de Azure Monitor
 
-El [escalado automático de Azure Monitor] [ monitoring] proporciona un conjunto común de funciones de escalado automático para conjuntos de escalado de máquinas virtuales, Azure App Service y Azure Cloud Services. El escalado se puede realizar según una programación o en función de una métrica en tiempo de ejecución, como el uso de CPU o memoria. Ejemplos:
+El [escalado automático de Azure Monitor][monitoring] proporciona un conjunto común de funciones de escalado automático para VM Scale Sets, Azure App Service y Azure Cloud Services. El escalado se puede realizar según una programación o en función de una métrica en tiempo de ejecución, como el uso de CPU o memoria. Ejemplos:
 
 - Aumentar a 10 instancias los días laborables y reducir a 4 instancias el sábado y el domingo. 
 - Aumentar una instancia si el uso medio de la CPU es superior al 70 % y reducir una instancia si el uso de la CPU cae por debajo del 50 %.
@@ -78,7 +78,7 @@ Al usar el escalado automático de Azure, tenga en cuenta los siguientes puntos:
 * Configure reglas de escalado automático y, luego, supervise el rendimiento de la aplicación con el tiempo. Use los resultados de esta supervisión para ajustar la manera en que se escala el sistema, si fuera necesario. Pero tenga en cuenta que el escalado automático no es un proceso instantáneo. Se tarda en reaccionar ante una métrica, como, por ejemplo, un uso medio de CPU que supere un umbral especificado o sea inferior a este.
 * Las reglas de escalado automático que usan un mecanismo de detección basado en un atributo desencadenador medido (por ejemplo, el uso de CPU o la longitud de cola) usan un valor agregado a lo largo del tiempo, en lugar de valores instantáneos, para desencadenar una acción de escalado automático. De forma predeterminada, el agregado es un promedio de los valores. Esto impide que el sistema reaccione demasiado rápido o que provoque una oscilación rápida. También permite tiempo para que las nuevas instancias de inicio automático entren en modo de ejecución, lo que impide que se produzcan acciones adicionales de escalado automático mientras se inician las nuevas instancias. En el caso de Azure Cloud Services y Azure Virtual Machines, el período predeterminado para la agregación es de 45 minutos, por lo que la métrica puede tardar hasta este período de tiempo para desencadenar el escalado automático en respuesta a picos de demanda. Puede cambiar el período de agregación mediante el SDK. Pero tenga en cuenta que los períodos de menos de 25 minutos pueden producir resultados imprevisibles (para más información, consulte [Escalado automático de Cloud Services según el porcentaje de CPU con Azure Monitoring Services Management Library](http://rickrainey.com/2013/12/15/auto-scaling-cloud-services-on-cpu-percentage-with-the-windows-azure-monitoring-services-management-library/)). En el caso de Web Apps, el período medio es mucho más corto, lo que permite que las nuevas instancias estén disponibles en unos cinco minutos después de que se produzca un cambio en la medida de desencadenador media.
 * Si configura el escalado automático mediante el SDK en lugar del portal, puede especificar una programación más detallada durante la cuál las reglas estarán activas. También puede crear sus propias métricas y usarlas con o sin las métricas existentes en sus reglas de escalado automático. Por ejemplo, quizás desee usar contadores alternativos, como, por ejemplo, el número de solicitudes por segundo o la disponibilidad media de memoria, o bien usar contadores personalizados que midan procesos empresariales específicos.
-* Con el escalado de Service Fabric, los tipos de nodo del clúster están formados por conjuntos de escalado de máquinas virtuales en el back-end, por lo que tendrá que configurar reglas de escalado automático para cada tipo de nodo. Antes de configurar el escalado automático, tenga en cuenta el número de nodos que debe tener. El número mínimo de nodos que debe tener para el tipo de nodo principal está controlado por el nivel de confiabilidad que haya elegido. Para más información, consulte [Escalado de un clúster de Service Fabric usando reglas de escalado automático](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-scale-up-down).
+* Con el escalado de Service Fabric, los tipos de nodo del clúster están formados por conjuntos de escalado de máquinas virtuales en el back-end, por lo que tendrá que configurar reglas de escalado automático para cada tipo de nodo. Antes de configurar el escalado automático, tenga en cuenta el número de nodos que debe tener. El número mínimo de nodos que debe tener para el tipo de nodo principal está controlado por el nivel de confiabilidad que haya elegido. Para más información, consulte [Escalado de un clúster de Service Fabric usando reglas de escalado automático](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-scale-up-down).
 * Puede usar el portal para vincular recursos, tales como colas e instancias de SQL Database, a una instancia de un servicio en la nube. Esto permite acceder más fácilmente las opciones separadas de configuración de escalado manual y automático para cada uno de los recursos vinculados. Para más información, consulte [Vinculación de un recurso a un servicio en la nube](/azure/cloud-services/cloud-services-how-to-manage).
 * Si configura varias directivas y reglas, podrían producirse conflictos entre ellas. El escalado automático usa las siguientes reglas de resolución de conflictos para garantizar que siempre haya un número suficiente de instancias en ejecución:
   * Las operaciones de escalar horizontalmente siempre tienen prioridad sobre las operaciones de reducir horizontalmente.

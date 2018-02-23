@@ -4,11 +4,11 @@ description: "Instrucciones específicas de servicios para establecer el mecanis
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: da1145e2f2f91befd69505ae9ef2734d6110c1d0
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: 6bb623bd8be89573178f250570407bf83d62c098
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="retry-guidance-for-specific-services"></a>Guía de reintentos para servicios específicos
 
@@ -416,7 +416,7 @@ using (var db = new BloggingContext())
 
 ### <a name="more-information"></a>Más información
 * [Resistencia de la conexión](/ef/core/miscellaneous/connection-resiliency)
-* [Puntos de datos - EF Core 1.1](https://msdn.microsoft.com/en-us/magazine/mt745093.aspx)
+* [Puntos de datos - EF Core 1.1](https://msdn.microsoft.com/magazine/mt745093.aspx)
 
 ## <a name="sql-database-using-adonet-retry-guidelines"></a>SQL Database mediante directrices de reintento ADO.NET
 SQL Database es una instancia de SQL Database hospedada que está disponible en una amplia variedad de tamaños y como un servicio estándar (compartido) y premium (no compartido).

@@ -3,11 +3,11 @@ title: "Elección de una tecnología de ingesta de mensajes en tiempo real"
 description: 
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 4f76e63a50c1d689ea3a37219a44aa94477a2e2e
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 2e6578b779950b5ef11bda7b8ba1fb2e45e09f4e
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="choosing-a-real-time-message-ingestion-technology-in-azure"></a>Elección de una tecnología de ingesta de mensajes en tiempo real en Azure
 
@@ -70,4 +70,4 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 [1] Puede usar la [Puerta de enlace de protocolos de Azure IoT](/azure/iot-hub/iot-hub-protocol-gateway) como puerta de enlace personalizada para permitir la adaptación de protocolos para IoT Hub.
 
-Para más información, consulte [Comparación entre Azure IoT Hub y Azure Event Hubs](/azure/iot-hub/iot-hub-compare-event-hubss).
+Para más información, consulte [Comparación entre Azure IoT Hub y Azure Event Hubs](/azure/iot-hub/iot-hub-compare-event-hubs).

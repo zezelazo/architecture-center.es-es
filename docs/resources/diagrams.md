@@ -1,11 +1,11 @@
 ---
 title: Iconos y otros recursos de diagramas de arquitectura
 description: "Iconos, plantillas de Visio, archivos PNG y archivos SVG que son útiles para producir sus propios diagramas de arquitectura"
-ms.openlocfilehash: 863c5cd479e6c4b6d57299176b80d02661e5466b
-ms.sourcegitcommit: 662f27f37d45f778ad1b6355fb6fb66e3c65558c
+ms.openlocfilehash: 58a2046c0d463c1f331ea3f950f0c11c273ffc36
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/11/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="icons-and-diagrams"></a>Iconos y diagramas
 
@@ -18,7 +18,7 @@ El conjunto de símbolos e iconos es una colección de recursos de Visio, PowerP
 
 ![Conjunto de iconos y símbolos empresariales y de nube](./_images/CnESymbols.png)
 
-Hay más símbolos para Microsoft Office y las tecnologías relacionadas en la [galería de símbolos de Microsoft Office Visio](http://www.microsoft.com/en-us/download/details.aspx?id=35772). Sin embargo, no están optimizados para los diagramas de arquitectura.   
+Hay más símbolos para Microsoft Office y las tecnologías relacionadas en la [galería de símbolos de Microsoft Office Visio](http://www.microsoft.com/download/details.aspx?id=35772). Sin embargo, no están optimizados para los diagramas de arquitectura.   
 
 > [!NOTE]
 > Estos recursos no están diseñados para su uso en interfaces de usuario. Los símbolos de terceros no son propiedad de Microsoft.

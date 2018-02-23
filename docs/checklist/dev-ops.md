@@ -4,11 +4,11 @@ description: "Lista de comprobación que proporciona guía relacionada con DevOp
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: c435ea0aed9571cb6508d7d23f93414a138998fe
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 356fef2415347ae132915695a25fd9b50779bd8b
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="devops-checklist"></a>Lista de comprobación de DevOps
 
@@ -126,7 +126,7 @@ La documentación compartida es crítica. Anime a los miembros del equipo a cont
 
 **Use la administración de la configuración.** Los cambios en la configuración deben planearse, registrarse y las aplicaciones deben poder verlos. Todo esto puede hacerse mediante una base de datos de administración de la configuración o un enfoque de configuración como código. La configuración se debe auditar periódicamente, con el fin de asegurarse todo está como cabría esperar.
 
-**Obtenga un plan de soporte técnico de Azure y conozca el proceso.** Azure ofrece una serie de [planes de soporte técnico][azure-support-plans]. Determine el plan que más se ajuste a sus necesidades y asegúrese de que todo el equipo sabe cómo utilizarlo. Los miembros del equipo deben conocer los detalles del plan, cómo funciona el proceso de soporte técnico y cómo abrir una incidencia de soporte técnico en Azure. Si espera un evento a gran escala, el personal de soporte técnico de Azure puede ayudarle a aumentar los límites de sus servicios. Para más información, consulte [Preguntas más frecuentes de soporte técnico de Azure](https://azure.microsoft.com/en-us/support/faq/).
+**Obtenga un plan de soporte técnico de Azure y conozca el proceso.** Azure ofrece una serie de [planes de soporte técnico][azure-support-plans]. Determine el plan que más se ajuste a sus necesidades y asegúrese de que todo el equipo sabe cómo utilizarlo. Los miembros del equipo deben conocer los detalles del plan, cómo funciona el proceso de soporte técnico y cómo abrir una incidencia de soporte técnico en Azure. Si espera un evento a gran escala, el personal de soporte técnico de Azure puede ayudarle a aumentar los límites de sus servicios. Para más información, consulte [Preguntas más frecuentes de soporte técnico de Azure](https://azure.microsoft.com/support/faq/).
 
 **Siga los principios de privilegios mínimos al conceder acceso a los recursos.** Administre con precaución el acceso a los recursos. El acceso se debe denegar de forma predeterminada, salvo que a un usuario explícitamente se le concede explícitamente acceso a un recurso. Conceda a los usuarios exclusivamente el acceso que necesitan para completar sus tareas. Realice un seguimiento de los permisos de los usuario y realice auditorías de seguridad periódicas.
 

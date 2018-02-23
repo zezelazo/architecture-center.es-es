@@ -5,12 +5,13 @@ keywords: "Patrón de diseño"
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories: resiliency
-ms.openlocfilehash: 6c02b384e71c068ecbc78f3170d28cea406538e2
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+pnp.pattern.categories:
+- resiliency
+ms.openlocfilehash: 73fdcbcc2bd75593a4c8e33dc2259c90593e14db
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="retry-pattern"></a>Patrón Retry
 
@@ -48,13 +49,13 @@ La aplicación debe encapsular todos los intentos de acceso a un servicio remoto
 
 Una aplicación debe registrar los detalles de los errores y las operaciones con errores. Esta información es útil para los operadores. Si un servicio está con frecuencia no disponible o ocupado, suele ser porque el servicio ha agotado sus recursos. Se puede reducir la frecuencia de estos errores mediante el escalado horizontal del servicio. Por ejemplo, si un servicio de base de datos está continuamente sobrecargado, podría ser beneficioso particionar la base de datos y repartir la carga entre varios servidores.
 
-> [Microsoft Entity Framework](https://docs.microsoft.com/ef/) proporciona los medios para volver a intentar las operaciones de base de datos. Además, la mayoría de los SDK de cliente y de servicios de Azure incluye un mecanismo de reintento. Para más información, consulte [Retry guidance for specific services](https://docs.microsoft.com/en-us/azure/architecture/best-practices/retry-service-specific) (Guía de reintentos para servicios específicos).
+> [Microsoft Entity Framework](https://docs.microsoft.com/ef/) proporciona los medios para volver a intentar las operaciones de base de datos. Además, la mayoría de los SDK de cliente y de servicios de Azure incluye un mecanismo de reintento. Para más información, consulte [Retry guidance for specific services](https://docs.microsoft.com/azure/architecture/best-practices/retry-service-specific) (Guía de reintentos para servicios específicos).
 
 ## <a name="issues-and-considerations"></a>Problemas y consideraciones
 
 A la hora de decidir cómo implementar este patrón, debe considerar los siguientes puntos:
 
-La directiva de reintentos se debe optimizar para que coincida con los requisitos empresariales de la aplicación y la naturaleza del error. Si las operaciones no son críticas, es mejor que el error se produzca rápidamente en lugar de reintentarlas varias veces y afectar al rendimiento de la aplicación. Por ejemplo, en una aplicación web interactiva que accede a un servicio remoto, es mejor que el error se produzca rápido tras un pequeño número de reintentos con solo un corto retraso entre ellos y mostrar un mensaje adecuado al usuario (por ejemplo, "inténtelo de nuevo más tarde"). En una aplicación por lotes, puede ser más adecuado aumentar el número de reintentos con un retraso que aumente exponencialmente entre intentos.
+La directiva de reintentos se debe optimizar para que coincida con los requisitos empresariales de la aplicación y la naturaleza del error. Si las operaciones no son críticas, es mejor provocar el fracaso y responder rápido a los errores en lugar de reintentarlas varias veces y que afecten al rendimiento de la aplicación. Por ejemplo, en una aplicación web interactiva que accede a un servicio remoto, es mejor que el error se produzca rápido tras un pequeño número de reintentos con solo un corto retraso entre ellos y mostrar un mensaje adecuado al usuario (por ejemplo, "inténtelo de nuevo más tarde"). En una aplicación por lotes, puede ser más adecuado aumentar el número de reintentos con un retraso que aumente exponencialmente entre intentos.
 
 Una directiva de reintentos agresiva con un retraso mínimo entre intentos, y un gran número de reintentos, podría degradar aún más un servicio ocupado que se ejecuta en su capacidad o próximo a esta. Esta directiva de reintentos también podría afectar a la capacidad de respuesta de la aplicación si continuamente intenta realizar una operación con error.
 
@@ -68,7 +69,7 @@ Considere de qué modo reintentar una operación que forma parte de una transacc
 
 Asegúrese de que todo el código de reintento esté sobradamente probado en diversas condiciones de error. Compruebe que no afecte gravemente al rendimiento o la confiabilidad de la aplicación, que no provoque una carga excesiva en los servicios y recursos ni que genere condiciones de carrera o cuellos de botella.
 
-Implemente la lógica de reintento solo donde se entienda el contexto completo de una operación con error. Por ejemplo, si una tarea que contiene una directiva de reintentos invoca otra tarea que también contiene una directiva de reintentos, este nivel adicional de reintentos puede agregar retrasos prolongados al procesamiento. Lo mejor podría ser configurar la tarea de nivel inferior para que produzca un error rápidamente y notifique el motivo del error a la tarea que lo ha invocado. Esta tarea de nivel superior puede luego tratar el error según su propia directiva.
+Implemente la lógica de reintento solo donde se entienda el contexto completo de una operación con error. Por ejemplo, si una tarea que contiene una directiva de reintentos invoca otra tarea que también contiene una directiva de reintentos, este nivel adicional de reintentos puede agregar retrasos prolongados al procesamiento. Lo mejor sería configurar la tarea de nivel inferior para que fracase y responda a rápido a los errores, y notificar el motivo del error a la tarea que lo ha invocado. Esta tarea de nivel superior puede luego tratar el error según su propia directiva.
 
 Es importante registrar todos los errores de conectividad que provocan un reintento de modo que se puedan identificar los problemas subyacentes con la aplicación, los servicios o los recursos.
 
@@ -171,6 +172,6 @@ private bool IsTransient(Exception ex)
 
 ## <a name="related-patterns-and-guidance"></a>Orientación y patrones relacionados
 
-- [Patrón Circuit Breaker](circuit-breaker.md) El patrón Retry es útil para tratar los errores transitorios. Si se espera que un error sea de larga duración, puede que sea más adecuado implementar el patrón Circuit Breaker. El patrón Retry también puede utilizarse junto con un interruptor para proporcionar un enfoque integral para el tratamiento de errores.
-- [Retry guidance for specific services](https://docs.microsoft.com/en-us/azure/architecture/best-practices/retry-service-specific) (Guía de reintentos para servicios específicos)
-- [Connection Resiliency](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency) (Resistencia de la conexión)
+- [Patrón Circuit Breaker](circuit-breaker.md). El patrón Retry es útil para tratar los errores transitorios. Si se espera que un error sea de larga duración, puede que sea más adecuado implementar el patrón Circuit Breaker. El patrón Retry también puede utilizarse junto con un interruptor para proporcionar un enfoque integral para el tratamiento de errores.
+- [Retry guidance for specific services](https://docs.microsoft.com/azure/architecture/best-practices/retry-service-specific) (Guía de reintentos para servicios específicos)
+- [Connection Resiliency](https://docs.microsoft.com/ef/core/miscellaneous/connection-resiliency) (Resistencia de la conexión)

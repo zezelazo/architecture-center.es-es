@@ -8,11 +8,11 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: e0a6a91fda6ea43236f6eea552f7b8f8d31160ad
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 1536a33884c9c9faa1e3702c951067249e691bf8
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="cache-aside-pattern"></a>Patrón Cache-Aside
 
@@ -55,7 +55,7 @@ Tenga en cuenta los puntos siguientes al decidir cómo implementar este patrón:
 
 ## <a name="when-to-use-this-pattern"></a>Cuándo usar este patrón
 
-Use este patrón cuando:
+Use este patrón en los siguientes supuestos:
 
 - Una caché no proporcione operaciones nativas de lectura y escritura simultáneas.
 - La demanda de recursos sea impredecible. Este patrón permite que las aplicaciones carguen datos a petición. No realiza ninguna suposición de qué datos necesitará una aplicación de antemano.
@@ -125,7 +125,7 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
 }
 ```
 
->  En los ejemplos se usa la API de Azure Redis Cache para acceder al almacén y recuperar información de la caché. Para más información, consulte [Uso de Microsoft Azure Redis Cache](https://docs.microsoft.com/en-us/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache) y [Creación de una aplicación web con Caché en Redis](https://docs.microsoft.com/en-us/azure/redis-cache/cache-web-app-howto).
+>  En los ejemplos se usa la API de Azure Redis Cache para acceder al almacén y recuperar información de la caché. Para más información, consulte [Uso de Microsoft Azure Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache) y [Creación de una aplicación web con Caché en Redis](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto).
 
 El método `UpdateEntityAsync` que se muestra a continuación ilustra cómo invalidar un objeto en la caché cuando la aplicación cambia su valor. El código actualiza el almacén de datos original y, a continuación, quita el elemento en caché de la caché.
 
@@ -151,6 +151,6 @@ public async Task UpdateEntityAsync(MyEntity entity)
 
 La siguiente información puede resultarle de interés al implementar este patrón:
 
-- [Guía sobre el almacenamiento en caché](https://docs.microsoft.com/en-us/azure/architecture/best-practices/caching). Proporciona información adicional sobre cómo se pueden almacenar en caché los datos de una solución de nube y los problemas que se deben considerar al implementar una caché.
+- [Guía sobre el almacenamiento en caché](https://docs.microsoft.com/azure/architecture/best-practices/caching). Proporciona información adicional sobre cómo se pueden almacenar en caché los datos de una solución de nube y los problemas que se deben considerar al implementar una caché.
 
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Manual básico de coherencia de datos). Las aplicaciones de nube usan normalmente datos que se distribuyen entre los almacenes de datos. Administrar y mantener la coherencia de los datos en este entorno son un aspecto fundamental del sistema, en especial por los problemas de simultaneidad y disponibilidad que puedan surgir. En este manual básico se describen los problemas de coherencia entre los datos distribuidos y se resume cómo una aplicación puede implementar coherencia definitiva para mantener la disponibilidad de datos.
