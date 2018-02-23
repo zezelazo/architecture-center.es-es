@@ -2,11 +2,11 @@
 title: "Antipatrón Chatty I/O"
 description: "Un gran número de solicitudes de E/S puede afectar al rendimiento y la capacidad de respuesta."
 author: dragon119
-ms.openlocfilehash: 50001316939b56c9b57a119f6ae20f0878f54c0f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 4f0e0e455ceb58317d3029d8ab4631d476802499
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 02/23/2018
 ---
 # <a name="chatty-io-antipattern"></a>Antipatrón Chatty I/O
 
@@ -215,7 +215,7 @@ await SaveCustomerListToFileAsync(customers);
 
 - Al escribir los datos, evite bloquear los recursos durante más tiempo del necesario para reducir las posibilidades de contención durante las operaciones largas. Si una operación de escritura abarca varios almacenes de datos, archivos o servicios, adopte un enfoque coherente. Consulte la [guía de coherencia de los datos][data-consistency-guidance].
 
-- Si almacena los datos en búfer en memoria antes de escribir, estos son vulnerables si se bloquea el proceso. Si la velocidad de los datos normalmente tiene ráfagas o es relativamente dispersa, puede ser más seguro para almacenarlos en búfer en una cola durable externa como [Event Hubs](http://azure.microsoft.com/en-us/services/event-hubs/).
+- Si almacena los datos en búfer en memoria antes de escribir, estos son vulnerables si se bloquea el proceso. Si la velocidad de los datos normalmente tiene ráfagas o es relativamente dispersa, puede ser más seguro para almacenarlos en búfer en una cola durable externa como [Event Hubs](http://azure.microsoft.com/services/event-hubs/).
 
 - Considere la posibilidad de almacenar en caché los datos que recupere de un servicio o una base de datos. Esto puede ayudar a reducir el volumen de E/S, al evitar repetir las solicitudes de los mismos datos. Para más información, consulte los [procedimientos recomendados para el almacenamiento en caché][caching-guidance].
 
