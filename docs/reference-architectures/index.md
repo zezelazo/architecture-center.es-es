@@ -2,13 +2,16 @@
 title: Arquitecturas de referencia de Azure
 description: "Arquitecturas de referencia, planos y guía de implementación preceptiva para cargas de trabajo comunes en Azure."
 layout: LandingPage
-NOTE: edit the template in ./build/reference-architectures !!!
-ms.openlocfilehash: e513e2545fb95b486b11a067479e879f4abd4a8f
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: cd7f4b066ba7a4af16767db013c607bc0697dd98
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/23/2018
 ---
+<!-- This file is generated! -->
+<!-- See the templates in ./build/reference-architectures  -->
+<!-- See data in index.json -->
+
 # <a name="azure-reference-architectures"></a>Arquitecturas de referencia de Azure
 
 Nuestras arquitecturas de referencia se organizan por escenario, agrupando juntas aquellas arquitecturas relacionadas. Cada arquitectura incluye procedimientos recomendados junto con consideraciones sobre escalabilidad, disponibilidad, capacidad de administración y seguridad. La mayoría también incluye una solución que se puede implementar.
