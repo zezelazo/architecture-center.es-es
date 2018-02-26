@@ -1,6 +1,6 @@
 - name: Azure Architecture Center
   href: /azure/architecture
-- name: Guía sobre la adopción de la nube de Azure
+- name: Guía sobre la adopción de la nube
   href: index.md
   items:
     - name: Adopción por primera vez de Azure
