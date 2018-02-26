@@ -1,12 +1,12 @@
 ---
 layout: LandingPage
-ms.openlocfilehash: e39a744b6f0226a5b0bb14d03a0b8a3d4479e01b
-ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
+ms.openlocfilehash: b5c88ac0307c7d47f5bde73322bedd7063136576
+ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 02/23/2018
 ---
-# <a name="azure-cloud-adoption-guide"></a>Guía sobre la adopción de la nube de Azure
+# <a name="cloud-adoption-guide"></a>Guía sobre la adopción de la nube
 
 La nube presenta un cambio fundamental en la forma en que las empresas adquieren y utilizan los recursos de tecnología. En el pasado, las empresas asumían la propiedad y responsabilidad en todos los niveles de tecnología desde la infraestructura al software. Ahora, la nube ofrece la posibilidad de transformar la forma en que las empresas utilizan la tecnología mediante el aprovisionamiento y consumo de recursos según sea necesario.
 
