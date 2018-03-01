@@ -3,11 +3,11 @@ title: "Modelos semánticos"
 description: 
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: e989a7a5a58e7d05e261931005069bb12bd79186
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 343d17af0d933d515c724a062237c8d5df3a9e31
+ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/27/2018
 ---
 # <a name="semantic-modeling"></a>Modelos semánticos
 
@@ -46,7 +46,6 @@ Los modelos semánticos y el procesamiento analítico suelen presentar las sigui
 
 | Requisito | DESCRIPCIÓN |
 | --- | --- |
-| Normalización | Muy normalizados |
 | Esquema | Esquema durante la escritura, altamente aplicado|
 | Usa transacciones | Sin  |
 | Estrategia de bloqueo | None |

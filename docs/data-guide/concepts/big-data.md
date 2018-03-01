@@ -3,11 +3,11 @@ title: Arquitecturas de macrodatos
 description: 
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 6ee44c6d94ae7ac5cb67cb5f16337deb1ffd4b70
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 2a1336faea81470b082d4eef8e2cc53a082c63c7
+ms.sourcegitcommit: 023d88e781f7fe64c62b247d876441ee40921b1b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 02/28/2018
 ---
 # <a name="big-data-architectures"></a>Arquitecturas de macrodatos
 
@@ -55,19 +55,6 @@ La mayoría de las arquitecturas de macrodatos incluyen algunos de los component
 * **Análisis e informes**. El objetivo de la mayoría de soluciones de macrodatos consiste en proporcionar información sobre los datos a través de análisis e informes. Para permitir que los usuarios analicen los datos, la arquitectura puede incluir una capa de modelado de datos, como un cubo OLAP multidimensional o un modelo de datos tabulares en Azure Analysis Services. También podría admitir inteligencia empresarial con características de autoservicio mediante las tecnologías de modelado y visualización en Microsoft Power BI o Microsoft Excel. Los análisis y la creación de informes también pueden adoptar la forma de exploración interactiva de datos por parte de científicos o analistas de datos. En estos casos, muchos servicios de Azure admiten bloc de notas analíticos, como Jupyter, lo cual permite a estos usuarios aprovechar sus conocimientos existentes con Python o R. En el caso de la exploración de datos a gran escala, puede utilizar Microsoft R Server, tanto de manera independiente como con Spark.
 
 * **Orquestación**. La mayoría de las soluciones de macrodatos constan de operaciones de procesamiento de datos repetidas, encapsuladas en flujos de trabajo, que transforman los datos de origen, mueven datos entre varios orígenes y receptores, cargan los datos procesados en un almacén de datos analítico o envían los resultados directamente a un informe o un panel. Para automatizar estos flujos de trabajo, puede utilizar una tecnología de coordinación como Azure Data Factory o Apache Oozie y Sqoop.
-
-## <a name="data-lake"></a>Lago de datos
-
-Si ha leído algo acerca de los macrodatos, es probable que haya visto el término _lago de datos_. Es posible que haya visto la palabra como nombre de algún producto o quizás un concepto sobre el almacenamiento de grandes cantidades de datos. 
-
-Un lago de datos consta de almacenamiento y procesamiento. El almacenamiento del lago de datos se crea con varios objetivos en mente: la tolerancia a errores, una escalabilidad infinita e ingesta de datos de alto rendimiento con diferentes formas y tamaños. El procesamiento del lago de datos implica uno o varios motores de procesamiento creados teniendo en cuenta estos objetivos y pueden operar en los datos almacenados en un lago de datos a escala.
-
-Los almacenes del lago de datos a menudo se usan en streaming de eventos o en escenarios de IoT, porque pueden guardar grandes cantidades de datos relacionales y no relacionales sin transformación o definición de esquema. Se crean para controlar grandes volúmenes de pequeñas operaciones de escritura en una latencia baja y se optimizan para que el rendimiento sea masivo.
-
-Otro término que se utiliza con frecuencia en escenarios de datos es _data mart_. Normalmente, un data mart es un almacén de datos que se limpian, empaquetan y estructuran para facilitar su consumo. A diferencia de un data mart, un lago de datos está diseñado para ingerir datos sin procesar, dejándolos en su forma original o con un procesamiento mínimo para permitir que las preguntas se formulen de varias maneras y en momentos diferentes. Si los datos se limpian y estructuran de forma específica, como en un data mart, es difícil adaptar la forma en que dichos datos se procesan y analizan cuando aparecen nuevas preguntas o herramientas en el futuro. Ese es el motivo por el que los lagos de datos constan de almacenamiento y procesamiento como entidades independientes.
-
-Servicio de Azure correspondiente:
-- [Azure Data Lake](https://azure.microsoft.com/scenarios/data-lake/)
 
 ## <a name="lambda-architecture"></a>Arquitectura lambda
 
