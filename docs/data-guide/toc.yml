@@ -39,6 +39,8 @@
               href: concepts/non-relational-data.md
             - name: Uso de archivos CSV y JSON
               href: concepts/csv-and-json.md
+            - name: Lagos de datos
+              href: concepts/data-lake.md
             - name: Arquitecturas de macrodatos
               href: concepts/big-data.md
             - name: Análisis avanzado
