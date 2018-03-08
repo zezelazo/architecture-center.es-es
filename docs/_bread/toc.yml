@@ -18,9 +18,6 @@
         - name: Listas de comprobación de la revisión de diseño
           tocHref: /azure/architecture/checklist
           topicHref: /azure/architecture/checklist
-        - name: Elasticsearch
-          tocHref: /azure/architecture/elasticsearch
-          topicHref: /azure/architecture/elasticsearch
         - name: Administración de identidades en aplicaciones multiinquilino
           tocHref: /azure/architecture/multitenant-identity
         - name: Arquitecturas de referencia
