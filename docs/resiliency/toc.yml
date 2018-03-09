@@ -4,8 +4,10 @@
   items:
     - name: Diseño de aplicaciones resistentes
       href: index.md
-    - name: Lista de comprobación de resistencia
+    - name: Lista de comprobación de resistencia (general)
       href: ../checklist/resiliency.md?toc=/azure/architecture/resiliency/toc.json
+    - name: Lista de comprobación de resistencia (servicios de Azure)
+      href: ../checklist/resiliency-per-service.md?toc=/azure/architecture/resiliency/toc.json
     - name: Análisis del modo de error
       href: failure-mode-analysis.md
     - name: Información adicional

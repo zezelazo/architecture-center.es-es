@@ -2,11 +2,11 @@
 title: "Conexión de una red local a Azure"
 description: Arquitecturas recomendadas para unas conexiones de red seguras y eficaces entre las redes locales y Azure.
 layout: LandingPage
-ms.openlocfilehash: b96601144099571768254af92788f75cca0b928c
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 372efb8ecf69245a5895c51e3da156a348bd665e
+ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 03/08/2018
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
@@ -14,7 +14,7 @@ ms.lasthandoff: 02/23/2018
 
 # <a name="connect-an-on-premises-network-to-azure"></a>Conexión de una red local a Azure
 
-Estas arquitecturas de referencia muestran prácticas probadas para crear una conexión de red eficaz entre una red local y Azure. <br/>[¿Qué debo elegir?](./considerations.md)
+Estas arquitecturas de referencia muestran prácticas probadas para crear una conexión de red eficaz entre una red local y Azure. [¿Qué debo elegir?](./considerations.md)
 
 <section class="series">
     <ul class="panelContent">
@@ -92,6 +92,26 @@ Estas arquitecturas de referencia muestran prácticas probadas para crear una co
                     <div class="cardText">
                         <h3>Topología en estrella tipo hub-and-spoke</h3>
                         <p>El centro es un punto central de conectividad para la red local. Las redes son redes virtuales del mismo nivel que el centro y se pueden usar para aislar cargas de trabajo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+    <!-- Hub-spoke topology with shared services -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./shared-services.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./images/shared-services.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Topología en estrella tipo hub-and-spoke con servicios compartidos</h3>
+                        <p>Implemente una topología en estrella tipo hub-and-spoke que incluya servicios compartidos, como los servicios de Active Directory, y una aplicación virtual de red (NVA). Todos los radios pueden consumir los servicios compartidos.</p>
                     </div>
                 </div>
             </div>
