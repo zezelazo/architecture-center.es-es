@@ -3,11 +3,11 @@ title: "Refactorización de una aplicación de Azure Service Fabric migrada de A
 description: "Cómo refactorizar una aplicación de Azure Service Fabric existente migrada de Azure Cloud Services"
 author: petertay
 ms.date: 01/30/2018
-ms.openlocfilehash: 450648fbd0b19cdc7585738701914a1ebc1ed779
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 08ef3af68b8eaba36a5b871449f0aba764fe5a04
+ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 03/08/2018
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a>Refactorización de una aplicación de Azure Service Fabric migrada de Azure Cloud Services
 
@@ -144,7 +144,7 @@ Tailspin implementa el clúster mediante Azure Portal. El tipo de recurso de cl�
 > Tal y como se indicó anteriormente, en la versión migrada de la aplicación Surveys, los dos servidores front-end web estaban autohospedados con ASP.Net Core y Kestrel como servidor web. Aunque la versión migrada de la aplicación Surveys no utiliza un proxy inverso, se recomienda encarecidamente usar uno, como IIS, Nginx o Apache. Para más información, consulte la [introducción a la implementación del servidor web Kestrel en ASP.NET Core][kestrel-intro].
 > En la aplicación Surveys refactorizada, los dos servidores front-end web se autohospedan mediante ASP.Net Core con [WebListener][weblistener] como servidor web, por lo que no es necesario un proxy inverso.
 
-## <a name="next-steps"></a>pasos siguientes
+## <a name="next-steps"></a>Pasos siguientes
 
 El código de la aplicación Surveys está disponible en [GitHub][sample-code].
 

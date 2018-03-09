@@ -4,11 +4,11 @@ description: "Arquitectura recomendada para una aplicación web básica que se e
 author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: 598eb547f0e96ae334af391183a792637caa8631
-ms.sourcegitcommit: 1c0465cea4ceb9ba9bb5e8f1a8a04d3ba2fa5acd
+ms.openlocfilehash: 38b0739cc61d679742b610b99e92aaad8d3b394d
+ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/02/2018
+ms.lasthandoff: 03/08/2018
 ---
 # <a name="basic-web-application"></a>Aplicación web básica
 [!INCLUDE [header](../../_includes/header.md)]
@@ -40,7 +40,7 @@ La arquitectura consta de los siguientes componentes:
 
 * **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure. Para usar un nombre de dominio personalizado, como `contoso.com`, cree registros DNS que asignen el nombre de dominio personalizado a la dirección IP. Para más información, consulte [Configurar un nombre de dominio personalizado en Azure App Service][custom-domain-name].  
 
-* **Azure SQL Database**. [SQL Database][sql-db] es una base de datos como servicio relacional en la nube.
+* **Azure SQL Database**. [SQL Database][sql-db] es una base de datos como servicio relacional en la nube. SQL Database comparte su base de código con el motor de base de datos de Microsoft SQL Server. Según los requisitos de la aplicación, también puede usar [Azure Database for MySQL](/azure/mysql) o [Azure Database for PostgreSQL](/azure/postgresql). Se trata de servicios de bases de datos totalmente administrados, basados en los motores de bases de datos de código abierto MySQL Server y Postgres respectivamente.
 
 * **Servidor lógico**. En Azure SQL Database, un servidor lógico hospeda las bases de datos. Se pueden crear varias bases de datos por servidor lógico.
 

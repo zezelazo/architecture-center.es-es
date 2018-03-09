@@ -1,24 +1,23 @@
 ---
-title: "Implementación de una topología de red en estrella tipo hub-and-spoke en Azure"
-description: "Cómo implementar una topología de red en estrella tipo hub-and-spoke en Azure."
+title: "Implementación de una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure"
+description: "Implementación de una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure."
 author: telmosampaio
-ms.date: 02/23/2018
-pnp.series.title: Implement a hub-spoke network topology in Azure
-pnp.series.prev: expressroute
-ms.openlocfilehash: 1a2855f0d4a903fc4d7a022aef20ea73fe763e2c
+ms.date: 02/25/2018
+pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
+pnp.series.prev: hub-spoke
+ms.openlocfilehash: c0fb1d1ddd7c70ed914d58e7c73b10475b91aedf
 ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 03/08/2018
 ---
-# <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke en Azure
+# <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure
 
-En esta arquitectura de referencia se muestra cómo implementar una topología en estrella tipo hub-and-spoke en Azure. El *concentrador* (hub) es una red virtual (VNet) en Azure que actúa como un punto central de conectividad para la red local. Los *radios* (spoke) son redes virtuales (VNet) que se emparejan con el concentrador y que se pueden usar para aislar cargas de trabajo. El tráfico fluye entre el centro de datos local y el concentrador a través de una conexión a ExpressRoute o a VPN Gateway.  [**Implemente esta solución**](#deploy-the-solution).
+Esta arquitectura de referencia se basa en la arquitectura de referencia tipo [hub-and-spoke][guidance-hub-spoke] para incluir servicios compartidos en el centro que puedan consumir todos los radios. Como primer paso para migrar un centro de datos a la nube y generar un [centro de datos virtual], los primeros servicios que necesitará compartir son los de identidad y seguridad. Esta arquitectura de referencia muestra cómo ampliar los servicios de Active Directory desde el centro de datos local a Azure y cómo agregar una aplicación virtual de red (NVA) que pueda actuar como un firewall, en una topología en estrella tipo hub-and-spoke.  [**Implemente esta solución**](#deploy-the-solution).
 
 ![[0]][0]
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
-
 
 Las ventajas de esta topología son:
 
@@ -49,6 +48,10 @@ La arquitectura consta de los siguientes componentes:
 
 * **Subred de puerta de enlace**. Las puertas de enlace de red virtual se conservan en la misma subred.
 
+* **Subred de servicios compartidos**. Una subred de la red virtual del concentrador utilizada para hospedar servicios que se pueden compartir entre todos los radios, como DNS o AD DS.
+
+* **Subred DMZ**. Una subred de la red virtual del centro que se usa para hospedar aplicaciones virtuales de red (NVA) que pueden actuar como aplicaciones de seguridad como, por ejemplo, firewalls.
+
 * **Redes virtuales de radios**. Una o varias redes virtuales de Azure que se usan como radios en la topología en estrella tipo hub-and-spoke. Los radios pueden utilizarse para aislar las cargas de trabajo en sus propias redes virtuales, administradas por separado desde otros radios. Cada carga de trabajo puede incluir varios niveles, con varias subredes que se conectan a través de equilibradores de carga de Azure. Para obtener más información acerca de la infraestructura de aplicaciones, consulte [Ejecutar cargas de trabajo de máquinas virtuales Windows][windows-vm-ra] y [Ejecutar cargas de trabajo de máquinas virtuales Linux][linux-vm-ra].
 
 * **Emparejamiento de VNET**. Se pueden conectar dos redes virtuales en la misma región de Azure mediante una [conexión de emparejamiento][vnet-peering]. Las conexiones de emparejamiento son conexiones no transitivas de baja latencia entre las redes virtuales. Una vez establecido el emparejamiento, las redes virtuales intercambian el tráfico mediante la red troncal de Azure, sin necesidad de un enrutador. En una topología de red en estrella tipo hub-and-spoke, el emparejamiento de VNET se usa para conectar el concentrador a cada radio.
@@ -58,46 +61,26 @@ La arquitectura consta de los siguientes componentes:
 
 ## <a name="recommendations"></a>Recomendaciones
 
-Las siguientes recomendaciones sirven para la mayoría de los escenarios. Sígalas a menos que tenga un requisito concreto que las invalide.
+Todas las recomendaciones de la arquitectura de referencia de tipo [hub-and-spoke][guidance-hub-spoke] también se aplican a la arquitectura de referencia de los servicios compartidos. 
 
-### <a name="resource-groups"></a>Grupos de recursos
+Igualmente, las siguientes recomendaciones sirven para la mayoría de escenarios de servicios compartidos. Sígalas a menos que tenga un requisito concreto que las invalide.
 
-La red virtual del concentrador y la red virtual de cada radio se pueden implementar en diferentes grupos de recursos e incluso en distintas suscripciones, siempre y cuando pertenezcan al mismo inquilino de Azure Active Directory (Azure AD) en la misma región. Esto permite realizar una administración descentralizada de cada carga de trabajo, mientras se comparten los servicios que se mantienen en la red virtual del concentrador.
+### <a name="identity"></a>Identidad
 
-### <a name="vnet-and-gatewaysubnet"></a>VNet y GatewaySubnet
+La mayoría de las organizaciones empresariales tienen un entorno de servicios de directorio de Active Directory (ADDS) en su centro de datos local. Para facilitar la administración de los recursos trasladados a Azure desde la red local que depende de ADDS, se recomienda hospedar los controladores de dominio de ADDS en Azure.
 
-Cree una subred denominada *GatewaySubnet*, con un intervalo de direcciones de /27. Esta subred es necesaria para la puerta de enlace de red virtual. La asignación de treinta y dos direcciones a esta subred ayudará a evitar que se alcancen las limitaciones de tamaño de la puerta de enlace en el futuro.
+Si desea utilizar los objetos de la directiva de grupo que desea controlar de forma independiente para Azure y para el entorno local, use un sitio de AD diferente para cada región de Azure. Sitúe los controladores de dominio en una red virtual central (centro) al que puedan acceder las cargas de trabajo dependientes.
 
-Para más información sobre la configuración de la puerta de enlace, consulte las siguientes arquitecturas de referencia, en función del tipo de conexión:
+### <a name="security"></a>Seguridad
 
-- [Red híbrida mediante ExpressRoute][guidance-expressroute]
-- [Red híbrida con una instancia de VPN Gateway][guidance-vpn]
+Al trasladar cargas de trabajo desde el entorno local a Azure, algunas de estas cargas necesitarán hospedarse en máquinas virtuales. Por motivos de cumplimiento normativo, puede que tenga que aplicar restricciones al tráfico que recorre esas cargas de trabajo. 
 
-Para una mayor disponibilidad, puede utilizar ExpressRoute y una VPN para la conmutación por error. Vea [Conexión de una red local a Azure mediante ExpressRoute con conmutación por error de VPN][hybrid-ha].
+Puede usar aplicaciones virtuales de red (NVA) en Azure para hospedar diferentes tipos de servicios de seguridad y rendimiento. Si está familiarizado con un conjunto determinado de aplicaciones locales actualmente, se recomienda que use las mismas aplicaciones virtualizadas en Azure, si es posible.
 
-También se puede utilizar una topología en estrella tipo hub-and-spoke sin una puerta de enlace, en caso de que no se necesite la conectividad con la red local. 
-
-### <a name="vnet-peering"></a>Emparejamiento de VNET
-
-El emparejamiento de VNET es una relación no transitiva entre dos redes virtuales. Si necesita que los radios se conecten entre sí, considere la posibilidad de agregar una conexión de emparejamiento independiente entre dichos radios.
-
-Sin embargo, si tiene varios radios que necesitan conectarse entre sí, se quedará sin posibles conexiones de emparejamiento muy rápido debido a la [limitación del número de emparejamientos de VNET por cada red virtual][vnet-peering-limit]. En este escenario, considere la posibilidad de usar rutas definidas por el usuario (UDR) para forzar que el tráfico destinado a un radio se envíe a una NVA que actúa como un enrutador en la red virtual del concentrador. Esto permitirá que los radios se conecten entre sí.
-
-También puede configurar los radios para que usen la puerta de enlace de la red virtual del concentrador para comunicarse con las redes remotas. Para permitir que el tráfico de la puerta de enlace fluya del radio al concentrador y para conectarse a las redes remotas, debe:
-
-  - Configurar la conexión de emparejamiento de VNET en el concentrador para **permitir el tránsito de la puerta de enlace**.
-  - Configurar la conexión de emparejamiento de VNET en cada radio para **usar las puertas de enlace remotas**.
-  - Configurar todas las conexiones de emparejamiento de VNET para **permitir el tráfico reenviado**.
+> [!NOTE]
+> Los scripts de implementación de esta arquitectura de referencia usan una máquina virtual Ubuntu con reenvío IP habilitado para imitar una aplicación virtual de red.
 
 ## <a name="considerations"></a>Consideraciones
-
-### <a name="spoke-connectivity"></a>Conectividad de los radios
-
-Si se necesita una conectividad entre los radios, considere la posibilidad de implementar una NVA para el enrutamiento en el concentrador y de usar las UDR en el radio para reenviar el tráfico al concentrador.
-
-![[2]][2]
-
-En este escenario, debe configurar las conexiones de emparejamiento para que **permitan el tráfico reenviado**.
 
 ### <a name="overcoming-vnet-peering-limits"></a>Superación de los límites de emparejamiento de VNET
 
@@ -131,18 +114,16 @@ Antes de poder implementar la arquitectura de referencia en su propia suscripci�
 
 Para implementar el centro de datos local simulado como una red virtual de Azure, siga estos pasos:
 
-1. Navegue hasta la carpeta `hybrid-networking\hub-spoke\` del repositorio que descargó en el paso de requisitos previos anterior.
+1. Navegue hasta la carpeta `hybrid-networking\shared-services-stack\` del repositorio que descargó en el paso de requisitos previos anterior.
 
-2. Abra el archivo `onprem.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 36 y 37, tal y como se muestra a continuación, y después guarde el archivo.
+2. Abra el archivo `onprem.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 45 y 46, tal y como se muestra a continuación, y después guarde el archivo.
 
   ```bash
   "adminUsername": "XXX",
   "adminPassword": "YYY",
   ```
 
-3. En la línea 38, para `osType`, escriba `Windows` o `Linux` para instalar Windows Server 2016 Datacenter o Ubuntu 16.04 como sistema operativo de JumpBox.
-
-4. Ejecute `azbb` para implementar el entorno simulado local tal y como se muestra a continuación.
+3. Ejecute `azbb` para implementar el entorno simulado local tal y como se muestra a continuación.
 
   ```bash
   azbb -s <subscription_id> -g onprem-vnet-rg - l <location> -p onoprem.json --deploy
@@ -150,22 +131,22 @@ Para implementar el centro de datos local simulado como una red virtual de Azure
   > [!NOTE]
   > Si decide usar un nombre del grupo de recursos distinto (que no sea `onprem-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
 
-5. Espere a que finalice la implementación. Esta implementación crea una red virtual, una máquina virtual y una instancia de VPN Gateway. La creación de la instancia de VPN Gateway puede durar más de cuarenta minutos.
+4. Espere a que finalice la implementación. Esta implementación crea una red virtual, una máquina virtual Windows y una instancia de VPN Gateway. La creación de la instancia de VPN Gateway puede durar más de cuarenta minutos.
 
 ### <a name="azure-hub-vnet"></a>Red virtual del concentrador de Azure
 
 Para implementar la red virtual del concentrador y conectarla a la red virtual local simulada creada anteriormente, realice los pasos siguientes.
 
-1. Abra el archivo `hub-vnet.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 39 y 40, tal y como se muestra a continuación.
+1. Abra el archivo `hub-vnet.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 50 y 51, tal y como se muestra a continuación.
 
   ```bash
   "adminUsername": "XXX",
   "adminPassword": "YYY",
   ```
 
-2. En la línea 41, para `osType`, escriba `Windows` o `Linux` para instalar Windows Server 2016 Datacenter o Ubuntu 16.04 como sistema operativo de JumpBox.
+2. En la línea 52, para `osType`, escriba `Windows` o `Linux` para instalar Windows Server 2016 Datacenter o Ubuntu 16.04 como sistema operativo de JumpBox.
 
-3. Escriba una clave compartida entre comillas en la línea 72, tal y como se muestra a continuación, y después guarde el archivo.
+3. Escriba una clave compartida entre comillas en la línea 83, tal y como se muestra a continuación, y después guarde el archivo.
 
   ```bash
   "sharedKey": "",
@@ -181,54 +162,59 @@ Para implementar la red virtual del concentrador y conectarla a la red virtual l
 
 5. Espere a que finalice la implementación. Esta implementación crea una red virtual, una máquina virtual, una instancia de VPN Gateway y una conexión a la puerta de enlace creada en la sección anterior. La creación de la instancia de VPN Gateway puede durar más de cuarenta minutos.
 
-### <a name="optional-test-connectivity-from-onprem-to-hub"></a>(Opcional) Comprobación de la conectividad desde el entorno local al concentrador
+### <a name="adds-in-azure"></a>ADDS en Azure
 
-Para probar la conectividad desde el entorno local simulado a la red virtual de concentrador mediante máquinas virtuales Windows, realice los pasos siguientes.
+Para implementar los controladores de dominio de ADDS en Azure, realice los pasos siguientes.
 
-1. En Azure Portal, vaya al grupo de recursos `onprem-jb-rg` y, a continuación, haga clic en el recurso de máquina virtual `jb-vm1`.
-
-2.  En la esquina superior izquierda de la hoja VM del portal, haga clic en `Connect` y siga las indicaciones para utilizar Escritorio remoto para conectarse a la máquina virtual. Asegúrese de usar el nombre de usuario y la contraseña que especificó en las líneas 36 y 37 del archivo `onprem.json`.
-
-3. Abra una consola de PowerShell en la máquina virtual y utilice el cmdlet `Test-NetConnection` para comprobar que puede conectarse a la máquina virtual de JumpBox del concentrador tal y como se muestra a continuación.
-
-  ```powershell
-  Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
-  ```
-  > [!NOTE]
-  > De forma predeterminada, las máquinas virtuales de Windows Server no permiten respuestas ICMP en Azure. Si desea usar `ping` para probar la conectividad, debe habilitar el tráfico ICMP en el firewall de Windows con seguridad avanzada para cada máquina virtual.
-
-Para probar la conectividad desde el entorno local simulado a la red virtual de concentrador mediante máquinas virtuales Linux, realice los pasos siguientes:
-
-1. En Azure Portal, vaya al grupo de recursos `onprem-jb-rg` y, a continuación, haga clic en el recurso de máquina virtual `jb-vm1`.
-
-2. En la esquina superior izquierda de la hoja VM del portal, haga clic en `Connect` y, a continuación, copie el comando `ssh` que aparece en el portal. 
-
-3. Desde un símbolo del sistema de Linux, ejecute `ssh` para conectarse a la instancia de JumpBox del entorno local simulado con la información que copió en el paso 2 anterior, como se indica a continuación.
-
-  ```bash
-  ssh <your_user>@<public_ip_address>
-  ```
-
-4. Use la contraseña que especificó en la línea 37 del archivo `onprem.json` para conectarse a la máquina virtual.
-
-5. Use el comando `ping` para probar la conectividad con JumpBox del concentrador tal y como se muestra a continuación.
-
-  ```bash
-  ping 10.0.0.68
-  ```
-
-### <a name="azure-spoke-vnets"></a>Redes virtuales de radios de Azure
-
-Para implementar las redes virtuales de radios, siga estos pasos.
-
-1. Abra el archivo `spoke1.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 47 y 48, tal y como se muestra a continuación, y después guarde el archivo.
+1. Abra el archivo `hub-adds.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 14 y 15, tal y como se muestra a continuación, y después guarde el archivo.
 
   ```bash
   "adminUsername": "XXX",
   "adminPassword": "YYY",
   ```
 
-2. En la línea 49, para `osType`, escriba `Windows` o `Linux` para instalar Windows Server 2016 Datacenter o Ubuntu 16.04 como sistema operativo de JumpBox.
+2. Ejecute `azbb` para implementar los controladores de dominio de ADDS tal y como se muestra a continuación.
+
+  ```bash
+  azbb -s <subscription_id> -g hub-adds-rg - l <location> -p hub-adds.json --deploy
+  ```
+  
+  > [!NOTE]
+  > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-adds-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
+
+  > [!NOTE]
+  > Esta parte de la implementación puede tardar varios minutos, ya que requiere unir las dos máquinas virtuales al dominio hospedado en el centro de datos local simulado y, a continuación, instalar AD DS en ellas.
+
+### <a name="nva"></a>Aplicación virtual de red
+
+Para implementar una aplicación virtual de red en la subred `dmz`, realice los pasos siguientes:
+
+1. Abra el archivo `hub-nva.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 13 y 14, tal y como se muestra a continuación, y después guarde el archivo.
+
+  ```bash
+  "adminUsername": "XXX",
+  "adminPassword": "YYY",
+  ```
+2. Ejecute `azbb` para implementar la máquina virtual de la aplicación virtual de red y las rutas definidas por el usuario.
+
+  ```bash
+  azbb -s <subscription_id> -g hub-nva-rg - l <location> -p hub-nva.json --deploy
+  ```
+  > [!NOTE]
+  > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-nva-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
+
+### <a name="azure-spoke-vnets"></a>Redes virtuales de radios de Azure
+
+Para implementar las redes virtuales de radios, siga estos pasos.
+
+1. Abra el archivo `spoke1.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 52 y 53, tal y como se muestra a continuación, y después guarde el archivo.
+
+  ```bash
+  "adminUsername": "XXX",
+  "adminPassword": "YYY",
+  ```
+
+2. En la línea 54, para `osType`, escriba `Windows` o `Linux` para instalar Windows Server 2016 Datacenter o Ubuntu 16.04 como sistema operativo de JumpBox.
 
 3. Ejecute `azbb` para implementar el entorno de red virtual del primer radio tal y como se muestra a continuación.
 
@@ -264,64 +250,11 @@ Para crear una conexión de emparejamiento desde la red virtual del concentrador
   > [!NOTE]
   > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
 
-### <a name="test-connectivity"></a>Comprobación de la conectividad
-
-Para probar la conectividad desde el entorno local simulado a las redes virtuales de radios mediante máquinas virtuales Windows, realice los pasos siguientes.
-
-1. En Azure Portal, vaya al grupo de recursos `onprem-jb-rg` y, a continuación, haga clic en el recurso de máquina virtual `jb-vm1`.
-
-2.  En la esquina superior izquierda de la hoja VM del portal, haga clic en `Connect` y siga las indicaciones para utilizar Escritorio remoto para conectarse a la máquina virtual. Asegúrese de usar el nombre de usuario y la contraseña que especificó en las líneas 36 y 37 del archivo `onprem.json`.
-
-3. Abra una consola de PowerShell en la máquina virtual y utilice el cmdlet `Test-NetConnection` para comprobar que puede conectarse a la máquina virtual de JumpBox del concentrador tal y como se muestra a continuación.
-
-  ```powershell
-  Test-NetConnection 10.1.0.68 -CommonTCPPort RDP
-  Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
-  ```
-
-Para probar la conectividad desde el entorno local simulado a las redes virtuales de radios mediante máquinas virtuales Linux, realice los pasos siguientes:
-
-1. En Azure Portal, vaya al grupo de recursos `onprem-jb-rg` y, a continuación, haga clic en el recurso de máquina virtual `jb-vm1`.
-
-2. En la esquina superior izquierda de la hoja VM del portal, haga clic en `Connect` y, a continuación, copie el comando `ssh` que aparece en el portal. 
-
-3. Desde un símbolo del sistema de Linux, ejecute `ssh` para conectarse a la instancia de JumpBox del entorno local simulado con la información que copió en el paso 2 anterior, como se indica a continuación.
-
-  ```bash
-  ssh <your_user>@<public_ip_address>
-  ```
-
-5. Use la contraseña que especificó en la línea 37 del archivo `onprem.json` para conectarse a la máquina virtual.
-
-6. Use el comando `ping` para probar la conectividad con las máquinas virtuales de JumpBox en cada radio tal y como se muestra a continuación.
-
-  ```bash
-  ping 10.1.0.68
-  ping 10.2.0.68
-  ```
-
-### <a name="add-connectivity-between-spokes"></a>Adición de conectividad entre radios
-
-Si desea permitir que los radios se conecten unos con otros, deberá usar una aplicación virtual de red (NVA) como enrutador de la red virtual de concentrador y forzar el tráfico desde los radios al enrutador al intentar conectarse a otro radio. Para implementar una aplicación virtual de red de ejemplo básica como máquina virtual y las rutas necesarias definidas por el usuario para permitir que las dos redes virtuales de radios se conecten, realice los pasos siguientes:
-
-1. Abra el archivo `hub-nva.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 13 y 14, tal y como se muestra a continuación, y después guarde el archivo.
-
-  ```bash
-  "adminUsername": "XXX",
-  "adminPassword": "YYY",
-  ```
-2. Ejecute `azbb` para implementar la máquina virtual de la aplicación virtual de red y las rutas definidas por el usuario.
-
-  ```bash
-  azbb -s <subscription_id> -g hub-nva-rg - l <location> -p hub-nva.json --deploy
-  ```
-  > [!NOTE]
-  > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-nva-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
-
 <!-- links -->
 
 [azure-cli-2]: /azure/install-azure-cli
 [azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
+[guidance-hub-spoke]: ./hub-spoke.md
 [azure-vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways
 [best-practices-security]: /azure/best-practices-network-securit
 [connect-to-an-Azure-vnet]: https://technet.microsoft.com/library/dn786406.aspx
@@ -331,6 +264,7 @@ Si desea permitir que los radios se conecten unos con otros, deberá usar una ap
 [hybrid-ha]: ./expressroute-vpn-failover.md
 [naming conventions]: /azure/guidance/guidance-naming-conventions
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
+[centro de datos virtual]: https://aka.ms/vdc
 [vnet-peering]: /azure/virtual-network/virtual-network-peering-overview
 [vnet-peering-limit]: /azure/azure-subscription-service-limits#networking-limits
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
@@ -338,8 +272,6 @@ Si desea permitir que los radios se conecten unos con otros, deberá usar una ap
 
 [visio-download]: https://archcenter.azureedge.net/cdn/hybrid-network-hub-spoke.vsdx
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
-[0]: ./images/hub-spoke.png "Topología en estrella tipo hub-and-spoke en Azure"
-[1]: ./images/hub-spoke-gateway-routing.svg "Topología en estrella tipo hub-and-spoke en Azure con enrutamiento transitivo"
-[2]: ./images/hub-spoke-no-gateway-routing.svg "Topología en estrella tipo hub-and-spoke en Azure con enrutamiento transitivo mediante una NVA"
+[0]: ./images/shared-services.png "Topología de servicios compartidos en Azure"
 [3]: ./images/hub-spokehub-spoke.svg "Topología en estrella tipo hub-hub-and-spoke-spoke en Azure"
 [ARM-Templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/
