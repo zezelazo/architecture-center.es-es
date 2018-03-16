@@ -48,11 +48,11 @@ Se recomienda usar un conjunto de NVA para el tráfico que se origina en Interne
 
 Incluya una aplicación virtual de red de capa 7 para terminar las conexiones de aplicación en el nivel de NVA y mantener la compatibilidad con los niveles de back-end. Así se garantiza una conectividad simétrica donde el tráfico de respuesta de los niveles de back-end se devuelve a través de la aplicación virtual de red.  
 
-### <a name="public-load-balancer-recommendations"></a>Recomendaciones para el balanceador de carga público
+### <a name="public-load-balancer-recommendations"></a>Recomendaciones para el equilibrador de carga público 
 
-Para conseguir escalabilidad y disponibilidad, implemente las aplicaciones virtuales de red de la red perimetral en un [conjunto de disponibilidad][availability-set] y use un [balancador de carga accesible desde Internet][load-balancer] para distribuir las solicitudes de Internet entre las aplicaciones virtuales de red de dicho conjunto.  
+Para conseguir escalabilidad y disponibilidad, implemente las aplicaciones virtuales de red de la red perimetral en un [conjunto de disponibilidad][availability-set] y use un [equilibrador de carga accesible desde Internet][load-balancer] para distribuir las solicitudes de Internet entre las aplicaciones virtuales de red de dicho conjunto. 
 
-Configure el balanceador de carga para que solo acepte solicitudes en los puertos necesarios con el tráfico de Internet. Por ejemplo, limite las solicitudes HTTP entrantes al puerto 80 y las solicitudes HTTPS entrantes al puerto 443.
+Configure el equilibrador de carga para que solo acepte solicitudes en los puertos necesarios con el tráfico de Internet. Por ejemplo, limite las solicitudes HTTP entrantes al puerto 80 y las solicitudes HTTPS entrantes al puerto 443. 
 
 ## <a name="scalability-considerations"></a>Consideraciones sobre escalabilidad
 
@@ -72,8 +72,8 @@ Aunque la conectividad de puerta de enlace de la red local a Azure esté fuera d
 
 Esta arquitectura de referencia implementa varios niveles de seguridad:
 
-* El balanceador de carga accesible desde Internet dirige las solicitudes a las aplicaciones virtuales de red de la subred de la red experimental pública de entrada, y solo en los puertos necesarios de la aplicación.
-* Las reglas de seguridad de Red NSG(Network Security Group) de las subredes de la red perimetral pública de entrada y salida impiden que las aplicaciones virtuales de red se pongan en peligro, ya que bloquean las solicitudes que se encuentran fuera de estas reglas.
+* El equilibrador de carga accesible desde Internet dirige las solicitudes a las aplicaciones virtuales de red de la subred de la red experimental pública de entrada, y solo en los puertos necesarios de la aplicación. 
+* Las reglas NSG (Grupo de seguridad de red) de las subredes de la red perimetral pública de entrada y salida impiden que las aplicaciones virtuales de red se pongan en peligro, ya que bloquean las solicitudes que se encuentran fuera de estas reglas.
 * La configuración de enrutamiento NAT de las aplicaciones virtuales de red dirige las solicitudes entrantes en los puertos 80 y 443 al equilibrador de carga de nivel web, pero omite las solicitudes en todos los demás puertos.
 
 Todas las solicitudes entrantes se deben registrar en todos los puertos. Realice auditorías de los registros con regularidad y preste atención a las solicitudes que se encuentran fuera de los parámetros previstos, ya que podrían ser indicio de intentos de intrusión.
