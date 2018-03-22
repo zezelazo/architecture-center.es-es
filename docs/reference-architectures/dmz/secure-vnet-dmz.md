@@ -1,6 +1,6 @@
 ---
-title: "Implementación de una red perimetral entre Azure e Internet"
-description: "Cómo implementar una arquitectura de red híbrida segura con acceso a Internet en Azure."
+title: Implementación de una red perimetral entre Azure e Internet
+description: Cómo implementar una arquitectura de red híbrida segura con acceso a Internet en Azure.
 author: telmosampaio
 ms.date: 11/23/2016
 pnp.series.title: Network DMZ
