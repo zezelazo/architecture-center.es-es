@@ -16,7 +16,7 @@
           href: architecture-styles/cqrs.md
         - name: Arquitectura basada en eventos
           href: architecture-styles/event-driven.md
-        - name: Big Data
+        - name: Macrodatos
           href: architecture-styles/big-data.md
         - name: Big Compute
           href: architecture-styles/big-compute.md

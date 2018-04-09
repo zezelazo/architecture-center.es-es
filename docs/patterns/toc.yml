@@ -20,67 +20,67 @@
       href: category/resiliency.md
     - name: Seguridad
       href: category/security.md
-- name: Ambassador
+- name: Embajador
   href: ambassador.md
-- name: Anti-corruption Layer
+- name: Capa anticorrupción
   href: anti-corruption-layer.md
-- name: Backends for Frontends
+- name: Back-end para Front-end
   href: backends-for-frontends.md
-- name: Bulkhead
+- name: Compartimentado
   href: bulkhead.md
-- name: Cache-Aside
+- name: Reservado en caché
   href: cache-aside.md
-- name: Circuit Breaker
+- name: Disyuntor
   href: circuit-breaker.md
 - name: Segregación de responsabilidades de consultas y comandos (CQRS)
   href: cqrs.md
-- name: Compensating Transaction
+- name: Transacción de compensación
   href: compensating-transaction.md
-- name: Competing Consumers
+- name: Consumidores simultáneos
   href: competing-consumers.md
-- name: Compute Resource Consolidation
+- name: Consolidación de recursos de proceso
   href: compute-resource-consolidation.md
-- name: Event Sourcing
+- name: Aprovisionamiento de eventos
   href: event-sourcing.md
-- name: External Configuration Store
+- name: Almacén de configuración externo
   href: external-configuration-store.md
 - name: Identidad federada
   href: federated-identity.md
-- name: Gatekeeper
+- name: Operador de control
   href: gatekeeper.md
-- name: Gateway Aggregation
+- name: Agregación de puerta de enlace
   href: gateway-aggregation.md
-- name: Gateway Offloading
+- name: Descarga de puerta de enlace
   href: gateway-offloading.md
-- name: Gateway Routing
+- name: Enrutamiento de puerta de enlace
   href: gateway-routing.md
-- name: Health Endpoint Monitoring
+- name: Supervisión del punto de conexión de mantenimiento
   href: health-endpoint-monitoring.md
-- name: Index Table
+- name: Tabla de índice
   href: index-table.md
-- name: Leader Election
+- name: Elección del responsable
   href: leader-election.md
-- name: Materialized View
+- name: Vista materializada
   href: materialized-view.md
-- name: Pipes and Filters
+- name: Canalizaciones y filtros
   href: pipes-and-filters.md
-- name: Priority Queue
+- name: Cola de prioridad
   href: priority-queue.md
 - name: Equilibrio de carga basado en colas
   href: queue-based-load-leveling.md
-- name: Retry
+- name: Reintento
   href: retry.md
-- name: Scheduler Agent Supervisor
+- name: Supervisor de agente de programador
   href: scheduler-agent-supervisor.md
-- name: Clave de particionamiento
+- name: Particionamiento
   href: sharding.md
 - name: Sidecar
   href: sidecar.md
-- name: Static Content Hosting
+- name: Hospedaje de contenido estático
   href: static-content-hosting.md
-- name: Strangler
+- name: Sustitución
   href: strangler.md
 - name: Limitaciones
   href: throttling.md
-- name: Valet Key
+- name: Clave auxiliar
   href: valet-key.md

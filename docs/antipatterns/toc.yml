@@ -3,19 +3,19 @@
 - name: Antipatrones de rendimiento
   href: index.md
   items:
-    - name: Busy Database
+    - name: Base de datos ocupada
       href: busy-database/index.md
-    - name: Busy Front End
+    - name: Front-end ocupado
       href: busy-front-end/index.md
-    - name: Chatty I/O
+    - name: E/S locuaz
       href: chatty-io/index.md
-    - name: Extraneous Fetching
+    - name: Recuperación superflua
       href: extraneous-fetching/index.md
-    - name: Improper Instantiation
+    - name: Instanciación incorrecta
       href: improper-instantiation/index.md
-    - name: Monolithic Persistence
+    - name: Persistencia monolítica
       href: monolithic-persistence/index.md
-    - name: No Caching
+    - name: Sin almacenamiento en caché
       href: no-caching/index.md
-    - name: Synchronous I/O
+    - name: E/S síncrona
       href: synchronous-io/index.md
