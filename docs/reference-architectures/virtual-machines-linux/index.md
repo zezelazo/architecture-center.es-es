@@ -1,6 +1,6 @@
 ---
-title: "Cargas de trabajo de máquinas virtuales Linux"
-description: "Explica algunas arquitecturas comunes para implementar las máquinas virtuales que hospedan aplicaciones de escala empresarial en Azure."
+title: Cargas de trabajo de máquinas virtuales Linux
+description: Explica algunas arquitecturas comunes para implementar las máquinas virtuales que hospedan aplicaciones de escala empresarial en Azure.
 layout: LandingPage
 ms.openlocfilehash: ef06fb93355f4676f44954930bcfeb2c2d012d43
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb

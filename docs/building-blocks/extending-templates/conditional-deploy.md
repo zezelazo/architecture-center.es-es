@@ -1,6 +1,6 @@
 ---
-title: "Implementación condicional de un recurso en una plantilla de Azure Resource Manager"
-description: "Describe cómo ampliar la funcionalidad de las plantillas de Azure Resource Manager para implementar condicionalmente un recurso en función del valor de un parámetro"
+title: Implementación condicional de un recurso en una plantilla de Azure Resource Manager
+description: Describe cómo ampliar la funcionalidad de las plantillas de Azure Resource Manager para implementar condicionalmente un recurso en función del valor de un parámetro
 author: petertay
 ms.date: 06/09/2017
 ms.openlocfilehash: e911e7dc41b4f71ebfaf13a00f8cdbb5b4e2578b

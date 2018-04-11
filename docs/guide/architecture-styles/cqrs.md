@@ -1,6 +1,6 @@
 ---
 title: Estilo de arquitectura CQRS
-description: "Describe las ventajas, los desafíos y los procedimientos recomendados para las arquitecturas CQRS."
+description: Describe las ventajas, los desafíos y los procedimientos recomendados para las arquitecturas CQRS.
 author: MikeWasson
 ms.openlocfilehash: dd3da5886587159f57646ff1bfffa2094725f798
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60

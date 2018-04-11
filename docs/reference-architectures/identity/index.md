@@ -1,6 +1,6 @@
 ---
-title: "Administración de identidades"
-description: "Explica y compara los distintos métodos disponibles para la administración de identidades en sistemas híbridos que abarcan el límite local y de la nube con Azure."
+title: Administración de identidades
+description: Explica y compara los distintos métodos disponibles para la administración de identidades en sistemas híbridos que abarcan el límite local y de la nube con Azure.
 layout: LandingPage
 ms.openlocfilehash: de98ee30306f5e712759ab7140bd430cb6d4cd75
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb

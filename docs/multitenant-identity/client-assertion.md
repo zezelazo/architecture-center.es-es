@@ -1,6 +1,6 @@
 ---
-title: "Uso de aserción de cliente para obtener tokens de acceso de Azure AD"
-description: "Uso de aserción de cliente para obtener tokens de acceso de Azure AD."
+title: Uso de aserción de cliente para obtener tokens de acceso de Azure AD
+description: Uso de aserción de cliente para obtener tokens de acceso de Azure AD.
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

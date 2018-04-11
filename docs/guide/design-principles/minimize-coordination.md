@@ -1,6 +1,6 @@
 ---
-title: "Minimizar la coordinación"
-description: "Minimizar la coordinación entre los servicios de aplicación para lograr escalabilidad"
+title: Minimizar la coordinación
+description: Minimizar la coordinación entre los servicios de aplicación para lograr escalabilidad
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 3cab05b539612234fd8e66517b140ac5257c3e70

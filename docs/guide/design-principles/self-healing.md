@@ -1,6 +1,6 @@
 ---
-title: "Diseño para la recuperación automática"
-description: "Las aplicaciones resistentes pueden recuperarse de errores sin intervención manual."
+title: Diseño para la recuperación automática
+description: Las aplicaciones resistentes pueden recuperarse de errores sin intervención manual.
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 0782b65b77615f7c006724264ab0ca2d2c7c04e2

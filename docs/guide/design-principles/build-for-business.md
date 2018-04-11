@@ -1,6 +1,6 @@
 ---
 title: Tener en cuenta las necesidades del negocio
-description: "Cada decisión de diseño debe estar justificada por un requisito empresarial."
+description: Cada decisión de diseño debe estar justificada por un requisito empresarial.
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 110a441ae74334d212a717da2cb038d60b24bb1f

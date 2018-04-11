@@ -1,7 +1,7 @@
 ---
 title: Limitaciones
-description: "Controlan el consumo de recursos que usa una instancia de una aplicación, un inquilino individual o un servicio completo."
-keywords: "Patrón de diseño"
+description: Controlan el consumo de recursos que usa una instancia de una aplicación, un inquilino individual o un servicio completo.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

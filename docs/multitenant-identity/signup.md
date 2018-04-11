@@ -1,6 +1,6 @@
 ---
-title: "Registro e incorporación de inquilinos en aplicaciones multiinquilino"
-description: "Incorporación de inquilinos en una aplicación multiinquilino"
+title: Registro e incorporación de inquilinos en aplicaciones multiinquilino
+description: Incorporación de inquilinos en una aplicación multiinquilino
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

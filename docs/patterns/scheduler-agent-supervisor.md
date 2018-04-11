@@ -1,7 +1,7 @@
 ---
 title: Scheduler Agent Supervisor
 description: Coordina un conjunto de acciones en un conjunto distribuido de servicios y otros recursos remotos.
-keywords: "Patrón de diseño"
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

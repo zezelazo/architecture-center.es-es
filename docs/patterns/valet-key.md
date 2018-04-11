@@ -1,7 +1,7 @@
 ---
 title: Valet Key
-description: "Usa un token o clave que proporciona a los clientes acceso directo restringido a un recurso o servicio específico."
-keywords: "Patrón de diseño"
+description: Usa un token o clave que proporciona a los clientes acceso directo restringido a un recurso o servicio específico.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

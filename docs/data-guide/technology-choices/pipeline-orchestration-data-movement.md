@@ -1,6 +1,6 @@
 ---
-title: "Elección de una tecnología de orquestación de canalizaciones de datos"
-description: 
+title: Elección de una tecnología de orquestación de canalizaciones de datos
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
 ms.openlocfilehash: 17aeb871bc815793295ed610795e5e83de72c637

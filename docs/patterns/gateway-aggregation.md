@@ -1,5 +1,5 @@
 ---
-title: "Patrón Gateway Aggregation"
+title: Patrón Gateway Aggregation
 description: Usa una puerta de enlace para agregar varias solicitudes individuales en una sola solicitud.
 author: dragon119
 ms.date: 06/23/2017

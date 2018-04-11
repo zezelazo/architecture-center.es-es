@@ -1,6 +1,6 @@
 ---
-title: "Antipatrón Busy Front End"
-description: "El trabajo asincrónico en un gran número de subprocesos en segundo plano puede privar de recursos a otras tareas de primer plano."
+title: Antipatrón Busy Front End
+description: El trabajo asincrónico en un gran número de subprocesos en segundo plano puede privar de recursos a otras tareas de primer plano.
 author: dragon119
 ms.date: 06/05/2017
 ms.openlocfilehash: cedb80ddac5ceb1eb901455df3165993fd28a138

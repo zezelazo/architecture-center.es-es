@@ -1,6 +1,6 @@
 ---
-title: "Guía: Diseño de grupos de recursos de Azure"
-description: "Guía para el diseño de grupos de recursos de Azure como parte de una estrategia de adopción básica en la nube"
+title: 'Guía: Diseño de grupos de recursos de Azure'
+description: Guía para el diseño de grupos de recursos de Azure como parte de una estrategia de adopción básica en la nube
 author: petertay
 ms.openlocfilehash: ac6cbb03be8cdba020641d3b9034ad9d20101acf
 ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242

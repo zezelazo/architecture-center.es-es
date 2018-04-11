@@ -1,5 +1,5 @@
 ---
-title: "Antipatrón Synchronous I/O"
+title: Antipatrón Synchronous I/O
 description: Bloquear el subproceso que realiza la llamada mientras se completan las operaciones de E/S puede reducir el rendimiento y afectar a la escalabilidad vertical.
 author: dragon119
 ms.date: 06/05/2017

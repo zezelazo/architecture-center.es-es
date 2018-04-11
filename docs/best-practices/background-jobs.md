@@ -1,6 +1,6 @@
 ---
-title: "Orientación sobre los trabajos de segundo plano"
-description: "Orientación sobre las tareas en segundo plano que se ejecutan independientemente de la interfaz de usuario."
+title: Orientación sobre los trabajos de segundo plano
+description: Orientación sobre las tareas en segundo plano que se ejecutan independientemente de la interfaz de usuario.
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices

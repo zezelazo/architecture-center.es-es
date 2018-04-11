@@ -1,5 +1,5 @@
 ---
-title: "Explicación: ¿Qué es un inquilino de Azure Active Directory?"
+title: 'Explicación: ¿Qué es un inquilino de Azure Active Directory?'
 description: Explica el funcionamiento interno de Azure Active Directory para proporcionar una identidad como servicio (IDaaS) en Azure
 author: petertay
 ms.openlocfilehash: ce5a33b92047e1f360eee8fcbc7a726bcf8cd19f

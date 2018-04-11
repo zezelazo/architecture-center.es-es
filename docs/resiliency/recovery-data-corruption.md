@@ -1,6 +1,6 @@
 ---
-title: "Recuperación de daños o eliminación accidental de los datos"
-description: "Artículo para entender cómo recuperarse ante datos dañados o eliminación accidental de datos y para diseñar aplicaciones resistentes, con alta disponibilidad y con tolerancia a errores, así como para planear la recuperación ante desastres"
+title: Recuperación de daños o eliminación accidental de los datos
+description: Artículo para entender cómo recuperarse ante datos dañados o eliminación accidental de datos y para diseñar aplicaciones resistentes, con alta disponibilidad y con tolerancia a errores, así como para planear la recuperación ante desastres
 author: MikeWasson
 ms.date: 01/10/2018
 ms.openlocfilehash: 76d2f996750d5a67b67bd5dc4977580f3b8abbc3

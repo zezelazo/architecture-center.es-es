@@ -1,5 +1,5 @@
 ---
-title: "Elección de una solución para conectar una red local a Azure"
+title: Elección de una solución para conectar una red local a Azure
 description: Compara las arquitecturas de referencia para conectar una red local a Azure.
 author: telmosampaio
 ms.date: 04/06/2017

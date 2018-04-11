@@ -1,6 +1,6 @@
 ---
 title: Uso de identidades basadas en notificaciones en aplicaciones multiinquilino
-description: "Uso de las notificaciones para la autorización y validación del emisor"
+description: Uso de las notificaciones para la autorización y validación del emisor
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

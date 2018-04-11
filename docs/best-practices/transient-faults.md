@@ -1,6 +1,6 @@
 ---
-title: "Orientación general sobre reintentos"
-description: "Guía de reintentos para el control de errores transitorios."
+title: Orientación general sobre reintentos
+description: Guía de reintentos para el control de errores transitorios.
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices

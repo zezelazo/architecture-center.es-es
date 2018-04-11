@@ -1,6 +1,6 @@
 ---
 title: Estilo de arquitectura de n niveles
-description: "Describe las ventajas, los desafíos y los procedimientos recomendados para las arquitecturas de n niveles en Azure."
+description: Describe las ventajas, los desafíos y los procedimientos recomendados para las arquitecturas de n niveles en Azure.
 author: MikeWasson
 ms.openlocfilehash: 8333b789e03a9da2b021abe7d7c193cd2af8d6bf
 ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60

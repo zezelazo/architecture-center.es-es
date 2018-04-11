@@ -1,7 +1,7 @@
 ---
 title: External Configuration Store
-description: "Extrae la información de configuración del paquete de implementación de la aplicación y la lleva a una ubicación centralizada."
-keywords: "Patrón de diseño"
+description: Extrae la información de configuración del paquete de implementación de la aplicación y la lleva a una ubicación centralizada.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

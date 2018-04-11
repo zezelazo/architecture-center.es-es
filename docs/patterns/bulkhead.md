@@ -1,6 +1,6 @@
 ---
-title: "Patrón Bulkhead"
-description: "Aísle los elementos de una aplicación en grupos para que, si se produce un error en uno, los demás sigan funcionando"
+title: Patrón Bulkhead
+description: Aísle los elementos de una aplicación en grupos para que, si se produce un error en uno, los demás sigan funcionando
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: a2c499d77fafc4bee6b74ee0e0d84e6c23b47851

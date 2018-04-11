@@ -1,6 +1,6 @@
 ---
-title: "Protección de una API web de back-end en una aplicación multiinquilino"
-description: "Protección de una API web de back-end"
+title: Protección de una API web de back-end en una aplicación multiinquilino
+description: Protección de una API web de back-end
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

@@ -1,6 +1,6 @@
 ---
-title: "Uso del mejor almacén de datos para el trabajo"
-description: "Elija la tecnología de almacenamiento que encaje mejor con sus datos y el modo en que se utilizarán."
+title: Uso del mejor almacén de datos para el trabajo
+description: Elija la tecnología de almacenamiento que encaje mejor con sus datos y el modo en que se utilizarán.
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: ef9439f7a3766d13b498eac915e0f5afd23de4e2

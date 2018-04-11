@@ -1,5 +1,5 @@
 ---
-title: "Antipatrón Busy Database"
+title: Antipatrón Busy Database
 description: Descargar el procesamiento en un servidor de base de datos puede provocar problemas de rendimiento y escalabilidad.
 author: dragon119
 ms.date: 06/05/2017

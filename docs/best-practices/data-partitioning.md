@@ -1,6 +1,6 @@
 ---
-title: "Guía de creación de particiones de datos"
-description: "Orientaciones sobre cómo separar las particiones para administrarlas y tener acceso a ellas por separado."
+title: Guía de creación de particiones de datos
+description: Orientaciones sobre cómo separar las particiones para administrarlas y tener acceso a ellas por separado.
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices

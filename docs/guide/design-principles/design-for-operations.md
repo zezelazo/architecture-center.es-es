@@ -1,6 +1,6 @@
 ---
-title: "Diseño para operaciones"
-description: "Diseñe una aplicación para que el equipo de operaciones tenga las herramientas que necesita"
+title: Diseño para operaciones
+description: Diseñe una aplicación para que el equipo de operaciones tenga las herramientas que necesita
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 76338cc27daf82ccb99df4e4c51c7a5ac6f26065

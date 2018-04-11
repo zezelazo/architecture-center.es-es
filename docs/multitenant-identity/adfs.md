@@ -1,6 +1,6 @@
 ---
-title: "Federación con un servicio AD FS de un cliente"
-description: "Cómo federar con el servicio AD FS de un cliente en una aplicación multiinquilino"
+title: Federación con un servicio AD FS de un cliente
+description: Cómo federar con el servicio AD FS de un cliente en una aplicación multiinquilino
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

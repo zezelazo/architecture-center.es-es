@@ -1,6 +1,6 @@
 ---
-title: "Instrucciones de escalado automático"
-description: "Orientación sobre cómo usar el escalado automático para asignar dinámicamente los recursos que requiere una aplicación."
+title: Instrucciones de escalado automático
+description: Orientación sobre cómo usar el escalado automático para asignar dinámicamente los recursos que requiere una aplicación.
 author: dragon119
 ms.date: 05/17/2017
 pnp.series.title: Best Practices

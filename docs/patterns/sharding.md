@@ -1,7 +1,7 @@
 ---
 title: Clave de particionamiento
-description: "Divida un almacén de datos en un conjunto de particiones horizontales o particiones de base de datos."
-keywords: "Patrón de diseño"
+description: Divida un almacén de datos en un conjunto de particiones horizontales o particiones de base de datos.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

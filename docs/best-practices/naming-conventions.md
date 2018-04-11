@@ -1,6 +1,6 @@
 ---
 title: Convenciones de nomenclatura para los recursos de Azure
-description: "Convenciones de nomenclatura para los recursos de Azure. Qué nombre asignar a las máquinas virtuales, cuentas de almacenamiento, redes, redes virtuales, subredes y otras entidades de Azure"
+description: Convenciones de nomenclatura para los recursos de Azure. Qué nombre asignar a las máquinas virtuales, cuentas de almacenamiento, redes, redes virtuales, subredes y otras entidades de Azure
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
