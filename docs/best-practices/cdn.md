@@ -1,6 +1,6 @@
 ---
-title: "Orientación sobre Content Delivery Network"
-description: "Orientación sobre Content Delivery Network (CDN) para entregar contenido de alto ancho de banda hospedado en Azure."
+title: Orientación sobre Content Delivery Network
+description: Orientación sobre Content Delivery Network (CDN) para entregar contenido de alto ancho de banda hospedado en Azure.
 author: dragon119
 ms.date: 02/02/2018
 pnp.series.title: Best Practices

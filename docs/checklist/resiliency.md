@@ -1,6 +1,6 @@
 ---
-title: "Lista de comprobación de resistencia"
-description: "Lista de comprobación que ofrece una guía para las preocupaciones de resistencia durante el diseño."
+title: Lista de comprobación de resistencia
+description: Lista de comprobación que ofrece una guía para las preocupaciones de resistencia durante el diseño.
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist

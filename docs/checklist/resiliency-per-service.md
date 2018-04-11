@@ -1,6 +1,6 @@
 ---
-title: "Lista de comprobación de resistencia para servicios de Azure"
-description: "Lista de comprobación que proporciona una orientación sobre la resistencia de varios servicios de Azure."
+title: Lista de comprobación de resistencia para servicios de Azure
+description: Lista de comprobación que proporciona una orientación sobre la resistencia de varios servicios de Azure.
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist

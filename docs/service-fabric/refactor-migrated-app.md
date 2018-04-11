@@ -1,6 +1,6 @@
 ---
-title: "Refactorización de una aplicación de Azure Service Fabric migrada de Azure Cloud Services"
-description: "Cómo refactorizar una aplicación de Azure Service Fabric existente migrada de Azure Cloud Services"
+title: Refactorización de una aplicación de Azure Service Fabric migrada de Azure Cloud Services
+description: Cómo refactorizar una aplicación de Azure Service Fabric existente migrada de Azure Cloud Services
 author: petertay
 ms.date: 01/30/2018
 ms.openlocfilehash: 08ef3af68b8eaba36a5b871449f0aba764fe5a04
