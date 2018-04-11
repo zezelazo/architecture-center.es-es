@@ -1,6 +1,6 @@
 ---
-title: "Guía: Diseño de inquilinos de Azure AD"
-description: "Guía para el diseño de inquilinos de Azure como parte de una estrategia de adopción básica en la nube"
+title: 'Guía: Diseño de inquilinos de Azure AD'
+description: Guía para el diseño de inquilinos de Azure como parte de una estrategia de adopción básica en la nube
 author: telmosampaio
 ms.openlocfilehash: 9ac52e9fd44bd8b9c777625002d5960f4f269be2
 ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc

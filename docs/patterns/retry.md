@@ -1,7 +1,7 @@
 ---
 title: Retry
-description: "Permite que una aplicación trate los errores temporales anticipados cuando intenta conectarse a un servicio o un recurso de red, mediante el reintento de forma transparente de una operación que anteriormente produjo error."
-keywords: "Patrón de diseño"
+description: Permite que una aplicación trate los errores temporales anticipados cuando intenta conectarse a un servicio o un recurso de red, mediante el reintento de forma transparente de una operación que anteriormente produjo error.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

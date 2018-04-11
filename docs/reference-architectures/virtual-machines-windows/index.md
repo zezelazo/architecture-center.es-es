@@ -1,6 +1,6 @@
 ---
-title: "Cargas de trabajo de máquinas virtuales Windows"
-description: "Explica algunas arquitecturas comunes para implementar las máquinas virtuales que hospedan aplicaciones de escala empresarial en Azure."
+title: Cargas de trabajo de máquinas virtuales Windows
+description: Explica algunas arquitecturas comunes para implementar las máquinas virtuales que hospedan aplicaciones de escala empresarial en Azure.
 layout: LandingPage
 ms.openlocfilehash: 972a307c129598ecfab161d5246d0eb2abf7c7e5
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb

@@ -1,6 +1,6 @@
 ---
-title: "Principios de diseño para las aplicaciones de Azure"
-description: "Principios de diseño para las aplicaciones de Azure"
+title: Principios de diseño para las aplicaciones de Azure
+description: Principios de diseño para las aplicaciones de Azure
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 57b04839e14804ad97fc9c86e1f9c4fe6e0da472

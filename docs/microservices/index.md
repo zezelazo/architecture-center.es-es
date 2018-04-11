@@ -1,6 +1,6 @@
 ---
-title: "Diseño, compilación y operación de microservicios en Azure con Kubernetes"
-description: "Diseño, compilación y operación de microservicios en Azure"
+title: Diseño, compilación y operación de microservicios en Azure con Kubernetes
+description: Diseño, compilación y operación de microservicios en Azure
 author: MikeWasson
 ms.date: 12/08/2017
 ms.openlocfilehash: 857e91a8eeefec18b459f2e66fde9a4f8bbe7b21

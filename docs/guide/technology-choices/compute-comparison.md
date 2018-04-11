@@ -1,6 +1,6 @@
 ---
-title: "Criterios para elegir una opción de proceso de Azure"
-description: "Compare los servicios de proceso de Azure a través de varios ejes."
+title: Criterios para elegir una opción de proceso de Azure
+description: Compare los servicios de proceso de Azure a través de varios ejes.
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 36b57d1fb674b5a1452a0e8208de836963b2b01b

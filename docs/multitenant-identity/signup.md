@@ -1,6 +1,6 @@
 ---
-title: "Registro e incorporación de inquilinos en aplicaciones multiinquilino"
-description: "Incorporación de inquilinos en una aplicación multiinquilino"
+title: Registro e incorporación de inquilinos en aplicaciones multiinquilino
+description: Incorporación de inquilinos en una aplicación multiinquilino
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
@@ -260,4 +260,5 @@ private async Task<Tenant> SignUpTenantAsync(BaseControlContext context, TenantM
 
 [state]: http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
 [Autenticación]: authenticate.md
+[Authentication]: authenticate.md
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance

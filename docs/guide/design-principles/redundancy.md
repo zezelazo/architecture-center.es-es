@@ -1,6 +1,6 @@
 ---
 title: Hacer que todo sea redundante
-description: "Cree redundancia en la aplicación para evitar los puntos únicos de error."
+description: Cree redundancia en la aplicación para evitar los puntos únicos de error.
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 05ccf78c2cfbcd4e2d26200e70463d388d54f671

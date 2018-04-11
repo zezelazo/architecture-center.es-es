@@ -1,6 +1,6 @@
 ---
-title: "Guía sobre el almacenamiento en caché"
-description: "Orientación sobre el almacenamiento en caché para mejorar el rendimiento y la escalabilidad."
+title: Guía sobre el almacenamiento en caché
+description: Orientación sobre el almacenamiento en caché para mejorar el rendimiento y la escalabilidad.
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices

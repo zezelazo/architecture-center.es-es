@@ -1,6 +1,6 @@
 ---
-title: "Comunicación entre servicios en los microservicios"
-description: "Comunicación entre servicios en los microservicios"
+title: Comunicación entre servicios en los microservicios
+description: Comunicación entre servicios en los microservicios
 author: MikeWasson
 ms.date: 12/08/2017
 ms.openlocfilehash: aff2fb7b2be25ca32d6224cee15363880cfb1488

@@ -1,6 +1,6 @@
 ---
-title: "Patrón Sidecar"
-description: "Implemente componentes de una aplicación en un proceso o contenedor independientes para proporcionar aislamiento y encapsulación."
+title: Patrón Sidecar
+description: Implemente componentes de una aplicación en un proceso o contenedor independientes para proporcionar aislamiento y encapsulación.
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: ec168009aa99f412c3f1222a1c404ea4ea5cb669

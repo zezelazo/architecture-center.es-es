@@ -1,6 +1,6 @@
 ---
-title: "Protección de una API web de back-end en una aplicación multiinquilino"
-description: "Protección de una API web de back-end"
+title: Protección de una API web de back-end en una aplicación multiinquilino
+description: Protección de una API web de back-end
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
@@ -274,6 +274,7 @@ public void ConfigureServices(IServiceCollection services)
 [Update the application manifests]: ./run-the-app.md#update-the-application-manifests
 [Token caching]: token-cache.md
 [registro de inquilinos]: signup.md
+[tenant sign-up]: signup.md
 [claims-transformation]: claims.md#claims-transformations
 [Authorization]: authorize.md
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance

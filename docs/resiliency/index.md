@@ -1,6 +1,6 @@
 ---
-title: "Diseño de aplicaciones resistentes de Azure"
-description: "Cómo crear aplicaciones resistentes de Azure, para alta disponibilidad y recuperación ante desastres."
+title: Diseño de aplicaciones resistentes de Azure
+description: Cómo crear aplicaciones resistentes de Azure, para alta disponibilidad y recuperación ante desastres.
 author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency

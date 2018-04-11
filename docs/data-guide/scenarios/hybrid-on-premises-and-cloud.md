@@ -1,6 +1,6 @@
 ---
-title: "Ampliación de las soluciones de datos locales a la nube"
-description: 
+title: Ampliación de las soluciones de datos locales a la nube
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
 ms.openlocfilehash: 66fc225dc123202ba587d82f15ea0883e1bbf3b5

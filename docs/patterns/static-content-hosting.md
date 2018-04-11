@@ -1,7 +1,7 @@
 ---
-title: "Hospedaje de contenido estático"
-description: "Implemente contenido estático en un servicio de almacenamiento basado en la nube que pueda entregarlo directamente al cliente."
-keywords: "Patrón de diseño"
+title: Hospedaje de contenido estático
+description: Implemente contenido estático en un servicio de almacenamiento basado en la nube que pueda entregarlo directamente al cliente.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

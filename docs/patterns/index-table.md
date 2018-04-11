@@ -1,7 +1,7 @@
 ---
 title: Index Table
-description: "Crea índices en los campos de los almacenes de datos a los que suelen hacer referencia las consultas."
-keywords: "Patrón de diseño"
+description: Crea índices en los campos de los almacenes de datos a los que suelen hacer referencia las consultas.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

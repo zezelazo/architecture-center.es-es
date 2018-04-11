@@ -1,6 +1,6 @@
 ---
-title: "Actualización de un recurso en una plantilla de Azure Resource Manager"
-description: "Se describe cómo ampliar la funcionalidad de las plantillas de Azure Resource Manager para actualizar un recurso."
+title: Actualización de un recurso en una plantilla de Azure Resource Manager
+description: Se describe cómo ampliar la funcionalidad de las plantillas de Azure Resource Manager para actualizar un recurso.
 author: petertay
 ms.date: 06/09/2017
 ms.openlocfilehash: fc2565819c66ee7695224ef5793e7276e6e552e0

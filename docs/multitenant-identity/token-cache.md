@@ -1,6 +1,6 @@
 ---
-title: "Almacenamiento en caché de tokens de acceso en una aplicación multiinquilino"
-description: "Almacenamiento en caché de tokens de acceso utilizados para invocar una API web de back-end"
+title: Almacenamiento en caché de tokens de acceso en una aplicación multiinquilino
+description: Almacenamiento en caché de tokens de acceso utilizados para invocar una API web de back-end
 author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications

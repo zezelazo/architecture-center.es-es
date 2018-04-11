@@ -1,5 +1,5 @@
 ---
-title: "Patrón Gateway Offloading"
+title: Patrón Gateway Offloading
 description: Descarga una funcionalidad de servicio compartida o especializada en un proxy de puerta de enlace.
 author: dragon119
 ms.date: 06/23/2017

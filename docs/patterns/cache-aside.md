@@ -1,7 +1,7 @@
 ---
 title: Cache-Aside
-description: "Carga datos a petición en una memoria caché desde un almacén de datos"
-keywords: "Patrón de diseño"
+description: Carga datos a petición en una memoria caché desde un almacén de datos
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

@@ -1,6 +1,6 @@
 ---
-title: "Recuperación ante desastres para aplicaciones de Azure"
-description: "Información general técnica y detallada sobre cómo diseñar aplicaciones para recuperación ante desastres en Microsoft Azure."
+title: Recuperación ante desastres para aplicaciones de Azure
+description: Información general técnica y detallada sobre cómo diseñar aplicaciones para recuperación ante desastres en Microsoft Azure.
 author: adamglick
 ms.date: 05/26/2017
 ms.openlocfilehash: 7235e752cf1b96e392a700b223d63b07c0f85b66

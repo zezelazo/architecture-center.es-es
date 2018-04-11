@@ -1,6 +1,6 @@
 ---
-title: "Elección de una tecnología de análisis de datos e informes"
-description: 
+title: Elección de una tecnología de análisis de datos e informes
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
 ms.openlocfilehash: 830c61bba64a6971c815330887e5cdcc4f2b5f56

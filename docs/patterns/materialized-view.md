@@ -1,7 +1,7 @@
 ---
 title: Vista materializada
-description: "Genera vistas rellenadas previamente de los datos en uno o más almacenes de datos cuando los datos no tienen el formato idóneo para las operaciones de consulta requeridas."
-keywords: "Patrón de diseño"
+description: Genera vistas rellenadas previamente de los datos en uno o más almacenes de datos cuando los datos no tienen el formato idóneo para las operaciones de consulta requeridas.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns

@@ -1,6 +1,6 @@
 ---
-title: "Lista de comprobación de disponibilidad"
-description: "Lista de comprobación que ofrece una guía para las inquietudes sobre disponibilidad durante el diseño."
+title: Lista de comprobación de disponibilidad
+description: Lista de comprobación que ofrece una guía para las inquietudes sobre disponibilidad durante el diseño.
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist

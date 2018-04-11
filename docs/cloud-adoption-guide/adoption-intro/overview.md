@@ -1,6 +1,6 @@
 ---
-title: "Adopción de Azure: fundamentales"
-description: "Describe el nivel de línea de base de conocimiento que se requiere en una empresa para adoptar Azure"
+title: 'Adopción de Azure: fundamentales'
+description: Describe el nivel de línea de base de conocimiento que se requiere en una empresa para adoptar Azure
 author: petertay
 ms.openlocfilehash: e9421b610e4eb07a3ed37bca56e513b0689484ef
 ms.sourcegitcommit: 9ba82cf84cee06ccba398ec04c51dab0e1ca8974

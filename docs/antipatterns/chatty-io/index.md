@@ -1,6 +1,6 @@
 ---
-title: "Antipatrón Chatty I/O"
-description: "Un gran número de solicitudes de E/S puede afectar al rendimiento y la capacidad de respuesta."
+title: Antipatrón Chatty I/O
+description: Un gran número de solicitudes de E/S puede afectar al rendimiento y la capacidad de respuesta.
 author: dragon119
 ms.openlocfilehash: 4f0e0e455ceb58317d3029d8ab4631d476802499
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb

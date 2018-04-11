@@ -1,6 +1,6 @@
 ---
-title: "Guía de implementación de API"
-description: "Guía sobre cómo implementar una API."
+title: Guía de implementación de API
+description: Guía sobre cómo implementar una API.
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices

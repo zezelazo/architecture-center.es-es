@@ -1,6 +1,6 @@
 ---
-title: "Guía de creación de particiones de datos"
-description: "Orientaciones sobre cómo separar las particiones para administrarlas y tener acceso a ellas por separado."
+title: Guía de creación de particiones de datos
+description: Orientaciones sobre cómo separar las particiones para administrarlas y tener acceso a ellas por separado.
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
@@ -548,12 +548,14 @@ ms.lasthandoff: 02/09/2018
 * <span data-ttu-id="cf906-874">La página [Data types] (Tipos de datos) del sitio web de Redis describe los tipos de datos que están disponibles con Redis y Azure Redis Cache.</span><span class="sxs-lookup"><span data-stu-id="cf906-874">The [Data types] page on the Redis website describes the data types that are available with Redis and Azure Redis Cache.</span></span>
 
 [Disponibilidad y coherencia en Event Hubs]: /azure/event-hubs/event-hubs-availability-and-consistency
+[Availability and consistency in Event Hubs]: /azure/event-hubs/event-hubs-availability-and-consistency
 [azure-limits]: /azure/azure-subscription-service-limits
 [Azure Content Delivery Network]: /azure/cdn/cdn-overview
 [Azure Redis Cache]: http://azure.microsoft.com/services/cache/
 [Azure Storage Scalability and Performance Targets]: /azure/storage/storage-scalability-targets
 [Azure Storage Table Design Guide]: /azure/storage/storage-table-design-guide
 [Creación de una solución de Polyglot]: https://msdn.microsoft.com/library/dn313279.aspx
+[Building a Polyglot Solution]: https://msdn.microsoft.com/library/dn313279.aspx
 [cosmos-db-ru]: /azure/cosmos-db/request-units
 [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence]: https://msdn.microsoft.com/library/dn271399.aspx
 [Data consistency primer]: http://aka.ms/Data-Consistency-Primer
@@ -561,26 +563,42 @@ ms.lasthandoff: 02/09/2018
 [Data Types]: http://redis.io/topics/data-types
 [cosmosdb-sql-api]: /azure/cosmos-db/sql-api-introduction
 [Información general de las características de Elastic Database]: /azure/sql-database/sql-database-elastic-scale-introduction
+[Elastic Database features overview]: /azure/sql-database/sql-database-elastic-scale-introduction
 [event-hubs]: /azure/event-hubs
 [Federations Migration Utility]: https://code.msdn.microsoft.com/vstudio/Federations-Migration-ce61e9c1
 [directrices y recomendaciones para las colecciones confiables en Azure Service Fabric]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections-guidelines
+[guidelines and recommendations for reliable collections in Azure Service Fabric]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections-guidelines
 [Index Table Pattern]: http://aka.ms/Index-Table-Pattern
 [Materialized View Pattern]: http://aka.ms/Materialized-View-Pattern
 [Consultas a través de particiones múltiples]: /azure/sql-database/sql-database-elastic-scale-multishard-querying
+[Multi-shard querying]: /azure/sql-database/sql-database-elastic-scale-multishard-querying
 [Información general de Azure Service Fabric]: /azure/service-fabric/service-fabric-overview
+[Overview of Azure Service Fabric]: /azure/service-fabric/service-fabric-overview
 [Partición de los servicios confiables de Service Fabric]: /azure/service-fabric/service-fabric-concepts-partitioning
+[Partition Service Fabric reliable services]: /azure/service-fabric/service-fabric-concepts-partitioning
 [Partitioning: how to split data among multiple Redis instances]: http://redis.io/topics/partitioning
 [Performing Entity Group Transactions]: https://msdn.microsoft.com/library/azure/dd894038.aspx
 [Tutorial de clúster Redis]: http://redis.io/topics/cluster-tutorial
+[Redis cluster tutorial]: http://redis.io/topics/cluster-tutorial
 [Running Redis on a CentOS Linux VM in Windows Azure]: http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx
+[Running Redis on a CentOS Linux VM in Azure]: http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx
 [Escalado con la herramienta de división y combinación de bases de datos elásticas]: /azure/sql-database/sql-database-elastic-scale-overview-split-and-merge
+[Scaling using the Elastic Database split-merge tool]: /azure/sql-database/sql-database-elastic-scale-overview-split-and-merge
 [Uso de Azure Content Delivery Network]: /azure/cdn/cdn-create-new-endpoint
+[Using Azure Content Delivery Network]: /azure/cdn/cdn-create-new-endpoint
 [Cuotas de Service Bus]: /azure/service-bus-messaging/service-bus-quotas
+[Service Bus quotas]: /azure/service-bus-messaging/service-bus-quotas
 [service-fabric-reliable-collections]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections
 [Límites de servicio en Azure Search]:  /azure/search/search-limits-quotas-capacity
+[Service limits in Azure Search]:  /azure/search/search-limits-quotas-capacity
 [patrón particionamiento]: http://aka.ms/Sharding-Pattern
+[Sharding pattern]: http://aka.ms/Sharding-Pattern
 [Tipos de datos admitidos (Azure Search)]:  https://msdn.microsoft.com/library/azure/dn798938.aspx
+[Supported Data Types (Azure Search)]:  https://msdn.microsoft.com/library/azure/dn798938.aspx
 [Transactions]: http://redis.io/topics/transactions
 [¿Qué es Event Hubs?]: /azure/event-hubs/event-hubs-what-is-event-hubs
+[What is Event Hubs?]: /azure/event-hubs/event-hubs-what-is-event-hubs
 [¿Qué es Azure Search?]: /azure/search/search-what-is-azure-search
+[What is Azure Search?]: /azure/search/search-what-is-azure-search
 [¿Qué es SQL Database?]: /azure/sql-database/sql-database-technical-overview
+[What is Azure SQL Database?]: /azure/sql-database/sql-database-technical-overview

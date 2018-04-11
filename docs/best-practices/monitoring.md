@@ -1,6 +1,6 @@
 ---
-title: "Guía de supervisión y diagnósticos"
-description: "Prácticas recomendadas para la supervisión de aplicaciones distribuidas en la nube."
+title: Guía de supervisión y diagnósticos
+description: Prácticas recomendadas para la supervisión de aplicaciones distribuidas en la nube.
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices

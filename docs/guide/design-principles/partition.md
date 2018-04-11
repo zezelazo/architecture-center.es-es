@@ -1,5 +1,5 @@
 ---
-title: "Partición alrededor de límites"
+title: Partición alrededor de límites
 description: Uso de particiones para evitar los limites en bases de datos, redes y procesos.
 author: MikeWasson
 layout: LandingPage

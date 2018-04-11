@@ -1,6 +1,6 @@
 ---
-title: "Patrón Ambassador"
-description: "Crea servicios de aplicaciones auxiliares que envíen solicitudes de red en nombre de una aplicación o servicio de consumidor."
+title: Patrón Ambassador
+description: Crea servicios de aplicaciones auxiliares que envíen solicitudes de red en nombre de una aplicación o servicio de consumidor.
 author: dragon119
 ms.date: 06/23/2017
 ms.openlocfilehash: 6c545619aab6a5817e55854350e3769834df27cd

@@ -1,6 +1,6 @@
 ---
-title: "Diseño de escalado horizontal"
-description: "Las aplicaciones en la nube deben diseñarse para el escalado horizontal."
+title: Diseño de escalado horizontal
+description: Las aplicaciones en la nube deben diseñarse para el escalado horizontal.
 author: MikeWasson
 layout: LandingPage
 ms.openlocfilehash: 8f9b3e99a53f5941f708b0de124f37e6ff7e5ab2

@@ -1,6 +1,6 @@
 ---
-title: "Implementación de un recopilador y transformador de propiedades en una plantilla de Azure Resource Manager"
-description: "Describe cómo implementar un recopilador y transformador de propiedades en una plantilla de Azure Resource Manager"
+title: Implementación de un recopilador y transformador de propiedades en una plantilla de Azure Resource Manager
+description: Describe cómo implementar un recopilador y transformador de propiedades en una plantilla de Azure Resource Manager
 author: petertay
 ms.date: 06/09/2017
 ms.openlocfilehash: 893779e652b845b3d936d11936dc767ef632fa43

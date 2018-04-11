@@ -1,5 +1,5 @@
 ---
-title: "Antipatrón No Caching"
+title: Antipatrón No Caching
 description: Si se capturan los mismos datos varias veces, puede reducirse el rendimiento la y escalabilidad.
 author: dragon119
 ms.date: 06/05/2017

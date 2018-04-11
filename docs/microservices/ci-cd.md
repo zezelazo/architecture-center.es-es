@@ -1,6 +1,6 @@
 ---
 title: CI/CD para microservicios
-description: "Integración continua y entrega continua para microservicios"
+description: Integración continua y entrega continua para microservicios
 author: MikeWasson
 ms.date: 12/08/2017
 ms.openlocfilehash: 7d8a81b7bc236e50d722a68a0115b9220d4e094f

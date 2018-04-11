@@ -1,5 +1,5 @@
 ---
-title: "Explicación: ¿Qué es una suscripción de Azure?"
+title: 'Explicación: ¿Qué es una suscripción de Azure?'
 description: Explica las suscripciones, cuentas y ofertas de Azure
 author: alexbuckgit
 ms.openlocfilehash: 1650d90d6f78b46b7fe4128d2dab6a80bd6cca78

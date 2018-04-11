@@ -1,6 +1,6 @@
 ---
 title: Red perimetral
-description: "Explica y compara los distintos métodos disponibles para proteger las aplicaciones y componentes que se ejecutan en Azure como parte de un sistema híbrido frente a intrusiones no autorizadas."
+description: Explica y compara los distintos métodos disponibles para proteger las aplicaciones y componentes que se ejecutan en Azure como parte de un sistema híbrido frente a intrusiones no autorizadas.
 layout: LandingPage
 ms.openlocfilehash: 98df0a25767c7a7282e67381c6465fe3263ce1fa
 ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb

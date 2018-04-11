@@ -1,6 +1,6 @@
 ---
-title: "Lista de comprobación de escalabilidad"
-description: "Guía de la lista de comprobación de escalabilidad sobre cuestiones de diseño para el escalado automático de Azure."
+title: Lista de comprobación de escalabilidad
+description: Guía de la lista de comprobación de escalabilidad sobre cuestiones de diseño para el escalado automático de Azure.
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist

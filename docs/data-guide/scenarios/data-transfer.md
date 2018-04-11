@@ -1,6 +1,6 @@
 ---
-title: "Elección de una tecnología de transferencia de datos"
-description: 
+title: Elección de una tecnología de transferencia de datos
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
 ms.openlocfilehash: bb0732b0f771a4c9e1a4e565875576c08484490a

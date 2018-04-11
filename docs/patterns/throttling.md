@@ -1,7 +1,7 @@
 ---
 title: Limitaciones
-description: "Controlan el consumo de recursos que usa una instancia de una aplicación, un inquilino individual o un servicio completo."
-keywords: "Patrón de diseño"
+description: Controlan el consumo de recursos que usa una instancia de una aplicación, un inquilino individual o un servicio completo.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
@@ -103,3 +103,4 @@ ms.lasthandoff: 11/14/2017
 - <span data-ttu-id="a0dcc-197">[patrón Priority Queue][].</span><span class="sxs-lookup"><span data-stu-id="a0dcc-197">[Priority Queue pattern][].</span></span> <span data-ttu-id="a0dcc-198">Un sistema puede utilizar las colas de prioridad como parte de su estrategia de limitación para mantener el rendimiento de aplicaciones críticas o de mayor valor, a la vez que reduce el rendimiento de las aplicaciones menos importantes.</span><span class="sxs-lookup"><span data-stu-id="a0dcc-198">A system can use priority queuing as part of its throttling strategy to maintain performance for critical or higher value applications, while reducing the performance of less important applications.</span></span>
 
 [patrón Priority Queue]: priority-queue.md
+[Priority Queue pattern]: priority-queue.md
