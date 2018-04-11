@@ -1,5 +1,5 @@
 ---
-title: "Conexión de una red local a Azure"
+title: Conexión de una red local a Azure
 description: Arquitecturas recomendadas para unas conexiones de red seguras y eficaces entre las redes locales y Azure.
 layout: LandingPage
 ms.openlocfilehash: 372efb8ecf69245a5895c51e3da156a348bd665e

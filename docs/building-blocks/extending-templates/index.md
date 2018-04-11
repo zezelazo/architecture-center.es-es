@@ -1,6 +1,6 @@
 ---
-title: "Extensión de las funciones de las plantillas de Azure Resource Manager"
-description: "Describe sugerencias y trucos sobre cómo ampliar la funcionalidad de las plantillas de Azure Resource Manager"
+title: Extensión de las funciones de las plantillas de Azure Resource Manager
+description: Describe sugerencias y trucos sobre cómo ampliar la funcionalidad de las plantillas de Azure Resource Manager
 author: petertay
 ms.date: 06/09/2017
 ms.openlocfilehash: 33ae6850ffa5b28108f30475804be5347859f0c3
