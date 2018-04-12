@@ -1,15 +1,16 @@
 ---
 title: Alta disponibilidad para aplicaciones de Azure
-description: "Información general técnica y detallada sobre cómo diseñar y crear aplicaciones para alta disponibilidad en Microsoft Azure."
+description: Información general técnica y detallada sobre cómo diseñar y crear aplicaciones para alta disponibilidad en Microsoft Azure.
 author: adamglick
 ms.date: 05/31/2017
-ms.openlocfilehash: 46b7b802326a8de03546528aaeb1a1c6419d41db
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: f116b9e64f1722b5141ae90239d5c8a8b4a89487
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [header](../_includes/header.md)]
+
 # <a name="high-availability-for-applications-built-on-microsoft-azure"></a>Alta disponibilidad para aplicaciones creadas en Microsoft Azure
 Una aplicación de alta disponibilidad asume las fluctuaciones en la disponibilidad y la carga, así como los errores temporales en los servicios dependientes y el hardware. La aplicación continúa funcionando de manera aceptable, según lo definido por los requisitos empresariales o en los Acuerdos de Nivel de Servicio (SLA) de la aplicación.
 

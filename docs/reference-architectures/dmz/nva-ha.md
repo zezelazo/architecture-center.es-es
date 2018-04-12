@@ -1,22 +1,22 @@
 ---
-title: "Implementación de aplicaciones virtuales de red de alta disponibilidad"
-description: "Cómo implementar aplicaciones virtuales de red de alta disponibilidad."
+title: Implementación de aplicaciones virtuales de red de alta disponibilidad
+description: Cómo implementar aplicaciones virtuales de red de alta disponibilidad.
 author: telmosampaio
 ms.date: 12/06/2016
 pnp.series.title: Network DMZ
 pnp.series.prev: secure-vnet-dmz
 cardTitle: Deploy highly available network virtual appliances
-ms.openlocfilehash: 844c87f535d2a8cb415489cb2c8e840f8c585d7d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: fe279eea3f9cb024d6c6c14943013b9b9a87bc9c
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="deploy-highly-available-network-virtual-appliances"></a>Implementación de aplicaciones virtuales de red de alta disponibilidad
 
 En este artículo se muestra cómo implementar un conjunto de aplicaciones de red virtual (NVA) de alta disponibilidad en Azure. Una NVA se usa normalmente para controlar el flujo del tráfico de red desde una red perimetral, conocida también como DMZ, hasta otras redes o subredes. Para aprender sobre la implementación de una red perimetral en Azure, consulte [Servicios en la nube de Microsoft y seguridad de red][cloud-security]. El artículo incluye arquitecturas de ejemplo de solo entrada, solo salida y de entrada y salida. 
 
-**Requisitos previos:** en este artículo se presupone un conocimiento básico de redes de Azure, [equilibradores de carga de Azure][lb-overview] y [rutas definidas por el usuario][udr-overview] (UDR). 
+<strong>Requisitos previos:</strong> en este artículo se presupone un conocimiento básico de redes de Azure, [equilibradores de carga de Azure][lb-overview] y [rutas definidas por el usuario][udr-overview] (UDR). 
 
 
 ## <a name="architecture-diagrams"></a>Diagramas de arquitectura
@@ -25,7 +25,7 @@ Una aplicación de red virtual se puede implementar en una red perimetral en muc
 
 ![[0]][0]
 
-En esta arquitectura, la aplicación de red virtual proporciona un límite de red segura ya que comprueba todo el tráfico de red de entrada y salida y solo deja pasar aquel que cumple las reglas de seguridad de red. Sin embargo, el hecho de que todo el tráfico de red deba pasar por la aplicación de red virtual significa que dicha aplicación es un único punto de error en la red. Así que, si se produce un error en la aplicación de red virtual, no habrá ninguna otra ruta para el tráfico de red ni ninguna subred back-end disponible.
+En esta arquitectura, la aplicación de red virtual proporciona un límite de red segura, ya que comprueba todo el tráfico de red de entrada y salida y solo deja pasar aquel que cumple las reglas de seguridad de la red. Sin embargo, el hecho de que todo el tráfico de la red deba pasar por la aplicación de red virtual significa que dicha aplicación es un único punto de error en la red. Así que, si se produce un error en la aplicación de red virtual, no habrá ninguna otra ruta para el tráfico de red ni ninguna subred back-end disponible.
 
 Para conseguir que una aplicación virtual de red tenga una alta disponibilidad, implemente varias de estas aplicaciones en un conjunto de disponibilidad.    
 
@@ -36,7 +36,7 @@ Las arquitecturas siguientes describen los recursos y la configuración que son 
 | [Entrada con NVA de capa 7][ingress-with-layer-7] |Todos los nodos NVA están activos. |Requiere una aplicación virtual de red que pueda terminar las conexiones y usar SNAT.</br> Requiere un conjunto independiente de NVA para el tráfico procedente de Internet y de Azure. </br> Solo puede usarse con el tráfico que se origina fuera de Azure. |
 | [Salida con NVA de capa 7][egress-with-layer-7] |Todos los nodos NVA están activos. | Requiere una aplicación virtual de red que pueda terminar las conexiones e implemente la traducción de direcciones de red de origen (SNAT).
 | [Entrada y salida con NVA de capa 7][ingress-egress-with-layer-7] |Todos los nodos están activos.<br/>Puede controlar el tráfico que se origina en Azure. |Requiere una aplicación virtual de red que pueda terminar las conexiones y usar SNAT.<br/>Requiere un conjunto independiente de NVA para el tráfico procedente de Internet y de Azure. |
-| [Conmutador de PIP-UDR][pip-udr-switch] |Un solo conjunto de NVA para todo el tráfico.<br/>Puede controlar todo el tráfico (sin límite en las reglas de puerto). |Activo-pasivo<br/>Requiere un proceso de conmutación por error. |
+| [Conmutador PIP-UDR][pip-udr-switch] |Un solo conjunto de NVA para todo el tráfico.<br/>Puede controlar todo el tráfico (sin límite en las reglas de puerto). |Activo-pasivo<br/>Requiere un proceso de conmutación por error. |
 
 ## <a name="ingress-with-layer-7-nvas"></a>Entrada con NVA de capa 7
 
@@ -44,10 +44,10 @@ En la siguiente ilustración se muestra una arquitectura de alta disponibilidad 
 
 ![[1]][1]
 
-La ventaja de esta arquitectura es que todas las aplicaciones virtuales de red están activas y, si una no funciona correctamente, el equilibrador de carga dirige el tráfico de red a la otra. Ambas aplicaciones virtuales de red enrutan el tráfico al equilibrador de carga interno, de modo que, mientras una aplicación virtual de red esté activa, el tráfico seguirá fluyendo. Las aplicaciones virtuales de red son necesarias para terminar el tráfico de SSL destinado a las máquinas virtuales de nivel web. Estas aplicaciones virtuales de red no se pueden ampliar para gestionar el tráfico local puesto que este necesita otro conjunto dedicado de aplicaciones virtuales de red con sus propias rutas de red.
+La ventaja de esta arquitectura es que todas las aplicaciones virtuales de red están activas y, si una no funciona correctamente, el equilibrador de carga dirige el tráfico de red a la otra. Ambas aplicaciones virtuales de red enrutan el tráfico al equilibrador de carga interno, de modo que, mientras una aplicación virtual de red esté activa, el tráfico seguirá fluyendo. Las aplicaciones virtuales de red son necesarias para terminar el tráfico de SSL destinado a las máquinas virtuales de nivel web. Estas aplicaciones virtuales de red no se pueden ampliar para administrar el tráfico local puesto que este necesita otro conjunto dedicado de aplicaciones virtuales de red con sus propias rutas de red.
 
 > [!NOTE]
-> Esta arquitectura se usa en las arquitecturas de referencia de [red perimetral entre Azure y el centro de datos local][dmz-on-prem] y [red perimetral entre Azure e Internet][ dmz-internet]. Cada una de estas arquitecturas de referencia incluye una solución de implementación que puede usar. Para más información, siga los vínculos.
+> Esta arquitectura se usa en las arquitecturas de referencia de [red perimetral entre Azure y el centro de datos local][dmz-on-prem] y [red perimetral entre Internet y Azure][ dmz-internet]. Cada una de estas arquitecturas de referencia incluye una solución de implementación que puede usar. Para más información, siga los vínculos.
 
 ## <a name="egress-with-layer-7-nvas"></a>Salida con NVA de capa 7
 
@@ -58,7 +58,7 @@ La arquitectura anterior puede ampliarse para proporcionar una red perimetral de
 En esta arquitectura, todo el tráfico que se origina en Azure se enruta a un equilibrador de carga interno. El equilibrador de carga distribuye las solicitudes salientes entre un conjunto de aplicaciones virtuales de red. Estas aplicaciones virtuales de red dirigen el tráfico a Internet mediante sus direcciones IP públicas individuales.
 
 > [!NOTE]
-> Esta arquitectura se usa en las arquitecturas de referencia de [red perimetral entre Azure y el centro de datos local][dmz-on-prem] y [red perimetral entre Azure e Internet][ dmz-internet]. Cada una de estas arquitecturas de referencia incluye una solución de implementación que puede usar. Para más información, siga los vínculos.
+> Esta arquitectura se usa en las arquitecturas de referencia de [red perimetral entre Azure y el centro de datos local][dmz-on-prem] y [red perimetral entre Internet y Azure][ dmz-internet]. Cada una de estas arquitecturas de referencia incluye una solución de implementación que puede usar. Para más información, siga los vínculos.
 
 ## <a name="ingress-egress-with-layer-7-nvas"></a>Entrada y salida con NVA de capa 7
 
@@ -73,7 +73,7 @@ En esta arquitectura, las aplicaciones virtuales de red procesan las solicitudes
 
 ## <a name="pip-udr-switch-with-layer-4-nvas"></a>Conmutador PIP-UDR con NVA de capa 4
 
-La siguiente arquitectura ilustra una arquitectura con una aplicación virtual de red activa y una pasiva. Esta arquitectura administra tanto la entrada como la salida del tráfico de capa 4: 
+La siguiente arquitectura ilustra una arquitectura con una aplicación virtual de red activa y otra pasiva. Esta arquitectura administra tanto la entrada como la salida del tráfico de capa 4: 
 
 ![[3]][3]
 

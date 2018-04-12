@@ -1,12 +1,12 @@
 ---
-title: "Patrones de diseño en la nube"
-description: "Patrones de diseño en la nube para Microsoft Azure"
+title: Patrones de diseño en la nube
+description: Patrones de diseño en la nube para Microsoft Azure
 keywords: Azure
-ms.openlocfilehash: bf9fb2555f5c80cab9e4616ba52155bf1284d26f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0b564931fe027e42b3a6db1a5d6a207e6441e536
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="cloud-design-patterns"></a>Patrones de diseño en la nube
 
@@ -56,7 +56,7 @@ Cada patrón describe el problema al que hace frente, las consideraciones sobre 
     <td style="width: 64px; vertical-align: middle;"><a href="./category/performance-scalability.md"><img src="_images/category/performance-scalability.svg" alt="Performance and Scalability" /></a></td>
     <td>
         <h3><a href="./category/performance-scalability.md">Rendimiento y escalabilidad</a></h3>
-        <p>El rendimiento es un indicativo de la capacidad de respuesta de un sistema a la hora de ejecutar cualquier acción dentro de un intervalo de tiempo determinado, mientras que la escalabilidad es la capacidad que tiene un sistema para controlar los aumentos de carga sin que afecte al rendimiento o para aumentar los recursos disponibles en el momento adecuado. Las aplicaciones en la nube normalmente se encuentran con cargas de trabajo variables y picos en la actividad. Predecir estos, especialmente en un escenario multiinquilino, es casi imposible. En lugar de eso, las aplicaciones se deben poder escalar horizontalmente dentro de ciertos límites para satisfacer los picos de demanda, y reducir horizontalmente cuando la demanda disminuya. La escalabilidad no se refiere solo a instancias de proceso, sino también a otros elementos como el almacenamiento de datos, la infraestructura de mensajería, etc.</p>
+        <p>El rendimiento es un indicativo de la capacidad de respuesta de un sistema a la hora de ejecutar cualquier acción dentro de un intervalo de tiempo determinado, mientras que la escalabilidad es la capacidad que tiene un sistema para controlar los aumentos de carga sin que afecte al rendimiento o para aumentar los recursos disponibles en el momento adecuado. Las aplicaciones en la nube normalmente se encuentran con cargas de trabajo variables y picos en la actividad. Predecirlos, especialmente en un escenario multiinquilino, es casi imposible. En lugar de eso, las aplicaciones se deben poder escalar horizontalmente dentro de ciertos límites para satisfacer los picos de demanda, y reducir horizontalmente cuando la demanda disminuya. La escalabilidad no se refiere solo a instancias de proceso, sino también a otros elementos como el almacenamiento de datos, la infraestructura de mensajería, etc.</p>
     </td>
 </tr>
 <tr>
@@ -77,37 +77,38 @@ Cada patrón describe el problema al que hace frente, las consideraciones sobre 
 
 ## <a name="catalog-of-patterns"></a>Catálogo de patrones
 
-| Patrón | Resumen |
-| ------- | ------- |
-| [Ambassador](./ambassador.md) | Crea servicios de aplicaciones auxiliares que envíen solicitudes de red en nombre de una aplicación o servicio de consumidor. |
-| [Anti-Corruption Layer](./anti-corruption-layer.md) | Implementa una capa de fachada o de adaptador entre una aplicación moderna y un sistema heredado. |
-| [Backends for Frontends](./backends-for-frontends.md) | Crea servicios independientes de back-end que determinadas aplicaciones de front-end o interfaces puedan usar. |
-| [Bulkhead](./bulkhead.md) | Aísla los elementos de una aplicación en grupos para que si se produce un error en uno, los demás sigan funcionando. |
-| [Cache-Aside](./cache-aside.md) | Carga datos a petición en una memoria caché desde un almacén de datos |
-| [Circuit Breaker](./circuit-breaker.md) | Maneja errores que pueden tardar una cantidad variable de tiempo en solucionarse durante la conexión a un recurso o servicio remoto. |
-| [CQRS](./cqrs.md) | Segrega las operaciones de lectura de datos de las de actualización de datos mediante interfaces independientes. |
-| [Compensating Transaction](./compensating-transaction.md) | Deshace el trabajo realizado por una serie de pasos, que conjuntamente definen una operación de coherencia final. |
-| [Competing Consumers](./competing-consumers.md) | Permite que varios consumidores simultáneos procesen los mensajes recibidos en el mismo canal de mensajería. |
-| [Compute Resource Consolidation](./compute-resource-consolidation.md) | Consolida varias tareas u operaciones en una sola unidad de cálculo. |
-| [Event Sourcing](./event-sourcing.md) | Usa un almacén de solo anexar para registrar la serie completa de eventos que describen las acciones realizadas en los datos de un dominio. |
-| [External Configuration Store](./external-configuration-store.md) | Mueve la información de configuración fuera del paquete de implementación de la aplicación a una ubicación centralizada. |
-| [Federated Identity](./federated-identity.md) | La autenticación se delega a un proveedor de identidad externo. |
-| [Gatekeeper](./gatekeeper.md) | Protege aplicaciones y servicios mediante una instancia de host dedicada que actúa como agente entre los clientes y la aplicación o servicio, valida y sanea las solicitudes, y pasa las solicitudes y datos entre ellos. |
-| [Gateway Aggregation](./gateway-aggregation.md) | Usa una puerta de enlace para agregar varias solicitudes individuales en una sola solicitud. |
-| [Gateway Offloading](./gateway-offloading.md) | Descarga una funcionalidad compartida o especializada en un proxy de puerta de enlace. |
-| [Gateway Routing](./gateway-routing.md) | Enruta las solicitudes a varios servicios mediante un solo punto de conexión. |
-| [Health Endpoint Monitoring](./health-endpoint-monitoring.md) | Implementa comprobaciones funcionales en una aplicación a la que pueden acceder herramientas externas a través de los puntos de conexión expuestos en intervalos regulares. |
-| [Index Table](./index-table.md) | Crea índices en los campos de los almacenes de datos a los que suelen hacer referencia las consultas. |
-| [Leader Election](./leader-election.md) | Coordina las acciones realizadas por una colección de instancias de tareas de colaboración de una aplicación distribuida mediante la elección de una instancia como líder que asume la responsabilidad de administrar las demás instancias. |
-| [Materialized View](./materialized-view.md) | Genera vistas rellenadas previamente de los datos en uno o más almacenes de datos cuando los datos no tienen el formato idóneo para las operaciones de consulta requeridas. |
-| [Pipes and Filters](./pipes-and-filters.md) | Desglosa una tarea que realiza un procesamiento complejo en una serie de elementos independientes que se pueden volver a utilizar. |
-| [Priority Queue](./priority-queue.md) | Clasifica por orden de prioridad las solicitudes enviadas a los servicios para que aquellas con una prioridad más alta se reciban y procesen más rápidamente que las que tienen una prioridad más baja. |
-| [Queue-Based Load Leveling](./queue-based-load-leveling.md) | Use una cola que actúe como búfer entre una tarea y un servicio que invoca para equilibrar cargas pesadas intermitentes. |
-| [Retry](./retry.md) | Permite que una aplicación trate los errores temporales anticipados cuando intenta conectarse a un servicio o un recurso de red, mediante el reintento de forma transparente de una operación que anteriormente produjo error. |
-| [Scheduler Agent Supervisor](./scheduler-agent-supervisor.md) | Coordina un conjunto de acciones en un conjunto distribuido de servicios y otros recursos remotos. |
-| [Sharding](./sharding.md) | Divide un almacén de datos en un conjunto de particiones horizontales o particiones de base de datos. |
-| [Sidecar](./sidecar.md) | Implementa componentes de una aplicación en un proceso o contenedor independiente para proporcionar aislamiento y encapsulación. |
-| [Static Content Hosting](./static-content-hosting.md) | Implementa contenido estático en un servicio de almacenamiento basado en la nube que puede enviarlo directamente al cliente. |
-| [Strangler](./strangler.md) | Migra de forma incremental un sistema heredado reemplazando gradualmente funciones específicas por los servicios y aplicaciones nuevas. |
-| [Limitaciones](./throttling.md) | Controlan el consumo de recursos que usa una instancia de una aplicación, un inquilino individual o un servicio completo. |
-| [Valet Key](./valet-key.md) | Usa un token o clave que proporciona a los clientes acceso directo restringido a un recurso o servicio específico. |
+|                                Patrón                                |                                                                                                         Resumen                                                                                                         |
+|-----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                     [Ambassador](./ambassador.md)                     |                                                            Crea servicios de aplicaciones auxiliares que envíen solicitudes de red en nombre de una aplicación o servicio de consumidor.                                                            |
+|          [Anti-Corruption Layer](./anti-corruption-layer.md)          |                                                                  Implementa una capa de fachada o de adaptador entre una aplicación moderna y un sistema heredado.                                                                  |
+|         [Backends for Frontends](./backends-for-frontends.md)         |                                                            Crea servicios independientes de back-end que determinadas aplicaciones de front-end o interfaces puedan usar.                                                             |
+|                       [Bulkhead](./bulkhead.md)                       |                                                        Aísla los elementos de una aplicación en grupos para que si se produce un error en uno, los demás sigan funcionando.                                                        |
+|                    [Cache-Aside](./cache-aside.md)                    |                                                                                   Carga datos a petición en una memoria caché desde un almacén de datos                                                                                    |
+|                [Circuit Breaker](./circuit-breaker.md)                |                                                     Maneja errores que pueden tardar una cantidad variable de tiempo en solucionarse durante la conexión a un recurso o servicio remoto.                                                     |
+|                           [CQRS](./cqrs.md)                           |                                                           Segrega las operaciones de lectura de datos de las de actualización de datos mediante interfaces independientes.                                                            |
+|       [Compensating Transaction](./compensating-transaction.md)       |                                                         Deshace el trabajo realizado por una serie de pasos, que conjuntamente definen una operación de coherencia final.                                                         |
+|            [Competing Consumers](./competing-consumers.md)            |                                                            Permite que varios consumidores simultáneos procesen los mensajes recibidos en el mismo canal de mensajería.                                                             |
+| [Compute Resource Consolidation](./compute-resource-consolidation.md) |                                                                        Consolida varias tareas u operaciones en una sola unidad de cálculo.                                                                        |
+|                 [Event Sourcing](./event-sourcing.md)                 |                                                      Usa un almacén de solo anexar para registrar la serie completa de eventos que describen las acciones realizadas en los datos de un dominio.                                                      |
+|   [External Configuration Store](./external-configuration-store.md)   |                                                           Mueve la información de configuración fuera del paquete de implementación de la aplicación a una ubicación centralizada.                                                           |
+|             [Federated Identity](./federated-identity.md)             |                                                                                La autenticación se delega a un proveedor de identidad externo.                                                                                |
+|                     [Gatekeeper](./gatekeeper.md)                     | Protege aplicaciones y servicios mediante una instancia de host dedicada que actúa como agente entre los clientes y la aplicación o servicio, valida y sanea las solicitudes, y pasa las solicitudes y datos entre ellos. |
+|            [Gateway Aggregation](./gateway-aggregation.md)            |                                                                     Usa una puerta de enlace para agregar varias solicitudes individuales en una sola solicitud.                                                                      |
+|             [Gateway Offloading](./gateway-offloading.md)             |                                                                         Descarga una funcionalidad compartida o especializada en un proxy de puerta de enlace.                                                                         |
+|                [Gateway Routing](./gateway-routing.md)                |                                                                              Enruta las solicitudes a varios servicios mediante un solo punto de conexión.                                                                               |
+|     [Health Endpoint Monitoring](./health-endpoint-monitoring.md)     |                                              Implementa comprobaciones funcionales en una aplicación a la que pueden acceder herramientas externas a través de los puntos de conexión expuestos en intervalos regulares.                                               |
+|                    [Index Table](./index-table.md)                    |                                                                Crea índices en los campos de los almacenes de datos a los que suelen hacer referencia las consultas.                                                                 |
+|                [Leader Election](./leader-election.md)                |   Coordina las acciones realizadas por una colección de instancias de tareas de colaboración de una aplicación distribuida mediante la elección de una instancia como líder que asume la responsabilidad de administrar las demás instancias.    |
+|              [Materialized View](./materialized-view.md)              |                                        Genera vistas rellenadas previamente de los datos en uno o más almacenes de datos cuando los datos no tienen el formato idóneo para las operaciones de consulta requeridas.                                        |
+|              [Pipes and Filters](./pipes-and-filters.md)              |                                                        Desglosa una tarea que realiza un procesamiento complejo en una serie de elementos independientes que se pueden volver a utilizar.                                                        |
+|                 [Priority Queue](./priority-queue.md)                 |                                 Clasifica por orden de prioridad las solicitudes enviadas a los servicios para que aquellas con una prioridad más alta se reciban y procesen más rápidamente que las que tienen una prioridad más baja.                                  |
+|      [Queue-Based Load Leveling](./queue-based-load-leveling.md)      |                                               Use una cola que actúe como búfer entre una tarea y un servicio que invoca para equilibrar cargas pesadas intermitentes.                                               |
+|                          [Retry](./retry.md)                          |               Permite que una aplicación trate los errores temporales anticipados cuando intenta conectarse a un servicio o un recurso de red, mediante el reintento de forma transparente de una operación que anteriormente produjo error.                |
+|     [Scheduler Agent Supervisor](./scheduler-agent-supervisor.md)     |                                                              Coordina un conjunto de acciones en un conjunto distribuido de servicios y otros recursos remotos.                                                               |
+|                       [Sharding](./sharding.md)                       |                                                                           Divide un almacén de datos en un conjunto de particiones horizontales o particiones de base de datos.                                                                            |
+|                        [Sidecar](./sidecar.md)                        |                                                    Implemente componentes de una aplicación en un proceso o contenedor independientes para proporcionar aislamiento y encapsulación.                                                     |
+|         [Static Content Hosting](./static-content-hosting.md)         |                                                          Implementa contenido estático en un servicio de almacenamiento basado en la nube que puede enviarlo directamente al cliente.                                                           |
+|                      [Strangler](./strangler.md)                      |                                            Migra de forma incremental un sistema heredado reemplazando gradualmente funciones específicas por los servicios y aplicaciones nuevas.                                            |
+|                     [Limitaciones](./throttling.md)                     |                                                 Controlan el consumo de recursos que usa una instancia de una aplicación, un inquilino individual o un servicio completo.                                                 |
+|                      [Valet Key](./valet-key.md)                      |                                                        Usa un token o clave que proporciona a los clientes acceso directo restringido a un recurso o servicio específico.                                                        |
+

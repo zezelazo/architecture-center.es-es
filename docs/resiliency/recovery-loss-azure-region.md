@@ -1,15 +1,16 @@
 ---
-title: "Recuperación de pérdidas de una región de Azure"
-description: "Artículo para entender y diseñar aplicaciones resistentes, con alta disponibilidad y con tolerancia a errores y para planear la recuperación ante desastres."
+title: Recuperación de pérdidas de una región de Azure
+description: Artículo para entender y diseñar aplicaciones resistentes, con alta disponibilidad y con tolerancia a errores y para planear la recuperación ante desastres.
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: 42a7d865e101b43279f3198f3dd75df1b15a8565
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: f551e8af8aece8aa30abfba2438c41c3944209bd
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [header](../_includes/header.md)]
+
 # <a name="azure-resiliency-technical-guidance-recovery-from-a-region-wide-service-disruption"></a>Guía técnica sobre resistencia en Azure: recuperación ante una interrupción del servicio en toda la región
 Azure se divide física y lógicamente en unidades denominadas regiones. Una región consta de uno o varios centros de datos muy cercanos. 
 
@@ -38,7 +39,7 @@ Existen muchas estrategias alternativas para implementar el proceso distribuido 
 
 Un análisis completo del diseño distribuido está fuera del ámbito de este documento. Para más información, consulte [Recuperación ante desastres y alta disponibilidad para aplicaciones creadas en Microsoft Azure](https://aka.ms/drtechguide).
 
-## <a name="virtual-machines"></a>Máquinas virtuales
+## <a name="virtual-machines"></a>Virtual Machines
 La recuperación de máquinas virtuales (VMs) de infraestructura como servicio (IaaS) es similar en muchos aspectos a la recuperación de procesos de plataforma como servicio (PaaS). Sin embargo, hay diferencias importantes debido al hecho de que una máquina virtual de IaaS consta de la máquina virtual y el disco de esta.
 
 * **Use Azure Backup para crear copias de seguridad entre regiones que sean coherentes con la aplicación**.
@@ -95,7 +96,7 @@ Al intentar ejecutar el servicio en la nube en varias regiones de Azure, debe te
 > 
 > 
 
-### <a name="service-bus"></a>Service Bus
+### <a name="service-bus"></a>Azure Service Bus
 Azure Service Bus usa un espacio de nombres único que no abarca varias regiones de Azure. El primer requisito es configurar los espacios de nombres necesarios del bus de servicio en la región alternativa. Sin embargo, también hay consideraciones sobre la durabilidad de los mensajes en cola. Existen varias estrategias para replicar mensajes entre regiones de Azure. Si desea información detallada sobre estas estrategias de replicación y otras estrategias de recuperación ante desastres, consulte [Procedimientos recomendados para aislar aplicaciones ante desastres e interrupciones de Service Bus](/azure/service-bus-messaging/service-bus-outages-disasters/). Para otras consideraciones sobre disponibilidad, consulte [Service Bus (disponibilidad)](recovery-local-failures.md#other-azure-platform-services).
 
 ### <a name="app-service"></a>App Service

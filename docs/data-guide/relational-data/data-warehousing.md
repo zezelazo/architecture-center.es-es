@@ -1,22 +1,53 @@
 ---
-title: Elección de un almacenamiento de datos
+title: Almacenamiento de datos y data marts
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 9cb3d4d0196b02da76d85c7f7f0e4a2a69d531e9
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 552cdfad2d571c93f83bc1e4ff0d09ac12d0b6a4
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/06/2018
 ---
-# <a name="choosing-a-data-warehouse-in-azure"></a>Elección de un almacenamiento de datos en Azure
+# <a name="data-warehousing-and-data-marts"></a>Almacenamiento de datos y data marts
 
-Un almacenamiento de datos es un repositorio central, empresarial y relacional de datos integrados procedentes de uno o varios orígenes dispares. En este tema se comparan las diversas opciones de los almacenamientos de datos en Azure.
+Un almacenamiento de datos es un repositorio central, empresarial y relacional de datos integrados procedentes de uno o más orígenes dispares que incluye muchas o todas las áreas temáticas. Los almacenamientos de datos almacenan datos históricos y actuales, y se utilizan para realizar informes y análisis de los datos de diferentes maneras.
 
-> [!NOTE]
-> Para más información acerca de cuándo se debe usar un almacenamiento de datos, consulte [Data warehousing and data marts](../scenarios/data-warehousing.md) (Almacenamiento de datos y data marts).
+![Almacenamiento de datos en Azure](../images/data-warehousing.png)
 
-## <a name="what-are-your-options-when-choosing-a-data-warehouse"></a>¿Cuáles son las opciones al elegir un almacenamiento de datos?
+Para pasar los datos a un almacenamiento de datos, estos se extraen de forma periódica de diversos orígenes que contienen información empresarial de importancia. Cuando se mueven los datos se puede dar formato, limpiar, validar, resumir y reorganizar. Como alternativa, los datos pueden almacenarse en el nivel más bajo de detalle, con vistas agregadas proporcionadas por el almacenamiento de datos para realizar informes. En cualquier caso, el almacenamiento de datos se convierte en un espacio de almacenamiento permanente de los datos utilizados en informes, en el análisis y en la toma de decisiones empresariales importantes mediante herramientas de inteligencia empresarial (BI).
+
+## <a name="data-marts-and-operational-data-stores"></a>Data marts y almacenes de datos operativos
+
+La administración de datos a escala es compleja y cada vez es menos habitual tener un almacenamiento de datos único que representa todos los datos de toda la empresa. En su lugar, las organizaciones crean almacenamientos de datos más pequeños y concretos llamados *data marts*, que exponen los datos deseados con fines de análisis. Un proceso de orquestación rellena los data marts con datos que se mantienen en un almacén de datos de tipo operativo. El almacén de datos de tipo operativo actúa como intermediario entre el sistema transaccional de origen y el data mart. Los datos administrados por el almacén de datos operativo son una versión limpia de los datos presentes en el sistema transaccional de origen y normalmente son un subconjunto de los datos históricos mantenidos por el almacenamiento de datos o el data mart. 
+
+## <a name="when-to-use-this-solution"></a>Cuándo se debe utilizar esta solución
+
+Elija un almacenamiento de datos cuando necesite convertir grandes cantidades de datos procedentes de los sistemas operacionales a un formato que sea fácil de entender, actual y preciso. No es necesario que los almacenamientos de datos sigan la misma estructura de datos simplificada utilizada en las bases de datos operativas y de OLTP. Puede usar nombres de columna que tengan sentido para los analistas y los usuarios empresariales, reestructurar el esquema para simplificar las relaciones de datos y consolidar varias tablas en una. Estos pasos ayudan a guiar a los usuarios que necesitan crear informes ad hoc o crear informes y analizar los datos en sistemas de BI, sin la ayuda de un administrador de bases de datos (DBA) o desarrollador de datos.
+
+Considere el uso de un almacenamiento de datos cuando necesite separar los datos históricos de los sistemas transaccionales de origen por motivos de rendimiento. Los almacenamientos de datos facilitan el acceso a los datos históricos desde varias ubicaciones, proporcionando una ubicación centralizada con formatos comunes, claves comunes, modelos de datos comunes y métodos de acceso comunes.
+
+Los almacenamientos de datos están optimizados para el acceso de lectura, lo que produce una generación de informes más rápida en comparación con la ejecución de informes en el sistema transaccional de origen. Además, los almacenamientos de datos proporcionan las siguientes ventajas:
+
+* Es posible almacenar y acceder a todos los datos históricos procedentes de varios orígenes desde un almacenamiento de datos como origen único.
+* Puede mejorar la calidad de datos al limpiar estos conforme se importan en el almacenamiento de datos, obteniendo datos más precisos, además de proporcionar descripciones y códigos coherentes.
+* Las herramientas de informes no entran en conflicto con los sistemas transaccionales de origen debido a los ciclos de procesamiento de las consultas. Un almacenamiento de datos permite que el sistema transaccional se centre principalmente en el control de las escrituras, mientras que el almacenamiento de datos atiende la mayoría de las solicitudes de lectura.
+* Un almacenamiento de datos puede ayudar a consolidar los datos procedentes de software diferentes.
+* Las herramientas de minería de datos pueden ayudarle a identificar patrones ocultos mediante metodologías automáticas sobre los datos del almacenamiento.
+* Un almacenamiento de datos hace que sea más fácil proporcionar acceso seguro a los usuarios autorizados y restringir el acceso a otros usuarios. No es necesario conceder a los usuarios empresariales acceso a los datos de origen, lo que elimina un vector de ataque potencial contra uno o varios sistemas transaccionales de producción.
+* Los almacenamientos de datos hacen que sea más fácil crear soluciones de inteligencia empresarial sobre los datos, como los [cubos OLAP](online-analytical-processing.md).
+
+## <a name="challenges"></a>Desafíos
+
+Para configurar correctamente un almacenamiento de datos para satisfacer las necesidades de su empresa puede encontrarse algunos de los siguientes desafíos:
+
+* Confirmar el tiempo necesario para modelar correctamente los conceptos del negocio. Se trata de un paso importante, ya que los almacenamientos de datos son controlados por la información y la asignación de conceptos dirige el resto del proyecto. Esto implica la normalización de los términos relacionados con el negocio y el uso de formatos comunes (por ejemplo, la moneda y las fechas) y la reestructuración del esquema de forma que tenga sentido para los usuarios empresariales y al tiempo garantice la precisión de los datos agregados y las relaciones.
+* Planificación y configuración de la orquestación de datos. Incluye cómo copiar los datos desde el sistema transaccional de origen al almacenamiento de datos y cuándo se deben mover los datos históricos desde los almacenes de datos operativos al almacenamiento.
+* Mantener o mejorar la calidad de los datos mediante la limpieza de los mismos en el momento de su importación en el almacenamiento.
+
+## <a name="data-warehousing-in-azure"></a>Almacenamiento de datos en Azure
+
+En Azure, puede tener uno o varios orígenes de datos, ya sea desde las transacciones de los clientes o desde diversas aplicaciones de negocio usadas por varios departamentos. Estos datos se almacenan normalmente en una o varias bases de datos [OLTP](online-transaction-processing.md). Los datos podrían conservarse en otros medios de almacenamiento, como recursos compartidos de red, blobs de Azure Storage o una instancia de Data Lake. Los datos también se pueden almacenar en el propio almacenamiento de datos o en una base de datos relacional como Azure SQL Database. El propósito de la capa de almacenamiento de datos analíticos es satisfacer las consultas emitidas por las herramientas de generación de informes y análisis sobre el almacenamiento de datos o el data mart. En Azure, esta funcionalidad de almacenamiento analítico se puede lograr con Azure SQL Data Warehouse o con Azure HDInsight con Hive o Interactive Query. Además, necesitará cierto nivel de orquestación para mover o copiar los datos del almacén de datos al almacenamiento de datos periódicamente, algo que se puede llevar a cabo mediante Azure Data Factory o Oozie en Azure HDInsight.
 
 Hay varias opciones para la implementación de un almacenamiento de datos en Azure, con el fin de que pueda elegir la que más se ajuste a sus necesidades. Las listas siguientes se dividen en dos categorías: [multiproceso simétrico](https://en.wikipedia.org/wiki/Symmetric_multiprocessing) (SMP) y [procesamiento paralelo masivo](https://en.wikipedia.org/wiki/Massively_parallel) (MPP). 
 
@@ -31,7 +62,7 @@ MPP:
 - [Apache Hive en HDInsight](/azure/hdinsight/hadoop/hdinsight-use-hive)
 - [Interactive Query (Hive LLAP) en HDInsight](/azure/hdinsight/interactive-query/apache-interactive-query-get-started)
 
-Como norma general, los almacenamientos basados en SMP son más adecuados para conjuntos de datos pequeños a medianos (hasta 4-100 TB), mientras que MPP se utiliza a menudo para macrodatos. La delineación entre pequeño/mediano y macrodatos en parte tiene que ver con la infraestructura de soporte y la definición de su organización (consulte [Elección de un almacén de datos de OLTP](oltp-data-stores.md#scalability-capabilities)). 
+Como norma general, los almacenamientos basados en SMP son más adecuados para conjuntos de datos pequeños a medianos (hasta 4-100 TB), mientras que MPP se utiliza a menudo para macrodatos. La delineación entre pequeño/mediano y macrodatos en parte tiene que ver con la infraestructura de soporte y la definición de su organización (consulte [Elección de un almacén de datos de OLTP](online-transaction-processing.md#scalability-capabilities)). 
 
 Más allá de los tamaños de los datos, es probable que el tipo de patrón de la carga de trabajo sea un factor determinante mayor. Por ejemplo, las consultas más complejas pueden ser demasiado lentas para una solución SMP y requerir una solución MPP. Es probable que los sistemas basados en MPP impongan una penalización de rendimiento con tamaños de datos pequeños, debido a la forma en que los trabajos se distribuyen y se consolidan en los nodos. Si el tamaño de los datos ya supera 1 TB y se espera que siga creciendo, considere la posibilidad de elegir una solución MPP. Sin embargo, si el tamaño es menor, pero las cargas de trabajo superan los recursos disponibles de la solución SMP, es posible que MPP sea la mejor opción.
 
@@ -60,7 +91,7 @@ Para restringir las opciones, empiece por responder a estas preguntas:
 
 - En un conjunto de datos grande, ¿es el origen de datos estructurado o no estructurado? Es posible que los datos sin estructura se deban procesar en un entorno de macrodatos como Spark on HDInsight, Azure Databricks, Hive LLAP on HDInsight o Azure Data Lake Analytics. Todos ellos pueden servir como motores ELT (extracción, carga y transformación de datos) y ETL (extracción, transformación y carga de datos). Pueden convertir los datos procesados en los datos estructurados, lo que facilita que su carga en SQL Data Warehouse o en una de las otras opciones. En el caso de los datos estructurados, SQL Data Warehouse tiene un nivel de rendimiento denominado Optimizado para Compute, para las cargas de trabajo con muchos procesos que requieren un rendimiento ultra alto.
 
-- ¿Desea separar los datos históricos de los datos operativos actuales? En ese caso, seleccione una de las opciones en las que se requiera [orquestación](pipeline-orchestration-data-movement.md). Estos son almacenes independiente optimizados para un acceso de lectura intensivo y son más adecuados como almacén de datos históricos independiente.
+- ¿Desea separar los datos históricos de los datos operativos actuales? En ese caso, seleccione una de las opciones en las que se requiera [orquestación](../technology-choices/pipeline-orchestration-data-movement.md). Estos son almacenes independiente optimizados para un acceso de lectura intensivo y son más adecuados como almacén de datos históricos independiente.
 
 - ¿Necesita integrar datos de varios orígenes, más allá de su almacén de datos de OLTP? Si es así, considere la posibilidad de usar opciones que integren fácilmente varios orígenes de datos. 
 
@@ -118,15 +149,15 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 ### <a name="security-capabilities"></a>Funcionalidades de seguridad
 
-| | Azure SQL Database | SQL Server en una máquina virtual | SQL Data Warehouse | Apache Hive en HDInsight | Hive LLAP en HDInsight |
-| --- | --- | --- | --- | --- | --- | -- |
-| Autenticación  | SQL/Azure Active Directory (Azure AD) | SQL/Azure AD/Active Directory | SQL/Azure AD | local/Azure AD <sup>1</sup> | local/Azure AD <sup>1</sup> |
-| Autorización  | Sí | Sí | Sí | Sí | Sí <sup>1</sup> | Sí <sup>1</sup> |
-| Auditoría  | Sí | Sí | Sí | Sí | Sí <sup>1</sup> | Sí <sup>1</sup> |
-| Cifrado de datos en reposo | Sí <sup>2</sup> | Sí <sup>2</sup> | Sí <sup>2</sup> | Sí <sup>2</sup> | Sí <sup>1</sup> | Sí <sup>1</sup> |
-| Seguridad de nivel de fila | Sí | Sí | Sí | Sin  | Sí <sup>1</sup> | Sí <sup>1</sup> |
-| Admite firewalls | Sí | Sí | Sí | Sí | Sí <sup>3</sup> | Sí <sup>3</sup> |
-| Enmascaramiento de datos dinámicos | Sí | Sí | Sí | Sin  | Sí <sup>1</sup> | Sí <sup>1</sup> |
+|                         |           Azure SQL Database            |  SQL Server en una máquina virtual  | SQL Data Warehouse |   Apache Hive en HDInsight    |    Hive LLAP en HDInsight     |
+|-------------------------|-----------------------------------------|-----------------------------------|--------------------|-------------------------------|-------------------------------|
+|     Autenticación      | SQL/Azure Active Directory (Azure AD) | SQL/Azure AD/Active Directory |   SQL/Azure AD   | local/Azure AD <sup>1</sup> | local/Azure AD <sup>1</sup> |
+|      Autorización      |                   Sí                   |                Sí                |        Sí         |              Sí              |       Sí <sup>1</sup>        |
+|        Auditoría         |                   Sí                   |                Sí                |        Sí         |              Sí              |       Sí <sup>1</sup>        |
+| Cifrado de datos en reposo |            Sí <sup>2</sup>             |         Sí <sup>2</sup>          |  Sí <sup>2</sup>  |       Sí <sup>2</sup>        |       Sí <sup>1</sup>        |
+|   Seguridad de nivel de fila    |                   Sí                   |                Sí                |        Sí         |              Sin                |       Sí <sup>1</sup>        |
+|   Admite firewalls    |                   Sí                   |                Sí                |        Sí         |              Sí              |       Sí <sup>3</sup>        |
+|  Enmascaramiento de datos dinámicos   |                   Sí                   |                Sí                |        Sí         |              Sin                |       Sí <sup>1</sup>        |
 
 [1] Requiere el uso de un [clúster de HDInsight unido a un dominio](/azure/hdinsight/domain-joined/apache-domain-joined-introduction).
 

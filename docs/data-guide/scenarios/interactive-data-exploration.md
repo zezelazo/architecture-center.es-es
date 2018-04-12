@@ -1,13 +1,13 @@
 ---
-title: "Exploración interactiva de datos"
-description: 
+title: Exploración interactiva de datos
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: a9e72f4cf88c9082fe79f854dd79e98bfaa918f5
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 20740a8fe912a63526c847416b832941f4ac33ec
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="interactive-data-exploration"></a>Exploración interactiva de datos
 
@@ -52,7 +52,7 @@ Servicios de Azure correspondientes:
 
 ## <a name="architecture"></a>Architecture
 
-Aunque el objetivo de este escenario es permitir el análisis de datos interactivo, las tareas de limpieza de datos, muestreo y estructuración que implica la ciencia de datos, a menudo incluyen procesos de ejecución prolongada. Esto hace que una arquitectura de [procesamiento por lotes](./batch-processing.md) sea adecuada.
+Aunque el objetivo de este escenario es permitir el análisis de datos interactivo, las tareas de limpieza de datos, muestreo y estructuración que implica la ciencia de datos, a menudo incluyen procesos de ejecución prolongada. Esto hace que una arquitectura de [procesamiento por lotes](../big-data/batch-processing.md) sea adecuada.
 
 ## <a name="technology-choices"></a>Opciones de tecnología
 

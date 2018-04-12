@@ -1,26 +1,26 @@
 ---
-title: "Ejecución de la aplicación Surveys"
-description: "Cómo ejecutar localmente la aplicación de ejemplo Surveys"
+title: Ejecución de la aplicación Surveys
+description: Cómo ejecutar localmente la aplicación de ejemplo Surveys
 author: MikeWasson
 ms:date: 07/21/2017
-ms.openlocfilehash: d17cd939c1172edd0947b30ea13657806060b5f1
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 28d976374e5d6dbad434873eef149704f26a1f3f
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-the-surveys-application"></a>Ejecución de la aplicación Surveys
 
-En este artículo se describe cómo ejecutar localmente la aplicación [Tailspin Surveys](./tailspin.md) desde Visual Studio. En estos pasos, no va a implementar la aplicación en Azure. Sin embargo, tendrá que crear algunos recursos de Azure &mdash; un directorio de Azure Active Directory (Azure AD) y una caché en Redis.
+En este artículo se describe cómo ejecutar localmente la aplicación [Tailspin Surveys](./tailspin.md) desde Visual Studio. En estos pasos, no va a implementar la aplicación en Azure. Sin embargo, tendrá que crear algunos recursos de Azure: un directorio de Azure Active Directory (Azure AD) y una instancia de Redis Cache.
 
 Este es un resumen de los pasos:
 
 1. Cree un directorio de Azure AD (inquilino) para la empresa ficticia Tailspin.
 2. Registre la aplicación Surveys y la API web de back-end con Azure AD.
-3. Cree de una instancia de Azure Redis Cache.
+3. Cree una instancia de Azure Redis Cache.
 4. Configure la aplicación y cree una base de datos local.
 5. Ejecute la aplicación y registre un nuevo inquilino.
-6. Agregue roles de la aplicación a los usuarios.
+6. Agregue roles de aplicación a los usuarios.
 
 ## <a name="prerequisites"></a>Requisitos previos
 -   [Visual Studio 2017][VS2017]
@@ -28,7 +28,7 @@ Este es un resumen de los pasos:
 
 ## <a name="create-the-tailspin-tenant"></a>Creación del inquilino de Tailspin
 
-Tailspin es la empresa ficticia que hospeda la aplicación Surveys. Tailspin usa Azure AD para habilitar que otros inquilinos se registren con la aplicación. Luego, dichos clientes pueden usar sus credenciales de Azure AD para iniciar sesión en la aplicación.
+Tailspin es la empresa ficticia que hospeda la aplicación Surveys. Tailspin usa Azure AD para permitir que otros inquilinos se registren con la aplicación. Luego, dichos clientes pueden usar sus credenciales de Azure AD para iniciar sesión en la aplicación.
 
 En este paso, creará un directorio de Azure AD para Tailspin.
 
@@ -36,13 +36,13 @@ En este paso, creará un directorio de Azure AD para Tailspin.
 
 2. Haga clic en **Nuevo** > **Seguridad e identidad** > **Azure Active Directory**.
 
-3. Escriba `Tailspin` como nombre de la organización y escriba un nombre de dominio. El nombre de dominio tendrá el formato `xxxx.onmicrosoft.com` y debe ser único globalmente. 
+3. Escriba `Tailspin` como nombre de la organización y especifique un nombre de dominio. El nombre de dominio tendrá el formato `xxxx.onmicrosoft.com` y debe ser único globalmente. 
 
     ![](./images/running-the-app/new-tenant.png)
 
 4. Haga clic en **Crear**. El nuevo directorio puede tardar unos minutos en crearse.
 
-Para completar el escenario de un extremo a otro, necesitará un segundo directorio de Azure AD para representar a un cliente que se suscribe a la aplicación. Puede usar su directorio de Azure AD predeterminado (no Tailspin), o bien crear uno nuevo para este propósito. En los ejemplos, se usa Contoso como cliente ficticio.
+Para completar el escenario de un extremo a otro, necesitará un segundo directorio de Azure AD para representar a un cliente que se registra en la aplicación. Puede usar su directorio de Azure AD predeterminado (no Tailspin), o bien crear uno nuevo para este propósito. En los ejemplos, se usa Contoso como cliente ficticio.
 
 ## <a name="register-the-surveys-web-api"></a>Registro de la API web de Surveys 
 
@@ -52,15 +52,15 @@ Para completar el escenario de un extremo a otro, necesitará un segundo directo
 
 3. Haga clic en **Registros de aplicaciones** > **Nuevo registro de aplicaciones**.
 
-4.  En la hoja **Crear**, escriba la siguiente información:
+4. En la hoja **Crear**, escriba la siguiente información:
 
-  - **Nombre**: `Surveys.WebAPI`
+   - **Nombre**: `Surveys.WebAPI`
 
-  - **Tipo de aplicación**: `Web app / API`
+   - **Tipo de aplicación**: `Web app / API`
 
-  - **URL de inicio de sesión**: `https://localhost:44301/`
+   - **URL de inicio de sesión**: `https://localhost:44301/`
    
-  ![](./images/running-the-app/register-web-api.png) 
+   ![](./images/running-the-app/register-web-api.png) 
 
 5. Haga clic en **Crear**.
 
@@ -72,21 +72,21 @@ Para completar el escenario de un extremo a otro, necesitará un segundo directo
 
     ![Settings](./images/running-the-app/settings.png)
 
-9. Establecer **Multiinquilino** en **SÍ**.
+9. Establezca **Multiinquilino** en **SÍ**.
 
 10. Haga clic en **Guardar**.
 
 ## <a name="register-the-surveys-web-app"></a>Registro de la aplicación web Surveys 
 
-1.  Vuelva a la hoja **Registros de aplicaciones** y haga clic en **Nuevo registro de aplicaciones**.
+1. Vuelva a la hoja **Registros de aplicaciones** y haga clic en **Nuevo registro de aplicaciones**.
 
-2.  En la hoja **Crear**, escriba la siguiente información:
+2. En la hoja **Crear**, escriba la siguiente información:
 
-  - **Nombre**: `Surveys`
-  - **Tipo de aplicación**: `Web app / API`
-  - **URL de inicio de sesión**: `https://localhost:44300/`
+   - **Nombre**: `Surveys`
+   - **Tipo de aplicación**: `Web app / API`
+   - **URL de inicio de sesión**: `https://localhost:44300/`
    
-    Tenga en cuenta que la dirección URL de inicio de sesión tiene un número de puerto diferente que la aplicación `Surveys.WebAPI` del paso anterior.
+   Tenga en cuenta que la dirección URL de inicio de sesión tiene un número de puerto diferente que la aplicación `Surveys.WebAPI` del paso anterior.
 
 3. Haga clic en **Crear**.
  
@@ -102,7 +102,7 @@ Para completar el escenario de un extremo a otro, necesitará un segundo directo
 
     ![Settings](./images/running-the-app/settings.png)
 
-8. Establecer **Multiinquilino** en **SÍ**.
+8. Establezca **Multiinquilino** en **SÍ**.
 
 9. Haga clic en **Guardar**.
 
@@ -123,7 +123,7 @@ Para completar el escenario de un extremo a otro, necesitará un segundo directo
 17. Antes de salir de esta hoja, copie el valor de la clave.
 
     > [!NOTE] 
-    > La clave no volverá a estará visible después de salir de la hoja. 
+    > La clave no volverá a estar visible después de salir de la hoja. 
 
 18. En **ACCESO DE API**, haga clic en **Permisos necesarios**.
 
@@ -135,14 +135,14 @@ Para completar el escenario de un extremo a otro, necesitará un segundo directo
 
 21. Seleccione `Surveys.WebAPI` y haga clic en **Seleccionar**.
 
-22. En **Permisos delegados**, seleccione **Access Surveys.WebAPI**.
+22. En **Permisos delegados**, seleccione **Acceso a Surveys.WebAPI**.
 
     ![Establecimiento de permisos delegados](./images/running-the-app/delegated-permissions.png)
 
 23. Haga clic en **Seleccionar** > **Listo**.
 
 
-## <a name="update-the-application-manifests"></a>Actualización de los manifiestos de aplicaciones
+## <a name="update-the-application-manifests"></a>Actualización de los manifiestos de aplicación
 
 1. Vuelva a la hoja **Configuración** de la aplicación `Surveys.WebAPI`.
 
@@ -150,54 +150,54 @@ Para completar el escenario de un extremo a otro, necesitará un segundo directo
 
     ![](./images/running-the-app/manifest.png)
  
-3.  Agregue el siguiente JSON al elemento `appRoles`. Genere nuevos GUID para las propiedades `id`.
+3. Agregue el siguiente JSON al elemento `appRoles`. Genere nuevos GUID para las propiedades `id`.
 
-    ```json
-    {
-      "allowedMemberTypes": ["User"],
-      "description": "Creators can create surveys",
-      "displayName": "SurveyCreator",
-      "id": "<Generate a new GUID. Example: 1b4f816e-5eaf-48b9-8613-7923830595ad>",
-      "isEnabled": true,
-      "value": "SurveyCreator"
-    },
-    {
-      "allowedMemberTypes": ["User"],
-      "description": "Administrators can manage the surveys in their tenant",
-      "displayName": "SurveyAdmin",
-      "id": "<Generate a new GUID>",  
-      "isEnabled": true,
-      "value": "SurveyAdmin"
-    }
-    ```
+   ```json
+   {
+     "allowedMemberTypes": ["User"],
+     "description": "Creators can create surveys",
+     "displayName": "SurveyCreator",
+     "id": "<Generate a new GUID. Example: 1b4f816e-5eaf-48b9-8613-7923830595ad>",
+     "isEnabled": true,
+     "value": "SurveyCreator"
+   },
+   {
+     "allowedMemberTypes": ["User"],
+     "description": "Administrators can manage the surveys in their tenant",
+     "displayName": "SurveyAdmin",
+     "id": "<Generate a new GUID>",  
+     "isEnabled": true,
+     "value": "SurveyAdmin"
+   }
+   ```
 
-5.  En la propiedad `knownClientApplications`, agregue el identificador de aplicación de la aplicación web Surveys, que obtuvo al registrar la aplicación anteriormente. Por ejemplo:
+4. En la propiedad `knownClientApplications`, agregue el identificador de aplicación de la aplicación web Surveys, que obtuvo al registrar la aplicación anteriormente. Por ejemplo:
 
-  ```json
-  "knownClientApplications": ["be2cea23-aa0e-4e98-8b21-2963d494912e"],
-  ```
+   ```json
+   "knownClientApplications": ["be2cea23-aa0e-4e98-8b21-2963d494912e"],
+   ```
 
-  Esta opción agrega la aplicación Surveys a la lista de clientes autorizados para llamar a la API web.
+   Esta opción agrega la aplicación Surveys a la lista de clientes autorizados para llamar a la API web.
 
-6.  Haga clic en **Guardar**.
+5. Haga clic en **Guardar**.
 
 Ahora repita los mismos pasos para la aplicación Surveys, pero no agregue una entrada para `knownClientApplications`. Use las mismas definiciones de rol, pero genere nuevos GUID para los identificadores.
 
-## <a name="create-a-new-redis-cache-instance"></a>Creación una instancia nueva de Redis Cache
+## <a name="create-a-new-redis-cache-instance"></a>Creación de una instancia nueva de Redis Cache
 
 La aplicación Surveys utiliza Redis para almacenar en caché tokens de acceso de OAuth 2. Para crear la caché:
 
-1.  Vaya a [Azure Portal](https://portal.azure.com) y haga clic en **Nuevo** > **Databases** > **Caché en Redis**.
+1.  Vaya a [Azure Portal](https://portal.azure.com) y haga clic en **Nuevo** > **Databases** > **Redis Cache**.
 
 2.  Rellene la información necesaria, incluidos el nombre DNS, el grupo de recursos, la ubicación y el plan de tarifa. Puede crear un grupo de recursos nuevo o seleccionar uno existente.
 
 3. Haga clic en **Crear**.
 
-4. Después de crea la caché en Resis, navegue hasta el recurso en el portal.
+4. Después de crear la instancia de Redis Cache, vaya al recurso en el portal.
 
 5. Haga clic en **Claves de acceso** y copie la clave principal.
 
-Para más información acerca de cómo crear una caché en Redis, consulte [Uso de Azure Redis Cache](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache).
+Para más información acerca de cómo crear una instancia de Redis Cache, consulte [Uso de Azure Redis Cache](/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache).
 
 ## <a name="set-application-secrets"></a>Establecimiento de secretos de la aplicación
 
@@ -226,7 +226,7 @@ Para más información acerca de cómo crear una caché en Redis, consulte [Uso 
     - `AzureAd:ClientId`: el identificador de la aplicación Surveys.
     - `AzureAd:ClientSecret`: la clave que generó al registrar la aplicación Surveys en Azure AD.
     - `AzureAd:WebApiResourceId`: URI del identificador de aplicación que especificó cuando creó la aplicación Surveys.WebAPI en Azure AD. Debe tener el formato `https://<directory>.onmicrosoft.com/surveys.webapi`
-    - `Redis:Configuration`: cree esta cadena a partir del nombre DNS de la caché en Redis y la clave de acceso principal. Por ejemplo, "tailspin.redis.cache.windows.net,password=2h5tBxxx,ssl=true".
+    - `Redis:Configuration`: cree esta cadena a partir del nombre DNS de la instancia de Redis Cache y la clave de acceso principal. Por ejemplo, "tailspin.redis.cache.windows.net,password=2h5tBxxx,ssl=true".
 
 4.  Guarde el archivo actualizado secrets.json.
 
@@ -267,7 +267,7 @@ Puede establecer que Visual Studio se ejecute en ambos proyectos automáticament
 2.  Seleccione **Proyectos de inicio múltiples**.
 3.  Establezca **Acción** = **Iniciar** para los proyectos Tailspin.Surveys.Web y Tailspin.Surveys.WebAPI.
 
-## <a name="sign-up-a-new-tenant"></a>Suscripción de un nuevo inquilino
+## <a name="sign-up-a-new-tenant"></a>Registro de un nuevo inquilino
 
 Cuando la aplicación se inicia, no ha iniciado sesión, por lo que verá la página de bienvenida:
 
@@ -281,18 +281,18 @@ Para registrar una organización:
 
 La aplicación registra al inquilino y, después, cierra la sesión. La aplicación cierra la sesión porque antes de usarla hay que configurar los roles de aplicación en Azure AD.
 
-![Después de la suscripción](./images/running-the-app/screenshot2.png)
+![Después del registro](./images/running-the-app/screenshot2.png)
 
-## <a name="assign-application-roles"></a>Asignación de los roles de la aplicación
+## <a name="assign-application-roles"></a>Asignación de los roles de aplicación
 
-Cuando un inquilino se suscribe, un administrador de AD del inquilino debe asignar roles de aplicación a los usuarios.
+Cuando un inquilino se registra, un administrador de directorio AD del inquilino debe asignar los roles de aplicación a los usuarios.
 
 
-1. En el [Azure Portal][portal], cambie al directorio de Azure AD que usó para suscribirse a la aplicación Surveys. 
+1. En el [Azure Portal][portal], cambie al directorio de Azure AD que usó para registrarse en la aplicación Surveys. 
 
 2. En el panel de navegación izquierdo, elija **Azure Active Directory**. 
 
-3. Haga clic en **Aplicaciones empresariales** > **Todas las aplicaciones**. El portal enumerará `Survey` y `Survey.WebAPI`. Si no lo hace, asegúrese de que ha completado el proceso de suscripción.
+3. Haga clic en **Aplicaciones empresariales** > **Todas las aplicaciones**. El portal enumerará `Survey` y `Survey.WebAPI`. Si no lo hace, asegúrese de que ha completado el proceso de registro.
 
 4.  Haga clic en la aplicación Surveys.
 
@@ -300,7 +300,7 @@ Cuando un inquilino se suscribe, un administrador de AD del inquilino debe asign
 
 4.  Haga clic en **Agregar usuario**.
 
-5.  Si dispone de Azure AD Premium, haga clic en **Usuarios y grupos**. De lo contrario, haga clic en **Usuarios** (la asignación de un rol a un grupo requiere Azure AD Premium).
+5.  Si dispone de Azure AD Premium, haga clic en **Usuarios y grupos**. De lo contrario, haga clic en **Usuarios**. (la asignación de un rol a un grupo requiere Azure AD Premium).
 
 6. Seleccione uno o varios usuarios y haga clic en **Seleccionar**.
 
@@ -312,7 +312,7 @@ Cuando un inquilino se suscribe, un administrador de AD del inquilino debe asign
 
 7.  Haga clic en **Asignar**.
 
-Repita los mismos pasos para asignar roles de la aplicación Survey.WebAPI.
+Repita los mismos pasos para asignar los roles de la aplicación Survey.WebAPI.
 
 > Importante: Un usuario siempre debe tener los mismos roles en Survey y en Survey.WebAPI. De lo contrario, los permisos del usuario no serán coherentes, lo que puede provocar errores de 403 (Prohibido) de la API Web.
 

@@ -1,14 +1,14 @@
 ---
-title: "Lista de comprobación de DevOps"
-description: "Lista de comprobación que proporciona guía relacionada con DevOps."
+title: Lista de comprobación de DevOps
+description: Lista de comprobación que proporciona guía relacionada con DevOps.
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: 356fef2415347ae132915695a25fd9b50779bd8b
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 2e338d2f2e61b404223001a61f44e06e89e7f563
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="devops-checklist"></a>Lista de comprobación de DevOps
 
@@ -130,7 +130,7 @@ La documentación compartida es crítica. Anime a los miembros del equipo a cont
 
 **Siga los principios de privilegios mínimos al conceder acceso a los recursos.** Administre con precaución el acceso a los recursos. El acceso se debe denegar de forma predeterminada, salvo que a un usuario explícitamente se le concede explícitamente acceso a un recurso. Conceda a los usuarios exclusivamente el acceso que necesitan para completar sus tareas. Realice un seguimiento de los permisos de los usuario y realice auditorías de seguridad periódicas.
 
-**Use el control de acceso basado en rol** La asignación de cuentas de usuario y de acceso a los recursos no debe ser un proceso manual. Use el [control de acceso basado en rol][rbac] (RBAC) para la concesión de acceso en función de las identidades y grupos de [Azure Active Directory][azure-ad]. 
+<strong>Use el control de acceso basado en rol</strong> La asignación de cuentas de usuario y de acceso a los recursos no debe ser un proceso manual. Use el [control de acceso basado en rol][rbac] (RBAC) para la concesión de acceso en función de las identidades y grupos de [Azure Active Directory][azure-ad]. 
 
 **Utilice un sistema de seguimiento de errores para realizar el seguimiento de los problemas.** Sin una buena forma de realizar el seguimiento de los problemas, es fácil pasar por alto elementos, duplicar el trabajo o crear problemas adicionales. No confíe en comunicación interpersonal informal para realizar un seguimiento del estado de los errores. Use un herramienta de seguimiento de errores para registrar información detallada acerca de los problemas, asignar los recursos necesarios para solucionarlos y proporcionar una pista de auditoría de su progreso y estado. 
 

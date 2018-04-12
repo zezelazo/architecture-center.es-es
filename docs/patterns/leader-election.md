@@ -1,18 +1,18 @@
 ---
-title: Leader Election
-description: "Coordina las acciones realizadas por una colección de instancias de tareas de colaboración de una aplicación distribuida mediante la elección de una instancia como líder que asume la responsabilidad de administrar las demás instancias."
-keywords: "Patrón de diseño"
+title: Elección del responsable
+description: Coordina las acciones realizadas por una colección de instancias de tareas de colaboración de una aplicación distribuida mediante la elección de una instancia como líder que asume la responsabilidad de administrar las demás instancias.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - resiliency
-ms.openlocfilehash: ddb61097ed3229ed0ed517b94c280d3ef892c999
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 3e7d47f70f660f2507f0619e1c41bf9a32a25be4
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="leader-election-pattern"></a>Patrón Leader Election
 
@@ -26,7 +26,7 @@ Una aplicación en la nube típica tiene muchas tareas que actúan de manera coo
 
 Las instancias de tarea podrían ejecutarse por separado la mayor parte del tiempo, pero también podría ser necesario coordinar las acciones de cada una para garantizar que no entren en conflicto, provoquen la contención de recursos compartidos o interfieran por accidente con el trabajo que realizan otras instancias de tarea.
 
-Por ejemplo:
+Por ejemplo: 
 
 - En un sistema basado en la nube que implementa escalado horizontal, varias instancias de la misma tarea podrían estar ejecutándose al mismo tiempo y cada instancia atender a un usuario diferente. Si estas instancias escriben en un recurso compartido, es necesario coordinar sus acciones para evitar que cada instancia sobrescriba los cambios realizados por las demás.
 - Si las tareas ejecutan elementos individuales de un cálculo complejo en paralelo, los resultados deben agregarse cuando dichos cálculos finalicen.
@@ -70,9 +70,9 @@ Este patrón puede ser útil en los siguientes casos:
 El proyecto DistributedMutex de la solución LeaderElection (se puede encontrar un ejemplo que demuestra este patrón en [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election)) muestra cómo usar una concesión en un blob de Azure Storage para proporcionar un mecanismo a fin de implementar una exclusión mutua distribuida compartida. Esta exclusión mutua puede usarse para elegir un líder entre un grupo de instancias de rol de un servicio en la nube de Azure. La primera instancia de rol en adquirir la concesión se elige como líder y lo sigue siendo hasta que libera la concesión o es incapaz de renovarla. Otras instancias de rol pueden continuar con la supervisión de la concesión del blob en caso de que el líder ya no esté disponible.
 
 >  Una concesión de blob es un bloqueo exclusivo de escritura sobre un blob. Un único blob solo puede ser el sujeto de una concesión en cualquier momento en el tiempo. Una instancia de rol puede solicitar una concesión sobre un blob especificado y se le concederá la concesión si ninguna otra instancia de rol mantiene una concesión sobre el mismo blob. En caso contrario, la solicitud inicia una excepción.
-
+> 
 > Para evitar que una instancia de rol con errores conserve la concesión de forma indefinida, especifique una duración para la concesión. Cuando expire, la concesión estará disponible. Sin embargo, mientras una instancia de rol mantenga la concesión puede solicitar que ésta se renueve, así que se le otorgará durante un periodo de tiempo adicional. La instancia de rol puede repetir continuamente este proceso si desea conservar la concesión.
-Para más información sobre cómo conceder un blob, consulte [Lease Blob (API de REST)](https://msdn.microsoft.com/library/azure/ee691972.aspx).
+> Para más información sobre cómo conceder un blob, consulte [Lease Blob (API de REST)](https://msdn.microsoft.com/library/azure/ee691972.aspx).
 
 La clase `BlobDistributedMutex` del ejemplo de C# contiene el método `RunTaskWhenMutexAquired` que permite que una instancia de rol intente adquirir una concesión sobre un blob especificado. Los detalles del blog (el nombre, el contenedor y la cuenta de almacenamiento) se pasan al constructor en un objeto `BlobSettings` cuando se crea el objeto `BlobDistributedMutex` (este objeto es una estructura sencilla que se incluye el código de ejemplo). El constructor también acepta un elemento `Task` que hace referencia al código que debe ejecutar la instancia de rol si adquiere correctamente la concesión sobre el blob y se elige como líder. Tenga en cuenta que el código que administra los detalles de bajo nivel de adquisición de la concesión se implementa en una clase auxiliar independiente llamada `BlobLeaseManager`.
 

@@ -1,5 +1,5 @@
 ---
-title: "Conexión de una red local a Azure mediante ExpressRoute"
+title: Conexión de una red local a Azure mediante ExpressRoute
 description: Procedimiento para implementar una arquitectura de red de sitio a sitio segura que abarque una instancia de Azure Virtual Network y una red local conectada mediante Azure ExpressRoute.
 author: telmosampaio
 ms.date: 11/28/2016
@@ -7,11 +7,11 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute-vpn-failover
 pnp.series.prev: vpn
 cardTitle: ExpressRoute
-ms.openlocfilehash: 671be5118faaefab5ba5348de81642d8a8124b59
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: ada07f399925da6da28b24260f5c73f1e106fd7d
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute"></a>Conexión de una red local a Azure mediante ExpressRoute
 
@@ -21,7 +21,7 @@ Esta arquitectura de referencia muestra cómo conectar una red local a las redes
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Arquitectura
+## <a name="architecture"></a>Architecture
 
 La arquitectura consta de los siguientes componentes:
 
@@ -112,7 +112,7 @@ Cree un circuito ExpressRoute como se indica a continuación:
 
 Puede conectar varias redes virtuales que se encuentren en regiones diferentes al mismo circuito ExpressRoute, siempre y cuando todos ellos se encuentren en la misma región geopolítica.
 
-### <a name="troubleshooting"></a>Solución de problemas 
+### <a name="troubleshooting"></a>solución de problemas 
 
 Si un circuito de ExpressRoute que funcionaba ahora no se puede conectar, en ausencia de cambios de configuración local o dentro de la red virtual privada, debe ponerse en contacto con el proveedor de conectividad y colaborar para corregir el problema. Use los siguientes comandos de Powershell para verificar que se haya aprovisionado el circuito de ExpressRoute:
 
@@ -241,7 +241,7 @@ Si debe exponer los extremos de administración para las máquinas virtuales a u
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-**Requisitos previos.** Debe tener una infraestructura local existente ya configurada con un dispositivo de red adecuado.
+**Requisitos previos**. Debe tener una infraestructura local existente ya configurada con un dispositivo de red adecuado.
 
 Para implementar la solución, siga estos pasos:
 
@@ -278,7 +278,7 @@ Para implementar la solución, siga estos pasos:
 [expressroute-pricing]: https://azure.microsoft.com/pricing/details/expressroute/
 [expressroute-limits]: /azure/azure-subscription-service-limits#networking-limits
 [azurect]: https://github.com/Azure/NetworkMonitoring/tree/master/AzureCT
-[visio-download]: https://archcenter.azureedge.net/cdn/hybrid-network-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-architectures.vsdx
 [er-circuit-parameters]: https://github.com/mspnp/reference-architectures/tree/master/hybrid-networking/expressroute/parameters/expressRouteCircuit.parameters.json
 [azure-powershell-download]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
 [azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/

@@ -1,13 +1,13 @@
 ---
-title: "Implementación de SAP NetWeaver y SAP HANA en Azure"
-description: "Prácticas probadas para ejecutar SAP HANA en un entorno de alta disponibilidad en Azure."
+title: Implementación de SAP NetWeaver y SAP HANA en Azure
+description: Prácticas probadas para ejecutar SAP HANA en un entorno de alta disponibilidad en Azure.
 author: njray
 ms.date: 06/29/2017
-ms.openlocfilehash: 27a97103c0c6f305cb8e830d670c8d0ba7e22aa5
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 33171164c59a520a87ef3209c5bb1b208377221c
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="deploy-sap-netweaver-and-sap-hana-on-azure"></a>Implementación de SAP NetWeaver y SAP HANA en Azure
 
@@ -20,9 +20,9 @@ Esta arquitectura de referencia muestra un conjunto de prácticas probadas para 
 > [!NOTE]
 > La implementación de esta arquitectura de referencia requiere licencias adecuadas de los productos de SAP y de otras tecnologías que no son de Microsoft. Para obtener información acerca de la asociación entre Microsoft y SAP, consulte [SAP HANA en Azure][sap-hana-on-azure].
 
-## <a name="architecture"></a>Arquitectura
+## <a name="architecture"></a>Architecture
 
-La arquitectura consta de los siguientes componentes.
+La arquitectura consta de los siguientes componentes:
 
 - **Red virtual**. Una red virtual es una representación de una red aislada lógicamente en Azure. Todas las máquinas virtuales de esta arquitectura de referencia se implementan en la misma red virtual. La red virtual se subdivide en subredes. Cree una subred independiente para cada nivel, lo que incluye aplicación (SAP NetWeaver), base de datos (SAP HANA), administración (el Jumpbox) y Active Directory.
 
@@ -71,7 +71,7 @@ Con todas las máquinas virtuales del servidor de bases de datos, se recomienda 
 Para lograr la máxima confiabilidad, se recomienda usar [Azure Managed Disks][managed-disks]. Los discos administrados garantizan que los discos de las máquinas virtuales de un conjunto de disponibilidad estén aislados, con el fin de evitar únicos puntos de error.
 
 > [!NOTE]
-> Actualmente la plantilla de Resource Manager para esta arquitectura de referencia no utiliza discos administrados, pero está previsto actualizarla para que los use.
+> Actualmente la plantilla de Resource Manager para esta arquitectura de referencia no usa discos administrados, pero está previsto actualizarla para que los use.
 
 Para lograr un rendimiento del ancho de banda de disco y un IOPS altos, las prácticas habituales de optimización del rendimiento del volumen de almacenamiento se aplican al diseño de Azure Storage. Por ejemplo, la unión de varios discos para crear un volumen de disco mayor mejora el rendimiento de E/S. La habilitación de la caché de lectura en el contenido de almacenamiento que cambia con poca frecuencia mejora la velocidad de recuperación de datos. Para más información acerca de los requisitos de rendimiento, consulte [SAP note 1943937 - Hardware Configuration Check Tool][sap-1943937] (SAP nota 1943937: Herramienta de comprobación de la configuración del hardware).
 
@@ -133,7 +133,7 @@ Considere la posibilidad de usar [grupos de seguridad de red][nsg] (NSG) para re
 Los scripts de implementación de esta arquitectura de referencia están disponibles en [GitHub][github].
 
 
-### <a name="prerequisites"></a>Requisitos previos
+### <a name="prerequisites"></a>requisitos previos
 
 - Para completar la instalación, es preciso tener acceso al centro de descarga de software de SAP.
  
@@ -161,11 +161,11 @@ Se implementa una única instancia de SAP HANA. En el caso de las máquinas virt
 
 Esta arquitectura se puede implementar de forma incremental o toda de una vez. La primera vez se recomienda realizar una implementación incremental, con el fin de poder ver lo que hace cada implementación. Especifique el incremento mediante uno de los siguientes parámetros de *modo*
 
-| Modo           | Qué hace                                                                                                            |
+| Mode           | Qué hace                                                                                                            |
 |----------------|-----------------------------------------------------|
 | infrastructure | Implementa la infraestructura de red en Azure.        |
 | carga de trabajo       | Implementa los servidores de SAP en la red.             |
-| todo            | Implementa todas las implementaciones anteriores.              |
+| todas            | Implementa todas las implementaciones anteriores.              |
 
 Para implementar la solución, siga estos pasos:
 
@@ -235,7 +235,7 @@ Después de implementar la infraestructura de SAP, instale y configure las aplic
 [sap-hana-on-azure]: https://azure.microsoft.com/services/virtual-machines/sap-hana/
 [sap-netweaver-dr]: http://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx
 [sap-security]: https://archive.sap.com/documents/docs/DOC-62943
-[visio-download]: https://archcenter.azureedge.net/cdn/SAP-HANA-architecture.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/SAP-HANA-architecture.vsdx
 [vm-sizes-mem]: /azure/virtual-machines/windows/sizes-memory
 [swd]: https://help.sap.com/doc/saphelp_nw70ehp2/7.02.16/en-us/48/8fe37933114e6fe10000000a421937/frameset.htm
 [0]: ./images/sap-hana.png "Arquitectura de SAP HANA mediante Microsoft Azure"

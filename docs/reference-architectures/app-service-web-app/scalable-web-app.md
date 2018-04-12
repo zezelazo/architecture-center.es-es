@@ -1,17 +1,17 @@
 ---
-title: "Aplicación web escalable"
-description: "Mejora de la escalabilidad en una aplicación web que se ejecuta en Microsoft Azure"
+title: Aplicación web escalable
+description: Mejora de la escalabilidad en una aplicación web que se ejecuta en Microsoft Azure
 author: MikeWasson
 pnp.series.title: Azure App Service
 pnp.series.prev: basic-web-app
 pnp.series.next: multi-region-web-app
 ms.date: 11/23/2016
 cardTitle: Improve scalability
-ms.openlocfilehash: 4ad12fb041a79fcb706530c9968fd0f96211d7f9
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: 6459acebfa25491332e2118b9e8fe51d5fc79ff3
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="improve-scalability-in-a-web-application"></a>Mejora de la escalabilidad en una aplicación web
 
@@ -30,7 +30,7 @@ Esta arquitectura se basa en la que se muestra en [Aplicación web básica][basi
 * **WebJob**. Use [Azure WebJobs][webjobs] para ejecutar tareas de ejecución prolongada en segundo plano. Los trabajos web se pueden ejecutar de forma programada, continuamente o en respuesta a un desencadenador, como poner un mensaje en una cola. Un trabajo web se ejecuta como un proceso en segundo plano en el contexto de una aplicación de App Service.
 * **Cola**. En la arquitectura que se muestra aquí, la aplicación pone en cola las tareas en segundo plano mediante la colocación de un mensaje en una cola de [Azure Queue Storage][queue-storage]. El mensaje desencadena una función en el trabajo web. Como alternativa, puede usar colas de Service Bus. Para ver una comparación, consulte [Colas de Storage y de Service Bus: comparación y diferencias][queues-compared].
 * **Caché**. Almacene datos parcialmente estáticos en [Azure Redis Cache][azure-redis].  
-* **CDN**. Use [Azure Content Delivery Network][ azure-cdn] (CDN) para almacenar en caché el contenido disponible públicamente y así reducir latencia y acelerar la entrega de contenido.
+* <strong>CDN</strong>. Use [Azure Content Delivery Network][ azure-cdn] (CDN) para almacenar en caché el contenido disponible públicamente y así reducir latencia y acelerar la entrega de contenido.
 * **Almacenamiento de datos**. Use [Azure SQL Database][sql-db] con datos relacionales. Con datos no relacionales, podría usar un almacén NoSQL, como [Cosmos DB][cosmosdb].
 * **Azure Search**. Use [Azure Search][azure-search] para agregar funcionalidad de búsqueda, como sugerencias de búsqueda, búsqueda aproximada y búsqueda específica del idioma. Azure Search se usa normalmente en combinación con otro almacén de datos, en especial si el almacén de datos principal requiere una coherencia estricta. En este enfoque, almacene los datos acreditado en el otro almacén de datos y el índice de búsqueda en Azure Search. Azure Search también se puede usar para consolidar un índice de búsqueda sencillo desde varios almacenes de datos.  
 * **Correo electrónico/SMS**. Use un servicio de terceros como SendGrid o Twilio para enviar correo electrónico o mensajes SMS en lugar de generar esta funcionalidad directamente en la aplicación.
@@ -148,7 +148,7 @@ Use [Cifrado de datos transparente][sql-encryption] si necesita cifrar los datos
 [sql-elastic]: /azure/sql-database/sql-database-elastic-scale-introduction
 [sql-encryption]: https://msdn.microsoft.com/library/dn948096.aspx
 [tm]: https://azure.microsoft.com/services/traffic-manager/
-[visio-download]: https://archcenter.azureedge.net/cdn/app-service-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx
 [web-app-multi-region]: ./multi-region.md
 [webjobs-guidance]: ../../best-practices/background-jobs.md
 [webjobs]: /azure/app-service/app-service-webjobs-readme

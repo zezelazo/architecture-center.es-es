@@ -1,17 +1,17 @@
 ---
-title: "Integración de dominios locales de AD con Azure Active Directory"
-description: "Procedimiento para implementar una arquitectura de red híbrida segura con Azure Active Directory."
+title: Integración de dominios locales de AD con Azure Active Directory
+description: Procedimiento para implementar una arquitectura de red híbrida segura con Azure Active Directory.
 author: telmosampaio
 pnp.series.title: Identity management
 ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: dd4cf0369974ea68d240ed294b1c50972d361d74
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 431de4b2e08c79f70cc9830fda8315e07bf22c64
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>Integración de dominios locales de Active Directory con Azure Active Directory
 
@@ -37,7 +37,7 @@ Los usos habituales de esta arquitectura de referencia incluyen:
 
 Para consideraciones adicionales, consulte [Selección de una solución para la integración de Active Directory local con Azure][considerations]. 
 
-## <a name="architecture"></a>Arquitectura
+## <a name="architecture"></a>Architecture
 
 La arquitectura tiene los siguientes componentes.
 
@@ -119,7 +119,7 @@ Para más información acerca de estas topologías, consulte [Topologías para A
 
 ### <a name="user-authentication"></a>Autenticación de usuarios
 
-De forma predeterminada, el servidor de sincronización de Azure AD Connect configura la sincronización de contraseñas entre el dominio local y Azure AD, y el servicio de Azure AD da por supuesto que los usuarios se autentican proporcionando la misma contraseña que usan en local. Para muchas organizaciones, esto es apropiado, pero debe tener en cuenta las directivas existentes y la infraestructura de su organización. Por ejemplo:
+De forma predeterminada, el servidor de sincronización de Azure AD Connect configura la sincronización de contraseñas entre el dominio local y Azure AD, y el servicio de Azure AD da por supuesto que los usuarios se autentican proporcionando la misma contraseña que usan en local. Para muchas organizaciones, esto es apropiado, pero debe tener en cuenta las directivas existentes y la infraestructura de su organización. Por ejemplo: 
 
 * La directiva de seguridad de una organización podría prohibir la sincronización de hash de contraseñas en la nube.
 * Podría requerir que los usuarios experimenten un inicio de sesión único (SSO) fluido al tener acceso a recursos en la nube desde máquinas unidas a un dominio en la red corporativa.
@@ -226,7 +226,7 @@ En GitHub, se puede encontrar una implementación de una arquitectura de referen
    * Revise los términos y condiciones, y haga clic en la casilla **Acepto los términos y condiciones indicados anteriormente**.
    * Haga clic en el botón **Comprar**.
 3. Espere a que la implementación se complete.
-4. Los archivos de parámetros incluyen nombres de usuario y contraseñas de administrador codificados de forma rígida, y es muy recomendable que cambie ambos inmediatamente en todas las máquinas virtuales. Haga clic en cada máquina virtual en Azure Portal y después en **Restablecer contraseña**, en la hoja **Soporte técnico y solución de problemas**. Seleccione **Restablecer contraseña** en el cuadro de lista desplegable **Modo**, seleccione un valor de **Nombre de usuario** y un valor de **Contraseña**. Haga clic en el botón **Actualizar** para conservar el nuevo nombre de usuario y contraseña.
+4. Los archivos de parámetros incluyen nombres de usuario y contraseñas de administrador codificados de forma rígida, y es muy recomendable que cambie ambos inmediatamente en todas las máquinas virtuales. Haga clic en cada máquina virtual en Azure Portal y después en **Restablecer contraseña**, en la hoja **Soporte técnico y solución de problemas**. Seleccione **Restablecer contraseña** en el cuadro desplegable **Modo**, seleccione un nuevo valor de **Nombre de usuario** y de **Contraseña**. Haga clic en el botón **Actualizar** para conservar el nuevo nombre de usuario y contraseña.
 
 <!-- links -->
 
@@ -260,7 +260,7 @@ En GitHub, se puede encontrar una implementación de una arquitectura de referen
 [considerations]: ./considerations.md
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
 [sla-aad]: https://azure.microsoft.com/support/legal/sla/active-directory/v1_0/
-[visio-download]: https://archcenter.azureedge.net/cdn/identity-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 
 
 [0]: ./images/azure-ad.png "Arquitectura de identidad en la nube con Azure Active Directory"

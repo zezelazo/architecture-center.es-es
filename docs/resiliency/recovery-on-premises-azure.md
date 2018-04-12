@@ -1,15 +1,16 @@
 ---
-title: "Guía técnica: recuperación desde un centro de datos local a Azure"
-description: "Artículo sobre la descripción y diseño de sistemas recuperación desde infraestructuras locales a Azure"
+title: 'Guía técnica: recuperación desde un centro de datos local a Azure'
+description: Artículo sobre la descripción y diseño de sistemas recuperación desde infraestructuras locales a Azure
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: f5ce86dbd605fa7dc74e6a7cc97f0d6c6acd79e5
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 6992e27d148074b3d60c282318741f45974d1afd
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [header](../_includes/header.md)]
+
 # <a name="azure-resiliency-technical-guidance-recovery-from-on-premises-to-azure"></a>Guía técnica sobre resistencia en Azure: recuperación desde un centro de datos local a Azure
 Azure proporciona un completo conjunto de servicios para habilitar la extensión de un centro de datos local a Azure con fines de alta disponibilidad y recuperación ante desastres:
 

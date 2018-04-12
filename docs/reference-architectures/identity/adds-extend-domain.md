@@ -1,16 +1,19 @@
 ---
-title: "Extensión de Active Directory Domain Services (AD DS) a Azure"
-description: "Cómo implementar una arquitectura de red híbrida segura con la autorización de Active Directory en Azure.\nguidance,vpn-gateway,expressroute,load-balancer,virtual-network,active-directory"
+title: Extensión de Active Directory Domain Services (AD DS) a Azure
+description: >-
+  Cómo implementar una arquitectura de red híbrida segura con la autorización de Active Directory en Azure.
+
+  guidance,vpn-gateway,expressroute,load-balancer,virtual-network,active-directory
 author: telmosampaio
 ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: azure-ad
 pnp.series.next: adds-forest
-ms.openlocfilehash: 216c59a0a5912d0fe90011e49ad20eb017ada6be
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 007d244f29bf11c6e2bd703c7f4f245d22c02f0f
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>Extensión de Active Directory Domain Services (AD DS) a Azure
 
@@ -122,7 +125,7 @@ Hay una solución disponible en [GitHub][github] para implementar esta arquitect
 
 4. Espere a que la implementación se complete. Si va a realizar la implementación `All`, tardará varias horas.
 
-## <a name="next-steps"></a>pasos siguientes
+## <a name="next-steps"></a>Pasos siguientes
 
 * Conozca los procedimientos recomendados para [crear un bosque de recursos de AD DS][adds-resource-forest] en Azure.
 * Conozca los procedimientos recomendados para [crear una infraestructura de Active Directory Federation Services (AD FS)][adfs] en Azure.
@@ -150,7 +153,7 @@ Hay una solución disponible en [GitHub][github] para implementar esta arquitect
 [security-considerations]: #security-considerations
 [set-a-static-ip-address]: https://azure.microsoft.com/documentation/articles/virtual-networks-static-private-ip-arm-pportal/
 [standby-operations-masters]: https://technet.microsoft.com/library/cc794737(v=ws.10).aspx
-[visio-download]: https://archcenter.azureedge.net/cdn/identity-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 [vm-windows-sizes]: /azure/virtual-machines/virtual-machines-windows-sizes
 
 [0]: ./images/adds-extend-domain.png "Protección de la arquitectura de red híbrida con Active Directory"

@@ -1,13 +1,13 @@
 ---
 title: Procesamiento de lenguaje natural
-description: 
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: c03e2d017f9b4eb955a0e3494b5bc6c2603d1058
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 0afd8ac9a8a2e56f79ade0b2e10328630866c03c
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="natural-language-processing"></a>Procesamiento de lenguaje natural
 
@@ -34,7 +34,7 @@ Cuando se utiliza el procesamiento de lenguaje natural para extraer información
 
 ## <a name="architecture"></a>Architecture
 
-En una solución de procesamiento de lenguaje natural, el procesamiento de texto sin formato se realiza en documentos que contienen párrafos de texto. La arquitectura general puede ser una arquitectura de [procesamiento por lotes](./batch-processing.md) o de [procesamiento de flujos en tiempo real](./real-time-processing.md).
+En una solución de procesamiento de lenguaje natural, el procesamiento de texto sin formato se realiza en documentos que contienen párrafos de texto. La arquitectura general puede ser una arquitectura de [procesamiento por lotes](../big-data/batch-processing.md) o de [procesamiento de flujos en tiempo real](../big-data/real-time-processing.md).
 
 El procesamiento real varía según el resultado deseado, pero, en cuanto a la canalización, se puede aplicar el procesamiento de lenguaje natural sobre un lote o en tiempo real. Por ejemplo, el análisis de opiniones se puede usar en bloques de texto para generar una puntuación de opinión. Esto se puede realizar mediante la ejecución de un proceso por lotes con los datos del almacenamiento o en tiempo real mediante fragmentos más pequeños de datos que fluyen a través de un servicio de mensajería.
 

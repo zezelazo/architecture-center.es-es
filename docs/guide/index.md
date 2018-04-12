@@ -1,10 +1,11 @@
 ---
 layout: LandingPage
-ms.openlocfilehash: 9bd86f1b3527f1116d4f5169baf76f8a5b9a385b
-ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
+ms.topic: landing-page
+ms.openlocfilehash: 530844a0d3b1256cec807e7bad509a40dca304f6
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/17/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="azure-application-architecture-guide"></a>Guía de la arquitectura de aplicaciones en Azure
 
@@ -62,7 +63,7 @@ La Guía de la arquitectura de aplicaciones de Azure se organiza como una serie 
 
 **[Principios de diseño][design-principles]**. Durante el proceso de diseño, se deben tener en cuenta estos diez principios de diseño de alto nivel. 
 
-> &#10148; Los artículos sobre [procedimientos recomendados][best-practices] proporcionan una guía específica en áreas como el escalado automático, el almacenamiento en caché, la creación de particiones de datos, el diseño de API y otros.   
+> & #10148; Los artículos sobre [procedimientos recomendados][best-practices] proporcionan una guía específica en áreas como el escalado automático, el almacenamiento en caché, la creación de particiones de datos, el diseño de API y otros.   
 
 **[Pilares][pillars]**. Una aplicación correcta en la nube se centrará en estos cinco fundamentos de calidad del software: la escalabilidad, la disponibilidad, la resistencia, la administración y la seguridad. 
 

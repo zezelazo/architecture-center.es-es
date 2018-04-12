@@ -1,18 +1,18 @@
 ---
-title: Event Sourcing
-description: "Usa un almacén de solo anexar para registrar la serie completa de eventos que describen las acciones realizadas en los datos de un dominio."
-keywords: "Patrón de diseño"
+title: Aprovisionamiento de eventos
+description: Usa un almacén de solo anexar para registrar la serie completa de eventos que describen las acciones realizadas en los datos de un dominio.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: d5d4e99a6ff49cb823f592c83590471c0d68bfd1
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9a0bf170c9b54c3b2ee9cc91d6dcb5c55a13b96a
+ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="event-sourcing-pattern"></a>Patrón Event Sourcing
 
@@ -52,17 +52,17 @@ La ilustración muestra una introducción al patrón, incluidas algunas de las o
 
 El patrón Event Sourcing proporciona las siguientes ventajas:
 
-Los eventos son inmutables y pueden almacenarse mediante una operación de solo anexar. La interfaz de usuario, el flujo de trabajo o el proceso que iniciaran un evento pueden continuar y las tareas que controlan los eventos se pueden ejecutar en segundo plano. Esto, junto con el hecho de que no hay ningún contención durante el procesamiento de transacciones, puede mejorar considerablemente el rendimiento y la escalabilidad de las aplicaciones, especialmente el nivel de presentación o la interfaz de usuario.
+- Los eventos son inmutables y pueden almacenarse mediante una operación de solo anexar. La interfaz de usuario, el flujo de trabajo o el proceso que iniciaran un evento pueden continuar y las tareas que controlan los eventos se pueden ejecutar en segundo plano. Esto, junto con el hecho de que no hay ningún contención durante el procesamiento de transacciones, puede mejorar considerablemente el rendimiento y la escalabilidad de las aplicaciones, especialmente el nivel de presentación o la interfaz de usuario.
 
-Los eventos son objetos simples que describen alguna acción que se ha producido, junto con los datos asociados necesarios para describir la acción que representa el evento. Los eventos no actualizan directamente un almacén de datos. Simplemente se registran para el control en el momento adecuado. Esto puede simplificar la implementación y la administración.
+- Los eventos son objetos simples que describen alguna acción que se ha producido, junto con los datos asociados necesarios para describir la acción que representa el evento. Los eventos no actualizan directamente un almacén de datos. Simplemente se registran para el control en el momento adecuado. Esto puede simplificar la implementación y la administración.
 
-Los eventos suelen tener significado para un experto de dominio, mientras que los [errores de coincidencia de impedancia relacional de objetos](https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch) pueden dificultar la comprensión de las tablas de base de datos complejas. Las tablas son construcciones artificiales que representan el estado actual del sistema, no los eventos que se han producido.
+- Los eventos suelen tener significado para un experto de dominio, mientras que los [errores de coincidencia de impedancia relacional de objetos](https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch) pueden dificultar la comprensión de las tablas de base de datos complejas. Las tablas son construcciones artificiales que representan el estado actual del sistema, no los eventos que se han producido.
 
-Event Sourcing puede ayudar a impedir que las actualizaciones simultáneas causen conflictos, ya que evita la necesidad de actualizar directamente los objetos en el almacén de datos. Sin embargo, el modelo de dominio debe diseñarse aún para protegerlo de las solicitudes que puedan generar incoherencias.
+- Event Sourcing puede ayudar a impedir que las actualizaciones simultáneas causen conflictos, ya que evita la necesidad de actualizar directamente los objetos en el almacén de datos. Sin embargo, el modelo de dominio debe diseñarse aún para protegerlo de las solicitudes que puedan generar incoherencias.
 
-El almacenamiento de solo anexar eventos proporciona una traza de auditoría para supervisar las acciones realizadas en un almacén de datos, volver a crear el estado actual como vista materializada o proyecciones (al reproducir los eventos en cualquier momento) y ayudar a probar y depurar el sistema. Además, el requisito de usar eventos de compensación para cancelar cambios proporciona un historial de los cambios revertidos, que no sería el caso si el modelo simplemente almacenara el estado actual. La lista de eventos también puede utilizarse para analizar el rendimiento de la aplicación y detectar las tendencias de comportamiento de los usuarios o para obtener otra información empresarial de utilidad.
+- El almacenamiento de solo anexar eventos proporciona una traza de auditoría para supervisar las acciones realizadas en un almacén de datos, volver a crear el estado actual como vista materializada o proyecciones (al reproducir los eventos en cualquier momento) y ayudar a probar y depurar el sistema. Además, el requisito de usar eventos de compensación para cancelar cambios proporciona un historial de los cambios revertidos, que no sería el caso si el modelo simplemente almacenara el estado actual. La lista de eventos también puede utilizarse para analizar el rendimiento de la aplicación y detectar las tendencias de comportamiento de los usuarios o para obtener otra información empresarial de utilidad.
 
-El almacén de eventos genera eventos y las tareas realizan operaciones en respuesta a esos eventos. Esta separación de las tareas de los eventos proporciona flexibilidad y extensibilidad. Las tareas conocen el tipo de evento y los datos del evento, pero no la operación que lo desencadenó. Además, varias tareas pueden controlar el mismo evento. Esto facilita la integración con otros servicios y sistemas que solo escuchen los nuevos eventos que genere el almacén de eventos. Sin embargo, los eventos de Event Sourcing tienden a ser de muy bajo nivel, por lo que podría ser necesaria la creación de eventos de integración específicos en su lugar.
+- El almacén de eventos genera eventos y las tareas realizan operaciones en respuesta a esos eventos. Esta separación de las tareas de los eventos proporciona flexibilidad y extensibilidad. Las tareas conocen el tipo de evento y los datos del evento, pero no la operación que lo desencadenó. Además, varias tareas pueden controlar el mismo evento. Esto facilita la integración con otros servicios y sistemas que solo escuchen los nuevos eventos que genere el almacén de eventos. Sin embargo, los eventos de Event Sourcing tienden a ser de muy bajo nivel, por lo que podría ser necesaria la creación de eventos de integración específicos en su lugar.
 
 > Event Sourcing suele combinarse con el patrón CQRS, ya que realiza las tareas de administración de datos en respuesta a los eventos y materializa las vistas de los eventos almacenados.
 

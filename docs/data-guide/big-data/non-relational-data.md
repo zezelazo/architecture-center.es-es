@@ -3,17 +3,17 @@ title: Datos no relacionales y NoSQL
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 8dd8f2b9dfef680f99c9c6b32aacf019c13095b0
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 2c284099bd7e8bbb85f1252a24d699d9fca09eae
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="non-relational-data-and-nosql"></a>Datos no relacionales y NoSQL
 
 Una *base de datos no relacional* es aquella que no usa el esquema tabular de filas y columnas que se encuentra en la mayoría de los sistemas de base de datos más tradicionales. En su lugar, las bases de datos no relacionales usan un modelo de almacenamiento que está optimizado para los requisitos específicos del tipo de datos que se almacena. Por ejemplo, los datos se pueden almacenar como pares clave/valor simple, como documentos JSON o como un grafo que consta de bordes y vértices. 
 
-Lo que todos lo que estos almacenes de datos tienen en común están que no utilizan un [modelo relacional](./relational-data.md). Además, tienden a ser más específicos en el tipo de datos que admiten y en cómo se pueden consultar los datos. Por ejemplo, los almacenes de datos de serie temporal tiempo se optimizan para las consultas en secuencias de datos basadas en tiempo, mientras que los almacenes de datos de grafos se optimizan optimizados para explorar las relaciones ponderadas entre entidades. Ninguno de los formatos se generalizaría bien en la tarea de administrar datos transaccionales. 
+Lo que todos lo que estos almacenes de datos tienen en común están que no utilizan un [modelo relacional](../relational-data/index.md). Además, tienden a ser más específicos en el tipo de datos que admiten y en cómo se pueden consultar los datos. Por ejemplo, los almacenes de datos de serie temporal tiempo se optimizan para las consultas en secuencias de datos basadas en tiempo, mientras que los almacenes de datos de grafos se optimizan optimizados para explorar las relaciones ponderadas entre entidades. Ninguno de los formatos se generalizaría bien en la tarea de administrar datos transaccionales. 
 
 El término *NoSQL* hace referencia a los almacenes de datos que no usan SQL para las consultas, en su lugar, usan otros lenguajes de programación y construcciones para consultar los datos. En la práctica, "NoSQL" significa "base de datos no relacional", aunque muchas de estas bases de datos admiten consultas compatibles con SQL. Sin embargo, la estrategia de ejecución de consultas subyacente normalmente es de la forma en que una RDBMS tradicional ejecutaría la misma consulta SQL.
 

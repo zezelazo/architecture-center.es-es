@@ -1,16 +1,16 @@
 ---
-title: "Implementación de una arquitectura de red híbrida de alta disponibilidad"
-description: "Cómo implementar una arquitectura de red de sitio a sitio segura que abarque una instancia de Azure Virtual Network y una red local conectada mediante ExpressRoute con conmutación por error de VPN Gateway."
+title: Implementación de una arquitectura de red híbrida de alta disponibilidad
+description: Cómo implementar una arquitectura de red de sitio a sitio segura que abarque una instancia de Azure Virtual Network y una red local conectada mediante ExpressRoute con conmutación por error de VPN Gateway.
 author: telmosampaio
 ms.date: 11/28/2016
 pnp.series.title: Connect an on-premises network to Azure
 pnp.series.prev: expressroute
 cardTitle: Improving availability
-ms.openlocfilehash: 4c101f17e5e91085b61178f9efb2bc5acb61189c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 81298215c814cee805eff57fdc28f7c127148b5f
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute-with-vpn-failover"></a>Conexión de una red local a Azure mediante ExpressRoute con conmutación por error de VPN
 
@@ -22,7 +22,7 @@ Tenga en cuenta que si el circuito de ExpressRoute no está disponible, la ruta 
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Arquitectura 
+## <a name="architecture"></a>Architecture 
 
 La arquitectura consta de los siguientes componentes:
 
@@ -134,5 +134,5 @@ Para implementar la solución, siga estos pasos:
 [guidance-expressroute]: ./expressroute.md
 [guidance-vpn]: ./vpn.md
 [best-practices-security]: /azure/best-practices-network-security
-[visio-download]: https://archcenter.azureedge.net/cdn/hybrid-network-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-architectures.vsdx
 [0]: ./images/expressroute-vpn-failover.png "Arquitectura de una arquitectura de red híbrida de alta disponibilidad mediante ExpressRoute y VPN gateway"

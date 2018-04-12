@@ -1,15 +1,16 @@
 ---
-title: "Guía técnica: recuperación ante errores locales en Azure"
-description: "Artículo para entender y diseñar aplicaciones resistentes, con alta disponibilidad y con tolerancia a errores, así como para planear la recuperación ante desastres centrada en errores locales dentro de Azure."
+title: 'Guía técnica: recuperación ante errores locales en Azure'
+description: Artículo para entender y diseñar aplicaciones resistentes, con alta disponibilidad y con tolerancia a errores, así como para planear la recuperación ante desastres centrada en errores locales dentro de Azure.
 author: adamglick
 ms.date: 08/18/2016
-ms.openlocfilehash: 180eb465e5f82406bb03924a29d5b06d43bbaa24
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 5fc929bd1affe3dd6616f908bae0e7d2fefb89d5
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 [!INCLUDE [header](../_includes/header.md)]
+
 # <a name="azure-resiliency-technical-guidance-recovery-from-local-failures-in-azure"></a>Guía técnica sobre resistencia en Azure: recuperación ante errores locales en Azure
 
 Hay dos amenazas principales para la disponibilidad de las aplicaciones:
@@ -51,7 +52,7 @@ El [Acuerdo de Nivel de Servicio (SLA) de Azure](https://azure.microsoft.com/sup
 ### <a name="load-balancing"></a>Equilibrio de carga
 Todo el tráfico entrante a un rol web pasa a través de un equilibrador de carga sin estado, que distribuye las solicitudes de clientes entre las instancias de rol. Las instancias de rol individuales no tienen direcciones IP públicas y no se pueden direccionar directamente desde Internet. Los roles web no tienen estado, con el fin de que todas las solicitudes de clientes se puedan enrutar a cualquier instancia de rol. Se desencadena un evento [StatusCheck](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.statuscheck.aspx) cada 15 segundos. Esto se puede utilizar para indicar si el rol está listo para recibir tráfico o si está ocupado y debe quitarse de la rotación del equilibrador de carga.
 
-## <a name="virtual-machines"></a>Máquinas virtuales
+## <a name="virtual-machines"></a>Virtual Machines
 Azure Virtual Machines difiere de los roles de proceso de plataforma como servicio (PaaS) en varios aspectos relacionados con la alta disponibilidad. En algunos casos, deberá realizar tareas adicionales para garantizar una alta disponibilidad.
 
 ### <a name="disk-durability"></a>Durabilidad del disco
@@ -137,7 +138,7 @@ El diagrama siguiente muestra el uso de creación de reflejo de la base de datos
 ## <a name="other-azure-platform-services"></a>Otros servicios de la plataforma de Azure
 Las aplicaciones que se basan en Azure se benefician de las capacidades de la plataforma para recuperarse de errores locales. En algunos casos, se pueden realizar acciones concretas para aumentar la disponibilidad de un escenario concreto.
 
-### <a name="service-bus"></a>Service Bus
+### <a name="service-bus"></a>Azure Service Bus
 Para mitigar una interrupción temporal de Azure Service Bus, considere la posibilidad de crear una cola duradera en el lado de cliente. Con ello, utilizará temporalmente un mecanismo de almacenamiento local alternativo para almacenar los mensajes que no se puedan agregar a la cola de Service Bus. La aplicación puede decidir cómo controlar los mensajes almacenados temporalmente una vez restaurado el servicio. Para obtener más información, consulte [Prácticas recomendadas para la realización de mejoras con la mensajería asincrónica de Service Bus](/azure/service-bus-messaging/service-bus-performance-improvements/) y [Service Bus (recuperación ante desastres)](recovery-loss-azure-region.md#other-azure-platform-services).
 
 ### <a name="hdinsight"></a>HDInsight
@@ -154,7 +155,7 @@ Los datos asociados a HDInsight de Azure se almacenan de forma predeterminada en
 7. Continúe invocando las operaciones hasta que se completen satisfactoriamente.
 8. Considere estrategias de escalado automático.
 
-### <a name="virtual-machines"></a>Máquinas virtuales
+### <a name="virtual-machines"></a>Virtual Machines
 1. Revise la sección Máquinas virtuales de este documento.
 2. No utilice la unidad D para el almacenamiento persistente.
 3. Agrupe las máquinas de un nivel de servicio en un conjunto de disponibilidad.
@@ -174,7 +175,7 @@ Los datos asociados a HDInsight de Azure se almacenan de forma predeterminada en
 2. Siga las recomendaciones anteriores para Máquinas virtuales.
 3. Use las características de alta disponibilidad de SQL Server, como AlwaysOn.
 
-### <a name="service-bus"></a>Service Bus
+### <a name="service-bus"></a>Azure Service Bus
 1. Revise la sección Service Bus de este documento.
 2. Considere la creación de una cola duradera en el lado del cliente como copia de seguridad.
 

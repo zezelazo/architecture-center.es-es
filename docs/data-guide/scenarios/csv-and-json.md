@@ -3,11 +3,11 @@ title: Procesamiento de archivos CSV y JSON
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 6b888ff230afefbd74249aa913e5bab66d47d7e2
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 02e684d562cfe555f9e3596ad0a2f1a00d05c7a7
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="working-with-csv-and-json-files-for-data-solutions"></a>Trabajo con archivos CSV y JSON en soluciones de datos
 
@@ -44,7 +44,7 @@ Los formatos de archivo CSV y JSON facilitan el intercambio de datos entre difer
 
 Azure proporciona varias soluciones para trabajar con archivos CSV y JSON, dependiendo de sus necesidades. El sitio de aterrizaje principal de estos archivos es Azure Storage o Azure Data Lake Store. La mayoría de los servicios de Azure que trabajan con estos y otros archivos basados en texto se integran con estos servicios de almacenamiento de objetos. En algunas situaciones, sin embargo, puede elegir importar directamente los datos en Azure SQL u otro almacén de datos. SQL Server ofrece compatibilidad nativa para almacenar y trabajar con documentos JSON, lo que facilita [importar y procesar esos tipos de archivos](/sql/relational-databases/json/import-json-documents-into-sql-server). Puede usar una herramienta como la importación en bloque de SQL para [importar archivos CSV](/sql/relational-databases/json/import-json-documents-into-sql-server) fácilmente.
 
-Según el escenario, puede realizar [procesamiento por lotes](../scenarios/batch-processing.md) o [procesamiento en tiempo real](../scenarios/real-time-processing.md) de los datos.
+Según el escenario, puede realizar [procesamiento por lotes](../big-data/batch-processing.md) o [procesamiento en tiempo real](../big-data/real-time-processing.md) de los datos.
 
 ## <a name="challenges"></a>Desafíos
 

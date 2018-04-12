@@ -3,11 +3,11 @@ title: Extracción, transformación y carga de datos (ETL)
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: a980c1f8aef99fc263083e5e496b1340204f7dac
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 1879b649fa3dfdf5c00f8ee30e53b83f7139fbf0
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="extract-transform-and-load-etl"></a>Extracción, transformación y carga de datos (ETL)
 
@@ -21,7 +21,7 @@ Extracción, transformación y carga (ETL) es una canalización de datos que se 
 
 La transformación de datos que tiene lugar a menudo conlleva varias operaciones como filtrado, ordenación, agregación, combinación de datos, limpieza de datos, desduplicación y validación de datos.
 
-![Proceso de extracción, transformación y carga (ETL)](./images/etl.png)
+![Proceso de extracción, transformación y carga (ETL)](../images/etl.png)
 
 Frecuentemente, las tres fases del proceso ETL se ejecutan en paralelo para ahorrar tiempo. Por ejemplo, mientras se extraen datos, puede que esté funcionando un proceso de transformación sobre los datos ya recibidos y de preparación para la carga, y puede que empiece a funcionar un proceso de carga sobre los datos preparados, en lugar de tener que esperar a que termine todo el proceso de extracción.
 
@@ -35,7 +35,7 @@ Otras herramientas:
 
 Extracción, carga y transformación (ELT) difiere de ETL solo por la ubicación en la que se realiza la transformación. En la canalización de ELT, la transformación se produce en el almacén de datos de destino. En lugar de usar un motor de transformación independiente, las funcionalidades de procesamiento del almacén de datos de destino se utilizan para transformar los datos. Esto simplifica la arquitectura ya que permite quitar el motor de transformación de la canalización. Otra ventaja de este enfoque es que al escalar el almacén de datos de destino también se escala el rendimiento de la canalización de ELT. No obstante, ELT solo funciona bien si el sistema de destino tiene la suficiente potencia para transformar los datos de forma eficaz.
 
-![Proceso de extracción, carga y transformación (ELT)](./images/elt.png)
+![Proceso de extracción, carga y transformación (ELT)](../images/elt.png)
 
 Los casos de uso habituales para ELT están dentro del dominio de los macrodatos. Por ejemplo, puede comenzar extrayendo todos los datos de origen a archivos planos en un almacenamiento escalable como el sistema de archivos distribuido de Hadoop (HDFS) o Azure Data Lake Store. Se pueden utilizar tecnologías como Spark, Hive o PolyBase para consultar los datos de origen. El punto clave de ELT es que el almacén de datos que se usa para realizar la transformación es el mismo almacén de datos en el que se consumen en última instancia los datos. Este almacén de datos lee directamente desde el almacenamiento escalable, en lugar de cargar los datos en su propio almacenamiento propietario. Este enfoque omite el paso de copia de datos que se da en ETL. Esta es una operación que lleva mucho tiempo en el caso de conjuntos de datos grandes.
 
@@ -62,7 +62,7 @@ En el contexto de las canalizaciones de datos, el flujo de control garantiza el 
 
 Los flujos de control ejecutan flujos de datos como una tarea. En una tarea Flujo de datos, los datos se extraen de un origen, se transforman o se cargan en un almacén de datos. La salida de una tarea Flujo de datos puede ser la entrada de la siguiente tarea, y los flujos de datos se pueden ejecutar en paralelo. A diferencia de los flujos de control, no se pueden agregar restricciones entre las tareas de un flujo de datos. Sin embargo, puede agregar un visor de datos para observar los datos a medida que cada tarea los va procesando.
 
-![Flujo de datos que se está ejecutando como una tarea dentro de un flujo de control](./images/control-flow-data-flow.png)
+![Flujo de datos que se está ejecutando como una tarea dentro de un flujo de control](../images/control-flow-data-flow.png)
 
 En el diagrama anterior, hay varias tareas en el flujo de control, una de las cuales es una tarea Flujo de datos. Una de las tareas se anida dentro de un contenedor. Los contenedores se pueden usar para proporcionar una estructura para las tareas, proporcionando una unidad de trabajo. Un ejemplo es la repetición de elementos en una colección, como los archivos de una carpeta o las instrucciones de una base de datos.
 
@@ -74,7 +74,7 @@ Otras herramientas:
 
 ## <a name="technology-choices"></a>Opciones de tecnología
 
-- [Almacenes de datos de procesamiento de transacciones en línea (OLTP)](../technology-choices/oltp-data-stores.md)
-- [Almacenes de datos de procesamiento analítico en línea (OLAP)](../technology-choices/olap-data-stores.md)
-- [Almacenamientos de datos](../technology-choices/data-warehouses.md)
+- [Almacenes de datos de procesamiento de transacciones en línea (OLTP)](./online-transaction-processing.md#oltp-in-azure)
+- [Almacenes de datos de procesamiento analítico en línea (OLAP)](./online-analytical-processing.md#olap-in-azure)
+- [Almacenamientos de datos](./data-warehousing.md)
 - [Orquestación de canalizaciones](../technology-choices/pipeline-orchestration-data-movement.md)

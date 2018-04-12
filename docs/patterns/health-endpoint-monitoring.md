@@ -1,7 +1,7 @@
 ---
-title: Health Endpoint Monitoring
-description: "Implementa comprobaciones funcionales en una aplicación a la que pueden acceder herramientas externas a través de los puntos de conexión expuestos en intervalos regulares."
-keywords: "Patrón de diseño"
+title: Supervisión del punto de conexión de mantenimiento
+description: Implementa comprobaciones funcionales en una aplicación a la que pueden acceder herramientas externas a través de los puntos de conexión expuestos en intervalos regulares.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
@@ -9,11 +9,11 @@ pnp.pattern.categories:
 - availability
 - management-monitoring
 - resiliency
-ms.openlocfilehash: 36171d568b9b5bfbbd48ee762b16adea695cf0e9
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 3b3bce46b460148af17bfe6064cd052a5f9a6458
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>Patrón Health Endpoint Monitoring (supervisión de puntos de conexión de estado)
 
@@ -82,9 +82,9 @@ Configuración de la seguridad de los puntos de conexión de supervisión para p
 
 - Protección del punto de conexión mediante autenticación. Puede hacerlo mediante una clave de seguridad de autenticación en el encabezado de la solicitud o mediante la transferencia de credenciales con la solicitud, siempre que el servicio o la herramienta de supervisión admita la autenticación.
 
- - Use un punto de conexión oscuro u oculto. Por ejemplo, exponga el punto de conexión en una dirección IP distinta a la usada por la URL de la aplicación predeterminada, configure el punto de conexión en un puerto HTTP no estándar y use una ruta compleja para probar la página. Normalmente, puede especificar direcciones y puertos de puntos de conexión en la configuración de la aplicación, y agregar entradas para estos puntos de conexión en el servidor DNS si es necesario para evitar tener que especificar la dirección IP directamente.
+  - Use un punto de conexión oscuro u oculto. Por ejemplo, exponga el punto de conexión en una dirección IP distinta a la usada por la URL de la aplicación predeterminada, configure el punto de conexión en un puerto HTTP no estándar y use una ruta compleja para probar la página. Normalmente, puede especificar direcciones y puertos de puntos de conexión en la configuración de la aplicación, y agregar entradas para estos puntos de conexión en el servidor DNS si es necesario para evitar tener que especificar la dirección IP directamente.
 
- - Exponga un método en un punto de conexión que acepte un parámetro como valor de clave o valor de modo de operación. Dependiendo del valor proporcionado para este parámetro, cuando se recibe una solicitud el código puede realizar una prueba concreta o un conjunto de pruebas o devolver un error 404 (no encontrado) si no se reconoce el valor del parámetro. Los valores de parámetro que se pueden reconocer se establecen en la configuración de la aplicación.
+  - Exponga un método en un punto de conexión que acepte un parámetro como valor de clave o valor de modo de operación. Dependiendo del valor proporcionado para este parámetro, cuando se recibe una solicitud el código puede realizar una prueba concreta o un conjunto de pruebas o devolver un error 404 (no encontrado) si no se reconoce el valor del parámetro. Los valores de parámetro que se pueden reconocer se establecen en la configuración de la aplicación.
 
      >  Es probable que los ataques por denegación de servicio tengan menos impacto en un punto de conexión independiente que realiza pruebas funcionales básicas que no afectan a las operaciones de la aplicación. En la medida de lo posible, evite el uso de una prueba que pueda exponer información confidencial. Si debe devolver información que pueda resultar útil a un atacante, tenga en cuenta la protección del punto de conexión y de los datos ante accesos no autorizados. En este caso, confiar simplemente en la oscuridad de un punto de conexión no es suficiente. También debe considerar el uso de una conexión HTTPS y el cifrado de todos los datos confidenciales, aunque esto aumentará la carga en el servidor.
 

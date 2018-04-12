@@ -3,11 +3,11 @@ title: Procesamiento en tiempo real
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: f1054ce5e8c2053aa4f80d8b472604125ba47187
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 8d3497c37d15dc0aa4645ddfce3bd30740217b2c
+ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/31/2018
+ms.lasthandoff: 04/03/2018
 ---
 # <a name="real-time-processing"></a>Procesamiento en tiempo real
 
@@ -49,7 +49,7 @@ Para más información, consulte [Ingesta de mensajes en tiempo real](../technol
 
 ### <a name="data-storage"></a>Almacenamiento de datos
 
-- **Contenedores de blobs de Azure Storage** o **Azure Data Lake Store**. Los datos de entrada en tiempo real normalmente se capturan en un agente de mensajes (consulte más arriba), pero en algunos escenarios puede que tenga sentido supervisar una carpeta para los archivos nuevos y procesarlos a medida que se crean o se actualizan. Además, muchas soluciones de procesamiento en tiempo real combinan los datos de streaming con datos de referencia estáticos que se pueden almacenar en un almacén de archivos. Por último, el almacenamiento de archivos se puede utilizar como destino de salida de datos capturados en tiempo real para el archivado o el procesamiento adicional por lotes en una [arquitectura lambda](../concepts/big-data.md#lambda-architecture).
+- **Contenedores de blobs de Azure Storage** o **Azure Data Lake Store**. Los datos de entrada en tiempo real normalmente se capturan en un agente de mensajes (consulte más arriba), pero en algunos escenarios puede que tenga sentido supervisar una carpeta para los archivos nuevos y procesarlos a medida que se crean o se actualizan. Además, muchas soluciones de procesamiento en tiempo real combinan los datos de streaming con datos de referencia estáticos que se pueden almacenar en un almacén de archivos. Por último, el almacenamiento de archivos se puede utilizar como destino de salida de datos capturados en tiempo real para el archivado o el procesamiento adicional por lotes en una [arquitectura lambda](../big-data/index.md#lambda-architecture).
 
 Para más información, consulte [Almacenamiento de datos](../technology-choices/data-storage.md).
 

@@ -1,17 +1,20 @@
 ---
-title: "Creación de un bosque de recursos AD DS en Azure"
-description: "Cómo crear un dominio de confianza de Active Directory en Azure.\nguidance,vpn-gateway,expressroute,load-balancer,virtual-network,active-directory"
+title: Creación de un bosque de recursos AD DS en Azure
+description: >-
+  Cómo crear un dominio de confianza de Active Directory en Azure.
+
+  guidance,vpn-gateway,expressroute,load-balancer,virtual-network,active-directory
 author: telmosampaio
 ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: adds-extend-domain
 pnp.series.next: adfs
 cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: b946afa91e8bd303c51f97e18be170c4105cc8c5
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: e32a6420821e70c84e77d2c39614f0c45efbb7e2
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>Creación de un bosque de recursos de Active Directory Domain Services (AD DS) en Azure
 
@@ -117,8 +120,8 @@ Hay una solución disponible en [GitHub][github] para implementar esta arquitect
      
 5. Si va a usar la configuración local simulada, configure la relación de confianza entrante:
    
-   1. Conéctese al JumpBox (*ra-adtrust-mgmt-vm1* en el grupo de recursos *ra-adtrust-security-rg*). Inicie sesión como *testuser* con la contraseña *AweS0me@PW*.
-   2. En el JumpBox, abra una sesión RDP en la primera máquina virtual del dominio *contoso.com* (el dominio local). Esta máquina virtual tiene la dirección IP 192.168.0.4. El nombre de usuario es *contoso\testuser* y la contraseña *AweS0me@PW*.
+   1. Conéctese al JumpBox (<em>ra-adtrust-mgmt-vm1</em> en el grupo de recursos <em>ra-adtrust-security-rg</em>). Inicie sesión como <em>testuser</em> con la contraseña <em>AweS0me@PW</em>.
+   2. En el JumpBox, abra una sesión RDP en la primera máquina virtual del dominio <em>contoso.com</em> (el dominio local). Esta máquina virtual tiene la dirección IP 192.168.0.4. El nombre de usuario es <em>contoso\testuser</em> y la contraseña <em>AweS0me@PW</em>.
    3. Descargue el script [incoming-trust.ps1][incoming-trust] y ejecútelo para crear la confianza entrante desde el dominio *treyresearch.com*.
 
 6. Si usa su propia infraestructura local:
@@ -127,13 +130,13 @@ Hay una solución disponible en [GitHub][github] para implementar esta arquitect
    2. Edítelo y reemplace el valor de la variable `$TrustedDomainName` por el nombre de su propio dominio.
    3. Ejecute el script.
 
-7. En el JumpBox, conéctese a la primera máquina virtual del dominio *treyresearch.com* (el dominio en la nube). Esta máquina virtual tiene la dirección IP 10.0.4.4. El nombre de usuario es *treyresearch\testuser* y la contraseña *AweS0me@PW*.
+7. En el JumpBox, conéctese a la primera máquina virtual del dominio <em>treyresearch.com</em> (el dominio en la nube). Esta máquina virtual tiene la dirección IP 10.0.4.4. El nombre de usuario es <em>treyresearch\testuser</em> y la contraseña <em>AweS0me@PW</em>.
 
 8. Descargue el script [outgoing-trust.ps1][outgoing-trust] y ejecútelo para crear la confianza saliente desde el dominio *treyresearch.com*. Si va a usar sus propias máquinas locales, edite primero el script. Establezca la variable `$TrustedDomainName` en el nombre del dominio local y especifique las direcciones IP de los servidores de Active Directory DS para este dominio en la variable `$TrustedDomainDnsIpAddresses`.
 
 9. Espere unos minutos a que finalicen los pasos anteriores y luego conéctese a una máquina virtual local y siga los pasos descritos en el artículo [Comprobación de una confianza][verify-a-trust] para determinar si la relación de confianza entre los dominios *contoso.com* y *treyresearch.com* está configurada correctamente.
 
-## <a name="next-steps"></a>pasos siguientes
+## <a name="next-steps"></a>Pasos siguientes
 
 * Conozca los procedimientos recomendados para [extender el dominio de AD DS local a Azure][adds-extend-domain]
 * Conozca los procedimientos recomendados para [crear una infraestructura de AD FS][adfs] en Azure.
@@ -162,5 +165,5 @@ Hay una solución disponible en [GitHub][github] para implementar esta arquitect
 [standby-operations-masters]: https://technet.microsoft.com/library/cc794737(v=ws.10).aspx
 [outgoing-trust]: https://raw.githubusercontent.com/mspnp/reference-architectures/master/identity/adds-forest/extensions/outgoing-trust.ps1
 [verify-a-trust]: https://technet.microsoft.com/library/cc753821.aspx
-[visio-download]: https://archcenter.azureedge.net/cdn/identity-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 [0]: ./images/adds-forest.png "Protección de la arquitectura de red híbrida con dominios independientes de Active Directory"

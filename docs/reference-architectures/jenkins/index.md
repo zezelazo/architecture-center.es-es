@@ -1,13 +1,13 @@
 ---
-title: "Ejecución de un servidor Jenkins en Azure"
-description: "Esta arquitectura de referencia muestra cómo implementar y hacer funcionar un servidor Jenkins escalable y de nivel empresarial en Azure protegido con un inicio de sesión único (SSO)."
+title: Ejecución de un servidor Jenkins en Azure
+description: Esta arquitectura de referencia muestra cómo implementar y hacer funcionar un servidor Jenkins escalable y de nivel empresarial en Azure protegido con un inicio de sesión único (SSO).
 author: njray
 ms.date: 01/21/18
-ms.openlocfilehash: 724185e43ed743013f52ded04b779552dd8e48c1
-ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
+ms.openlocfilehash: c07a341bbe4d0304087e4535408967c45d36199e
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/27/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>Ejecución de un servidor Jenkins en Azure
 
@@ -15,7 +15,7 @@ Esta arquitectura de referencia muestra cómo implementar y hacer funcionar un s
 
 ![Servidor Jenkins que se ejecuta en Azure][0]
 
-*Descargue un [archivo de Visio](https://arch-center.azureedge.net/cdn/Jenkins-architecture.vsdx) que contiene este diagrama de arquitectura.*
+*Descargue un [archivo de Visio](https://archcenter.blob.core.windows.net/cdn/Jenkins-architecture.vsdx) que contiene este diagrama de arquitectura.*
 
 Esta arquitectura admite la recuperación ante desastres con los servicios de Azure, pero no cubre escenarios de escalabilidad horizontal más avanzados que impliquen múltiples maestros o alta disponibilidad (HA) sin tiempo de inactividad. Para información general sobre los distintos componentes de Azure, incluido un tutorial paso a paso sobre cómo compilar una canalización de CI/CD en Azure, consulte [Jenkins en Azure][jenkins-on-azure].
 
@@ -25,30 +25,30 @@ El enfoque de este documento se centra en las operaciones centrales de Azure nec
 
 La arquitectura consta de los siguientes componentes:
 
--   **Grupo de recursos.** Un [grupo de recursos][rg] se utiliza para agrupar recursos de Azure, para que puedan administrarse según su duración, su propietario y otros criterios. Los grupos de recursos permiten implementar y supervisar los recursos como un grupo, y realizar un seguimiento de los costos de facturación por grupo de recursos. También se pueden eliminar recursos en conjunto, lo que resulta muy útil para implementaciones de prueba.
+- **Grupo de recursos.** Un [grupo de recursos][rg] se utiliza para agrupar recursos de Azure, para que puedan administrarse según su duración, su propietario y otros criterios. Los grupos de recursos permiten implementar y supervisar los recursos como un grupo, y realizar un seguimiento de los costos de facturación por grupo de recursos. También se pueden eliminar recursos en conjunto, lo que resulta muy útil para implementaciones de prueba.
 
--   **Servidor Jenkins**. Se implementa una máquina virtual para ejecutar [Jenkins][azure-market] como servidor de automatización y servir como maestro de Jenkins. Esta arquitectura de referencia usa la [plantilla de solución para Jenkins en Azure][solution], instalada en una máquina virtual Linux (Ubuntu 16.04 LTS) en Azure. Otras ofertas de Jenkins están disponibles en Azure Marketplace.
+- **Servidor Jenkins**. Se implementa una máquina virtual para ejecutar [Jenkins][azure-market] como servidor de automatización y servir como maestro de Jenkins. Esta arquitectura de referencia usa la [plantilla de solución para Jenkins en Azure][solution], instalada en una máquina virtual Linux (Ubuntu 16.04 LTS) en Azure. Otras ofertas de Jenkins están disponibles en Azure Marketplace.
 
-    > [!NOTE]
-    > Nginx se instala en la máquina virtual para actuar como un proxy inverso en Jenkins. Puede configurar Nginx para habilitar SSL para el servidor Jenkins.
-    > 
-    > 
+  > [!NOTE]
+  > Nginx se instala en la máquina virtual para actuar como un proxy inverso en Jenkins. Puede configurar Nginx para habilitar SSL para el servidor Jenkins.
+  > 
+  > 
 
--   **Red virtual**. Una [red virtual][vnet] conecta recursos de Azure entre sí y proporciona aislamiento lógico. En esta arquitectura, el servidor Jenkins se ejecuta en una red virtual.
+- **Red virtual**. Una [red virtual][vnet] conecta recursos de Azure entre sí y proporciona aislamiento lógico. En esta arquitectura, el servidor Jenkins se ejecuta en una red virtual.
 
--   **Subredes**. El servidor Jenkins está aislado en [subred][subnet] para facilitar la administración y segregación del tráfico de la red sin afectar el rendimiento.
+- **Subredes**. El servidor Jenkins está aislado en [subred][subnet] para facilitar la administración y segregación del tráfico de la red sin afectar el rendimiento.
 
--   **NSG**. Use los [grupos de seguridad de red][nsg] (NSG) para restringir el tráfico de red desde Internet a la subred de una red virtual.
+- <strong>NSG</strong>. Use los [grupos de seguridad de red][nsg] (NSG) para restringir el tráfico de red desde Internet a la subred de una red virtual.
 
--   **Managed Disks**. Un [disco administrado][managed-disk] es un disco duro virtual (VHD) persistente utilizado para el almacenamiento de aplicaciones y también para mantener el estado del servidor Jenkins y proporcionar recuperación ante desastres. Los discos de datos se almacenan en Azure Storage. Para un mayor rendimiento, se recomienda [Premium Storage][premium].
+- **Managed Disks**. Un [disco administrado][managed-disk] es un disco duro virtual (VHD) persistente utilizado para el almacenamiento de aplicaciones y también para mantener el estado del servidor Jenkins y proporcionar recuperación ante desastres. Los discos de datos se almacenan en Azure Storage. Para un mayor rendimiento, se recomienda [Premium Storage][premium].
 
--   **Azure Blob Storage**. El [complemento de Microsoft Azure Storage][configure-storage] utiliza Azure Blob Storage para almacenar los artefactos de compilación que se crean y se comparten con otras compilaciones de Jenkins.
+- **Azure Blob Storage**. El [complemento de Microsoft Azure Storage][configure-storage] utiliza Azure Blob Storage para almacenar los artefactos de compilación que se crean y se comparten con otras compilaciones de Jenkins.
 
--   **Azure Active Directory (Azure AD)**. [Azure AD][azure-ad] admite la autenticación del usuario, lo que le permite configurar el inicio de sesión único. Las [entidades de servicio ][service-principal] de Azure AD definen la directiva y los permisos para cada autorización de rol en el flujo de trabajo mediante el [control de acceso basado en rol][rbac] (RBAC). Cada entidad de servicio está asociada a un trabajo Jenkins.
+- <strong>Azure Active Directory (Azure AD)</strong>. [Azure AD][azure-ad] admite la autenticación del usuario, lo que le permite configurar el inicio de sesión único. Las [entidades de servicio ][service-principal] de Azure AD definen la directiva y los permisos para cada autorización de rol en el flujo de trabajo mediante el [control de acceso basado en rol][rbac] (RBAC). Cada entidad de servicio está asociada a un trabajo Jenkins.
 
--   **Azure Key Vault**. Para administrar los secretos y las claves criptográficas utilizadas para aprovisionar recursos de Azure cuando se requieren secretos, esta arquitectura utiliza [Key Vault][key-vault]. Para obtener ayuda adicional sobre cómo almacenar los secretos asociados a la aplicación de la canalización, consulte también el complemento [Azure Credentials][configure-credential] para Jenkins.
+- **Azure Key Vault**. Para administrar los secretos y las claves criptográficas utilizadas para aprovisionar recursos de Azure cuando se requieren secretos, esta arquitectura utiliza [Key Vault][key-vault]. Para obtener ayuda adicional sobre cómo almacenar los secretos asociados a la aplicación de la canalización, consulte también el complemento [Azure Credentials][configure-credential] para Jenkins.
 
--   **Servicios de supervisión de Azure**. Este servicio [supervisa][monitor] la máquina virtual de Azure que hospeda Jenkins. Esta implementación supervisa el estado de la máquina virtual y el uso de CPU, y envía las alertas.
+- **Servicios de supervisión de Azure**. Este servicio [supervisa][monitor] la máquina virtual de Azure que hospeda Jenkins. Esta implementación supervisa el estado de la máquina virtual y el uso de CPU, y envía las alertas.
 
 ## <a name="recommendations"></a>Recomendaciones
 

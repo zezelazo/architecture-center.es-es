@@ -1,13 +1,13 @@
 ---
-title: "Elección de un almacén de datos de búsqueda"
-description: 
+title: Elección de un almacén de datos de búsqueda
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 7fe5952c880921984beb30c71458fd1ef72ef239
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: ead07e307e96696faa5ddf48505eee378027523c
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="choosing-a-search-data-store-in-azure"></a>Elección de un almacén de datos de búsqueda en Azure
 
@@ -42,6 +42,7 @@ En escenarios de búsqueda, puede comenzar por la selección del almacén de dat
 En las tablas siguientes se resumen las diferencias clave en cuanto a funcionalidades.
 
 ### <a name="general-capabilities"></a>Funcionalidades generales
+
 | | Azure Search | Elasticsearch | HDInsight con Solr | SQL Database | 
 | --- | --- | --- | --- | --- | 
 | Es un servicio administrado | Sí | Sin  | Sí | Sí |  
@@ -50,12 +51,14 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 | Indexadores de documentos para los tipos de archivo más comunes (PDF, DOCX, TXT y otros) | Sí | Sin  | Sí | Sin  |
 
 ### <a name="manageability-capabilities"></a>Funcionalidades de administración
+
 | | Azure Search | Elasticsearch | HDInsight con Solr | SQL Database | 
 | --- | --- | --- | --- | --- |
 | Esquema actualizable | Sin  | Sí | Sí | Sí |
 | Admite el escalado horizontal  | Sí | Sí | Sí | Sin  |
 
 ### <a name="analytic-workload-capabilities"></a>Funcionalidades de cargas de trabajo de análisis
+
 | | Azure Search | Elasticsearch | HDInsight con Solr | SQL Database | 
 | --- | --- | --- | --- | --- | 
 | Admite el análisis más allá de la búsqueda de texto completo | Sin  | Sí | Sí | Sí |
@@ -63,6 +66,7 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 | Admite búsqueda semántica | Sí (solo búsqueda de documentos similares) | Sí | Sí | Sí | 
 
 ### <a name="security-capabilities"></a>Funcionalidades de seguridad
+
 | | Azure Search | Elasticsearch | HDInsight con Solr | SQL Database | 
 | --- | --- | --- | --- | --- | 
 | Seguridad de nivel de fila | Parcial (requiere una consulta de la aplicación para filtrar por el identificador de grupo) | Parcial (requiere una consulta de la aplicación para filtrar por el identificador de grupo) | Sí | Sí | 

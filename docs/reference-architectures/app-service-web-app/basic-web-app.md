@@ -1,14 +1,14 @@
 ---
-title: "Aplicación web básica"
-description: "Arquitectura recomendada para una aplicación web básica que se ejecuta en Microsoft Azure."
+title: Aplicación web básica
+description: Arquitectura recomendada para una aplicación web básica que se ejecuta en Microsoft Azure.
 author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: 38b0739cc61d679742b610b99e92aaad8d3b394d
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: efd831b1f54fa0662bdfa9874318e7b314172215
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="basic-web-application"></a>Aplicación web básica
 [!INCLUDE [header](../../_includes/header.md)]
@@ -157,7 +157,7 @@ Sugerencias para solucionar problemas de la aplicación:
 
 * Use la [hoja de solución de problemas][troubleshoot-blade] de Azure Portal para buscar soluciones a problemas comunes.
 * Habilite [Secuencias de registro][web-app-log-stream] para ver la información de registro prácticamente en tiempo real.
-* El [panel Kudu][kudu] dispone de varias herramientas para supervisar y depurar la aplicación. Para obtener más información, consulte [Azure Websites online tools you should know about][kudu] [Herramientas en línea de Azure Websites que debe conocer (entrada de blog)]. Puede acceder al panel Kudu desde Azure Portal. Abra la hoja de su aplicación y haga clic en **Herramientas**; a continuación, haga clic en **Kudu**.
+* El [panel Kudu][kudu] dispone de varias herramientas para supervisar y depurar la aplicación. Para obtener más información, consulte [Azure Websites online tools you should know about][kudu] [Herramientas en línea de Azure Websites que debe conocer (entrada de blog)]. Puede acceder al panel Kudu desde Azure Portal. Abra la hoja de su aplicación y haga clic en <strong>Herramientas</strong>; a continuación, haga clic en <strong>Kudu</strong>.
 * Si usa Visual Studio, consulte el artículo [Solución de problemas de una aplicación web en Azure App Service con Visual Studio][troubleshoot-web-app] para obtener sugerencias de depuración y solución de problemas.
 
 ## <a name="security-considerations"></a>Consideraciones sobre la seguridad
@@ -252,7 +252,7 @@ Para más información, consulte [Implementación de recursos con las plantillas
 [ssl-cert]: /azure/app-service-web/web-sites-purchase-ssl-web-site
 [troubleshoot-blade]: https://azure.microsoft.com/updates/self-service-troubleshooting-for-app-service-web-apps-customers/
 [troubleshoot-web-app]: /azure/app-service-web/web-sites-dotnet-troubleshoot-visual-studio
-[visio-download]: https://archcenter.azureedge.net/cdn/app-service-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx
 [vsts]: https://www.visualstudio.com/features/vso-cloud-load-testing-vs.aspx
 [web-app-autoscale]: /azure/app-service-web/web-sites-scale
 [web-app-backup]: /azure/app-service-web/web-sites-backup

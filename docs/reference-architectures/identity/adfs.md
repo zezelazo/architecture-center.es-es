@@ -1,16 +1,19 @@
 ---
-title: "Implementación de los Servicios de federación de Active Directory (AD FS) en Azure"
-description: "Procedimiento para implementar una arquitectura de red híbrida segura con la autorización de los Servicios de Federación de Active Directory en Azure.\nguidance,vpn-gateway,expressroute,load-balancer,virtual-network,active-directory"
+title: Implementación de los Servicios de federación de Active Directory (AD FS) en Azure
+description: >-
+  Procedimiento para implementar una arquitectura de red híbrida segura con la autorización de los Servicios de Federación de Active Directory en Azure.
+
+  guidance,vpn-gateway,expressroute,load-balancer,virtual-network,active-directory
 author: telmosampaio
 ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: adds-forest
 cardTitle: Extend AD FS to Azure
-ms.openlocfilehash: b8c9ae0621c087c68d449dd13e60046104c01513
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 87489b7b81cf323c221466c539ee14ea90e23c14
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>Extensión de Servicios de federación de Active Directory (AD FS) a Azure
 
@@ -247,7 +250,7 @@ Hay una solución disponible en [GitHub][github] para implementar esta arquitect
 
 5. Reinicie el JumBox (*ra-adfs-mgmt-vm1* en el grupo *ra-adfs-security-rg*) para permitir que su configuración DNS surta efecto.
 
-6. [Obtenga un certificado SSL para AD FS][adfs_certificates] e instálelo en las máquinas virtuales de AD FS. Tenga en cuenta que puede conectarse a ellas a través del JumBox. Las direcciones IP son *10.0.5.4* y *10.0.5.5*. El nombre de usuario predeterminado es *contoso\testuser* y la contraseña *AweSome@PW*.
+6. [Obtenga un certificado SSL para AD FS][adfs_certificates] e instálelo en las máquinas virtuales de AD FS. Tenga en cuenta que puede conectarse a ellas a través del JumBox. Las direcciones IP son <em>10.0.5.4</em> y <em>10.0.5.5</em>. El nombre de usuario predeterminado es <em>contoso\testuser</em> y la contraseña <em>AweSome@PW</em>.
    
    > [!NOTE]
    > Los comentarios en el script de Deploy-ReferenceArchitecture.ps1 proporcionan instrucciones detalladas para crear un certificado de prueba autofirmado y una entidad utilizando el comando `makecert`. Sin embargo, siga estos pasos solo como una **prueba** y no use los certificados generados por makecert en un entorno de producción.
@@ -260,7 +263,7 @@ Hay una solución disponible en [GitHub][github] para implementar esta arquitect
     .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> Adfs
     ``` 
 
-8. En el JumpBox, vaya a `https://adfs.contoso.com/adfs/ls/idpinitiatedsignon.htm` para probar la instalación de AD FS (puede recibir una advertencia sobre el certificado, que puede ignorar en esta prueba). Compruebe que aparece la página de inicio de sesión de Contoso Corporation. Inicie sesión como *contoso\testuser* con la contraseña *AweS0me@PW*.
+8. En el JumpBox, vaya a `https://adfs.contoso.com/adfs/ls/idpinitiatedsignon.htm` para probar la instalación de AD FS (puede recibir una advertencia sobre el certificado, que puede ignorar en esta prueba). Compruebe que aparece la página de inicio de sesión de Contoso Corporation. Inicie sesión como <em>contoso\testuser</em> con la contraseña <em>AweS0me@PW</em>.
 
 9. Instale el certificado SSL en las máquinas virtuales de proxy de AD FS. Las direcciones IP son *10.0.6.4* y *10.0.6.5*.
 
@@ -280,7 +283,7 @@ Hay una solución disponible en [GitHub][github] para implementar esta arquitect
 
 13. Siga las instrucciones que muestra el script para probar la configuración del proxy completo.
 
-## <a name="next-steps"></a>pasos siguientes
+## <a name="next-steps"></a>Pasos siguientes
 
 * Información acerca de [Azure Active Directory][aad].
 * Información acerca de [Azure Active Directory B2C][aadb2c].
@@ -319,5 +322,5 @@ Hay una solución disponible en [GitHub][github] para implementar esta arquitect
 [github]: https://github.com/mspnp/reference-architectures/tree/master/identity/adfs
 [adfs_certificates]: https://technet.microsoft.com/library/dn781428(v=ws.11).aspx
 [considerations]: ./considerations.md
-[visio-download]: https://archcenter.azureedge.net/cdn/identity-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/identity-architectures.vsdx
 [0]: ./images/adfs.png "Protección de la arquitectura de red híbrida con Active Directory"

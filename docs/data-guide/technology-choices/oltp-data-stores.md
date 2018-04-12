@@ -1,13 +1,13 @@
 ---
-title: "Elección de un almacén de datos de OLTP"
-description: 
+title: Elección de un almacén de datos de OLTP
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
 ms.openlocfilehash: 1c27d7d5f3b78f40822de6b77664dbf49b1367f6
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 03/31/2018
 ---
 # <a name="choosing-an-oltp-data-store-in-azure"></a>Elección de un almacén de datos de OLTP en Azure
 

@@ -1,19 +1,19 @@
 ---
-title: "Elección de un almacén de datos analíticos"
-description: 
+title: Elección de un almacén de datos analíticos
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: b2e5e63982d4b89b95cd28e596d3b882a4a2263e
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: cdc32c16e30aec5e1c0cb6959182215f99d56b56
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="choosing-an-analytical-data-store-in-azure"></a>Elección de un almacén de datos analíticos en Azure
 
-En una arquitectura de [macrodatos](../concepts/big-data.md), a menudo se necesita un almacén de datos analíticos que sirva los datos procesados en un formato estructurado que se pueda consultar mediante herramientas de análisis. Los almacenes de datos analíticos que admiten la consulta tanto de los datos de la ruta de acceso rápido como de la ruta de acceso preciso se denominan colectivamente la capa de servicios o el almacenamiento de servicios de datos.
+En una arquitectura de [macrodatos](../big-data/index.md), a menudo se necesita un almacén de datos analíticos que sirva los datos procesados en un formato estructurado que se pueda consultar mediante herramientas de análisis. Los almacenes de datos analíticos que admiten la consulta tanto de los datos de la ruta de acceso rápido como de la ruta de acceso preciso se denominan colectivamente la capa de servicios o el almacenamiento de servicios de datos.
 
-La capa de servicio afecta a los datos procesados tanto de la ruta de acceso activa a la ruta de acceso inactiva. En la [arquitectura lambda](../concepts/big-data.md#lambda-architecture), la capa de servicio se subdivide en una capa de _servicios de velocidad_, que almacena los datos que se ha procesado de forma incremental, y una capa de _servicios por lotes_, que contiene la salida procesada por lotes. La capa de servicios requiere una compatibilidad total con las lecturas aleatorias con latencia baja. El almacenamiento de datos en la capa de velocidad también debe admitir operaciones de escritura aleatorias, ya que el lote que carga los datos en este almacén introduciría retrasos no deseados. Por otra parte, el almacenamiento de datos en la capa por lotes no es preciso que admita operaciones de escritura aleatorias, sino operaciones de escritura por lotes.
+La capa de servicio afecta a los datos procesados tanto de la ruta de acceso activa a la ruta de acceso inactiva. En la [arquitectura lambda](../big-data/index.md#lambda-architecture), la capa de servicio se subdivide en una capa de _servicios de velocidad_, que almacena los datos que se ha procesado de forma incremental, y una capa de _servicios por lotes_, que contiene la salida procesada por lotes. La capa de servicios requiere una compatibilidad total con las lecturas aleatorias con latencia baja. El almacenamiento de datos en la capa de velocidad también debe admitir operaciones de escritura aleatorias, ya que el lote que carga los datos en este almacén introduciría retrasos no deseados. Por otra parte, el almacenamiento de datos en la capa por lotes no es preciso que admita operaciones de escritura aleatorias, sino operaciones de escritura por lotes.
 
 No hay ninguna opción individual de administración de datos que sea la mejor para todas las tareas del almacenamiento de datos. Las distintas soluciones de administración de datos están optimizadas para tareas diferentes. La mayoría de las aplicaciones en la nube y procesos de macrodatos reales tienen una gran variedad de requisitos de almacenamiento de datos y a menudo usan una combinación de soluciones de almacenamiento de datos.
 
@@ -65,12 +65,12 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
  
 ### <a name="scalability-capabilities"></a>Funcionalidades de escalabilidad
 
-| | SQL Database | SQL Data Warehouse | HBase/Phoenix en HDInsight | Hive LLAP en HDInsight | Azure Analysis Services | Cosmos DB |
-| --- | --- | --- | --- | --- | --- | --- |
-| Servidores regionales redundantes para lograr alta disponibilidad  | Sí | Sí | Sí | Sin  | Sin  | Sí | Sí |
-| Admite el escalado horizontal de consultas  | Sin  | Sí | Sí | Sí | Sí | Sí |
-| Escalabilidad dinámica (escalado vertical)  | Sí | Sí | Sin  | Sin  | Sí | Sí |
-| Admite el almacenamiento en caché en memoria de datos | Sí | Sí | Sin  | Sí | Sí | Sin  |
+|                                                  | SQL Database | SQL Data Warehouse | HBase/Phoenix en HDInsight | Hive LLAP en HDInsight | Azure Analysis Services | Cosmos DB |
+|--------------------------------------------------|--------------|--------------------|----------------------------|------------------------|-------------------------|-----------|
+| Servidores regionales redundantes para lograr alta disponibilidad |     Sí      |        Sí         |            Sí             |           Sin            |           Sin             |    Sí    |
+|             Admite el escalado horizontal de consultas             |      Sin       |        Sí         |            Sí             |          Sí           |           Sí           |    Sí    |
+|          Escalabilidad dinámica (escalado vertical)          |     Sí      |        Sí         |             Sin              |           Sin            |           Sí           |    Sí    |
+|        Admite el almacenamiento en caché en memoria de datos        |     Sí      |        Sí         |             Sin              |          Sí           |           Sí           |    Sin      |
 
 ### <a name="security-capabilities"></a>Funcionalidades de seguridad
 

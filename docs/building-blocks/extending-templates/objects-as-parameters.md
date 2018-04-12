@@ -1,13 +1,13 @@
 ---
-title: "Uso de un objeto como parámetro en una plantilla de Azure Resource Manager"
-description: "Se describe cómo ampliar la funcionalidad de las plantillas de Azure Resource Manager para utilizar objetos como parámetros."
+title: Uso de un objeto como parámetro en una plantilla de Azure Resource Manager
+description: Se describe cómo ampliar la funcionalidad de las plantillas de Azure Resource Manager para utilizar objetos como parámetros.
 author: petertay
 ms.date: 06/09/2017
-ms.openlocfilehash: 08ee1cf2924f78ce366c58e20e84a512785f85cc
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 76f8b9d459f4ab3147b52762b7c26552ec92c7a3
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>Uso de un objeto como parámetro en una plantilla de Azure Resource Manager
 
@@ -294,7 +294,6 @@ Ahora, echemos un vistazo a la plantilla. El primer recurso, llamado `NSG1`, imp
   ],          
   "outputs": {}
 }
-
 ```
 
 Vamos a echar un vistazo más de cerca a cómo se especifican los valores de propiedad en el recurso secundario `securityRules`. Para hacer referencia a todas las propiedades, se usa la función `parameter()` y, a continuación, se usa el operador punto para hacer referencia a la matriz `securityRules`, indexada por el valor actual de la iteración. Por último, se usa otro operador punto para hacer referencia al nombre del objeto. 

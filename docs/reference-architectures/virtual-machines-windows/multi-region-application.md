@@ -1,15 +1,15 @@
 ---
-title: "Ejecución de máquinas virtuales Windows en varias regiones de Azure para lograr alta disponibilidad"
-description: "Cómo implementar máquinas virtuales en varias regiones de Azure para conseguir alta disponibilidad y resistencia."
+title: Ejecución de máquinas virtuales Windows en varias regiones de Azure para lograr alta disponibilidad
+description: Cómo implementar máquinas virtuales en varias regiones de Azure para conseguir alta disponibilidad y resistencia.
 author: MikeWasson
 ms.date: 11/22/2016
 pnp.series.title: Windows VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: 9c54959da96115e55ba8a5c9e0f3c358d29ce5dd
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 9772d57e6a11711d77032b049168565d52d919b8
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-windows-vms-in-multiple-regions-for-high-availability"></a>Ejecución de máquinas virtuales Windows en varias regiones para lograr alta disponibilidad
 
@@ -114,9 +114,9 @@ Para configurar el grupo de disponibilidad:
 * Cree un clúster de [Clústeres de conmutación por error de Windows Server][wsfc] (WSFC) que incluya las instancias de SQL Server en ambas regiones. 
 * Cree un grupo de disponibilidad AlwaysOn de SQL Server que incluya las instancias de SQL Server en las regiones primaria y secundaria. Consulte [Extending Always On Availability Group to Remote Azure Datacenter (PowerShell)](https://blogs.msdn.microsoft.com/sqlcat/2014/09/22/extending-alwayson-availability-group-to-remote-azure-datacenter-powershell/) (Extensión de un grupo de disponibilidad AlwaysOn para el acceso remoto a un centro de datos de Azure [PowerShell)] para conocer los pasos.
 
-    * Coloque la réplica principal en la región primaria.
-    * Coloque una o varias réplicas secundarias en la región primaria. Configure estos elementos para usar la confirmación sincrónica con conmutación automática por error.
-    * Coloque una o varias réplicas secundarias en la región secundaria. Por motivos de rendimiento, configure estas opciones para usar confirmación *asincrónica*. (De lo contrario, todas las transacciones de T-SQL deberán esperar el recorrido de ida y vuelta a través de la red hasta la región secundaria).
+  * Coloque la réplica principal en la región primaria.
+  * Coloque una o varias réplicas secundarias en la región primaria. Configure estos elementos para usar la confirmación sincrónica con conmutación automática por error.
+  * Coloque una o varias réplicas secundarias en la región secundaria. Por motivos de rendimiento, configure estas opciones para usar confirmación *asincrónica*. (De lo contrario, todas las transacciones de T-SQL deberán esperar el recorrido de ida y vuelta a través de la red hasta la región secundaria).
 
     > [!NOTE]
     > Las réplicas de confirmación asincrónica no admiten la conmutación automática por error.
@@ -182,7 +182,7 @@ Medición de los tiempos de recuperación y comprobación de que cumplen los req
 [tm-routing]: /azure/traffic-manager/traffic-manager-routing-methods
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
 [traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
-[visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [vnet-dns]: /azure/virtual-network/virtual-networks-manage-dns-in-vnet
 [vnet-to-vnet]: /azure/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps
 [vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways

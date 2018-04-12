@@ -1,7 +1,7 @@
 ---
 title: CQRS
-description: "Segrega las operaciones de lectura de datos de las de actualización de datos mediante interfaces independientes."
-keywords: "Patrón de diseño"
+description: Segrega las operaciones de lectura de datos de las de actualización de datos mediante interfaces independientes.
+keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
@@ -9,11 +9,11 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: 80f4a8880cf2212acf82dadb67b0181e1cbae099
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: ce8d20ae82ae7d5ba00b4bc264a5c4d90fc383bd
+ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>Patrón Command and Query Responsibility Segregation (CQRS).
 
@@ -69,7 +69,7 @@ Tenga en cuenta los puntos siguientes al decidir cómo implementar este patrón:
 
 - Considere la posibilidad de aplicar CQRS a secciones limitadas del sistema donde será más valioso.
 
-- Un enfoque habitual para la implementación de consistencia final consiste en usar Event Sourcing en combinación con CQRS para que el modelo de escritura sea un flujo de solo anexión de eventos controlados por la ejecución de comandos. Estos eventos se usan para actualizar las vistas materializadas que actúan como modelo de lectura. Para más información, consulte [Event Sourcing y CQRS](https://msdn.microsoft.com/library/dn568103.aspx#EventSourcingandCQRS).
+- Un enfoque habitual para la implementación de consistencia final consiste en usar Event Sourcing en combinación con CQRS para que el modelo de escritura sea un flujo de solo anexión de eventos controlados por la ejecución de comandos. Estos eventos se usan para actualizar las vistas materializadas que actúan como modelo de lectura. Para más información, consulte [Event Sourcing y CQRS](/azure/architecture/patterns/cqrs#event-sourcing-and-cqrs).
 
 ## <a name="when-to-use-this-pattern"></a>Cuándo usar este patrón
 

@@ -1,10 +1,11 @@
 ---
 layout: LandingPage
-ms.openlocfilehash: b5c88ac0307c7d47f5bde73322bedd7063136576
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.topic: landing-page
+ms.openlocfilehash: 48600cc07983b1ec588cc56448c521f524f134e0
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="cloud-adoption-guide"></a>Guía sobre la adopción de la nube
 
@@ -35,6 +36,6 @@ Los artículos se muestran en orden y son progresivos. Si ya está familiarizado
 
 Los destinatarios de la guía sobre la adopción de la nube de Azure incluyen administradores de empresas, departamento financiero, operaciones de TI, seguridad y cumplimiento de TI, propietarios del desarrollo de cargas de trabajo y propietarios de operaciones con estas.
 
-## <a name="next-steps"></a>pasos siguientes
+## <a name="next-steps"></a>Pasos siguientes
 
 * Si no está familiarizado con Azure, comience por la sección [Adopción de Azure por primera vez](adoption-intro/overview.md) de esta guía.

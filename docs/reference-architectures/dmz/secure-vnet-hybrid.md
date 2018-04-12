@@ -1,17 +1,17 @@
 ---
-title: "Implementación de una arquitectura de red híbrida segura en Azure"
-description: "Proceso para implementar una arquitectura de red híbrida segura en Azure."
+title: Implementación de una arquitectura de red híbrida segura en Azure
+description: Proceso para implementar una arquitectura de red híbrida segura en Azure.
 author: telmosampaio
 ms.date: 11/23/2016
 pnp.series.title: Network DMZ
 pnp.series.prev: ./index
 pnp.series.next: secure-vnet-dmz
 cardTitle: DMZ between Azure and on-premises
-ms.openlocfilehash: 778d5ef6967a09b03bb6b5aca67e3e0c170ad016
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 81dea2e4439d5a01ebb88ab86dc0a59609bb7bc3
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="dmz-between-azure-and-your-on-premises-datacenter"></a>Red perimetral entre Azure y el centro de datos local
 
@@ -27,7 +27,7 @@ Esta arquitectura requiere una conexión a su centro de datos local, mediante un
 * Infraestructura que requiere un control específico sobre el tráfico que entra en una red virtual de Azure desde un centro de datos local.
 * Aplicaciones que deben auditar el tráfico saliente. Esto suele ser un requisito de regulación de muchos sistemas comerciales y puede ayudar a evitar la revelación de información privada.
 
-## <a name="architecture"></a>Arquitectura
+## <a name="architecture"></a>Architecture
 
 La arquitectura consta de los siguientes componentes:
 
@@ -179,7 +179,7 @@ Se puede encontrar una implementación de una arquitectura de referencia que imp
 * Para más información acerca de cómo administrar la seguridad de red con Azure, consulte [Servicios en la nube de Microsoft y seguridad de red][cloud-services-network-security].
 * Para información detallada sobre cómo proteger los recursos de Azure, consulte [Introducción a la seguridad de Microsoft Azure][getting-started-with-azure-security]. 
 * Para detalles adicionales acerca de cómo tratar problemas de seguridad en la conexión de puertas de enlace de Azure, vea [Implementación de una arquitectura de red híbrida con Azure y VPN local][guidance-vpn-gateway-security] e [Implementación de una arquitectura de red híbrida con Azure ExpressRoute][guidance-expressroute-security].
-> 
+  > 
 
 <!-- links -->
 
@@ -210,6 +210,6 @@ Se puede encontrar una implementación de una arquitectura de referencia que imp
 [routing-and-remote-access-service]: https://technet.microsoft.com/library/dd469790(v=ws.11).aspx
 [security-principle-of-least-privilege]: https://msdn.microsoft.com/library/hdb58b2f(v=vs.110).aspx#Anchor_1
 [udr-overview]: /azure/virtual-network/virtual-networks-udr-overview
-[visio-download]: https://archcenter.azureedge.net/cdn/dmz-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/dmz-reference-architectures.vsdx
 [wireshark]: https://www.wireshark.org/
 [0]: ./images/dmz-private.png "Arquitectura de red híbrida segura"

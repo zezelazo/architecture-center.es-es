@@ -1,13 +1,13 @@
 ---
-title: "Selección de una tecnología de procesamiento por lotes"
-description: 
+title: Selección de una tecnología de procesamiento por lotes
+description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: bfb850ee8e9d8fd41927b4ca3b612e15b5ae6b11
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 0117798af82f2caa6704dc86e88be57f09c381ea
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>Selección de una tecnología de procesamiento por lotes en Azure
 
@@ -53,8 +53,9 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 | Modelo de precios | Por trabajo por lotes | Por hora de clúster | Por hora de clúster | Por hora de clúster | Por hora de clúster |  
 
 [1] Con configuración y escalado manuales.
- 
+
 ### <a name="integration-capabilities"></a>Funcionalidades de integración
+
 | | Análisis con Azure Data Lake | SQL Data Warehouse | HDInsight con Spark | HDInsight con Hive | HDInsight con Hive LLAP |
 | --- | --- | --- | --- | --- | --- |
 | Acceso desde Azure Data Lake Store | Sí | Sí | Sí | Sí | Sí |
@@ -62,6 +63,7 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 | Consulta de almacenes relacionales externos | Sí | Sin  | Sí | Sin  | Sin  |
 
 ### <a name="scalability-capabilities"></a>Funcionalidades de escalabilidad
+
 | | Análisis con Azure Data Lake | SQL Data Warehouse | HDInsight con Spark | HDInsight con Hive | HDInsight con Hive LLAP |
 | --- | --- | --- | --- | --- | --- |
 | Granularidad de escalabilidad horizontal  | Por trabajo | Por clúster | Por clúster | Por clúster | Por clúster |
@@ -69,6 +71,7 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 | Admite el almacenamiento en caché en memoria de datos | Sin  | Sí | Sí | Sin  | Sí | 
 
 ### <a name="security-capabilities"></a>Funcionalidades de seguridad
+
 | | Análisis con Azure Data Lake | SQL Data Warehouse | HDInsight con Spark | Apache Hive en HDInsight | Hive LLAP en HDInsight |
 | --- | --- | --- | --- | --- | --- |
 | Autenticación  | Azure Active Directory (Azure AD) | SQL/Azure AD | Sin  | local/Azure AD <sup>1</sup> | local/Azure AD <sup>1</sup> |
