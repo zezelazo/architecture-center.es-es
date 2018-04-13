@@ -38,13 +38,9 @@
         - name: Guía de arquitectura de datos
           tocHref: /azure/architecture/data-guide
           topicHref: /azure/architecture/data-guide
+        - name: Diseño de microservicios
+          tocHref: /azure/architecture/microservices
+          topicHref: /azure/architecture/microservices
         - name: Antipatrones de rendimiento
           tocHref: /azure/architecture/antipatterns
           topicHref: /azure/architecture/
-        - name: Cumplimiento normativo
-          tocHref: /azure/architecture/compliance
-          topicHref: /azure/architecture/compliance
-          items:
-            - name: PCI-DSS
-              tocHref: /azure/architecture/compliance/pci-dss
-              topicHref: /azure/architecture/compliance/pci-dss
