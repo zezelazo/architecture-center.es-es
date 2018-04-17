@@ -67,7 +67,7 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 | | Análisis con Azure Data Lake | SQL Data Warehouse | HDInsight con Spark | HDInsight con Hive | HDInsight con Hive LLAP |
 | --- | --- | --- | --- | --- | --- |
 | Granularidad de escalabilidad horizontal  | Por trabajo | Por clúster | Por clúster | Por clúster | Por clúster |
-| Escalado horizontal rápido (en memos de 1 minuto) | Sí | Sí | Sin  | Sin  | Sin  |
+| Escalado horizontal rápido (en menos de 1 minuto) | Sí | Sí | Sin  | Sin  | Sin  |
 | Admite el almacenamiento en caché en memoria de datos | Sin  | Sí | Sí | Sin  | Sí | 
 
 ### <a name="security-capabilities"></a>Funcionalidades de seguridad
