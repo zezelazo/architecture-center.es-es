@@ -81,7 +81,7 @@ Para una aplicación de un solo inquilino, basta con comprobar que el emisor es 
 * En las opciones de middleware OIDC, establezca **ValidateIssuer** en false. Esto desactiva la comprobación automática.
 * Cuando un inquilino se suscriba, almacene el inquilino y el emisor en la base de datos de usuario.
 * Cada vez que un usuario inicie sesión, busque el emisor en la base de datos. Si no se encuentra el emisor, significa que el inquilino no se ha suscrito. Es posible redirigirlos a una página de suscripción.
-* También puede generar una lista negra de determinados inquilinos; por ejemplo, para los clientes que no pagaron su suscripción.
+* También puede generar una lista de bloqueados de determinados inquilinos; por ejemplo, para los clientes que no pagaron su suscripción.
 
 Para obtener una explicación más detallada, consulte [Registro e incorporación de un inquilino en una aplicación multiinquilino][signup].
 
