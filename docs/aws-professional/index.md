@@ -5,11 +5,11 @@ keywords: Expertos de AWS, comparación de Azure, comparación de AWS, diferenci
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: b8698675efa42bb3fae73cefe7b078942549b412
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 0af0890d383d22db0ed9d3b445cdd5b561b498ae
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="azure-for-aws-professionals"></a>Azure para profesionales de AWS
 
@@ -118,7 +118,7 @@ En la tabla siguiente se resume cada opción.
 | Alcance del error | Bastidor | Centro de datos | Region |
 | Enrutamiento de solicitudes | Load Balancer | Equilibrador de carga entre zonas | Traffic Manager |
 | Latencia de red | Muy baja | Bajo | Media-alta |
-| Redes virtuales  | VNet | VNet | Emparejamiento de VNet entre regiones (versión preliminar) |
+| Redes virtuales  | VNet | VNet | Emparejamiento de VNet entre regiones |
 
 ### <a name="availability-sets"></a>Conjuntos de disponibilidad 
 
@@ -130,7 +130,7 @@ Los conjuntos de disponibilidad se deben organizar mediante el rol de la instanc
 
 ![Conjuntos de disponibilidad de Azure para cada rol de aplicación](./images/three-tier-example.png "Conjuntos de disponibilidad para cada rol de aplicación")
 
-### <a name="availability-zones-preview"></a>Zonas de disponibilidad (versión preliminar)
+### <a name="availability-zones"></a>Zonas de disponibilidad
 
 Una [zona de disponibilidad](/azure/availability-zones/az-overview) es una zona separada físicamente dentro de una región de Azure. Cada zona de disponibilidad tiene una fuente de alimentación, una red y un sistema de refrigeración distintos. Cuando las máquinas virtuales están implementadas en diferentes zonas de disponibilidad, es más fácil proteger una aplicación frente a errores que afectan a todo el centro de datos. 
 
@@ -425,7 +425,7 @@ Notification Hubs no admite el envío de mensajes de correo electrónico o SMS, 
 -   [Plantillas de inicio rápido de Azure Resource Manager](https://azure.microsoft.com/documentation/templates/)
 
 
-## <a name="next-steps"></a>pasos siguientes
+## <a name="next-steps"></a>Pasos siguientes
 
 -   [Rellenar la matriz de comparación de servicios de AWS y Azure](https://aka.ms/azure4aws-services)
 

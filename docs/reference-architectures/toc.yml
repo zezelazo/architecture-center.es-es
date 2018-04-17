@@ -12,6 +12,10 @@
           href: app-service-web-app/scalable-web-app.md
         - name: Implementación en varias regiones
           href: app-service-web-app/multi-region.md
+    - name: Arquitecturas de datos
+      items:
+        - name: Inteligencia empresarial con SQL Data Warehouse
+          href: data/enterprise-bi-sqldw.md
     - name: Redes híbridas
       href: hybrid-networking/index.md
       items:
