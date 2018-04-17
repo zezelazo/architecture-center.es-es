@@ -7,11 +7,11 @@ pnp.series.title: Network DMZ
 pnp.series.next: nva-ha
 pnp.series.prev: secure-vnet-hybrid
 cardTitle: DMZ between Azure and the Internet
-ms.openlocfilehash: 372d5bb0fc0e3c272843e062210dec5c15b2b78a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: c88545b1fcae49b413e7e2b6ac5bd92d3fd3456d
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="dmz-between-azure-and-the-internet"></a>Red perimetral entre Internet y Azure
 
@@ -28,7 +28,7 @@ Los usos habituales de esta arquitectura incluyen:
 * Aplicaciones híbridas donde parte de las cargas de trabajo se ejecutan de forma local y parte en Azure.
 * Infraestructura de Azure que enruta el tráfico entrante procedente del entorno local e Internet.
 
-## <a name="architecture"></a>Arquitectura
+## <a name="architecture"></a>Architecture
 
 La arquitectura consta de los siguientes componentes:
 
@@ -42,7 +42,7 @@ La arquitectura consta de los siguientes componentes:
 
 Las siguientes recomendaciones sirven para la mayoría de los escenarios. Sígalas a menos que tenga un requisito concreto que las invalide. 
 
-### <a name="nva-recommendations"></a>Recomendaciones para NVA
+### <a name="nva-recommendations"></a>Recomendaciones para aplicaciones virtuales de red
 
 Se recomienda usar un conjunto de NVA para el tráfico que se origina en Internet y otro para el tráfico que se origina en el entorno local. Utilizar únicamente un conjunto de NVA para ambos es un riesgo de seguridad, ya que no proporciona ningún perímetro de seguridad entre los dos conjuntos de tráfico de red. El uso de NVA independientes reduce la complejidad de la comprobación de las reglas de seguridad y deja claro qué reglas se corresponden con cada solicitud de red entrante. Un conjunto de NVA implementa reglas solo para el tráfico de Internet, mientras que otro lo hace solo para el tráfico local.
 
@@ -107,7 +107,7 @@ Se puede encontrar una implementación de una arquitectura de referencia que imp
    * Revise los términos y condiciones, y haga clic en la casilla **Acepto los términos y condiciones indicados anteriormente**.
    * Haga clic en el botón **Comprar**.
 9. Espere a que la implementación se complete.
-10. Los archivos de parámetros incluyen un nombre de usuario y una contraseña de administrador codificados de forma rígida, y es muy recomendable cambiarlos inmediatamente. Seleccione cada máquina virtual de la implementación en Azure Portal y haga clic en **Restablecer contraseña** en la hoja **Soporte técnico y solución de problemas**. Seleccione **Restablecer contraseña** en el cuadro de lista desplegable **Modo**, seleccione un valor de **Nombre de usuario** y un valor de **Contraseña**. Haga clic en el botón **Actualizar** para guardar.
+10. Los archivos de parámetros incluyen un nombre de usuario y una contraseña de administrador codificados de forma rígida para todas las máquinas virtuales, y es muy recomendable cambiarlos inmediatamente. Seleccione cada máquina virtual de la implementación en Azure Portal y haga clic en **Restablecer contraseña** en la hoja **Soporte técnico y solución de problemas**. Seleccione **Restablecer contraseña** en el cuadro de lista desplegable **Modo**, seleccione un valor de **Nombre de usuario** y un valor de **Contraseña**. Haga clic en el botón **Actualizar** para guardar.
 
 
 [availability-set]: /azure/virtual-machines/virtual-machines-windows-manage-availability
@@ -119,7 +119,7 @@ Se puede encontrar una implementación de una arquitectura de referencia que imp
 [load-balancer]: /azure/load-balancer/load-balancer-Internet-overview
 [network-security-group]: /azure/virtual-network/virtual-networks-nsg
 
-[visio-download]: https://archcenter.azureedge.net/cdn/dmz-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/dmz-reference-architectures.vsdx
 
 
 [0]: ./images/dmz-public.png "Arquitectura de red híbrida segura"

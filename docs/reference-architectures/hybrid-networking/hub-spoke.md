@@ -1,15 +1,15 @@
 ---
-title: "Implementación de una topología de red en estrella tipo hub-and-spoke en Azure"
-description: "Cómo implementar una topología de red en estrella tipo hub-and-spoke en Azure."
+title: Implementación de una topología de red en estrella tipo hub-and-spoke en Azure
+description: Cómo implementar una topología de red en estrella tipo hub-and-spoke en Azure.
 author: telmosampaio
 ms.date: 02/23/2018
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: 1a2855f0d4a903fc4d7a022aef20ea73fe763e2c
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 243ad026c7c9703d9659cbef6815131fcdaa8a11
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke en Azure
 
@@ -115,7 +115,7 @@ Hay disponible una implementación de esta arquitectura en [GitHub][ref-arch-rep
 
 Antes de poder implementar la arquitectura de referencia en su propia suscripción, debe realizar los pasos siguientes.
 
-1. Clone, bifurque o descargue el archivo ZIP para el repositorio de GitHub de [arquitecturas de referencia de AzureCAT][ref-arch-repo].
+1. Clone, bifurque o descargue el archivo ZIP del repositorio de GitHub de [arquitecturas de referencia][ref-arch-repo].
 
 2. Asegúrese de que tiene la CLI de Azure 2.0 instalada en el equipo. Para obtener instrucciones sobre la instalación de la CLI, consulte [Instalación de la CLI de Azure 2.0][azure-cli-2].
 
@@ -123,9 +123,9 @@ Antes de poder implementar la arquitectura de referencia en su propia suscripci�
 
 4. Desde un símbolo del sistema, un símbolo del sistema de Bash o un símbolo del sistema de PowerShell, inicie sesión en la cuenta de Azure mediante el siguiente comando y siga las indicaciones.
 
-  ```bash
-  az login
-  ```
+   ```bash
+   az login
+   ```
 
 ### <a name="deploy-the-simulated-on-premises-datacenter-using-azbb"></a>Implementación del centro de datos local simulado mediante azbb
 
@@ -135,20 +135,20 @@ Para implementar el centro de datos local simulado como una red virtual de Azure
 
 2. Abra el archivo `onprem.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 36 y 37, tal y como se muestra a continuación, y después guarde el archivo.
 
-  ```bash
-  "adminUsername": "XXX",
-  "adminPassword": "YYY",
-  ```
+   ```bash
+   "adminUsername": "XXX",
+   "adminPassword": "YYY",
+   ```
 
 3. En la línea 38, para `osType`, escriba `Windows` o `Linux` para instalar Windows Server 2016 Datacenter o Ubuntu 16.04 como sistema operativo de JumpBox.
 
 4. Ejecute `azbb` para implementar el entorno simulado local tal y como se muestra a continuación.
 
-  ```bash
-  azbb -s <subscription_id> -g onprem-vnet-rg - l <location> -p onoprem.json --deploy
-  ```
-  > [!NOTE]
-  > Si decide usar un nombre del grupo de recursos distinto (que no sea `onprem-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
+   ```bash
+   azbb -s <subscription_id> -g onprem-vnet-rg - l <location> -p onoprem.json --deploy
+   ```
+   > [!NOTE]
+   > Si decide usar un nombre del grupo de recursos distinto (que no sea `onprem-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
 
 5. Espere a que finalice la implementación. Esta implementación crea una red virtual, una máquina virtual y una instancia de VPN Gateway. La creación de la instancia de VPN Gateway puede durar más de cuarenta minutos.
 
@@ -158,26 +158,26 @@ Para implementar la red virtual del concentrador y conectarla a la red virtual l
 
 1. Abra el archivo `hub-vnet.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 39 y 40, tal y como se muestra a continuación.
 
-  ```bash
-  "adminUsername": "XXX",
-  "adminPassword": "YYY",
-  ```
+   ```bash
+   "adminUsername": "XXX",
+   "adminPassword": "YYY",
+   ```
 
 2. En la línea 41, para `osType`, escriba `Windows` o `Linux` para instalar Windows Server 2016 Datacenter o Ubuntu 16.04 como sistema operativo de JumpBox.
 
 3. Escriba una clave compartida entre comillas en la línea 72, tal y como se muestra a continuación, y después guarde el archivo.
 
-  ```bash
-  "sharedKey": "",
-  ```
+   ```bash
+   "sharedKey": "",
+   ```
 
 4. Ejecute `azbb` para implementar el entorno simulado local tal y como se muestra a continuación.
 
-  ```bash
-  azbb -s <subscription_id> -g hub-vnet-rg - l <location> -p hub-vnet.json --deploy
-  ```
-  > [!NOTE]
-  > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
+   ```bash
+   azbb -s <subscription_id> -g hub-vnet-rg - l <location> -p hub-vnet.json --deploy
+   ```
+   > [!NOTE]
+   > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
 
 5. Espere a que finalice la implementación. Esta implementación crea una red virtual, una máquina virtual, una instancia de VPN Gateway y una conexión a la puerta de enlace creada en la sección anterior. La creación de la instancia de VPN Gateway puede durar más de cuarenta minutos.
 
@@ -187,15 +187,15 @@ Para probar la conectividad desde el entorno local simulado a la red virtual de 
 
 1. En Azure Portal, vaya al grupo de recursos `onprem-jb-rg` y, a continuación, haga clic en el recurso de máquina virtual `jb-vm1`.
 
-2.  En la esquina superior izquierda de la hoja VM del portal, haga clic en `Connect` y siga las indicaciones para utilizar Escritorio remoto para conectarse a la máquina virtual. Asegúrese de usar el nombre de usuario y la contraseña que especificó en las líneas 36 y 37 del archivo `onprem.json`.
+2. En la esquina superior izquierda de la hoja VM del portal, haga clic en `Connect` y siga las indicaciones para utilizar Escritorio remoto para conectarse a la máquina virtual. Asegúrese de usar el nombre de usuario y la contraseña que especificó en las líneas 36 y 37 del archivo `onprem.json`.
 
 3. Abra una consola de PowerShell en la máquina virtual y utilice el cmdlet `Test-NetConnection` para comprobar que puede conectarse a la máquina virtual de JumpBox del concentrador tal y como se muestra a continuación.
 
-  ```powershell
-  Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
-  ```
-  > [!NOTE]
-  > De forma predeterminada, las máquinas virtuales de Windows Server no permiten respuestas ICMP en Azure. Si desea usar `ping` para probar la conectividad, debe habilitar el tráfico ICMP en el firewall de Windows con seguridad avanzada para cada máquina virtual.
+   ```powershell
+   Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
+   ```
+   > [!NOTE]
+   > De forma predeterminada, las máquinas virtuales de Windows Server no permiten respuestas ICMP en Azure. Si desea usar `ping` para probar la conectividad, debe habilitar el tráfico ICMP en el firewall de Windows con seguridad avanzada para cada máquina virtual.
 
 Para probar la conectividad desde el entorno local simulado a la red virtual de concentrador mediante máquinas virtuales Linux, realice los pasos siguientes:
 
@@ -205,17 +205,17 @@ Para probar la conectividad desde el entorno local simulado a la red virtual de 
 
 3. Desde un símbolo del sistema de Linux, ejecute `ssh` para conectarse a la instancia de JumpBox del entorno local simulado con la información que copió en el paso 2 anterior, como se indica a continuación.
 
-  ```bash
-  ssh <your_user>@<public_ip_address>
-  ```
+   ```bash
+   ssh <your_user>@<public_ip_address>
+   ```
 
 4. Use la contraseña que especificó en la línea 37 del archivo `onprem.json` para conectarse a la máquina virtual.
 
 5. Use el comando `ping` para probar la conectividad con JumpBox del concentrador tal y como se muestra a continuación.
 
-  ```bash
-  ping 10.0.0.68
-  ```
+   ```bash
+   ping 10.0.0.68
+   ```
 
 ### <a name="azure-spoke-vnets"></a>Redes virtuales de radios de Azure
 
@@ -223,31 +223,31 @@ Para implementar las redes virtuales de radios, siga estos pasos.
 
 1. Abra el archivo `spoke1.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 47 y 48, tal y como se muestra a continuación, y después guarde el archivo.
 
-  ```bash
-  "adminUsername": "XXX",
-  "adminPassword": "YYY",
-  ```
+   ```bash
+   "adminUsername": "XXX",
+   "adminPassword": "YYY",
+   ```
 
 2. En la línea 49, para `osType`, escriba `Windows` o `Linux` para instalar Windows Server 2016 Datacenter o Ubuntu 16.04 como sistema operativo de JumpBox.
 
 3. Ejecute `azbb` para implementar el entorno de red virtual del primer radio tal y como se muestra a continuación.
 
-  ```bash
-  azbb -s <subscription_id> -g spoke1-vnet-rg - l <location> -p spoke1.json --deploy
-  ```
+   ```bash
+   azbb -s <subscription_id> -g spoke1-vnet-rg - l <location> -p spoke1.json --deploy
+   ```
   
-  > [!NOTE]
-  > Si decide usar un nombre del grupo de recursos distinto (que no sea `spoke1-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
+   > [!NOTE]
+   > Si decide usar un nombre del grupo de recursos distinto (que no sea `spoke1-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
 
-3. Repita el paso 1 anterior para el archivo `spoke2.json`.
+4. Repita el paso 1 anterior para el archivo `spoke2.json`.
 
-4. Ejecute `azbb` para implementar el entorno de red virtual del segundo radio tal y como se muestra a continuación.
+5. Ejecute `azbb` para implementar el entorno de red virtual del segundo radio tal y como se muestra a continuación.
 
-  ```bash
-  azbb -s <subscription_id> -g spoke2-vnet-rg - l <location> -p spoke2.json --deploy
-  ```
-  > [!NOTE]
-  > Si decide usar un nombre del grupo de recursos distinto (que no sea `spoke2-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
+   ```bash
+   azbb -s <subscription_id> -g spoke2-vnet-rg - l <location> -p spoke2.json --deploy
+   ```
+   > [!NOTE]
+   > Si decide usar un nombre del grupo de recursos distinto (que no sea `spoke2-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
 
 ### <a name="azure-hub-vnet-peering-to-spoke-vnets"></a>Emparejamiento de VNET del concentrador de Azure a las redes virtuales de los radios
 
@@ -257,12 +257,12 @@ Para crear una conexión de emparejamiento desde la red virtual del concentrador
 
 2. Ejecute `azbb` para implementar el entorno de red virtual del primer radio tal y como se muestra a continuación.
 
-  ```bash
-  azbb -s <subscription_id> -g hub-vnet-rg - l <location> -p hub-vnet-peering.json --deploy
-  ```
+   ```bash
+   azbb -s <subscription_id> -g hub-vnet-rg - l <location> -p hub-vnet-peering.json --deploy
+   ```
 
-  > [!NOTE]
-  > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
+   > [!NOTE]
+   > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
 
 ### <a name="test-connectivity"></a>Comprobación de la conectividad
 
@@ -270,14 +270,14 @@ Para probar la conectividad desde el entorno local simulado a las redes virtuale
 
 1. En Azure Portal, vaya al grupo de recursos `onprem-jb-rg` y, a continuación, haga clic en el recurso de máquina virtual `jb-vm1`.
 
-2.  En la esquina superior izquierda de la hoja VM del portal, haga clic en `Connect` y siga las indicaciones para utilizar Escritorio remoto para conectarse a la máquina virtual. Asegúrese de usar el nombre de usuario y la contraseña que especificó en las líneas 36 y 37 del archivo `onprem.json`.
+2. En la esquina superior izquierda de la hoja VM del portal, haga clic en `Connect` y siga las indicaciones para utilizar Escritorio remoto para conectarse a la máquina virtual. Asegúrese de usar el nombre de usuario y la contraseña que especificó en las líneas 36 y 37 del archivo `onprem.json`.
 
 3. Abra una consola de PowerShell en la máquina virtual y utilice el cmdlet `Test-NetConnection` para comprobar que puede conectarse a la máquina virtual de JumpBox del concentrador tal y como se muestra a continuación.
 
-  ```powershell
-  Test-NetConnection 10.1.0.68 -CommonTCPPort RDP
-  Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
-  ```
+   ```powershell
+   Test-NetConnection 10.1.0.68 -CommonTCPPort RDP
+   Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
+   ```
 
 Para probar la conectividad desde el entorno local simulado a las redes virtuales de radios mediante máquinas virtuales Linux, realice los pasos siguientes:
 
@@ -287,18 +287,18 @@ Para probar la conectividad desde el entorno local simulado a las redes virtuale
 
 3. Desde un símbolo del sistema de Linux, ejecute `ssh` para conectarse a la instancia de JumpBox del entorno local simulado con la información que copió en el paso 2 anterior, como se indica a continuación.
 
-  ```bash
-  ssh <your_user>@<public_ip_address>
-  ```
+   ```bash
+   ssh <your_user>@<public_ip_address>
+   ```
 
-5. Use la contraseña que especificó en la línea 37 del archivo `onprem.json` para conectarse a la máquina virtual.
+4. Use la contraseña que especificó en la línea 37 del archivo `onprem.json` para conectarse a la máquina virtual.
 
-6. Use el comando `ping` para probar la conectividad con las máquinas virtuales de JumpBox en cada radio tal y como se muestra a continuación.
+5. Use el comando `ping` para probar la conectividad con las máquinas virtuales de JumpBox en cada radio tal y como se muestra a continuación.
 
-  ```bash
-  ping 10.1.0.68
-  ping 10.2.0.68
-  ```
+   ```bash
+   ping 10.1.0.68
+   ping 10.2.0.68
+   ```
 
 ### <a name="add-connectivity-between-spokes"></a>Adición de conectividad entre radios
 
@@ -306,17 +306,17 @@ Si desea permitir que los radios se conecten unos con otros, deberá usar una ap
 
 1. Abra el archivo `hub-nva.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 13 y 14, tal y como se muestra a continuación, y después guarde el archivo.
 
-  ```bash
-  "adminUsername": "XXX",
-  "adminPassword": "YYY",
-  ```
+   ```bash
+   "adminUsername": "XXX",
+   "adminPassword": "YYY",
+   ```
 2. Ejecute `azbb` para implementar la máquina virtual de la aplicación virtual de red y las rutas definidas por el usuario.
 
-  ```bash
-  azbb -s <subscription_id> -g hub-nva-rg - l <location> -p hub-nva.json --deploy
-  ```
-  > [!NOTE]
-  > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-nva-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
+   ```bash
+   azbb -s <subscription_id> -g hub-nva-rg - l <location> -p hub-nva.json --deploy
+   ```
+   > [!NOTE]
+   > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-nva-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
 
 <!-- links -->
 
@@ -336,7 +336,7 @@ Si desea permitir que los radios se conecten unos con otros, deberá usar una ap
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [windows-vm-ra]: ../virtual-machines-windows/index.md
 
-[visio-download]: https://archcenter.azureedge.net/cdn/hybrid-network-hub-spoke.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-hub-spoke.vsdx
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [0]: ./images/hub-spoke.png "Topología en estrella tipo hub-and-spoke en Azure"
 [1]: ./images/hub-spoke-gateway-routing.svg "Topología en estrella tipo hub-and-spoke en Azure con enrutamiento transitivo"

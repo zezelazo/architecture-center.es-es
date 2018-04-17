@@ -1,14 +1,14 @@
 ---
-title: "Guía de diseño de una API"
-description: "Guía sobre cómo crear una API web bien diseñada."
+title: Guía de diseño de una API
+description: Guía sobre cómo crear una API web bien diseñada.
 author: dragon119
 ms.date: 01/12/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: f0813c18da03b9deeabbf529a560c60e8ce579d8
-ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
+ms.openlocfilehash: a8c4a81835ebd3ebdba2fd2cec624a9a9d5646f5
+ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/05/2018
+ms.lasthandoff: 03/17/2018
 ---
 # <a name="api-design"></a>Diseño de API
 
@@ -42,7 +42,7 @@ Estos son algunos de los principios de diseño más importantes de las API de RE
     {"orderId":1,"orderValue":99.90,"productId":1,"quantity":1}
     ```
 
-- Las API de REST usan una interfaz uniforme, que ayuda a desacoplar las implementaciones de clientes y servicios. En las API de REST basadas en HTTP, la interfaz uniforme incluye el uso de verbos HTTP estándar para realizar operaciones en los recursos. Las operaciones más comunes son GET, POST, PUT, PATCH y DELETE. 
+- Las API de REST usan una interfaz uniforme, que ayuda a desacoplar las implementaciones de clientes y servicios. En las API REST basadas en HTTP, la interfaz uniforme incluye el uso de verbos HTTP estándar para realizar operaciones en los recursos. Las operaciones más comunes son GET, POST, PUT, PATCH y DELETE. 
 
 - Las API de REST usan un modelo de solicitud sin estado. Las solicitudes HTTP deben ser independientes y pueden producirse en cualquier orden, por lo que no es factible conservar la información de estado transitoria entre solicitudes. El único lugar donde se almacena la información es en los propios recursos y cada solicitud debe ser una operación atómica. Esta restricción permite que los servicios web sean muy escalables, porque no es necesario conservar ninguna afinidad entre clientes y servidores específicos. Cualquier servidor puede administrar cualquier solicitud de cualquier cliente. Ahora bien, otros factores pueden limitar la escalabilidad. Por ejemplo, muchos servicios web escriben en un almacén de datos back-end, que puede ser difícil de escalar horizontalmente. (En el artículo [Creación de particiones de datos](./data-partitioning.md) se describen las estrategias para escalar horizontalmente un almacén de datos).
 

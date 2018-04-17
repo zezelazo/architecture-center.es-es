@@ -1,12 +1,12 @@
 ---
-title: "Criterios para elegir un almacén de datos"
-description: "Información general sobre las opciones de Azure Compute"
+title: Criterios para elegir un almacén de datos
+description: Información general sobre las opciones de Azure Compute
 author: MikeWasson
-ms.openlocfilehash: 7fb75cd334438c5b985fa04ad8afe3236f2391f8
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9cb2f77b854a38450490bc96bf0b6a2998ceb1c7
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="criteria-for-choosing-a-data-store"></a>Criterios para elegir un almacén de datos
 
@@ -61,7 +61,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
 ## <a name="relational-database-management-systems-rdbms"></a>Sistemas de administración de bases de datos relacionales (RDBMS)
 
 <table>
-<tr><td>**Carga de trabajo**</td>
+<tr><td><strong>Carga de trabajo</strong></td>
     <td>
         <ul>
             <li>La creación de registros nuevos y las actualizaciones de los datos existentes se producen con regularidad.</li>
@@ -74,7 +74,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo de datos**</td>
+<tr><td><strong>Tipo de datos</strong></td>
     <td>
         <ul>
             <li>Los datos están muy normalizados.</li>
@@ -87,7 +87,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Ejemplos**</td>
+<tr><td><strong>Ejemplos</strong></td>
     <td>
         <ul>
             <li>Línea de negocio (administración del capital humano, administración de relaciones con clientes y planeamiento de recursos empresariales)</li>
@@ -105,7 +105,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
 ## <a name="document-databases"></a>Bases de datos de documentos
 
 <table>
-<tr><td>**Carga de trabajo**</td>
+<tr><td><strong>Carga de trabajo</strong></td>
     <td>
         <ul>
             <li>Uso general.</li>
@@ -117,7 +117,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
             <li>Los documentos individuales se recuperan y escriben como un solo bloque.</li>
     </td>
 </tr>
-<tr><td>**Tipo de datos**</td>
+<tr><td><strong>Tipo de datos</strong></td>
     <td>
         <ul>
             <li>Los datos pueden administrarse de manera no normalizada.</li>
@@ -129,7 +129,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Ejemplos**</td>
+<tr><td><strong>Ejemplos</strong></td>
     <td>
         <ul>
             <li>Catálogo de productos</li>
@@ -149,7 +149,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
 ## <a name="keyvalue-stores"></a>Almacenes clave-valor
 
 <table>
-<tr><td>**Carga de trabajo**</td>
+<tr><td><strong>Carga de trabajo</strong></td>
     <td>
         <ul>
             <li>Los datos se identifican y se accede a ellos con una clave de identificador única, como un diccionario.</li>
@@ -160,7 +160,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo de datos**</td>
+<tr><td><strong>Tipo de datos</strong></td>
     <td>
         <ul>
             <li>El tamaño de los datos tiende a ser grande.</li>
@@ -170,7 +170,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Ejemplos**</td>
+<tr><td><strong>Ejemplos</strong></td>
     <td>
         <ul>
             <li>Almacenamiento en caché de datos</li>
@@ -186,7 +186,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
 ## <a name="graph-databases"></a>Bases de datos de gráficos
 
 <table>
-<tr><td>**Carga de trabajo**</td>
+<tr><td><strong>Carga de trabajo</strong></td>
     <td>
         <ul>
             <li>Las relaciones entre elementos de datos son muy complejas, y conllevan muchos saltos entre los elementos de datos relacionados.</li>
@@ -195,7 +195,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo de datos**</td>
+<tr><td><strong>Tipo de datos</strong></td>
     <td>
         <ul>
             <li>Los datos constan de nodos y relaciones.</li>
@@ -205,7 +205,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Ejemplos**</td>
+<tr><td><strong>Ejemplos</strong></td>
     <td>
         <ul>
             <li>Organigramas</li>
@@ -221,7 +221,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
 ## <a name="column-family-databases"></a>Bases de datos de familia de columnas
 
 <table>
-<tr><td>**Carga de trabajo**</td>
+<tr><td><strong>Carga de trabajo</strong></td>
     <td>
         <ul>
             <li>La mayoría de las bases de datos de familia de columnas realizan operaciones de escritura muy rápidamente.</li>
@@ -232,7 +232,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo de datos**</td>
+<tr><td><strong>Tipo de datos</strong></td>
     <td>
         <ul>
             <li>Los datos se almacenan en tablas formadas por una columna de clave y una o varias familias de columnas.</li>
@@ -242,7 +242,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Ejemplos**</td>
+<tr><td><strong>Ejemplos</strong></td>
     <td>
         <ul>
             <li>Recomendaciones</li>
@@ -262,7 +262,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
 ## <a name="search-engine-databases"></a>Bases de datos del motor de búsqueda
 
 <table>
-<tr><td>**Carga de trabajo**</td>
+<tr><td><strong>Carga de trabajo</strong></td>
     <td>
         <ul>
             <li>Indexación de datos de varios orígenes y servicios.</li>
@@ -274,7 +274,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo de datos**</td>
+<tr><td><strong>Tipo de datos</strong></td>
     <td>
         <ul>
             <li>Datos semiestructurados o sin estructurar</li>
@@ -283,7 +283,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Ejemplos**</td>
+<tr><td><strong>Ejemplos</strong></td>
     <td>
         <ul>
             <li>Catálogos de productos</li>
@@ -299,7 +299,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
 ## <a name="data-warehouse"></a>Almacenamiento de datos
 
 <table>
-<tr><td>**Carga de trabajo**</td>
+<tr><td><strong>Carga de trabajo</strong></td>
     <td>
         <ul>
             <li>Análisis de datos</li>
@@ -307,17 +307,17 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo de datos**</td>
+<tr><td><strong>Tipo de datos</strong></td>
     <td>
         <ul>
             <li>Datos históricos de varios orígenes.</li>
-            <li>Normalmente se desnormaliza en un esquema de "estrella" o "copo de nieve", que consta de tablas de hechos y dimensiones.</li>
+            <li>Normalmente se desnormaliza en un esquema de &quot;estrella&quot; o &quot;copo de nieve&quot;, que consta de tablas de hechos y dimensiones.</li>
             <li>Suele cargarse con datos nuevos de forma programada.</li>
-            <li>Las tablas de dimensiones suelen incluir varias versiones históricas de una entidad, conocida como *dimensión de variación lenta*.</li>
+            <li>Las tablas de dimensiones suelen incluir varias versiones históricas de una entidad, conocida como <em>dimensión de variación lenta</em>.</li>
         </ul>
     </td>
 </tr>
-<tr><td>**Ejemplos**</td>
+<tr><td><strong>Ejemplos</strong></td>
     <td>Un almacenamiento de datos empresarial que proporciona datos para modelos analíticos, informes y paneles.
     </td>
 </tr>
@@ -327,7 +327,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
 ## <a name="time-series-databases"></a>Bases de datos de series temporales
 
 <table>
-<tr><td>**Carga de trabajo**</td>
+<tr><td><strong>Carga de trabajo</strong></td>
     <td>
         <ul>
             <li>Una proporción de operaciones masiva (95-99 %) son las escrituras.</li>
@@ -340,7 +340,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo de datos**</td>
+<tr><td><strong>Tipo de datos</strong></td>
     <td>
         <ul>
             <li>Una marca de tiempo que se utiliza como la clave principal y el mecanismo de ordenación.</li>
@@ -349,7 +349,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Ejemplos**</td>
+<tr><td><strong>Ejemplos</strong></td>
     <td>
         <ul>
             <li>Supervisión y telemetría de eventos.</li>
@@ -362,7 +362,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
 ## <a name="object-storage"></a>Almacenamiento de objetos
 
 <table>
-<tr><td>**Carga de trabajo**</td>
+<tr><td><strong>Carga de trabajo</strong></td>
     <td>
         <ul>
             <li>Identificado por clave.</li>
@@ -372,7 +372,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo de datos**</td>
+<tr><td><strong>Tipo de datos</strong></td>
     <td>
         <ul>
             <li>El tamaño de los datos es grande.</li>
@@ -381,7 +381,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Ejemplos**</td>
+<tr><td><strong>Ejemplos</strong></td>
     <td>
         <ul>
             <li>Imágenes, vídeos, documentos de Office y archivos PDF</li>
@@ -397,7 +397,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
 ## <a name="shared-files"></a>Archivos compartidos
 
 <table>
-<tr><td>**Carga de trabajo**</td>
+<tr><td><strong>Carga de trabajo</strong></td>
     <td>
         <ul>
             <li>Migración de las aplicaciones existentes que interactúan con el sistema de archivos.</li>
@@ -405,7 +405,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Tipo de datos**</td>
+<tr><td><strong>Tipo de datos</strong></td>
     <td>
         <ul>
             <li>Archivos en un conjunto jerárquico de carpetas.</li>
@@ -413,7 +413,7 @@ En las siguientes secciones se comparan varios modelos de almacén de datos seg�
         </ul>
     </td>
 </tr>
-<tr><td>**Ejemplos**</td>
+<tr><td><strong>Ejemplos</strong></td>
     <td>
         <ul>
             <li>Archivos heredados</li>

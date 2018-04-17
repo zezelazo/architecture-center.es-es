@@ -1,16 +1,16 @@
 ---
-title: "Ejecución de máquinas virtuales Linux para una aplicación de n niveles en Azure"
-description: "Cómo ejecutar máquinas virtuales Linux para una arquitectura de n niveles en Microsoft Azure."
+title: Ejecución de máquinas virtuales Linux para una aplicación de n niveles en Azure
+description: Cómo ejecutar máquinas virtuales Linux para una arquitectura de n niveles en Microsoft Azure.
 author: MikeWasson
 ms.date: 11/22/2017
 pnp.series.title: Linux VM workloads
 pnp.series.next: multi-region-application
 pnp.series.prev: multi-vm
-ms.openlocfilehash: e875a58aa83339560fd1de5b03a960f071883927
-ms.sourcegitcommit: c9e6d8edb069b8c513de748ce8114c879bad5f49
+ms.openlocfilehash: 8d3e6e5124a0abb27a3c72e1ecbd52a1a1da2a33
+ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/08/2018
+ms.lasthandoff: 04/06/2018
 ---
 # <a name="run-linux-vms-for-an-n-tier-application"></a>Ejecución de máquinas virtuales Linux para una aplicación de n niveles
 
@@ -30,7 +30,7 @@ Hay muchas maneras de implementar una arquitectura de n niveles. En el diagrama 
 * **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
 * **JumpBox.** También se denomina [host bastión]. Se trata de una máquina virtual segura en la red que usan los administradores para conectarse al resto de máquinas virtuales. El Jumpbox tiene un NSG que solo permite el tráfico remoto que procede de direcciones IP públicas de una lista segura. El NSG debe permitir el tráfico a través de Secure Shell (SSH).
 * **Supervisión.** El software de supervisión, como [Nagios], [Zabbix] o [Icinga], puede ofrecerle información sobre el tiempo de respuesta, el tiempo de actividad de la máquina virtual y el estado general del sistema. Instale el software de supervisión en una máquina virtual que se encuentre en una subred de administración independiente.
-* **Grupos de seguridad de red.** Use [grupos de seguridad de red][nsg] (NSG) para restringir el tráfico de red dentro de la red virtual. Por ejemplo, en la arquitectura de tres niveles que se muestra aquí, el nivel de base de datos no acepta el tráfico desde el front-end web, solo desde el nivel Business y la subred de administración.
+* <strong>Grupos de seguridad de red.</strong> Use [grupos de seguridad de red][nsg] (NSG) para restringir el tráfico de red dentro de la red virtual. Por ejemplo, en la arquitectura de tres niveles que se muestra aquí, el nivel de base de datos no acepta el tráfico desde el front-end web, solo desde el nivel Business y la subred de administración.
 * **Base de datos Apache Cassandra**. Proporciona alta disponibilidad en el nivel de datos, al habilitar la replicación y la conmutación por error.
 
 ## <a name="recommendations"></a>Recomendaciones
@@ -116,25 +116,25 @@ Simplifique la administración de todo el sistema mediante las herramientas de a
 
 Hay disponible una implementación de esta arquitectura de referencia en [GitHub][github-folder]. 
 
-### <a name="prerequisites"></a>Requisitos previos
+### <a name="prerequisites"></a>requisitos previos
 
 Antes de poder implementar la arquitectura de referencia en su propia suscripción, debe realizar los pasos siguientes.
 
-1. Clone, bifurque o descargue el archivo ZIP para el repositorio de GitHub de [arquitecturas de referencia de AzureCAT][ref-arch-repo].
+1. Clone, bifurque o descargue el archivo ZIP del repositorio de GitHub de [arquitecturas de referencia][ref-arch-repo].
 
 2. Asegúrese de que tiene la CLI de Azure 2.0 instalada en el equipo. Para instalar la CLI, siga las instrucciones de [Instalación de la CLI de Azure 2.0][azure-cli-2].
 
 3. Instale el paquete de NPM de [Azure Building Blocks][azbb].
 
-  ```bash
-  npm install -g @mspnp/azure-building-blocks
-  ```
+   ```bash
+   npm install -g @mspnp/azure-building-blocks
+   ```
 
 4. Desde un símbolo del sistema, un símbolo del sistema de Bash o un símbolo del sistema de PowerShell, inicie sesión en la cuenta de Azure con alguno de los comandos siguientes y siga las indicaciones.
 
-  ```bash
-  az login
-  ```
+   ```bash
+   az login
+   ```
 
 ### <a name="deploy-the-solution-using-azbb"></a>Implementación de la solución con AZBB
 
@@ -146,9 +146,9 @@ Para implementar las máquinas virtuales de Linux en una arquitectura de referen
 
 3. Implemente la arquitectura de referencia mediante la herramienta de línea de comandos **azbb** tal y como se muestra a continuación.
 
-  ```bash
-  azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-linux.json --deploy
-  ```
+   ```bash
+   azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-linux.json --deploy
+   ```
 
 Para obtener más información sobre la implementación de esta arquitectura de referencia de ejemplo mediante Azure Bulding Blocks, visite el [repositorio de GitHub][git].
 
@@ -183,7 +183,7 @@ Para obtener más información sobre la implementación de esta arquitectura de 
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines
 [vnet faq]: /azure/virtual-network/virtual-networks-faq
-[visio-download]: https://archcenter.azureedge.net/cdn/vm-reference-architectures.vsdx
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [Nagios]: https://www.nagios.org/
 [Zabbix]: http://www.zabbix.com/
 [Icinga]: http://www.icinga.org/

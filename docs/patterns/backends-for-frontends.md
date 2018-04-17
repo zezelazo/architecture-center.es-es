@@ -1,13 +1,13 @@
 ---
-title: "Patrón Backends for Frontends"
+title: Patrón Backends for Frontends
 description: Crea servicios independientes de back-end que determinadas aplicaciones de front-end o interfaces puedan usar.
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 87acd39d021c5e44594a2e7c9574e4dd363ce83b
-ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
+ms.openlocfilehash: 2991d7a3e05b3ce6cd5148a552bae6d4ba8f7c4c
+ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/05/2018
+ms.lasthandoff: 03/30/2018
 ---
 # <a name="backends-for-frontends-pattern"></a>Patrón Backends for Frontends
 
