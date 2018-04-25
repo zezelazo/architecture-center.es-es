@@ -23,11 +23,11 @@
     - name: Opciones de tecnología
       href: technology-choices/index.md
       items:
-        - name: Información general de las opciones de proceso
+        - name: Introducción a las opciones de proceso
           href: technology-choices/compute-overview.md
         - name: Comparación de procesos
           href: technology-choices/compute-comparison.md
-        - name: Información general sobre el almacén de datos
+        - name: Introducción al almacén de datos
           href: technology-choices/data-store-overview.md
         - name: Comparación de almacenes de datos
           href: technology-choices/data-store-comparison.md
@@ -52,7 +52,7 @@
           href: design-principles/use-the-best-data-store.md
         - name: Diseño para evolucionar
           href: design-principles/design-for-evolution.md
-        - name: Compilación para las necesidades de negocio
+        - name: Creación basada en las necesidades de negocio
           href: design-principles/build-for-business.md
     - name: Fundamentos de calidad del software
       href: pillars.md
