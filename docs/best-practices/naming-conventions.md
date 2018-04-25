@@ -4,11 +4,11 @@ description: Convenciones de nomenclatura para los recursos de Azure. Qué nombr
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: f814201901af69b816d7f1588e58057b252b22db
-ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
+ms.openlocfilehash: f3f010ceb3c810caafa53523de63aa787d392aa1
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/09/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="naming-conventions"></a>Convenciones de nomenclatura
 
@@ -60,7 +60,7 @@ Los afijos pueden hacer referencia a distintos aspectos que describen los recurs
 | Aspecto | Ejemplo | Notas |
 | --- | --- | --- |
 | Environment |desarrollo, producción, control de calidad |Identifica el entorno del recurso |
-| La ubicación |uw (Oeste de EE. UU.), ue (este de EE. UU.) |Identifica la región en que se implementa el recurso |
+| Ubicación |uw (Oeste de EE. UU.), ue (este de EE. UU.) |Identifica la región en que se implementa el recurso |
 | Instance |01, 02 |Para los recursos que tienen más de una instancia con nombre (servidores web, etc.). |
 | Producto o servicio |Azure |Identifica el producto, la aplicación o el servicio que admite el recurso |
 | Rol |sql, web, mensajería |Identifica el rol del recurso asociado |
@@ -102,7 +102,7 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 |Nombre de cola |Cuenta de almacenamiento |3-63 |Minúsculas |Alfanuméricos y guión |`<service short name>-<context>-<num>` |`awesomeservice-messages-001` |
 |Nombre de tabla | Cuenta de almacenamiento |3-63 |No distingue mayúsculas de minúsculas |Alfanuméricas |`<service short name><context>` |`awesomeservicelogs` |
 |Nombre de archivo | Cuenta de almacenamiento |3-63 |Minúsculas | Alfanuméricas |`<variable based on blob usage>` |`<variable based on blob usage>` |
-|Almacén de Data Lake | Global |3-24 |Minúsculas | Alfanuméricas |`<name>-dls` |`telemetry-dls` |
+|Data Lake Store | Global |3-24 |Minúsculas | Alfanuméricas |`<name>dls` |`telemetrydls` |
 
 ### <a name="networking"></a>Redes
 
