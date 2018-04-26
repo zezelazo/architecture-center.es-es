@@ -1,15 +1,17 @@
 ---
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 530844a0d3b1256cec807e7bad509a40dca304f6
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 80cb7fde0694257a5c413b702505e27f18aed8d3
+ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 04/23/2018
 ---
 # <a name="azure-application-architecture-guide"></a>Guía de la arquitectura de aplicaciones en Azure
 
 Esta guía presenta un enfoque estructurado para diseñar aplicaciones de Azure que sean escalables, resistentes y con una alta disponibilidad. Se basa en prácticas probadas que hemos aprendido a través de las interacciones con los clientes.
+
+<br/>
 
 <img src="./images/guide-steps.svg" style="max-width:800px;"/>
 
@@ -53,25 +55,49 @@ Esta guía está destinada a los arquitectos de aplicaciones, los desarrolladore
 
 La Guía de la arquitectura de aplicaciones de Azure se organiza como una serie de pasos, desde la arquitectura y el diseño a la implementación. Para cada paso, hay instrucciones auxiliares que le ayudarán con el diseño de la arquitectura de la aplicación.
 
-**[Estilos de arquitectura][arch-styles]**. La primera decisión es la más importante. ¿Qué tipo de arquitectura va a crear? Puede ser una arquitectura de microservicios, una aplicación con n niveles más tradicional o una solución de macrodatos. Identificamos siete estilos de arquitectura distintos. Cada uno presenta ventajas y desafíos.
+### <a name="architecture-styles"></a>Estilos de arquitectura
 
-> &#10148; [Las arquitecturas de referencia de Azure][ref-archs] muestran implementaciones recomendadas en Azure, junto con consideraciones sobre escalabilidad, disponibilidad, capacidad de administración y seguridad. La mayoría también incluye plantillas de Resource Manager que se pueden implementar.
+La primera decisión es la más importante. ¿Qué tipo de arquitectura va a crear? Puede ser una arquitectura de microservicios, una aplicación con n niveles más tradicional o una solución de macrodatos. Identificamos varios estilos de arquitectura distintos. Cada uno presenta ventajas y desafíos.
 
-**[Opciones de tecnología][technology-choices]**. Dos opciones de tecnología deben decidirse en una fase temprana, ya que afectan a toda la arquitectura. Se trata de la elección de las tecnologías de almacenamiento y de proceso. El término *proceso* hace referencia al modelo de hospedaje para los recursos informáticos en los que las aplicaciones se ejecutan. El almacenamiento incluye las bases de datos y también el destinado a las colas de mensajes, las memorias caché, los datos IoT, los datos de registro no estructurados y cualquier otro que una aplicación pueda conservar en algún tipo de almacenamiento. 
+Más información:
 
-> &#10148; [Las opciones de proceso] [ compute-options] y las [opciones de almacenamiento][storage-options] especifican criterios de comparación detallados para seleccionar los servicios de proceso y de almacenamiento.
+- [Estilos de arquitectura][arch-styles]
+- [Arquitecturas de referencia de Azure][ref-archs]
 
-**[Principios de diseño][design-principles]**. Durante el proceso de diseño, se deben tener en cuenta estos diez principios de diseño de alto nivel. 
+### <a name="technology-choices"></a>Opciones de tecnología
 
-> &#10148; Los artículos sobre [procedimientos recomendados][best-practices] proporcionan una guía específica en áreas como el escalado automático, el almacenamiento en caché, la creación de particiones de datos, el diseño de API y otros.   
+Dos opciones de tecnología deben decidirse en una fase temprana, ya que afectan a toda la arquitectura. Se trata de la elección del servicio de proceso y de los almacenes de datos. *Proceso* hace referencia al modelo de hospedaje para los recursos informáticos en los que las aplicaciones se ejecutan. Los *almacenes de datos* incluyen las bases de datos y también el almacenamiento destinado a las colas de mensajes, las memorias caché, los datos de registros y cualquier otro que una aplicación pueda conservar en algún tipo de almacenamiento. 
 
-**[Pilares][pillars]**. Una aplicación correcta en la nube se centrará en estos cinco fundamentos de calidad del software: la escalabilidad, la disponibilidad, la resistencia, la administración y la seguridad. 
+Más información:
 
-> &#10148; Utilice nuestras [listas de comprobación de la revisión del diseño] [checklists] para revisar el diseño de acuerdo con estos fundamentos de calidad. 
+- [Selección de un servicio de proceso](./technology-choices/compute-overview.md)
+- [Selección de un almacén de datos](./technology-choices/data-store-overview.md)
 
-**[Patrones de diseño en la nube][patterns]**. Estos patrones de diseño son útiles para crear aplicaciones confiables, escalables y seguras en Azure. Cada patrón describe un problema, un patrón que aborda el problema y un ejemplo basado en Azure.
+### <a name="design-principles"></a>Principios de diseño
 
-> &#10148; Vea la sección completa [Catálogo de patrones de diseño en la nube](../patterns/index.md).
+Hemos identificado diez principios de diseño de alto nivel para que la aplicación sea más escalable, resistente y administrable. Estos principios de diseño se aplican a todos los estilos de arquitectura. Durante el proceso de diseño, se deben tener en cuenta estos diez principios de diseño de alto nivel. Siga el mejor conjunto de procedimientos recomendados para los aspectos específicos de la arquitectura como, por ejemplo, el escalado automático, el almacenamiento en caché, la partición de datos, el diseño de API, etc.
+
+Más información:
+
+- [Principios de diseño para las aplicaciones de Azure][design-principles]
+- [Procedimientos recomendados al compilar para la nube][best-practices]
+
+### <a name="quality-pillars"></a>Fundamentos de calidad
+
+Una aplicación correcta en la nube se centrará en cinco fundamentos de calidad del software: la escalabilidad, la disponibilidad, la resistencia, la administración y la seguridad. Utilice nuestras listas de comprobación de la revisión del diseño para revisar la arquitectura de acuerdo con estos fundamentos de calidad.
+
+Más información:
+
+- [Fundamentos de calidad del software][pillars]
+- [Listas de comprobación de la revisión de diseño][checklists] 
+
+### <a name="cloud-design-patterns"></a>Modelos de diseño en la nube
+
+Los modelos de diseño son soluciones generales a problemas habituales en el diseño del software. Hemos identificado un conjunto de modelos de diseño que son especialmente útiles al diseñar aplicaciones distribuidas para la nube.
+
+Más información:
+
+- [Catálogo de modelos de diseño en la nube](../patterns/index.md)
 
 
 [arch-styles]: ./architecture-styles/index.md

@@ -10,9 +10,10 @@
   items:
     - name: Estilos de arquitectura
       href: guide/architecture-styles/index.md
-    - name: Opciones de tecnología
-      href: guide/technology-choices/index.md
-      items: null
+    - name: Selección de un servicio de proceso
+      href: guide/technology-choices/compute-overview.md
+    - name: Selección de un almacén de datos
+      href: guide/technology-choices/data-store-overview.md
     - name: Principios de diseño
       href: guide/design-principles/index.md
     - name: Fundamentos de calidad del software
@@ -88,19 +89,19 @@
 - name: Antipatrones de rendimiento
   href: antipatterns/index.md
   items:
-    - name: Busy Database
+    - name: Base de datos ocupada
       href: antipatterns/busy-database/index.md
-    - name: Busy Front End
+    - name: Front-end ocupado
       href: antipatterns/busy-front-end/index.md
-    - name: Chatty I/O
+    - name: E/S locuaz
       href: antipatterns/chatty-io/index.md
-    - name: Extraneous Fetching
+    - name: Recuperación superflua
       href: antipatterns/extraneous-fetching/index.md
-    - name: Improper Instantiation
+    - name: Instanciación incorrecta
       href: antipatterns/improper-instantiation/index.md
-    - name: Monolithic Persistence
+    - name: Persistencia monolítica
       href: antipatterns/monolithic-persistence/index.md
-    - name: No Caching
+    - name: Sin almacenamiento en caché
       href: antipatterns/no-caching/index.md
     - name: Synchronous I/O
       href: antipatterns/synchronous-io/index.md
