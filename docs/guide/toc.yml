@@ -20,14 +20,17 @@
           href: architecture-styles/big-data.md
         - name: Big Compute
           href: architecture-styles/big-compute.md
-    - name: Opciones de tecnología
-      href: technology-choices/index.md
+    - name: Selección de un servicio de proceso
       items:
-        - name: Introducción a las opciones de proceso
+        - name: Información general
           href: technology-choices/compute-overview.md
+        - name: Árbol de decisión
+          href: technology-choices/compute-decision-tree.md
         - name: Comparación de procesos
           href: technology-choices/compute-comparison.md
-        - name: Introducción al almacén de datos
+    - name: Selección de un almacén de datos
+      items:
+        - name: Información general
           href: technology-choices/data-store-overview.md
         - name: Comparación de almacenes de datos
           href: technology-choices/data-store-comparison.md
