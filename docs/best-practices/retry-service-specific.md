@@ -4,11 +4,11 @@ description: Instrucciones específicas de servicios para establecer el mecanism
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 332f96e73def360926b6a934bbb1361b2254ec41
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: c80a4aa232cca1283d84368a36dd7341cab8a314
+ms.sourcegitcommit: 3846a0ab2b2b2552202a3c9c21af0097a145ffc6
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 04/29/2018
 ---
 # <a name="retry-guidance-for-specific-services"></a>Guía de reintentos para servicios específicos
 
@@ -924,7 +924,7 @@ Hay un mecanismo de reintento integrado para Azure Active Directory en la biblio
 Tenga en cuenta las siguientes directrices cuando use Azure Active Directory:
 
 * Cuando sea posible, utilice la biblioteca ADAL y la compatibilidad para reintentos integrada.
-* Si está usando la API de REST para Azure Active Directory, debe reintentar la operación solo si el resultado es un error en el intervalo de 5xx (por ejemplo, Error de servidor interno 500, Puerta de enlace incorrecta 502, Servicio no disponible 503 y Tiempo de espera de puerta de enlace 504). No lo intente de nuevo para cualquier otro error.
+* Si va a usar la API REST para Azure Active Directory, vuelva a intentar la operación si el código de resultado es 429 (Demasiadas solicitudes) o un error en el intervalo 5xx. No lo intente de nuevo para cualquier otro error.
 * Se recomienda una directiva de retroceso exponencial para su uso en escenarios de lotes con Azure Active Directory.
 
 Considere la posibilidad de comenzar con la configuración siguiente para las operaciones de reintento. Esta es la configuración de propósito general, y debe supervisar las operaciones y ajustar los valores para adaptarlos a su propio escenario.
@@ -989,6 +989,7 @@ Al obtener acceso a los servicios de Azure o de terceros, tenga en cuenta lo sig
 * La lógica de detección transitoria dependerá de la API de cliente real que use para invocar las llamadas REST. Algunos clientes, como los de la clase **HttpClient** más reciente no producirán excepciones para las solicitudes completadas con un código de estado HTTP no correcto. Esto mejora el rendimiento, pero impide el uso del bloque de aplicaciones de control de errores transitorios. En este caso podría encapsular la llamada a la API de REST con código que produce excepciones para códigos de estado HTTP no correctos que, a continuación, pueden ser procesados por el bloque. Como alternativa, puede usar un mecanismo diferente para controlar los reintentos.
 * El código de estado HTTP devuelto desde el servicio puede ayudar a indicar si el error es transitorio. Puede que necesite examinar las excepciones generadas por un cliente o el marco de trabajo de reintento para obtener acceso al código de estado o para determinar el tipo de excepción equivalente. Los siguientes códigos HTTP normalmente indican que un reintento es adecuado:
   * Tiempo de espera de solicitud 408
+  * 429 Demasiadas solicitudes
   * Error de servidor interno 500
   * Puerta de enlace incorrecta 502
   * Servicio no disponible 503
