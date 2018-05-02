@@ -3,11 +3,11 @@ title: Migrar una aplicación de Azure Cloud Services a Azure Service Fabric
 description: Cómo migrar una aplicación de Azure Cloud Services a Azure Service Fabric.
 author: MikeWasson
 ms.date: 04/27/2017
-ms.openlocfilehash: ce9c138a6b093fb7f0329c619c75bd4f4aacc2e7
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: b9ecbc88ae74da99a0ff3bb8814a9cb3422f79d5
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="migrate-an-azure-cloud-services-application-to-azure-service-fabric"></a>Migrar una aplicación de Azure Cloud Services a Azure Service Fabric 
 
@@ -141,9 +141,9 @@ La aplicación Surveys original usa ASP.NET MVC. Dado que ASP.NET MVC no se pued
 
 - Migre los roles web a ASP.NET Core, que puede autohospedarse.
 - Convierta el sitio web en una aplicación de una sola página (SPA) que llame a una API web implementada mediante ASP.NET Web API. Esto habría requerido volver a diseñar completamente el front-end web.
-- Mantenga el código existente de ASP.NET MVC e implemente IIS en un contenedor de Windows Server para Service Fabric. Este enfoque requeriría pocos cambios en el código o ninguno. Sin embargo, la [compatibilidad con contenedores][sf-containers] de Service Fabric está todavía en versión preliminar.
+- Mantenga el código existente de ASP.NET MVC e implemente IIS en un contenedor de Windows Server para Service Fabric. Este enfoque requeriría pocos cambios en el código o ninguno. 
 
-En función de estas consideraciones, seleccionamos la primera opción, migrar a ASP.NET Core. Para ello, seguimos los pasos descritos en [Migrating From ASP.NET MVC to ASP.NET Core MVC][aspnet-migration] (Migración de ASP.NET MVC a ASP.NET Core MVC). 
+La primera opción, trasladar a ASP.NET Core, nos ha permitido sacar provecho de las características más recientes en ASP.NET Core. Para realizar la conversión, seguimos los pasos descritos en [Migrating From ASP.NET MVC to ASP.NET Core MVC][aspnet-migration] (Migración de ASP.NET MVC a ASP.NET Core MVC). 
 
 > [!NOTE]
 > Por motivos de seguridad, al usar ASP.NET Core con Kestrel, debe colocar a un proxy inverso delante de Kestrel para controlar el tráfico de Internet. Para obtener más información, consulte [Kestrel web server implementation in ASP.NET Core][kestrel] (Implementación del servidor web Kestrel en ASP.NET Core). En la sección [Implementación de la aplicación](#deploying-the-application) se describe una implementación de Azure recomendada.
@@ -198,7 +198,7 @@ El paquete de aplicación es lo que se implementa. Contiene uno o varios paquete
 
 Una aplicación de Service Fabric contiene los archivos de configuración siguientes:
 
-| Archivo | La ubicación | DESCRIPCIÓN |
+| Archivo | Ubicación | DESCRIPCIÓN |
 |------|----------|-------------|
 | ApplicationManifest.xml | Paquete de aplicación | Define los servicios que componen la aplicación. |
 | ServiceManifest.xml | Paquete de servicio| Describe uno o varios servicios. |
@@ -289,7 +289,7 @@ La migración de la aplicación Surveys a Service Fabric era un proceso bastante
 
 Además, la implementación cambió de Cloud Services a un clúster de Service Fabric que se ejecutaba en un conjunto de escalado de máquinas virtuales.
 
-## <a name="next-steps"></a>pasos siguientes
+## <a name="next-steps"></a>Pasos siguientes
 
 Una vez portada correctamente la aplicación Surveys, Tailspin desea aprovechar las características de Service Fabric, como el control de versiones y la implementación de servicios independientes. Vea cómo Tailspin ha descompuesto estos servicios en una arquitectura más pormenorizada para aprovechar estas características de Service Fabric en [Refactorización de una aplicación de Azure Service Fabric migrada de Azure Cloud Services][refactor-surveys].
 

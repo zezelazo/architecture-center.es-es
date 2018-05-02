@@ -7,11 +7,11 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: 431de4b2e08c79f70cc9830fda8315e07bf22c64
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 9475d669b2cb8888a7ceabed7e36317fe63681fd
+ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/30/2018
+ms.lasthandoff: 04/23/2018
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>Integración de dominios locales de Active Directory con Azure Active Directory
 
@@ -119,9 +119,9 @@ Para más información acerca de estas topologías, consulte [Topologías para A
 
 ### <a name="user-authentication"></a>Autenticación de usuarios
 
-De forma predeterminada, el servidor de sincronización de Azure AD Connect configura la sincronización de contraseñas entre el dominio local y Azure AD, y el servicio de Azure AD da por supuesto que los usuarios se autentican proporcionando la misma contraseña que usan en local. Para muchas organizaciones, esto es apropiado, pero debe tener en cuenta las directivas existentes y la infraestructura de su organización. Por ejemplo: 
+De forma predeterminada, el servidor de sincronización de Azure AD Connect configura la sincronización de hash de contraseñas entre el dominio local y Azure AD, y el servicio de Azure AD da por supuesto que los usuarios se autentican proporcionando la misma contraseña que usan en local. Para muchas organizaciones, esto es apropiado, pero debe tener en cuenta las directivas existentes y la infraestructura de su organización. Por ejemplo: 
 
-* La directiva de seguridad de una organización podría prohibir la sincronización de hash de contraseñas en la nube.
+* La directiva de seguridad de una organización podría prohibir la sincronización de hash de contraseñas en la nube. En este caso, su organización debe considerar [la autenticación de paso a través](/azure/active-directory/connect/active-directory-aadconnect-pass-through-authentication).
 * Podría requerir que los usuarios experimenten un inicio de sesión único (SSO) fluido al tener acceso a recursos en la nube desde máquinas unidas a un dominio en la red corporativa.
 * Su organización podría disponer ya de Active Directory Federation Services (AD FS) o de un proveedor de federación implementado de terceros. Puede configurar Azure AD para usar esta infraestructura e implementar la autenticación y SSO, en lugar de utilizar la información de contraseñas que se mantiene en la nube.
 

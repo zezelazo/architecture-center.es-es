@@ -5,11 +5,11 @@ author: telmosampaio
 ms.date: 02/25/2018
 pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
 pnp.series.prev: hub-spoke
-ms.openlocfilehash: b492427f12e026be97629ccdc2b8d19c8c66f47d
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 83367a3be2f7a1e33c2ef7018d42f70aae99104d
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure
 
@@ -19,7 +19,7 @@ Esta arquitectura de referencia se basa en la arquitectura de referencia tipo [h
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-Las ventajas de esta topología son:
+Las ventajas de esta topología incluyen:
 
 * **Ahorros en costos** gracias a la centralización de los servicios que se pueden compartir entre varias cargas de trabajo, como las aplicaciones virtuales de red (NVA) y los servidores DNS, en una única ubicación.
 * **Superar los límites de las suscripciones** gracias al emparejamiento de las redes virtuales de diferentes suscripciones con el concentrador central.

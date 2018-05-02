@@ -2,11 +2,12 @@
 title: Introducción a las opciones de proceso de Azure
 description: Introducción a las opciones de proceso de Azure
 author: MikeWasson
-ms.openlocfilehash: a23dd49f24bc52db6f357540e3ebccb19e0497ee
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.date: 04/21/2018
+ms.openlocfilehash: 6781e1f1f6e239e3853920cb544092538cccfc62
+ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/23/2018
 ---
 # <a name="overview-of-azure-compute-options"></a>Introducción a las opciones de proceso de Azure
 
@@ -16,7 +17,7 @@ En un extremo del espectro se encuentra la **infraestructura como servicio** (Ia
 
 La **plataforma como servicio** (PaaS) proporciona un entorno de hospedaje administrado, donde puede implementar la aplicación sin necesidad de administrar las máquinas virtuales o los recursos de red. Por ejemplo, en lugar de crear máquinas virtuales individuales, se crea un recuento de instancias y el servicio aprovisiona, configura y administra los recursos necesarios. Azure App Service es un ejemplo de un servicio de PaaS.
 
-Existen varios servicios desde IaaS hasta el PaaS más puro. Por ejemplo, las máquinas virtuales de Azure realizar el escalado automático con los Conjuntos de escalado de máquinas virtuales. Esta funcionalidad de escalado automático no es estrictamente PaaS, pero es el tipo de característica de administración que se encuentra en un servicio de PaaS.
+Existen varios servicios desde IaaS hasta el PaaS más puro. Por ejemplo, las máquinas virtuales de Azure se pueden escalar automáticamente con VM Scale Sets. Esta funcionalidad de escalado automático no es estrictamente PaaS, pero es el tipo de característica de administración que se encuentra en un servicio de PaaS.
 
 Las **funciones como servicio** (FaaS) van más allá al eliminar la necesidad de preocuparse por el entorno de hospedaje. En lugar de crear instancias de proceso y de implementar código en las instancias, solo tiene que implementar el código y el servicio lo ejecuta automáticamente. No es necesario administrar los recursos de proceso. Estos servicios usan arquitectura sin servidor y se escalan o reducen verticalmente hasta cualquier nivel necesario para controlar el tráfico. Azure Functions es un servicio de FaaS.
 
@@ -42,4 +43,6 @@ Al seleccionar una opción de proceso, estos son algunos de los factores que ten
 - ¿Cuáles son las limitaciones generales de cada servicio? 
 - ¿Qué variantes de arquitecturas de aplicación son adecuados para este servicio? 
 
-Para una comparación más detallada de las opciones de proceso de Azure, consulte [Criteria for choosing an Azure compute option](./compute-comparison.md) (Criterios de selección de una opción de proceso de Azure).
+Para seleccionar un servicio de proceso para la aplicación, utilice el [Árbol de decisión para los servicios de proceso de Azure](./compute-decision-tree.md)
+
+Para una comparación más detallada de las opciones de proceso de Azure, consulte [Criterios para elegir un servicio de proceso de Azure](./compute-comparison.md).

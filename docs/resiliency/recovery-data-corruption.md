@@ -3,11 +3,11 @@ title: Recuperación de daños o eliminación accidental de los datos
 description: Artículo para entender cómo recuperarse ante datos dañados o eliminación accidental de datos y para diseñar aplicaciones resistentes, con alta disponibilidad y con tolerancia a errores, así como para planear la recuperación ante desastres
 author: MikeWasson
 ms.date: 01/10/2018
-ms.openlocfilehash: 76d2f996750d5a67b67bd5dc4977580f3b8abbc3
-ms.sourcegitcommit: 3d6dba524cc7661740bdbaf43870de7728d60a01
+ms.openlocfilehash: b0716de39fe69d607b9a63e51356d28bbcdbfeae
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/11/2018
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="recover-from-data-corruption-or-accidental-deletion"></a>Recuperación de daños o eliminación accidental de los datos 
 
@@ -23,7 +23,7 @@ Azure Storage ofrece resistencia de datos gracias a las réplicas automatizadas.
 
 - **Blobs en bloques**. Cree una instantánea de un momento dado de cada blob en bloques. Para obtener más información, consulte [Crear una instantánea de un blob](/rest/api/storageservices/creating-a-snapshot-of-a-blob). Por cada instantánea, solo se le cobrará por el almacenamiento que necesite para almacenar las diferencias producidas en el blob desde el último estado de instantánea. Las instantáneas dependen de la existencia del blob original en el que se basan, por lo que se recomienda realizar una operación de copia a otro blob, o incluso a otra cuenta de almacenamiento. Esto garantiza que los datos de copia de seguridad que los datos de la copia de seguridad estén protegidos correctamente contra la eliminación accidental. Puede usar [AzCopy](/azure/storage/common/storage-use-azcopy) o [Azure PowerShell](/azure/storage/common/storage-powershell-guide-full) para copiar los blobs en otra cuenta de almacenamiento.
 
-- **Files**. Use [instantáneas de recursos compartidos (versión preliminar)](/azure/storage/files/storage-how-to-use-files-snapshots), o use AzCopy o PowerShell para copiar los archivos en otra cuenta de almacenamiento.
+- **Files**. Use [instantáneas de recurso compartido](/azure/storage/files/storage-snapshots-files), o AzCopy o PowerShell para copiar los archivos en otra cuenta de almacenamiento.
 
 - **Tables**. Use AzCopy para exportar los datos de tablas a otra cuenta de almacenamiento de otra región.
 
@@ -31,7 +31,7 @@ Azure Storage ofrece resistencia de datos gracias a las réplicas automatizadas.
 
 ### <a name="azure-sql-database"></a>Azure SQL Database 
 
-SQL Database realiza automáticamente una combinación de copias de seguridad completas semanales, copias de seguridad diferenciales cada hora y copias de seguridad del registro de transacciones cada 5 o 10 minutos con el fin de proteger su empresa contra la pérdida de datos. Use la restauración a un momento dado para restaurar una base de datos a un momento anterior. Para obtener más información, consulte 
+SQL Database realiza automáticamente una combinación de copias de seguridad completas semanales, copias de seguridad diferenciales cada hora y copias de seguridad del registro de transacciones cada 5 o 10 minutos con el fin de proteger su empresa contra la pérdida de datos. Use la restauración a un momento dado para restaurar una base de datos a un momento anterior. Para más información, consulte:
 
 - [Recuperación de una Base de datos SQL de Azure mediante copias de seguridad automatizadas](/azure/sql-database/sql-database-recovery-using-backups)
 
@@ -47,7 +47,7 @@ Azure Cosmos DB crea automáticamente copias de seguridad a intervalos regulares
 
 ### <a name="azure-database-for-mysql-azure-database-for-postresql"></a>Azure Database for MySQL, Azure Database for PostreSQL
 
-Cuando se usa Azure Database for MySQL o Azure Database for PostreSQL, el servicio de base de datos crea automáticamente una copia de seguridad del servicio cada cinco minutos. Con esta característica de copia de seguridad automática, puede restaurar el servidor y todas sus bases de datos en un servidor nuevo a un momento dado anterior. Para obtener más información, consulte 
+Cuando se usa Azure Database for MySQL o Azure Database for PostreSQL, el servicio de base de datos crea automáticamente una copia de seguridad del servicio cada cinco minutos. Con esta característica de copia de seguridad automática, puede restaurar el servidor y todas sus bases de datos en un servidor nuevo a un momento dado anterior. Para más información, consulte:
 
 - [Copia de seguridad y restauración de un servidor en Azure Database for MySQL mediante Azure Portal](/azure/mysql/howto-restore-server-portal)
 

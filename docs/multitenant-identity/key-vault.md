@@ -5,11 +5,11 @@ author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: client-assertion
-ms.openlocfilehash: 45d1564c255f2450f68c5e92ebe0d7de0c40ae31
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: d49129a38d0413f6006095f03b817885e1ce6c92
+ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 04/16/2018
 ---
 # <a name="use-azure-key-vault-to-protect-application-secrets"></a>Uso de Azure Key Vault para proteger los secretos de la aplicación
 
@@ -75,7 +75,7 @@ Cree un usuario administrador en el inquilino de Azure AD donde está registrada
 3. Haga clic en **Más servicios** > **SEGURIDAD E IDENTIDAD** > **Azure Active Directory** > **Grupos y usuario** > **Todos los usuarios**.
 4. En la parte superior del portal, haga clic en **Nuevo usuario**.
 5. Rellene los campos y asigne al usuario el rol de directorio **Administrador global**.
-6. Haga clic en **Crear**.
+6. Haga clic en **Create**(Crear).
 
 ![Usuario administrador global](./images/running-the-app/global-admin-user.png)
 
@@ -120,7 +120,7 @@ Ahora asigne este usuario como propietario de la suscripción.
     ],
     ```          
 
-6. Haga clic en **Guardar**.  
+6. Haga clic en **Save**(Guardar).  
 
 7. Repita los pasos de 3 a 6 para agregar el mismo fragmento de código JSON al manifiesto de la aplicación de API web (Surveys.WebAPI).
 
@@ -167,7 +167,7 @@ Ahora asigne este usuario como propietario de la suscripción.
     ```
     .\Setup-KeyVault.ps1 -KeyVaultName <<key vault name> -KeyName Redis--Configuration -KeyValue "<<Redis DNS name>>.redis.cache.windows.net,password=<<Redis access key>>,ssl=true" 
     ```
-    donde 
+    donde
    
    * nombre de almacén de claves = el nombre que asignó al almacén de claves en el paso anterior.
    * Nombre DNS de Redis = nombre de DNS de la instancia de caché Redis.
