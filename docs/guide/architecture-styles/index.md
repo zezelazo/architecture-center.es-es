@@ -2,11 +2,11 @@
 title: Estilos de arquitectura
 description: Estilos comunes de arquitectura para aplicaciones en la nube
 layout: LandingPage
-ms.openlocfilehash: 15a316f9ebf7cfe4e72a6992f264a68abb904819
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: e647d1a0f3305e7754859e5ab8a9a3b46c3d4fb6
+ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 05/07/2018
 ---
 # <a name="architecture-styles"></a>Estilos de arquitectura
 
@@ -65,6 +65,7 @@ Las **[arquitecturas basadas en eventos](./event-driven.md)**  usan un modelo de
 Considere la posibilidad de implementar una arquitectura basada en eventos para las aplicaciones que ingieren y procesan un gran volumen de datos con una latencia muy baja como en el caso de las soluciones de IoT. Este estilo también es útil cuando diferentes subsistemas deben realizar distintos tipos de procesamiento en los mismos datos de evento.
 
 <br />
+
 ### <a name="big-data-big-compute"></a>Big Data, Big Compute
 
 **[Big Data](./big-data.md)** y **[Big Compute](./big-compute.md)** son los estilos de arquitectura especializados en cargas de trabajo que resultan más adecuados para determinados perfiles específicos. Big Data permite dividir un conjunto de datos muy grande en fragmentos, realizando un procesamiento paralelo en todo el conjunto, con fines de análisis y creación de informes. Big compute, también denominada informática de alto rendimiento (HPC), realiza cálculos en paralelo en un gran número (miles) de núcleos. Los dominios incluyen simulaciones, modelado y representaciones 3-D.
@@ -93,7 +94,7 @@ En la tabla siguiente se resume cómo administra las dependencias cada estilo y 
 | Microservicios | Servicios descompuestos verticalmente (funcionalmente) que se llaman mutuamente mediante API. | Dominio complicado. Actualizaciones frecuentes. |
 | CQRS | Segregación de lectura y escritura. El esquema y la escala se optimizan por separado. | Dominios colaborativos donde una gran cantidad de usuarios acceden a los mismos datos. |
 | Arquitectura basada en eventos. | Productores y consumidores. Vista independiente por cada subsistema. | IoT y sistemas en tiempo real |
-| Big Data | Divide un conjunto de datos grande en fragmentos pequeños. Procesamiento en paralelo en los conjuntos de datos locales. | Análisis de datos por lotes y en tiempo real. Análisis predictivo mediante Machine Learning. |
+| Macrodatos | Divide un conjunto de datos grande en fragmentos pequeños. Procesamiento en paralelo en los conjuntos de datos locales. | Análisis de datos por lotes y en tiempo real. Análisis predictivo mediante Machine Learning. |
 | Big Compute| Asignación de datos a miles de núcleos. | Dominios con procesos intensivos como simulaciones. |
 
 
