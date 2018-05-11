@@ -3,10 +3,10 @@ title: Arquitecturas de referencia de aplicaciones de n niveles
 description: Explica algunas arquitecturas comunes para implementar las máquinas virtuales que hospedan aplicaciones de escala empresarial en Azure.
 layout: LandingPage
 ms.openlocfilehash: 288acc36e7c310e70240caa3ed9f2095bbb8bc58
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/06/2018
+ms.lasthandoff: 05/10/2018
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
