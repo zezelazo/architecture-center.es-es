@@ -5,16 +5,16 @@ description: >-
 
   guidance,vpn-gateway,expressroute,load-balancer,virtual-network,active-directory
 author: telmosampaio
-ms.date: 11/28/2016
+ms.date: 05/02/2018
 pnp.series.title: Identity management
 pnp.series.prev: adds-extend-domain
 pnp.series.next: adfs
 cardTitle: Create an AD DS forest in Azure
-ms.openlocfilehash: e32a6420821e70c84e77d2c39614f0c45efbb7e2
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 047ecea41ba30ce4cccf17b8c4964a37ae60150f
+ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 05/03/2018
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>Creación de un bosque de recursos de Active Directory Domain Services (AD DS) en Azure
 
@@ -90,51 +90,71 @@ Para conocer las consideraciones sobre seguridad específicas de Active Director
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-Hay una solución disponible en [GitHub][github] para implementar esta arquitectura de referencia. Necesitará la versión más reciente de la CLI de Azure para ejecutar el script de Powershell que implementa la solución. Para implementar la arquitectura de referencia, siga estos pasos:
+Hay disponible una implementación de esta arquitectura en [GitHub][github]. Tenga en cuenta que la implementación completa puede tardar hasta dos horas, lo que incluye la creación de una instancia de VPN Gateway y ejecutar los scripts que configuran AD DS.
 
-1. Descargue o clone la carpeta de soluciones de [GitHub][github] en la máquina local.
+### <a name="prerequisites"></a>requisitos previos
 
-2. Abra la CLI de Azure y navegue hasta la carpeta local de la solución.
+1. Clone, bifurque o descargue el archivo ZIP del repositorio de GitHub de [arquitecturas de referencia][github].
 
-3. Ejecute el siguiente comando:
-   
-    ```Powershell
-    .\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> <mode>
+2. Instale la [CLI de Azure 2.0][azure-cli-2].
+
+3. Instale el paquete de NPM de [Azure Building Blocks][azbb].
+
+4. Desde un símbolo del sistema, un símbolo del sistema de bash o un símbolo del sistema de PowerShell, inicie sesión en la cuenta de Azure mediante el siguiente comando.
+
+   ```bash
+   az login
+   ```
+
+### <a name="deploy-the-simulated-on-premises-datacenter"></a>Implementación del centro de datos local simulado
+
+1. Vaya a la carpeta `identity/adds-forest` del repositorio de GitHub.
+
+2. Abra el archivo `onprem.json` . Busque instancias de `adminPassword` y `Password` y agregue valores para las contraseñas.
+
+3. Ejecute el siguiente comando y espere a que finalice la implementación:
+
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p onprem.json --deploy
     ```
-   
-    Reemplace `<subscription id>` con la identificación de su suscripción de Azure.
-   
-    Para `<location>`, especifique una región de Azure, como `eastus` o `westus`.
-   
-    El parámetro `<mode>` controla la granularidad de la implementación y puede ser uno de los siguientes valores:
-   
-   * `Onpremise`: implementa el entorno local simulado.
-   * `Infrastructure`: implementa la infraestructura de VNet y el JumBox en Azure.
-   * `CreateVpn`: implementa la puerta de enlace de red virtual de Azure y la conecta a la red local simulada.
-   * `AzureADDS`: implementa las máquinas virtuales que actúan como servidores de Active Directory DS, implementa Active Directory en estas máquinas virtuales e implementa el dominio en Azure.
-   * `WebTier`: implementa las máquinas virtuales de nivel web y el equilibrador de carga.
-   * `Prepare`: implementa todas las implementaciones anteriores. **Esta es la opción recomendada si no tiene una red local existente pero quiere implementar la arquitectura de referencia completa que se ha descrito anteriormente para pruebas o evaluación.** 
-   * `Workload`: implementa las máquinas virtuales de capa de datos y empresa y los equilibradores de carga. Tenga en cuenta que estas máquinas virtuales no se incluyen en la implementación `Prepare`.
 
-4. Espere a que la implementación se complete. Si va a realizar la implementación `Prepare`, tardará varias horas.
-     
-5. Si va a usar la configuración local simulada, configure la relación de confianza entrante:
-   
-   1. Conéctese al JumpBox (<em>ra-adtrust-mgmt-vm1</em> en el grupo de recursos <em>ra-adtrust-security-rg</em>). Inicie sesión como <em>testuser</em> con la contraseña <em>AweS0me@PW</em>.
-   2. En el JumpBox, abra una sesión RDP en la primera máquina virtual del dominio <em>contoso.com</em> (el dominio local). Esta máquina virtual tiene la dirección IP 192.168.0.4. El nombre de usuario es <em>contoso\testuser</em> y la contraseña <em>AweS0me@PW</em>.
-   3. Descargue el script [incoming-trust.ps1][incoming-trust] y ejecútelo para crear la confianza entrante desde el dominio *treyresearch.com*.
+### <a name="deploy-the-azure-vnet"></a>Implementación de la red virtual de Azure
 
-6. Si usa su propia infraestructura local:
-   
-   1. Descargue el script [incoming-trust.ps1][incoming-trust].
-   2. Edítelo y reemplace el valor de la variable `$TrustedDomainName` por el nombre de su propio dominio.
-   3. Ejecute el script.
+1. Abra el archivo `azure.json` . Busque instancias de `adminPassword` y `Password` y agregue valores para las contraseñas.
 
-7. En el JumpBox, conéctese a la primera máquina virtual del dominio <em>treyresearch.com</em> (el dominio en la nube). Esta máquina virtual tiene la dirección IP 10.0.4.4. El nombre de usuario es <em>treyresearch\testuser</em> y la contraseña <em>AweS0me@PW</em>.
+2. En el mismo archivo, busque instancias de `sharedKey` y escriba las claves compartidas de la conexión VPN. 
 
-8. Descargue el script [outgoing-trust.ps1][outgoing-trust] y ejecútelo para crear la confianza saliente desde el dominio *treyresearch.com*. Si va a usar sus propias máquinas locales, edite primero el script. Establezca la variable `$TrustedDomainName` en el nombre del dominio local y especifique las direcciones IP de los servidores de Active Directory DS para este dominio en la variable `$TrustedDomainDnsIpAddresses`.
+    ```bash
+    "sharedKey": "",
+    ```
 
-9. Espere unos minutos a que finalicen los pasos anteriores y luego conéctese a una máquina virtual local y siga los pasos descritos en el artículo [Comprobación de una confianza][verify-a-trust] para determinar si la relación de confianza entre los dominios *contoso.com* y *treyresearch.com* está configurada correctamente.
+3. Ejecute el siguiente comando y espere a que finalice la implementación.
+
+    ```bash
+    azbb -s <subscription_id> -g <resource group> -l <location> -p onoprem.json --deploy
+    ```
+
+   Realice la implementación en el mismo grupo de recursos que la red virtual local.
+
+
+### <a name="test-the-ad-trust-relation"></a>Comprobación de la relación de confianza de AD
+
+1. Use Azure Portal y vaya al grupo de recursos que ha creado.
+
+2. Para la máquina virtual denominada `ra-adt-mgmt-vm1` use Azure Portal.
+
+2. Haga clic en `Connect` para abrir una sesión de escritorio remoto en la máquina virtual. El nombre de usuario es `contoso\testuser` y la contraseña es la que especificó en el archivo de parámetros `onprem.json`.
+
+3. Desde dentro de la sesión de escritorio remoto, abra otra sesión de escritorio remoto en 192.168.0.4, que es la dirección IP de la máquina virtual denominada `ra-adtrust-onpremise-ad-vm1`. El nombre de usuario es `contoso\testuser` y la contraseña es la que especificó en el archivo de parámetros `azure.json`.
+
+4. Desde dentro de la sesión de escritorio remoto para `ra-adtrust-onpremise-ad-vm1`, vaya al **administrador del servidor** y haga clic en **Herramientas** > **Dominios y confianzas de Active Directory**. 
+
+5. En el panel izquierdo, haga clic con el botón derecho en contoso.com y seleccione **Propiedades**.
+
+6. Haga clic en la pestaña **Trusts** (Confianzas). Debería ver que treyresearch.net aparece como una confianza entrante.
+
+![](./images/ad-forest-trust.png)
+
 
 ## <a name="next-steps"></a>Pasos siguientes
 
@@ -144,6 +164,8 @@ Hay una solución disponible en [GitHub][github] para implementar esta arquitect
 <!-- links -->
 [adds-extend-domain]: adds-extend-domain.md
 [adfs]: adfs.md
+[azure-cli-2]: /azure/install-azure-cli
+[azbb]: https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks
 
 [implementing-a-secure-hybrid-network-architecture]: ../dmz/secure-vnet-hybrid.md
 [implementing-a-secure-hybrid-network-architecture-with-internet-access]: ../dmz/secure-vnet-dmz.md
