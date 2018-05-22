@@ -3,11 +3,11 @@ title: Arquitecturas de referencia de Azure
 description: Arquitecturas de referencia, planos y guía de implementación preceptiva para cargas de trabajo comunes en Azure.
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 4c0006404ed0c0f603e9599cd9c04e6d02fdbfeb
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: 6c9be20e2b831f2e6c1ffd33aa89a56375a0511c
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/06/2018
+ms.lasthandoff: 05/21/2018
 ---
 <!-- This file is generated! -->
 <!-- See the templates in ./build/reference-architectures  -->
@@ -179,8 +179,8 @@ Nuestras arquitecturas de referencia se organizan por escenario, agrupando junta
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>SAP NetWeaver y SAP HANA</h3>
-                        <p>Implemente y ejecute SAP NetWeaver y SAP HANA en un entorno de alta disponibilidad en Azure.</p>
+                        <h3>Ejecución de SAP en Azure</h3>
+                        <p>Implemente y ejecute SAP en un entorno de alta disponibilidad en Azure.</p>
                     </div>
                 </div>
             </div>
