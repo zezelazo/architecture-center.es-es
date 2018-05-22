@@ -5,11 +5,11 @@ author: zoinerTejada
 ms:date: 02/12/2018
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 0975d056aa971c627ca91c9fc05c4e16e07b6fc0
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 63c1cca45fe9d99b5d0679360ef487c3a42da956
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/07/2018
+ms.lasthandoff: 05/21/2018
 ---
 # <a name="azure-data-architecture-guide"></a>Guía de arquitectura de datos de Azure
 
@@ -21,7 +21,7 @@ La nube está cambiando la forma en que las se diseñan las aplicaciones, lo que
 
 ## <a name="how-this-guide-is-structured"></a>Cómo se estructura esta guía
 
-Esta guía está estructurada en torno a dos categorías generales de soluciones de datos: *cargas de trabajo RDMBS tradicionales* y *soluciones de macrodatos*. 
+Esta guía está estructurada en torno a dos categorías generales de soluciones de datos: *cargas de trabajo RDBMS tradicionales* y *soluciones de macrodatos*. 
 
 **[Cargas de trabajo RDBMS tradicionales](./relational-data/index.md)**. Estas cargas de trabajo utilizan procesamiento de transacciones en línea (OLTP) y procesamiento analítico en línea (OLAP). En los sistemas OLTP, los datos suelen ser relacionales con un esquema predefinido y un conjunto de restricciones para mantener la integridad referencial. A menudo, se pueden consolidar datos de varios orígenes de la organización en un almacenamiento de datos, utilizando un proceso ETL para mover y transformar los datos de origen.
 

@@ -72,7 +72,7 @@ Elija una clave de particionamiento que minimice cualquier necesidad futura de d
 
 Si se replican las particiones, debería ser posible conservar algunas de las réplicas en línea mientras otras se dividen, se combinan o se vuelven a configurar. Sin embargo, el sistema podría requerir la limitación de las operaciones que se pueden realizar en los datos de esas particiones mientras lleva a cabo la reconfiguración. Por ejemplo, los datos de las réplicas podrían marcarse como de solo lectura para limitar el ámbito de las incoherencias que podrían producirse mientras se están reestructurando las particiones.
 
-> Para más información e instrucciones sobre muchas de estas consideraciones y técnicas de prácticas recomendadas de diseño de almacenes de datos que implementan particiones horizontales, consulte [patrón particionamiento](Patrón de particionamiento).
+> Para más información e instrucciones sobre muchas de estas consideraciones y técnicas de prácticas recomendadas de diseño de almacenes de datos que implementan particiones horizontales, consulte [Sharding pattern](Patrón de particionamiento).
 >
 >
 
@@ -110,13 +110,13 @@ Es fundamental considerar el tamaño y la carga de trabajo de cada partición y 
 Siga estos pasos durante el diseño de particiones para obtener escalabilidad:
 
 1. Analice la aplicación para comprender los patrones de acceso a datos, como el tamaño del conjunto de resultados devuelto por cada consulta, la frecuencia de acceso, la latencia inherente y los requisitos de procesamiento del lado del servidor. En muchos casos, unas cuantas entidades principales exigirán la mayoría de los recursos de procesamiento.
-2. Utilice este análisis para determinar los objetivos de escalabilidad actuales y futuros, como el tamaño de los datos y la carga de trabajo. A continuación, distribuya los datos entre las particiones para cumplir el objetivo de escalabilidad. En la estrategia de creación de particiones horizontal, es importante elegir la partición adecuada para asegurarse de que la distribución es equilibrada. Para más información, consulte el [patrón particionamiento].
+2. Utilice este análisis para determinar los objetivos de escalabilidad actuales y futuros, como el tamaño de los datos y la carga de trabajo. A continuación, distribuya los datos entre las particiones para cumplir el objetivo de escalabilidad. En la estrategia de creación de particiones horizontal, es importante elegir la partición adecuada para asegurarse de que la distribución es equilibrada. Para más información, consulte el [Sharding pattern](Patrón de particionamiento).
 3. Asegúrese de que los recursos disponibles de cada partición sean suficientes para controlar los requisitos de escalabilidad en términos de rendimiento y tamaño de datos. Por ejemplo, el nodo que hospeda una partición puede imponer un límite riguroso en la cantidad de espacio de almacenamiento, la potencia de procesamiento o el ancho de banda de red que proporciona. Si los requisitos de almacenamiento y procesamiento de datos suelen superar estos límites, podría ser necesario perfeccionar la estrategia de creación de particiones o dividir todavía más los datos. Por ejemplo, un planteamiento orientado a la escalabilidad podría ser la separación de los datos de registro de las características principales de la aplicación. Puede hacerlo mediante el uso de almacenes de datos independientes para evitar que los requisitos de almacenamiento de datos total superen el límite de escala del nodo. Si el número total de almacenes de datos supera el límite de nodos, puede ser necesario usar nodos de almacenamiento independientes.
 4. Supervise el sistema en uso para comprobar que los datos se distribuyen según lo previsto y que las particiones pueden controlar la carga impuesta en ellos. Es posible que el uso no coincida con el uso previsto por el análisis. En ese caso, quizá se pueda volver a equilibrar las particiones. En caso contrario, puede ser necesario volver a diseñar algunas partes del sistema para obtener el equilibrio necesario.
 
 Tenga en cuenta que algunos entornos de nube asignan recursos en términos de límites de infraestructura. Asegúrese de que los límites seleccionados proporcionen suficiente espacio para cualquier crecimiento previsto en el volumen de datos, en términos de ancho de banda, potencia de procesamiento y almacenamiento de datos.
 
-Por ejemplo, si usa Almacenamiento de tablas de Azure, una partición ocupada podría requerir más recursos de los que están disponibles para una sola partición a fin de dar respuesta a las solicitudes. (Existe un límite en el volumen de solicitudes que pueden administrarse mediante una sola partición en un período de tiempo concreto. Para más información, consulte la página [Objetivos de escalabilidad y rendimiento del almacenamiento de Azure] en el sitio web de Microsoft).
+Por ejemplo, si usa Almacenamiento de tablas de Azure, una partición ocupada podría requerir más recursos de los que están disponibles para una sola partición a fin de dar respuesta a las solicitudes. (Existe un límite en el volumen de solicitudes que pueden administrarse mediante una sola partición en un período de tiempo concreto. Para más información, consulte la página [Objetivos de escalabilidad y rendimiento de Azure Storage] en el sitio web de Microsoft).
 
  En este caso, es posible que se necesite crear una partición adicional dentro de la propia partición para repartir la carga. Si el tamaño total o el rendimiento de estas tablas supera la capacidad de una cuenta de almacenamiento, puede ser necesario crear cuentas de almacenamiento adicionales y repartir las tablas entre estas cuentas. Si el número de cuentas de almacenamiento supera el número de cuentas que están disponibles para una suscripción, es posible que resulte necesario usar varias suscripciones.
 
@@ -247,7 +247,7 @@ El esquema de partición que se implementa puede tener una incidencia significat
 
 Como su nombre implica, Elastic Database permite que un sistema agregue y quite particiones a medida que el volumen de datos disminuye y crece. Las API de la biblioteca de cliente de Elastic Database de Azure SQL Database permiten a una aplicación crear y eliminar particiones de forma dinámica (y actualizar el administrador del mapa de la particiones de forma transparente); sin embargo, eliminar una partición es una operación destructiva que también requiere la eliminación de todos los datos de esa partición.
 
-Si una aplicación necesita dividir una partición en dos particiones independientes o combinar particiones, Elastic Database proporciona un servicio independiente de división y combinación. Este servicio se ejecuta en un servicio hospedado en la nube (que debe crearse el desarrollador) y migra los datos de forma segura entre las particiones. Para más información, consulte el tema [Escalado con la herramienta de división y combinación de bases de datos elásticas] en el sitio web de Microsoft.
+Si una aplicación necesita dividir una partición en dos particiones independientes o combinar particiones, Elastic Database proporciona un servicio independiente de división y combinación. Este servicio se ejecuta en un servicio hospedado en la nube (que debe crearse el desarrollador) y migra los datos de forma segura entre las particiones. Para más información, consulte el tema [Escalado con la herramienta de división y combinación de Elastic Database] en el sitio web de Microsoft.
 
 ## <a name="partitioning-strategies-for-azure-storage"></a>Estrategias de creación de particiones para Azure Storage
 Azure Storage proporciona cuatro abstracciones para administrar los datos:
@@ -263,7 +263,7 @@ Almacenamiento de tablas y Almacenamiento de blobs son esencialmente almacenes d
 * **Almacenamiento con redundancia de zona**, que mantiene tres copias de los datos repartidas entre diferentes centros de datos de la misma región (o entre dos regiones cercanas geográficamente). Esta forma de redundancia puede proteger frente a desastres que se producen dentro de un único centro de datos, pero no puede proteger frente a las desconexiones de red a gran escala que afectan a toda una región. Tenga en cuenta que el almacenamiento con redundancia de zona solo está disponible para blobs en bloques.
 * **Almacenamiento con redundancia geográfica**, que mantiene seis copias de datos: tres copias en una región (su región local) y otras tres copias en una región remota. Esta forma de redundancia proporciona el máximo nivel de protección ante desastres.
 
-Microsoft ha publicado los objetivos de escalabilidad para Azure Storage. Para más información, consulte la página [Azure Storage scalability and performance targets] (Acceso a datos para soluciones altamente escalables: uso de SQL, NoSQL y persistencia políglota) en el sitio web de Microsoft. Actualmente, la capacidad total de la cuenta de almacenamiento no puede superar los 500 TB (esto incluye el tamaño de los datos que se mantienen en Tabler Storage, File Storage y Blob Storage, así como los mensajes pendientes que se encuentran en la cola de almacenamiento).
+Microsoft ha publicado los objetivos de escalabilidad para Azure Storage. Para más información, consulte la página [Objetivos de escalabilidad y rendimiento de Azure Storage] (Acceso a datos para soluciones altamente escalables: uso de SQL, NoSQL y persistencia políglota) en el sitio web de Microsoft. Actualmente, la capacidad total de la cuenta de almacenamiento no puede superar los 500 TB (esto incluye el tamaño de los datos que se mantienen en Tabler Storage, File Storage y Blob Storage, así como los mensajes pendientes que se encuentran en la cola de almacenamiento).
 
 La tasa de solicitud máxima para una cuenta de almacenamiento (suponiendo un tamaño de entidad, blob o mensaje de 1 KB) es de 20 000 solicitudes por segundo. Una cuenta de almacenamiento tiene un IOPS máximo de 1000 (8 KB de tamaño) por recurso compartido de archivos. Si es probable que su sistema supere estos límites, considere la posibilidad de crear particiones en la carga entre varias cuentas de almacenamiento. Una sola suscripción de Azure puede crear hasta 200 cuentas de almacenamiento. Sin embargo, tenga en cuenta que estos límites pueden cambiar con el tiempo.
 
@@ -310,7 +310,7 @@ Considere los siguientes puntos cuando diseñe las entidades para el almacenamie
   * El uso de una clave de partición única para cada entidad provoca que el servicio Almacenamiento de tablas cree una partición independiente para cada entidad, lo cual puede dar lugar a un número elevado de particiones pequeñas (dependiendo del tamaño de las entidades). Este enfoque es más escalable que el uso de una clave de partición única, pero no es posible realizar transacciones de grupo de entidad. Además, las consultas que capturan más de una entidad podrían implicar lecturas desde más de un servidor. Sin embargo, si la aplicación realiza consultas por rango, el uso de una secuencia monotónica para generar las claves de partición puede ayudarle a optimizar estas consultas.
   * Compartir la clave de partición en un subconjunto de entidades permite agrupar entidades relacionadas en la misma partición. Se pueden realizar operaciones que implican entidades relacionadas con transacciones de grupo de entidades, y es posible dar respuesta a las consultas que capturan un conjunto de entidades relacionadas mediante el acceso a un único servidor.
 
-Para obtener información adicional sobre la creación de particiones de datos en Almacenamiento de tablas de Azure, consulte el artículo [Guía de diseño de la tabla de almacenamiento de Azure: diseño escalable y tablas de rendimiento] en el sitio web de Microsoft.
+Para obtener información adicional sobre la creación de particiones de datos en Almacenamiento de tablas de Azure, consulte el artículo [Guía de diseño de Table Storage] en el sitio web de Microsoft.
 
 ## <a name="partitioning-azure-blob-storage"></a>Creación de particiones en el almacenamiento de blobs de Azure
 Azure Blob Storage permite almacenar objetos binarios grandes: actualmente hasta 5 GB de tamaño para los blobs en bloques o 1 TB para los blobs en páginas. (Para obtener la información más actualizada, vaya a la página [Objetivos de escalabilidad y rendimiento de Azure Storage] en el sitio web de Microsoft). Use blobs en bloques en escenarios como los de transmisión por secuencias donde sea necesario cargar o descargar grandes volúmenes de datos rápidamente. Use blobs en páginas para aplicaciones que requieran acceso aleatorio en lugar de acceso de serie a partes de los datos.
@@ -468,7 +468,7 @@ Deberá tener en cuenta los siguientes puntos a la hora de decidir cómo crear p
 * Redis admite un número limitado de operaciones atómicas. Las únicas operaciones de este tipo que admiten varias claves y valores son operaciones MGET y MSET. Las operaciones MGET devuelven una colección de valores para una lista especificada de claves, y las operaciones MSET almacenan una colección de valores para una lista especificada de claves. Si necesita usar estas operaciones, los pares clave-valor a los que hacen referencia los comandos MSET y MGET deben almacenarse en la misma base de datos.
 
 ## <a name="partitioning-strategies-for-azure-service-fabric"></a>Estrategias de creación de particiones para Azure Service Fabric
-Azure Service Fabric es una plataforma de microservicios que proporciona un sistema de tiempo de ejecución para las aplicaciones distribuidas en la nube. Service Fabric admite archivos ejecutables de invitado de .NET, servicios con y sin estado, y contenedores. Los servicios con estado proporcionan una [colección confiable] [ service-fabric-reliable-collections] para almacenar datos de forma persistente en una colección de pares clave-valor en el clúster de Service Fabric. Para más información acerca de las estrategias de las claves de creación de particiones en una colección confiable, consulte las [directrices y recomendaciones para las colecciones confiables en Azure Service Fabric].
+Azure Service Fabric es una plataforma de microservicios que proporciona un sistema de tiempo de ejecución para las aplicaciones distribuidas en la nube. Service Fabric admite archivos ejecutables de invitado de .NET, servicios con y sin estado, y contenedores. Los servicios con estado proporcionan una [colección confiable] [ service-fabric-reliable-collections] para almacenar datos de forma persistente en una colección de pares clave-valor en el clúster de Service Fabric. Para más información acerca de las estrategias de las claves de creación de particiones en una colección confiable, consulte las [Directrices y recomendaciones de las colecciones confiables en Azure Service Fabric].
 
 ### <a name="more-information"></a>Más información
 * [Información general de Azure Service Fabric] es una introducción a Azure Service Fabric.
@@ -519,7 +519,7 @@ Para conservar algo de disponibilidad, puede marcar la partición original como 
 ## <a name="online-migration"></a>Migración en línea
 La migración en línea es más difícil de realizar, pero es menos problemática para los usuarios, ya que los datos permanecen disponibles durante todo el procedimiento. El proceso es similar al usado por la migración sin conexión, salvo que la partición original no está marcada como sin conexión (paso 1). Según la granularidad del proceso de migración (por ejemplo, si se hace elemento por elemento o partición por partición), es posible que el código de acceso a datos de las aplicaciones cliente tenga que controlar la lectura y escritura de los datos que se encuentran en dos ubicaciones (la partición original y la nueva partición)
 
-Para obtener un ejemplo de una solución que admita la migración en línea, consulte [Escalado con la herramienta de división y combinación de bases de datos elásticas] en el sitio web de Microsoft.
+Para obtener un ejemplo de una solución que admita la migración en línea, consulte [Escalado con la herramienta de división y combinación de Elastic Database] en el sitio web de Microsoft.
 
 ## <a name="related-patterns-and-guidance"></a>Orientación y patrones relacionados
 Es posible que los siguientes modelos también resulten pertinentes para su escenario al considerar las estrategias para implementar la coherencia de los datos:
@@ -527,15 +527,15 @@ Es posible que los siguientes modelos también resulten pertinentes para su esce
 * En la página [Data consistency primer] (Información básica sobre la coherencia de datos) se describen las estrategias para mantener la coherencia en un entorno distribuido, como la nube.
 * La página [Data partitioning guidance] (Guía de creación de particiones de datos) proporciona una visión general de cómo diseñar particiones para cumplir varios criterios en una solución distribuida.
 * En [Sharding Pattern] (Patrón de particionamiento), descrito en el sitio web de Microsoft, se resumen algunas estrategias comunes para el particionamiento de los datos.
-* En [Index Table Pattern] (Patrón de la tabla de índice), descrito en el sitio web de Microsoft, se ilustra cómo crear índices secundarios sobre los datos. Con este enfoque, una aplicación puede recuperar rápidamente los datos mediante el uso de consultas que no hacen referencia a la clave principal de una colección.
+* En [patrón de tabla de índice], descrito en el sitio web de Microsoft, se ilustra cómo crear índices secundarios sobre los datos. Con este enfoque, una aplicación puede recuperar rápidamente los datos mediante el uso de consultas que no hacen referencia a la clave principal de una colección.
 * En [Materialized View Pattern] (Patrón de vista materializada), descrito en el sitio web de Microsoft, se describe cómo generar vistas rellenadas previamente que resuman los datos para admitir las operaciones de consulta rápida. Este enfoque puede ser útil en un almacén de datos con particiones si las particiones que contienen los datos que se resumen se distribuyen entre varios sitios.
 * En el artículo [Uso de Azure Content Delivery Network] del sitio web de Microsoft se ofrecen instrucciones adicionales sobre cómo configurar y usar Content Delivery Network con Azure.
 
 ## <a name="more-information"></a>Más información
 * La página [¿Qué es SQL Database?] del sitio web de Microsoft ofrece documentación detallada en la que se describe la creación y el uso de SQL Database.
 * En la página [Información general de las características de Elastic Database] del sitio web de Microsoft se proporciona una introducción completa a Elastic Database.
-* La página [Escalado con la herramienta de división y combinación de bases de datos elásticas] del sitio web de Microsoft contiene información sobre el uso del servicio de división y combinación para administrar particiones de Elastic Database.
-* La página [Objetivos de escalabilidad y rendimiento del almacenamiento de Azure](https://msdn.microsoft.com/library/azure/dn249410.aspx) del sitio web de Microsoft documenta los límites de tamaño y rendimiento actuales de Azure Storage.
+* La página [Escalado con la herramienta de división y combinación de Elastic Database] del sitio web de Microsoft contiene información sobre el uso del servicio de división y combinación para administrar particiones de Elastic Database.
+* La página [Objetivos de escalabilidad y rendimiento de Azure Storage](https://msdn.microsoft.com/library/azure/dn249410.aspx) del sitio web de Microsoft documenta los límites de tamaño y rendimiento actuales de Azure Storage.
 * La página [Realizar transacciones con grupos de entidades] del sitio web de Microsoft proporciona información detallada sobre la implementación de operaciones transaccionales sobre las entidades almacenadas en Almacenamiento de tablas de Azure.
 * El artículo [Guía de diseño de Table Storage] del sitio web de Microsoft contiene información detallada sobre la creación de particiones de datos en Azure Table Storage.
 * La página [Uso de Azure Content Delivery Network] del sitio web de Microsoft describe cómo replicar los datos almacenados en Azure Blob Storage mediante el uso de Azure Content Delivery Network.
@@ -551,9 +551,9 @@ Es posible que los siguientes modelos también resulten pertinentes para su esce
 [azure-limits]: /azure/azure-subscription-service-limits
 [Azure Content Delivery Network]: /azure/cdn/cdn-overview
 [Azure Redis Cache]: http://azure.microsoft.com/services/cache/
-[Azure Storage Scalability and Performance Targets]: /azure/storage/storage-scalability-targets
-[Azure Storage Table Design Guide]: /azure/storage/storage-table-design-guide
-[Creación de una solución de Polyglot]: https://msdn.microsoft.com/library/dn313279.aspx
+[Objetivos de escalabilidad y rendimiento de Azure Storage]: /azure/storage/storage-scalability-targets
+[Guía de diseño de Table Storage]: /azure/storage/storage-table-design-guide
+[Building a polyglot solution]: https://msdn.microsoft.com/library/dn313279.aspx
 [cosmos-db-ru]: /azure/cosmos-db/request-units
 [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence]: https://msdn.microsoft.com/library/dn271399.aspx
 [Data consistency primer]: http://aka.ms/Data-Consistency-Primer
@@ -563,22 +563,22 @@ Es posible que los siguientes modelos también resulten pertinentes para su esce
 [Información general de las características de Elastic Database]: /azure/sql-database/sql-database-elastic-scale-introduction
 [event-hubs]: /azure/event-hubs
 [Federations Migration Utility]: https://code.msdn.microsoft.com/vstudio/Federations-Migration-ce61e9c1
-[directrices y recomendaciones para las colecciones confiables en Azure Service Fabric]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections-guidelines
-[Index Table Pattern]: http://aka.ms/Index-Table-Pattern
+[Directrices y recomendaciones de las colecciones confiables en Azure Service Fabric]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections-guidelines
+[patrón de tabla de índice]: http://aka.ms/Index-Table-Pattern
 [Materialized View Pattern]: http://aka.ms/Materialized-View-Pattern
 [Consultas a través de particiones múltiples]: /azure/sql-database/sql-database-elastic-scale-multishard-querying
 [Información general de Azure Service Fabric]: /azure/service-fabric/service-fabric-overview
 [Partición de los servicios confiables de Service Fabric]: /azure/service-fabric/service-fabric-concepts-partitioning
 [Partitioning: how to split data among multiple Redis instances]: http://redis.io/topics/partitioning
-[Performing Entity Group Transactions]: https://msdn.microsoft.com/library/azure/dd894038.aspx
+[Realizar transacciones con grupos de entidades]: https://msdn.microsoft.com/library/azure/dd894038.aspx
 [Tutorial de clúster Redis]: http://redis.io/topics/cluster-tutorial
 [Running Redis on a CentOS Linux VM in Windows Azure]: http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx
-[Escalado con la herramienta de división y combinación de bases de datos elásticas]: /azure/sql-database/sql-database-elastic-scale-overview-split-and-merge
+[Escalado con la herramienta de división y combinación de Elastic Database]: /azure/sql-database/sql-database-elastic-scale-overview-split-and-merge
 [Uso de Azure Content Delivery Network]: /azure/cdn/cdn-create-new-endpoint
 [Cuotas de Service Bus]: /azure/service-bus-messaging/service-bus-quotas
 [service-fabric-reliable-collections]: /azure/service-fabric/service-fabric-reliable-services-reliable-collections
 [Límites de servicio en Azure Search]:  /azure/search/search-limits-quotas-capacity
-[patrón particionamiento]: http://aka.ms/Sharding-Pattern
+[Sharding pattern]: http://aka.ms/Sharding-Pattern
 [Tipos de datos admitidos (Azure Search)]:  https://msdn.microsoft.com/library/azure/dn798938.aspx
 [Transactions]: http://redis.io/topics/transactions
 [¿Qué es Event Hubs?]: /azure/event-hubs/event-hubs-what-is-event-hubs
