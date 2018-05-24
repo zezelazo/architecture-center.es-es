@@ -6,11 +6,11 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: signup
 pnp.series.next: authorize
-ms.openlocfilehash: a39c64f003c26f860086701dd988a8bb21fab5bf
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: ec563936e5f00aba79d65844762feeed97ad547d
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 05/21/2018
 ---
 # <a name="application-roles"></a>Roles de la aplicación
 
@@ -53,7 +53,7 @@ Inconvenientes:
 ### <a name="implementation"></a>Implementación
 **Definir los roles.** El proveedor de SaaS declara los roles de aplicación en el [manifiesto de aplicación]. Por ejemplo, a continuación se muestra la entrada de manifiesto de la aplicación Surveys:
 
-```
+```json
 "appRoles": [
   {
     "allowedMemberTypes": [
@@ -97,7 +97,7 @@ Tal y como se muestra en la siguiente captura de pantalla, Charles forma parte d
 
 
 > [!NOTE]
-> Un enfoque alternativo para la aplicación es asignar roles mediante programación, con la API de Azure AD Graph. Sin embargo, esto requiere que la aplicación obtenga permisos de escritura para el directorio de AD del cliente. Una aplicación con esos permisos podría hacer muchas travesuras &mdash; el cliente confía en que la aplicación no arruine su directorio. Muchos clientes pueden no estar dispuestos a conceder este nivel de acceso.
+> Un enfoque alternativo para la aplicación es asignar roles mediante programación, con Graph API de Azure AD. Sin embargo, esto requiere que la aplicación obtenga permisos de escritura para el directorio de AD del cliente. Una aplicación con esos permisos podría hacer muchas travesuras &mdash; el cliente confía en que la aplicación no arruine su directorio. Muchos clientes pueden no estar dispuestos a conceder este nivel de acceso.
 > 
 
 **Obtener notificaciones de rol**. Cuando un usuario inicia sesión, la aplicación recibe los roles asignados del usuario en una notificación con el tipo `http://schemas.microsoft.com/ws/2008/06/identity/claims/role`.  
@@ -123,7 +123,7 @@ Desventajas:
 ### <a name="implementation"></a>Implementación
 En el manifiesto de aplicación, establezca la propiedad `groupMembershipClaims` en "SecurityGroup". Esto es necesario para obtener notificaciones de pertenencia a grupo de AAD.
 
-```
+```json
 {
    // ...
    "groupMembershipClaims": "SecurityGroup",
@@ -133,14 +133,14 @@ En el manifiesto de aplicación, establezca la propiedad `groupMembershipClaims`
 Cuando un nuevo cliente se suscribe, la aplicación indica al cliente que cree grupos de seguridad para los roles que necesita la aplicación. A continuación, el cliente necesita escribir los identificadores de objeto de grupo en la aplicación. La aplicación almacena esto en una tabla que asigna identificadores de grupo a roles de la aplicación por inquilino.
 
 > [!NOTE]
-> Como alternativa, la aplicación podría crear los grupos mediante programación usando la API Graph de Azure AD.  Esto sería menos propenso a errores. Sin embargo, ello requiere que la aplicación obtenga permisos de "lectura y escritura en todos los grupos" para el directorio de AD del cliente. Muchos clientes pueden no estar dispuestos a conceder este nivel de acceso.
+> Como alternativa, la aplicación podría crear los grupos mediante programación usando Graph API de Azure AD.  Esto sería menos propenso a errores. Sin embargo, ello requiere que la aplicación obtenga permisos de "lectura y escritura en todos los grupos" para el directorio de AD del cliente. Muchos clientes pueden no estar dispuestos a conceder este nivel de acceso.
 > 
 > 
 
 Cuando un usuario inicia sesión:
 
 1. La aplicación recibe los grupos del usuario como notificaciones. El valor de cada notificación es el identificador de objeto de un grupo.
-2. Azure AD limita el número de grupos enviados en el token. Si el número de grupos supera este límite, Azure AD envía una notificación especial que indica que se está por encima del límite. Si esa notificación está presente, la aplicación debe consultar la API Graph de Azure AD para obtener todos los grupos a los que pertenece ese usuario. Para más información, consulte Authorization in Cloud Applications using AD Groups [Autorización de aplicaciones en la nube mediante grupos de AD], en la sección titulada "Groups claim overage" (Exceso de notificaciones de grupos).
+2. Azure AD limita el número de grupos enviados en el token. Si el número de grupos supera este límite, Azure AD envía una notificación especial que indica que se está por encima del límite. Si esa notificación está presente, la aplicación debe consultar Graph API de Azure AD para obtener todos los grupos a los que pertenece ese usuario. Para más información, consulte Authorization in Cloud Applications using AD Groups [Autorización de aplicaciones en la nube mediante grupos de AD], en la sección titulada "Groups claim overage" (Exceso de notificaciones de grupos).
 3. La aplicación busca los identificadores de objeto en su propia base de datos, para encontrar los roles de aplicación correspondientes para asignar al usuario.
 4. La aplicación agrega un valor de notificación personalizado a la entidad de seguridad del usuario que expresa el rol de aplicación. Por ejemplo: `survey_role` = "SurveyAdmin".
 
