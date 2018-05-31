@@ -4,11 +4,12 @@ description: Instrucciones específicas de servicios para establecer el mecanism
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: d03cc9dd1af92a91bbfab1ebc8c438e6312eeb49
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 65206c5f39a74d228c7eaa0fea0c5b1b0710b22f
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/07/2018
+ms.lasthandoff: 05/21/2018
+ms.locfileid: "34423024"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Guía de reintentos para servicios específicos
 
@@ -855,7 +856,7 @@ La siguiente tabla muestra la configuración predeterminada de las directivas de
 
 | **Configuración** | **Valor predeterminado** | **Significado** |
 | --- | --- | --- |
-| MaximumExecutionTime | 120 segundos | Tiempo de ejecución máximo para la solicitud, incluidos todos los posibles reintentos. |
+| MaximumExecutionTime | None | Tiempo de ejecución máximo para la solicitud, incluidos todos los posibles reintentos. Si no se especifica, el periodo que se permite a una solicitud es ilimitado. En otras palabras, la solicitud podría dejar de responder. |
 | ServerTimeout | None | Intervalo de tiempo de espera del servidor para la solicitud (el valor se redondea en segundos). Si no se especifica, usará el valor predeterminado para todas las solicitudes al servidor. Normalmente, la mejor opción es omitir este valor para que se utilice la configuración predeterminada del servidor. | 
 | LocationMode | None | Si la cuenta de almacenamiento se crea con la opción de replicación del almacenamiento con redundancia geográfica de acceso de lectura (RA-GRS), puede usar el modo de ubicación para indicar qué ubicación debe recibir la solicitud. Por ejemplo, si se especifica **PrimaryThenSecondary** , las solicitudes siempre se envían a la ubicación principal en primer lugar. Si se produce un error en una solicitud, se envía a la ubicación secundaria. |
 | RetryPolicy | ExponentialPolicy | Consulte a continuación los detalles de cada opción. |

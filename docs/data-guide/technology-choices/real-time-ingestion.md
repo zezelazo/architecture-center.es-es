@@ -3,11 +3,12 @@ title: Elección de una tecnología de ingesta de mensajes en tiempo real
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 2e6578b779950b5ef11bda7b8ba1fb2e45e09f4e
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 5eaac023e28fc502e5a4e6ebc17e32832f7557c0
+ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/23/2018
+ms.lasthandoff: 05/21/2018
+ms.locfileid: "34422990"
 ---
 # <a name="choosing-a-real-time-message-ingestion-technology-in-azure"></a>Elección de una tecnología de ingesta de mensajes en tiempo real en Azure
 
@@ -32,7 +33,7 @@ Entre las características de IoT Hub se incluyen:
 * Varias opciones de comunicación de dispositivo a nube y de nube a dispositivo. Dichas opciones incluyen la mensajería unidireccional, la transferencia de archivos y los métodos de solicitud y respuesta.
 * Enrutamiento de mensajes a otros servicios de Azure.
 * Almacenamiento consultable para metadatos del dispositivo e información de estado sincronizada.
-* Comunicaciones seguras y control de acceso con claves de seguridad por dispositivo o certificados X.509.
+* Comunicaciones seguras y control de acceso mediante claves de seguridad por dispositivo o certificados X.509.
 * Supervisión exhaustiva para la conectividad de dispositivos y los eventos de administración de identidad de dispositivos.
 
 En términos de ingesta de mensajes, IoT Hub es similar a Event Hubs. Sin embargo, IoT Hub se ha diseñado específicamente para administrar la conectividad de dispositivos de IoT, no solo la ingesta de mensajes. Para más información, consulte [Comparación entre Azure IoT Hub y Azure Event Hubs](/azure/iot-hub/iot-hub-compare-event-hubs). 
