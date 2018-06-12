@@ -10,6 +10,8 @@
           items:
             - name: 'Explicación: ¿Cómo funciona Azure?'
               href: adoption-intro/azure-explainer.md
+            - name: 'Explicación: ¿Qué es la regulación de recursos en la nube?'
+              href: adoption-intro/governance-explainer.md
         - name: Descripción de la identidad digital en Azure
           items:
             - name: 'Explicación: ¿Qué es un inquilino de Azure Active Directory?'
@@ -62,3 +64,8 @@
                   href: /azure/virtual-machines/linux/quick-create-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
                 - name: 'Guía: Procedimientos recomendados para la implementación de una máquina virtual Linux en Azure'
                   href: /azure/architecture/reference-architectures/virtual-machines-linux/single-vm?toc=/azure/architecture/cloud-adoption-guide/toc.json
+    - name: Adopción intermedia de Azure
+      href: intermediate-stage/overview.md
+      items:
+        - name: Guía de diseño de la regulación
+          href: intermediate-stage/governance-design-guide.md
