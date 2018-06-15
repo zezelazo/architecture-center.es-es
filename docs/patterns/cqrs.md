@@ -19,7 +19,7 @@ ms.lasthandoff: 05/07/2018
 
 [!INCLUDE [header](../_includes/header.md)]
 
-Segrega las operaciones de lectura de datos de las de actualización de datos mediante interfaces independientes. Esto puede maximizar el rendimiento, la escalabilidad y la seguridad. Admite la evolución del sistema con el tiempo a través de una mayor flexibilidad e impide que los comandos update provoquen conflictos de combinación en el nivel de dominio.
+Segrega las operaciones de lectura de datos de las de actualización de datos mediante interfaces independientes. Esto puede maximizar el rendimiento, la escalabilidad y la seguridad. Admite la evolución del sistema con el tiempo a través de una mayor flexibilidad e impide que los comandos de actualización provoquen conflictos de combinación en el nivel de dominio.
 
 ## <a name="context-and-problem"></a>Contexto y problema
 
