@@ -93,7 +93,7 @@ Este patrón no es recomendable en las situaciones siguientes:
 
 - Allí donde una interfaz de usuario simple, de estilo CRUD, y las operaciones relacionadas de acceso a datos son suficientes.
 
-- Para la implementación en todo el sistema. Hay componentes específicos de un escenario de administración de datos general donde CQRS puede ser útil, pero puede agregar una complejidad considerable e innecesaria sin ser necesario.
+- Para la implementación en todo el sistema. Hay componentes específicos de un escenario de administración de datos general donde CQRS puede ser útil, pero puede agregar una complejidad considerable e innecesaria sin ser requerido.
 
 ## <a name="event-sourcing-and-cqrs"></a>Event Sourcing y CQRS
 
