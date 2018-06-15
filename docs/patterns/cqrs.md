@@ -49,7 +49,7 @@ Command and Query Responsibility Segregation (CQRS) es un patrón que segrega la
 
 En comparación con el modelo de datos único que se usa en los sistemas basados en CRUD, el uso de modelos de consulta y actualización independientes para los datos de los sistemas basados en CQRS simplifica el diseño y la implementación. Sin embargo, una desventaja es que, a diferencia de los diseños CRUD, el código CQRS no se genera automáticamente mediante los mecanismos de scaffolding.
 
-El modelo de consulta para leer datos y el de actualización para escribirlos pueden acceder el mismo almacén físico, quizás mediante vistas SQL o mediante la generación de proyecciones sobre la marcha. Sin embargo, es habitual separar los datos en almacenes físicos diferentes para maximizar el rendimiento, la escalabilidad y la seguridad, tal como se muestra en la ilustración siguiente.
+El modelo de consulta para leer datos y el de actualización para escribirlos pueden acceder al mismo almacén físico, quizás mediante vistas SQL o mediante la generación de proyecciones sobre la marcha. Sin embargo, es habitual separar los datos en almacenes físicos diferentes para maximizar el rendimiento, la escalabilidad y la seguridad, tal como se muestra en la ilustración siguiente.
 
 ![Una arquitectura CQRS con almacenes independientes de lectura y escritura](./_images/command-and-query-responsibility-segregation-cqrs-separate-stores.png)
 
