@@ -17,11 +17,13 @@
             - name: 'Explicación: ¿Qué es un inquilino de Azure Active Directory?'
               href: adoption-intro/tenant-explainer.md
             - name: Obtención de un inquilino de Azure Active Directory
-              href: /azure/active-directory/develop/active-directory-howto-tenant?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/active-directory/develop/active-directory-howto-tenant
+              maintainContext: true
             - name: 'Guía: Diseño de inquilinos de Azure AD'
               href: adoption-intro/tenant.md
             - name: Adición de un usuario a un inquilino de Azure AD
-              href: /azure/active-directory/add-users-azure-active-directory?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/active-directory/add-users-azure-active-directory
+              maintainContext: true
         - name: Descripción de las suscripciones de Azure
           items:
             - name: 'Explicación: ¿Qué es una suscripción de Azure?'
@@ -35,35 +37,46 @@
             - name: 'Explicación: ¿Qué es un grupo de recursos de Azure?'
               href: adoption-intro/resource-group-explainer.md
             - name: 'Explicación: Descripción de acceso a los recursos de Azure'
-              href: /azure/active-directory/active-directory-understanding-resource-access?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/active-directory/active-directory-understanding-resource-access
+              maintainContext: true
             - name: Creación de un grupo de recursos con el portal
-              href: /azure/azure-resource-manager/resource-group-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/azure-resource-manager/resource-group-portal
+              maintainContext: true
             - name: 'Guía: Diseño de un grupo de recursos'
               href: adoption-intro/resource-group.md
             - name: 'Guía: Convenciones de nomenclatura para recursos de Azure'
-              href: /azure/architecture/best-practices/naming-conventions?toc=/azure/architecture/cloud-adoption-guide/toc.json
+              href: /azure/architecture/best-practices/naming-conventions
+              maintainContext: true
         - name: Implementación de arquitecturas básicas en Azure
           items:
             - name: Arquitectura de plataforma como servicio (PaaS)
               items:
                 - name: Implementación de una aplicación web básica en Azure
-                  href: /azure/app-service?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/app-service
+                  maintainContext: true
                 - name: 'Guía: Procedimientos recomendados para aplicaciones web de Azure'
-                  href: /azure/architecture/reference-architectures/app-service-web-app/basic-web-app?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/architecture/reference-architectures/app-service-web-app/basic-web-app
+                  maintainContext: true
             - name: Infraestructura como servicio (IaaS)
               items:
                 - name: 'Explicación: ¿Qué es una red virtual de Azure?'
-                  href: /azure/virtual-network/virtual-networks-overview?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-network/virtual-networks-overview
+                  maintainContext: true
                 - name: Implementación de una red virtual en Azure
-                  href: /azure/virtual-network/virtual-networks-create-vnet-arm-pportal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-network/virtual-networks-create-vnet-arm-pportal
+                  maintainContext: true
                 - name: Implementación de una única carga de trabajo IaaS de máquina virtual Windows en Azure
-                  href: /azure/virtual-machines/windows/quick-create-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-machines/windows/quick-create-portal
+                  maintainContext: true
                 - name: 'Guía: Procedimientos recomendados para la implementación de una máquina virtual Windows en Azure'
-                  href: /azure/architecture/reference-architectures/virtual-machines-windows/single-vm?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/architecture/reference-architectures/virtual-machines-windows/single-vm
+                  maintainContext: true
                 - name: Implementación de una única carga de trabajo IaaS de máquina virtual Linux en Azure
-                  href: /azure/virtual-machines/linux/quick-create-portal?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/virtual-machines/linux/quick-create-portal
+                  maintainContext: true
                 - name: 'Guía: Procedimientos recomendados para la implementación de una máquina virtual Linux en Azure'
-                  href: /azure/architecture/reference-architectures/virtual-machines-linux/single-vm?toc=/azure/architecture/cloud-adoption-guide/toc.json
+                  href: /azure/architecture/reference-architectures/virtual-machines-linux/single-vm
+                  maintainContext: true
     - name: Adopción intermedia de Azure
       href: intermediate-stage/overview.md
       items:
