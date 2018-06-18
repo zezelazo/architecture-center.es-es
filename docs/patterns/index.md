@@ -1,4 +1,4 @@
----
+﻿---
 title: Patrones de diseño en la nube
 description: Patrones de diseño en la nube para Microsoft Azure
 keywords: Azure
