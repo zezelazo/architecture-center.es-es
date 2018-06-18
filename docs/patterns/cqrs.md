@@ -1,4 +1,4 @@
----
+﻿---
 title: CQRS
 description: Segrega las operaciones de lectura de datos de las de actualización de datos mediante interfaces independientes.
 keywords: Patrón de diseño
