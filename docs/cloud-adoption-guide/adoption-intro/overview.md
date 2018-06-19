@@ -2,11 +2,12 @@
 title: 'Adopción de Azure: fundamentales'
 description: Describe el nivel de línea de base de conocimiento que se requiere en una empresa para adoptar Azure
 author: petertay
-ms.openlocfilehash: e9421b610e4eb07a3ed37bca56e513b0689484ef
-ms.sourcegitcommit: 9ba82cf84cee06ccba398ec04c51dab0e1ca8974
+ms.openlocfilehash: 3f522d1662849d651423d8022ad152c64692b823
+ms.sourcegitcommit: b3d74d8a89b2224fc796ce0e89cea447af43a0d4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/13/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35290482"
 ---
 # <a name="adopting-azure-foundational"></a>Adopción de Azure: fundamentales
 
@@ -16,6 +17,7 @@ La siguiente lista incluye las tareas para llevar a cabo la fase de primera adop
 
 1. Descripción de los aspectos internos de Azure:
     - **Explicación:** [¿Cómo funciona Azure?](azure-explainer.md)
+    - **Explicación:** [¿Qué es el gobierno de los recursos en la nube?](governance-explainer.md)
 2. Descripción de la identidad digital de la empresa en Azure:
     - **Explicación:** [¿Qué es un inquilino de Azure Active Directory?](tenant-explainer.md)
     - **Procedimiento:** [Obtención de un inquilino de Azure Active Directory](/azure/active-directory/develop/active-directory-howto-tenant?toc=/azure/architecture/cloud-adoption-guide/toc.json)
@@ -33,7 +35,7 @@ La siguiente lista incluye las tareas para llevar a cabo la fase de primera adop
     - **Guía:** [Convenciones de nomenclatura para los recursos de Azure](/azure/architecture/best-practices/naming-conventions?toc=/azure/architecture/cloud-adoption-guide/toc.json)
 5. Implementación de una arquitectura básica de Azure:
     - Obtenga información sobre los diferentes tipos de opciones de proceso de Azure como infraestructura como servicio (IaaS) y como plataforma como servicio (PaaS) en la [Introducción a las opciones de proceso de Azure](/azure/architecture/guide/technology-choices/compute-overview?toc=/azure/architecture/cloud-adoption-guide/toc.json).
-    - Ahora que conoce los diferentes tipos de opciones de proceso de Azure, elija una aplicación web de PaaS o una máquina virtual de IaaS como su primer recurso de Azure:
+    - Ahora que conoce los diferentes tipos de opciones de proceso de Azure, elija una aplicación web (PaaS) o una máquina virtual (IaaS) como su primer recurso de Azure:
     - PaaS: Introducción a la plataforma como servicio:
         - **Procedimiento:** [Implementación de una aplicación web básica en Azure](/azure/app-service/app-service-web-overview?toc=/azure/architecture/cloud-adoption-guide/toc.json)
         - **Guía:** Procedimientos recomendados para implementar una [aplicación web básica](/azure/architecture/reference-architectures/app-service-web-app/basic-web-app?toc=/azure/architecture/cloud-adoption-guide/toc.json) en Azure

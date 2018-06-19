@@ -4,12 +4,12 @@ description: Instrucciones específicas de servicios para establecer el mecanism
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 65206c5f39a74d228c7eaa0fea0c5b1b0710b22f
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: f02843f179671da04bc2f09326b58075b432ba95
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423024"
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35253084"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Guía de reintentos para servicios específicos
 
@@ -38,6 +38,9 @@ En la tabla siguiente se resumen las características de reintento de los servic
 
 ## <a name="azure-active-directory"></a>Azure Active Directory
 Azure Active Directory (Azure AD) es una solución de nube de administración de identidades y accesos integral que combina servicios de directorio de núcleo, gobierno de identidades avanzado, seguridad y administración de acceso a aplicaciones. Azure AD también ofrece a los desarrolladores una plataforma de administración de identidades para proporcionar control de acceso a sus aplicaciones, según las reglas y directivas centralizadas.
+
+> [!NOTE]
+> Para obtener instrucciones de reintento en los puntos de conexión de Managed Service Identity, consulte [Uso de una identidad de servicio administrada de máquina virtual de Azure para obtener tokens](/azure/active-directory/managed-service-identity/how-to-use-vm-token#error-handling).
 
 ### <a name="retry-mechanism"></a>Mecanismo de reintento
 Hay un mecanismo de reintento integrado para Azure Active Directory en la biblioteca de autenticación de Active Directory (ADAL). Para evitar bloqueos inesperados, se recomienda que las bibliotecas de terceros y el código de la aplicación **no** reintenten las conexiones con error y que dejen que ADAL controle los reintentos. 

@@ -2,11 +2,12 @@
 title: Elección del almacén de datos apropiado
 description: Introducción sobre la elección de almacenes de datos de Azure
 author: MikeWasson
-ms.openlocfilehash: 3a5780c4a2dbd8a41e9c7bfa7f68d8a7916a7374
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 4836ae1997f86d35d8ab8aa66bbc63b4ef826d23
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252641"
 ---
 # <a name="choose-the-right-data-store"></a>Elección del almacén de datos apropiado
 
@@ -73,7 +74,7 @@ Servicio de Azure correspondiente: [Cosmos DB][cosmosdb]
 
 Una base de datos de grafos almacena dos tipos de información: nodos y bordes. Puede pensar en los nodos como entidades. Los bordes especifican las relaciones entre los nodos. Los nodos y los bordes pueden tener propiedades que proporcionan información acerca de ese nodo o borde de forma parecida a las columnas de una tabla. Los bordes también pueden tener una dirección que indica la naturaleza de la relación.
 
-El propósito de una base de datos de grafos es permitir a una aplicación realizar consultas que recorran la red de nodos y bordes de manera eficaz y analizar las relaciones entre entidades. El siguiente diagrama muestra una base de datos del personal de una organización estructurada como un grafo. Las entidades son los empleados y departamentos, y los bordes indican las relaciones jerárquicas y el departamento en el que trabajan los empleados. En este grafo, las flechas de los bordes muestran la dirección de las relaciones.
+El propósito de una base de datos de grafos es permitir a una aplicación realizar consultas que recorran la red de nodos y bordes de manera eficaz y analizar las relaciones entre entidades. El siguiente diagrama muestra la base de datos del personal de una organización estructurada como un grafo. Las entidades son los empleados y departamentos, y los bordes indican las relaciones jerárquicas y el departamento en el que trabajan los empleados. En este grafo, las flechas de los bordes muestran la dirección de las relaciones.
  
 ![](./images/graph.png)
 

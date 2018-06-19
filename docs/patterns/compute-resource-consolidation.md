@@ -7,11 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
-ms.openlocfilehash: 85191fc630549559f8a1395e5a8622a7a6140a2d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 6e05a30245fbf5183a4e50a54650505f5a5f2aa8
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252931"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>Patrón Compute Resource Consolidation
 
@@ -88,7 +89,7 @@ Al crear un servicio en la nube en Azure, es posible consolidar el procesamiento
 
 El rol es responsable de iniciar y detener las tareas. Cuando el controlador de tejido de Azure carga un rol, se genera el evento `Start` para el rol. Puede invalidar el método `OnStart` de `WebRole` o la clase `WorkerRole` para tratar este evento, quizás para inicializar los datos y otros recursos de los que dependen las tareas de este método.
 
-Cuando se completa el método `OnStart `, el rol puede comenzar a responder a las solicitudes. Puede encontrar más información e instrucciones sobre el uso de los métodos `OnStart` y `Run` en un rol en la sección [Application Startup Processes](https://msdn.microsoft.com/library/ff803371.aspx#sec16) (Procesos de inicio de aplicaciones) de la guía de patrones y prácticas [Moving Applications to the Cloud](https://msdn.microsoft.com/library/ff728592.aspx) (Movimiento de aplicaciones a la nube).
+Cuando se completa el método `OnStart`, el rol puede comenzar a responder a las solicitudes. Puede encontrar más información e instrucciones sobre el uso de los métodos `OnStart` y `Run` en un rol en la sección [Application Startup Processes](https://msdn.microsoft.com/library/ff803371.aspx#sec16) (Procesos de inicio de aplicaciones) de la guía de patrones y prácticas [Moving Applications to the Cloud](https://msdn.microsoft.com/library/ff728592.aspx) (Movimiento de aplicaciones a la nube).
 
 > Mantenga el código del método `OnStart` lo más conciso posible. Azure no impone ningún límite sobre el tiempo que tarda este método en completarse, pero el rol no podrá comenzar a responder a las solicitudes que recibe hasta que lo haga.
 

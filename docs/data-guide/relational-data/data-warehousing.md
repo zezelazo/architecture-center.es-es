@@ -3,11 +3,12 @@ title: Almacenamiento de datos y data marts
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 552cdfad2d571c93f83bc1e4ff0d09ac12d0b6a4
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 9b90d77ce1a81cd4a7532f5d4230ada8b4991d13
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252812"
 ---
 # <a name="data-warehousing-and-data-marts"></a>Almacenamiento de datos y data marts
 
@@ -142,7 +143,7 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 | --- | --- | --- | --- | --- | --- | -- |
 | Servidores regionales redundantes para lograr alta disponibilidad  | Sí | Sí | Sí | Sin  | Sin  |
 | Admite escalado horizontal de consultas (consultas distribuidas)  | Sin  | Sin  | Sí | Sí | Sí |
-| Escalabilidad dinámica (escalado vertical)  | Sí | Sin  | Sí <sup>1</sup> | Sin  | Sin  |
+| Escalabilidad dinámica | Sí | Sin  | Sí <sup>1</sup> | Sin  | Sin  |
 | Admite el almacenamiento en caché en memoria de datos | Sí |  Sí | Sin  | Sí | Sí |
 
 [1] SQL Data Warehouse le permite realizar el escalado vertical u horizontal ajustando el número de unidades de almacenamiento de datos (DWU). Consulte [Administración de la potencia de proceso en Azure SQL Data Warehouse (información general)](/azure/sql-data-warehouse/sql-data-warehouse-manage-compute-overview).

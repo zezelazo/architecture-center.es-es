@@ -3,11 +3,12 @@ title: Elección de una tecnología de transferencia de datos
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: bb0732b0f771a4c9e1a4e565875576c08484490a
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: 53dcf8a69ad8ae100dbdbb230a9280efd419342a
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252760"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>Transferencia de datos a Azure y desde este
 
@@ -68,7 +69,7 @@ En los escenarios de transferencia de datos, elija el sistema que más se ajuste
 
 - ¿Prefiere realizar las tareas de transferencia de datos mediante scripts para que se puedan volver a utilizar? Si es así, seleccione una de las opciones de línea de comandos o Azure Data Factory.
 
-- ¿Necesita transferir una gran cantidad de datos a través de una conexión de red? En ese caso, seleccione de una opción que esté optimizado para macrodatos.
+- ¿Necesita transferir una gran cantidad de datos a través de una conexión de red? En ese caso, seleccione una opción que esté optimizada para macrodatos.
 
 - ¿Necesita transferir datos a una base de datos relacional o desde ella? En caso afirmativo, elija una opción que admita una o varias bases de datos relacionales. Tenga en cuenta que algunas de estas opciones también requieren un clúster de Hadoop.
 

@@ -7,11 +7,12 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: 9475d669b2cb8888a7ceabed7e36317fe63681fd
-ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
+ms.openlocfilehash: ade79f8ebffc15b423ef6ebfb9b19611c9500cd8
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/23/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252999"
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>Integración de dominios locales de Active Directory con Azure Active Directory
 
@@ -32,7 +33,7 @@ Los usos habituales de esta arquitectura de referencia incluyen:
 * Arquitecturas en las que la red local y la red virtual de Azure de la aplicación no están conectadas mediante un túnel VPN o un circuito ExpressRoute.
 
 > [!NOTE]
-> Actualmente, Azure AD solo admite la autenticación de usuario. Algunas aplicaciones y servicios, como SQL Server, pueden requerir la autenticación de equipo, en cuyo caso esta solución no es adecuada.
+> Azure AD puede autenticar la identidad de usuarios y aplicaciones que existen en el directorio de una organización. Algunas aplicaciones y servicios, como SQL Server, pueden requerir la autenticación de equipo, en cuyo caso esta solución no es adecuada.
 > 
 
 Para consideraciones adicionales, consulte [Selección de una solución para la integración de Active Directory local con Azure][considerations]. 

@@ -4,11 +4,12 @@ description: Convenciones de nomenclatura para los recursos de Azure. Qué nombr
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: df536a4b34a29b93edc4e03fa1142e20fe84a6a7
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 42d91da3eacdcda66b82dff82ba444170c11d7d1
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/21/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35253067"
 ---
 # <a name="naming-conventions"></a>Convenciones de nomenclatura
 
@@ -77,11 +78,11 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 
 | Entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
 | --- | --- | --- | --- | --- | --- | --- |
-|Grupo de recursos |La suscripción |1-90 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado, paréntesis, guión, punto (excepto al final) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
+|Grupo de recursos |Subscription |1-90 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado, paréntesis, guión, punto (excepto al final) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |Conjunto de disponibilidad |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado y guión |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |Etiqueta |Entidad asociada |512 (nombre), 256 (valor) |No distingue mayúsculas de minúsculas |Alfanuméricas |`"key" : "value"` |`"department" : "Central IT"` |
 
-### <a name="compute"></a>Proceso
+### <a name="compute"></a>Compute
 
 | Entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -166,7 +167,7 @@ Hay dos casos de uso principales para las cuentas de almacenamiento: respaldo de
 > [!TIP]
 > Las cuentas de almacenamiento, tanto para datos como para discos, deben seguir una convención de nomenclatura que permita sacar provecho de varias cuentas de almacenamiento (es decir, siempre con un sufijo numérico).
 
-En la cuenta de Azure Storage se puede configurar un nombre de dominio personalizado para acceder a los datos del blob. El punto de conexión predeterminado de Blob service es https://<name>.blob.core.windows.net`.
+En la cuenta de Azure Storage se puede configurar un nombre de dominio personalizado para acceder a los datos del blob. El punto de conexión predeterminado de Blob service es https://\<name\>.blob.core.windows.net.
 
 Pero si asigna un dominio personalizado (como www.contoso.com) al punto de conexión del blob para su cuenta de almacenamiento, también puede acceder a los datos del blob en su cuenta de almacenamiento mediante dicho dominio. Por ejemplo, con un nombre de dominio personalizado, `http://mystorage.blob.core.windows.net/mycontainer/myblob` podría tener acceso como `http://www.contoso.com/mycontainer/myblob`.
 

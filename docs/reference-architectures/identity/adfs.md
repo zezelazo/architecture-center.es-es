@@ -9,11 +9,12 @@ ms.date: 11/28/2016
 pnp.series.title: Identity management
 pnp.series.prev: adds-forest
 cardTitle: Extend AD FS to Azure
-ms.openlocfilehash: 87489b7b81cf323c221466c539ee14ea90e23c14
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 37edae209334da96aa9c121b1ac68c5e1d363323
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252736"
 ---
 # <a name="extend-active-directory-federation-services-ad-fs-to-azure"></a>Extensión de Servicios de federación de Active Directory (AD FS) a Azure
 
@@ -118,7 +119,7 @@ Configure los equilibradores de carga para las máquinas virtuales de AD FS y WA
 * Use un equilibrador de carga de Azure para proporcionar acceso externo a las máquinas virtuales de WAP y uno interno para distribuir la carga entre los servidores de AD FS en la granja de servidores.
 * Pase únicamente el tráfico que aparezca en el puerto 443 (HTTPS) a los servidores de AD FS y WAP.
 * Asigne al equilibrador de carga una dirección IP estática.
-* Cree un sondeo de estado con el protocolo TCP en lugar de HTTPS. Puede hacer ping en el puerto 443 para comprobar que un servidor de AD FS funciona.
+* Crear un sondeo de mantenimiento mediante HTTP en `/adfs/probe`. Para más información, consulte [Hardware Load Balancer Health Checks and Web Application Proxy / AD FS 2012 R2](https://blogs.technet.microsoft.com/applicationproxyblog/2014/10/17/hardware-load-balancer-health-checks-and-web-application-proxy-ad-fs-2012-r2/) (Comprobaciones de mantenimiento de equilibrador de carga de hardware y proxy de aplicación web / AD FS 2012 R2).
   
   > [!NOTE]
   > Los servidores de AD FS usan el protocolo Indicación de nombre de servidor (SNI), por lo que el intento de sondear con un punto de conexión HTTPS desde el equilibrador de carga fracasa.

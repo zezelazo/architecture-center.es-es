@@ -3,11 +3,12 @@ title: Patrón Gateway Routing
 description: Enruta las solicitudes a varios servicios mediante un solo punto de conexión.
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 53239b23cfd98fad1edc38ca37c2274d5a9d7a0f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: ea0bc4d31b745043a7ac3afb277dfc46d87ff109
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35252607"
 ---
 # <a name="gateway-routing-pattern"></a>Patrón Gateway Routing
 
@@ -27,7 +28,7 @@ Una puerta de enlace también ofrece la posibilidad de abstraer los servicios ba
 
 ![](./_images/gateway-routing.png)
  
-Este patrón también puede ayudar con la implementación, ya que le permite administrar cómo se implementan las actualizaciones en los usuarios. Cuando se implemente una nueva versión de su servicio, se puede hacer en paralelo con la versión existente. El enrutamiento le permite controlar qué versión del servicio se presenta a los clientes, lo que le ofrece la flexibilidad de usar diversas estrategias de lanzamiento: lanzamientos de actualizaciones incrementales, paralelas o completas. Cualquier problema detectado una vez que se implementa el nuevo servicio se puede revertir rápidamente mediante un cambio en la configuración en la puerta de enlace, sin afectar a los clientes.
+Este patrón también puede ayudar con la implementación, ya que le permite administrar cómo se implementan las actualizaciones en los usuarios. Cuando se implemente una nueva versión de su servicio, se puede hacer en paralelo con la versión existente. El enrutamiento le permite controlar qué versión del servicio se presenta a los clientes, lo que permite usar diversas estrategias de lanzamiento: lanzamientos de actualizaciones incrementales, paralelas o completas. Cualquier problema detectado una vez que se implementa el nuevo servicio se puede revertir rápidamente mediante un cambio en la configuración en la puerta de enlace, sin afectar a los clientes.
 
 ## <a name="issues-and-considerations"></a>Problemas y consideraciones
 
@@ -38,7 +39,7 @@ Este patrón también puede ayudar con la implementación, ya que le permite adm
 
 ## <a name="when-to-use-this-pattern"></a>Cuándo usar este patrón
 
-Use este patrón cuando:
+Use este patrón en los siguientes supuestos:
 
 - Un cliente deba usar varios servicios a los que se pueda acceder detrás de una puerta de enlace.
 - Quiera simplificar las aplicaciones cliente usando un único punto de conexión.

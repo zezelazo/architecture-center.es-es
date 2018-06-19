@@ -5,11 +5,12 @@ keywords: comparación de servicios en la nube, servicios en la nube comparados,
 author: lbrader
 ms.date: 11/30/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 5a564c7b4825340deb3c6deb037f755108cb0896
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 096721348d525eb95767ab3cf188d21a32236cc6
+ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
+ms.lasthandoff: 06/11/2018
+ms.locfileid: "35253050"
 ---
 # <a name="aws-to-azure-services-comparison"></a>Comparación de AWS con los servicios de Azure
 
@@ -33,7 +34,7 @@ Para obtener información general de Azure para usuarios de AWS, consulte [Azure
 | Marketplace | AWS Marketplace | [Azure Marketplace](https://azure.microsoft.com/marketplace/) | Aplicaciones de terceros que se configuran automáticamente y son muy fáciles de implementar, incluidas soluciones de una o varias máquinas virtuales. |
 
 
-## <a name="compute"></a>Proceso
+## <a name="compute"></a>Compute
 
 |                  Ámbito                   |                  Servicio de AWS                   |                                                                                                                                                    Servicio de Azure                                                                                                                                                    |                                                                                              DESCRIPCIÓN                                                                                              |
 |-----------------------------------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -174,7 +175,7 @@ Para obtener información general de Azure para usuarios de AWS, consulte [Azure
 |        Servicios de directorio        | AWS Directory Service + Windows Server Active Directory en AWS |                                       [Azure Active Directory Domain Services + Windows Server Active Directory en Azure IaaS](https://azure.microsoft.com/services/active-directory/)                                        | Solución en la nube de administración de identidades y acceso que proporciona un conjunto sólido de funcionalidades para administrar usuarios y grupos. Ayuda a proteger el acceso a aplicaciones locales y en la nube, incluidos los servicios en línea de Microsoft como Office 365 y muchas aplicaciones SaaS que no son de Microsoft. |
 |     <strong>&nbsp;</strong>      |                            Cognito                             |                                                                   [Azure Active Directory B2C](https://azure.microsoft.com/services/active-directory-b2c/)                                                                    |                                                                          Servicio de administración de identidades global y de alta disponibilidad para aplicaciones orientadas al consumidor que se puede utilizar con cientos de millones de identidades.                                                                           |
 |     <strong>&nbsp;</strong>      |                     AWS Directory Service                      |                                                                 [Windows Server Active Directory](https://azure.microsoft.com/services/active-directory-ds/)                                                                  |                                                                                                                Servicios para la compatibilidad con Microsoft Active Directory en la nube.                                                                                                                |
-|            Cumplimiento normativo            |                          AWS Artifact                          |                                                                   [Portal de confianza del servicio de Microsoft](https://www.microsoft.com/TrustCenter/STP/default.aspx)                                                                    |                                                                                              Proporciona acceso a informes de auditoría, guías de cumplimiento de normas y documentos de confianza de diferentes servicios en la nube.                                                                                              |
+|            Cumplimiento normativo            |                          AWS Artifact                          |                                                                   [Plataforma de confianza del servicio](https://www.microsoft.com/en-us/TrustCenter/STP/default.aspx)                                                                    |                                                                                              Proporciona acceso a informes de auditoría, guías de cumplimiento de normas y documentos de confianza de diferentes servicios en la nube.                                                                                              |
 |             Seguridad             |                           AWS Shield                           |                                                      [Servicio Azure DDos Protection (versión preliminar)](https://azure.microsoft.com/blog/azure-ddos-protection-service-preview/)                                                       |                                                                                                  Proporciona servicios en la nube con protección frente a ataques por denegación de servicio distribuido (DDoS).                                                                                                   |
 
 ## <a name="developer-tools"></a>Herramientas para desarrolladores
