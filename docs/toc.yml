@@ -5,6 +5,8 @@
   items:
     - name: Fase de primera adopción
       href: cloud-adoption-guide/adoption-intro/overview.md
+    - name: Fase de adopción intermedia
+      href: cloud-adoption-guide/intermediate-stage/overview.md
 - name: Guía de la arquitectura de aplicaciones
   href: guide/index.md
   items:
@@ -19,7 +21,8 @@
     - name: Fundamentos de calidad del software
       href: guide/pillars.md
     - name: Patrones de diseño
-      href: patterns/index.md?toc=/azure/architecture/guide/toc.json
+      href: patterns/index.md
+      maintainContext: true
 - name: Guía de arquitectura de datos
   href: data-guide/index.md
 - name: Arquitecturas de referencia
@@ -120,7 +123,8 @@
     - name: Diseño de aplicaciones resistentes
       href: resiliency/index.md
     - name: Lista de comprobación de resistencia
-      href: checklist/resiliency.md?toc=/azure/architecture/resiliency/toc.json
+      href: checklist/resiliency.md
+      maintainContext: true
     - name: Análisis del modo de error
       href: resiliency/failure-mode-analysis.md
 - name: Guías sobre escenarios
