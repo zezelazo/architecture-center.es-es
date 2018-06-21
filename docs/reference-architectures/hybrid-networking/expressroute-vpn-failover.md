@@ -11,6 +11,7 @@ ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30270445"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-expressroute-with-vpn-failover"></a><span data-ttu-id="85183-103">Conexión de una red local a Azure mediante ExpressRoute con conmutación por error de VPN</span><span class="sxs-lookup"><span data-stu-id="85183-103">Connect an on-premises network to Azure using ExpressRoute with VPN failover</span></span>
 

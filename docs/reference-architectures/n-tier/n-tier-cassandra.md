@@ -5,8 +5,10 @@ author: MikeWasson
 ms.date: 05/03/2018
 ms.openlocfilehash: 46e9a821a33dd3ea3ae9129ab5ad69172bfcd667
 ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 05/06/2018
+ms.locfileid: "33673617"
 ---
 # <a name="n-tier-application-with-apache-cassandra"></a><span data-ttu-id="d14fa-103">Aplicación de n niveles con Apache Cassandra</span><span class="sxs-lookup"><span data-stu-id="d14fa-103">N-tier application with Apache Cassandra</span></span>
 

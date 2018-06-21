@@ -8,6 +8,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24538399"
 ---
 # <a name="conditionally-deploy-a-resource-in-an-azure-resource-manager-template"></a><span data-ttu-id="e5323-103">Implementación condicional de un recurso en una plantilla de Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="e5323-103">Conditionally deploy a resource in an Azure Resource Manager template</span></span>
 

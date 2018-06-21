@@ -8,6 +8,7 @@ ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 04/16/2018
+ms.locfileid: "31012375"
 ---
 # <a name="anti-corruption-layer-pattern"></a><span data-ttu-id="96664-103">Patrón Anti-Corruption Layer</span><span class="sxs-lookup"><span data-stu-id="96664-103">Anti-Corruption Layer pattern</span></span>
 

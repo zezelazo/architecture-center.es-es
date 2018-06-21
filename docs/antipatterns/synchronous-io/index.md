@@ -8,6 +8,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24538559"
 ---
 # <a name="synchronous-io-antipattern"></a><span data-ttu-id="b6c3f-103">Antipatrón Synchronous I/O</span><span class="sxs-lookup"><span data-stu-id="b6c3f-103">Synchronous I/O antipattern</span></span>
 

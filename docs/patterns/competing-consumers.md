@@ -12,6 +12,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24542415"
 ---
 # <a name="competing-consumers-pattern"></a><span data-ttu-id="16789-104">Patrón de consumidores de la competencia</span><span class="sxs-lookup"><span data-stu-id="16789-104">Competing Consumers pattern</span></span>
 

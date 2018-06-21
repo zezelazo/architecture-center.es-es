@@ -11,6 +11,7 @@ ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 05/21/2018
+ms.locfileid: "34422973"
 ---
 # <a name="application-roles"></a><span data-ttu-id="185df-103">Roles de la aplicación</span><span class="sxs-lookup"><span data-stu-id="185df-103">Application roles</span></span>
 

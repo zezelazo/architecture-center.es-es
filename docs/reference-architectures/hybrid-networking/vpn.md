@@ -12,6 +12,7 @@ ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 03/30/2018
+ms.locfileid: "30270700"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a><span data-ttu-id="fd602-103">Conexión de una red local a Azure mediante VPN Gateway</span><span class="sxs-lookup"><span data-stu-id="fd602-103">Connect an on-premises network to Azure using a VPN gateway</span></span>
 

@@ -12,6 +12,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29478262"
 ---
 # <a name="retry-pattern"></a><span data-ttu-id="b6df9-104">Patrón Retry</span><span class="sxs-lookup"><span data-stu-id="b6df9-104">Retry pattern</span></span>
 

@@ -7,6 +7,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24539807"
 ---
 # <a name="web-queue-worker-architecture-style"></a><span data-ttu-id="25df1-103">Estilo de arquitectura web-cola-trabajo</span><span class="sxs-lookup"><span data-stu-id="25df1-103">Web-Queue-Worker architecture style</span></span>
 

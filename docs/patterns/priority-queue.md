@@ -13,6 +13,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24543151"
 ---
 # <a name="priority-queue-pattern"></a><span data-ttu-id="41863-104">Patrón de cola de prioridad</span><span class="sxs-lookup"><span data-stu-id="41863-104">Priority Queue pattern</span></span>
 

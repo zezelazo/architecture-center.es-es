@@ -8,6 +8,7 @@ ms.sourcegitcommit: 7ced70ebc11aa0df0dc0104092d3cc6ad5c28bd6
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 05/11/2018
+ms.locfileid: "34062823"
 ---
 # <a name="machine-learning-at-scale"></a><span data-ttu-id="ffc38-102">Aprendizaje automático a escala</span><span class="sxs-lookup"><span data-stu-id="ffc38-102">Machine learning at scale</span></span>
 

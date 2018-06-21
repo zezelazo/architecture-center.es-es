@@ -15,6 +15,7 @@ ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 12/08/2017
+ms.locfileid: "26359325"
 ---
 # <a name="queue-based-load-leveling-pattern"></a><span data-ttu-id="5037b-104">Patrón Queue-Based Load Leveling</span><span class="sxs-lookup"><span data-stu-id="5037b-104">Queue-Based Load Leveling pattern</span></span>
 

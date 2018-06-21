@@ -8,6 +8,7 @@ ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 04/03/2018
+ms.locfileid: "30297978"
 ---
 # <a name="natural-language-processing"></a><span data-ttu-id="3c4f2-102">Procesamiento de lenguaje natural</span><span class="sxs-lookup"><span data-stu-id="3c4f2-102">Natural language processing</span></span>
 

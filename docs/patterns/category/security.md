@@ -10,6 +10,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847005"
 ---
 # <a name="security-patterns"></a><span data-ttu-id="7e807-106">Patrones de seguridad</span><span class="sxs-lookup"><span data-stu-id="7e807-106">Security patterns</span></span>
 
