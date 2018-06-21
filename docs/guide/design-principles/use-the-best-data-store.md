@@ -2,12 +2,12 @@
 title: Uso del mejor almacén de datos para el trabajo
 description: Elija la tecnología de almacenamiento que encaje mejor con sus datos y el modo en que se utilizarán.
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: ef9439f7a3766d13b498eac915e0f5afd23de4e2
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: c3619012e8c199d154e4ac432ce03b2a9295c26f
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206748"
 ---
 # <a name="use-the-best-data-store-for-the-job"></a>Uso del mejor almacén de datos para el trabajo
 

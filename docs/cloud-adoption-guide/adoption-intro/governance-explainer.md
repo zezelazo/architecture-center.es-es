@@ -2,12 +2,12 @@
 title: 'Explicación: ¿Qué es el gobierno en la nube?'
 description: Explica el concepto de gobierno de los recursos de Azure y en la nube
 author: petertay
-ms.openlocfilehash: 63b04089aad5fc736641f8aaa6ff5247ea8ba13e
-ms.sourcegitcommit: b3d74d8a89b2224fc796ce0e89cea447af43a0d4
+ms.openlocfilehash: 3404beaa719177ee7638feed8a8442b5c3b455c6
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35291252"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206487"
 ---
 # <a name="explainer-what-is-cloud-resource-governance"></a>Explicación: ¿Qué es el gobierno de los recursos en la nube?
 
@@ -16,6 +16,8 @@ En la explicación [¿Cómo funciona Azure?](azure-explainer.md), ha aprendido q
 Sin embargo, aunque dar a los desarrolladores un acceso ilimitado a los recursos puede hacerlos muy ágiles, también puede producir consecuencias no deseadas en los costos. Por ejemplo, se podría aprobar que un equipo de desarrollo implemente un conjunto de recursos para pruebas pero olvida eliminarlos una vez completada la prueba. Estos recursos continuarán acumulando costos, aunque su uso no esté aprobado o no sea necesario. 
 
 La solución a este problema es el **gobierno** de acceso a los recursos. Por gobierno se entiende el proceso continuo de administrar, supervisar y auditar el uso de los recursos de Azure para cumplir los objetivos y requisitos de su organización. 
+
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ii94] 
 
 Estos objetivos y requisitos son únicos para cada organización por lo que no es posible diseñar una solución de gobierno universal. En su lugar, Azure implementa dos herramientas de gobierno principales, el **control de acceso basado en rol (RBAC)** y la **directiva de recursos**, y cada organización debe decidir cuál usará para diseñar su modelo de gobierno.
 

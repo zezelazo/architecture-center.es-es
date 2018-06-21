@@ -2,12 +2,12 @@
 title: Minimizar la coordinación
 description: Minimizar la coordinación entre los servicios de aplicación para lograr escalabilidad
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 3cab05b539612234fd8e66517b140ac5257c3e70
-ms.sourcegitcommit: a7aae13569e165d4e768ce0aaaac154ba612934f
+ms.openlocfilehash: f26222148db2b48743c52293011ea0a5a58ebe07
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/30/2018
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206745"
 ---
 # <a name="minimize-coordination"></a>Minimizar la coordinación 
 

@@ -2,16 +2,18 @@
 title: 'Explicación: ¿Cómo funciona Azure?'
 description: Explica el funcionamiento interno de Azure
 author: petertay
-ms.openlocfilehash: 1cebcc001b8d2ae93d8b0271c48d54617281c7c2
-ms.sourcegitcommit: b3d74d8a89b2224fc796ce0e89cea447af43a0d4
+ms.openlocfilehash: 88514ba01efabe38a1b92d135321c2e44cef004e
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35290516"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206470"
 ---
 # <a name="explainer-how-does-azure-work"></a>Explicación: ¿Cómo funciona Azure?
 
 Azure es la plataforma pública en la nube de Microsoft. Azure ofrece una amplia serie de servicios entre los que se incluyen la plataforma como servicio (PaaS), la infraestructura como servicio (IaaS), la base de datos como servicio (DBaaS) y muchos otros. Pero, ¿qué es exactamente Azure y cómo funciona?
+
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ixGo] 
 
 Azure, al igual que otras plataformas en la nube, se basa en una tecnología conocida como **virtualización**. La mayor parte del hardware de equipo puede emularse en el software porque es simplemente un conjunto de instrucciones codificadas de forma permanente o semipermanente en silicio. Mediante una capa de emulación que asigna instrucciones de software a instrucciones de hardware, el hardware virtualizado puede ejecutarse en el software como si fuera el propio hardware.
 

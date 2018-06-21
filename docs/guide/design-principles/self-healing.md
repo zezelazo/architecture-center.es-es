@@ -2,12 +2,12 @@
 title: Diseño para la recuperación automática
 description: Las aplicaciones resistentes pueden recuperarse de errores sin intervención manual.
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 0782b65b77615f7c006724264ab0ca2d2c7c04e2
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 508341ba428b294cf268e34e922aced9d2d67579
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206752"
 ---
 # <a name="design-for-self-healing"></a>Diseño para la recuperación automática
 
@@ -29,7 +29,7 @@ Además, no piense solo en grandes eventos como interrupciones regionales, que s
 
 **Vuelva a intentar las operaciones que den error**. Los errores transitorios pueden deberse a una pérdida momentánea de conectividad de red, una conexión de base de datos caída o un tiempo de espera agotado cuando un servicio está ocupado. Cree la lógica de reintento en la aplicación para controlar los errores transitorios. En muchos de los servicios de Azure, el SDK de cliente implementa los reintentos automáticos. Para obtener más información, consulte [Transient fault handling][transient-fault-handling] (Control de errores transitorios) y [Retry Pattern][retry] (Patron de reintento).
 
-**Proteja los servicios remotos defectuosos (Circuit Breaker)**. Es conveniente hacer un reintento después de un error transitorio, pero si el error persiste, puede acabar con demasiados llamadores agolpándose en un servicio con errores. Esto puede provocar errores en cascada, ya que se hace una copia de seguridad de las solicitudes. Use el [patrón Circuit Breaker][circuit-breaker] para pasar rápidamente por un error (sin realizar la llamada remota) cuando es probable que una operación genere un error.  
+**Proteja los servicios remotos defectuosos (Circuit Breaker)**. Es conveniente hacer un reintento después de un error transitorio, pero si el error persiste, puede acabar con demasiados llamadores agolpándose en un servicio con errores. Esto puede provocar errores en cascada, ya que se hace una copia de seguridad de las solicitudes. Use el [patrón Circuit Breaker][circuit-breaker] para fracasar y responder rápido a los errores (sin realizar la llamada remota) cuando es probable que una operación genere un error.  
 
 **Aísle recursos críticos (Bulkhead)**. Los errores de un subsistema a veces pueden reproducirse en cascada. Esto puede ocurrir si un error provoca que algunos recursos, como subprocesos o sockets, no se liberen a tiempo, lo que conduce a un agotamiento de estos. Para evitarlo, realice una partición de un sistema en grupos aislados, de modo que un error en una partición no destruya todo el sistema.  
 
