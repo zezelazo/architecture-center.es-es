@@ -9,6 +9,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24539023"
 ---
 # <a name="monitoring-and-diagnostics"></a>Supervisión y diagnóstico
 [!INCLUDE [header](../_includes/header.md)]
