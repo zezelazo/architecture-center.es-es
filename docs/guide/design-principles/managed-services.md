@@ -2,31 +2,31 @@
 title: Uso de servicios administrados
 description: Cuando sea posible, use la plataforma como servicio (PaaS) en lugar de la infraestructura como servicio (IaaS).
 author: MikeWasson
-layout: LandingPage
-ms.openlocfilehash: 7156c073db3e047fb38e031309ddb637a9e44c02
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 6d3cfb2e97b5a9b25bb1afd72059e981ef45c0d8
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206778"
 ---
-# <a name="use-managed-services"></a>Uso de servicios administrados
+# <a name="use-managed-services"></a><span data-ttu-id="f3aec-103">Uso de servicios administrados</span><span class="sxs-lookup"><span data-stu-id="f3aec-103">Use managed services</span></span>
 
-## <a name="when-possible-use-platform-as-a-service-paas-rather-than-infrastructure-as-a-service-iaas"></a>Cuando sea posible, use la plataforma como servicio (PaaS) en lugar de la infraestructura como servicio (IaaS).
+## <a name="when-possible-use-platform-as-a-service-paas-rather-than-infrastructure-as-a-service-iaas"></a><span data-ttu-id="f3aec-104">Cuando sea posible, use la plataforma como servicio (PaaS) en lugar de la infraestructura como servicio (IaaS).</span><span class="sxs-lookup"><span data-stu-id="f3aec-104">When possible, use platform as a service (PaaS) rather than infrastructure as a service (IaaS)</span></span>
 
-IaaS es como tener una caja de piezas. Puede crear cualquier cosa pero lo debe ensamblar usted mismo. Los servicios administrados son más fáciles de configurar y administrar. No es necesario aprovisionar máquinas virtuales, configurar redes virtuales, administrar revisiones y actualizaciones, y toda la sobrecarga asociada a la ejecución de software en una máquina virtual.
+<span data-ttu-id="f3aec-105">IaaS es como tener una caja de piezas.</span><span class="sxs-lookup"><span data-stu-id="f3aec-105">IaaS is like having a box of parts.</span></span> <span data-ttu-id="f3aec-106">Puede crear cualquier cosa pero lo debe ensamblar usted mismo.</span><span class="sxs-lookup"><span data-stu-id="f3aec-106">You can build anything, but you have to assemble it yourself.</span></span> <span data-ttu-id="f3aec-107">Los servicios administrados son más fáciles de configurar y administrar.</span><span class="sxs-lookup"><span data-stu-id="f3aec-107">Managed services are easier to configure and administer.</span></span> <span data-ttu-id="f3aec-108">No es necesario aprovisionar máquinas virtuales, configurar redes virtuales, administrar revisiones y actualizaciones, y toda la sobrecarga asociada a la ejecución de software en una máquina virtual.</span><span class="sxs-lookup"><span data-stu-id="f3aec-108">You don't need to provision VMs, set up VNets, manage patches and updates, and all of the other overhead associated with running software on a VM.</span></span>
 
-Por ejemplo, suponga que la aplicación necesita una cola de mensajes. Puede configurar su propio servicio de mensajería en una máquina virtual, con algo parecido a RabbitMQ. Pero Azure Service Bus ya proporciona una mensajería de confianza como servicio y es más fácil de configurar. Basta con crear un espacio de nombres de Service Bus (que puede realizarse como parte de un script de implementación) y, después, llamar a Service Bus con el SDK del cliente. 
+<span data-ttu-id="f3aec-109">Por ejemplo, suponga que la aplicación necesita una cola de mensajes.</span><span class="sxs-lookup"><span data-stu-id="f3aec-109">For example, suppose your application needs a message queue.</span></span> <span data-ttu-id="f3aec-110">Puede configurar su propio servicio de mensajería en una máquina virtual, con algo parecido a RabbitMQ.</span><span class="sxs-lookup"><span data-stu-id="f3aec-110">You could set up your own messaging service on a VM, using something like RabbitMQ.</span></span> <span data-ttu-id="f3aec-111">Pero Azure Service Bus ya proporciona una mensajería de confianza como servicio y es más fácil de configurar.</span><span class="sxs-lookup"><span data-stu-id="f3aec-111">But Azure Service Bus already provides reliable messaging as service, and it's simpler to set up.</span></span> <span data-ttu-id="f3aec-112">Basta con crear un espacio de nombres de Service Bus (que puede realizarse como parte de un script de implementación) y, después, llamar a Service Bus con el SDK del cliente.</span><span class="sxs-lookup"><span data-stu-id="f3aec-112">Just create a Service Bus namespace (which can be done as part of a deployment script) and then call Service Bus using the client SDK.</span></span> 
 
-Por supuesto, la aplicación puede tener requisitos específicos que hacen que un enfoque de IaaS sea más adecuado. Sin embargo, incluso si la aplicación se basa en IaaS, busque lugares en los que sea natural incorporar servicios administrados. Esto incluye cachés, colas y almacenamiento de datos.
+<span data-ttu-id="f3aec-113">Por supuesto, la aplicación puede tener requisitos específicos que hacen que un enfoque de IaaS sea más adecuado.</span><span class="sxs-lookup"><span data-stu-id="f3aec-113">Of course, your application may have specific requirements that make an IaaS approach more suitable.</span></span> <span data-ttu-id="f3aec-114">Sin embargo, incluso si la aplicación se basa en IaaS, busque lugares en los que sea natural incorporar servicios administrados.</span><span class="sxs-lookup"><span data-stu-id="f3aec-114">However, even if your application is based on IaaS, look for places where it may be natural to incorporate managed services.</span></span> <span data-ttu-id="f3aec-115">Esto incluye cachés, colas y almacenamiento de datos.</span><span class="sxs-lookup"><span data-stu-id="f3aec-115">These include cache, queues, and data storage.</span></span>
 
-| En lugar de ejecutar... | Considere la posibilidad de utilizar... |
+| <span data-ttu-id="f3aec-116">En lugar de ejecutar...</span><span class="sxs-lookup"><span data-stu-id="f3aec-116">Instead of running...</span></span> | <span data-ttu-id="f3aec-117">Considere la posibilidad de utilizar...</span><span class="sxs-lookup"><span data-stu-id="f3aec-117">Consider using...</span></span> |
 |-----------------------|-------------|
-| Active Directory | Azure Active Directory Domain Services |
-| Elasticsearch | Azure Search |
-| Hadoop | HDInsight |
-| IIS | App Service |
-| MongoDB | Cosmos DB |
-| Redis | Azure Redis Cache |
-| SQL Server | Azure SQL Database |
+| <span data-ttu-id="f3aec-118">Active Directory</span><span class="sxs-lookup"><span data-stu-id="f3aec-118">Active Directory</span></span> | <span data-ttu-id="f3aec-119">Azure Active Directory Domain Services</span><span class="sxs-lookup"><span data-stu-id="f3aec-119">Azure Active Directory Domain Services</span></span> |
+| <span data-ttu-id="f3aec-120">Elasticsearch</span><span class="sxs-lookup"><span data-stu-id="f3aec-120">Elasticsearch</span></span> | <span data-ttu-id="f3aec-121">Azure Search</span><span class="sxs-lookup"><span data-stu-id="f3aec-121">Azure Search</span></span> |
+| <span data-ttu-id="f3aec-122">Hadoop</span><span class="sxs-lookup"><span data-stu-id="f3aec-122">Hadoop</span></span> | <span data-ttu-id="f3aec-123">HDInsight</span><span class="sxs-lookup"><span data-stu-id="f3aec-123">HDInsight</span></span> |
+| <span data-ttu-id="f3aec-124">IIS</span><span class="sxs-lookup"><span data-stu-id="f3aec-124">IIS</span></span> | <span data-ttu-id="f3aec-125">App Service</span><span class="sxs-lookup"><span data-stu-id="f3aec-125">App Service</span></span> |
+| <span data-ttu-id="f3aec-126">MongoDB</span><span class="sxs-lookup"><span data-stu-id="f3aec-126">MongoDB</span></span> | <span data-ttu-id="f3aec-127">Cosmos DB</span><span class="sxs-lookup"><span data-stu-id="f3aec-127">Cosmos DB</span></span> |
+| <span data-ttu-id="f3aec-128">Redis</span><span class="sxs-lookup"><span data-stu-id="f3aec-128">Redis</span></span> | <span data-ttu-id="f3aec-129">Azure Redis Cache</span><span class="sxs-lookup"><span data-stu-id="f3aec-129">Azure Redis Cache</span></span> |
+| <span data-ttu-id="f3aec-130">SQL Server</span><span class="sxs-lookup"><span data-stu-id="f3aec-130">SQL Server</span></span> | <span data-ttu-id="f3aec-131">Azure SQL Database</span><span class="sxs-lookup"><span data-stu-id="f3aec-131">Azure SQL Database</span></span> |
 
 
