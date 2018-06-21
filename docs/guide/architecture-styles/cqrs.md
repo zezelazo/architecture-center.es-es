@@ -7,6 +7,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24539871"
 ---
 # <a name="cqrs-architecture-style"></a><span data-ttu-id="b579b-103">Estilo de arquitectura CQRS</span><span class="sxs-lookup"><span data-stu-id="b579b-103">CQRS architecture style</span></span>
 

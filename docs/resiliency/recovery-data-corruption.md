@@ -8,6 +8,7 @@ ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 04/16/2018
+ms.locfileid: "31012433"
 ---
 # <a name="recover-from-data-corruption-or-accidental-deletion"></a><span data-ttu-id="0497c-103">Recuperación de daños o eliminación accidental de los datos</span><span class="sxs-lookup"><span data-stu-id="0497c-103">Recover from data corruption or accidental deletion</span></span> 
 

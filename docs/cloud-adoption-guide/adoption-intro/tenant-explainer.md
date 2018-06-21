@@ -7,6 +7,7 @@ ms.sourcegitcommit: 2e8b06e9c07875d65b91d5431bfd4bc465a7a242
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 02/09/2018
+ms.locfileid: "29062043"
 ---
 # <a name="explainer-what-is-an-azure-active-directory-tenant"></a><span data-ttu-id="07787-103">Explicación: ¿Qué es un inquilino de Azure Active Directory?</span><span class="sxs-lookup"><span data-stu-id="07787-103">Explainer: What is an Azure Active Directory tenant?</span></span>
 

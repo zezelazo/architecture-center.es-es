@@ -10,6 +10,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30847284"
 ---
 # <a name="availability-patterns"></a><span data-ttu-id="d35b3-107">Patrones de disponibilidad</span><span class="sxs-lookup"><span data-stu-id="d35b3-107">Availability patterns</span></span>
 

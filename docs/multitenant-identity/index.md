@@ -10,6 +10,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24541679"
 ---
 # <a name="manage-identity-in-multitenant-applications"></a><span data-ttu-id="c505b-103">Administración de identidades en aplicaciones multiinquilino</span><span class="sxs-lookup"><span data-stu-id="c505b-103">Manage Identity in Multitenant Applications</span></span>
 

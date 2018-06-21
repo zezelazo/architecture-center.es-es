@@ -11,6 +11,7 @@ ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 12/08/2017
+ms.locfileid: "26359245"
 ---
 # <a name="cache-access-tokens"></a><span data-ttu-id="f1412-103">Almacenamiento en caché de los tokens de acceso</span><span class="sxs-lookup"><span data-stu-id="f1412-103">Cache access tokens</span></span>
 

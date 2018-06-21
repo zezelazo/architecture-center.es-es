@@ -13,6 +13,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24540239"
 ---
 # <a name="materialized-view-pattern"></a><span data-ttu-id="df87c-104">Patrón Materialized View</span><span class="sxs-lookup"><span data-stu-id="df87c-104">Materialized View pattern</span></span>
 

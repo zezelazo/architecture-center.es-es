@@ -8,6 +8,7 @@ ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 12/12/2017
+ms.locfileid: "26653069"
 ---
 # <a name="designing-microservices-continuous-integration"></a><span data-ttu-id="7c7d9-103">Diseño de microservicios: integración continua</span><span class="sxs-lookup"><span data-stu-id="7c7d9-103">Designing microservices: Continuous integration</span></span>
 

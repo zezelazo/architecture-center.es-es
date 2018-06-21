@@ -8,6 +8,7 @@ ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 02/14/2018
+ms.locfileid: "29288817"
 ---
 # <a name="processing-free-form-text-for-search"></a><span data-ttu-id="a4cca-102">Procesamiento de texto sin formato para búsquedas</span><span class="sxs-lookup"><span data-stu-id="a4cca-102">Processing free-form text for search</span></span>
 

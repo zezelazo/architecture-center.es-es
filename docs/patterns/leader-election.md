@@ -13,6 +13,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30846658"
 ---
 # <a name="leader-election-pattern"></a><span data-ttu-id="a774e-104">Patrón Leader Election</span><span class="sxs-lookup"><span data-stu-id="a774e-104">Leader Election pattern</span></span>
 

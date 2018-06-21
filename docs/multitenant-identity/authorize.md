@@ -11,6 +11,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30849678"
 ---
 # <a name="role-based-and-resource-based-authorization"></a><span data-ttu-id="e95e4-103">Autorización basada en roles y en recursos</span><span class="sxs-lookup"><span data-stu-id="e95e4-103">Role-based and resource-based authorization</span></span>
 

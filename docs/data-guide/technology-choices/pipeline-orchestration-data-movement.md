@@ -8,6 +8,7 @@ ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 02/14/2018
+ms.locfileid: "29288807"
 ---
 # <a name="choosing-a-data-pipeline-orchestration-technology-in-azure"></a><span data-ttu-id="f6abe-102">Elección de una tecnología de orquestación de canalizaciones de datos en Azure</span><span class="sxs-lookup"><span data-stu-id="f6abe-102">Choosing a data pipeline orchestration technology in Azure</span></span>
 

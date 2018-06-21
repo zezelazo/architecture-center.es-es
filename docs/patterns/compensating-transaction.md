@@ -12,6 +12,7 @@ ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 12/08/2017
+ms.locfileid: "26359407"
 ---
 # <a name="compensating-transaction-pattern"></a><span data-ttu-id="3d5f1-104">Patrón Compensating Transaction (Transacción de compensación)</span><span class="sxs-lookup"><span data-stu-id="3d5f1-104">Compensating Transaction pattern</span></span>
 

@@ -9,6 +9,7 @@ ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 01/19/2018
+ms.locfileid: "27973117"
 ---
 # <a name="availability-checklist"></a><span data-ttu-id="1abac-103">Lista de comprobación de disponibilidad</span><span class="sxs-lookup"><span data-stu-id="1abac-103">Availability checklist</span></span>
 

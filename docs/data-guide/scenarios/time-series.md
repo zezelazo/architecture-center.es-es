@@ -8,6 +8,7 @@ ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 04/03/2018
+ms.locfileid: "30298114"
 ---
 # <a name="time-series-solutions"></a><span data-ttu-id="ea71b-102">Soluciones de serie temporal</span><span class="sxs-lookup"><span data-stu-id="ea71b-102">Time series solutions</span></span>
 

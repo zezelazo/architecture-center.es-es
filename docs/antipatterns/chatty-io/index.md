@@ -7,6 +7,7 @@ ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 02/23/2018
+ms.locfileid: "29477747"
 ---
 # <a name="chatty-io-antipattern"></a><span data-ttu-id="5beb1-103">Antipatrón Chatty I/O</span><span class="sxs-lookup"><span data-stu-id="5beb1-103">Chatty I/O antipattern</span></span>
 

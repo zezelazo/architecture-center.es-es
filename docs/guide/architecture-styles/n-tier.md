@@ -7,6 +7,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24540383"
 ---
 # <a name="n-tier-architecture-style"></a><span data-ttu-id="ad9a5-103">Estilo de arquitectura de n niveles</span><span class="sxs-lookup"><span data-stu-id="ad9a5-103">N-tier architecture style</span></span>
 

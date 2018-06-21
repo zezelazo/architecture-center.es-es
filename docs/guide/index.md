@@ -6,6 +6,7 @@ ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 04/23/2018
+ms.locfileid: "31771693"
 ---
 # <a name="azure-application-architecture-guide"></a>Guía de la arquitectura de aplicaciones en Azure
 

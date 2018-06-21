@@ -7,6 +7,7 @@ ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 04/06/2018
+ms.locfileid: "30848264"
 ---
 # <a name="cloud-design-patterns"></a><span data-ttu-id="01ed7-104">Patrones de diseño en la nube</span><span class="sxs-lookup"><span data-stu-id="01ed7-104">Cloud Design Patterns</span></span>
 

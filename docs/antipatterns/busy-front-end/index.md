@@ -8,6 +8,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24538735"
 ---
 # <a name="busy-front-end-antipattern"></a><span data-ttu-id="17e0b-103">Antipatrón Busy Front End</span><span class="sxs-lookup"><span data-stu-id="17e0b-103">Busy Front End antipattern</span></span>
 

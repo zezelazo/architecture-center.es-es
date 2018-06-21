@@ -8,8 +8,10 @@ pnp.series.next: multi-region-application
 pnp.series.prev: multi-vm
 ms.openlocfilehash: 0f170f2fbcbbfeace53db199cb5d3949415b5546
 ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 05/06/2018
+ms.locfileid: "33673597"
 ---
 # <a name="n-tier-application-with-sql-server"></a><span data-ttu-id="3f2a5-103">Aplicación de n niveles con SQL Server</span><span class="sxs-lookup"><span data-stu-id="3f2a5-103">N-tier application with SQL Server</span></span>
 

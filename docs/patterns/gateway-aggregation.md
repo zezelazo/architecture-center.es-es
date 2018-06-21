@@ -8,6 +8,7 @@ ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 11/14/2017
+ms.locfileid: "24541279"
 ---
 # <a name="gateway-aggregation-pattern"></a><span data-ttu-id="27187-103">Patrón Gateway Aggregation</span><span class="sxs-lookup"><span data-stu-id="27187-103">Gateway Aggregation pattern</span></span>
 
