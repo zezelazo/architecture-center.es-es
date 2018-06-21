@@ -9,6 +9,7 @@ ms.sourcegitcommit: 29fbcb1eec44802d2c01b6d3bcf7d7bd0bae65fc
 ms.translationtype: HT
 ms.contentlocale: es-ES
 ms.lasthandoff: 02/27/2018
+ms.locfileid: "29563564"
 ---
 # <a name="best-practices-for-using-content-delivery-networks-cdns"></a>Procedimientos recomendados para el uso de redes de entrega de contenido (CDN)
 
