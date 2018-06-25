@@ -4,12 +4,12 @@ description: Convenciones de nomenclatura para los recursos de Azure. Qué nombr
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 42d91da3eacdcda66b82dff82ba444170c11d7d1
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: a92b6a1a23b35e7379f586d477b6f7cc6ccfc7e1
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35253067"
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206385"
 ---
 # <a name="naming-conventions"></a>Convenciones de nomenclatura
 
@@ -34,7 +34,7 @@ Este es un patrón recomendado para la asignación de nombres a suscripciones:
 `<Company> <Department (optional)> <Product Line (optional)> <Environment>`
 
 * En la mayoría de los casos, la compañía será la misma en todas las suscripciones. Sin embargo, algunas compañías pueden tener compañías secundarios en su estructura organizativa. Estas compañías pueden ser administradas por un grupo de TI central. En estos casos, pueden diferenciarse porque tienen tanto el nombre de la empresa matriz (*Contoso*) como el nombre de la compañía secundaria (*Northwind*).
-* El departamento es un nombre de la organización donde trabaja un grupo de individuos. Este elemento del espacio de nombres es opcional.
+* El departamento es un nombre de la organización que incluye un grupo de individuos. Este elemento del espacio de nombres es opcional.
 * La línea de productos es un nombre específico de un producto o una función que se realiza dentro del departamento. Esto es generalmente opcional para los servicios y aplicaciones internos. Sin embargo, se recomienda encarecidamente usarlo para los servicios de acceso público que requieran una sencilla separación e identificación (como una separación clara de los registros de facturación).
 * El entorno es el nombre que describe el ciclo de vida de la implementación de las aplicaciones o servicios, como Desarrollo, Control de calidad o Producción.
 

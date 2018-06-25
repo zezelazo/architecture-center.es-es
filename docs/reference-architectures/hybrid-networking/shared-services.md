@@ -2,14 +2,15 @@
 title: Implementación de una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure
 description: Implementación de una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure.
 author: telmosampaio
-ms.date: 02/25/2018
+ms.date: 06/19/2018
 pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
 pnp.series.prev: hub-spoke
-ms.openlocfilehash: 83367a3be2f7a1e33c2ef7018d42f70aae99104d
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: 5e5029dd7de78c6953229364f9e8ae2789c2b348
+ms.sourcegitcommit: f7418f8bdabc8f5ec33ae3551e3fbb466782caa5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/16/2018
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36209566"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure
 
@@ -92,19 +93,26 @@ También tenga en cuenta qué servicios se comparten en el concentrador, para as
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-Hay disponible una implementación de esta arquitectura en [GitHub][ref-arch-repo]. Usa máquinas virtuales Ubuntu en cada red virtual para probar la conectividad. No hay ningún servicio real hospedado en la subred de **servicios compartidos** de la **red virtual del concentrador**.
+Hay disponible una implementación de esta arquitectura en [GitHub][ref-arch-repo]. La implementación crea los siguientes grupos de recursos en su suscripción:
+
+- hub-adds-rg
+- hub-nva-rg
+- hub-vnet-rg
+- onprem-vnet-rg
+- spoke1-vnet-rg
+- spoke2-vent-rg
+
+Los archivos de parámetro de plantilla hacen referencia a estos nombres, por lo que si se cambian es necesario actualizar los archivos de parámetro para que coincidan.
 
 ### <a name="prerequisites"></a>requisitos previos
 
-Antes de poder implementar la arquitectura de referencia en su propia suscripción, debe realizar los pasos siguientes.
-
 1. Clone, bifurque o descargue el archivo ZIP del repositorio de GitHub de [arquitecturas de referencia][ref-arch-repo].
 
-2. Asegúrese de que tiene la CLI de Azure 2.0 instalada en el equipo. Para obtener instrucciones sobre la instalación de la CLI, consulte [Instalación de la CLI de Azure 2.0][azure-cli-2].
+2. Instale la [CLI de Azure 2.0][azure-cli-2].
 
 3. Instale el paquete de NPM de [Azure Building Blocks][azbb].
 
-4. Desde un símbolo del sistema, un símbolo del sistema de Bash o un símbolo del sistema de PowerShell, inicie sesión en la cuenta de Azure mediante el siguiente comando y siga las indicaciones.
+4. Desde un símbolo del sistema, un símbolo del sistema de bash o un símbolo del sistema de PowerShell, inicie sesión en la cuenta de Azure mediante el siguiente comando.
 
    ```bash
    az login
@@ -112,143 +120,137 @@ Antes de poder implementar la arquitectura de referencia en su propia suscripci�
 
 ### <a name="deploy-the-simulated-on-premises-datacenter-using-azbb"></a>Implementación del centro de datos local simulado mediante azbb
 
-Para implementar el centro de datos local simulado como una red virtual de Azure, siga estos pasos:
+En este paso se implementa el centro de datos local simulado como una red virtual de Azure.
 
-1. Navegue hasta la carpeta `hybrid-networking\shared-services-stack\` del repositorio que descargó en el paso de requisitos previos anterior.
+1. Vaya a la carpeta `hybrid-networking\shared-services-stack\` del repositorio de GitHub.
 
-2. Abra el archivo `onprem.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 45 y 46, tal y como se muestra a continuación, y después guarde el archivo.
+2. Abra el archivo `onprem.json` . 
+
+3. Busque todas las instancias de `Password` y `adminPassword`. Escriba los valores del nombre de usuario y la contraseña en los parámetros y guarde el archivo. 
+
+4. Ejecute el siguiente comando:
 
    ```bash
-   "adminUsername": "XXX",
-   "adminPassword": "YYY",
+   azbb -s <subscription_id> -g onprem-vnet-rg -l <location> -p onprem.json --deploy
+   ```
+5. Espere a que finalice la implementación. Esta implementación crea una red virtual, una máquina virtual Windows y una instancia de VPN Gateway. La creación de la instancia de VPN Gateway puede durar más de cuarenta minutos.
+
+### <a name="deploy-the-hub-vnet"></a>Implementación de la red virtual del concentrador
+
+En este paso se implementa la red virtual de concentrador y la conecta con la red virtual local simulada.
+
+1. Abra el archivo `hub-vnet.json` . 
+
+2. Busque `adminPassword` y escriba un nombre de usuario y una contraseña en los parámetros. 
+
+3. Busque todas las instancias de `sharedKey` y escriba un valor de clave compartida. Guarde el archivo.
+
+   ```bash
+   "sharedKey": "abc123",
    ```
 
-3. Ejecute `azbb` para implementar el entorno simulado local tal y como se muestra a continuación.
+4. Ejecute el siguiente comando:
 
    ```bash
-   azbb -s <subscription_id> -g onprem-vnet-rg - l <location> -p onoprem.json --deploy
-   ```
-   > [!NOTE]
-   > Si decide usar un nombre del grupo de recursos distinto (que no sea `onprem-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
-
-4. Espere a que finalice la implementación. Esta implementación crea una red virtual, una máquina virtual Windows y una instancia de VPN Gateway. La creación de la instancia de VPN Gateway puede durar más de cuarenta minutos.
-
-### <a name="azure-hub-vnet"></a>Red virtual del concentrador de Azure
-
-Para implementar la red virtual del concentrador y conectarla a la red virtual local simulada creada anteriormente, realice los pasos siguientes.
-
-1. Abra el archivo `hub-vnet.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 50 y 51, tal y como se muestra a continuación.
-
-   ```bash
-   "adminUsername": "XXX",
-   "adminPassword": "YYY",
+   azbb -s <subscription_id> -g hub-vnet-rg -l <location> -p hub-vnet.json --deploy
    ```
 
-2. En la línea 52, para `osType`, escriba `Windows` o `Linux` para instalar Windows Server 2016 Datacenter o Ubuntu 16.04 como sistema operativo de JumpBox.
+5. Espere a que finalice la implementación. Esta implementación crea una red virtual, una máquina virtual, una instancia de VPN Gateway y una conexión a la puerta de enlace creada en la sección anterior. La puerta de enlace de VPN puede tardar más de 40 minutos en completarse.
 
-3. Escriba una clave compartida entre comillas en la línea 83, tal y como se muestra a continuación, y después guarde el archivo.
+### <a name="deploy-ad-ds-in-azure"></a>Implementación de AD DS en Azure
 
-   ```bash
-   "sharedKey": "",
-   ```
+En este paso se implementan los controladores de dominio de AD DS en Azure.
 
-4. Ejecute `azbb` para implementar el entorno simulado local tal y como se muestra a continuación.
+1. Abra el archivo `hub-adds.json` .
 
-   ```bash
-   azbb -s <subscription_id> -g hub-vnet-rg - l <location> -p hub-vnet.json --deploy
-   ```
-   > [!NOTE]
-   > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
+2. Busque todas las instancias de `Password` y `adminPassword`. Escriba los valores del nombre de usuario y la contraseña en los parámetros y guarde el archivo. 
 
-5. Espere a que finalice la implementación. Esta implementación crea una red virtual, una máquina virtual, una instancia de VPN Gateway y una conexión a la puerta de enlace creada en la sección anterior. La creación de la instancia de VPN Gateway puede durar más de cuarenta minutos.
-
-### <a name="adds-in-azure"></a>ADDS en Azure
-
-Para implementar los controladores de dominio de ADDS en Azure, realice los pasos siguientes.
-
-1. Abra el archivo `hub-adds.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 14 y 15, tal y como se muestra a continuación, y después guarde el archivo.
+3. Ejecute el siguiente comando:
 
    ```bash
-   "adminUsername": "XXX",
-   "adminPassword": "YYY",
-   ```
-
-2. Ejecute `azbb` para implementar los controladores de dominio de ADDS tal y como se muestra a continuación.
-
-   ```bash
-   azbb -s <subscription_id> -g hub-adds-rg - l <location> -p hub-adds.json --deploy
+   azbb -s <subscription_id> -g hub-adds-rg -l <location> -p hub-adds.json --deploy
    ```
   
-   > [!NOTE]
-   > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-adds-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
+Este paso de implementación puede tardar varios minutos, porque combina las dos máquinas virtuales en el dominio hospedado en el centro de datos simulados del entorno local, e instala AD DS en ellas.
 
-   > [!NOTE]
-   > Esta parte de la implementación puede tardar varios minutos, ya que requiere unir las dos máquinas virtuales al dominio hospedado en el centro de datos local simulado y, a continuación, instalar AD DS en ellas.
+### <a name="deploy-the-spoke-vnets"></a>Implementación de redes virtuales de radios
 
-### <a name="nva"></a>Aplicación virtual de red
+Este paso implementa las redes virtuales de radio.
 
-Para implementar una aplicación virtual de red en la subred `dmz`, realice los pasos siguientes:
+1. Abra el archivo `spoke1.json` .
 
-1. Abra el archivo `hub-nva.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 13 y 14, tal y como se muestra a continuación, y después guarde el archivo.
+2. Busque `adminPassword` y escriba un nombre de usuario y una contraseña en los parámetros. 
 
-   ```bash
-   "adminUsername": "XXX",
-   "adminPassword": "YYY",
-   ```
-2. Ejecute `azbb` para implementar la máquina virtual de la aplicación virtual de red y las rutas definidas por el usuario.
+3. Ejecute el siguiente comando:
 
    ```bash
-   azbb -s <subscription_id> -g hub-nva-rg - l <location> -p hub-nva.json --deploy
-   ```
-   > [!NOTE]
-   > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-nva-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
-
-### <a name="azure-spoke-vnets"></a>Redes virtuales de radios de Azure
-
-Para implementar las redes virtuales de radios, siga estos pasos.
-
-1. Abra el archivo `spoke1.json` y escriba un nombre de usuario y la contraseña entre comillas en las líneas 52 y 53, tal y como se muestra a continuación, y después guarde el archivo.
-
-   ```bash
-   "adminUsername": "XXX",
-   "adminPassword": "YYY",
-   ```
-
-2. En la línea 54, para `osType`, escriba `Windows` o `Linux` para instalar Windows Server 2016 Datacenter o Ubuntu 16.04 como sistema operativo de JumpBox.
-
-3. Ejecute `azbb` para implementar el entorno de red virtual del primer radio tal y como se muestra a continuación.
-
-   ```bash
-   azbb -s <subscription_id> -g spoke1-vnet-rg - l <location> -p spoke1.json --deploy
+   azbb -s <subscription_id> -g spoke1-vnet-rg -l <location> -p spoke1.json --deploy
    ```
   
-   > [!NOTE]
-   > Si decide usar un nombre del grupo de recursos distinto (que no sea `spoke1-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
+4. Repita los pasos 1 y 2 para el archivo `spoke2.json`.
 
-4. Repita el paso 1 anterior para el archivo `spoke2.json`.
-
-5. Ejecute `azbb` para implementar el entorno de red virtual del segundo radio tal y como se muestra a continuación.
+5. Ejecute el siguiente comando:
 
    ```bash
-   azbb -s <subscription_id> -g spoke2-vnet-rg - l <location> -p spoke2.json --deploy
+   azbb -s <subscription_id> -g spoke2-vnet-rg -l <location> -p spoke2.json --deploy
    ```
-   > [!NOTE]
-   > Si decide usar un nombre del grupo de recursos distinto (que no sea `spoke2-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
 
-### <a name="azure-hub-vnet-peering-to-spoke-vnets"></a>Emparejamiento de VNET del concentrador de Azure a las redes virtuales de los radios
+### <a name="peer-the-hub-vnet-to-the-spoke-vnets"></a>Emparejamiento de la red virtual de concentrador con las redes virtuales de radio
 
-Para crear una conexión de emparejamiento desde la red virtual del concentrador a las redes virtuales de radios, realice los siguientes pasos.
+Para crear una conexión de emparejamiento desde la red virtual de concentrador con las redes virtuales de radio, ejecute el comando siguiente:
 
-1. Abra el archivo `hub-vnet-peering.json` y compruebe que el nombre del grupo de recursos y el nombre de la red virtual para cada uno de los emparejamientos de la red virtual que empiezan en la línea 29 son correctos.
+```bash
+azbb -s <subscription_id> -g hub-vnet-rg -l <location> -p hub-vnet-peering.json --deploy
+```
 
-2. Ejecute `azbb` para implementar el entorno de red virtual del primer radio tal y como se muestra a continuación.
+### <a name="deploy-the-nva"></a>Implementación de la aplicación virtual de red
+
+Este paso implementa una aplicación virtual de red en la subred `dmz`.
+
+1. Abra el archivo `hub-nva.json` .
+
+2. Busque `adminPassword` y escriba un nombre de usuario y una contraseña en los parámetros. 
+
+3. Ejecute el siguiente comando:
 
    ```bash
-   azbb -s <subscription_id> -g hub-vnet-rg - l <location> -p hub-vnet-peering.json --deploy
+   azbb -s <subscription_id> -g hub-nva-rg -l <location> -p hub-nva.json --deploy
    ```
 
-   > [!NOTE]
-   > Si decide usar un nombre del grupo de recursos distinto (que no sea `hub-vnet-rg`), asegúrese de que busca todos los archivos de parámetros que usan ese nombre y de que los modifica para usar el nombre de su propio grupo de recursos.
+### <a name="test-connectivity"></a>Comprobación de la conectividad 
+
+Pruebe la conectividad desde el entorno local simulado a la red virtual del concentrador.
+
+1. Use Azure Portal para encontrar la máquina virtual denominada `jb-vm1` en el grupo de recursos `onprem-jb-rg`.
+
+2. Haga clic en `Connect` para abrir una sesión de escritorio remoto en la máquina virtual. Usar la contraseña que especificó en el `onprem.json` archivo de parámetros.
+
+3. Abra una consola de PowerShell en la máquina virtual y utilice el cmdlet `Test-NetConnection` para comprobar que puede conectarse a la máquina virtual de JumpBox en la red virtual del concentrador.
+
+   ```powershell
+   Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
+   ```
+La salida debe tener una apariencia similar a la siguiente:
+
+```powershell
+ComputerName     : 10.0.0.68
+RemoteAddress    : 10.0.0.68
+RemotePort       : 3389
+InterfaceAlias   : Ethernet 2
+SourceAddress    : 192.168.1.000
+TcpTestSucceeded : True
+```
+
+> [!NOTE]
+> De forma predeterminada, las máquinas virtuales de Windows Server no permiten respuestas ICMP en Azure. Si desea usar `ping` para probar la conectividad, debe habilitar el tráfico ICMP en el firewall de Windows con seguridad avanzada para cada máquina virtual.
+
+Repita los mismos pasos para probar la conectividad con las redes virtuales de radio:
+
+```powershell
+Test-NetConnection 10.1.0.68 -CommonTCPPort RDP
+Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
+```
+
 
 <!-- links -->
 

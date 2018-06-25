@@ -2,12 +2,13 @@
 title: Árbol de decisión para los servicios de proceso de Azure
 description: Un diagrama de flujo para la selección de un servicio de proceso
 author: MikeWasson
-ms.date: 04/21/2018
-ms.openlocfilehash: 3dcfbd156d4fced863a56bcc8bb74483aa665f9f
-ms.sourcegitcommit: 7ced70ebc11aa0df0dc0104092d3cc6ad5c28bd6
+ms.date: 06/13/2018
+ms.openlocfilehash: 60bb84d4bf210888d3d43498db043b6e452f6a80
+ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/11/2018
+ms.lasthandoff: 06/19/2018
+ms.locfileid: "36206781"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Árbol de decisión para los servicios de proceso de Azure
 
@@ -25,5 +26,20 @@ Azure ofrece una serie de formas de hospedar el código de aplicación. El térm
 
 Si la aplicación consta de varias cargas de trabajo, evalúe cada carga de trabajo por separado. Una solución completa puede incluir dos o más servicios de proceso.
 
+## <a name="flowchart"></a>Diagrama de flujo
+
 ![](../images/compute-decision-tree.svg)
 
+## <a name="definitions"></a>Definiciones
+
+- **Greenfield** describe un proyecto de software que es completamente nuevo y se ha creado desde cero. No incluye código heredado. 
+
+- **Brownfield** describe un proyecto de software que se basa en una aplicación existente. Puede heredar código o marcos de trabajo.
+
+- **Lift-and-shift** es una estrategia de migración de una carga de trabajo a la nube sin volver a diseñar la aplicación ni realizar cambios en el código. También se denomina *rehospedaje*. Para más información, consulte [Azure Migration Center](https://azure.microsoft.com/migration/).
+
+- **Optimizado para la nube** es una estrategia de migración a la nube mediante la refactorización de una aplicación para aprovechar las funcionalidades y características nativas de la nube.
+
+## <a name="next-steps"></a>Pasos siguientes
+
+Para que ver más criterios hay que tener en cuenta, consulte [Criterios para elegir un servicio de proceso de Azure](./compute-comparison.md).
