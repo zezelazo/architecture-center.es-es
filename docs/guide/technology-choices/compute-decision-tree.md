@@ -3,12 +3,12 @@ title: Árbol de decisión para los servicios de proceso de Azure
 description: Un diagrama de flujo para la selección de un servicio de proceso
 author: MikeWasson
 ms.date: 06/13/2018
-ms.openlocfilehash: 60bb84d4bf210888d3d43498db043b6e452f6a80
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: 689ec3f265e563273a75ad98268d03624a7b4536
+ms.sourcegitcommit: ce2fa8ac2d310f7078317cade12f1b89db1ffe06
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206781"
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "36338190"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Árbol de decisión para los servicios de proceso de Azure
 
@@ -25,6 +25,8 @@ Azure ofrece una serie de formas de hospedar el código de aplicación. El térm
 - [Tablas de comparación de procesos](./compute-comparison.md)
 
 Si la aplicación consta de varias cargas de trabajo, evalúe cada carga de trabajo por separado. Una solución completa puede incluir dos o más servicios de proceso.
+
+Para más información acerca de las opciones de hospedaje de contenedores en Azure, consulte https://azure.microsoft.com/overview/containers/.
 
 ## <a name="flowchart"></a>Diagrama de flujo
 

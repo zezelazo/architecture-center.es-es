@@ -2,16 +2,13 @@
 title: Aplicación de n niveles con SQL Server
 description: Implementación de una arquitectura de varios niveles en Azure para lograr una mayor disponibilidad, seguridad, escalabilidad y facilidad de uso.
 author: MikeWasson
-ms.date: 05/03/2018
-pnp.series.title: Windows VM workloads
-pnp.series.next: multi-region-application
-pnp.series.prev: multi-vm
-ms.openlocfilehash: 0f170f2fbcbbfeace53db199cb5d3949415b5546
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.date: 06/23/2018
+ms.openlocfilehash: 050ea9b3104a2dc9af4cdaad3b4540cd75434e9d
+ms.sourcegitcommit: 767c8570d7ab85551c2686c095b39a56d813664b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673597"
+ms.lasthandoff: 06/24/2018
+ms.locfileid: "36746679"
 ---
 # <a name="n-tier-application-with-sql-server"></a>Aplicación de n niveles con SQL Server
 
@@ -43,9 +40,11 @@ La arquitectura consta de los siguientes componentes:
 
 * **JumpBox.** También se denomina [host bastión]. Se trata de una máquina virtual segura en la red que usan los administradores para conectarse al resto de máquinas virtuales. El Jumpbox tiene un NSG que solo permite el tráfico remoto que procede de direcciones IP públicas de una lista segura. El NSG debe permitir el tráfico de escritorio remoto (RDP).
 
-* **Grupo de disponibilidad AlwaysOn de SQL Server**. Proporciona alta disponibilidad en el nivel de datos, al habilitar la replicación y la conmutación por error.
+* **Grupo de disponibilidad AlwaysOn de SQL Server**. Proporciona alta disponibilidad en el nivel de datos, al habilitar la replicación y la conmutación por error. Usa la tecnología de clúster de conmutación por error de Windows Server (WSFC) para la conmutación por error.
 
-* **Servidores de Active Directory Domain Services (AD DS)**. Los grupos de disponibilidad Always On de SQL Server están unidos a un dominio para poder habilitar la tecnología de clúster de conmutación por error de Windows Server (WSFC) para la conmutación por error. 
+* **Servidores de Active Directory Domain Services (AD DS)**. Los objetos de equipo del clúster de conmutación por error y sus roles en clúster asociados se crean en Active Directory Domain Services (AD DS).
+
+* **Testigo en la nube**. Un clúster de conmutación por error requiere que más de la mitad de sus nodos se estén ejecutando, lo que se conoce como tener cuórum. Si el clúster tiene solo dos nodos, una partición de la red podría provocar que cada uno de ellos creyera que es el principal. En ese caso, se necesita un *testigo* que sea quien dilucide cuál es el principal y establezca el cuórum. Un testigo es un recurso, como por ejemplo un disco compartido, que puede actuar como dilucidador para establecer el cuórum. Un testigo en la nube es un tipo de testigo que usa Azure Blob Storage. Para más información acerca del concepto de quórum, consulte [Understanding cluster and pool quorum](/windows-server/storage/storage-spaces/understand-quorum) (Descripción del cuórum de clúster y de grupo). Para más información acerca del testigo en la nube, consulte [Implementación de un testigo en la nube en un clúster de conmutación por error](/windows-server/failover-clustering/deploy-cloud-witness). 
 
 * **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
 
@@ -157,13 +156,13 @@ Cifre información confidencial en reposo y use [Azure Key Vault][azure-key-vaul
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-Hay disponible una implementación de esta arquitectura de referencia en [GitHub][github-folder]. 
+Hay disponible una implementación de esta arquitectura de referencia en [GitHub][github-folder]. Tenga en cuenta que toda la implementación puede tardar hasta dos horas, lo que incluye la ejecución de los scripts para configurar AD DS, el clúster de conmutación por error de Windows Server y el grupo de disponibilidad de SQL Server.
 
 ### <a name="prerequisites"></a>requisitos previos
 
 1. Clone, bifurque o descargue el archivo ZIP del repositorio de GitHub de [arquitecturas de referencia][ref-arch-repo].
 
-2. Asegúrese de que tiene la CLI de Azure 2.0 instalada en el equipo. Para instalar la CLI, siga las instrucciones de [Instalación de la CLI de Azure 2.0][azure-cli-2].
+2. Instale la [CLI de Azure 2.0][azure-cli-2].
 
 3. Instale el paquete de NPM de [Azure Building Blocks][azbb].
 
@@ -171,32 +170,80 @@ Hay disponible una implementación de esta arquitectura de referencia en [GitHub
    npm install -g @mspnp/azure-building-blocks
    ```
 
-4. Desde un símbolo del sistema, un símbolo del sistema de Bash o un símbolo del sistema de PowerShell, inicie sesión en la cuenta de Azure con alguno de los comandos siguientes y siga las indicaciones.
+4. Desde un símbolo del sistema, un símbolo del sistema de bash o un símbolo del sistema de PowerShell, inicie sesión en la cuenta de Azure mediante el siguiente comando.
 
    ```bash
    az login
    ```
 
-### <a name="deploy-the-solution-using-azbb"></a>Implementación de la solución con AZBB
+### <a name="deploy-the-solution"></a>Implementación de la solución 
 
-Para implementar las máquinas virtuales de Windows en una arquitectura de referencia de la aplicación de N niveles, siga estos pasos:
+1. Ejecute el siguiente comando para crear un grupo de recursos.
 
-1. Vaya a la carpeta `virtual-machines\n-tier-windows` del repositorio que clonó en el paso 1 donde se detallaron los requisitos previos.
+    ```bash
+    az group create --location <location> --name <resource-group-name>
+    ```
 
-2. El archivo de parámetros especifica un nombre de usuario administrador y una contraseña predeterminados para cada máquina virtual de la implementación. Debe cambiar estos datos antes de implementar la arquitectura de referencia. Abra el archivo `n-tier-windows.json` y reemplace los campos **adminUsername** y **adminPassword** con la nueva configuración.
-  
-   > [!NOTE]
-   > En esta implementación existen varios scripts que se ejecutan tanto en los objetos **VirtualMachineExtension** como en la configuración de las **extensiones** de algunos objetos **VirtualMachine**. Algunos de estos scripts requieren el nombre de usuario administrador y la contraseña que acaba de cambiar. Le recomendamos que los revise para asegurarse de que especificó las credenciales correctas. Recuerde que es posible que se produzca un error en la implementación si no especifica las credenciales adecuadas.
-   > 
-   > 
+2. Ejecute el siguiente comando para crear una cuenta de almacenamiento para el testigo en la nube.
 
-Guarde el archivo.
+    ```bash
+    az storage account create --location <location> \
+      --name <storage-account-name> \
+      --resource-group <resource-group-name> \
+      --sku Standard_LRS
+    ```
 
-3. Implemente la arquitectura de referencia mediante la herramienta de línea de comandos **azbb** tal y como se muestra a continuación.
+3. Vaya a la carpeta `virtual-machines\n-tier-windows` del repositorio de GitHub de las arquitecturas de referencia.
 
-   ```bash
-   azbb -s <your subscription_id> -g <your resource_group_name> -l <azure region> -p n-tier-windows.json --deploy
-   ```
+4. Abra el archivo `n-tier-windows.json` . 
+
+5. Busque todas las instancias de "witnessStorageBlobEndPoint" y reemplace el texto del marcador de posición por el nombre de la cuenta de almacenamiento del paso 2.
+
+    ```json
+    "witnessStorageBlobEndPoint": "https://[replace-with-storageaccountname].blob.core.windows.net",
+    ```
+
+6. Ejecute el siguiente comando para mostrar las claves de la cuenta de almacenamiento.
+
+    ```bash
+    az storage account keys list \
+      --account-name <storage-account-name> \
+      --resource-group <resource-group-name>
+    ```
+
+    La salida debe tener un aspecto similar al siguiente. Copie el valor de `key1`.
+
+    ```json
+    [
+    {
+        "keyName": "key1",
+        "permissions": "Full",
+        "value": "..."
+    },
+    {
+        "keyName": "key2",
+        "permissions": "Full",
+        "value": "..."
+    }
+    ]
+    ```
+
+7. En el archivo `n-tier-windows.json`, busque todas las instancias de "witnessStorageAccountKey" y pegue la clave de la cuenta.
+
+    ```json
+    "witnessStorageAccountKey": "[replace-with-storagekey]"
+    ```
+
+8. En el archivo `n-tier-windows.json`, busque todas las instancias de `testPassw0rd!23`, `test$!Passw0rd111` y `AweS0me@SQLServicePW`. Reemplácelas por sus propias contraseñas y guarde el archivo.
+
+    > [!NOTE]
+    > Si cambia el nombre de usuario del administrador, también debe actualizar los bloques `extensions` en el archivo JSON. 
+
+9. Ejecute el siguiente comando para implementar la arquitectura.
+
+    ```bash
+    azbb -s <your subscription_id> -g <resource_group_name> -l <location> -p n-tier-windows.json --deploy
+    ```
 
 Para obtener más información sobre la implementación de esta arquitectura de referencia de ejemplo mediante Azure Bulding Blocks, visite el [repositorio de GitHub][git].
 
@@ -225,7 +272,7 @@ Para obtener más información sobre la implementación de esta arquitectura de 
 [operations-management-suite]: https://www.microsoft.com/server-cloud/operations-management-suite/overview.aspx
 [plan-network]: /azure/virtual-network/virtual-network-vnet-plan-design-arm
 [private-ip-space]: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
-[dirección IP pública]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
+[Dirección IP pública]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
 [puppet]: https://puppetlabs.com/blog/managing-azure-virtual-machines-puppet
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [sql-alwayson]: https://msdn.microsoft.com/library/hh510230.aspx
