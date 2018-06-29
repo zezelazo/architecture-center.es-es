@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 03c4d5fa10c75437a7b066534619ba9a123c350c
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 321dc52a3e6f803a032288c2341e490cdba8c20a
+ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30849678"
+ms.lasthandoff: 06/22/2018
+ms.locfileid: "36327660"
 ---
 # <a name="role-based-and-resource-based-authorization"></a>Autorización basada en roles y en recursos
 
@@ -33,7 +33,7 @@ La aplicación [Tailspin Surveys][Tailspin] define los siguientes roles:
 
 Los roles se aplican a los *usuarios* de la aplicación. En la aplicación Surveys, un usuario es administrador, creador o lector.
 
-Para ver una discusión de cómo definir y administrar roles, consulte [Application roles (Roles de aplicación)].
+Para ver una discusión de cómo definir y administrar roles, consulte [Roles de la aplicación].
 
 Independientemente de cómo administre los roles, el código de autorización tendrá un aspecto similar. ASP.NET Core cuenta con una abstracción llamada [directivas de autorización][policies]. Con esta característica, el usuario define directivas de autorización en el código y después las aplica a las acciones de controlador. La directiva se separa del controlador.
 
@@ -84,7 +84,7 @@ services.AddAuthorization(options =>
 });
 ```
 
-Este código también establece el esquema de autenticación, que indica a ASP.NET qué middleware de autenticación se debe ejecutar si se produce un error en la autorización. En este caso, especificamos el middleware de autenticación de cookies porque dicho middleware puede redirigir al usuario a una página "Prohibido". La ubicación de la página Prohibido se establece en la opción `AccessDeniedPath` para el middleware de cookies; consulte [Configuring the authentication middleware] (Configuración del middleware de autenticación).
+Este código también establece el esquema de autenticación, que indica a ASP.NET qué middleware de autenticación se debe ejecutar si se produce un error en la autorización. En este caso, especificamos el middleware de autenticación de cookies porque dicho middleware puede redirigir al usuario a una página "Prohibido". La ubicación de la página Prohibido se establece en la opción `AccessDeniedPath` para el middleware de cookies; consulte [Configuración del software intermedio de autenticación] (Configuración del middleware de autenticación).
 
 ### <a name="authorize-controller-actions"></a>Autorización de acciones de controlador
 Por último, para autorizar una acción en un controlador MVC, establezca la directiva en el atributo `Authorize` :
@@ -218,7 +218,7 @@ public class SurveyAuthorizationHandler : AuthorizationHandler<OperationAuthoriz
 }
 ```
 
-En una aplicación de varios inquilinos, debe asegurarse de que los permisos no se "fugan" a los datos de otro inquilino. En la aplicación Surveys, se permite el permiso de colaborador entre los inquilinos; puede asignar un usuario de otro inquilino como un colaborador. Los otros tipos de permisos están restringidos a los recursos que pertenecen al inquilino del usuario. Para aplicar este requisito, el código comprueba el identificador del inquilino antes de conceder el permiso. (El campo `TenantId` asignado cuando se crea la encuesta.)
+En una aplicación de varios inquilinos, debe asegurarse de que los permisos no se "fugan" a los datos de otro inquilino. En la aplicación Surveys, se permite el permiso de colaborador entre los inquilinos &mdash; puede asignar un usuario de otro inquilino como un colaborador. Los otros tipos de permisos están restringidos a los recursos que pertenecen al inquilino del usuario. Para aplicar este requisito, el código comprueba el identificador del inquilino antes de conceder el permiso. (El campo `TenantId` asignado cuando se crea la encuesta.)
 
 El paso siguiente es comprobar la operación (lectura, actualización, eliminación, etc.) en relación a los permisos. La aplicación Surveys implementa este paso mediante el uso de una tabla de búsqueda de funciones:
 
@@ -250,9 +250,9 @@ static readonly Dictionary<OperationAuthorizationRequirement, Func<List<UserPerm
 <!-- Links -->
 [Tailspin]: tailspin.md
 
-[Application roles (Roles de aplicación)]: app-roles.md
+[Roles de la aplicación]: app-roles.md
 [policies]: /aspnet/core/security/authorization/policies
-[implementación de referencia]: tailspin.md
-[Configuring the authentication middleware]: authenticate.md#configure-the-auth-middleware
+[Implementación de referencia]: tailspin.md
+[Configuración del software intermedio de autenticación]: authenticate.md#configure-the-auth-middleware
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance
 [web-api]: web-api.md
