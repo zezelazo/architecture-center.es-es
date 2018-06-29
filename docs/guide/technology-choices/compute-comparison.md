@@ -4,12 +4,12 @@ description: Compare los servicios de proceso de Azure a través de varios ejes
 author: MikeWasson
 layout: LandingPage
 ms.date: 06/13/2018
-ms.openlocfilehash: 29c21c44bdf3a3bfa29f17015565eecf5f86163b
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: 24ef204441d92b5b810da0349063a28beea4b0f1
+ms.sourcegitcommit: ce2fa8ac2d310f7078317cade12f1b89db1ffe06
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206753"
+ms.lasthandoff: 06/23/2018
+ms.locfileid: "36338207"
 ---
 # <a name="criteria-for-choosing-an-azure-compute-service"></a>Criterios para elegir un servicio de proceso de Azure
 
@@ -20,13 +20,12 @@ El término *proceso* hace referencia al modelo de hospedaje para los recursos i
 | Criterios | Virtual Machines | App Service | Service Fabric | Azure Functions | Azure Container Service | Azure Container Instances | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | Composición de la aplicación | Independiente | Aplicaciones, contenedores | Ejecutables de invitado, servicios, contenedores | Functions | Contenedores | Contenedores | Scheduled jobs  |
-| Densidad | Independiente | Varias aplicaciones por instancia a través de los planes de aplicación | Varios servicios por VM | Sin instancias dedicadas <a href="#note1"><sup>1</sup></a> | Varios contenedores por VM |Sin instancias dedicadas | Varias aplicaciones por VM |
-| Número mínimo de nodos | 1 <a href="#note2"><sup>2</sup></a>  | 1 | 5 <a href="#note3"><sup>3</sup></a> | Sin nodos dedicados <a href="#note1"><sup>1</sup></a> | 3 | Sin nodos dedicados | 1 <a href="#note4"><sup>4</sup></a> |
+| Densidad | Independiente | Varias aplicaciones por instancia a través de planes de App Service | Varios servicios por VM | Sin servidor <a href="#note1"><sup>1</sup></a> | Varios contenedores por VM |Sin instancias dedicadas | Varias aplicaciones por VM |
+| Número mínimo de nodos | 1 <a href="#note2"><sup>2</sup></a>  | 1 | 5 <a href="#note3"><sup>3</sup></a> | Sin servidor <a href="#note1"><sup>1</sup></a> | 3 | Sin nodos dedicados | 1 <a href="#note4"><sup>4</sup></a> |
 | Administración de estados | Con o sin estado | Sin estado | Con o sin estado | Sin estado | Con o sin estado | Sin estado | Sin estado |
 | Hospedaje web | Independiente | Integrado | Independiente | No aplicable | Independiente | Independiente | Sin  |
-| SO | Windows, Linux | Windows, Linux  | Windows, Linux | No aplicable | Windows (versión preliminar), Linux | Windows, Linux | Windows, Linux |
-| ¿Se puede implementar en una red virtual dedicada? | Compatible | Compatible <a href="#note5"><sup>5</sup></a> | Compatible | No compatible | Compatible | No compatible | Compatible |
-| Conectividad híbrida | Compatible | Compatible <a href="#note1"><sup>6</sup></a>  | Compatible | No compatible | Compatible | No compatible | Compatible |
+| ¿Se puede implementar en una red virtual dedicada? | Compatible | Compatible<a href="#note5"><sup>5</sup></a> | Compatible | Compatible <a href="#note5"><sup>5</sup></a> | Compatible | No compatible | Compatible |
+| Conectividad híbrida | Compatible | Compatible <a href="#note6"><sup>6</sup></a>  | Compatible | Compatible <a href="#node7"><sup>7</sup></a> | Compatible | No compatible | Compatible |
 
 Notas
 
@@ -35,15 +34,16 @@ Notas
 3. <span id="note3">Para entornos de producción.</span>
 4. <span id="note4">Se puede reducir verticalmente hasta cero una vez completado el trabajo</span>.
 5. <span id="note5">Requiere App Service Environment.</span>
-6. <span id="note7">Requiere App Service Environment o conexiones híbridas de BizTalk</span>
+6. <span id="note6">Use [Hybrid Connections de Azure App Service][app-service-hybrid].</span>
+7. <span id="note7">Requiere un plan de App Service.</span>
 
 ## <a name="devops"></a>DevOps
 
 | Criterios | Virtual Machines | App Service | Service Fabric | Azure Functions | Azure Container Service | Azure Container Instances | Azure Batch |
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
-| Depuración local | Independiente | IIS Express, otros <a href="#note1b"><sup>1</sup></a> | Clúster de nodo local | CLI de Azure Functions | Tiempo de ejecución de contenedor local | Tiempo de ejecución de contenedor local | No compatible |
-| Modelo de programación | Independiente | Aplicación web, WebJobs para tareas en segundo plano | Invitado ejecutable, modelo de servicio, modelo de actor, contenedores | Functions con desencadenadores | Independiente | Independiente | Aplicación de línea de comandos |
-| Actualización de aplicaciones | Sin compatibilidad integrada | Ranuras de implementación | Actualización (por servicio) gradual | Sin compatibilidad integrada | Depende del orquestador. La mayoría admiten las actualizaciones graduales | Actualizar una imagen de contenedor | No aplicable |
+| Depuración local | Independiente | IIS Express, otros <a href="#note1b"><sup>1</sup></a> | Clúster de nodo local | Visual Studio o CLI de Azure Functions | Tiempo de ejecución de contenedor local | Tiempo de ejecución de contenedor local | No compatible |
+| Modelo de programación | Independiente | Aplicaciones web y API, WebJobs para tareas en segundo plano | Invitado ejecutable, modelo de servicio, modelo de actor, contenedores | Functions con desencadenadores | Independiente | Independiente | Aplicación de línea de comandos |
+| Actualización de aplicaciones | Sin compatibilidad integrada | Ranuras de implementación | Actualización (por servicio) gradual | Ranuras de implementación | Depende del orquestador. La mayoría admiten las actualizaciones graduales | Actualizar una imagen de contenedor | No aplicable |
 
 Notas
 
@@ -57,13 +57,12 @@ Notas
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | Escalado automático | VM Scale Sets | Servicio integrado | VM Scale Sets | Servicio integrado | No compatible | No compatible | N/D |
 | Equilibrador de carga | Azure Load Balancer | Integrado | Azure Load Balancer | Integrado | Azure Load Balancer |  Sin compatibilidad integrada | Azure Load Balancer |
-| Límite de escala | Imagen de la plataforma: 1000 nodos por VMSS, Imagen personalizada: 100 nodos por VMSS | 20 instancias, 50 con App Service Environment | 100 nodos por VMSS | Infinito <a href="#note1c"><sup>1</sup></a> | 100 <a href="#note2c"><sup>2</sup></a> |20 grupos de contenedores por suscripción de forma predeterminada. Póngase en contacto con el servicio de atención al cliente para solicitar un aumento. <a href="#note3c"><sup>3</sup></a> | Límite de 20 núcleos predeterminado. Póngase en contacto con el servicio de atención al cliente para solicitar un aumento. |
+| Límite de escala | Imagen de la plataforma: 1000 nodos por VMSS, Imagen personalizada: 100 nodos por VMSS | 20 instancias, 100 con App Service Environment | 100 nodos por VMSS | 200 instancias por aplicación Function | 100 <a href="#note2c"><sup>1</sup></a> |20 grupos de contenedores por suscripción de forma predeterminada. Póngase en contacto con el servicio de atención al cliente para solicitar un aumento. <a href="#note3c"><sup>2</sup></a> | Límite de 20 núcleos predeterminado. Póngase en contacto con el servicio de atención al cliente para solicitar un aumento. |
 
 Notas
 
-1. <span id="note1c">Si usa un plan de consumo. Si usa un plan de App Service, se aplican los límites de escalado de App Service. Consulte [Elija el plan de servicio correcta para Azure Functions][function-plans].</span>
-2. <span id="note2c">Consulte [Escalado de nodos de agente en un clúster de Container Service][scale-acs]</span>.
-3. <span id="note3c">Consulte [Disponibilidad de cuotas y regiones en Azure Container Instances](/azure/container-instances/container-instances-quotas).</span>
+2. <span id="note1c">Consulte [Escalado de nodos de agente en un clúster de Container Service][scale-acs]</span>.
+3. <span id="note2c">Consulte [Disponibilidad de cuotas y regiones en Azure Container Instances](/azure/container-instances/container-instances-quotas).</span>
 
 
 ## <a name="availability"></a>Disponibilidad
@@ -79,7 +78,7 @@ Notas
 |----------|-----------------|-------------|----------------|-----------------|-------------------------|----------------|-------------|
 | SSL | Configurado en VM | Compatible | Compatible  | Compatible | Configurado en VM | Compatible con el contenedor sidecar | Compatible |
 | Coste | [Windows][cost-windows-vm], [Linux][cost-linux-vm] | [Precios de App Service][cost-app-service] | [Precios de Service Fabric][cost-service-fabric] | [Precios de Azure Functions][cost-functions] | [Precios de Azure Container Service][cost-acs] | [Precios de Container Instances](https://azure.microsoft.com/pricing/details/container-instances/) | [Precios de Azure Batch][cost-batch]
-| Estilos de arquitectura idóneos | [N-Tier][n-tier], [Big Compute][big-compute] (HPC) | [Web-Cola-Trabajo][w-q-w] | [Microservicios][microservices], [arquitectura orientada a eventos][event-driven] | [Microservicios][microservices], [arquitectura orientada a eventos][event-driven] | [Microservicios][microservices], [arquitectura orientada a eventos][event-driven] | [Microservicios][microservices], automatización de tareas, trabajos por lotes  | [Big Compute][big-compute] (HPC) |
+| Estilos de arquitectura idóneos | [N-Tier][n-tier], [Big Compute][big-compute] (HPC) | [Web-Cola-Trabajo][w-q-w], [N niveles][n-tier] | [Microservicios][microservices], [arquitectura orientada a eventos][event-driven] | [Microservicios][microservices], [arquitectura orientada a eventos][event-driven] | [Microservicios][microservices], [arquitectura orientada a eventos][event-driven] | [Microservicios][microservices], automatización de tareas, trabajos por lotes  | [Big Compute][big-compute] (HPC) |
 
 [cost-linux-vm]: https://azure.microsoft.com/pricing/details/virtual-machines/linux/
 [cost-windows-vm]: https://azure.microsoft.com/pricing/details/virtual-machines/windows/
@@ -107,3 +106,4 @@ Notas
 [big-date]: ../architecture-styles/big-data.md
 [big-compute]: ../architecture-styles/big-compute.md
 
+[app-service-hybrid]: /azure/app-service/app-service-hybrid-connections
