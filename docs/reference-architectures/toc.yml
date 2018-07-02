@@ -16,6 +16,8 @@
       items:
         - name: Inteligencia empresarial con SQL Data Warehouse
           href: data/enterprise-bi-sqldw.md
+        - name: Inteligencia empresarial automatizada con SQL Data Warehouse y Data Factory
+          href: data/enterprise-bi-adf.md
     - name: Redes híbridas
       href: hybrid-networking/index.md
       items:
