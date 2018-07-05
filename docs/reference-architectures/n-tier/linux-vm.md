@@ -3,12 +3,12 @@ title: Ejecución de una VM con Linux en Azure
 description: Cómo ejecutar una única máquina virtual en Azure teniendo en cuenta la escalabilidad, resistencia, manejabilidad y seguridad.
 author: telmosampaio
 ms.date: 04/03/2018
-ms.openlocfilehash: f29b7225c2e0edbb1569c9e3a55d112d12041af8
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: 3d0492d05280e8c296cdfc4157aa0387a70337bf
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673587"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142325"
 ---
 # <a name="run-a-linux-vm-on-azure"></a>Ejecución de una VM con Linux en Azure
 
@@ -144,17 +144,7 @@ Hay una implementación disponible en [GitHub][github-folder]. Implementa lo sig
 
 ### <a name="prerequisites"></a>requisitos previos
 
-1. Clone, bifurque o descargue el archivo ZIP del repositorio de GitHub de [arquitecturas de referencia][ref-arch-repo].
-
-2. Asegúrese de que tiene la CLI de Azure 2.0 instalada en el equipo. Para obtener instrucciones sobre la instalación de la CLI, consulte [Instalación de la CLI de Azure 2.0][azure-cli-2].
-
-3. Instale el paquete de NPM de [Azure Building Blocks][azbb].
-
-4. Desde un símbolo del sistema, símbolo del sistema de bash o símbolo del sistema de PowerShell, escriba el siguiente comando para iniciar sesión en su cuenta de Azure.
-
-  ```bash
-  az login
-  ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 5. Cree un par de claves SSH. Para más información, consulte [Creación y uso de un par de claves SSH pública y privada para máquinas virtuales Linux en Azure](/azure/virtual-machines/linux/mac-create-ssh-keys).
 

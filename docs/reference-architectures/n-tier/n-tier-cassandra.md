@@ -3,12 +3,12 @@ title: Aplicación de n niveles con Apache Cassandra
 description: Cómo ejecutar máquinas virtuales Linux para una arquitectura de n niveles en Microsoft Azure.
 author: MikeWasson
 ms.date: 05/03/2018
-ms.openlocfilehash: 46e9a821a33dd3ea3ae9129ab5ad69172bfcd667
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: 7ee14088a2fae3cfc5c1119daf717236c75ecc6a
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673617"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142240"
 ---
 # <a name="n-tier-application-with-apache-cassandra"></a>Aplicación de n niveles con Apache Cassandra
 
@@ -144,21 +144,7 @@ Hay disponible una implementación de esta arquitectura de referencia en [GitHub
 
 ### <a name="prerequisites"></a>requisitos previos
 
-1. Clone, bifurque o descargue el archivo ZIP del repositorio de GitHub de [arquitecturas de referencia][ref-arch-repo].
-
-2. Asegúrese de que tiene la CLI de Azure 2.0 instalada en el equipo. Para instalar la CLI, siga las instrucciones de [Instalación de la CLI de Azure 2.0][azure-cli-2].
-
-3. Instale el paquete de NPM de [Azure Building Blocks][azbb].
-
-   ```bash
-   npm install -g @mspnp/azure-building-blocks
-   ```
-
-4. Desde un símbolo del sistema, un símbolo del sistema de Bash o un símbolo del sistema de PowerShell, inicie sesión en la cuenta de Azure con alguno de los comandos siguientes y siga las indicaciones.
-
-   ```bash
-   az login
-   ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 ### <a name="deploy-the-solution-using-azbb"></a>Implementación de la solución con AZBB
 
@@ -207,7 +193,7 @@ Para obtener más información sobre la implementación de esta arquitectura de 
 [operations-management-suite]: https://www.microsoft.com/server-cloud/operations-management-suite/overview.aspx
 [plan-network]: /azure/virtual-network/virtual-network-vnet-plan-design-arm
 [private-ip-space]: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
-[dirección IP pública]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
+[Dirección IP pública]: /azure/virtual-network/virtual-network-ip-addresses-overview-arm
 [puppet]: https://puppetlabs.com/blog/managing-azure-virtual-machines-puppet
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines

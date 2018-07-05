@@ -3,12 +3,12 @@ title: Recuperación ante desastres para aplicaciones de Azure
 description: Información general técnica y detallada sobre cómo diseñar aplicaciones para recuperación ante desastres en Microsoft Azure.
 author: adamglick
 ms.date: 05/26/2017
-ms.openlocfilehash: 7235e752cf1b96e392a700b223d63b07c0f85b66
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 2d890e479e008e03dcfce9b7240f8bcbaf270372
+ms.sourcegitcommit: e8f4786b187697b1bea374e5f35f217c65d2dfe0
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29477781"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37343386"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Recuperación ante desastres para aplicaciones de Azure
 
@@ -278,7 +278,7 @@ Pruebe los scripts varias veces de principio a fin. Después de comprobar su fun
 Un procedimiento recomendado con automatización es crear un repositorio de scripts de PowerShell o de interfaz de la línea de comandos (CLI) para recuperación ante desastres de Azure. Márquelos y clasifíquelos claramente para encontrarlos rápidamente. Designe una persona principal para que se encargue de administrar el repositorio y el control de versiones de los scripts. Documéntelos perfectamente con explicaciones de los parámetros y ejemplos de uso de los scripts. Asegúrese de que esta documentación está sincronizada con las implementaciones de Azure. Esto subraya la importancia de que haya una persona principal responsable de todas las partes del repositorio.
 
 ## <a name="failure-detection"></a>detección de errores
-Para controlar correctamente los problemas de disponibilidad y recuperación ante desastres, es preciso ser capaz de detectar y diagnosticar los errores. Realice una supervisión avanzada del servidor y la implementación para identificar rápidamente el momento en que un sistema o sus componentes dejan de estar disponibles repentinamente. Una parte de este trabajo pueden realizarla las herramientas de supervisión que evalúan el estado general del servicio en la nube y sus dependencias. Una herramienta de Microsoft adecuada es [System Center 2016](https://www.microsoft.com/server-cloud/products/system-center-2016/). Hay herramientas de terceros que también pueden proporcionar funcionalidades de supervisión. La mayoría de las soluciones de supervisión principales hacen un seguimiento de los contadores de rendimiento clave y de la disponibilidad del servicio.
+Para controlar correctamente los problemas de disponibilidad y recuperación ante desastres, es preciso ser capaz de detectar y diagnosticar los errores. Realice una supervisión avanzada del servidor y la implementación para identificar rápidamente el momento en que un sistema o sus componentes dejan de estar disponibles repentinamente. Una parte de este trabajo pueden realizarla las herramientas de supervisión que evalúan el estado general del servicio en la nube y sus dependencias. Una herramienta de Microsoft adecuada es [System Center 2016](https://www.microsoft.com/cloud-platform/system-center). Hay herramientas de terceros que también pueden proporcionar funcionalidades de supervisión. La mayoría de las soluciones de supervisión principales hacen un seguimiento de los contadores de rendimiento clave y de la disponibilidad del servicio.
 
 Aunque estas herramientas son vitales, debe planear la detección de errores y la generación de informes en un servicio en la nube. Asimismo, debe planear el uso correcto de Azure Diagnostics. Los contadores de rendimiento personalizados o las entradas del registro de eventos también pueden formar parte de la estrategia global. Todo esto proporciona más datos durante los errores y, en consecuencia, agiliza el diagnóstico del problema y la restauración de todas las capacidades. También proporciona métricas adicionales que las herramientas de supervisión pueden usar determinar el estado de cualquier aplicación. Para más información, consulte [Habilitación de diagnósticos de Azure en Azure Cloud Services](/azure/cloud-services/cloud-services-dotnet-diagnostics/). Para una explicación de cómo planear un "modelo de estado" global, consulte [Failsafe: Guidance for Resilient Cloud Architectures](https://channel9.msdn.com/Series/FailSafe)(Failsafe: Guía para las arquitecturas resistentes en la nube).
 

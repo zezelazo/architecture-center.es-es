@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - resiliency
-ms.openlocfilehash: 0f93c1ef664c8e7385895e3854835699f674ee0e
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 5a9c8254bf62488b46517ee3582c2323e206df8a
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270479"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37090958"
 ---
 # <a name="circuit-breaker-pattern"></a>Patrón de disyuntor
 
@@ -230,20 +230,20 @@ Además, utiliza un bloqueo para evitar que el disyuntor trate de realizar llama
             this.stateStore.Reset();
             return;
           }
-          catch (Exception ex)
-          {
-            // If there's still an exception, trip the breaker again immediately.
-            this.stateStore.Trip(ex);
+        }
+        catch (Exception ex)
+        {
+          // If there's still an exception, trip the breaker again immediately.
+          this.stateStore.Trip(ex);
 
-            // Throw the exception so that the caller knows which exception occurred.
-            throw;
-          }
-          finally
+          // Throw the exception so that the caller knows which exception occurred.
+          throw;
+        }
+        finally
+        {
+          if (lockTaken)
           {
-            if (lockTaken)
-            {
-              Monitor.Exit(halfOpenSyncObject);
-            }
+            Monitor.Exit(halfOpenSyncObject);
           }
         }
       }

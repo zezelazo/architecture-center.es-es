@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 04/09/2018
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: 4ebb0d4df3e1907662537516cae1f077e68e47b4
-ms.sourcegitcommit: f7418f8bdabc8f5ec33ae3551e3fbb466782caa5
+ms.openlocfilehash: 925e0f47cf6b9aa1ad48ffae2c9561a2393bf601
+ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36209583"
+ms.lasthandoff: 07/02/2018
+ms.locfileid: "37142257"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke en Azure
 
@@ -125,17 +125,7 @@ Los archivos de parámetro de plantilla hacen referencia a estos nombres, por lo
 
 ### <a name="prerequisites"></a>requisitos previos
 
-1. Clone, bifurque o descargue el archivo ZIP del repositorio de GitHub de [arquitecturas de referencia][ref-arch-repo].
-
-2. Instale la [CLI de Azure 2.0][azure-cli-2].
-
-3. Instale el paquete de NPM de [Azure Building Blocks][azbb].
-
-4. Desde un símbolo del sistema, un símbolo del sistema de bash o un símbolo del sistema de PowerShell, inicie sesión en la cuenta de Azure mediante el siguiente comando.
-
-   ```bash
-   az login
-   ```
+[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
 ### <a name="deploy-the-simulated-on-premises-datacenter"></a>Implementación del centro de datos local simulado
 

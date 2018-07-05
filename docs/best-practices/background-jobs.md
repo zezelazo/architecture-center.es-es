@@ -4,12 +4,12 @@ description: Orientación sobre las tareas en segundo plano que se ejecutan inde
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 10c24afee4b880cfbf8ee534f4d7f945d2b046a9
-ms.sourcegitcommit: 3426a9c5ed937f097725c487cf3d073ae5e2a347
+ms.openlocfilehash: 781d616dfcf24775525e2489e7e463174ec9bfa3
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/01/2018
-ms.locfileid: "28907053"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37091094"
 ---
 # <a name="background-jobs"></a>Trabajos en segundo plano
 [!INCLUDE [header](../_includes/header.md)]
@@ -292,7 +292,7 @@ Las tareas en segundo plano deben ser resistentes para proporcionar servicios co
   * Los mensajes que se deben procesar en un orden específico, tales como los que cambian los datos según su valor de datos existente (por ejemplo, al agregar un valor a un valor existente), podrían no llegar en el orden original en el que se enviaron. Como alternativa, los podrían controlar instancias diferentes de una tarea en segundo plano en un orden diferente debido a cargas variables en cada instancia. Los mensajes que se deben procesar en un orden específico deben incluir un número de secuencia, clave o algún otro indicador que las tareas en segundo plano pueden usar para garantizar que se procesan en el orden correcto. Si usa Azure Service Bus, puede usar sesiones de mensajes para garantizar el orden de entrega. Sin embargo, suele ser más eficaz cuando sea posible diseñar el proceso de modo que el orden de los mensajes no sea importante.
   * Normalmente, una tarea en segundo plano inspeccionará los mensajes de la cola, que los oculta temporalmente de los demás consumidores de mensajes. A continuación, elimina los mensajes una vez que se hayan procesado correctamente. Si se produce un error en una tarea en segundo plano al procesar un mensaje, ese mensaje volverá a aparecer en la cola después de que expire el tiempo de espera de la inspección. Se procesará por otra instancia de la tarea o durante el próximo ciclo de procesamiento de esta instancia. Si el mensaje produce un error sistemáticamente en el consumidor, bloqueará la tarea, la cola y, en última instancia, la aplicación en sí cuando se llene la cola. Por lo tanto, es fundamental detectar y quitar los mensajes dudosos de la cola. Usa Azure Service Bus, los mensajes que produzcan un error se pueden mover automática o manualmente a una cola de mensajes fallidos asociada.
   * Las colas son mecanismos de *al menos una* entrega garantizada, pero podrían entregar el mismo mensaje más de una vez. Además, si se produce un error en una tarea en segundo plano después de procesar un mensaje pero antes de su eliminación de la cola, el mensaje estará disponible para nuevo procesamiento. Las tareas en segundo plano deben ser idempotentes, lo que significa que el procesamiento del mismo mensaje varias veces no produce un error o incoherencia en los datos de la aplicación. Algunas operaciones son naturalmente idempotentes, tal como establecer un valor almacenado en un nuevo valor específico. Sin embargo, las operaciones como, por ejemplo, agregar un valor a un valor almacenado existente sin comprobar que el valor almacenado sigue siendo el mismo que cuando se envió originalmente el mensaje, provocarán incoherencias. Las colas de Azure Service Bus pueden configurarse para quitar automáticamente los mensajes duplicados.
-  * Algunos sistemas de mensajería, como las colas de Azure Storage y las colas de Azure Service Bus, admiten una propiedad de recuento de eliminación de la cola que indica el número de veces que se ha leído un mensaje de la cola. Esto puede ser de utilidad en el tratamiento de mensajes dudosos y repetidos. Para más información, consulte los artículos sobre el [manual de mensajería asincrónica](http://msdn.microsoft.com/library/dn589781.aspx) y [patrones de idempotencia](http://blog.jonathanoliver.com/2010/04/idempotency-patterns/).
+  * Algunos sistemas de mensajería, como las colas de Azure Storage y las colas de Azure Service Bus, admiten una propiedad de recuento de eliminación de la cola que indica el número de veces que se ha leído un mensaje de la cola. Esto puede ser de utilidad en el tratamiento de mensajes dudosos y repetidos. Para más información, consulte los artículos sobre el [manual de mensajería asincrónica](http://msdn.microsoft.com/library/dn589781.aspx) y [patrones de idempotencia](http://blog.jonathanoliver.com/idempotency-patterns/).
 
 ## <a name="scaling-and-performance-considerations"></a>Consideraciones de escalado y rendimiento
 Las tareas en segundo plano deben ofrecer un rendimiento suficiente como para asegurarse de que no bloqueen la aplicación ni provoquen incoherencias debido al funcionamiento diferido cuando el sistema está bajo carga. Normalmente, el rendimiento se mejora al escalar las instancias de proceso que hospedan las tareas en segundo plano. Cuando esté planeando y diseñando tareas en segundo plano, tenga en cuenta los siguientes puntos en relación con la escalabilidad y el rendimiento:

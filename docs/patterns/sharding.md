@@ -1,5 +1,5 @@
 ---
-title: Clave de particionamiento
+title: Particionamiento
 description: Divida un almacén de datos en un conjunto de particiones horizontales o particiones de base de datos.
 keywords: Patrón de diseño
 author: dragon119
@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: 328483e24c75137f07576104d50dc59d426b8ac4
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: a4e35a19851f4742b5c154197c22bb1fe13de108
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24543023"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37091111"
 ---
 # <a name="sharding-pattern"></a>Patrón de particionamiento
 
@@ -215,11 +215,10 @@ Trace.TraceInformation("Fanout query complete - Record Count: {0}",
 ## <a name="related-patterns-and-guidance"></a>Orientación y patrones relacionados
 
 Los patrones y las directrices siguientes también pueden ser importantes a la hora de implementar este modelo:
-- [Coherencia básica de datos](https://msdn.microsoft.com/library/dn589800.aspx). Podría ser necesario mantener la coherencia de los datos distribuidos en diferentes particiones. Resume los problemas relacionados al mismo tiempo que mantiene la coherencia sobre los datos distribuidos y describe las ventajas e inconvenientes de los diferentes modelos de coherencia.
+- [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Manual básico de coherencia de datos). Podría ser necesario mantener la coherencia de los datos distribuidos en diferentes particiones. Resume los problemas relacionados al mismo tiempo que mantiene la coherencia sobre los datos distribuidos y describe las ventajas e inconvenientes de los diferentes modelos de coherencia.
 - [Guía de creación de particiones de datos](https://msdn.microsoft.com/library/dn589795.aspx). El particionamiento de un almacén de datos puede introducir diferentes problemas adicionales. Describe estos problemas en relación con el particionamiento de los almacenes de datos en la nube para mejorar la escalabilidad, reducir la contención y optimizar el rendimiento.
 - [Patrón Index Table](index-table.md). A veces no es posible dar soporte completo a las consultas solo con el diseño de la clave de partición. Permite que una aplicación recupere rápidamente los datos de un almacén de datos de gran tamaño mediante la especificación de una clave distinta de la clave de partición.
 - [Patrón Materialized View](materialized-view.md). Para mantener el rendimiento de algunas operaciones de consulta, es útil crear vistas materializadas que agreguen y resuman los datos, especialmente si estos datos de resumen se basan en información que se distribuye entre las particiones. Describe cómo generar y rellenar estas vistas.
 - [Shard Lessons](http://www.addsimplicity.com/adding_simplicity_an_engi/2008/08/shard-lessons.html) (Lecciones de partición) en el blog Adding Simplicity.
 - [Database Sharding](http://dbshards.com/database-sharding/) (Particionamiento de bases de datos) en el sitio web de CodeFutures.
-- [Scalability Strategies Primer: Database Sharding](http://blog.maxindelicato.com/2008/12/scalability-strategies-primer-database-sharding.html) (Manual básico de estrategias escalabilidad: particionamiento de bases de datos) en el blog de Max Indelicato.
 - [Building Scalable Databases: Pros and Cons of Various Database Sharding Schemes](http://www.25hoursaday.com/weblog/2009/01/16/BuildingScalableDatabasesProsAndConsOfVariousDatabaseShardingSchemes.aspx) (Creación de bases de datos escalables: ventajas e inconvenientes de esquemas de partición de bases de datos diferentes) en el blog de Dare Obasanjo.
