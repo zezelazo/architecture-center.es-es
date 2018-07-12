@@ -3,25 +3,26 @@ title: SAP S/4HANA para Linux Virtual Machines en Azure
 description: Prácticas probadas para ejecutar SAP S/4HANA en un entorno de Linux en Azure con alta disponibilidad.
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: d24ef6f9e4eae460d0d0dcfff35568c812d09951
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 9635de73ec431e0ac678e4008e0c4835796d47ad
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423098"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864511"
 ---
 # <a name="sap-s4hana-for-linux-virtual-machines-on-azure"></a>SAP S/4HANA para Linux Virtual Machines en Azure
 
 Esta arquitectura de referencia muestra un conjunto de procedimientos probados para ejecutar S/4HANA en un entorno de alta disponibilidad que admita recuperación ante desastres en Azure. Esta arquitectura se implementa con tamaños de máquina virtual (VM) específicos que se pueden cambiar para acomodarse a las necesidades de la organización. 
 
-
 ![](./images/sap-s4hana.png)
 
-## <a name="architecture"></a>Architecture
- 
-> [!NOTE] 
-> La implementación de productos SAP según esta arquitectura de referencia requiere que tanto dichos productos como otras tecnologías que no son de Microsoft tengan las licencias adecuadas.
+*Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
+> [!NOTE] 
+> La implementación de esta arquitectura de referencia requiere licencias adecuadas de los productos de SAP y de otras tecnologías que no son de Microsoft.
+
+## <a name="architecture"></a>Arquitectura
+ 
 Esta arquitectura de referencia describe un sistema de producción de nivel empresarial. Para adaptarse a las necesidades de su empresa, esta configuración se puede reducir a una sola máquina virtual. Sin embargo, se requieren los siguientes componentes:
 
 **Red virtual**. El servicio [Azure Virtual Network](/azure/virtual-network/virtual-networks-overview) conecta los recursos de Azure entre sí de forma segura. En esta arquitectura, la red virtual se conecta a un entorno local a través de una puerta de enlace implementada en el concentrador de una [topología en estrella tipo hub-and-spoke](../hybrid-networking/hub-spoke.md). El radio es la red virtual que se usa para las aplicaciones de SAP.
@@ -197,3 +198,5 @@ Las comunidades pueden responder preguntas y ayudarle a configurar una implement
 - [Soporte técnico de la comunidad de Azure](https://azure.microsoft.com/support/community/)
 - [SAP Community](https://www.sap.com/community.html)
 - [Desbordamiento de la pila](https://stackoverflow.com/tags/sap/)
+
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

@@ -3,23 +3,25 @@ title: Implementación de SAP NetWeaver (Windows) para AnyDB en Azure Virtual Ma
 description: Prácticas probadas para ejecutar SAP S/4HANA en un entorno de Linux en Azure con alta disponibilidad.
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: 0efe3e78d9e1809fdab52044b75e432742786b79
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 90334e4872bdd15d59aa16286a031d07f3d1bb2f
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34423092"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864545"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Implementación de SAP NetWeaver (Windows) para AnyDB en Azure Virtual Machines
 
 Esta arquitectura de referencia muestra un conjunto de prácticas probadas para ejecutar SAP NetWeaver en un entorno Windows en Azure con alta disponibilidad. La base de datos es AnyDB, el término de SAP para todos los sistemas de administración de bases de datos compatibles que no sean SAP HANA. Esta arquitectura se implementa con tamaños de máquina virtual (VM) específicos que se pueden cambiar para acomodarse a las necesidades de la organización.
 
-![](./images/sap-s4hana.png)
- 
-> [!NOTE] 
-> La implementación de productos SAP según esta arquitectura de referencia requiere que tanto dichos productos como otras tecnologías que no son de Microsoft tengan las licencias adecuadas.
+![](./images/sap-netweaver.png)
 
-## <a name="architecture"></a>Architecture
+*Descargue un [archivo Visio][visio-download] de esta arquitectura.*
+
+> [!NOTE] 
+> La implementación de esta arquitectura de referencia requiere licencias adecuadas de los productos de SAP y de otras tecnologías que no son de Microsoft.
+
+## <a name="architecture"></a>Arquitectura
 La arquitectura consta de la siguiente infraestructura y los siguientes componentes de software clave.
 
 **Red virtual**. El servicio de Azure Virtual Network conecta los recursos de Azure entre sí de forma segura. En esta arquitectura, la red virtual se conecta a un entorno local a través de una puerta de enlace de VPN implementada en el concentrador de una topología en estrella tipo [hub-spoke](../hybrid-networking/hub-spoke.md). El radio es la red virtual que se usa tanto para las aplicaciones de SAP como para el nivel de base de datos.
@@ -33,7 +35,7 @@ La arquitectura consta de la siguiente infraestructura y los siguientes componen
 - **JumpBox**. También se denomina bastion host. Se trata de una máquina virtual segura en la red que usan los administradores para conectarse al resto de máquinas virtuales.
 - **Controladores de dominio de Windows Server Active Directory**. Los controladores de dominio se utilizan en todas las máquinas virtuales y usuarios del dominio.
 
-**Equilibradores de carga**. Tanto los equilibradores de carga de SAP integrados como [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) se utilizan para lograr alta disponibilidad. Las instancias de Azure Load Balancer se utilizan para distribuir el tráfico a las máquinas virtuales en la subred de la capa de aplicación.
+**Equilibradores de carga.** Tanto los equilibradores de carga de SAP integrados como [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) se utilizan para lograr alta disponibilidad. Las instancias de Azure Load Balancer se utilizan para distribuir el tráfico a las máquinas virtuales en la subred de la capa de aplicación.
 
 **Conjuntos de disponibilidad**. En las máquinas virtuales de SAP Web Dispatcher, el servidor de aplicaciones de SAP y (A)SCS, los roles se agrupan en [conjuntos de disponibilidad](/azure/virtual-machines/windows/tutorial-availability-sets) independientes y se aprovisionan un mínimo de dos máquinas virtuales por rol, lo que hace que las máquinas virtuales sean aptas para un [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/virtual-machines) (SLA) mayor.
 
@@ -143,7 +145,7 @@ Para la recuperación ante desastres (DR), debe ser capaz de realizar la conmuta
 
 - **Nivel de servidores de aplicaciones**. Los servidores de aplicaciones de SAP no contienen datos empresariales. En Azure, una estrategia de recuperación ante desastres simple es crear servidores de aplicaciones SAP en la región secundaria y apagarlos. Tras cualquier cambio de configuración o actualización del kernel en el servidor de aplicaciones principal, los mismos cambios se deben copiar en las máquinas virtuales de la región secundaria. Por ejemplo, los archivos ejecutables del kernel copiados en las máquinas virtuales de recuperación ante desastres. Para la replicación automática de los servidores de aplicaciones en una región secundaria, [Azure Site Recovery](/azure/site-recovery/site-recovery-overview) es la solución recomendada.
 
-- **Central Services**. Este componente de la pila de aplicaciones SAP tampoco conserva los datos empresariales. Puede crear una máquina virtual en la región de recuperación ante desastres para ejecutar el rol de Central Services. El único contenido del nodo de Central Services principal que se sincroniza es el del recurso compartido /sapmnt. Además, si los cambios de configuración o las actualizaciones del kernel tienen lugar en los servidores principales de Central Services, se deben repetir en la máquina virtual de la región de recuperación ante desastres que ejecuta Central Services. Para sincronizar los dos servidores, puede usar Azure Site Recovery para replicar los nodos del clúster o simplemente usar un trabajo de copia programado regularmente para copiar /sapmnt en la región de recuperación ante desastres. Para más información acerca del proceso de creación, copia y conmutación por error de prueba de este método de replicación simple, descargue [SAP NetWeaver: Building a Hyper-V and Microsoft Azure–based Disaster Recovery Solution](http://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx) (SAP NetWeaver: Creación de una solución de recuperación ante desastres basada en Hyper-V y Microsoft Azure) y consulte "4.3. SAP SPOF layer (ASCS)." [Capa SPOF de SAP (ASCS)]
+- **Central Services**. Este componente de la pila de aplicaciones SAP tampoco conserva los datos empresariales. Puede crear una máquina virtual en la región de recuperación ante desastres para ejecutar el rol de Central Services. El único contenido del nodo de Central Services principal que se sincroniza es el del recurso compartido /sapmnt. Además, si los cambios de configuración o las actualizaciones del kernel tienen lugar en los servidores principales de Central Services, se deben repetir en la máquina virtual de la región de recuperación ante desastres que ejecuta Central Services. Para sincronizar los dos servidores, puede usar Azure Site Recovery para replicar los nodos del clúster o simplemente usar un trabajo de copia programado regularmente para copiar /sapmnt en la región de recuperación ante desastres. Para más información acerca del proceso de creación, copia y conmutación por error de prueba de este método de replicación simple, descargue [SAP NetWeaver: Building a Hyper-V and Microsoft Azure–based Disaster Recovery Solution](http://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx) (SAP NetWeaver: Creación de una solución de recuperación ante desastres basada en Hyper-V y Microsoft Azure) y consulte "4.3. Capa de SAP SPOF (ASCS)."
 
 - **Nivel de base de datos**. La recuperación ante desastres se implementa mejor con la tecnología de replicación integrada propia de la base de datos. Por ejemplo, en el caso de SQL Server, se recomienda usar Grupos de disponibilidad AlwaysOn para establecer una réplica en una región remota, lo que replica las transacciones de forma asincrónica con la conmutación por error manual. La replicación asincrónica que el rendimiento de las cargas de trabajo interactivas del sitio principal resulte afectado. La conmutación por error manual ofrece la oportunidad de que una persona evalúe el impacto de recuperación ante desastres y decida si está justificada la operación desde el sitio de recuperación ante desastres.
 
@@ -174,3 +176,4 @@ Las comunidades pueden responder preguntas y ayudarle a configurar una implement
 - [SAP Community](https://www.sap.com/community.html)
 - [Desbordamiento de la pila](https://stackoverflow.com/tags/sap/)
 
+[visio-download]: https://archcenter.blob.core.windows.net/cdn/sap-reference-architectures.vsdx

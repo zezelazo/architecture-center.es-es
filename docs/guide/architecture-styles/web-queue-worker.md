@@ -3,11 +3,11 @@ title: Estilo de arquitectura web-cola-trabajo
 description: Describe las ventajas, los desafíos y los procedimientos recomendados para las arquitecturas web-cola-trabajo en Azure.
 author: MikeWasson
 ms.openlocfilehash: 545472e71ffcd43717ad24af0dc9218a221ca910
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24539807"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37958796"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Estilo de arquitectura web-cola-trabajo
 
@@ -50,7 +50,7 @@ Considere este estilo de arquitectura para:
 - Sin un diseño cuidado, el front-end y el trabajo se pueden convertir en componentes grandes y monolíticos que son difíciles de mantener y actualizar.
 - Puede haber dependencias ocultas si el servidor front-end y el trabajo comparten esquemas de datos o módulos de código. 
 
-## <a name="best-practices"></a>Prácticas recomendadas
+## <a name="best-practices"></a>Procedimientos recomendados
 
 - Exponer una API bien diseñada al cliente. Consulte [Procedimientos recomendados para el diseño de API][api-design].
 - Utilizar el escalado automático para tratar los cambios en la carga. Consulte [Procedimientos recomendados de escalado automático][autoscaling]

@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 11/23/2016
 cardTitle: Run in multiple regions
 ms.openlocfilehash: 00309e58c163a64f6d9796bedc19d936afcd09ab
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270295"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37958830"
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>Ejecución de una aplicación web en varias regiones
 [!INCLUDE [header](../../_includes/header.md)]
@@ -20,7 +20,7 @@ Esta arquitectura de referencia muestra cómo ejecutar una aplicación de Azure 
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Arquitectura 
 
 Esta arquitectura se basa en la que se muestra en [Improve scalability in a web application][guidance-web-apps-scalability] (Mejora de la escalabilidad en una aplicación web). Las principales diferencias son:
 
