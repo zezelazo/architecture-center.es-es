@@ -4,12 +4,12 @@ description: Arquitectura recomendada para una aplicación web básica que se ej
 author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: efd831b1f54fa0662bdfa9874318e7b314172215
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: bc8cf9b5c66fc451d097cbc992ecb9a249645dce
+ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846410"
+ms.lasthandoff: 06/28/2018
+ms.locfileid: "37091128"
 ---
 # <a name="basic-web-application"></a>Aplicación web básica
 [!INCLUDE [header](../../_includes/header.md)]

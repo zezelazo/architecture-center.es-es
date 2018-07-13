@@ -7,12 +7,12 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: ade79f8ebffc15b423ef6ebfb9b19611c9500cd8
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: 21a6474db94d34e23f79d1ba0e35943c0cb52966
+ms.sourcegitcommit: d5db5b8ed7429f056130096d0ef4b249b564599a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252999"
+ms.lasthandoff: 07/01/2018
+ms.locfileid: "37141391"
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>Integración de dominios locales de Active Directory con Azure Active Directory
 
@@ -216,7 +216,7 @@ Para más información, consulte [Acceso condicional en Azure Active Directory][
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-En GitHub, se puede encontrar una implementación de una arquitectura de referencia que implementa estas recomendaciones y consideraciones. Esta arquitectura de referencia implementa una red local simulada en Azure que puede usar para probar y experimentar. La arquitectura de referencia se puede implementar con máquinas virtuales Windows o Linux siguiendo estas instrucciones: 
+En GitHub, se puede encontrar una implementación de una arquitectura de referencia que implementa estas recomendaciones y consideraciones. Esta arquitectura de referencia implementa una red local simulada en Azure que puede usar para realizar pruebas y experimentar. La arquitectura de referencia se puede implementar con máquinas virtuales Windows o Linux siguiendo estas instrucciones: 
 
 1. Haga clic en el botón a continuación:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fidentity%2Fazure-ad%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
 2. Una vez abierto el vínculo en Azure Portal, debe especificar los valores de algunas de las opciones: 
