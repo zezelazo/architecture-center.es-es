@@ -5,11 +5,11 @@ author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
 ms.openlocfilehash: bc8cf9b5c66fc451d097cbc992ecb9a249645dce
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37091128"
+ms.lasthandoff: 07/10/2018
+ms.locfileid: "37958847"
 ---
 # <a name="basic-web-application"></a>Aplicación web básica
 [!INCLUDE [header](../../_includes/header.md)]
@@ -20,7 +20,7 @@ Esta arquitectura de referencia muestra un conjunto de prácticas demostradas pa
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Arquitectura 
 
 > [!NOTE]
 > Esta arquitectura no se centra en el desarrollo de aplicaciones y no supone ningún marco de trabajo de la aplicación concreto. El objetivo es comprender cómo encajan entre sí los distintos servicios de Azure.
