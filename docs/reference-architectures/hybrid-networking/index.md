@@ -1,126 +1,87 @@
 ---
-title: Conexión de una red local a Azure
-description: Arquitecturas recomendadas para unas conexiones de red seguras y eficaces entre las redes locales y Azure.
-layout: LandingPage
-ms.openlocfilehash: 372efb8ecf69245a5895c51e3da156a348bd665e
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+title: Elección de una solución para conectar una red local a Azure
+description: Compara las arquitecturas de referencia para conectar una red local a Azure.
+author: telmosampaio
+ms.date: 07/02/2018
+ms.openlocfilehash: 0cc07d3b7d45accf9f99ce32914b0ef065d62f32
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29782334"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987485"
 ---
-<!-- This file is generated! -->
-<!-- See the templates in ./build/reference-architectures  -->
-<!-- See data in index.json -->
-
 # <a name="connect-an-on-premises-network-to-azure"></a>Conexión de una red local a Azure
 
-Estas arquitecturas de referencia muestran prácticas probadas para crear una conexión de red eficaz entre una red local y Azure. [¿Qué debo elegir?](./considerations.md)
+En este artículo se comparan las opciones para conectar una red local a una instancia de Azure Virtual Network (VNet). Para cada opción, hay disponible una arquitectura de referencia más detallada.
 
-<section class="series">
-    <ul class="panelContent">
-    <!-- VPN -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./vpn.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/vpn.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>VPN</h3>
-                        <p>Extienda una red local a Azure mediante una red privada virtual (VPN) de sitio a sitio.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- ExpressRoute -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./expressroute.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/expressroute.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>ExpressRoute</h3>
-                        <p>Extensión de una red local a Azure mediante Azure ExpressRoute.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- ExpressRoute with VPN failover -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./expressroute-vpn-failover.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/expressroute-vpn-failover.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>ExpressRoute con conmutación por error de VPN</h3>
-                        <p>Extienda una red local a Azure mediante Azure ExpressRoute, con una VPN como una conexión de conmutación por error.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- Hub-spoke topology -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./hub-spoke.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/hub-spoke.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Topología en estrella tipo hub-and-spoke</h3>
-                        <p>El centro es un punto central de conectividad para la red local. Las redes son redes virtuales del mismo nivel que el centro y se pueden usar para aislar cargas de trabajo.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- Hub-spoke topology with shared services -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./shared-services.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./images/shared-services.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Topología en estrella tipo hub-and-spoke con servicios compartidos</h3>
-                        <p>Implemente una topología en estrella tipo hub-and-spoke que incluya servicios compartidos, como los servicios de Active Directory, y una aplicación virtual de red (NVA). Todos los radios pueden consumir los servicios compartidos.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    </ul>
-</section>
+## <a name="vpn-connection"></a>Conexión VPN
 
-<ul class="panelContent cardsI">
-</ul>
+Una [puerta de enlace de VPN](/azure/vpn-gateway/vpn-gateway-about-vpngateways) es un tipo de puerta de enlace de red virtual que envía tráfico cifrado entre una instancia de Azure Virtual Network y una ubicación local. El tráfico cifrado pasa a través de Internet público.
+
+Esta arquitectura es adecuada para las aplicaciones híbridas en las que es probable que el tráfico entre el hardware local y la nube sea ligero, o en la que esté dispuesto a compensar una latencia ligeramente mayor con la flexibilidad y el poder de procesamiento de la nube.
+
+**Ventajas**
+
+- Fácil de configurar.
+
+**Desafíos**
+
+- Requiere un dispositivo VPN local.
+- Aunque Microsoft garantiza la disponibilidad del 99,9 % para cada VPN Gateway, este [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/vpn-gateway/) solo cubre VPN Gateway y no la conexión de red a la puerta de enlace.
+- Una conexión VPN a través de Azure VPN Gateway admite actualmente un ancho de banda máximo de 200 Mbps. Quizá tenga que dividir su red Azure Virtual Network entre varias conexiones VPN si espera que se supere este rendimiento.
+
+**Arquitectura de referencia**
+
+- [Red híbrida con VPN Gateway](./vpn.md)
+
+## <a name="azure-expressroute-connection"></a>Conexión de Azure ExpressRoute
+
+Las conexiones de [ExpressRoute](/azure/expressroute/) utilizan una conexión privada y dedicada a través de un proveedor de conectividad de terceros. La conexión privada extiende la red local en Azure. 
+
+Esta arquitectura es adecuada para aplicaciones híbridas que ejecutan cargas de trabajo críticas a gran escala que requieren un alto grado de escalabilidad. 
+
+**Ventajas**
+
+- Ancho de banda mucho más alto disponible; hasta 10 Gbps en función del proveedor de conectividad.
+- Admite el escalado dinámico de ancho de banda para ayudar a reducir los costos durante los períodos de menor actividad. Sin embargo, no todos los proveedores de conectividad tienen esta opción.
+- Puede permitir que su organización tenga acceso directo a las nubes nacionales, en función del proveedor de conectividad.
+- Acuerdo de Nivel de Servicio del 99,9 % de disponibilidad en toda la conexión.
+
+**Desafíos**
+
+- Puede ser difícil de configurar. La creación de una conexión ExpressRoute requiere trabajar con un proveedor de conectividad de terceros. El proveedor es responsable del aprovisionamiento de la conexión de red.
+- Requiere que enrutadores de un alto ancho de banda a nivel local.
+
+**Arquitectura de referencia**
+
+- [Red híbrida con ExpressRoute](./expressroute.md)
+
+## <a name="expressroute-with-vpn-failover"></a>ExpressRoute con conmutación por error de VPN
+
+Esta opción combina los dos anteriores: uso de ExpressRoute en condiciones normales, pero conmutación por error a una conexión VPN si se produce una pérdida de conectividad en el circuito de ExpressRoute.
+
+Esta arquitectura es adecuada para aplicaciones híbridas que necesitan un mayor ancho de banda que ExpressRoute y también requieren conectividad de red de alta disponibilidad. 
+
+**Ventajas**
+
+- Alta disponibilidad si se produce un error en el circuito de ExpressRoute, aunque la conexión de reserva está en una red de ancho de banda inferior.
+
+**Desafíos**
+
+- Configuración compleja. Debe configurar tanto una conexión VPN como un circuito de ExpressRoute.
+- Requiere hardware redundante (dispositivos VPN) y una conexión redundante de Azure VPN Gateway que tiene un coste.
+
+**Arquitectura de referencia**
+
+- [Red híbrida con ExpressRoute y conmutación por error de VPN](./expressroute-vpn-failover.md)
+
+
+## <a name="hub-spoke-network-topology"></a>Topología de red en estrella tipo hub-and-spoke
+
+Una topología de red en estrella de tipo hub-and-spoke constituye una forma de aislar cargas de trabajo mientras se comparten servicios como los de identidad y seguridad. El centro (hub) es una red virtual (VNet) en Azure que actúa como un punto central de conectividad para la red local. Los radios son redes virtuales que se emparejan con el concentrador. Los servicios compartidos se implementan en el centro, mientras que las cargas de trabajo individuales se implementan como radios.
+
+
+**Arquitecturas de referencia**
+
+- [Topología en estrella tipo hub-and-spoke](./hub-spoke.md)
+- [Topología en estrella tipo hub-and-spoke con servicios compartidos](./shared-services.md)

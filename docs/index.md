@@ -3,12 +3,12 @@ title: Azure Architecture Center
 description: Azure Architecture Center es el centro oficial para obtener instrucciones, planos, patrones y procedimientos recomendados para crear soluciones con Microsoft Azure. El equipo de patrones y prácticas de Microsoft es el que selecciona este material.
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 0ac5dd79f765fe9b649cc2ca83c0213b4ba28544
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 544196faa7156c5636b03d3f402bc48dcc63975f
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847737"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987597"
 ---
 # <a name="azure-architecture-center"></a>Azure Architecture Center
 
@@ -79,7 +79,7 @@ ms.locfileid: "30847737"
                         </div>
                         <div class="cardText">
                             <h3>Creación de microservicios en Azure</h3>
-                            <p>Esta serie de varias partes le guiará por el proceso de diseñar y crear una arquitectura de microservicios en Azure. Se incluye una implementación de referencia.</p>
+                            <p>Esta guía de diseño le guiará por el proceso de diseñar y crear una arquitectura de microservicios en Azure. Se incluye una implementación de referencia.</p>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ ms.locfileid: "30847737"
                             </div>
                         </div>
                         <div class="cardText">
-                            <h3>Procedimientos recomendados para aplicaciones en la nube</h3>
+                            <h3>Procedimientos recomendados en la nube</h3>
                             <p>Procedimientos recomendados para las aplicaciones en la nube que abarcan aspectos como el escalado automático, el almacenamiento en caché, la creación de particiones de datos, el diseño de API y otros.</p>
                         </div>
                     </div>
@@ -246,46 +246,6 @@ ms.locfileid: "30847737"
             </div>
         </a>
     </li>
-    <!-- Sharepoint -->
-    <li>
-        <a href="/azure/architecture/reference-architectures/sharepoint">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="/azure/architecture/reference-architectures/sharepoint/images/sharepoint.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Ejecución de SharePoint Server 2016 en Azure</h3>
-                            <p>Implemente y ejecute una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- SAP -->
-    <li>
-        <a href="/azure/architecture/reference-architectures/sap">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="/azure/architecture/reference-architectures/sap/images/sap.svg" width="100%" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Ejecución de SAP HANA en Azure</h3>
-                            <p>Implemente y ejecute SAP NetWeaver y SAP HANA en un entorno de alta disponibilidad en Azure.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
     <!-- Multitenant identity -->
     <li>
         <a href="/azure/architecture/multitenant-identity">
@@ -300,46 +260,6 @@ ms.locfileid: "30847737"
                         <div class="cardText">
                             <h3>Administración de identidades en aplicaciones multiinquilino</h3>
                             <p>Conozca los procedimientos recomendados para la arquitectura multiinquilino durante el uso de Azure AD para la administración de las identidades.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- AzureCAT blog -->
-    <li>
-        <a href="https://blogs.msdn.microsoft.com/azurecat/">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/azurecat.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Equipo de asesoramiento al cliente de Azure</h3>
-                            <p>Blog del equipo de AzureCAT</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- SQL CAT blog -->
-    <li>
-        <a href="https://blogs.msdn.microsoft.com/sqlcat/">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/sqlcat.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Equipo de asesoramiento al cliente de SQL Server</h3>
-                            <p>Blog del equipo de SQLCAT</p>
                         </div>
                     </div>
                 </div>

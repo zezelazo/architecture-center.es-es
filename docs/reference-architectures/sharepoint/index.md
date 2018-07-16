@@ -3,12 +3,12 @@ title: Ejecución de una granja de servidores de SharePoint Server 2016 de alta 
 description: Procedimientos de demostrada eficacia para configurar una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure.
 author: njray
 ms.date: 08/01/2017
-ms.openlocfilehash: d1e3f0b73c94844ac649bf2abb6917809202fdb7
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: 9fe4fc09cf3babdf3ec8e8f27049f90e0047e9f0
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270129"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987716"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>Ejecución de una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure
 
@@ -18,7 +18,7 @@ Esta arquitectura de referencia muestra un conjunto de procedimientos de demostr
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 Esta arquitectura se basa en la que se muestra en [Run Windows VMs for an N-tier application][windows-n-tier] (Ejecución de máquinas virtuales Windows para una aplicación de n niveles). Implementa una granja de servidores de SharePoint Server 2016 con alta disponibilidad dentro de una red virtual (VNet) de Azure. Esta arquitectura es adecuada para un entorno de pruebas o producción, una infraestructura híbrida de SharePoint con Office 365 o como base para un escenario de recuperación ante desastres.
 
@@ -38,9 +38,11 @@ La arquitectura consta de los siguientes componentes:
 
 - **Puerta de enlace**. La puerta de enlace proporciona una conexión entre la red local y la red virtual de Azure. La conexión puede usar ExpressRoute o VPN de sitio a sitio. Para más información, consulte [Connect an on-premises network to Azure][hybrid-ra] (Conexión de una red local a Azure).
 
-- **Controladores de dominio de Windows Server Active Directory (AD)**. Dado que SharePoint Server 2016 no admite el uso de Azure Active Directory Domain Services, debe implementar controladores de dominio de Windows Server AD. Estos controladores de dominio se ejecutan en la red virtual de Azure y tienen una relación de confianza con el bosque de Windows Server AD local. Las solicitudes web de cliente de los recursos de la granja de servidores de SharePoint se autentican en la red virtual en lugar de enviarse ese tráfico de autenticación a la red local a través de la conexión de puerta de enlace. En DNS, se crean registros A o CNAME de intranet para que los usuarios de intranet puedan resolver el nombre de la granja de servidores de SharePoint en la dirección IP privada del equilibrador de carga interno.
+- **Controladores de dominio de Windows Server Active Directory (AD)**. Esta arquitectura de referencia implementa controladores de dominio de Windows Server AD. Estos controladores de dominio se ejecutan en la red virtual de Azure y tienen una relación de confianza con el bosque de Windows Server AD local. Las solicitudes web de cliente de los recursos de la granja de servidores de SharePoint se autentican en la red virtual en lugar de enviarse ese tráfico de autenticación a la red local a través de la conexión de puerta de enlace. En DNS, se crean registros A o CNAME de intranet para que los usuarios de intranet puedan resolver el nombre de la granja de servidores de SharePoint en la dirección IP privada del equilibrador de carga interno.
 
-- **Grupo de disponibilidad AlwaysOn de SQL Server**. Para lograr una alta disponibilidad de la base de datos de SQL Server, se recomiendan los [grupos de disponibilidad AlwaysOn de SQL Server][sql-always-on]. Se usan dos máquinas virtuales para SQL Server. Una contiene la réplica de base de datos principal y la otra la réplica secundaria. 
+  SharePoint Server 2016 también admite el uso de [Azure Active Directory Domain Services](/azure/active-directory-domain-services/). Azure AD Domain Services proporciona servicios de dominio administrado, por lo que no necesitará implementar y administrar controladores de dominio en Azure.
+
+- **Grupo de disponibilidad AlwaysOn de SQL Server** Para lograr una alta disponibilidad de la base de datos de SQL Server, se recomiendan los [grupos de disponibilidad AlwaysOn de SQL Server][sql-always-on]. Se usan dos máquinas virtuales para SQL Server. Una contiene la réplica de base de datos principal y la otra la réplica secundaria. 
 
 - **Máquina virtual de mayoría de nodos**. Esta máquina virtual permite que el clúster de conmutación por error establezca el cuórum. Para más información, consulte [Descripción de las configuraciones de cuórum en un clúster de conmutación por error][sql-quorum].
 
