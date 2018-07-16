@@ -3,39 +3,141 @@ title: Arquitecturas de referencia de Azure
 description: Arquitecturas de referencia, planos y guía de implementación preceptiva para cargas de trabajo comunes en Azure.
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 6c9be20e2b831f2e6c1ffd33aa89a56375a0511c
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 374ca51d70e4999fbb1bacf47547040db6f0071f
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34422905"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987631"
 ---
-<!-- This file is generated! -->
-<!-- See the templates in ./build/reference-architectures  -->
-<!-- See data in index.json -->
-
 # <a name="azure-reference-architectures"></a>Arquitecturas de referencia de Azure
 
 Nuestras arquitecturas de referencia se organizan por escenario, agrupando juntas aquellas arquitecturas relacionadas. Cada arquitectura incluye procedimientos recomendados junto con consideraciones sobre escalabilidad, disponibilidad, capacidad de administración y seguridad. La mayoría también incluye una solución que se puede implementar.
 
-<section class="series">
-    <ul class="panelContent">
+Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications) | [Aplicaciones de N-niveles](#n-tier-applications) | [Redes virtuales](#virtual-networks) | [Active Directory](#extending-on-premises-active-directory-to-azure) | [Cargas de trabajo de máquinas virtuales](#vm-workloads)
 
-<!-- N-tier -->
+## <a name="big-data-solutions"></a>Soluciones de Big data
+
+<ul  class="panelContent cardsF">
+<!-- SQL Data Warehouse -->
 <li style="display: flex; flex-direction: column;">
-    <a href="./n-tier/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./data/enterprise-bi-sqldw.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./n-tier/images/n-tier-sql-server.svg" />
+                            <img src="./data/images/data-guide.svg" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Aplicación de n niveles</h3>
-                        <p>Implementación de una aplicación de n niveles en Azure, para Windows o Linux.</p>
-                        <p>Se muestran las configuraciones de SQL Server y Apache Cassandra. Para lograr una alta disponibilidad, implemente una configuración activa-pasiva en dos regiones.</p>
+                        <h3>Inteligencia empresarial con SQL Data Warehouse</h3>
+                        <p>Canalización de extracción, carga y transformación (ELT) para trasladar datos de una base de datos local a SQL Data Warehouse.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./data/enterprise-bi-adf.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./data/images/data-guide.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Inteligencia empresarial automatizada con Azure Data Factory</h3>
+                        <p>Automatice una canalización de ELT para realizar la carga incremental desde una base de datos local.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="web-applications"></a>Aplicaciones web
+
+<ul  class="panelContent cardsF">
+<li style="display: flex; flex-direction: column;">
+    <a href="./app-service-web-app/basic-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/app-service.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Aplicación web básica</h3>
+                        <p>Aplicación web con Azure App Service y Azure SQL Database.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./app-service-web-app/scalable-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/app-service.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Aplicación web altamente escalable</h3>
+                        <p>Procedimientos recomendados de mejora de la escalabilidad en una aplicación web.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./app-service-web-app/scalable-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/app-service.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Aplicación web de alta disponibilidad</h3>
+                        <p>Ejecute una aplicación web de App Service en varias regiones para lograr alta disponibilidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="n-tier-applications"></a>Aplicaciones de n niveles
+
+<ul  class="panelContent cardsF">
+<li style="display: flex; flex-direction: column;">
+    <a href="./n-tier/n-tier-sql-server.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./n-tier/images/Windows.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Aplicación de n niveles con SQL Server</h3>
+                        <p>Máquinas virtuales configuradas para una aplicación de n niveles mediante SQL Server en Windows.</p>
                     </div>
                 </div>
             </div>
@@ -43,92 +145,282 @@ Nuestras arquitecturas de referencia se organizan por escenario, agrupando junta
     </a>
 </li>
 
-<!-- Hybrid network -->
+<!-- Multi-region Windows -->
 <li style="display: flex; flex-direction: column;">
-    <a href="./hybrid-networking/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./n-tier/multi-region-sql-server.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./hybrid-networking/images/vpn.svg" height="140px" />
+                            <img src="./n-tier/images/Windows.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Red híbrida</h3>
-                        <p>Esta serie muestra opciones para crear una conexión de red entre una red local y Azure.</p>
-                        <p>Las configuraciones incluyen una VPN de sitio a sitio o Azure ExpressRoute para una conexión privada dedicada.</p>
+                        <h3>Aplicación de n niveles para varias regiones</h3>
+                        <p>Aplicación de n niveles en dos regiones para lograr alta disponibilidad mediante los Grupos de disponibilidad Always On de SQL Server.</p>
                     </div>
                 </div>
             </div>
         </div>
     </a>
 </li>
-    <!-- Network DMZ -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./dmz/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./dmz/images/secure-vnet-dmz.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Red perimetral</h3>
-                        <p>Esta serie muestra cómo crear una red perimetral para proteger el límite entre una red virtual de Azure y una red local o Internet.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- Identity management -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./identity/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./identity/images/adds-extend-domain.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Administración de identidades</h3>
-                        <p>Esta serie muestra opciones para integrar el entorno local de Active Directory (AD) con una red de Azure.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    <!-- App Service web application -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./app-service-web-app/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="./app-service-web-app/images/scalable-web-app.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Aplicación web de App Service</h3>
-                        <p>Esta serie muestra los procedimientos recomendados para las aplicaciones web que utilizan Azure App Service.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-    </ul>
-</section>
 
-<ul class="panelContent cardsI">
-    <!-- Jenkins build server -->
+<!-- N-tier Linux -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./n-tier/n-tier-cassandra.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./n-tier/images/LinuxPenguin.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Aplicación de n niveles con Cassandra</h3>
+                        <p>Máquinas virtuales configuradas para una aplicación de n niveles mediante Apache Cassandra en Linux.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="virtual-networks"></a>Redes virtuales
+
+<ul  class="panelContent cardsF">
+<li style="display: flex; flex-direction: column;">
+    <a href="./hybrid-networking/vpn.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/vpn.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Red híbrida mediante una red virtual privada (VPN)</h3>
+                        <p>Conecte una red local a una instancia de Azure Virtual Network.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- ExpressRoute -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./hybrid-networking/expressroute.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/expressroute.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Red híbrida mediante ExpressRoute</h3>
+                        <p>Use una conexión privada dedicada para extender una red local a Azure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- ExpressRoute + VPN -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./hybrid-networking/expressroute-vpn-failover.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/expressroute.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Red híbrida mediante ExpressRoute con conmutación por error de VPN</h3>
+                        <p>Use ExpressRoute con una VPN como una conexión de conmutación por error para lograr alta disponibilidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Hub spoke -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./hybrid-networking/hub-spoke.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/gateway.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Topología de red en estrella tipo hub-and-spoke</h3>
+                        <p>Cree un punto central de conectividad a la red local mientras aísla las cargas de trabajo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Shared services -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./hybrid-networking/hub-spoke.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/gateway.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Topología en estrella tipo hub-and-spoke con servicios compartidos</h3>
+                        <p>Amplíe una topología en estrella tipo hub-and-spoke incluyendo servicios compartidos como Active Directory.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Hybrid DMZ -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./dmz/secure-vnet-hybrid.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/vnet.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Red perimetral entre Azure y una red local</h3>
+                        <p>Use aplicaciones virtuales de red para crear una red híbrida segura.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Internet DMZ -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./dmz/secure-vnet-dmz.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/vnet.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Red perimetral entre Internet y Azure</h3>
+                        <p>Use aplicaciones virtuales de red para crear una red segura que acepta tráfico de Internet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="extending-on-premises-active-directory-to-azure"></a>Ampliación de una instancia local de Active Directory a Azure
+
+<ul class="panelContent cardsF">
+<!-- Azure AD -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./identity/azure-ad.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/azure-active-directory.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Integración con Azure Active Directory</h3>
+                        <p>Integre dominios de AD locales con Azure Active Directory.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- AD DS -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./identity/adds-extend-domain.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/active-directory-vm.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Ampliación del dominio de Active Directory local a Azure</h3>
+                        <p>Implementación de Active Directory Domain Services (AD DS) en Azure para ampliar el dominio local.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- AD DS Forest -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./identity/adds-forest.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/active-directory-vm.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Creación de un bosque de AD DS en Azure</h3>
+                        <p>Cree un dominio de AD independiente en Azure que sea de confianza para los bosques locales de AD.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- AD FS -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./identity/adfs.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/active-directory-vm.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Extensión de Servicios de federación de Active Directory (AD FS) a Azure</h3>
+                        <p>Use los Servicios de federación de Active Directory (AD FS) para la autenticación federada y la autorización de los componentes que se ejecutan en Azure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="vm-workloads"></a>Cargas de trabajo de máquinas virtuales
+
+<ul  class="panelContent cardsF">
+<!-- Jenkins -->
 <li style="display: flex; flex-direction: column;">
     <a href="./jenkins/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
@@ -141,14 +433,14 @@ Nuestras arquitecturas de referencia se organizan por escenario, agrupando junta
                     </div>
                     <div class="cardText">
                         <h3>Servidor de compilación de Jenkins</h3>
-                        <p>Implemente y haga funcionar un servidor Jenkins escalable y de nivel empresarial en Azure.</p>
+                        <p>Servidor Jenkins escalable y de nivel empresarial en Azure.</p>
                     </div>
                 </div>
             </div>
         </div>
     </a>
 </li>
-    <!-- SharePoint Server 2016 farm -->
+<!-- SharePoint -->
 <li style="display: flex; flex-direction: column;">
     <a href="./sharepoint/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
@@ -161,16 +453,16 @@ Nuestras arquitecturas de referencia se organizan por escenario, agrupando junta
                     </div>
                     <div class="cardText">
                         <h3>Granja de SharePoint Server 2016</h3>
-                        <p>Implemente y ejecute una granja de alta disponibilidad de SharePoint Server 2016 en Azure con los grupos de disponibilidad AlwaysOn de SQL Server.</p>
+                        <p>Granja de alta disponibilidad de SharePoint Server 2016 en Azure con Grupos de disponibilidad AlwaysOn de SQL Server.</p>
                     </div>
                 </div>
             </div>
         </div>
     </a>
 </li>
-    <!-- SAP NetWeaver and SAP HANA -->
+<!-- SAP -->
 <li style="display: flex; flex-direction: column;">
-    <a href="./sap/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./sap/sap-netweaver.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
@@ -180,8 +472,46 @@ Nuestras arquitecturas de referencia se organizan por escenario, agrupando junta
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Ejecución de SAP en Azure</h3>
-                        <p>Implemente y ejecute SAP en un entorno de alta disponibilidad en Azure.</p>
+                        <h3>SAP NetWeaver</h3>
+                        <p>SAP NetWeaver en Windows, en un entorno de alta disponibilidad que admite recuperación ante desastres.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./sap/sap-s4hana.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./sap/images/sap.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>SAP S/4HANA</h3>
+                        <p>SAP S/4HANA en Linux, en un entorno de alta disponibilidad que admite recuperación ante desastres.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./sap/hana-large-instances.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./sap/images/sap.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>SAP HANA en Azure (instancias grandes)</h3>
+                        <p>Las instancias de gran tamaño de HANA se implementan en servidores físicos en regiones de Azure.</p>
                     </div>
                 </div>
             </div>
@@ -189,3 +519,4 @@ Nuestras arquitecturas de referencia se organizan por escenario, agrupando junta
     </a>
 </li>
 </ul>
+
