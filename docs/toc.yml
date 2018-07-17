@@ -332,18 +332,32 @@
       href: example-scenario/index.md
     - name: AI
       items:
-        - name: Procesamiento de imágenes
+        - name: Clasificación de imágenes
           href: example-scenario/ai/intelligent-apps-image-processing.md
     - name: Aplicaciones
       items:
         - name: Bot de chat de reservas de hotel
           href: example-scenario/apps/commerce-chatbot.md
-        - name: DevOps con Azure Kubernetes Service
+        - name: DevOps con Containers
           href: example-scenario/apps/devops-with-aks.md
+        - name: DevOps con VSTS
+          href: example-scenario/apps/devops-dotnet-webapp.md
+        - name: SAP para desarrollo/pruebas
+          href: example-scenario/apps/sap-dev-test.md
+        - name: Front-end de comercio electrónico
+          href: example-scenario/apps/ecommerce-scenario.md
     - name: Datos y análisis
       items:
         - name: Detección de fraudes en tiempo real
           href: example-scenario/data/fraud-detection.md
+        - name: Procesamiento de pedidos escalable
+          href: example-scenario/data/ecommerce-order-processing.md
+    - name: Infraestructura
+      items:
+        - name: Windows multinivel
+          href: example-scenario/infrastructure/regulated-multitier-app.md
+        - name: Representación de vídeo de HPC
+          href: example-scenario/infrastructure/video-rendering.md
 - name: Arquitecturas de referencia
   items:
     - name: Información general
