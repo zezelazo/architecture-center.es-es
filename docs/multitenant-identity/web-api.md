@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authorize
 pnp.series.next: token-cache
-ms.openlocfilehash: 65529280c5849e36ed7ff23de08a0b485034d0d8
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 2d02ff7be04c6ebec888039453fe1ac7e957b301
+ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541471"
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37843681"
 ---
 # <a name="secure-a-backend-web-api"></a>Protección de una API web de back-end
 
@@ -68,7 +68,7 @@ La aplicación Tailspin implementa la identidad de usuario delegado. Estas son l
 En cualquier planteamiento, la aplicación web debe obtener un token de acceso, que es la credencial necesaria para llamar a la API web.
 
 * En el caso de la identidad de usuario delegado, el token tiene que provenir del proveedor de identidades, que puede emitir un token en nombre del usuario.
-* En el caso de las credenciales de cliente, una aplicación puede obtener el token del IDP u hospedar su propio servidor de tokens (pero no escriba un servidor de tokens desde cero; utilice un marco probado como [IdentityServer3]). Si la autenticación se realiza con Azure AD, se recomienda encarecidamente obtener el token de acceso de Azure AD, incluso con el flujo de credenciales de cliente.
+* En el caso de las credenciales de cliente, una aplicación puede obtener el token del IDP u hospedar su propio servidor de tokens (No escriba un servidor de tokens desde cero; utilice una plataforma probada como [IdentityServer4]). Si la autenticación se realiza con Azure AD, se recomienda encarecidamente obtener el token de acceso de Azure AD, incluso con el flujo de credenciales de cliente.
 
 En el resto de este artículo se supone que la aplicación se autentica con Azure AD.
 
@@ -79,7 +79,7 @@ Para que Azure AD emita un token de portador para la API web, necesita hacer alg
 
 1. Registre la API web en Azure AD.
 
-2. Agregue el identificador de cliente de la aplicación web al manifiesto de la aplicación de API web, en la propiedad `knownClientApplications` . Consulte [Update the application manifests](Actualización de los manifiestos de la aplicación).
+2. Agregue el identificador de cliente de la aplicación web al manifiesto de la aplicación de API web, en la propiedad `knownClientApplications` . Consulte [Actualización de manifiestos de aplicaciones](Actualización de los manifiestos de la aplicación).
 
 3. Conceda a la aplicación web permiso para llamar a la API web. En el Portal de administración de Azure, puede establecer dos tipos de permisos: "Permisos de aplicación" para la identidad de aplicación (flujo de credencial de cliente) o "Permisos delegados" para la identidad de usuario delegado.
    
@@ -115,7 +115,7 @@ Estos son los distintos parámetros que son necesarios:
 * `clientSecret`. El secreto de cliente de la aplicación web.
 * `redirectUri`. El URI de redirección establecido para OpenID Connect. Es aquí donde se llama de nuevo al proveedor de identidades con el token.
 * `resourceID`. El URI del identificador de aplicación de la API web que creó cuando registró la API web en Azure AD.
-* `tokenCache`. Un objeto que almacena en caché los tokens de acceso. Consulte [Token caching](Almacenamiento en caché de tokens).
+* `tokenCache`. Un objeto que almacena en caché los tokens de acceso. Consulte [Almacenamiento en caché de tokens](Almacenamiento en caché de tokens).
 
 Si `AcquireTokenByAuthorizationCodeAsync` se completa correctamente, ADAL almacena en caché el token. Más adelante, puede obtener el token de la memoria caché mediante una llamada a AcquireTokenSilentAsync:
 
@@ -271,9 +271,9 @@ public void ConfigureServices(IServiceCollection services)
 [JwtBearer]: https://www.nuget.org/packages/Microsoft.AspNet.Authentication.JwtBearer
 
 [Tailspin Surveys]: tailspin.md
-[IdentityServer3]: https://github.com/IdentityServer/IdentityServer3
-[Update the application manifests]: ./run-the-app.md#update-the-application-manifests
-[Token caching]: token-cache.md
+[IdentityServer4]: https://github.com/IdentityServer/IdentityServer4
+[Actualización de manifiestos de aplicaciones]: ./run-the-app.md#update-the-application-manifests
+[Almacenamiento en caché de tokens]: token-cache.md
 [registro de inquilinos]: signup.md
 [claims-transformation]: claims.md#claims-transformations
 [Authorization]: authorize.md

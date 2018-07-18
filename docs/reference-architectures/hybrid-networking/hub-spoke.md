@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 04/09/2018
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: 925e0f47cf6b9aa1ad48ffae2c9561a2393bf601
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: 9105748f434e5d655b09b1fe0775417f33a912b0
+ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142257"
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37843599"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke en Azure
 
@@ -33,7 +33,7 @@ Los usos habituales de esta arquitectura incluyen:
 * Cargas de trabajo que no requieren conectividad entre sí, pero requieren acceso a los servicios compartidos.
 * Empresas que requieren el control centralizado sobre aspectos de seguridad, como un firewall en el concentrador como una red perimetral, así como la administración segregada de las cargas de trabajo en cada radio.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 La arquitectura consta de los siguientes componentes:
 
@@ -163,7 +163,7 @@ Para implementar red virtual del concentrador, siga los pasos a continuación.
 
 2. (Opcional) Para una implementación de Linux, establezca `osType` en `Linux`.
 
-3. Para `sharedKey`, escriba una clave compartida para la conexión VPN. 
+3. Busque ambas instancias de `sharedKey` y especifique una clave compartida para la conexión VPN. Los valores deben coincidir.
 
     ```bash
     "sharedKey": "",

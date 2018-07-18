@@ -4,12 +4,12 @@ description: Instrucciones específicas de servicios para establecer el mecanism
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 77cf5d90373da2118d34301bd5c790080d3cf63f
-ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
+ms.openlocfilehash: 39d342dc96e3d0d923ce159c392d9427359a4639
+ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/22/2018
-ms.locfileid: "36327694"
+ms.lasthandoff: 07/05/2018
+ms.locfileid: "37843633"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Guía de reintentos para servicios específicos
 
@@ -375,7 +375,7 @@ Cuando se usa Service Bus, tenga en cuenta las siguientes directrices:
 
 Considere la posibilidad de comenzar con la configuración siguiente para volver a intentar las operaciones. Esta es la configuración de propósito general, y debe supervisar las operaciones y ajustar los valores para adaptarlos a su propio escenario.
 
-| Context | Latencia máxima de ejemplo | Directiva de reintentos | Settings | Cómo funciona |
+| Context | Latencia máxima de ejemplo | Directiva de reintentos | Configuración | Cómo funciona |
 |---------|---------|---------|---------|---------|
 | Interactivo, interfaz de usuario o primer plano | 2 segundos*  | Exponencial | MinimumBackoff = 0 <br/> MaximumBackoff = 30 s <br/> DeltaBackoff = 300 ms <br/> TimeBuffer = 300 ms <br/> MaxRetryCount = 2 | Intento 1: retraso de 0 s <br/> Intento 2: retraso de ~300 ms <br/> Intento 3: retraso de ~900 ms |
 | Segundo plano o lote | 30 segundos | Exponencial | MinimumBackoff = 1 <br/> MaximumBackoff = 30 s <br/> DeltaBackoff = 1,75 s <br/> TimeBuffer = 5 s <br/> MaxRetryCount = 3 | Intento 1: retraso de ~1 s <br/> Intento 2: retraso de ~3 s <br/> Intento 3: retraso de ~6 ms <br/> Intento 4: retraso de ~13 ms |
@@ -383,7 +383,7 @@ Considere la posibilidad de comenzar con la configuración siguiente para volver
 \*Sin incluir el retraso adicional que se suma si se recibe una respuesta de servidor ocupado.
 
 ### <a name="telemetry"></a>Telemetría
-Service Bus registra reintentos como eventos ETW mediante un **EventSource**. Debe asociar un **EventListener** al origen de eventos para capturar los eventos y verlos en el Visor de rendimiento o escribirlos en un registro de destino adecuado. Puede usar el [Bloque de aplicación de registro semántico](http://msdn.microsoft.com/library/dn775006.aspx) para ello. Los eventos de reintento tienen la forma siguiente:
+Service Bus registra reintentos como eventos ETW mediante un **EventSource**. Debe asociar un **EventListener** al origen de eventos para capturar los eventos y verlos en el Visor de rendimiento o escribirlos en un registro de destino adecuado. Los eventos de reintento tienen la forma siguiente:
 
 ```text
 Microsoft-ServiceBus-Client/RetryPolicyIteration
@@ -985,8 +985,8 @@ namespace RetryCodeSamples
 Al obtener acceso a los servicios de Azure o de terceros, tenga en cuenta lo siguiente:
 
 * Use un enfoque sistemático para administrar reintentos, quizás como código reutilizable, para que pueda aplicar una metodología coherente en todos los clientes y todas las soluciones.
-* Considere el uso de un marco de reintento como el bloque de aplicaciones de control de errores transitorios para administrar reintentos si el servicio de destino o el cliente no tiene ningún mecanismo de reintento integrado. Esto le ayudará a implementar un comportamiento de reintento coherente y puede proporcionar una estrategia de reintento predeterminada adecuados para el servicio de destino. Sin embargo, puede que necesite crear código de reintento personalizado para los servicios que tienen un comportamiento no estándar, que no dependen de excepciones para indicar errores transitorios o si desea usar una respuesta de **respuesta de reintento** para administrar el comportamiento de reintento.
-* La lógica de detección transitoria dependerá de la API de cliente real que use para invocar las llamadas REST. Algunos clientes, como los de la clase **HttpClient** más reciente no producirán excepciones para las solicitudes completadas con un código de estado HTTP no correcto. Esto mejora el rendimiento, pero impide el uso del bloque de aplicaciones de control de errores transitorios. En este caso podría encapsular la llamada a la API de REST con código que produce excepciones para códigos de estado HTTP no correctos que, a continuación, pueden ser procesados por el bloque. Como alternativa, puede usar un mecanismo diferente para controlar los reintentos.
+* Considere la posibilidad de usar una plataforma de reintentos, como [Polly][polly] para administrar los reintentos si el servicio de destino o el cliente no tiene ningún mecanismo de reintentos integrado. Esto le ayudará a implementar un comportamiento de reintento coherente y puede proporcionar una estrategia de reintento predeterminada adecuados para el servicio de destino. Sin embargo, puede que necesite crear código de reintento personalizado para los servicios que tienen un comportamiento no estándar, que no dependen de excepciones para indicar errores transitorios o si desea usar una respuesta de **respuesta de reintento** para administrar el comportamiento de reintento.
+* La lógica de detección transitoria dependerá de la API de cliente real que use para invocar las llamadas REST. Algunos clientes, como los de la clase **HttpClient** más reciente no producirán excepciones para las solicitudes completadas con un código de estado HTTP no correcto. 
 * El código de estado HTTP devuelto desde el servicio puede ayudar a indicar si el error es transitorio. Puede que necesite examinar las excepciones generadas por un cliente o el marco de trabajo de reintento para obtener acceso al código de estado o para determinar el tipo de excepción equivalente. Los siguientes códigos HTTP normalmente indican que un reintento es adecuado:
   * Tiempo de espera de solicitud 408
   * 429 Demasiadas solicitudes
@@ -999,7 +999,7 @@ Al obtener acceso a los servicios de Azure o de terceros, tenga en cuenta lo sig
   * WebExceptionStatus.ConnectFailure
   * WebExceptionStatus.Timeout
   * WebExceptionStatus.RequestCanceled
-* En el caso de un estado no disponible del servicio, el servicio podría indicar el retraso adecuado antes de reintentar en el encabezado de respuesta **Retry-After** o un encabezado personalizado diferente. Los servicios también pueden enviar información adicional como encabezados personalizados o incrustados en el contenido de la respuesta. El bloque de aplicaciones de control de errores transitorios no puede usar los encabezados ni ningún encabezado "reintentar después de" personalizado.
+* En el caso de un estado no disponible del servicio, el servicio podría indicar el retraso adecuado antes de reintentar en el encabezado de respuesta **Retry-After** o un encabezado personalizado diferente. Los servicios también pueden enviar información adicional como encabezados personalizados o incrustados en el contenido de la respuesta. 
 * No intente de nuevo los códigos de estado que representan errores de cliente (errores en el intervalo 4xx) excepto un Tiempo de espera de solicitud 408.
 * Pruebe las estrategias y mecanismos de reintento a fondo en una amplia variedad de condiciones, como diferentes estados de red diferente y diferentes cargas de sistema.
 

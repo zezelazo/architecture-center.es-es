@@ -4,12 +4,12 @@ description: Convenciones de nomenclatura para los recursos de Azure. Qué nombr
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: a92b6a1a23b35e7379f586d477b6f7cc6ccfc7e1
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: b9833654f63dc81ff6d05b9c49897e0c58de2683
+ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206385"
+ms.lasthandoff: 07/06/2018
+ms.locfileid: "37864562"
 ---
 # <a name="naming-conventions"></a>Convenciones de nomenclatura
 
@@ -76,7 +76,7 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 
 ### <a name="general"></a>General
 
-| Entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
+| Entidad | Ámbito | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
 | --- | --- | --- | --- | --- | --- | --- |
 |Grupo de recursos |Subscription |1-90 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado, paréntesis, guión, punto (excepto al final) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |Conjunto de disponibilidad |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado y guión |`<service-short-name>-<context>-as` |`profx-sql-as` |
@@ -84,7 +84,7 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 
 ### <a name="compute"></a>Compute
 
-| Entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
+| Entidad | Ámbito | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
 | --- | --- | --- | --- | --- | --- | --- |
 |Máquina virtual |Grupo de recursos |1-15 (Windows), 1-64 (Linux) |No distingue mayúsculas de minúsculas |Alfanuméricos y guión |`<name>-<role>-vm<number>` |`profx-sql-vm1` |
 |Function App | Global |1-60 |No distingue mayúsculas de minúsculas |Alfanuméricos y guión |`<name>-func` |`calcprofit-func` |
@@ -94,7 +94,7 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 
 ### <a name="storage"></a>Storage
 
-| Entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
+| Entidad | Ámbito | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
 | --- | --- | --- | --- | --- | --- | --- |
 |Nombre de cuenta de almacenamiento (datos) |Global |3-24 |Minúsculas |Alfanuméricas |`<globally unique name><number>` (utilice una función para calcular un GUID único para asignar nombres a las cuentas de almacenamiento) |`profxdata001` |
 |Nombre de cuenta de almacenamiento (discos) |Global |3-24 |Minúsculas |Alfanuméricas |`<vm name without hyphens>st<number>` |`profxsql001st0` |
@@ -107,7 +107,7 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 
 ### <a name="networking"></a>Redes
 
-| Entidad | Scope | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
+| Entidad | Ámbito | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
 | --- | --- | --- | --- | --- | --- | --- |
 |Virtual Network |Grupo de recursos |2-64 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<service short name>-vnet` |`profx-vnet` |
 |Subred |Red virtual principal |2-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<descriptive context>` |`web` |
@@ -122,7 +122,7 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 
 ## <a name="organize-resources-with-tags"></a>Organización de recursos con etiquetas
 
-Azure Resource Manager admite entidades de etiquetado con cadenas de texto arbitrarias para identificar el contexto y simplificar la automatización.  Por ejemplo, la etiqueta `"sqlVersion: "sql2014ee"` puede identificar todas las máquinas virtuales de una implementación que ejecutan SQL Server 2014 Enterprise Edition con el fin de ejecutar un script automático en ellas.  Las etiquetas se deben utilizar para aumentar y mejorar el contexto en las convenciones de nomenclatura elegidas.
+Azure Resource Manager admite entidades de etiquetado con cadenas de texto arbitrarias para identificar el contexto y simplificar la automatización.  Por ejemplo, la etiqueta `"sqlVersion"="sql2014ee"` podría identificar las máquinas virtuales que ejecutan SQL Server 2014 Enterprise Edition. Las etiquetas se deben utilizar para aumentar y mejorar el contexto en las convenciones de nomenclatura elegidas.
 
 > [!TIP]
 > Otra ventaja de las etiquetas es que abarcan grupos de recursos, lo que permite vincular y poner en correlación entidades de implementaciones dispares.
@@ -149,7 +149,7 @@ Un ejemplo de varios enfoques de etiquetado comunes:
 | Nombre de proyecto |projectName |`myproject` |Nombre del proyecto o de la línea de producto |
 | Versión de proyecto |projectVersion |`3.4` |Versión del proyecto o de la línea de producto |
 | Environment |Environment |`<Production, Staging, QA >` |Identificador de entorno |
-| Nivel: |Nivel: |`Front End, Back End, Data` |Identificación de nivel o rol/contexto |
+| Nivel |Nivel: |`Front End, Back End, Data` |Identificación de nivel o rol/contexto |
 | Perfil de datos |dataProfile |`Public, Confidential, Restricted, Internal` |Confidencialidad de los datos almacenados en el recurso |
 
 ## <a name="tips-and-tricks"></a>Trucos y sugerencias
