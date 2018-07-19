@@ -2,14 +2,13 @@
 title: Criterios para elegir un servicio de proceso de Azure
 description: Compare los servicios de proceso de Azure a través de varios ejes
 author: MikeWasson
-layout: LandingPage
 ms.date: 06/13/2018
-ms.openlocfilehash: c913d5a5e5b19f33d2e368153ae1053d4d42fc1e
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: cc1ee00d768f46094a2115282aac80316d2ce273
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37891247"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060785"
 ---
 # <a name="criteria-for-choosing-an-azure-compute-service"></a>Criterios para elegir un servicio de proceso de Azure
 
@@ -31,7 +30,7 @@ Notas
 
 1. <span id="note1">Si usa un plan de consumo. Si usa un plan de App Service, las funciones se ejecutan en las VM asignadas al plan de App Service. Consulte [Elija el plan de servicio correcta para Azure Functions][function-plans].</span>
 2. <span id="note2">Acuerdo de Nivel de Servicio superior con dos o más instancias</span>.
-3. </span>Para entornos de producción.<span id="note3">
+3. <span id="note3">Para entornos de producción.</span>
 4. <span id="note4">Se puede reducir verticalmente hasta cero una vez completado el trabajo</span>.
 5. <span id="note5">Requiere App Service Environment.</span>
 6. <span id="note6">Use [Hybrid Connections de Azure App Service][app-service-hybrid].</span>
