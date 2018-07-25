@@ -1,16 +1,16 @@
 ---
-title: 'Aplicaciones inteligentes: procesamiento de imágenes en Azure'
-description: Solución probada para incorporar procesamiento de imágenes en sus aplicaciones de Azure.
+title: Clasificación de imágenes de reclamaciones de seguros en Azure
+description: Escenario probado para incorporar procesamiento de imágenes en sus aplicaciones de Azure.
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: c5bfb9a929ddddda4336e1cbc8665a0b4d3bbe2c
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: 361a88234fd9ed918ab7664893f86666b4328b8c
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37891386"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060836"
 ---
-# <a name="insurance-claim-image-classification-on-azure"></a>Clasificación de imágenes de reclamaciones de seguros en Azure
+# <a name="image-classification-for-insurance-claims-on-azure"></a>Clasificación de imágenes de reclamaciones de seguros en Azure
 
 Este escenario de ejemplo es aplicable a empresas que necesitan procesar imágenes.
 
@@ -18,19 +18,18 @@ Algunas aplicaciones posibles son clasificar las imágenes de un sitio web de mo
 
 Con los servicios de Azure tales como Computer Vision API y Azure Functions, las empresas pueden eliminar la necesidad de administrar servidores individuales, al tiempo que reducen los costos y aprovechan los conocimientos que Microsoft ya ha desarrollado alrededor del procesamiento de imágenes con Cognitive Services. En concreto, este es un escenario de procesamiento de imágenes. Si tiene distintas necesidades de inteligencia artificial, tenga en cuenta el conjunto completo de [Cognitive Services][cognitive-docs].
 
-## <a name="potential-use-cases"></a>Posibles casos de uso
+## <a name="related-use-cases"></a>Casos de uso relacionados
 
-Tenga en cuenta esta solución para los casos de uso siguientes:
+Tenga en cuenta este escenario para los casos de uso siguientes:
 
 * Clasificar imágenes en un sitio web de moda.
-* Clasificar imágenes para las reclamaciones de seguros
 * Clasificar los datos de telemetría de las capturas de pantalla de juegos.
 
 ## <a name="architecture"></a>Arquitectura
 
 ![Arquitectura de aplicaciones inteligente: Computer Vision][architecture-computer-vision]
 
-Esta solución trata los componentes de back-end de una aplicación web o móvil. Los datos fluyen por la solución de la siguiente manera:
+Este escenario trata los componentes de back-end de una aplicación web o móvil. Los datos fluyen por el escenario de la siguiente manera:
 
 1. Azure Functions actúa como capa de API. Estas API permiten que la aplicación carguen imágenes y recuperen datos de Cosmos DB.
 
@@ -64,7 +63,7 @@ Esta solución trata los componentes de back-end de una aplicación web o móvil
 
 ### <a name="scalability"></a>Escalabilidad
 
-La mayor parte todos los componentes de esta solución son servicios administrados que escalan automáticamente. Hay dos excepciones destacables: Azure Functions tiene un límite máximo de 200 instancias. Si necesita escalar más allá, considere la posibilidad de usar varias regiones o planes de la aplicación.
+La mayor parte todos los componentes de este escenario son servicios administrados que escalan automáticamente. Hay dos excepciones destacables: Azure Functions tiene un límite máximo de 200 instancias. Si necesita escalar más allá, considere la posibilidad de usar varias regiones o planes de la aplicación.
 
 Cosmos DB no reduce horizontalmente la escala de forma automática en términos de unidades de solicitud (RU) aprovisionadas.  Para obtener instrucciones sobre cómo calcular los requisitos, consulte [unidades de solicitud][request-units] en nuestra documentación. Para aprovechar al máximo el escalado en Cosmos DB, eche un vistazo también a las [claves de partición][partition-key].
 
@@ -80,13 +79,13 @@ Para obtener instrucciones generales sobre el diseño de soluciones seguras, con
 
 ### <a name="resiliency"></a>Resistencia
 
-En esta solución, todos los componentes son administrados, por lo que, en un nivel regional, son resistentes de forma automática. 
+En este escenario, todos los componentes son administrados, por lo que, en un nivel regional, son resistentes de forma automática.
 
 Para obtener instrucciones generales sobre el diseño de soluciones resistentes, consulte [Diseño de aplicaciones resistentes de Azure][resiliency].
 
 ## <a name="pricing"></a>Precios
 
-Para explorar el costo de ejecutar esta solución, todos los servicios están preconfigurados en la calculadora de costos. Para ver cómo cambiarían los precios en su caso concreto, cambie las variables pertinentes para que coincidan con el tráfico esperado.
+Para explorar el costo de ejecutar este escenario, todos los servicios están preconfigurados en la calculadora de costos. Para ver cómo cambiarían los precios en su caso concreto, cambie las variables pertinentes para que coincidan con el tráfico esperado.
 
 Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tráfico (hemos dado por hecho que todas las imágenes tienen un tamaño de 100 Kb):
 
@@ -96,7 +95,7 @@ Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tr�
 
 ## <a name="related-resources"></a>Recursos relacionados
 
-Para ver una ruta de aprendizaje guiado de esta solución, consulte [Compilación de una aplicación web sin servidor en Azure][serverless].  
+Para ver una ruta de aprendizaje guiado de este escenario, consulte [Compilación de una aplicación web sin servidor en Azure][serverless].  
 
 Antes de poner esto en un entorno de producción, revise los [procedimientos recomendados][functions-best-practices] de Azure Functions.
 

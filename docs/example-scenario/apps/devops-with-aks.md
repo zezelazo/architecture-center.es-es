@@ -1,26 +1,26 @@
 ---
-title: DevOps con Jenkins y Azure Kubernetes Service
-description: Solución probada para la creación de una canalización de DevOps para una aplicación web de Node.js que usa Jenkins, Azure Container Registry, Azure Kubernetes Service, Cosmos DB y Grafana.
+title: Canalización de CI/CD para cargas de trabajo basadas en contenedores
+description: Escenario probado para la creación de una canalización de DevOps para una aplicación web de Node.js que usa Jenkins, Azure Container Registry, Azure Kubernetes Service, Cosmos DB y Grafana.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 9dbd1cb335f1c03c54ea342466594048e907d040
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: d9f6571234a0c3e67a233cfda1a37f6fb32929a3
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37891389"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060768"
 ---
-# <a name="deploy-a-container-based-devops-pipeline-for-modern-application-development-with-jenkins-and-azure-kubernetes-service"></a>Implementación de una canalización de DevOps basada en contenedores para el desarrollo de aplicaciones modernas con Jenkins y Azure Kubernetes Service
+# <a name="cicd-pipeline-for-container-based-workloads"></a>Canalización de CI/CD para cargas de trabajo basadas en contenedores
 
-Este escenario de ejemplo es aplicable a empresas que desean modernizar el desarrollo de aplicaciones mediante el uso de contenedores y flujos de trabajo de DevOps. En esta solución, Jenkins genera e implementa una aplicación web de Node.js en Azure Container Registry y Azure Kubernetes Service. Para agregar una capa de base de datos distribuida globalmente, se usa Azure Cosmos DB. Para supervisar y solucionar problemas de rendimiento de la aplicación, Azure Monitor se integra con una instancia y un panel de Grafana.
+Este escenario de ejemplo es aplicable a empresas que desean modernizar el desarrollo de aplicaciones mediante el uso de contenedores y flujos de trabajo de DevOps. En este escenario, Jenkins genera e implementa una aplicación web de Node.js en Azure Container Registry y Azure Kubernetes Service. Para agregar una capa de base de datos distribuida globalmente, se usa Azure Cosmos DB. Para supervisar y solucionar problemas de rendimiento de la aplicación, Azure Monitor se integra con una instancia y un panel de Grafana.
 
 Algunos ejemplos de escenarios de aplicación son la provisión de un entorno de desarrollo automatizado, la validación de nuevas confirmaciones de código y la inserción de nuevas implementaciones en entornos de ensayo o producción. Tradicionalmente, las empresas tenían que crear y compilar las aplicaciones y actualizaciones manualmente, y mantener una base de código grande y rígida. Un enfoque moderno del desarrollo de aplicaciones que usa integración continua (CI) e implementación continua (CD) permite crear, probar e implementar servicios más rápidamente. Este enfoque moderno permite lanzar aplicaciones y actualizaciones a los clientes más rápidamente y responder a las cambiantes demandas del negocio de manera más ágil.
 
 Con servicios de Azure como Azure Kubernetes Service, Container Registry y Cosmos DB, las empresas pueden usar las últimas novedades en técnicas y herramientas de desarrollo de aplicaciones para simplificar el proceso de una implementación de alta disponibilidad.
 
-## <a name="potential-use-cases"></a>Posibles casos de uso
+## <a name="related-use-cases"></a>Casos de uso relacionados
 
-Tenga en cuenta esta solución para los casos de uso siguientes:
+Tenga en cuenta este escenario para los casos de uso siguientes:
 
 * Modernización de procedimientos de desarrollo de aplicaciones a un modelo de microservicios basado en contenedores.
 * Aceleración del desarrollo de aplicaciones y los ciclos de vida de implementación.
@@ -28,9 +28,9 @@ Tenga en cuenta esta solución para los casos de uso siguientes:
 
 ## <a name="architecture"></a>Arquitectura
 
-![Introducción a la arquitectura de los componentes de Azure implicados en una solución de DevOps con Jenkins, Azure Container Registry y Azure Kubernetes Service][architecture]
+![Introducción a la arquitectura de los componentes de Azure implicados en un escenario de DevOps con Jenkins, Azure Container Registry y Azure Kubernetes Service][architecture]
 
-Esta solución incluye una canalización de DevOps para una aplicación web de Node.js y un servidor back-end de base de datos. Los datos fluyen por la solución de la siguiente manera:
+Este escenario incluye una canalización de DevOps para una aplicación web de Node.js y un servidor back-end de base de datos. Los datos fluyen por el escenario de la siguiente manera:
 
 1. Un programador hace cambios en el código fuente de la aplicación web de Node.js.
 2. El cambio de código se confirma en un repositorio de control de código fuente, por ejemplo, GitHub.
@@ -43,7 +43,7 @@ Esta solución incluye una canalización de DevOps para una aplicación web de N
 
 ### <a name="components"></a>Componentes
 
-* [Jenkins][jenkins] es un servidor de automatización de código abierto que se integra perfectamente con los servicios de Azure para permitir la integración continua (CI) y la entrega continua (CD). En esta solución, Jenkins orquesta la creación de nuevas imágenes de contenedor en función de las confirmaciones en el control de código fuente, inserta esas imágenes en Azure Container Registry, a continuación, actualiza las instancias de aplicación en Azure Kubernetes Service.
+* [Jenkins][jenkins] es un servidor de automatización de código abierto que se integra perfectamente con los servicios de Azure para permitir la integración continua (CI) y la entrega continua (CD). En este escenario, Jenkins orquesta la creación de nuevas imágenes de contenedor en función de las confirmaciones en el control de código fuente, inserta esas imágenes en Azure Container Registry, a continuación, actualiza las instancias de aplicación en Azure Kubernetes Service.
 * Las [máquinas virtuales Linux de Azure][azurevm-docs] se utilizan para ejecutar las instancias de Jenkins y Grafana.
 * [Azure Container Registry][azureacr-docs] almacena y administra las imágenes de contenedor que usa el clúster de Azure Kubernetes Service. Las imágenes se almacenan de forma segura y se pueden replicar en otras regiones mediante la plataforma Azure, para acelerar los tiempos de implementación.
 * [Azure Kubernetes Service][azureaks-docs] es una plataforma administrada de Kubernetes que permite implementar y administrar aplicaciones en contenedores sin necesidad de tener conocimientos de orquestación de contenedores. Como servicio hospedado de Kubernetes, Azure maneja tareas críticas como la supervisión del estado y el mantenimiento para usted.
@@ -61,11 +61,11 @@ Esta solución incluye una canalización de DevOps para una aplicación web de N
 
 ### <a name="availability"></a>Disponibilidad
 
-Para supervisar el rendimiento de la aplicación e informar sobre problemas, esta solución combina Azure Monitor con Grafana para disponer de paneles visuales. Estas herramientas permiten supervisar y solucionar problemas de rendimiento que pueden requerir actualizaciones de código, que después se pueden implementar con la canalización de CI/CD.
+Para supervisar el rendimiento de la aplicación e informar sobre problemas, este escenario combina Azure Monitor con Grafana para disponer de paneles visuales. Estas herramientas permiten supervisar y solucionar problemas de rendimiento que pueden requerir actualizaciones de código, que después se pueden implementar con la canalización de CI/CD.
 
 Como parte del clúster de Azure Kubernetes Service, un equilibrador de carga distribuye el tráfico de aplicación a uno o varios contenedores (pods) que ejecutan la aplicación. Este método de ejecutar aplicaciones en contenedor en Kubernetes proporciona una infraestructura de alta disponibilidad para sus clientes.
 
-Para ver otros temas de escalabilidad, consulte la [lista de comprobación de disponibilidad][availability] que encontrará en el centro de arquitectura.
+Para ver otros temas de disponibilidad, consulte la [lista de comprobación de disponibilidad][availability] que encontrará en el centro de arquitectura.
 
 ### <a name="scalability"></a>Escalabilidad
 
@@ -77,19 +77,19 @@ Para ver otros temas de escalabilidad, consulte la [lista de comprobación de es
 
 ### <a name="security"></a>Seguridad
 
-Para minimizar la superficie de ataque, estas soluciones no exponen la instancia de máquina virtual de Jenkins mediante HTTP. Para cualquier tarea de administración que necesite interactuar con Jenkins, cree una conexión remota segura usando un túnel SSH desde el equipo local. La autenticación de clave pública SSH solo se permite para las instancias de máquina virtual de Jenkins y Grafana. Los inicios de sesión basados en contraseña están deshabilitados. Para más información, consulte [Ejecución de un servidor de Jenkins en Azure](../../reference-architectures/jenkins/index.md).
+Para minimizar la superficie de ataque, estos escenarios no exponen la instancia de máquina virtual de Jenkins mediante HTTP. Para cualquier tarea de administración que necesite interactuar con Jenkins, cree una conexión remota segura usando un túnel SSH desde el equipo local. La autenticación de clave pública SSH solo se permite para las instancias de máquina virtual de Jenkins y Grafana. Los inicios de sesión basados en contraseña están deshabilitados. Para más información, consulte [Ejecución de un servidor de Jenkins en Azure](../../reference-architectures/jenkins/index.md).
 
-Para separar las credenciales y los permisos, esta solución usa a una entidad de servicio dedicada de Azure Active Directory (AD). Las credenciales de esta entidad de servicio se almacenan como un objeto de credencial segura en Jenkins, por lo que no están directamente expuestas ni son visibles dentro de los scripts o la canalización de compilación.
+Para separar las credenciales y los permisos, este escenario usa a una entidad de servicio dedicada de Azure Active Directory (AD). Las credenciales de esta entidad de servicio se almacenan como un objeto de credencial segura en Jenkins, por lo que no están directamente expuestas ni son visibles dentro de los scripts o la canalización de compilación.
 
 Para obtener instrucciones generales sobre el diseño de soluciones seguras, consulte la [documentación de seguridad de Azure][security].
 
 ### <a name="resiliency"></a>Resistencia
 
-Esta solución utiliza Azure Kubernetes Service para la aplicación. En Kubernetes se integran los componentes de resistencia que supervisan y reinician los contenedores (pods) en caso de problemas. Combinados con la ejecución de varios nodos de Kubernetes, la aplicación puede tolerar que un pod o un nodo no estén disponibles.
+Este escenario utiliza Azure Kubernetes Service para la aplicación. En Kubernetes se integran los componentes de resistencia que supervisan y reinician los contenedores (pods) en caso de problemas. Combinados con la ejecución de varios nodos de Kubernetes, la aplicación puede tolerar que un pod o un nodo no estén disponibles.
 
 Para obtener instrucciones generales sobre el diseño de soluciones resistentes, consulte [Diseño de aplicaciones resistentes de Azure][resiliency].
 
-## <a name="deploy-the-solution"></a>Implementación de la solución
+## <a name="deploy-the-scenario"></a>Implementación del escenario
 
 **Requisitos previos**
 
@@ -98,16 +98,16 @@ Para obtener instrucciones generales sobre el diseño de soluciones resistentes,
 * Necesita a una entidad de servicio de Azure Active Directory (AD) para la autenticación del servicio y los recursos. Si es necesario, cree una entidad de servicio con [az ad sp create-for-rbac][createsp].
 
     ```azurecli-interactive
-    az ad sp create-for-rbac --name myDevOpsSolution
+    az ad sp create-for-rbac --name myDevOpsScenario
     ```
 
-    Anote los valores de *appId* y *password* que se muestran en la salida de este comando. Estos valores se proporcionan en la plantilla al implementar la solución.
+    Anote los valores de *appId* y *password* que se muestran en la salida de este comando. Estos valores se proporcionan en la plantilla al implementar el escenario.
 
-Para implementar esta solución con una plantilla de Azure Resource Manager, realice los pasos siguientes.
+Para implementar este escenario con una plantilla de Azure Resource Manager, realice los pasos siguientes.
 
 1. Haga clic en botón **Implementar en Azure**.<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fdevops-with-aks%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. Espere a que la implementación de plantilla se abra en Azure Portal y complete los pasos siguientes:
-   * Elija **Crear nuevo** para el grupo de recursos y proporcione un nombre, por ejemplo, *myAKSDevOpsSolution*.
+   * Elija **Crear nuevo** para el grupo de recursos y proporcione un nombre, por ejemplo, *myAKSDevOpsScenario*.
    * Seleccione una región en el cuadro de lista desplegable **Ubicación**.
    * Escriba el identificador de aplicación de la entidad de servicio y la contraseña del comando `az ad sp create-for-rbac`.
    * Indique un nombre de usuario y una contraseña segura para la instancia de Jenkins y la consola de Grafana.
@@ -119,7 +119,7 @@ La implementación puede tardar unos 15-20 minutos en completarse.
 
 ## <a name="pricing"></a>Precios
 
-Para explorar el costo de ejecutar esta solución, todos los servicios están preconfigurados en la calculadora de costos. Para ver cómo cambiarían los precios en su caso concreto, cambie las variables pertinentes para que coincidan con el tráfico esperado. coincidan con el tráfico esperado.
+Para explorar el costo de ejecutar este escenario, todos los servicios están preconfigurados en la calculadora de costos. Para ver cómo cambiarían los precios en su caso concreto, cambie las variables pertinentes para que coincidan con el tráfico esperado. coincidan con el tráfico esperado.
 
 Hemos incluido tres perfiles de costos de ejemplo basados en número de imágenes de contenedor que se almacenarán y los nodos de Kubernetes para ejecutar las aplicaciones.
 
@@ -129,7 +129,7 @@ Hemos incluido tres perfiles de costos de ejemplo basados en número de imágene
 
 ## <a name="related-resources"></a>Recursos relacionados
 
-Esta solución utiliza Azure Container Registry y Azure Kubernetes Service para almacenar y ejecutar las aplicaciones basadas en contenedores. También se puede usar Azure Container Instances para ejecutar aplicaciones basadas en contenedores, sin tener que aprovisionar componentes de orquestación. Para más información, consulte [Introducción a Azure Container Instances][azureaci-docs].
+Este escenario utiliza Azure Container Registry y Azure Kubernetes Service para almacenar y ejecutar las aplicaciones basadas en contenedores. También se puede usar Azure Container Instances para ejecutar aplicaciones basadas en contenedores, sin tener que aprovisionar componentes de orquestación. Para más información, consulte [Introducción a Azure Container Instances][azureaci-docs].
 
 <!-- links -->
 [architecture]: ./media/devops-with-aks/architecture-devops-with-aks.png

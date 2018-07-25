@@ -4,12 +4,12 @@ description: Convenciones de nomenclatura para los recursos de Azure. Qué nombr
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: b9833654f63dc81ff6d05b9c49897e0c58de2683
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: 09bcfa3c0a0c46605f0025adad06f8049f109f1b
+ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864562"
+ms.lasthandoff: 07/12/2018
+ms.locfileid: "38987740"
 ---
 # <a name="naming-conventions"></a>Convenciones de nomenclatura
 
@@ -78,7 +78,7 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 
 | Entidad | Ámbito | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
 | --- | --- | --- | --- | --- | --- | --- |
-|Grupo de recursos |Subscription |1-90 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado, paréntesis, guión, punto (excepto al final) |`<service short name>-<environment>-rg` |`profx-prod-rg` |
+|Grupo de recursos |Subscription |1-90 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado, paréntesis, guión, punto (excepto al final) y caracteres Unicode |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |Conjunto de disponibilidad |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado y guión |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |Etiqueta |Entidad asociada |512 (nombre), 256 (valor) |No distingue mayúsculas de minúsculas |Alfanuméricas |`"key" : "value"` |`"department" : "Central IT"` |
 

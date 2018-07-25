@@ -1,26 +1,26 @@
 ---
-title: Bot de chat conversacional de Azure para reservas de hotel
-description: Solución probada para la creación de un bot de chat de conversación para aplicaciones de comercio con Azure Bot Service, Cognitive Services y LUIS, Azure SQL Database y Application Insights.
+title: Bot conversacional para reservas de hotel en Azure
+description: Escenario probado para la creación de un bot de chat de conversación para aplicaciones de comercio con Azure Bot Service, Cognitive Services y LUIS, Azure SQL Database y Application Insights.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 85bdc3194961bbbd8d89db34e5c56e4baa8d8599
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: b664faf20d806824c2581346aaa592b0d74207da
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37891385"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060870"
 ---
-# <a name="conversational-azure-chatbot-for-hotel-reservations"></a>Bot de chat conversacional de Azure para reservas de hotel
+# <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Bot conversacional para reservas de hotel en Azure
 
-Este escenario de ejemplo es aplicable a empresas que necesitan integrar un bot de chat de conversación en las aplicaciones. En esta solución, se usa un bot de chat de C# para una cadena de hoteles que permite a los clientes comprobar la disponibilidad y reservar alojamiento mediante una aplicación web o móvil.
+Este escenario de ejemplo es aplicable a empresas que necesitan integrar un bot de chat de conversación en las aplicaciones. En este escenario, se usa un bot de chat de C# para una cadena de hoteles que permite a los clientes comprobar la disponibilidad y reservar alojamiento mediante una aplicación web o móvil.
 
 Algunos escenarios de ejemplo son proporcionar a los clientes una manera de ver la disponibilidad del hotel y reservar habitaciones, consultar el menú del restaurante para llevar y realizar un pedido de comida, o buscar y pedir copias impresas de fotografías. Tradicionalmente, las empresas tendrían que contratar y enseñar a los agentes de servicio al cliente para responder a estas solicitudes de los clientes, y los clientes tendrían que esperar a que hubiera un representante disponible para obtener asistencia.
 
 Con los servicios de Azure como Bot Service, LUIS o Speech API, las compañías pueden ayudar a los clientes y procesar pedidos o reservas con bots automatizados y escalables.
 
-## <a name="potential-use-cases"></a>Posibles casos de uso
+## <a name="related-use-cases"></a>Casos de uso relacionados
 
-Tenga en cuenta esta solución para los casos de uso siguientes:
+Tenga en cuenta este escenario para los casos de uso siguientes:
 
 * Ver el menú del restaurante para llevar y pedir comida
 * Comprobar la disponibilidad del hotel y reservar una habitación
@@ -30,7 +30,7 @@ Tenga en cuenta esta solución para los casos de uso siguientes:
 
 ![Introducción a la arquitectura de los componentes implicados en un bot de chat conversacional de Azure][architecture]
 
-Esta solución incluye un bot de conversación que funciona como un conserje de hotel. Los datos fluyen por la solución de la siguiente manera:
+Este escenario incluye un bot de conversación que funciona como un conserje de hotel. Los datos fluyen por el escenario de la siguiente manera:
 
 1. El cliente accede al bot de chat mediante una aplicación web o móvil.
 2. El usuario se autentica con Azure Active Directory B2C.
@@ -58,19 +58,19 @@ Esta solución incluye un bot de conversación que funciona como un conserje de 
 
 ### <a name="availability"></a>Disponibilidad
 
-Esta solución utiliza Azure SQL Database para almacenar las reservas de los clientes. SQL Database incluye bases de datos con redundancia de zona, grupos de conmutación por error y replicación geográfica. Para más información, consulte [Funcionalidades de disponibilidad de Azure SQL Database][sqlavailability-docs].
+Este escenario utiliza Azure SQL Database para almacenar las reservas de los clientes. SQL Database incluye bases de datos con redundancia de zona, grupos de conmutación por error y replicación geográfica. Para más información, consulte [Funcionalidades de disponibilidad de Azure SQL Database][sqlavailability-docs].
 
-Para ver otros temas de escalabilidad, consulte la [lista de comprobación de disponibilidad][availability] que encontrará en el centro de arquitectura de Azure.
+Para ver otros temas de disponibilidad, consulte la [lista de comprobación de disponibilidad][availability] que encontrará en Azure Architecture Center.
 
 ### <a name="scalability"></a>Escalabilidad
 
-Esta solución utiliza Azure App Service. Con App Service, puede escalar automáticamente el número de instancias que ejecutan su bot. Esta funcionalidad le permite satisfacer la demanda de los clientes para su aplicación web y bot de chat. Para más información sobre el escalado automático, consulte [Procedimientos recomendados de escalado automático][autoscaling] en el centro de arquitectura.
+Este escenario utiliza Azure App Service. Con App Service, puede escalar automáticamente el número de instancias que ejecutan su bot. Esta funcionalidad le permite satisfacer la demanda de los clientes para su aplicación web y bot de chat. Para más información sobre el escalado automático, consulte [Procedimientos recomendados de escalado automático][autoscaling] en el centro de arquitectura.
 
 Para ver otros temas de escalabilidad, consulte la [lista de comprobación de escalabilidad][scalability] que encontrará en el centro de arquitectura de Azure.
 
 ### <a name="security"></a>Seguridad
 
-Esta solución usa Azure Active Directory B2C para autenticar los usuarios. Con AAD B2C, su bot de chat de no almacena ninguna información de cuenta confidencial de sus clientes ni las credenciales. Para más información, consulte [Introducción a Azure Active Directory B2C][aadb2c-docs].
+Este escenario usa Azure Active Directory B2C para autenticar los usuarios. Con AAD B2C, su bot de chat de no almacena ninguna información de cuenta confidencial de sus clientes ni las credenciales. Para más información, consulte [Introducción a Azure Active Directory B2C][aadb2c-docs].
 
 La información almacenada en Azure SQL Database se cifra en reposo con cifrado de datos transparente (TDE). SQL Database también ofrece Always Encrypted, que cifra los datos durante las operaciones de consulta y procesamiento. Para más información sobre la seguridad de SQL Database, consulte [Cumplimiento y seguridad de Azure SQL Database][sqlsecurity-docs].
 
@@ -78,15 +78,15 @@ Para obtener instrucciones generales sobre el diseño de soluciones seguras, con
 
 ### <a name="resiliency"></a>Resistencia
 
-Esta solución utiliza Azure SQL Database para almacenar las reservas de los clientes. SQL Database incluye bases de datos con redundancia de zona, grupos de conmutación por error, replicación geográfica y copias de seguridad automáticas. Estas características permiten que la aplicación continúe ejecutándose en caso de un evento de mantenimiento o una interrupción. Para más información, consulte [Funcionalidades de disponibilidad de Azure SQL Database][sqlavailability-docs].
+Este escenario utiliza Azure SQL Database para almacenar las reservas de los clientes. SQL Database incluye bases de datos con redundancia de zona, grupos de conmutación por error, replicación geográfica y copias de seguridad automáticas. Estas características permiten que la aplicación continúe ejecutándose en caso de un evento de mantenimiento o una interrupción. Para más información, consulte [Funcionalidades de disponibilidad de Azure SQL Database][sqlavailability-docs].
 
-Para supervisar el estado de mantenimiento de la aplicación, esta solución usa Application Insights. Con Application Insights, puede generar alertas y responder a problemas de rendimiento que pueden afectar a la experiencia del cliente y la disponibilidad del bot de chat. Para más información, consulte [¿Qué es Application Insights?][appinsights-docs]
+Para supervisar el estado de mantenimiento de la aplicación, este escenario usa Application Insights. Con Application Insights, puede generar alertas y responder a problemas de rendimiento que pueden afectar a la experiencia del cliente y la disponibilidad del bot de chat. Para más información, consulte [¿Qué es Application Insights?][appinsights-docs]
 
 Para obtener instrucciones generales sobre el diseño de soluciones resistentes, consulte [Diseño de aplicaciones resistentes de Azure][resiliency].
 
-## <a name="deploy-the-solution"></a>Implementación de la solución
+## <a name="deploy-the-scenario"></a>Implementación del escenario
 
-Esta solución se divide en tres componentes para explorar las áreas que más le interesen:
+Este escenario se divide en tres componentes para explorar las áreas que más le interesen:
 
 * [Componentes de infraestructura](#deploy-infrastructure-components). Use una plantilla de Azure Resource Manager para implementar los componentes fundamentales de la infraestructura de un servicio de aplicaciones, una aplicación web, del servicio Application Insights, de una cuenta de almacenamiento y de SQL Server y una base de datos.
 * [Bot de chat de una aplicación web](#deploy-web-app-chatbot). Use la CLI de Azure para implementar un bot con Bot Service y una aplicación de Language Understanding Intelligent Services (LUIS).
@@ -135,11 +135,11 @@ En GitHub hay disponible una aplicación de ejemplo en C#:
 
 * [Ejemplo de bot comercial en C#](https://github.com/Microsoft/AzureBotServices-scenarios/tree/master/CSharp/Commerce/src)
 
-La aplicación de ejemplo incluye los componentes de autenticación de Azure Active Directory y la integración con el componente Language Understanding Intelligent Services (LUIS) de Cognitive Services. La aplicación requiere Visual Studio para compilar e implementar la solución. En la documentación del repositorio de GitHub encontrará información adicional sobre cómo configurar AAD B2C y la aplicación de LUIS.
+La aplicación de ejemplo incluye los componentes de autenticación de Azure Active Directory y la integración con el componente Language Understanding Intelligent Services (LUIS) de Cognitive Services. La aplicación requiere Visual Studio para compilar e implementar el escenario. En la documentación del repositorio de GitHub encontrará información adicional sobre cómo configurar AAD B2C y la aplicación de LUIS.
 
 ## <a name="pricing"></a>Precios
 
-Para explorar el costo de ejecutar esta solución, todos los servicios están preconfigurados en la calculadora de costos. Para ver cómo cambiarían los precios en su caso concreto, cambie las variables pertinentes para que coincidan con el tráfico esperado.
+Para explorar el costo de ejecutar este escenario, todos los servicios están preconfigurados en la calculadora de costos. Para ver cómo cambiarían los precios en su caso concreto, cambie las variables pertinentes para que coincidan con el tráfico esperado.
 
 Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de mensajes que se espera que su bot de chat procese:
 

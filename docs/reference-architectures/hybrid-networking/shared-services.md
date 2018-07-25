@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 06/19/2018
 pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
 pnp.series.prev: hub-spoke
-ms.openlocfilehash: 555d08e5d3792f8699875c6d6aa8a1a42eadd477
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: 283251d5b11f76985405410c5c237e5a64ee98fe
+ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142359"
+ms.lasthandoff: 07/14/2018
+ms.locfileid: "39060802"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure
 
@@ -32,7 +32,7 @@ Los usos habituales de esta arquitectura incluyen:
 * Cargas de trabajo que no requieren conectividad entre sí, pero requieren acceso a los servicios compartidos.
 * Empresas que requieren el control centralizado sobre aspectos de seguridad, como un firewall en el concentrador como una red perimetral, así como la administración segregada de las cargas de trabajo en cada radio.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 La arquitectura consta de los siguientes componentes:
 
@@ -104,7 +104,7 @@ Hay disponible una implementación de esta arquitectura en [GitHub][ref-arch-rep
 
 Los archivos de parámetro de plantilla hacen referencia a estos nombres, por lo que si se cambian es necesario actualizar los archivos de parámetro para que coincidan.
 
-### <a name="prerequisites"></a>requisitos previos
+### <a name="prerequisites"></a>Requisitos previos
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
