@@ -1,20 +1,16 @@
 ---
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 80cb7fde0694257a5c413b702505e27f18aed8d3
-ms.sourcegitcommit: d702b4d27e96e7a5a248dc4f2f0e25cf6e82c134
+ms.openlocfilehash: 3a667334be682e7e96c6dd30bd401a7e4c608108
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/23/2018
-ms.locfileid: "31771693"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334273"
 ---
 # <a name="azure-application-architecture-guide"></a>Guía de la arquitectura de aplicaciones en Azure
 
 Esta guía presenta un enfoque estructurado para diseñar aplicaciones de Azure que sean escalables, resistentes y con una alta disponibilidad. Se basa en prácticas probadas que hemos aprendido a través de las interacciones con los clientes.
-
-<br/>
-
-<img src="./images/guide-steps.svg" style="max-width:800px;"/>
 
 ## <a name="introduction"></a>Introducción
 
@@ -62,8 +58,7 @@ La primera decisión es la más importante. ¿Qué tipo de arquitectura va a cre
 
 Más información:
 
-- [Estilos de arquitectura][arch-styles]
-- [Arquitecturas de referencia de Azure][ref-archs]
+- [Estilos de arquitectura](./architecture-styles/index.md)
 
 ### <a name="technology-choices"></a>Opciones de tecnología
 
@@ -80,36 +75,14 @@ Hemos identificado diez principios de diseño de alto nivel para que la aplicaci
 
 Más información:
 
-- [Principios de diseño para las aplicaciones de Azure][design-principles]
-- [Procedimientos recomendados al compilar para la nube][best-practices]
+- [Principios de diseño](./design-principles/index.md)
+
 
 ### <a name="quality-pillars"></a>Fundamentos de calidad
 
 Una aplicación correcta en la nube se centrará en cinco fundamentos de calidad del software: la escalabilidad, la disponibilidad, la resistencia, la administración y la seguridad. Utilice nuestras listas de comprobación de la revisión del diseño para revisar la arquitectura de acuerdo con estos fundamentos de calidad.
 
-Más información:
-
-- [Fundamentos de calidad del software][pillars]
-- [Listas de comprobación de la revisión de diseño][checklists] 
-
-### <a name="cloud-design-patterns"></a>Modelos de diseño en la nube
-
-Los modelos de diseño son soluciones generales a problemas habituales en el diseño del software. Hemos identificado un conjunto de modelos de diseño que son especialmente útiles al diseñar aplicaciones distribuidas para la nube.
-
-Más información:
-
-- [Catálogo de modelos de diseño en la nube](../patterns/index.md)
+- [Fundamentos de calidad](./pillars.md)
 
 
-[arch-styles]: ./architecture-styles/index.md
-[best-practices]: ../best-practices/index.md
-[checklists]: ../checklist/index.md
-[compute-options]: ./technology-choices/compute-comparison.md
-[design-principles]: ./design-principles/index.md
 [ebook]: https://azure.microsoft.com/campaigns/cloud-application-architecture-guide/
-[patterns]: ../patterns/index.md?toc=/azure/architecture/guide/toc.json
-[pillars]: ./pillars.md
-[ref-archs]: ../reference-architectures/index.md
-[storage-options]: ./technology-choices/data-store-comparison.md
-[technology-choices]: ./technology-choices/index.md
-

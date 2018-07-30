@@ -3,12 +3,12 @@ title: Ejecución de una granja de servidores de SharePoint Server 2016 de alta 
 description: Procedimientos de demostrada eficacia para configurar una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure.
 author: njray
 ms.date: 07/14/2018
-ms.openlocfilehash: ff690300cb5f4af301bcfac58ac10b9b3c47f96d
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 04c69309e9f96e3bf7cd7faabeedd9b6d9da1ebd
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060904"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334137"
 ---
 # <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>Ejecución de una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure
 
@@ -66,19 +66,21 @@ La subred de puerta de enlace debe tener el nombre *GatewaySubnet*. Asigne el es
 
 ### <a name="vm-recommendations"></a>Recomendaciones de VM
 
-En función de los tamaños de máquina virtual DSv2 estándar, esta arquitectura requiere como mínimo 38 núcleos:
+Esta arquitectura requiere un mínimo de 44 núcleos:
 
 - 8 servidores de SharePoint en Standard_DS3_v2 (4 núcleos cada uno) = 32 núcleos
 - 2 controladores de dominio de Active Directory en Standard_DS1_v2 (1 núcleo cada uno) = 2 núcleos
-- 2 máquinas virtuales de SQL Server en Standard_DS1_v2 = 2 núcleos
+- 2 máquinas virtuales de SQL Server en Standard_DS3_v2 = 8 núcleos
 - 1 mayoría de nodos en Standard_DS1_v2 = 1 núcleo
 - 1 servidor de administración en Standard_DS1_v2 = 1 núcleo
 
-El número total de núcleos dependerá de los tamaños de máquina virtual que seleccione. Para más información, consulte [Recomendaciones para el servidor de SharePoint](#sharepoint-server-recommendations) a continuación.
-
 Asegúrese de que su suscripción de Azure tenga suficiente cuota de núcleos de máquina virtual para la implementación, o esta no se realizará correctamente. Consulte [Límites, cuotas y restricciones de suscripción y servicios de Azure][quotas]. 
+
+Para todos los roles de SharePoint, excepto indexador de búsqueda, se recomienda usar el tamaño de máquina virtual [Standard_DS3_v2][vm-sizes-general]. El indexador de búsqueda debe tener como mínimo el tamaño [Standard_DS13_v2][vm-sizes-memory]. Para la realización de pruebas, los archivos de parámetro de esta arquitectura de referencia deben especificar el tamaño de DS3_v2 más pequeño para el rol Indexador de búsqueda. En un entorno de producción, actualice los archivos de parámetro para que usen el tamaño DS13 u otro mayor. Para más información, consulte [Requisitos de hardware y software para SharePoint Server 2016][sharepoint-reqs]. 
+
+Para las máquinas virtuales con SQL Server, se recomienda un mínimo de 4 núcleos y 8 GB de RAM. Los archivos de parámetros de esta arquitectura de referencia especifican el tamaño DS3_v2. Para una implementación de producción, debe especificar un tamaño mayor de máquina virtual. Para más información, consulte [Almacenamiento y configuración y planeamiento de capacidad de SQL Server (SharePoint Server)](/sharepoint/administration/storage-and-sql-server-capacity-planning-and-configuration#estimate-memory-requirements). 
  
-### <a name="nsg-recommendations"></a>Recomendaciones para NSG
+### <a name="nsg-recommendations"></a>Recomendaciones para las aplicaciones virtuales de red
 
 Se recomienda tener un NSG para cada subred que contenga máquinas virtuales, para permitir el aislamiento de la subred. Si quiere configurar el aislamiento de la subred, agregue reglas NSG que definan el tráfico entrante o saliente permitido o denegado para cada subred. Para más información, consulte [Filtrado del tráfico de red con grupos de seguridad de red][virtual-networks-nsg]. 
 
@@ -109,18 +111,12 @@ Antes de configurar la granja de servidores de SharePoint, asegúrese de que tie
 - Cuenta de superusuario de caché
 - Cuenta de lector avanzado de caché
 
-Para todos los roles, excepto indexador de búsqueda, se recomienda usar el tamaño de máquina virtual [Standard_DS3_v2][vm-sizes-general]. El indexador de búsqueda debe tener como mínimo el tamaño [Standard_DS13_v2][vm-sizes-memory]. 
-
-> [!NOTE]
-> La plantilla de Resource Manager de esta arquitectura de referencia usa el tamaño DS3 más pequeño para el indexador de búsqueda, con el fin de probar la implementación. Si la implementación es para producción, use el tamaño DS13 o mayor. 
-
-Si las cargas de trabajo son de producción, consulte [Requisitos de hardware y software para SharePoint Server 2016][sharepoint-reqs]. 
-
 Para satisfacer el requisito de compatibilidad con el rendimiento del disco de 200 MB por segundo como mínimo, asegúrese de planear la arquitectura de búsqueda. Consulte [Planear la arquitectura de búsqueda empresarial en SharePoint Server 2013][sharepoint-search]. Además, siga las directrices descritas en [Best practices for crawling in SharePoint Server 2016][sharepoint-crawling] (Procedimientos recomendados para rastreo en SharePoint Server 2016).
 
 Asimismo, almacene los datos del componente de búsqueda en un volumen de almacenamiento independiente o en una partición con alto rendimiento. Para reducir la carga y mejorar el rendimiento, configure las cuentas de usuario de caché de objeto, que son necesarias en esta arquitectura. Divida los archivos del sistema operativo Windows Server, los archivos de programa de SharePoint Server 2016 y los registros de diagnóstico en tres volúmenes de almacenamiento independientes o particiones con un rendimiento normal. 
 
 Para más información sobre estas recomendaciones, consulte [Cuentas de servicio y administrativas de implementación inicial en SharePoint Server 2016][sharepoint-accounts].
+
 
 ### <a name="hybrid-workloads"></a>Cargas de trabajo híbridas
 
@@ -183,7 +179,7 @@ Los archivos de parámetro de plantilla hacen referencia a estos nombres, por lo
 
 Los archivos de parámetros incluyen una contraseña codificada de forma rígida en varios lugares. Cambie estos valores antes de realizar la implementación.
 
-### <a name="prerequisites"></a>requisitos previos
+### <a name="prerequisites"></a>Requisitos previos
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
