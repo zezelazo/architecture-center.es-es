@@ -4,12 +4,12 @@ description: Convenciones de nomenclatura para los recursos de Azure. Qué nombr
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 09bcfa3c0a0c46605f0025adad06f8049f109f1b
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: 6ad71a5ee39b8f1863c51dae0120dbdc7baf1f76
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987740"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229157"
 ---
 # <a name="naming-conventions"></a>Convenciones de nomenclatura
 
@@ -38,7 +38,7 @@ Este es un patrón recomendado para la asignación de nombres a suscripciones:
 * La línea de productos es un nombre específico de un producto o una función que se realiza dentro del departamento. Esto es generalmente opcional para los servicios y aplicaciones internos. Sin embargo, se recomienda encarecidamente usarlo para los servicios de acceso público que requieran una sencilla separación e identificación (como una separación clara de los registros de facturación).
 * El entorno es el nombre que describe el ciclo de vida de la implementación de las aplicaciones o servicios, como Desarrollo, Control de calidad o Producción.
 
-| Compañía | Departamento | Línea de producto o servicio | Environment | Nombre completo |
+| Compañía | Departamento | Línea de producto o servicio | Entorno | Nombre completo |
 | --- | --- | --- | --- | --- |
 | Contoso |SocialGaming |AwesomeService |Producción |Producción de AwesomeService de SocialGaming de Contoso |
 | Contoso |SocialGaming |AwesomeService |Desarrollo |Desarrollo de AwesomeService de SocialGaming de Contoso |
@@ -60,7 +60,7 @@ Los afijos pueden hacer referencia a distintos aspectos que describen los recurs
 
 | Aspecto | Ejemplo | Notas |
 | --- | --- | --- |
-| Environment |desarrollo, producción, control de calidad |Identifica el entorno del recurso |
+| Entorno |desarrollo, producción, control de calidad |Identifica el entorno del recurso |
 | Ubicación |uw (Oeste de EE. UU.), ue (este de EE. UU.) |Identifica la región en que se implementa el recurso |
 | Instance |01, 02 |Para los recursos que tienen más de una instancia con nombre (servidores web, etc.). |
 | Producto o servicio |Azure |Identifica el producto, la aplicación o el servicio que admite el recurso |
@@ -120,6 +120,13 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 |Azure Application Gateway |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<service or role>-agw` |`profx-agw` |
 |Perfil del Administrador de tráfico |Grupo de recursos |1-63 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión y punto |`<descriptive context>` |`app1` |
 
+### <a name="containers"></a>Contenedores
+
+| Entidad | Ámbito | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
+| --- | --- | --- | --- | --- | --- | --- |
+|Container Registry | Global |5-50 |No distingue mayúsculas de minúsculas | Alfanuméricas |`<service short name>registry` |`app1registry` |
+
+
 ## <a name="organize-resources-with-tags"></a>Organización de recursos con etiquetas
 
 Azure Resource Manager admite entidades de etiquetado con cadenas de texto arbitrarias para identificar el contexto y simplificar la automatización.  Por ejemplo, la etiqueta `"sqlVersion"="sql2014ee"` podría identificar las máquinas virtuales que ejecutan SQL Server 2014 Enterprise Edition. Las etiquetas se deben utilizar para aumentar y mejorar el contexto en las convenciones de nomenclatura elegidas.
@@ -148,7 +155,7 @@ Un ejemplo de varios enfoques de etiquetado comunes:
 | Operador o individuo directamente responsable (DRI) |managedBy |`joe@contoso.com` |Alias o dirección de correo electrónico |
 | Nombre de proyecto |projectName |`myproject` |Nombre del proyecto o de la línea de producto |
 | Versión de proyecto |projectVersion |`3.4` |Versión del proyecto o de la línea de producto |
-| Environment |Environment |`<Production, Staging, QA >` |Identificador de entorno |
+| Entorno |Environment |`<Production, Staging, QA >` |Identificador de entorno |
 | Nivel |Nivel: |`Front End, Back End, Data` |Identificación de nivel o rol/contexto |
 | Perfil de datos |dataProfile |`Public, Confidential, Restricted, Internal` |Confidencialidad de los datos almacenados en el recurso |
 

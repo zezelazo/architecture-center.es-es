@@ -3,12 +3,12 @@ title: Ejecución de la aplicación Surveys
 description: Cómo ejecutar localmente la aplicación de ejemplo Surveys
 author: MikeWasson
 ms:date: 07/21/2017
-ms.openlocfilehash: 28d976374e5d6dbad434873eef149704f26a1f3f
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: d4fa8122794740e6935293147d999b26d9485d90
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848689"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229106"
 ---
 # <a name="run-the-surveys-application"></a>Ejecución de la aplicación Surveys
 
@@ -35,7 +35,7 @@ En este paso, creará un directorio de Azure AD para Tailspin.
 
 1. Inicie sesión en [Azure Portal][portal].
 
-2. Haga clic en **Nuevo** > **Seguridad e identidad** > **Azure Active Directory**.
+2. Haga clic en **+ Crear un recurso** > **Identidad** > **Azure Active Directory**.
 
 3. Escriba `Tailspin` como nombre de la organización y especifique un nombre de dominio. El nombre de dominio tendrá el formato `xxxx.onmicrosoft.com` y debe ser único globalmente. 
 
@@ -67,7 +67,7 @@ Para completar el escenario de un extremo a otro, necesitará un segundo directo
 
 6. En la hoja **Registros de aplicaciones**, seleccione la nueva aplicación **Surveys.WebAPI**.
  
-7. Haga clic en **Propiedades**.
+7. Haga clic en **Configuración** > **Propiedades**.
 
 8. En el cuadro de edición **URI de id. de aplicación**, escriba `https://<domain>/surveys.webapi`, donde `<domain>` es el nombre de dominio del directorio. Por ejemplo: `https://tailspin.onmicrosoft.com/surveys.webapi`
 
@@ -188,11 +188,11 @@ Ahora repita los mismos pasos para la aplicación Surveys, pero no agregue una e
 
 La aplicación Surveys utiliza Redis para almacenar en caché tokens de acceso de OAuth 2. Para crear la caché:
 
-1.  Vaya a [Azure Portal](https://portal.azure.com) y haga clic en **Nuevo** > **Databases** > **Redis Cache**.
+1.  Vaya a [Azure Portal](https://portal.azure.com) y haga clic en **+ Crear un recurso** > **Bases de datos** > **Redis Cache**.
 
 2.  Rellene la información necesaria, incluidos el nombre DNS, el grupo de recursos, la ubicación y el plan de tarifa. Puede crear un grupo de recursos nuevo o seleccionar uno existente.
 
-3. Haga clic en **Crear**.
+3. Haga clic en **Create**(Crear).
 
 4. Después de crear la instancia de Redis Cache, vaya al recurso en el portal.
 
