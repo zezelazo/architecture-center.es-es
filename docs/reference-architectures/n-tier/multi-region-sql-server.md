@@ -2,15 +2,15 @@
 title: Aplicación de n niveles para varias regiones para obtener alta disponibilidad
 description: Cómo implementar máquinas virtuales en varias regiones de Azure para conseguir alta disponibilidad y resistencia.
 author: MikeWasson
-ms.date: 05/03/2018
+ms.date: 07/19/2018
 pnp.series.title: Windows VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: 48943094e7847e39b9fdc4c3f71e27f2e6e41293
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.openlocfilehash: a8dafab9ce8312004e99f0f19d06d6b47b6b19d8
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673577"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229259"
 ---
 # <a name="multi-region-n-tier-application-for-high-availability"></a>Aplicación de n niveles para varias regiones para obtener alta disponibilidad
 
@@ -20,7 +20,7 @@ Esta arquitectura de referencia muestra un conjunto de procedimientos de demostr
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Arquitectura 
 
 Esta arquitectura se basa en la que se muestra en [Aplicación de n niveles con SQL Server](n-tier-sql-server.md). 
 
@@ -80,18 +80,18 @@ Si Traffic Manager conmuta por error, se recomienda realizar una conmutación po
 
 Tenga en cuenta que Traffic Manager conmuta por recuperación automáticamente de forma predeterminada. Para evitar esto, reduzca manualmente la prioridad de la región primaria después de un evento de conmutación por error. Por ejemplo, suponga que la región primaria tiene la prioridad 1 y la secundaria la prioridad 2. Después de una conmutación por error, establezca la región primaria en la prioridad 3 para evitar la conmutación por recuperación automática. Cuando esté listo para cambiar de nuevo, actualice la prioridad a 1.
 
-El siguiente comando de la [CLI de Azure][install-azure-cli] actualiza la prioridad:
+El siguiente comando de la [CLI de Azure][azure-cli] actualiza la prioridad:
 
 ```bat
-azure network traffic-manager  endpoint set --resource-group <resource-group> --profile-name <profile>
-    --name <traffic-manager-name> --type AzureEndpoints --priority 3
+az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile>
+    --name <endpoint-name> --type azureEndpoints --priority 3
 ```    
 
 Otro enfoque consiste en deshabilitar temporalmente el punto de conexión hasta que esté listo para conmutar por recuperación:
 
 ```bat
-azure network traffic-manager  endpoint set --resource-group <resource-group> --profile-name <profile>
-    --name <traffic-manager-name> --type AzureEndpoints --status Disabled
+az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile>
+    --name <endpoint-name> --type azureEndpoints --endpoint-status Disabled
 ```
 
 Dependiendo de la causa de una conmutación por error, tendrá que volver a implementar los recursos dentro de una región. Antes de proceder a la conmutación por recuperación, realice una prueba de preparación operativa. La prueba debe comprobar aspectos como:
@@ -109,10 +109,10 @@ Para configurar el grupo de disponibilidad:
 * Coloque dos controladores de dominio, como mínimo, en cada región.
 * Asigne una dirección IP estática a cada controlador de dominio.
 * Cree una conexión de red virtual a red virtual para permitir la comunicación entre las redes virtuales.
-* Para cada red virtual, agregue las direcciones IP de los controladores de dominio (de ambas regiones) a la lista de servidores DNS. Puede usar el siguiente comando de la CLI. Para más información, consulte [Administración de servidores DNS usados por una red virtual (VNet)][vnet-dns].
+* Para cada red virtual, agregue las direcciones IP de los controladores de dominio (de ambas regiones) a la lista de servidores DNS. Puede usar el siguiente comando de la CLI. Para más información, consulte [Cambio de servidores DNS][vnet-dns].
 
     ```bat
-    azure network vnet set --resource-group dc01-rg --name dc01-vnet --dns-servers "10.0.0.4,10.0.0.6,172.16.0.4,172.16.0.6"
+    az network vnet update --resource-group <resource-group> --name <vnet-name> --dns-servers "10.0.0.4,10.0.0.6,172.16.0.4,172.16.0.6"
     ```
 
 * Cree un clúster de [Clústeres de conmutación por error de Windows Server][wsfc] (WSFC) que incluya las instancias de SQL Server en ambas regiones. 
@@ -171,7 +171,7 @@ Medición de los tiempos de recuperación y comprobación de que cumplen los req
 [azure-sla]: https://azure.microsoft.com/support/legal/sla/
 [azure-sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
 [health-endpoint-monitoring-pattern]: https://msdn.microsoft.com/library/dn589789.aspx
-[install-azure-cli]: /azure/xplat-cli-install
+[azure-cli]: /cli/azure/
 [regional-pairs]: /azure/best-practices-availability-paired-regions
 [resource groups]: /azure/azure-resource-manager/resource-group-overview
 [resource-group-links]: /azure/resource-group-link-resources
@@ -185,7 +185,7 @@ Medición de los tiempos de recuperación y comprobación de que cumplen los req
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
 [traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
-[vnet-dns]: /azure/virtual-network/virtual-networks-manage-dns-in-vnet
+[vnet-dns]: /azure/virtual-network/manage-virtual-network#change-dns-servers
 [vnet-to-vnet]: /azure/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps
 [vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways
 [wsfc]: https://msdn.microsoft.com/library/hh270278.aspx

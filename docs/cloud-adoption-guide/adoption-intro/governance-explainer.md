@@ -1,17 +1,17 @@
 ---
-title: 'Explicación: ¿Qué es el gobierno en la nube?'
-description: Explica el concepto de gobierno de los recursos de Azure y en la nube
+title: ¿Qué es el gobierno en la nube?
+description: Explicación del concepto de gobierno del acceso a los recursos en Azure
 author: petertay
-ms.openlocfilehash: 3404beaa719177ee7638feed8a8442b5c3b455c6
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: 3338ed5652296c5cd01277a51be1cb5893320b65
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206487"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229208"
 ---
-# <a name="explainer-what-is-cloud-resource-governance"></a>Explicación: ¿Qué es el gobierno de los recursos en la nube?
+# <a name="what-is-cloud-resource-governance"></a>¿Qué es el gobierno de los recursos en la nube?
 
-En la explicación [¿Cómo funciona Azure?](azure-explainer.md), ha aprendido que Azure es una colección de servidores y de hardware de red que ejecutan software y hardware virtualizado en nombre de los usuarios. Azure aporta agilidad a los departamentos de TI y desarrollo de su organización por que permite crear, leer, actualizar y eliminar fácilmente los recursos según sea necesario.
+En [¿Cómo funciona Azure?](azure-explainer.md), ha aprendido que Azure es una colección de servidores y de hardware de red que ejecutan software y hardware virtualizado en nombre de los usuarios. Azure aporta agilidad a los departamentos de TI y desarrollo de su organización por que permite crear, leer, actualizar y eliminar fácilmente los recursos según sea necesario.
 
 Sin embargo, aunque dar a los desarrolladores un acceso ilimitado a los recursos puede hacerlos muy ágiles, también puede producir consecuencias no deseadas en los costos. Por ejemplo, se podría aprobar que un equipo de desarrollo implemente un conjunto de recursos para pruebas pero olvida eliminarlos una vez completada la prueba. Estos recursos continuarán acumulando costos, aunque su uso no esté aprobado o no sea necesario. 
 
@@ -29,8 +29,4 @@ Al configurar estas herramientas, un aspecto importante a tener en cuenta es el 
 
 ## <a name="next-steps"></a>Pasos siguientes
 
-El siguiente paso en la adopción de Azure es [comprender la identidad digital en Azure](tenant-explainer.md) y cómo [crear su primer usuario en Azure AD][docs-add-users-to-aad].
-
-<!-- Links -->
-
-[docs-add-users-to-aad]: /azure/active-directory/add-users-azure-active-directory?toc=/azure/architecture/cloud-adoption-guide/toc.json
+Ahora que comprende el concepto de gobierno de recursos en la nube, vea [cómo se administra el acceso a los recursos](azure-resource-access.md) en Azure como preparación para aprender [cómo diseñar un modelo de gobierno](governance-how-to.md).

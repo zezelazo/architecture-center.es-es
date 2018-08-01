@@ -2,13 +2,13 @@
 title: Aplicación de n niveles con SQL Server
 description: Implementación de una arquitectura de varios niveles en Azure para lograr una mayor disponibilidad, seguridad, escalabilidad y facilidad de uso.
 author: MikeWasson
-ms.date: 06/23/2018
-ms.openlocfilehash: 7c8184d25cf6b3bd358adc2728329fd3bd08503a
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.date: 07/19/2018
+ms.openlocfilehash: 42ba18e9ffef32c6990fbb888cc41e980fb4abea
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142308"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229140"
 ---
 # <a name="n-tier-application-with-sql-server"></a>Aplicación de n niveles con SQL Server
 
@@ -18,13 +18,15 @@ Esta arquitectura de referencia muestra cómo implementar máquinas virtuales y 
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Arquitectura 
 
 La arquitectura consta de los siguientes componentes:
 
 * **Grupo de recursos.** Los [grupos de recursos][resource-manager-overview] se utilizan para agrupar los recursos, para que puedan administrarse según su duración, su propietario u otros criterios.
 
 * **Red virtual y subredes.** Cada máquina virtual de Azure se implementa en una red virtual que se puede dividir en varias subredes. Cree una subred independiente para cada nivel. 
+
+* **Application Gateway**. [Azure Application Gateway](/azure/application-gateway/) es un equilibrador de carga de nivel 7. En esta arquitectura, enruta las solicitudes HTTP al front-end web. Application Gateway proporciona también un [firewall de aplicaciones web](/azure/application-gateway/waf-overview) (WAF) que protege la aplicación contra puntos vulnerables de la seguridad comunes. 
 
 * **Grupos de seguridad de red.** Use [grupos de seguridad de red][nsg] (NSG) para restringir el tráfico de red dentro de la red virtual. Por ejemplo, en la arquitectura de tres niveles que se muestra aquí, el nivel de base de datos no acepta el tráfico desde el front-end web, solo desde el nivel Business y la subred de administración.
 
@@ -34,9 +36,9 @@ La arquitectura consta de los siguientes componentes:
 
 * **Conjunto de escalado de máquinas virtuales** (no se muestra). Un [conjunto de escalado de máquinas virtuales][vmss] es una alternativa al uso de un conjunto de disponibilidad. Los conjuntos de escalado facilitan el escalado horizontal de las máquinas virtuales de un nivel, de forma manual o automática, y según reglas predefinidas.
 
-* **Equilibradores de carga de Azure.** Los [equilibradores de carga][load-balancer] distribuyen las solicitudes entrantes de Internet a las instancias de máquina virtual. Use un [equilibrador de carga público][load-balancer-external] para distribuir el tráfico entrante de Internet al nivel Web y un [equilibrador de carga interno][load-balancer-internal] para distribuir el tráfico de red del nivel Web al nivel Business.
+* **Equilibradores de carga.** Use [Azure Load Balancer][load-balancer] para distribuir el tráfico de red desde el nivel web al nivel de empresa y desde el nivel de empresa a SQL Server.
 
-* **Dirección IP pública**. Se necesita una dirección IP pública para que el equilibrador de carga reciba tráfico de Internet.
+* **Dirección IP pública**. Se necesita una dirección IP pública para que la aplicación reciba el tráfico de Internet.
 
 * **JumpBox.** También se denomina [host bastión]. Se trata de una máquina virtual segura en la red que usan los administradores para conectarse al resto de máquinas virtuales. El Jumpbox tiene un NSG que solo permite el tráfico remoto que procede de direcciones IP públicas de una lista segura. El NSG debe permitir el tráfico de escritorio remoto (RDP).
 
@@ -62,7 +64,7 @@ Diseñe subredes teniendo en cuenta los requisitos de funcionalidad y seguridad.
 
 ### <a name="load-balancers"></a>Equilibradores de carga
 
-No exponga las máquinas virtuales directamente a Internet; en su lugar, asigne una dirección IP privada a cada máquina virtual. Los clientes se conectan con la dirección IP del equilibrador de carga público.
+No exponga las máquinas virtuales directamente a Internet; en su lugar, asigne una dirección IP privada a cada máquina virtual. El cliente se conecta mediante una dirección IP pública asociada a la puerta de enlace de aplicaciones.
 
 Defina reglas del equilibrador de carga para dirigir el tráfico de red a las máquinas virtuales. Por ejemplo, para habilitar el tráfico HTTP, cree una regla que asigne el puerto 80 de la configuración de front-end al puerto 80 del grupo de direcciones de back-end. Cuando un cliente envía una solicitud HTTP al puerto 80, el equilibrador de carga selecciona una dirección IP de back-end mediante un [algoritmo hash][load-balancer-hashing] que incluye la dirección IP de origen. De ese modo, las solicitudes de cliente se distribuyen entre todas las máquinas virtuales.
 
@@ -148,8 +150,6 @@ Si necesita más disponibilidad de la que proporciona el [Acuerdo de Nivel de Se
 
 Las redes virtuales son un límite de aislamiento del tráfico de Azure. Las máquinas virtuales de una red virtual no se pueden comunicar directamente con las máquinas virtuales de una red virtual diferente. Las máquinas virtuales que se encuentran en la misma red virtual se pueden comunicar entre sí, a menos que se creen [grupos de seguridad de red][nsg] (NSG) para restringir el tráfico. Para más información, consulte [Servicios en la nube de Microsoft y seguridad de red][network-security].
 
-Para el tráfico entrante de Internet, las reglas del equilibrador de carga definen qué tráfico puede alcanzar el back-end. Sin embargo, las reglas del equilibrador de carga no son compatibles con las listas seguras de IP, por lo que si desea agregar determinadas direcciones IP públicas a una lista segura, agregue un NSG a la subred.
-
 Considere la posibilidad de agregar una aplicación virtual de red (NVA) para crear una red perimetral entre la red de Internet y la red virtual de Azure. NVA es un término genérico para una aplicación virtual que puede realizar tareas relacionadas con la red, como firewall, inspección de paquetes, auditoría y enrutamiento personalizado. Para más información, vea [Implementación de una red perimetral entre Internet y Azure][dmz].
 
 Cifre información confidencial en reposo y use [Azure Key Vault][azure-key-vault] para administrar las claves de cifrado de la base de datos. Key Vault puede almacenar las claves de cifrado en módulos de seguridad de hardware (HSM). Para más información, consulte [Configuración de la integración de Azure Key Vault para SQL Server en máquinas virtuales de Azure][sql-keyvault]. También se recomienda almacenar los secretos de aplicación como, por ejemplo, las cadenas de conexión de base de datos, en Key Vault.
@@ -158,7 +158,7 @@ Cifre información confidencial en reposo y use [Azure Key Vault][azure-key-vaul
 
 Hay disponible una implementación de esta arquitectura de referencia en [GitHub][github-folder]. Tenga en cuenta que toda la implementación puede tardar hasta dos horas, lo que incluye la ejecución de los scripts para configurar AD DS, el clúster de conmutación por error de Windows Server y el grupo de disponibilidad de SQL Server.
 
-### <a name="prerequisites"></a>requisitos previos
+### <a name="prerequisites"></a>Requisitos previos
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
@@ -248,10 +248,6 @@ Para obtener más información sobre la implementación de esta arquitectura de 
 [chef]: https://www.chef.io/solutions/azure/
 [git]: https://github.com/mspnp/template-building-blocks
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/n-tier-windows
-[lb-external-create]: /azure/load-balancer/load-balancer-get-started-internet-portal
-[lb-internal-create]: /azure/load-balancer/load-balancer-get-started-ilb-arm-portal
-[load-balancer-external]: /azure/load-balancer/load-balancer-internet-overview
-[load-balancer-internal]: /azure/load-balancer/load-balancer-internal-overview
 [nsg]: /azure/virtual-network/virtual-networks-nsg
 [operations-management-suite]: https://www.microsoft.com/server-cloud/operations-management-suite/overview.aspx
 [plan-network]: /azure/virtual-network/virtual-network-vnet-plan-design-arm
@@ -275,7 +271,7 @@ Para obtener más información sobre la implementación de esta arquitectura de 
 [0]: ./images/n-tier-sql-server.png "Arquitectura de n niveles con Microsoft Azure"
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview 
 [vmss]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview
-[load-balancer]: /azure/load-balancer/load-balancer-get-started-internet-arm-cli
+[load-balancer]: /azure/load-balancer/
 [load-balancer-hashing]: /azure/load-balancer/load-balancer-overview#load-balancer-features
 [vmss-design]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-design-overview
 [subscription-limits]: /azure/azure-subscription-service-limits

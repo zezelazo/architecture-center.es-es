@@ -2,12 +2,12 @@
 title: 'Adopción de Azure: intermedio'
 description: Describe el nivel intermedio de conocimiento que una empresa necesita para adoptar Azure.
 author: petertay
-ms.openlocfilehash: 227d9558647ed8076b2832d95e192f2f0c43b9db
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.openlocfilehash: a1f93616f5f1ecf4f395ce39bbb037ef6ab5991b
+ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206368"
+ms.lasthandoff: 07/24/2018
+ms.locfileid: "39229242"
 ---
 # <a name="azure-cloud-adoption-guide-intermediate-overview"></a>Guía de adopción de la nube de Azure: Introducción al nivel intermedio
 
@@ -27,7 +27,7 @@ Los destinatarios de esta fase de la guía son los siguientes roles dentro de su
 
 En la fase de adopción fundamental, aprendió algunos conceptos básicos sobre las características internas de Azure y cómo se crean, se leen, se actualizan y se eliminan los recursos. También aprendió acerca de la identidad y que Azure solo confía en Azure Active Directory (AD) para autenticar y autorizar a los usuarios que necesitan acceder a esos recursos.
 
-También comenzó a ver cómo configurar las herramientas de gobierno de Azure para administrar el uso que su organización hace de los recursos de Azure. En la fase de fundación, explicamos cómo gobernar el acceso de un único equipo a los recursos necesarios para implementar una carga de trabajo simple. En realidad, su organización va a estar formada por varios equipos que trabajarán simultáneamente en varias cargas de trabajo. 
+También comenzó a ver cómo configurar las herramientas de gobierno de Azure para administrar el uso que su organización hace de los recursos de Azure. Hemos visto cómo gobernar el acceso de un único equipo a los recursos necesarios para implementar una carga de trabajo simple. En realidad, su organización va a estar formada por varios equipos que trabajarán simultáneamente en varias cargas de trabajo. 
 
 Antes de comenzar, veamos lo que realmente significa el término **carga de trabajo**. Es un término que normalmente se utiliza para definir una unidad arbitraria de funcionalidad, como una aplicación o un servicio. Pensamos en una carga de trabajo como los artefactos de código que se implementan en un servidor, así como otros servicios, como una base de datos, que sean necesarios. Se trata de una definición útil para una aplicación o servicio local pero, en la nube, necesitamos ampliarla. 
 
