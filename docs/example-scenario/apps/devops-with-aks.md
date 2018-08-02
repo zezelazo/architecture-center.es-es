@@ -3,12 +3,12 @@ title: Canalización de CI/CD para cargas de trabajo basadas en contenedores
 description: Escenario probado para la creación de una canalización de DevOps para una aplicación web de Node.js que usa Jenkins, Azure Container Registry, Azure Kubernetes Service, Cosmos DB y Grafana.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: d9f6571234a0c3e67a233cfda1a37f6fb32929a3
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: dceb4ad3c34ec43a54d802772f5817cacdd3929c
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060768"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334222"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>Canalización de CI/CD para cargas de trabajo basadas en contenedores
 
@@ -119,7 +119,7 @@ La implementación puede tardar unos 15-20 minutos en completarse.
 
 ## <a name="pricing"></a>Precios
 
-Para explorar el costo de ejecutar este escenario, todos los servicios están preconfigurados en la calculadora de costos. Para ver cómo cambiarían los precios en su caso concreto, cambie las variables pertinentes para que coincidan con el tráfico esperado. coincidan con el tráfico esperado.
+Para explorar el costo de ejecutar este escenario, todos los servicios están preconfigurados en la calculadora de costos. Para ver cómo cambiarían los precios en su caso concreto, cambie las variables pertinentes para que coincidan con el tráfico esperado.
 
 Hemos incluido tres perfiles de costos de ejemplo basados en número de imágenes de contenedor que se almacenarán y los nodos de Kubernetes para ejecutar las aplicaciones.
 

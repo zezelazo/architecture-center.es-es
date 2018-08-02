@@ -4,12 +4,12 @@ description: Lista de comprobación que ofrece una guía para las inquietudes so
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: 324d8200d822eb1a7dce95ba4b2a7f29b00fb291
-ms.sourcegitcommit: 441185360db49cfb3cf39527b68f318d17d4cb3d
+ms.openlocfilehash: cea5baf8c37bf793c5de60f6c2be809629df072b
+ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/19/2018
-ms.locfileid: "27973117"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39352634"
 ---
 # <a name="availability-checklist"></a>Lista de comprobación de disponibilidad
 
@@ -21,7 +21,7 @@ La disponibilidad es la proporción de tiempo que un sistema es funcional y func
 
 **Descomponga las cargas de trabajo por objetivo de nivel de servicio.** Si un servicio se compone de cargas de trabajo críticas y menos críticas, adminístrelas de manera diferente y especifique las características de servicio y el número de instancias para satisfacer sus requisitos de disponibilidad.
 
-**Minimizar y comprender las dependencias de servicio.** Minimice el número de servicios diferentes que se usan siempre que sea posible y asegúrese de que comprende todas las dependencias de características y servicios que existen en el sistema. Esto incluye la naturaleza de estas dependencias y el impacto del error o la reducción del rendimiento de cada una de ellas en la aplicación general. Consulte [Definición de los requisitos de resistencia](../resiliency/index.md#defining-your-resiliency-requirements).
+**Minimizar y comprender las dependencias de servicio.** Minimice el número de servicios diferentes que se usan siempre que sea posible y asegúrese de que comprende todas las dependencias de características y servicios que existen en el sistema. Esto incluye la naturaleza de estas dependencias y el impacto del error o la reducción del rendimiento de cada una de ellas en la aplicación general.
 
 **Diseñar las tareas y los mensajes para que sean idempotentes siempre que sea posible**. Una operación es idempotente si se puede repetir varias veces y generar el mismo resultado. La idempotencia puede garantizar que las solicitudes duplicadas no provocan problemas. Los consumidores de mensajes y las operaciones que llevan a cabo deben ser idempotentes para que la repetición de una operación ejecutada anteriormente no represente los resultados no válidos. Esto puede significar la detección de mensajes duplicados o garantizar la coherencia mediante un enfoque optimista para tratar los conflictos.
 

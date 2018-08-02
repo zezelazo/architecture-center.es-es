@@ -4,12 +4,12 @@ description: Instrucciones específicas de servicios para establecer el mecanism
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 39d342dc96e3d0d923ce159c392d9427359a4639
-ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
+ms.openlocfilehash: 72dfb59c3357c5f14806a33ef5f6cdd3e7937915
+ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/05/2018
-ms.locfileid: "37843633"
+ms.lasthandoff: 07/29/2018
+ms.locfileid: "39334171"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Guía de reintentos para servicios específicos
 
@@ -23,7 +23,7 @@ En la tabla siguiente se resumen las características de reintento de los servic
 | --- | --- | --- | --- | --- |
 | **[Azure Active Directory](#azure-active-directory)** |Nativo en la biblioteca ADAL |Insertado en la biblioteca ADAL |Interno |None |
 | **[Cosmos DB](#cosmos-db)** |Nativo en servicio |No configurable |Global |TraceSource |
-| **[Event Hubs](#azure-event-hubs)** |Nativo en el cliente |Programático |Cliente |None |
+| **[Event Hubs](#event-hubs)** |Nativo en el cliente |Programático |Cliente |None |
 | **[Redis Cache](#azure-redis-cache)** |Nativo en el cliente |Programático |Cliente |TextWriter |
 | **[Search](#azure-search)** |Nativo en el cliente |Programático |Cliente |ETW o personalizado |
 | **[Service Bus](#service-bus)** |Nativo en el cliente |Programático |Administrador de espacio de nombres, fábrica de mensajería y cliente |ETW |
