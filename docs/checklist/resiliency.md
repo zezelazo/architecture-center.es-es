@@ -4,12 +4,12 @@ description: Lista de comprobación que ofrece una guía para las preocupaciones
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: ca4bf77c9348f6c656348d9cd61d3a1241d69ba8
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 883424d5d3535f822cdba61ecb9520ce05f75ec7
+ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29782621"
+ms.lasthandoff: 07/30/2018
+ms.locfileid: "39352651"
 ---
 # <a name="resiliency-checklist"></a>Lista de comprobación de resistencia
 
@@ -17,7 +17,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 ## <a name="requirements"></a>Requisitos
 
-**Defina los requisitos de disponibilidad del cliente.** El cliente tendrá requisitos de disponibilidad para los componentes de la aplicación y esto afectará su diseño. Acuerde con el cliente los objetivos de disponibilidad de cada parte de la aplicación; de lo contrario, es posible que el diseño no cumpla con las expectativas del cliente. Para más información, consulte [Definición de los requisitos de resistencia](../resiliency/index.md#defining-your-resiliency-requirements).
+**Defina los requisitos de disponibilidad del cliente.** El cliente tendrá requisitos de disponibilidad para los componentes de la aplicación y esto afectará su diseño. Acuerde con el cliente los objetivos de disponibilidad de cada parte de la aplicación; de lo contrario, es posible que el diseño no cumpla con las expectativas del cliente. Para más información, consulte [Diseño de aplicaciones resistentes de Azure](../resiliency/index.md).
 
 ## <a name="application-design"></a>Diseño de aplicaciones
 
@@ -58,7 +58,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Asegúrese de que cualquier servicio de terceros que consuma proporciona un Acuerdo de Nivel de Servicio.** Si la aplicación depende de un servicio de terceros, pero el tercero no ofrece ninguna garantía de disponibilidad en forma de Acuerdo de Nivel de Servicio, tampoco se puede garantizar la disponibilidad de su aplicación. El Acuerdo de Nivel de Servicio es tan bueno como el componente menos disponible de la aplicación.
 
-**Implemente modelos de resistencia para operaciones remotas cuando sea apropiado.** Si la aplicación depende de la comunicación entre servicios remotos, siga los modelos de diseño para tratar errores transitorios, como [patrón Retry][retry-pattern] y [patrón Circuit Breaker][circuit-breaker]. Para más información, consulte [Estrategias de resistencia](../resiliency/index.md#resiliency-strategies).
+**Implemente modelos de resistencia para operaciones remotas cuando sea apropiado.** Si la aplicación depende de la comunicación entre servicios remotos, siga los [modelos de diseño](../patterns/category/resiliency.md) para tratar errores transitorios, como el [modelo Reintento][retry-pattern] y el [modelo Disyuntor][circuit-breaker]. 
 
 **Implemente operaciones asincrónicas siempre que sea posible.** Las operaciones sincrónicas pueden monopolizar los recursos y bloquear otras operaciones mientras la persona que llama espera que se complete el proceso. Diseñe cada parte de la aplicación para permitir operaciones asincrónicas, siempre que sea posible. Para más información sobre cómo implementar la programación asincrónica en C#, consulte el artículo sobre [programación asincrónica con async y await][asynchronous-c-sharp].
 
