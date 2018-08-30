@@ -2,12 +2,12 @@
 title: Guía de diseño de gobierno de Azure
 description: Instrucciones para configurar los controles de gobierno de Azure para que un usuario pueda implementar una carga de trabajo simple
 author: petertay
-ms.openlocfilehash: 78545400fc0b09262dce3d0e577442443468b2ed
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 88cd24a46a6bdaca4e0dd18706af1f7e3fe3bce2
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229579"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016117"
 ---
 # <a name="azure-governance-design-guide"></a>Guía de diseño de gobierno de Azure
 
@@ -24,7 +24,7 @@ En la fase de adopción de fundación, nuestro objetivo es implementar una carga
 Antes de comenzar el diseño de nuestro modelo de gobierno, es importante comprender cómo se conceden las licencias de Azure. El motivo es que las cuentas administrativas asociadas con su licencia de Azure tienen el mayor nivel de acceso a todos los recursos de Azure. Estas cuentas administrativas forman la base de su modelo de gobierno.  
 
 > [!NOTE]
-> Si su organización ya tiene un [Contrato Enterprise de Microsoft](https://www.microsoft.com/licensing/licensing-programs/enterprise.aspx) que no incluye Azure, se puede agregar Azure mediante un compromiso monetario por adelantado. Consulte las [licencias de Azure para la empresa](https://azure.microsoft.com/pricing/enterprise-agreement/) para más información. 
+> Si su organización ya tiene un [Contrato Enterprise de Microsoft](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise.aspx) que no incluye Azure, se puede agregar Azure mediante un compromiso monetario por adelantado. Consulte las [licencias de Azure para la empresa](https://azure.microsoft.com/pricing/enterprise-agreement/) para más información. 
 
 Cuando Azure se agrega al contrato Enterprise de su organización, se pide a su organización que cree una **cuenta de Azure**. Durante el proceso de creación de la cuenta, se crea un **propietario de la cuenta de Azure** y un inquilino de Azure Active Directory (Azure AD) con una cuenta de **administrador global**. Un inquilino de Azure AD es una construcción lógica que representa una instancia segura y dedicada de Azure AD.
 

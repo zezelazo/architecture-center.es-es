@@ -2,12 +2,12 @@
 title: Estilo de arquitectura basada en eventos
 description: Describe las ventajas, las dificultades y los procedimientos recomendados para las arquitecturas IoT y basadas en eventos en Azure.
 author: MikeWasson
-ms.openlocfilehash: 3289bf784b02d62e3d0c1a29b4839c9be3501134
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: dbf6be5ed386d06f96c876993ad03e7cb0e3dded
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29478330"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43016077"
 ---
 # <a name="event-driven-architecture-style"></a>Estilo de arquitectura basada en eventos
 
@@ -55,42 +55,9 @@ En el diagrama lógico anterior, se muestra cada tipo de consumidor como un solo
 - Entrega garantizada. En algunos sistemas, especialmente en escenarios de IoT, es fundamental garantizar la entrega de los eventos.
 - Procesamiento de eventos en orden o exactamente una vez. Cada tipo de consumidor normalmente se ejecuta en varias instancias, a fin de conseguir resistencia y escalabilidad. Esto puede suponer un desafío si se deben procesar los eventos en orden (dentro de un tipo de consumidor), o si la lógica de procesamiento no es idempotente.
 
-## <a name="iot-architecture"></a>Arquitectura de IoT
-
-Las arquitecturas basadas en eventos son básicas para las soluciones de IoT. En el siguiente diagrama se muestra una posible arquitectura lógica de IoT. En él se resaltan los componentes del flujo de eventos de la arquitectura.
-
-![](./images/iot.png)
-
-La **puerta de enlace de nube** ingiere eventos de dispositivo en el límite de nube, mediante un sistema de mensajería confiable y de baja latencia.
-
-Los dispositivos pueden enviar eventos directamente a la puerta de enlace de nube, o a través de una **puerta de enlace de campo**. Una puerta de enlace de campo es un dispositivo o software especializado, que normalmente se coloca con los dispositivos, que recibe eventos y los reenvía a la puerta de enlace de nube. La puerta de enlace de campo también puede procesar previamente los eventos de dispositivo sin formato y realizar funciones como filtrado, agregación o transformación de protocolo.
-
-Después de la ingesta, los eventos pasan por uno o varios **procesadores de flujo** que pueden enrutar los datos (por ejemplo, al almacenamiento) o realizar análisis u otras tareas de procesamiento.
-
-Estos son algunos tipos comunes de procesamiento. (Ciertamente, esta lista no es exhaustiva).
-
-- Escribir datos de eventos en almacenamiento en frío, para archivado o análisis por lotes.
-
-- Análisis de ruta de acceso activa, que analiza el flujo de eventos (casi) en tiempo real para detectar anomalías, reconocer patrones durante ventanas de tiempo consecutivas o desencadenar alertas cuando se produce una condición especifica en el flujo. 
-
-- Administrar tipos especiales de mensajes que no son de telemetría de dispositivos, tales como notificaciones y alarmas. 
-
-- Machine Learning
-
-Los cuadros que aparecen en gris sombreado muestran los componentes de un sistema IoT que no están directamente relacionados con el flujo de eventos, pero se incluyen aquí para ofrecer una visión completa.
-
-- El **registro de dispositivos** es una base de datos de los dispositivos aprovisionados, incluidos los identificadores de dispositivo y habitualmente los metadatos de dispositivos, como la ubicación.
-
-- La **API de aprovisionamiento** es una interfaz externa común para el aprovisionamiento y el registro de nuevos dispositivos.
-
-- Algunas soluciones IoT permiten el envío de **mensajes de comando y control** a los dispositivos.
-
-> En esta sección se ha presentado una vista de muy alto nivel de IoT y hay muchos matices y desafíos que se deben tener en cuenta. Para más información y obtener un análisis de una arquitectura de referencia, consulte [Microsoft Azure IoT Reference Architecture][iot-ref-arch] (Arquitectura de referencia de Microsoft Azure IoT) (descarga PDF).
-
  <!-- links -->
 
 [competing-consumers]: ../../patterns/competing-consumers.md
-[iot-ref-arch]: https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/
 [minimize-coordination]: ../design-principles/minimize-coordination.md
 
 
