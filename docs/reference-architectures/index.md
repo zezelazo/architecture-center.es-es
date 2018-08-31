@@ -3,12 +3,13 @@ title: Arquitecturas de referencia de Azure
 description: Arquitecturas de referencia, planos y guía de implementación preceptiva para cargas de trabajo comunes en Azure.
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 374ca51d70e4999fbb1bacf47547040db6f0071f
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.date: 08/30/2018
+ms.openlocfilehash: e9b3a65c48c759f9fc07da9f2c4195fc2db4c782
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987631"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325578"
 ---
 # <a name="azure-reference-architectures"></a>Arquitecturas de referencia de Azure
 
@@ -52,6 +53,26 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                     <div class="cardText">
                         <h3>Inteligencia empresarial automatizada con Azure Data Factory</h3>
                         <p>Automatice una canalización de ELT para realizar la carga incremental desde una base de datos local.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Stream Analytics -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./data/stream-processing-stream-analytics.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./_images/azure-analysis-service.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Procesamiento de flujos de datos con Azure Stream Analytics</h3>
+                        <p>Canalización de procesamiento de flujos de un extremo a otro que correlaciona registros de dos flujos de datos para calcular una media acumulada.</p>
                     </div>
                 </div>
             </div>
@@ -102,7 +123,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
     </a>
 </li>
 <li style="display: flex; flex-direction: column;">
-    <a href="./app-service-web-app/scalable-web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./app-service-web-app/multi-region.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
