@@ -2,12 +2,13 @@
 title: Antipatrón Chatty I/O
 description: Un gran número de solicitudes de E/S puede afectar al rendimiento y la capacidad de respuesta.
 author: dragon119
-ms.openlocfilehash: 4f0e0e455ceb58317d3029d8ab4631d476802499
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.date: 06/05/2017
+ms.openlocfilehash: daa0c581d31c9389e2853f84075dc44d1e5ba78b
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29477747"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325883"
 ---
 # <a name="chatty-io-antipattern"></a>Antipatrón Chatty I/O
 
