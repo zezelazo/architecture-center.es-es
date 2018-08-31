@@ -3,12 +3,12 @@ title: Centro de datos virtual de Azure
 description: Recursos para el centro de datos virtual de Microsoft Azure
 keywords: Azure
 layout: LandingPage
-ms.openlocfilehash: e37ac347247b2960b85832a20a2b57eec18f65a7
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: 9b82122358085c37f89fb258034a4c9a91ecb054
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987519"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43324807"
 ---
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Centro de datos virtual de Azure y el plano de control empresarial
 
@@ -26,7 +26,7 @@ El centro de datos virtual de Azure permite sacar el máximo partido a las funci
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="/azure/networking/networking-virtual-datacenter"><img src="./images/vdc-network.png" alt="Network Perspective" /></a></td>
     <td>
-        <h3><a href="/azure/networking/networking-virtual-datacenter">Centro de datos virtual de Azure: una perspectiva de red</a></h3>
+        <h3><a href="networking-virtual-datacenter.md">Centro de datos virtual de Azure: una perspectiva de red</a></h3>
         <p>Este artículo en línea proporciona información general sobre patrones y diseños de red que pueden utilizarse para resolver los conceptos de arquitectura de escala, rendimiento y seguridad que muchos clientes abordan al pensar en moverse masivamente a la nube.</p>
     </td>
 </tr>
