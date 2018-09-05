@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 04/09/2018
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: 9105748f434e5d655b09b1fe0775417f33a912b0
-ms.sourcegitcommit: f7fa67e3bdbc57d368edb67bac0e1fdec63695d2
+ms.openlocfilehash: abe9d6a58f3deeab388c20471c5559d63ef2f245
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/05/2018
-ms.locfileid: "37843599"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016024"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke en Azure
 
@@ -123,7 +123,7 @@ La implementación crea los siguientes grupos de recursos en su suscripción:
 
 Los archivos de parámetro de plantilla hacen referencia a estos nombres, por lo que si se cambian es necesario actualizar los archivos de parámetro para que coincidan.
 
-### <a name="prerequisites"></a>requisitos previos
+### <a name="prerequisites"></a>Requisitos previos
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
@@ -289,7 +289,7 @@ Para probar la conectividad desde el entorno local simulado a las redes virtuale
 
 ### <a name="add-connectivity-between-spokes"></a>Adición de conectividad entre radios
 
-Este paso es opcional. Si desea permitir que los radios se conecten unos con otros, tendrá que usar una aplicación virtual de red (NVA) como enrutador de la red virtual de concentrador y forzar el tráfico desde los radios al enrutador cuando intente conectar con otro radio. Para implementar una aplicación virtual de red de ejemplo básica como máquina virtual única, junto con las rutas definidas por el usuario (UDR) que son necesarias para que las dos redes virtuales de radios se conecten, realice los pasos siguientes:
+Este paso es opcional. Si desea permitir que los radios se conecten unos con otros, tendrá que usar una aplicación virtual de red (NVA) como enrutador de la red virtual del concentrador y forzar el tráfico desde los radios al enrutador cuando intente conectar con otro radio. Para implementar una aplicación virtual de red de ejemplo básica como máquina virtual única, junto con las rutas definidas por el usuario (UDR) que son necesarias para que las dos redes virtuales de radios se conecten, realice los pasos siguientes:
 
 1. Abra el archivo `hub-nva.json` . Reemplace los valores de `adminUsername` y `adminPassword`.
 

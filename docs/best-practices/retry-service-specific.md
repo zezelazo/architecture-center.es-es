@@ -4,12 +4,12 @@ description: Instrucciones específicas de servicios para establecer el mecanism
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 72dfb59c3357c5f14806a33ef5f6cdd3e7937915
-ms.sourcegitcommit: 8b5fc0d0d735793b87677610b747f54301dcb014
+ms.openlocfilehash: 790c933458717f2cb4cde0741b1d22f6ae89cc39
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/29/2018
-ms.locfileid: "39334171"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43016118"
 ---
 # <a name="retry-guidance-for-specific-services"></a>Guía de reintentos para servicios específicos
 
@@ -23,7 +23,9 @@ En la tabla siguiente se resumen las características de reintento de los servic
 | --- | --- | --- | --- | --- |
 | **[Azure Active Directory](#azure-active-directory)** |Nativo en la biblioteca ADAL |Insertado en la biblioteca ADAL |Interno |None |
 | **[Cosmos DB](#cosmos-db)** |Nativo en servicio |No configurable |Global |TraceSource |
+| **Data Lake Store** |Nativo en el cliente |No configurable |Operaciones individuales |None |
 | **[Event Hubs](#event-hubs)** |Nativo en el cliente |Programático |Cliente |None |
+| **[IoT Hub](#iot-hub)** |Nativo en el SDK de cliente |Programático |Cliente |None |
 | **[Redis Cache](#azure-redis-cache)** |Nativo en el cliente |Programático |Cliente |TextWriter |
 | **[Search](#azure-search)** |Nativo en el cliente |Programático |Cliente |ETW o personalizado |
 | **[Service Bus](#service-bus)** |Nativo en el cliente |Programático |Administrador de espacio de nombres, fábrica de mensajería y cliente |ETW |
@@ -124,6 +126,25 @@ client.RetryPolicy = RetryPolicy.Default;
 
 ### <a name="more-information"></a>Más información
 [Biblioteca de cliente .NET estándar para Azure Event Hubs](https://github.com/Azure/azure-event-hubs-dotnet)
+
+## <a name="iot-hub"></a>IoT Hub
+
+Azure IoT Hub es un servicio para conectar, supervisar y administrar dispositivos para desarrollar aplicaciones de Internet de las cosas (IoT).
+
+### <a name="retry-mechanism"></a>Mecanismo de reintento
+
+El SDK de dispositivo IoT de Azure puede detectar errores de red, protocolo o aplicación. Según el tipo de error, el SDK de comprueba si debe realizarse un reintento. Si el error es *recuperable*, el SDK comienza a intentarlo de nuevo con la directiva de reintentos configurada.
+
+La directiva de reintentos predeterminada es *retroceso exponencial con distorsión aleatoria*, pero se puede configurar.
+
+### <a name="policy-configuration"></a>Configuración de directivas
+
+La configuración de las directivas difiere según el lenguaje. Para más información, consulte cómo [configurar las directivas de reintentos de IoT Hub](/azure/iot-hub/iot-hub-reliability-features-in-sdks#retry-policy-apis).
+
+### <a name="more-information"></a>Más información
+
+* [Directiva de reintentos de IoT Hub](/azure/iot-hub/iot-hub-reliability-features-in-sdks)
+* [Solución de problemas de desconexión de dispositivos de IoT Hub](/azure/iot-hub/iot-hub-troubleshoot-connectivity)
 
 ## <a name="azure-redis-cache"></a>Azure Redis Cache
 Azure Redis Cache es un servicio de caché de acceso rápido a datos y de baja latencia basado en Redis Cache de código abierto popular. Es segura, está administrada por Microsoft y es accesible desde cualquier aplicación en Azure.

@@ -2,12 +2,12 @@
 title: Estilo de arquitectura de macrodatos
 description: Describe las ventajas, las dificultades y los procedimientos recomendados para las arquitecturas de macrodatos en Azure.
 author: MikeWasson
-ms.openlocfilehash: 4e8b58d5fa0f6a441d70e05ec7d6a0e668712563
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: d76192cf2fc680497ece0123ef412971c025f9dc
+ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540895"
+ms.lasthandoff: 08/18/2018
+ms.locfileid: "43016084"
 ---
 # <a name="big-data-architecture-style"></a>Estilo de arquitectura de macrodatos
 
@@ -74,7 +74,7 @@ Considere este estilo de arquitectura cuando necesite:
 - **Consolidación tecnológica**. Muchas de las tecnologías utilizadas en macrodatos están evolucionando. Mientras que tecnologías básicas de Hadoop como Hive y Pig se han estabilizado, las nuevas tecnologías como Spark introducen amplios cambios y mejoras con cada nueva versión. Los servicios administrados como Azure Data Lake Analytics y Azure Data Factory son relativamente jóvenes en comparación con otros servicios de Azure, y probablemente evolucionarán con el tiempo.
 - **Seguridad**. Las soluciones de macrodatos normalmente dependen del almacenamiento de todos los datos estáticos en una instancia de Data Lake centralizada. La protección del acceso a estos datos puede ser complicada, especialmente cuando los datos deben ser recibidos y utilizados por varias aplicaciones y plataformas.
 
-## <a name="best-practices"></a>Prácticas recomendadas
+## <a name="best-practices"></a>Procedimientos recomendados
 
 - **Aproveche el paralelismo**. Las tecnologías de procesamiento de macrodatos distribuyen la carga de trabajo entre varias unidades de procesamiento. Esto requiere que los archivos de datos estáticos se creen y almacenen en un formato divisible. Los sistemas de archivos distribuidos, como HDFS, pueden optimizar el rendimiento de lectura y escritura, y el procesamiento real se lleva a cabo por varios nodos de clúster en paralelo, lo cual reduce los tiempos de trabajo global.
 
@@ -91,3 +91,39 @@ Considere este estilo de arquitectura cuando necesite:
 - **Coordine la ingesta de datos**. En algunos casos, las aplicaciones empresariales existentes pueden escribir archivos de datos para el procesamiento por lotes directamente en los contenedores de blobs de Azure Storage, donde los pueden utilizar HDInsight o Azure Data Lake Analytics. Sin embargo, a menudo necesitará coordinar la ingesta de datos desde orígenes de datos externos o locales en la instancia de Data Lake. Utilice un flujo de trabajo o una canalización de coordinación, como los que admite Azure Data Factory o bien Oozie, a fin de lograr esto de forma predecible y fácil de administrar centralmente.
 
 - **Omita los datos confidenciales al principio**. El flujo de trabajo de la ingesta de datos debería omitir los datos confidenciales al principio del proceso a fin de evitar su almacenamiento en la instancia de Data Lake.
+
+## <a name="iot-architecture"></a>Arquitectura de IoT
+
+Internet de las cosas (IoT) es un subconjunto especializado de soluciones de macrodatos. En el siguiente diagrama se muestra una posible arquitectura lógica de IoT. En él se resaltan los componentes del flujo de eventos de la arquitectura.
+
+![](./images/iot.png)
+
+La **puerta de enlace de nube** ingiere eventos de dispositivo en el límite de nube, mediante un sistema de mensajería confiable y de baja latencia.
+
+Los dispositivos pueden enviar eventos directamente a la puerta de enlace de nube, o a través de una **puerta de enlace de campo**. Una puerta de enlace de campo es un dispositivo o software especializado, que normalmente se coloca con los dispositivos, que recibe eventos y los reenvía a la puerta de enlace de nube. La puerta de enlace de campo también puede procesar previamente los eventos de dispositivo sin formato y realizar funciones como filtrado, agregación o transformación de protocolo.
+
+Después de la ingesta, los eventos pasan por uno o varios **procesadores de flujo** que pueden enrutar los datos (por ejemplo, al almacenamiento) o realizar análisis u otras tareas de procesamiento.
+
+Estos son algunos tipos comunes de procesamiento. (Ciertamente, esta lista no es exhaustiva).
+
+- Escribir datos de eventos en almacenamiento en frío, para archivado o análisis por lotes.
+
+- Análisis de ruta de acceso activa, que analiza el flujo de eventos (casi) en tiempo real para detectar anomalías, reconocer patrones durante ventanas de tiempo consecutivas o desencadenar alertas cuando se produce una condición especifica en el flujo. 
+
+- Administrar tipos especiales de mensajes que no son de telemetría de dispositivos, tales como notificaciones y alarmas. 
+
+- Machine Learning
+
+Los cuadros que aparecen en gris sombreado muestran los componentes de un sistema IoT que no están directamente relacionados con el flujo de eventos, pero se incluyen aquí para ofrecer una visión completa.
+
+- El **registro de dispositivos** es una base de datos de los dispositivos aprovisionados, incluidos los identificadores de dispositivo y habitualmente los metadatos de dispositivos, como la ubicación.
+
+- La **API de aprovisionamiento** es una interfaz externa común para el aprovisionamiento y el registro de nuevos dispositivos.
+
+- Algunas soluciones IoT permiten el envío de **mensajes de comando y control** a los dispositivos.
+
+> En esta sección se ha presentado una vista de muy alto nivel de IoT y hay muchos matices y desafíos que se deben tener en cuenta. Para más información y obtener un análisis de una arquitectura de referencia, consulte [Microsoft Azure IoT Reference Architecture][iot-ref-arch] (Arquitectura de referencia de Microsoft Azure IoT) (descarga PDF).
+
+ <!-- links -->
+
+[iot-ref-arch]: https://azure.microsoft.com/updates/microsoft-azure-iot-reference-architecture-available/

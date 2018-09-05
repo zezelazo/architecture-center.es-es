@@ -3,12 +3,12 @@ title: Implementación de SAP NetWeaver (Windows) para AnyDB en Azure Virtual Ma
 description: Prácticas probadas para ejecutar SAP S/4HANA en un entorno de Linux en Azure con alta disponibilidad.
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: 90334e4872bdd15d59aa16286a031d07f3d1bb2f
-ms.sourcegitcommit: 86d86d71e392550fd65c4f76320d7ecf0b72e1f6
+ms.openlocfilehash: f4a33e7a3f30bdd6d8bdd41599a5e3b47501b874
+ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/06/2018
-ms.locfileid: "37864545"
+ms.lasthandoff: 08/10/2018
+ms.locfileid: "43016089"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Implementación de SAP NetWeaver (Windows) para AnyDB en Azure Virtual Machines
 
@@ -35,7 +35,7 @@ La arquitectura consta de la siguiente infraestructura y los siguientes componen
 - **JumpBox**. También se denomina bastion host. Se trata de una máquina virtual segura en la red que usan los administradores para conectarse al resto de máquinas virtuales.
 - **Controladores de dominio de Windows Server Active Directory**. Los controladores de dominio se utilizan en todas las máquinas virtuales y usuarios del dominio.
 
-**Equilibradores de carga.** Tanto los equilibradores de carga de SAP integrados como [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) se utilizan para lograr alta disponibilidad. Las instancias de Azure Load Balancer se utilizan para distribuir el tráfico a las máquinas virtuales en la subred de la capa de aplicación.
+**Equilibradores de carga.** Las instancias de [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) se utilizan para distribuir el tráfico a las máquinas virtuales en la subred de la capa de aplicaciones. En la capa de datos, se puede lograr alta disponibilidad mediante equilibradores de carga SAP integrados, Azure Load Balancer u otros mecanismos, dependiendo del DBMS. Para más información, consulte [Implementación de DBMS en Azure Virtual Machines para SAP NetWeaver](/azure/virtual-machines/workloads/sap/dbms-guide). 
 
 **Conjuntos de disponibilidad**. En las máquinas virtuales de SAP Web Dispatcher, el servidor de aplicaciones de SAP y (A)SCS, los roles se agrupan en [conjuntos de disponibilidad](/azure/virtual-machines/windows/tutorial-availability-sets) independientes y se aprovisionan un mínimo de dos máquinas virtuales por rol, lo que hace que las máquinas virtuales sean aptas para un [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/virtual-machines) (SLA) mayor.
 
