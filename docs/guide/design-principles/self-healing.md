@@ -2,12 +2,13 @@
 title: Diseño para la recuperación automática
 description: Las aplicaciones resistentes pueden recuperarse de errores sin intervención manual.
 author: MikeWasson
-ms.openlocfilehash: 508341ba428b294cf268e34e922aced9d2d67579
-ms.sourcegitcommit: 26b04f138a860979aea5d253ba7fecffc654841e
+ms.date: 08/30/2018
+ms.openlocfilehash: f85e3881fe7753f0551d1d31dd64b4631b441686
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/19/2018
-ms.locfileid: "36206752"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325815"
 ---
 # <a name="design-for-self-healing"></a>Diseño para la recuperación automática
 

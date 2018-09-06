@@ -2,12 +2,13 @@
 title: Fundamentos de calidad del software
 description: 'Describe cinco fundamentos de calidad del software: la escalabilidad, la disponibilidad, la resistencia, la administración y la seguridad.'
 author: MikeWasson
-ms.openlocfilehash: 117706046ca1a9b7f3203a99737347809d0c323f
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.date: 08/30/2018
+ms.openlocfilehash: dce87aba849c61750416f277bcc5558c400c1f25
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252794"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326163"
 ---
 # <a name="pillars-of-software-quality"></a>Fundamentos de calidad del software 
 

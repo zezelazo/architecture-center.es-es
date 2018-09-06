@@ -2,12 +2,13 @@
 title: Estilo de arquitectura de n niveles
 description: Describe las ventajas, los desafíos y los procedimientos recomendados para las arquitecturas de n niveles en Azure.
 author: MikeWasson
-ms.openlocfilehash: 8333b789e03a9da2b021abe7d7c193cd2af8d6bf
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.date: 08/30/2018
+ms.openlocfilehash: 2a113cefec8bd1c6c524030fbc459851094c09d6
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540383"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325757"
 ---
 # <a name="n-tier-architecture-style"></a>Estilo de arquitectura de n niveles
 
@@ -54,7 +55,7 @@ Las arquitecturas de n niveles son muy comunes en las aplicaciones locales tradi
 - La administración de una aplicación IaaS es más trabajo que una aplicación que utiliza solo los servicios administrados. 
 - Puede ser difícil administrar la seguridad de red en un sistema grande.
 
-## <a name="best-practices"></a>Prácticas recomendadas
+## <a name="best-practices"></a>Procedimientos recomendados
 
 - Utilice el escalado automático para tratar los cambios en la carga. Consulte [Procedimientos recomendados de escalado automático][autoscaling]
 - Utilice la mensajería asincrónica para desacoplar niveles.
@@ -89,7 +90,7 @@ Para obtener más información y una plantilla de Resource Manager que se puede 
 
 - Los niveles son los límites de escalabilidad, confiabilidad y seguridad. Considere la posibilidad de tener niveles separados para los servicios con diferentes requisitos en esas áreas.
 
-- Utilice Conjuntos de escalado de máquinas virtuales para el escalado automático.
+- Utilice VM Scale Sets para el escalado automático.
 
 - Busque lugares en la arquitectura donde pueda utilizar un servicio administrado sin necesidad de refactorización significativa. En concreto, examine el almacenamiento en caché, la mensajería, el almacenamiento y las bases de datos. 
 

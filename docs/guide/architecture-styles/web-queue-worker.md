@@ -2,12 +2,13 @@
 title: Estilo de arquitectura web-cola-trabajo
 description: Describe las ventajas, los desafíos y los procedimientos recomendados para las arquitecturas web-cola-trabajo en Azure.
 author: MikeWasson
-ms.openlocfilehash: 545472e71ffcd43717ad24af0dc9218a221ca910
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.date: 08/30/2018
+ms.openlocfilehash: 0ebcf49c08c74cec3f1820da2d6f30ba95256e81
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37958796"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325358"
 ---
 # <a name="web-queue-worker-architecture-style"></a>Estilo de arquitectura web-cola-trabajo
 
@@ -72,7 +73,7 @@ Puede usar las colas de Azure Service Bus o de Azure Storage para la cola de men
 
 Azure Redis Cache almacena el estado de sesión y otros datos que necesitan acceso de baja latencia.
 
-La red CDN de Azure se usa para almacenar en caché contenido estático como imágenes, CSS o HTML.
+Azure CDN se usa para almacenar en caché contenido estático como imágenes, CSS o HTML.
 
 Para el almacenamiento, elija las tecnologías de almacenamiento que mejor se adapten a las necesidades de la aplicación. Puede usar varias tecnologías de almacenamiento (persistencia de Polyglot). Para ilustrar esta idea, el diagrama muestra de Azure SQL Database y Azure Cosmos DB.  
 

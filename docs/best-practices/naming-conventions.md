@@ -4,12 +4,12 @@ description: Convenciones de nomenclatura para los recursos de Azure. Qué nombr
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 6ad71a5ee39b8f1863c51dae0120dbdc7baf1f76
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 8aa0b46d9f43107cfa4ae4be3160900249365702
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229157"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326327"
 ---
 # <a name="naming-conventions"></a>Convenciones de nomenclatura
 
@@ -111,10 +111,10 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 | --- | --- | --- | --- | --- | --- | --- |
 |Virtual Network |Grupo de recursos |2-64 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<service short name>-vnet` |`profx-vnet` |
 |Subred |Red virtual principal |2-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<descriptive context>` |`web` |
-|Interfaz de red |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<vmname>-nic<num>` |`profx-sql1-nic1` |
+|Interfaz de red |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<vmname>-nic<num>` |`profx-sql1-vm1-nic1` |
 |Grupo de seguridad de red (NSG) |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<service short name>-<context>-nsg` |`profx-app-nsg` |
 |Regla de grupo de seguridad de red |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<descriptive context>` |`sql-allow` |
-|Dirección IP pública |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<vm or service name>-pip` |`profx-sql1-pip` |
+|Dirección IP pública |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<vm or service name>-pip` |`profx-sql1-vm1-pip` |
 |Load Balancer |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<service or role>-lb` |`profx-lb` |
 |Configuración de reglas de carga equilibrada |Load Balancer |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<descriptive context>` |`http` |
 |Azure Application Gateway |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, guión, subrayado y punto |`<service or role>-agw` |`profx-agw` |
@@ -195,4 +195,4 @@ Los nombres de las cuentas de almacenamiento o de los contenedores no se pueden 
 
 <!-- links -->
 
-[scaffold]: /azure/azure-resource-manager/resource-manager-subscription-governance
+[scaffold]: /azure/azure-resource-manager/resource-manager-azure-scaffold
