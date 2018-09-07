@@ -4,12 +4,12 @@ description: Arquitecturas de referencia, planos y guía de implementación prec
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: e9b3a65c48c759f9fc07da9f2c4195fc2db4c782
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: bd04a866258fb2f6ff849a4f29492610d3545e1f
+ms.sourcegitcommit: 20953a7bed708713e4c972d390a2910505e80f08
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325578"
+ms.lasthandoff: 09/06/2018
+ms.locfileid: "44040458"
 ---
 # <a name="azure-reference-architectures"></a>Arquitecturas de referencia de Azure
 
@@ -28,7 +28,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./data/images/data-guide.svg" />
+                            <img src="../_images/icons/data-guide.svg" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -47,7 +47,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./data/images/data-guide.svg" />
+                            <img src="../_images/icons/data-guide.svg" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -67,7 +67,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/azure-analysis-service.svg" />
+                            <img src="../_images/icons/azure-analysis-service.svg" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -91,7 +91,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/app-service.svg" height="140px" />
+                            <img src="../_images/icons/app-service.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -110,7 +110,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/app-service.svg" height="140px" />
+                            <img src="../_images/icons/app-service.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -129,7 +129,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/app-service.svg" height="140px" />
+                            <img src="../_images/icons/app-service.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -153,7 +153,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./n-tier/images/Windows.svg" height="140px" />
+                            <img src="../_images/icons/windows.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -174,7 +174,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./n-tier/images/Windows.svg" height="140px" />
+                            <img src="../_images/icons/windows.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -195,7 +195,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./n-tier/images/LinuxPenguin.svg" height="140px" />
+                            <img src="../_images/icons/linux-penguin.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -219,7 +219,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/vpn.svg" height="140px" />
+                            <img src="../_images/icons/vpn.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -239,7 +239,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/expressroute.svg" height="140px" />
+                            <img src="../_images/icons/expressroute.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -259,7 +259,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/expressroute.svg" height="140px" />
+                            <img src="../_images/icons/expressroute.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -279,7 +279,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/gateway.svg" height="140px" />
+                            <img src="../_images/icons/gateway.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -299,7 +299,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/gateway.svg" height="140px" />
+                            <img src="../_images/icons/gateway.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -319,7 +319,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/vnet.svg" height="140px" />
+                            <img src="../_images/icons/vnet.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -339,7 +339,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/vnet.svg" height="140px" />
+                            <img src="../_images/icons/vnet.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -364,7 +364,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/azure-active-directory.svg" height="140px" />
+                            <img src="../_images/icons/azure-active-directory.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -384,7 +384,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/active-directory-vm.svg" height="140px" />
+                            <img src="../_images/icons/active-directory-vm.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -404,7 +404,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/active-directory-vm.svg" height="140px" />
+                            <img src="../_images/icons/active-directory-vm.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -424,7 +424,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./_images/active-directory-vm.svg" height="140px" />
+                            <img src="../_images/icons/active-directory-vm.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -449,7 +449,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./jenkins/images/logo.svg" height="140px" />
+                            <img src="../_images/icons/jenkins.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -469,7 +469,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./sharepoint/images/sharepoint.svg" height="140px" />
+                            <img src="../_images/icons/sharepoint.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -489,7 +489,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./sap/images/sap.svg" height="140px" />
+                            <img src="../_images/icons/sap.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -508,7 +508,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./sap/images/sap.svg" height="140px" />
+                            <img src="../_images/icons/sap.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
@@ -527,7 +527,7 @@ Vaya a: [Macrodatos](#big-data-solutions) | [Aplicaciones web](#web-applications
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./sap/images/sap.svg" height="140px" />
+                            <img src="../_images/icons/sap.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
