@@ -4,12 +4,12 @@ description: Cómo crear aplicaciones resistentes de Azure, para alta disponibil
 author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
-ms.openlocfilehash: c32f093da4c47ef655dfca89b0410f063e9fe212
-ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
+ms.openlocfilehash: b92a26323b4329f3dbe4f941b98da0080e730d65
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352593"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389441"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Diseño de aplicaciones resistentes de Azure
 
@@ -259,7 +259,7 @@ Medir los tiempos de recuperación y compruebe que se cumplen los requisitos de 
 
 Este es otro motivo por el cual es importante analizar los posibles puntos de error durante la fase de diseño. Los resultados de ese análisis deben incluirse en el plan de pruebas.
 
-**Prueba de carga**. Pruebe la carga de la aplicación mediante una herramienta como [Visual Studio Team Services][vsts] o [Apache JMeter][jmeter]. La prueba de carga es fundamental para identificar errores que se producen solo bajo carga, como que la base de datos de back-end esté desbordada o que haya una limitación del servicio. Realice pruebas de carga máxima, mediante el uso de datos de producción o datos sintéticos que estén lo más cerca posible de los datos de producción. El objetivo es ver cómo se comporta la aplicación en condiciones reales.   
+**Prueba de carga**. La prueba de carga es fundamental para identificar errores que se producen solo bajo carga, como que la base de datos de back-end esté desbordada o que haya una limitación del servicio. Realice pruebas de carga máxima, mediante el uso de datos de producción o datos sintéticos que estén lo más cerca posible de los datos de producción. El objetivo es ver cómo se comporta la aplicación en condiciones reales.   
 
 ## <a name="deploy-using-reliable-processes"></a>Implementación mediante procesos confiables
 Una vez que una aplicación se implementa en producción, las actualizaciones son un posible origen de errores. En el peor de los casos, una actualización incorrecta puede dar lugar a tiempos de inactividad. Para evitarlo, el proceso de implementación debe ser predecible y repetible. La implementación incluye el aprovisionamiento de recursos de Azure, la implementación del código de aplicación y la aplicación de las opciones de configuración. Una actualización puede implicar a los tres o a un subconjunto. 
@@ -355,4 +355,3 @@ Estos son los puntos principales que se pueden extraer de este artículo:
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [tm-failover]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
-[vsts]: https://www.visualstudio.com/features/vso-cloud-load-testing-vs.aspx
