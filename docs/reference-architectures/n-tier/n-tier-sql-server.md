@@ -3,12 +3,12 @@ title: Aplicación de n niveles con SQL Server
 description: Implementación de una arquitectura de varios niveles en Azure para lograr una mayor disponibilidad, seguridad, escalabilidad y facilidad de uso.
 author: MikeWasson
 ms.date: 07/19/2018
-ms.openlocfilehash: 42ba18e9ffef32c6990fbb888cc41e980fb4abea
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: fc761e940a25c4667146db9598d944bac2c32496
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229140"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43326063"
 ---
 # <a name="n-tier-application-with-sql-server"></a>Aplicación de n niveles con SQL Server
 
@@ -220,7 +220,7 @@ Hay disponible una implementación de esta arquitectura de referencia en [GitHub
     "witnessStorageAccountKey": "[replace-with-storagekey]"
     ```
 
-8. En el archivo `n-tier-windows.json`, busque todas las instancias de `testPassw0rd!23`, `test$!Passw0rd111` y `AweS0me@SQLServicePW`. Reemplácelas por sus propias contraseñas y guarde el archivo.
+8. En el archivo `n-tier-windows.json`, busque todas las instancias de `[replace-with-password]` y reemplácelas por una contraseña segura. Guarde el archivo.
 
     > [!NOTE]
     > Si cambia el nombre de usuario del administrador, también debe actualizar los bloques `extensions` en el archivo JSON. 

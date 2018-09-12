@@ -7,12 +7,12 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute
 pnp.series.prev: ./index
 cardTitle: VPN
-ms.openlocfilehash: dafcee6607d9cc7c56c332f9ed5d9568ff70f0e7
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: ef89cdd3e2a175f82929b613159a99557560cc7a
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270700"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325395"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>Conexión de una red local a Azure mediante VPN Gateway
 
@@ -22,7 +22,7 @@ Esta arquitectura de referencia muestra cómo extender una red local a Azure med
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Arquitectura 
 
 La arquitectura consta de los siguientes componentes:
 
@@ -80,13 +80,7 @@ Para obtener una lista de dispositivos VPN compatibles, consulte [Acerca de los 
 > 
 > 
 
-Seleccione la SKU de Azure VPN Gateway que mejor se ajuste a sus requisitos de rendimiento. Azure VPN Gateway está disponible en tres SKU, que se muestran en la tabla siguiente. 
-
-| SKU | Rendimiento de VPN | Número máximo de túneles IPSec |
-| --- | --- | --- |
-| Básica |100 Mbps |10 |
-| Estándar |100 Mbps |10 |
-| Alto rendimiento |200 Mbps |30 |
+Seleccione la SKU de Azure VPN Gateway que mejor se ajuste a sus requisitos de rendimiento. Consulte [SKU de puertas de enlace][azure-gateway-skus] para más información
 
 > [!NOTE]
 > La SKU Básica no es compatible con Azure ExpressRoute. También puede [cambiar la SKU][changing-SKUs] tras crear la puerta de enlace.
@@ -467,6 +461,7 @@ Para implementar la solución, siga estos pasos:
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [azure-vpn-gateway]: https://azure.microsoft.com/services/vpn-gateway/
 [azure-gateway-charges]: https://azure.microsoft.com/pricing/details/vpn-gateway/
+[azure-gateway-skus]: /azure/vpn-gateway/vpn-gateway-about-vpngateways#gwsku
 [connect-to-an-Azure-vnet]: https://technet.microsoft.com/library/dn786406.aspx
 [vpn-gateway-multi-site]: /azure/vpn-gateway/vpn-gateway-multi-site
 [policy-based-routing]: https://en.wikipedia.org/wiki/Policy-based_routing
@@ -494,9 +489,4 @@ Para implementar la solución, siga estos pasos:
 <!--[solution-script]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/Deploy-ReferenceArchitecture.ps1-->
 <!--[solution-script-bash]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/deploy-reference-architecture.sh-->
 <!--[virtualNetworkGateway-parameters]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/parameters/virtualNetworkGateway.parameters.json-->
-[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/
-[CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
-[0]: ./images/vpn.png "Red híbrida que abarca las infraestructuras de Azure y local"
-[2]: ../_images/guidance-hybrid-network-vpn/audit-logs.png "Registros de auditoría en Azure Portal"
-[3]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-counters.png "Contadores de rendimiento para supervisar el tráfico de red VPN"
-[4]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-graph.png "Ejemplo de gráfico de rendimiento de red VPN"
+[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/ [CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing [0]: ./images/vpn.png "Extensión de redes híbridas locales e infraestructuras de Azure" [2]: ../_images/guidance-hybrid-network-vpn/audit-logs.png "Registros de auditoría en Azure Portal" [3]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-counters.png "Contadores de rendimiento para la supervisión del trafico de red VPN" [4]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-graph.png "Ejemplo de gráfico de rendimiento de red VPN""

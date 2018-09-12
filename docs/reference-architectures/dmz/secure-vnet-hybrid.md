@@ -7,12 +7,12 @@ pnp.series.title: Network DMZ
 pnp.series.prev: ./index
 pnp.series.next: secure-vnet-dmz
 cardTitle: DMZ between Azure and on-premises
-ms.openlocfilehash: 45583473ef297b2c7a5b0c4baff52485286dd051
-ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
+ms.openlocfilehash: e397a8691a1b7b37cc0129d914dc85d92c876139
+ms.sourcegitcommit: f4069cf68456b5c74acb1b890dc4e45e11f12b59
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37403171"
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43675814"
 ---
 # <a name="dmz-between-azure-and-your-on-premises-datacenter"></a>Red perimetral entre Azure y el centro de datos local
 
@@ -28,7 +28,7 @@ Esta arquitectura requiere una conexión a su centro de datos local, mediante un
 * Infraestructura que requiere un control específico sobre el tráfico que entra en una red virtual de Azure desde un centro de datos local.
 * Aplicaciones que deben auditar el tráfico saliente. Esto suele ser un requisito de regulación de muchos sistemas comerciales y puede ayudar a evitar la revelación de información privada.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 La arquitectura consta de los siguientes componentes:
 
@@ -163,7 +163,7 @@ Use [RBAC][rbac] para restringir las operaciones que DevOps puede realizar en ca
 
 Se puede encontrar una implementación de una arquitectura de referencia que implementa estas recomendaciones en [GitHub][github-folder]. 
 
-### <a name="prerequisites"></a>requisitos previos
+### <a name="prerequisites"></a>Requisitos previos
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
@@ -226,6 +226,7 @@ En este paso, conectará las dos puertas de enlace de red local.
 * Para más información acerca de cómo administrar la seguridad de red con Azure, consulte [Servicios en la nube de Microsoft y seguridad de red][cloud-services-network-security].
 * Para información detallada sobre cómo proteger los recursos de Azure, consulte [Introducción a la seguridad de Microsoft Azure][getting-started-with-azure-security]. 
 * Para detalles adicionales acerca de cómo tratar problemas de seguridad en la conexión de puertas de enlace de Azure, vea [Implementación de una arquitectura de red híbrida con Azure y VPN local][guidance-vpn-gateway-security] e [Implementación de una arquitectura de red híbrida con Azure ExpressRoute][guidance-expressroute-security].
+* [Solución de problemas de aplicaciones virtuales de red en Azure](/azure/virtual-network/virtual-network-troubleshoot-nva)
   > 
 
 <!-- links -->

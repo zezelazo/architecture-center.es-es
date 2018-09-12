@@ -6,12 +6,12 @@ ms.date: 12/06/2016
 pnp.series.title: Network DMZ
 pnp.series.prev: secure-vnet-dmz
 cardTitle: Deploy highly available network virtual appliances
-ms.openlocfilehash: fe279eea3f9cb024d6c6c14943013b9b9a87bc9c
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 556ec1e78960d64cce3bf803fc46c9146ce2584d
+ms.sourcegitcommit: f4069cf68456b5c74acb1b890dc4e45e11f12b59
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847754"
+ms.lasthandoff: 09/04/2018
+ms.locfileid: "43675838"
 ---
 # <a name="deploy-highly-available-network-virtual-appliances"></a>Implementación de aplicaciones virtuales de red de alta disponibilidad
 
@@ -92,6 +92,7 @@ En la ilustración anterior se muestra un clúster [ZooKeeper][zookeeper] de eje
 ## <a name="next-steps"></a>Pasos siguientes
 * Aprenda a [implementar una red perimetral entre Azure y el centro de datos local][dmz-on-prem] mediante aplicaciones virtuales de red de capa 7.
 * Aprenda a [implementar una red perimetral entre Azure e Internet] [dmz-internet] mediante aplicaciones virtuales de red de capa 7.
+* [Solución de problemas de aplicaciones virtuales de red en Azure](/azure/virtual-network/virtual-network-troubleshoot-nva)
 
 <!-- links -->
 [cloud-security]: /azure/best-practices-network-security

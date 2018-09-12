@@ -3,12 +3,12 @@ title: Exploración interactiva de datos
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 20740a8fe912a63526c847416b832941f4ac33ec
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: 2e3d61fa5e1903c7fee6ebc84db3fa7c28d515cb
+ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30297967"
+ms.lasthandoff: 08/31/2018
+ms.locfileid: "43325124"
 ---
 # <a name="interactive-data-exploration"></a>Exploración interactiva de datos
 
@@ -51,7 +51,7 @@ Servicios de Azure correspondientes:
 
 - **Uso compartido de los resultados**. Puede haber algunas consideraciones de seguridad a tener en cuenta si los usuarios pueden crear y compartir informes o visualizaciones de datos.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 Aunque el objetivo de este escenario es permitir el análisis de datos interactivo, las tareas de limpieza de datos, muestreo y estructuración que implica la ciencia de datos, a menudo incluyen procesos de ejecución prolongada. Esto hace que una arquitectura de [procesamiento por lotes](../big-data/batch-processing.md) sea adecuada.
 
@@ -82,6 +82,7 @@ Para más información, consulte [Almacenes de datos analíticos](../technology-
 ### <a name="analytics-and-reporting"></a>Análisis e informes
 
 - **Jupyter**. Jupyter Notebooks proporciona una interfaz basada en el explorador para ejecutar código en lenguajes como R, Python o Scala. Cuando se usa R Server o Spark para procesar los datos por lotes, o al usar Spark SQL para definir un esquema de tablas para las consultas, Jupyter puede ser una buena opción para consultar los datos. Si usa Spark, puede usar la API de trama de datos de Spark o la API de Spark SQL, así como instrucciones de SQL insertadas, para consultar los datos y producir visualizaciones.
+- **Exploración en profundidad**. Si desea realizar una exploración de datos ad hoc, [Apache Drill](https://drill.apache.org/) es un motor de consulta SQL sin esquemas. Puesto que no requiere un esquema, puede consultar datos desde una variedad de orígenes de datos y el motor automáticamente comprenderá la estructura de los datos.
 - **Clientes de Hive interactivo**. Si utiliza un clúster de Hive interactivo para consultar los datos, puede usar la vista de Hive en el panel de clústeres de Ambari, la herramienta de línea de comandos Beeline o cualquier herramienta basada en ODBC (mediante el controlador ODBC de Hive), como Microsoft Excel o Power BI.
 
 Para más información, consulte [Tecnología de análisis de datos e informes](../technology-choices/analysis-visualizations-reporting.md).
