@@ -1,12 +1,13 @@
 ---
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 2a15382d69ae4e0e65ce98ac51b879e76d5c4837
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 09/10/2018
+ms.openlocfilehash: 870b47bee5e037950f52e20ceb3b36fbd1173801
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43327231"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389033"
 ---
 # <a name="enterprise-cloud-adoption"></a>Adopción en la nube empresarial
 
