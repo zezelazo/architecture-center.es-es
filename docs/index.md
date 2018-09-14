@@ -3,12 +3,12 @@ title: Azure Architecture Center
 description: Azure Architecture Center es el centro oficial para obtener instrucciones, planos, patrones y procedimientos recomendados para crear soluciones con Microsoft Azure. El equipo de patrones y prácticas de Microsoft es el que selecciona este material.
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 544196faa7156c5636b03d3f402bc48dcc63975f
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: ea3784a23c73c7f0eb103a0cb19e2c6b70ea9d7c
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987597"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584653"
 ---
 # <a name="azure-architecture-center"></a>Azure Architecture Center
 
@@ -46,16 +46,16 @@ ms.locfileid: "38987597"
             </div>
         </a>
     </li>
-    <!-- Cloud design patterns -->
+    <!-- Cloud Adoption -->
     <li>
-        <a href="/azure/architecture/patterns/">
+        <a href="/azure/architecture/cloud-adoption/">
             <div class="cardSize">
                 <div class="cardPadding">
                     <div class="card">
-                        <img src="_images/cloud-design-patterns.svg" alt="" />
+                        <img src="_images/cloud-adoption.svg" alt="" />
                         <div class="cardText">
-                            <h3>Patrones de diseño en la nube</h3>
-                            <p>Modelos de diseño para los programadores y arquitectos de soluciones. Cada patrón describe un problema, un patrón que aborda el problema y un ejemplo basado en Azure.</p>
+                            <h3>Adopción en la nube empresarial</h3>
+                            <p>Esta guía describe un proceso para crear una estrategia de adopción de la nube para toda la organización. Se centra en la preparación organizativa, el gobierno y la infraestructura.</p>
                         </div>
                     </div>
                 </div>
@@ -166,6 +166,26 @@ ms.locfileid: "38987597"
             </div>
         </a>
     </li>
+    <!-- design patterns -->
+    <li>
+        <a href="/azure/architecture/microservices">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="_images/cloud-design-patterns.svg" alt="" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h3>Patrones de diseño en la nube</h3>
+                            <p>Modelos de diseño para los programadores y arquitectos de soluciones. Cada patrón describe un problema, un patrón que aborda el problema y un ejemplo basado en Azure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
     <!-- Checklists -->
     <li>
         <a href="/azure/architecture/checklist/">
@@ -240,26 +260,6 @@ ms.locfileid: "38987597"
                         <div class="cardText">
                             <h3>Antipatrones de rendimiento</h3>
                             <p>Procedimiento para detectar y corregir algunas causas comunes de problemas de rendimiento y escalabilidad en las aplicaciones en la nube.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </li>
-    <!-- Multitenant identity -->
-    <li>
-        <a href="/azure/architecture/multitenant-identity">
-            <div class="cardSize">
-                <div class="cardPadding">
-                    <div class="card">
-                        <div class="cardImageOuter">
-                            <div class="cardImage">
-                                <img src="_images/multitenant-identity.svg" alt="" />
-                            </div>
-                        </div>
-                        <div class="cardText">
-                            <h3>Administración de identidades en aplicaciones multiinquilino</h3>
-                            <p>Conozca los procedimientos recomendados para la arquitectura multiinquilino durante el uso de Azure AD para la administración de las identidades.</p>
                         </div>
                     </div>
                 </div>
