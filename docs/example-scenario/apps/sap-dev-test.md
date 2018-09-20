@@ -3,12 +3,12 @@ title: SAP para cargas de trabajo de desarrollo/pruebas
 description: Escenario SAP para un entorno de desarrollo/pruebas
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: 675a5cb4b1ee4001ca50d24c145ce1a177f90da4
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: d0f266e40969cf4782e69041889a686387499722
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060966"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389186"
 ---
 # <a name="sap-for-devtest-workloads"></a>SAP para cargas de trabajo de desarrollo/pruebas
 
@@ -34,7 +34,7 @@ Tenga en cuenta este escenario para los casos de uso siguientes:
 Este escenario trata sobre el aprovisionamiento de una única base de datos del sistema SAP y del servidor de aplicaciones de SAP en una sola máquina virtual. Los datos fluyen a través del escenario como se indica a continuación:
 
 1. Los clientes del nivel de presentación usan la GUI de SAP, u otras interfaces de usuario (Internet Explorer, Excel o cualquier otra aplicación web) de forma local para acceder al sistema SAP basado en Azure.
-2. La conectividad se proporciona mediante el uso de la instancia de ExpressRoute establecida. Esta instancia finaliza en Azure en la puerta de enlace de ExpressRoute. El tráfico de red se enruta a través de la puerta de enlace de ExpressRoute hacia la subred de puerta de enlace y desde esta a la subred de aplicaciones de nivel spoke (consulte el patrón [hub-and-spoke][hub-spoke]) y a través de una puerta de enlace de seguridad de red hacia la máquina virtual de la aplicación SAP.
+2. La conectividad se proporciona mediante una conexión de ExpressRoute establecida. La conexión ExpressRoute finaliza en Azure, en la puerta de enlace de ExpressRoute. El tráfico de red se enruta a través de la puerta de enlace de ExpressRoute hacia la subred de puerta de enlace y desde esta a la subred de aplicaciones de nivel spoke (consulte el patrón [hub-and-spoke][hub-spoke]) y a través de una puerta de enlace de seguridad de red hacia la máquina virtual de la aplicación SAP.
 3. Los servidores de administración de identidades proporcionan servicios de autenticación.
 4. JumpBox proporciona funcionalidades de administración local.
 
@@ -77,22 +77,22 @@ Hemos proporcionado cuatro ejemplos de perfiles de costo según la cantidad de t
 grande|32000|E32s_v3|3xP20, 1xP10|[Grande](https://azure.com/e/ada2e849d68b41c3839cc976000c6931)|
 Extragrande|64000|M64s|4xP20, 1xP10|[Extragrande](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef)|
 
-Nota: la información sobre precios es una orientación y solo indica los costos de máquinas virtuales y de almacenamiento (no incluye los gastos de redes, almacenamiento de copia de seguridad y entrada o salida de datos).
+Nota: La información sobre precios es una orientación y solo indica los costos de máquinas virtuales y de almacenamiento (no incluye los gastos de redes, almacenamiento de copia de seguridad y entrada o salida de datos).
 
 * [Pequeño](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1): un sistema pequeño que consta de una máquina virtual del tipo D8s_v3 con 8 vCPU, 32 GB de RAM y almacenamiento temporal de 200 GB, además de dos discos de almacenamiento premium de 512 GB y uno de 128 GB.
 * [Mediano](https://azure.com/e/465bd07047d148baab032b2f461550cd): un sistema mediano que consta de una máquina virtual del tipo D16s_v3 con 16 vCPU, 64 GB de RAM y almacenamiento temporal de 400 GB, además de tres discos de almacenamiento premium de 512 GB y uno de 128 GB.
 * [Grande](https://azure.com/e/ada2e849d68b41c3839cc976000c6931): un sistema grande que consta de una máquina virtual del tipo E32s_v3 con 32 vCPU, 256 GB de RAM y almacenamiento temporal de 512 GB, además de tres discos de almacenamiento premium de 512 GB y uno de 128 GB.
-* [Extragrande](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef): un sistema extragrande que consta de una máquina virtual del tipo M64s con 64 vCPU, 1024 GB de RAM y almacenamiento temporal de 2000 GB, además de cuatro discos de almacenamiento premium de 512 GB y uno de 128 GB.
+* [Extragrande](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef): un sistema extra grande que consta de una máquina virtual del tipo M64s con 64 vCPU, 1024 GB de RAM y almacenamiento temporal de 2000 GB, además de cuatro discos de almacenamiento premium de 512 GB y uno de 128 GB.
 
 ## <a name="deployment"></a>Implementación
 
-Para implementar una infraestructura subyacente parecida a la del escenario anterior, use el botón Implementar
+Para implementar una infraestructura subyacente parecida a la del escenario anterior, use el botón Implementar.
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fsap-2tier%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-\* No se instalará SAP, deberá hacerlo después de que se compile manualmente la infraestructura.
+\* SAP no se instala automáticamente; debe instalarlo manualmente una vez creada la infraestructura.
 
 <!-- links -->
 [reference architecture]:  /azure/architecture/reference-architectures/sap

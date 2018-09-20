@@ -4,12 +4,12 @@ description: Convenciones de nomenclatura para los recursos de Azure. Qué nombr
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 8aa0b46d9f43107cfa4ae4be3160900249365702
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 625f672c80b0256e93932b72367768f37c1e72f4
+ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326327"
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46329885"
 ---
 # <a name="naming-conventions"></a>Convenciones de nomenclatura
 
@@ -45,7 +45,7 @@ Este es un patrón recomendado para la asignación de nombres a suscripciones:
 | Contoso |IT |InternalApps |Producción |Producción de InternalApps de TI de Contoso |
 | Contoso |IT |InternalApps |Desarrollo |Producción de InternalApps de TI de Contoso |
 
-Para más información acerca de cómo organizar las suscripciones en las empresas más grandes, lea las [instrucciones prescriptivas para la regulación de las suscripciones][scaffold].
+Para más información acerca de cómo organizar las suscripciones en las empresas mayores, consulte [Scaffolding empresarial de Azure: gobierno de suscripción preceptivo][scaffold].
 
 ## <a name="use-affixes-to-avoid-ambiguity"></a>Uso de afijos para evitar ambigüedades
 
@@ -195,4 +195,4 @@ Los nombres de las cuentas de almacenamiento o de los contenedores no se pueden 
 
 <!-- links -->
 
-[scaffold]: /azure/azure-resource-manager/resource-manager-azure-scaffold
+[scaffold]: /azure/architecture/cloud-adoption/appendix/azure-scaffold

@@ -4,12 +4,12 @@ description: Lista de comprobación que proporciona una orientación sobre la re
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 25d961d6bb753b1f515fc073e51bbb912cc59db7
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 735d4466f53ff03b67063b49b86f4184bbf1af41
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29783514"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584772"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Lista de comprobación de resistencia para servicios de Azure específicos
 
@@ -61,7 +61,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Implemente la recuperación ante desastres mediante la conmutación por error en un espacio de nombres secundario de Event Hubs.** Para más información, consulte [Recuperación ante desastres con localización geográfica de Azure Event Hubs](/azure/event-hubs/event-hubs-geo-dr).
 
-## <a name="redis-cache"></a>Caché en Redis
+## <a name="redis-cache"></a>Redis Cache
 
 **Configurar la replicación geográfica**. La replicación geográfica proporciona un mecanismo para vincular dos instancias de Azure Redis Cache de nivel Premium. Los datos escritos en la caché principal se replican en una caché secundaria de solo lectura. Para más información, consulte [Configuración de replicación geográfica para Azure Redis Cache](/azure/redis-cache/cache-how-to-geo-replication).
 
@@ -99,6 +99,10 @@ Si usa Redis Cache como caché de datos temporal y no como almacén persistente,
 **Utilice la restauración a un momento dado para realizar la recuperación en caso de errores humanos.**  La restauración a un momento dado devuelve la base de datos a un momento anterior en el tiempo. Para más información, consulte [Recuperación de una instancia de Azure SQL Database mediante copias de seguridad de datos automatizadas][sql-restore].
 
 **Use la restauración geográfica para recuperarse de una interrupción del servicio.** La restauración geográfica restaura una base de datos a partir de una copia de seguridad con redundancia geográfica.  Para más información, consulte [Recuperación de una instancia de Azure SQL Database mediante copias de seguridad de datos automatizadas][sql-restore].
+
+## <a name="sql-data-warehouse"></a>SQL Data Warehouse
+
+**No deshabilite la copia de seguridad con redundancia geográfica.** De forma predeterminada, SQL Data Warehouse realiza una copia de seguridad completa de los datos cada 24 horas por si es preciso realizar una recuperación ante un desastre. No se recomienda desactivar esta característica. Para más información, consulte [Copias de seguridad geográficas](/azure/sql-data-warehouse/backup-and-restore#geo-backups).
 
 ## <a name="sql-server-running-in-a-vm"></a>SQL Server que se ejecuta en una máquina virtual
 

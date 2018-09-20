@@ -3,12 +3,12 @@ title: Aplicación de n niveles con SQL Server
 description: Implementación de una arquitectura de varios niveles en Azure para lograr una mayor disponibilidad, seguridad, escalabilidad y facilidad de uso.
 author: MikeWasson
 ms.date: 07/19/2018
-ms.openlocfilehash: fc761e940a25c4667146db9598d944bac2c32496
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 3a291b9492c94450a42de96bea2135190c163fe7
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326063"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584755"
 ---
 # <a name="n-tier-application-with-sql-server"></a>Aplicación de n niveles con SQL Server
 
@@ -154,6 +154,8 @@ Considere la posibilidad de agregar una aplicación virtual de red (NVA) para cr
 
 Cifre información confidencial en reposo y use [Azure Key Vault][azure-key-vault] para administrar las claves de cifrado de la base de datos. Key Vault puede almacenar las claves de cifrado en módulos de seguridad de hardware (HSM). Para más información, consulte [Configuración de la integración de Azure Key Vault para SQL Server en máquinas virtuales de Azure][sql-keyvault]. También se recomienda almacenar los secretos de aplicación como, por ejemplo, las cadenas de conexión de base de datos, en Key Vault.
 
+Se recomienda habilitar [DDoS Protection Standard](/azure/virtual-network/ddos-protection-overview), que mitiga los riesgos de DDoS para los recursos de una red virtual. Aunque la protección contra DDoS básica se habilita automáticamente como parte de la plataforma Azure, DDoS Protection Standard proporciona funcionalidades de mitigación de riesgos ajustadas específicamente a los recursos de Azure Virtual Network.  
+
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
 Hay disponible una implementación de esta arquitectura de referencia en [GitHub][github-folder]. Tenga en cuenta que toda la implementación puede tardar hasta dos horas, lo que incluye la ejecución de los scripts para configurar AD DS, el clúster de conmutación por error de Windows Server y el grupo de disponibilidad de SQL Server.
@@ -220,7 +222,7 @@ Hay disponible una implementación de esta arquitectura de referencia en [GitHub
     "witnessStorageAccountKey": "[replace-with-storagekey]"
     ```
 
-8. En el archivo `n-tier-windows.json`, busque todas las instancias de `[replace-with-password]` y reemplácelas por una contraseña segura. Guarde el archivo.
+8. En el archivo `n-tier-windows.json`, busque todas las instancias de `[replace-with-password]` y `[replace-with-sql-password]`, y reemplácelas por una contraseña segura. Guarde el archivo.
 
     > [!NOTE]
     > Si cambia el nombre de usuario del administrador, también debe actualizar los bloques `extensions` en el archivo JSON. 

@@ -3,12 +3,12 @@ title: Clasificación de imágenes de reclamaciones de seguros en Azure
 description: Escenario probado para incorporar procesamiento de imágenes en sus aplicaciones de Azure.
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 361a88234fd9ed918ab7664893f86666b4328b8c
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 0ca0b46e83219afc5e22c2ac6467bf4be945c97a
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060836"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389169"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Clasificación de imágenes de reclamaciones de seguros en Azure
 
@@ -16,7 +16,7 @@ Este escenario de ejemplo es aplicable a empresas que necesitan procesar imágen
 
 Algunas aplicaciones posibles son clasificar las imágenes de un sitio web de moda, analizar texto e imágenes para reclamaciones de seguros o reconocer los datos de telemetría de capturas de pantalla de juegos. Tradicionalmente, las empresas necesitaban convertirse en expertos en modelos de aprendizaje automático, entrenar los modelos y, por último, ejecutar las imágenes en su proceso personalizado para extraer los datos de las imágenes.
 
-Con los servicios de Azure tales como Computer Vision API y Azure Functions, las empresas pueden eliminar la necesidad de administrar servidores individuales, al tiempo que reducen los costos y aprovechan los conocimientos que Microsoft ya ha desarrollado alrededor del procesamiento de imágenes con Cognitive Services. En concreto, este es un escenario de procesamiento de imágenes. Si tiene distintas necesidades de inteligencia artificial, tenga en cuenta el conjunto completo de [Cognitive Services][cognitive-docs].
+Con los servicios de Azure tales como Computer Vision API y Azure Functions, las empresas pueden eliminar la necesidad de administrar servidores individuales, al tiempo que reducen los costos y aprovechan los conocimientos que Microsoft ya ha desarrollado alrededor del procesamiento de imágenes con Cognitive Services. En concreto, este es un escenario de ejemplo de procesamiento de imágenes. Si tiene distintas necesidades de inteligencia artificial, tenga en cuenta el conjunto completo de [Cognitive Services][cognitive-docs].
 
 ## <a name="related-use-cases"></a>Casos de uso relacionados
 
@@ -63,11 +63,11 @@ Este escenario trata los componentes de back-end de una aplicación web o móvil
 
 ### <a name="scalability"></a>Escalabilidad
 
-La mayor parte todos los componentes de este escenario son servicios administrados que escalan automáticamente. Hay dos excepciones destacables: Azure Functions tiene un límite máximo de 200 instancias. Si necesita escalar más allá, considere la posibilidad de usar varias regiones o planes de la aplicación.
+La mayoría de los componentes usados en este escenario de ejemplo son servicios administrados que escalan automáticamente. Hay dos excepciones destacables: Azure Functions tiene un límite máximo de 200 instancias. Si necesita escalar más allá de este límite, considere la posibilidad de usar varias regiones o planes de aplicación.
 
-Cosmos DB no reduce horizontalmente la escala de forma automática en términos de unidades de solicitud (RU) aprovisionadas.  Para obtener instrucciones sobre cómo calcular los requisitos, consulte [unidades de solicitud][request-units] en nuestra documentación. Para aprovechar al máximo el escalado en Cosmos DB, eche un vistazo también a las [claves de partición][partition-key].
+Cosmos DB no reduce horizontalmente la escala de forma automática en términos de unidades de solicitud (RU) aprovisionadas.  Para obtener instrucciones sobre cómo calcular los requisitos, consulte [unidades de solicitud][request-units] en nuestra documentación. Para aprovechar al máximo el escalado en Cosmos DB, eche un vistazo a las [claves de partición][partition-key].
 
-Las bases de datos NoSQL suelen renunciar a la coherencia (en el sentido del teorema CAP) frente a la disponibilidad, escalabilidad y partición.  Sin embargo, en el caso de los modelos de datos de pares clave-valor que se usa en este escenario, la coherencia de la transacción rara vez es necesaria porque, por definición, la mayoría de las operaciones son atómicas. Para más información sobre cómo [elegir el almacén de datos correcto](../../guide/technology-choices/data-store-overview.md), consulte el centro de arquitectura.
+Las bases de datos NoSQL suelen renunciar a la coherencia (en el sentido del teorema CAP) frente a la disponibilidad, escalabilidad y creación de particiones.  En este escenario de ejemplo, se usa un modelo de datos de pares clave-valor y la coherencia de la transacción rara vez es necesaria porque, por definición, la mayoría de las operaciones son atómicas. Para más información sobre cómo [elegir el almacén de datos correcto](../../guide/technology-choices/data-store-overview.md), consulte el Centro de arquitectura de Azure.
 
 Para obtener instrucciones generales sobre cómo diseñar soluciones escalables, consulte la [lista de comprobación de escalabilidad][scalability] en el centro de arquitectura de Azure.
 
@@ -87,17 +87,17 @@ Para obtener instrucciones generales sobre el diseño de soluciones resistentes,
 
 Para explorar el costo de ejecutar este escenario, todos los servicios están preconfigurados en la calculadora de costos. Para ver cómo cambiarían los precios en su caso concreto, cambie las variables pertinentes para que coincidan con el tráfico esperado.
 
-Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tráfico (hemos dado por hecho que todas las imágenes tienen un tamaño de 100 Kb):
+Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tráfico (hemos dado por hecho que todas las imágenes tienen un tamaño de 100 KB):
 
-* [Pequeño][pricing]: se corresponde con un procesamiento de menos de 5 000 mensajes al mes.
-* [Mediano][medium-pricing]: se corresponde con un procesamiento de 500 000 mensajes al mes.
-* [Grande][large-pricing]: se corresponde con un procesamiento de 50 millones de mensajes al mes.
+* [Pequeño][pricing]: se corresponde con un procesamiento de menos de 5000 imágenes al mes.
+* [Mediano][medium-pricing]: se corresponde con un procesamiento de menos de 500 000 imágenes al mes.
+* [Grande][large-pricing]: se corresponde con un procesamiento de menos de 50 millones de imágenes al mes.
 
 ## <a name="related-resources"></a>Recursos relacionados
 
 Para ver una ruta de aprendizaje guiado de este escenario, consulte [Compilación de una aplicación web sin servidor en Azure][serverless].  
 
-Antes de poner esto en un entorno de producción, revise los [procedimientos recomendados][functions-best-practices] de Azure Functions.
+Antes de implementar este escenario de ejemplo en un entorno de producción, revise los [procedimientos recomendados][functions-best-practices] de Azure Functions.
 
 <!-- links -->
 [pricing]: https://azure.com/e/f9b59d238b43423683db73f4a31dc380

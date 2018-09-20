@@ -2,12 +2,13 @@
 title: 'Adopción de la nube empresarial: Introducción'
 description: Describe una introducción a la primera fase de transformación digital de una empresa al adoptar las tecnologías en la nube de Azure
 author: petertaylor9999
-ms.openlocfilehash: 25d1afe4d048b07a350dfc1b5c463b1d5425a8a4
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 09/10/2018
+ms.openlocfilehash: b51e834a56f4d9818ca9475f959c3f888bae20bc
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43327057"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389312"
 ---
 # <a name="enterprise-cloud-adoption-getting-started"></a>Adopción de la nube empresarial: Introducción 
 
@@ -35,6 +36,8 @@ Por ejemplo, un equipo de estrategia en la nube podría estar a cargo del direct
 
 También es importante formar otros dos equipos de alto nivel: un equipo de gobierno y un equipo de seguridad. Estos equipos son responsables del diseño, la implementación y la auditoría en curso de directivas de seguridad y gobierno de la empresa. El equipo de gobierno precisa de miembros que hayan trabajado con protección de recursos, administración de costos, directivas de grupo y temas relacionados. El equipo de seguridad requiere que sus miembros sean expertos en los estándares de seguridad actuales, así como en los requisitos de seguridad de la empresa.
 
+![Equipo de estrategia de nube, con equipos de gobierno y seguridad](../_images/getting-started-overview-1.png)
+
 El equipo de gobierno es responsable de diseñar e implementar el modelo de gobierno de la empresa en la nube, así como de implementar y mantener los recursos de infraestructura compartida que forman parte de la transformación digital. Estos recursos incluyen el hardware, el software y los recursos en la nube necesarios para conectar la red local a una red virtual en la nube.
 
 El equipo de seguridad es responsable de diseñar e implementar las directivas de seguridad de la empresa en la nube, trabajando estrechamente con el equipo de gobierno. El equipo de seguridad lleva la extensión del límite de seguridad de la red local para que incluya una red virtual en la nube. Esto puede adoptar la forma de propietario y mantenedor de los firewalls de entrada y salida a la red virtual en la nube, así como el papel de garantizar que las herramientas y las directivas impiden la implementación de recursos no autorizados.
@@ -42,6 +45,8 @@ El equipo de seguridad es responsable de diseñar e implementar las directivas d
 ## <a name="step-2-learn-whats-new-in-the-cloud"></a>Paso 2: Obtención de información sobre las novedades en tecnologías en la nube
  
 El siguiente paso en la transformación digital de la empresa consiste en que los miembros del equipo de estrategia en la nube obtengan información sobre cómo las tecnologías en la nube cambiarán la forma en la que empresa hace negocios. Se trata de preparar y planear los cambios en la empresa, el personal y las tecnologías. Es importante que los miembros del equipo de estrategia en la nube comprendan qué es nuevo y diferente en la nube en comparación con un entorno local.
+
+![Los equipos de estrategia, gobierno y seguridad en la nube aprenden los procedimientos recomendados para trabajar en la nube.](../_images/getting-started-overview-2.png)
 
 El punto de partida para comprender la nube consiste en aprender [cómo funciona Azure](what-is-azure.md) de un modo general. A continuación, se trata de obtener información sobre los conceptos básicos de [gobierno en Azure](what-is-governance.md) como preparación para [comprender la administración del acceso a los recurso](azure-resource-access.md).
 
@@ -80,6 +85,8 @@ El resultado de este proceso es una lista ordenada de soluciones de alto nivel a
 Ahora que se han enumerado y priorizado los objetivos de la transformación digital y se han propuesto soluciones de alto nivel, el paso siguiente consiste en que el equipo de estrategia en la nube alinee cada una de las soluciones de alto nivel con equipos de diseño e implementación de cada uno de los grupos de negocio. 
 
 Los equipos reciben las listas con prioridades y trabajan en cada solución de alto nivel para diseñar cada solución. El proceso de diseño implica la especificación de nueva infraestructura y nuevas cargas de trabajo. También puede haber cambios en los roles de las personas y los procesos que siguen. También es muy importante en esta fase que cada uno de los equipos de diseño incluya a los equipos de gobierno y de seguridad para que revise cada diseño. Cada diseño debe cumplir las directivas y procedimientos definidos por los equipos de gobierno y de seguridad y estos equipos se deben incluir en la aprobación final de cada diseño.
+
+![El equipo de estrategia en la nube encarga soluciones generales a los equipos de diseño e implementación.](../_images/getting-started-overview-3.png)
 
 El diseño de cada solución no es una tarea trivial y, en su creación, se debe considerar en el contexto junto con otros diseños de soluciones de otros equipos. Por ejemplo, si varios de los diseños provocan una migración de servicios y aplicaciones locales existentes a la nube, puede ser más eficaz agruparlos y diseñar una estrategia de migración general. En otro ejemplo, podría no resultar posible migrar algunas aplicaciones y servicios locales existentes y la solución puede ser reemplazarlos por un nuevo desarrollo o servicios de terceros. En este caso, puede resultar más eficaz agruparlos y determinar la superposición entre ellos para decidir si se puede usar un servicio de terceros para más de una solución.
 

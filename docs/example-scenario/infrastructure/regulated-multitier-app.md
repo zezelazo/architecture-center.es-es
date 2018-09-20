@@ -3,12 +3,12 @@ title: Protección de aplicaciones web de Windows para sectores regulados
 description: Escenario de eficacia probada a la hora de compilar una aplicación web segura, de varios niveles, con Windows Server en Azure que use conjuntos de escalado, Application Gateway y equilibradores de carga.
 author: iainfoulds
 ms.date: 07/11/2018
-ms.openlocfilehash: aba714fc1955341645d0faa400768bc09fb8e50b
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 3572f215d9134a6650d76e1b14458226334c6f42
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060996"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389298"
 ---
 # <a name="secure-windows-web-application-for-regulated-industries"></a>Protección de aplicaciones web de Windows para sectores regulados
 
@@ -30,7 +30,7 @@ Tenga en cuenta este escenario para los casos de uso siguientes:
 
 Este escenario incluye una aplicación de varios niveles para sectores regulados que usa ASP.NET y Microsoft SQL Server. Los datos fluyen por el escenario de la siguiente manera:
 
-1. Los usuarios acceden a la aplicación front-end de ASP.NET para sectores regulados a través de una instancia de Azure Application Gateway.
+1. Los usuarios acceden a la aplicación front-end de ASP.NET para sectores regulados a través de Azure Application Gateway.
 2. Application Gateway distribuye el tráfico a las instancias de máquinas virtuales de un conjunto de escalado de máquinas virtuales de Azure.
 3. La aplicación ASP.NET se conecta al clúster de Microsoft SQL Server en un nivel de back-end a través de un equilibrador de carga de Azure. Estas instancias de back-end de SQL Server están en una red virtual de Azure independiente, protegidas mediante reglas de grupo de seguridad de red que limitan el flujo de tráfico.
 4. El equilibrador de carga distribuye el tráfico de SQL Server en instancias de máquinas virtuales de otro conjunto de escalado de máquinas virtuales.
@@ -51,7 +51,7 @@ Este escenario incluye una aplicación de varios niveles para sectores regulados
 
 * [SQL Server para Linux][sql-linux] puede reemplazar el almacén de datos de back-end.
 
-* [COSMOS DB][cosmos] es otra alternativa para el almacén de datos.
+* [Cosmos DB][cosmos] es otra alternativa para el almacén de datos.
 
 ## <a name="considerations"></a>Consideraciones
 
@@ -67,7 +67,7 @@ Para ver otros temas de disponibilidad, consulte la [lista de comprobación de d
 
 Este escenario utiliza conjuntos de escalado de máquinas virtuales para los componentes de front-end y de back-end. Con los conjuntos de escalado, el número de instancias de máquina virtual que se ejecutan en la capa de aplicación de front-end se puede reducir horizontalmente de forma automática en respuesta a la demanda del cliente, o según una programación definida. Para más información, consulte [Introducción al escalado automático con conjuntos de escalado de máquinas virtuales][vmssautoscale-docs].
 
-Para ver otros temas de escalabilidad, consulte la [lista de comprobación de escalabilidad][scalability] que encontrará en Azure Architecture Center.
+Para ver otros temas de escalabilidad, consulte la [lista de comprobación de escalabilidad][scalability] que encontrará en el centro de arquitectura de Azure.
 
 ### <a name="security"></a>Seguridad
 
@@ -86,7 +86,7 @@ Para obtener instrucciones generales sobre el diseño de escenarios resistentes,
 **Requisitos previos**
 
 * Debe tener una cuenta de Azure. Si no tiene una suscripción a Azure, cree una [cuenta gratuita](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) antes de empezar.
-* Para implementar un clúster de SQL Server en el conjunto de escalado de back-end necesita una instancia de Active Directory Domain Services.
+* Para implementar un clúster de SQL Server en el conjunto de escalado de back-end, necesita un dominio en Active Directory Domain Services.
 
 Para implementar la infraestructura principal de este escenario con una plantilla de Azure Resource Manager, realice los pasos siguientes.
 
@@ -106,13 +106,13 @@ Para explorar el costo de ejecutar este escenario, todos los servicios están pr
 
 Hemos incluido tres perfiles de costos de ejemplo basados en el número de instancias de conjuntos de escalado de máquinas virtuales que ejecutan las aplicaciones.
 
-* [Pequeño][small-pricing]: este perfil correlaciona dos instancias de máquina virtual de front-end y dos de back-end.
-* [Mediano][medium-pricing]: este perfil correlaciona 20 instancias de máquina virtual de front-end y 5 de back-end.
-* [Grande][large-pricing]: este perfil correlaciona 100 instancias de máquina virtual de front-end y 10 de back-end.
+* [Pequeño][small-pricing]: este ejemplo de plan de tarifa corresponde a dos instancias de máquina virtual de front-end y dos de back-end.
+* [Mediano][medium-pricing]: este ejemplo de plan de tarifa corresponde a 20 instancias de máquina virtual de front-end y cinco de back-end.
+* [Grande][large-pricing]: este ejemplo de plan de tarifa corresponde a 100 instancias de máquina virtual de front-end y 10 de back-end.
 
 ## <a name="related-resources"></a>Recursos relacionados
 
-Este escenario usa un conjunto de escalado de máquinas virtuales de back-end que ejecuta un clúster de Microsoft SQL Server. También se puede usar Azure Cosmos DB como un nivel de base de datos escalable y seguro para los datos de aplicación. Un [punto de conexión de servicio de red virtual de Azure][vnetendpoint-docs] le permite proteger los recursos de los servicios de Azure fundamentales solo para las redes virtuales. En este escenario, los puntos de conexión le permiten proteger el tráfico entre la capa de aplicación de front-end y Cosmos DB. Para más información sobre Cosmos DB, consulte [Introducción a Azure Cosmos DB][azurecosmosdb-docs].
+Este escenario usa un conjunto de escalado de máquinas virtuales de back-end que ejecuta un clúster de Microsoft SQL Server. También se puede usar Azure Cosmos DB como un nivel de base de datos escalable y seguro para los datos de aplicación. Un [punto de conexión de servicio de red virtual de Azure][vnetendpoint-docs] le permite proteger los recursos de los servicios de Azure fundamentales y los limita solo a sus redes virtuales. En este escenario, los puntos de conexión le permiten proteger el tráfico entre la capa de aplicación de front-end y Cosmos DB. Para más información sobre Cosmos DB, consulte [Introducción a Azure Cosmos DB][azurecosmosdb-docs].
 
 También puede ver una completa [arquitectura de referencia para una aplicación de n niveles genérica con SQL Server][ntiersql-ra].
 

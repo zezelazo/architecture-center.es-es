@@ -3,18 +3,18 @@ title: Procesamiento de pedidos escalable en Azure
 description: Escenario de ejemplo de creación de una canalización de procesamiento de pedidos altamente escalable con Azure Cosmos DB.
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: 9fa0dc7c564270ee811b56169e05f7e743664838
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: aa7281263db7cc72781b740941f3b86dad025baa
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016056"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389118"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Procesamiento de pedidos escalable en Azure
 
 Este escenario de ejemplo es útil para aquellas organizaciones que necesitan una arquitectura resistente y altamente escalable para el procesamiento de pedidos en línea. Entre las posibles aplicaciones se incluyen aplicaciones de comercio electrónico, puntos de venta, realización de pedidos y reserva y seguimiento de inventario. 
 
-Este escenario emplea un enfoque de aprovisionamiento de eventos mediante un modelo de programación funcional que se implementa a través de microservicios. Cada microservicio se trata como un procesador de secuencias y toda la lógica de negocios se implementa a través de microservicios. Este enfoque permite obtener alta disponibilidad y resistencia, replicación geográfica y un rendimiento rápido.
+Este escenario emplea un enfoque de aprovisionamiento de eventos mediante un modelo de programación funcional que se implementa a través de microservicios. Cada microservicio se trata como un procesador de flujos de datos y toda la lógica de negocios se implementa mediante microservicios. Este enfoque permite obtener alta disponibilidad y resistencia, replicación geográfica y un rendimiento rápido.
 
 El uso de servicios de Azure administrados como Cosmos DB y HDInsight puede ayudarle a reducir los costos aprovechando la experiencia de Microsoft en almacenamiento y recuperación de datos globalmente distribuidos de escala en la nube. Este escenario es adecuado específicamente para un escenario de comercio electrónico o de venta. Si tiene otras necesidades de servicios de datos, revise la lista de [servicios de bases de datos inteligentes totalmente administrados de Azure][product-category].
 
@@ -41,7 +41,7 @@ Esta arquitectura detalla los componentes clave de una canalización de procesam
 
 ### <a name="components"></a>Componentes
 
-* [Cosmos DB][docs-cosmos-db]: es un servicio de Microsoft, de bases de datos multimodelo de distribución global, que permite a las soluciones escalar de forma elástica e independiente el rendimiento y el almacenamiento en cualquier número de regiones geográficas. Ofrece garantía de rendimiento, latencia, disponibilidad y coherencia con Acuerdos de Nivel de Servicio (SLA) integrales. En este escenario se emplea Cosmos DB para el almacenamiento de flujos de eventos y de instantáneas, y aprovecha las características de la [fuente de cambios de Cosmos DB][docs-cosmos-db-change-feed] para proporcionar coherencia de datos y recuperación de errores. 
+* [Cosmos DB][docs-cosmos-db]: es un servicio de Microsoft, de bases de datos multimodelo de distribución global, que permite a las soluciones escalar de forma elástica e independiente el rendimiento y el almacenamiento en cualquier número de regiones geográficas. Ofrece garantía de rendimiento, latencia, disponibilidad y coherencia con Acuerdos de Nivel de Servicio (SLA) integrales. En este escenario se emplea Cosmos DB para el almacenamiento de flujos de eventos y de instantáneas, y aprovecha las características de la [fuente de cambios de Cosmos DB][docs-cosmos-db-change-feed] para proporcionar coherencia de datos y recuperación de errores.
 * [Apache Kafka en HDInsight][docs-kafka] es una implementación de servicio administrado de Apache Kafka, una plataforma de streaming distribuida de código abierto para compilar canalizaciones y aplicaciones de streaming de datos en tiempo real. Kafka también proporciona una funcionalidad de agente de mensajería similar a una cola de mensajes, donde puede publicar y suscribirse a los flujos de datos con nombre. Este escenario utiliza Kafka para procesar los eventos entrantes así como los eventos de nivel inferior en la canalización de procesamiento de pedidos. 
 
 ## <a name="considerations"></a>Consideraciones
@@ -83,13 +83,13 @@ La moneda de Azure Cosmos DB es la unidad de solicitud (RU). Con las unidades de
 
 Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de actividad que se espera:
 
-* [Pequeño][small-pricing]: este perfil pone en correlación a 5 unidades de solicitud reservadas con un almacén de datos de 1 TB en Cosmos DB y un pequeño (D3 v2) clúster de Kafka.
-* [Medio][medium-pricing]: este perfil pone en correlación a 50 unidades de solicitud reservadas con un almacén de datos de 10 TB en Cosmos DB y un clúster de Kafka de tamaño medio (D4 v2).
-* [Grande][large-pricing]: este perfil pone en correlación a 500 unidades de solicitud reservadas con un almacén de datos de 30 TB en Cosmos DB y un clúster de Kafka de tamaño grande (D5 v2).
+* [Pequeño][small-pricing]: este ejemplo de plan de tarifa corresponde a 5 unidades de solicitud reservadas con un almacén de datos de 1 TB en Cosmos DB y un pequeño clúster de Kafka (D3 v2).
+* [Mediano][medium-pricing]: este ejemplo de plan de tarifa corresponde a 50 unidades de solicitud reservadas con un almacén de datos de 10 TB en Cosmos DB y un clúster mediano de Kafka (D4 v2).
+* [Grande][large-pricing]: este ejemplo de plan de tarifa se corresponde con 500 unidades de solicitud reservadas con un almacén de datos de 30 TB en Cosmos DB y un clúster grande de Kafka (D5 v2).
 
 ## <a name="related-resources"></a>Recursos relacionados
 
-Este escenario de ejemplo se basa en una versión más amplia de esta arquitectura creada por [Jet.com](https://jet.com) para su canalización global de procesamiento de pedidos. Para más información, consulte el [perfil de cliente técnico de jet.com][source-document] y [la presentación de jet.com en Build 2018][source-presentation]. 
+Este escenario de ejemplo se basa en una versión más amplia de esta arquitectura creada por [Jet.com](https://jet.com) para su canalización global de procesamiento de pedidos. Para más información, consulte el [perfil de cliente técnico de jet.com][source-document] y [la presentación de jet.com en Build 2018][source-presentation].
 
 Otros recursos relacionados son los siguientes:
 * _[Designing Data-Intensive Applications](https://dataintensive.net/)_ (Diseño de aplicaciones de uso intensivo de datos) por Martin Kleppmann (O'Reilly Media, 2017).
@@ -104,10 +104,9 @@ Otros recursos relacionados son los siguientes:
 [small-pricing]: https://azure.com/e/3d43949ffbb945a88cc0a126dc3a0e6e
 [medium-pricing]: https://azure.com/e/1f1e7bf2a6ad4f7799581211f4369b9b
 [large-pricing]: https://azure.com/e/75207172ece94cf6b5fb354a2252b333
-[architecture-diagram]: ./images/architecture-diagram-cosmos-db.png
+[architecture-diagram]: ./media/architecture-diagram-cosmos-db.png
 [docs-cosmos-db]: /azure/cosmos-db
 [docs-cosmos-db-change-feed]: /azure/cosmos-db/change-feed
-[docs-cosmos-db-online-backup-and-restore]: /azure/cosmos-db/online-backup-and-restore
 [docs-cosmos-db-regional-failover]: /azure/cosmos-db/regional-failover
 [docs-cosmos-db-guarantees]: /azure/cosmos-db/distribute-data-globally#AvailabilityGuarantees
 [docs-cosmos-db-use-cases]: /azure/cosmos-db/use-cases

@@ -3,12 +3,12 @@ title: Bot conversacional para reservas de hotel en Azure
 description: Escenario probado para la creación de un bot de chat de conversación para aplicaciones de comercio con Azure Bot Service, Cognitive Services y LUIS, Azure SQL Database y Application Insights.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: b664faf20d806824c2581346aaa592b0d74207da
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 95a0fd77a99a348704a1d916de534a98d0b03448
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060870"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389339"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Bot conversacional para reservas de hotel en Azure
 
@@ -64,7 +64,7 @@ Para ver otros temas de disponibilidad, consulte la [lista de comprobación de d
 
 ### <a name="scalability"></a>Escalabilidad
 
-Este escenario utiliza Azure App Service. Con App Service, puede escalar automáticamente el número de instancias que ejecutan su bot. Esta funcionalidad le permite satisfacer la demanda de los clientes para su aplicación web y bot de chat. Para más información sobre el escalado automático, consulte [Procedimientos recomendados de escalado automático][autoscaling] en el centro de arquitectura.
+Este escenario utiliza Azure App Service. Con App Service, puede escalar automáticamente el número de instancias que ejecutan su bot. Esta funcionalidad le permite satisfacer la demanda de los clientes para su aplicación web y bot de chat. Para más información sobre el escalado automático, consulte [Procedimientos recomendados de escalado automático][autoscaling] en el Centro de arquitectura de Azure.
 
 Para ver otros temas de escalabilidad, consulte la [lista de comprobación de escalabilidad][scalability] que encontrará en el centro de arquitectura de Azure.
 
@@ -78,7 +78,7 @@ Para obtener instrucciones generales sobre el diseño de soluciones seguras, con
 
 ### <a name="resiliency"></a>Resistencia
 
-Este escenario utiliza Azure SQL Database para almacenar las reservas de los clientes. SQL Database incluye bases de datos con redundancia de zona, grupos de conmutación por error, replicación geográfica y copias de seguridad automáticas. Estas características permiten que la aplicación continúe ejecutándose en caso de un evento de mantenimiento o una interrupción. Para más información, consulte [Funcionalidades de disponibilidad de Azure SQL Database][sqlavailability-docs].
+Este escenario utiliza Azure SQL Database para almacenar las reservas de los clientes. SQL Database incluye bases de datos con redundancia de zona, grupos de conmutación por error, replicación geográfica y copias de seguridad automáticas. Estas características permiten que la aplicación continúe ejecutándose en caso de mantenimiento o una interrupción. Para más información, consulte [Funcionalidades de disponibilidad de Azure SQL Database][sqlavailability-docs].
 
 Para supervisar el estado de mantenimiento de la aplicación, este escenario usa Application Insights. Con Application Insights, puede generar alertas y responder a problemas de rendimiento que pueden afectar a la experiencia del cliente y la disponibilidad del bot de chat. Para más información, consulte [¿Qué es Application Insights?][appinsights-docs]
 
@@ -141,7 +141,7 @@ La aplicación de ejemplo incluye los componentes de autenticación de Azure Act
 
 Para explorar el costo de ejecutar este escenario, todos los servicios están preconfigurados en la calculadora de costos. Para ver cómo cambiarían los precios en su caso concreto, cambie las variables pertinentes para que coincidan con el tráfico esperado.
 
-Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de mensajes que se espera que su bot de chat procese:
+Hemos proporcionado tres ejemplos de perfiles de costo según el número de mensajes que se espera que su bot de chat procese:
 
 * [Pequeño][small-pricing]: se corresponde con un procesamiento de menos de 10 000 mensajes al mes.
 * [Mediano][medium-pricing]: se corresponde con un procesamiento de menos de 500 000 mensajes al mes.

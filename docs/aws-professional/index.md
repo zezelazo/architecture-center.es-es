@@ -5,12 +5,12 @@ keywords: Expertos de AWS, comparación de Azure, comparación de AWS, diferenci
 author: lbrader
 ms.date: 03/24/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 0af0890d383d22db0ed9d3b445cdd5b561b498ae
-ms.sourcegitcommit: f665226cec96ec818ca06ac6c2d83edb23c9f29c
+ms.openlocfilehash: f90186ba36f035871ec918c65b05eebe44190ffa
+ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/16/2018
-ms.locfileid: "31012627"
+ms.lasthandoff: 09/19/2018
+ms.locfileid: "46329902"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure para profesionales de AWS
 
@@ -156,7 +156,7 @@ El [almacenamiento con redundancia geográfica](https://azure.microsoft.com/docu
 
 ## <a name="services"></a>Services
 
-Consulte la [matriz completa de comparación de servicios de AWS y Azure](https://aka.ms/azure4aws-services) para ver un listado completo de cómo todos los servicios se asignan entre plataformas.
+Para obtener una lista de cómo se asignan servicios entre plataformas, consulte [Comparación de AWS con los servicios de Azure](./services.md).
 
 No todos los servicios y productos de Azure están disponibles en todas las regiones. Consulte la página [Productos por región](https://azure.microsoft.com/regions/services/) para más información. Las garantías de tiempo de actividad y las directivas de crédito de tiempo de inactividad de cada producto o servicio de Azure pueden encontrarse en la página [Acuerdos de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/).
 
@@ -175,8 +175,6 @@ Aunque los tipos de instancia de AWS y los tamaños de máquina virtual de Azure
 -   [Tamaños de las máquinas virtuales en Azure (Linux)](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/)
 
 A diferencia de la facturación por segundo de AWS, las máquinas virtuales de Azure a petición se facturan por minuto.
-
-Azure no tiene equivalente a las instancias activas o a los hosts dedicados de EC2.
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>EBS y Azure Storage para discos de máquina virtual
 
@@ -428,8 +426,6 @@ Notification Hubs no admite el envío de mensajes de correo electrónico o SMS, 
 
 ## <a name="next-steps"></a>Pasos siguientes
 
--   [Rellenar la matriz de comparación de servicios de AWS y Azure](https://aka.ms/azure4aws-services)
-
 -   [Visión general interactiva de la plataforma Azure](http://azureplatform.azurewebsites.net/)
 
 -   [Comience a usar Azure](https://azure.microsoft.com/get-started/)
@@ -437,8 +433,6 @@ Notification Hubs no admite el envío de mensajes de correo electrónico o SMS, 
 -   [Arquitecturas de soluciones de Azure](https://azure.microsoft.com/solutions/architecture/)
 
 -   [Arquitecturas de referencia de Azure](https://azure.microsoft.com/documentation/articles/guidance-architecture/)
-
--   [Patrones y procedimientos: guía para Azure](https://azure.microsoft.com/documentation/articles/guidance/)
 
 -   [Curso en línea gratuito: Microsoft Azure for AWS Experts](http://aka.ms/azureforaws) (Microsoft Azure para expertos de AWS)
 

@@ -3,12 +3,12 @@ title: Aplicación de n niveles con Apache Cassandra
 description: Cómo ejecutar máquinas virtuales Linux para una arquitectura de n niveles en Microsoft Azure.
 author: MikeWasson
 ms.date: 05/03/2018
-ms.openlocfilehash: 7ee14088a2fae3cfc5c1119daf717236c75ecc6a
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: fa5faeda4ef1dcae46181c0a3be8f4e139dc27d0
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142240"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584721"
 ---
 # <a name="n-tier-application-with-apache-cassandra"></a>Aplicación de n niveles con Apache Cassandra
 
@@ -18,7 +18,7 @@ Esta arquitectura de referencia muestra cómo implementar máquinas virtuales y 
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Arquitectura 
 
 La arquitectura consta de los siguientes componentes:
 
@@ -138,11 +138,13 @@ Considere la posibilidad de agregar una aplicación virtual de red (NVA) para cr
 
 Cifre información confidencial en reposo y use [Azure Key Vault][azure-key-vault] para administrar las claves de cifrado de la base de datos. Key Vault puede almacenar las claves de cifrado en módulos de seguridad de hardware (HSM). También se recomienda almacenar los secretos de aplicación como, por ejemplo, las cadenas de conexión de base de datos, en Key Vault.
 
+Se recomienda habilitar [DDoS Protection Standard](/azure/virtual-network/ddos-protection-overview), que mitiga los riesgos de DDoS para los recursos de una red virtual. Aunque la protección contra DDoS básica se habilita automáticamente como parte de la plataforma Azure, DDoS Protection Standard proporciona funcionalidades de mitigación de riesgos ajustadas específicamente a los recursos de Azure Virtual Network.  
+
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
 Hay disponible una implementación de esta arquitectura de referencia en [GitHub][github-folder]. 
 
-### <a name="prerequisites"></a>requisitos previos
+### <a name="prerequisites"></a>Requisitos previos
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 

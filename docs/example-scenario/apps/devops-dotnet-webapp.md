@@ -3,12 +3,12 @@ title: Canalización de CI/CD con VSTS
 description: Un ejemplo de compilación y publicación de una aplicación .NET en Azure Web Apps
 author: christianreddington
 ms.date: 07/11/18
-ms.openlocfilehash: ae4ac5fc02cc841fc39b3cbef46124fe9da75e9b
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: aea757087f4a505a8c52658abe1841c5455977cc
+ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39061016"
+ms.lasthandoff: 09/11/2018
+ms.locfileid: "44389293"
 ---
 # <a name="cicd-pipeline-with-vsts"></a>Canalización de CI/CD con VSTS
 
@@ -16,7 +16,7 @@ DevOps es la integración de las operaciones de desarrollo, control de calidad y
 
 Este escenario de ejemplo muestra cómo los equipos de desarrollo pueden usar Visual Studio Team Services para implementar una aplicación web .NET de dos niveles en Azure App Service. La aplicación web depende de servicios de plataforma como servicio (PaaS) de Azure de nivel inferior. Este documento también señala algunas consideraciones que debe tener en cuenta al diseñar un escenario como este mediante una plataforma como servicio (PaaS) de Azure.
 
-Adoptar un enfoque moderno en el desarrollo de aplicaciones mediante la integración continua (CI) y la implementación continua (CD) le ayuda a proporcionar valor más rápidamente a los usuarios mediante un servicio sólido de compilación, prueba, implementación y supervisión. Con el uso de una plataforma como Visual Studio Team Services además de servicios de Azure como App Service, las organizaciones se aseguran de que se centran en el desarrollo de su escenario en lugar de en la administración de la infraestructura que necesitan para habilitarlo.
+Adoptar un enfoque moderno en el desarrollo de aplicaciones mediante la integración continua (CI) y la implementación continua (CD) ayuda a proporcionar valor más rápidamente a los usuarios mediante un servicio sólido de compilación, prueba, implementación y supervisión. Con el uso de una plataforma como Visual Studio Team Services además de servicios de Azure como App Service, las organizaciones se aseguran de que se centran en el desarrollo de su escenario en lugar de en la administración de la infraestructura que necesitan para habilitarlo.
 
 ## <a name="related-use-cases"></a>Casos de uso relacionados
 
@@ -50,13 +50,13 @@ Este escenario incluye una canalización de DevOps para una aplicación web de .
 
 Aunque este artículo se centra en Visual Studio Team Services, se puede usar [Team Foundation Server][team-foundation-server] como sustituto en un entorno local. Como alternativa, también puede encontrar un conjunto de tecnologías que se usan conjuntamente para lograr un aprovechamiento de la canalización de desarrollo de código abierto [Jenkins][jenkins-on-azure].
 
-Desde una perspectiva de infraestructura como código, las [plantillas de Azure Resource Manager (ARM)][arm-templates] se incluyen como parte del proyecto de Azure DevOps, pero también podría usar [Terraform][terraform] o [Chef][chef] si ha invertido en ellos. Si prefiere una implementación basada en una infraestructura como servicio (IaaS) y requiere administración de configuración podría usar [Azure Desired State Configuration][desired-state-configuration], [Ansible][ansible] o [Chef][chef].
+Desde una perspectiva de infraestructura como código, las [plantillas de Azure Resource Manager][arm-templates] se incluyen como parte del proyecto de Azure DevOps, pero también podría usar [Terraform][terraform] o [Chef][chef] si ha invertido en ellos. Si prefiere una implementación basada en una infraestructura como servicio (IaaS) y necesita administración de la configuración, podría usar [Azure Automation State Configuration][desired-state-configuration], [Ansible][ansible] o [Chef][chef].
 
 ### <a name="alternatives-to-web-app-hosting"></a>Alternativas al hospedaje en Web Apps
 
 Alternativas al hospedaje en Azure Web Apps:
 
-* [Máquina virtual][compare-vm-hosting]: para cargas de trabajo que requieren un alto grado de control, o dependen de componentes o servicios del sistema operativo que no son posibles con Web Apps (por ejemplo, la caché global de ensamblados de Windows o COM)
+* [Máquina virtual][compare-vm-hosting]: para cargas de trabajo que requieren un alto grado de control, o dependen de componentes o servicios del sistema operativo que no son posibles con Web Apps (por ejemplo, la caché global de ensamblados de Windows o COM).
 * [Hospedaje de contenedores][azure-containers]: donde hay dependencias del sistema operativo y portabilidad de hospedaje o densidad de hospedaje, también hay requisitos.
 * [Service Fabric][service-fabric]: una buena opción si la arquitectura de cargas de trabajo está centrada en torno a componentes distribuidos que se benefician de su implementación y ejecución en un clúster con un alto grado de control. Service Fabric también se puede utilizar para hospedar contenedores.
 * [Funciones de Azure sin servidor][azure-functions]: una buena opción si la arquitectura de cargas de trabajo está centrada en torno a componentes distribuidos más precisos, que requieren dependencias mínimas, donde solo se necesita que los componentes individuales se ejecuten a petición (no de forma continua) y en los que la orquestación de componentes no es necesaria.
@@ -79,7 +79,7 @@ Puede que también necesite configurar y restablecer datos específicos del ento
 La entrega continua también se puede ampliar a los entornos de pruebas de carga y pruebas de aceptación de usuario.
 
 La entrega continua se beneficia de la supervisión continua, idealmente en todos los entornos.
-La coherencia y confiabilidad de las pruebas de implementaciones y de integración de los entornos se facilita mediante el uso de scripts de creación y configuración o de la infraestructura de hospedaje (algo que es considerablemente más fácil para cargas de trabajo basadas en la nube; consulte la infraestructura de Azure como código), que también se conoce como ["infraestructura como código"][infra-as-code].
+Para faciliar la coherencia y confiabilidad de las implementaciones y las pruebas de integración de los entornos, se pueden usar scripts de creación y configuración o la infraestructura de hospedaje (algo que es considerablemente más fácil para cargas de trabajo basadas en la nube; consulte la infraestructura de Azure como código). Esto se conoce también como ["infraestructura como código"][infra-as-code].
 
 * Inicie la entrega continua tan pronto como sea posible en el ciclo de vida del proyecto. Cuanto más tarde se realice, más difícil será.
 * Se le debe dar la misma prioridad a las pruebas unitarias y de integración que a las características del proyecto
@@ -104,7 +104,7 @@ Al compilar una aplicación en la nube debe tener en cuenta los [patrones de dis
 
 Revise las consideraciones sobre escalabilidad en la correspondiente [arquitectura de referencia de aplicación web de App Service][app-service-reference-architecture]
 
-Para ver otros temas de escalabilidad, consulte la [lista de comprobación de escalabilidad][scalability] que encontrará en Azure Architecture Center.
+Para ver otros temas de escalabilidad, consulte la [lista de comprobación de escalabilidad][scalability] que encontrará en el centro de arquitectura de Azure.
 
 ### <a name="security"></a>Seguridad
 
@@ -118,7 +118,7 @@ Para obtener instrucciones generales sobre el diseño de soluciones seguras, con
 
 Revise los [patrones de diseño típicos de resistencia][design-patterns-resiliency] y considere la posibilidad de implementar estos cuando corresponda.
 
-Puede encontrar varios [procedimientos recomendados de resistencia para App Service][resiliency-app-service] en el centro de arquitectura.
+Encontrará varios [procedimientos recomendados para App Service][resiliency-app-service] en el Centro de arquitectura de Azure.
 
 Para obtener instrucciones generales sobre el diseño de soluciones resistentes, consulte [Diseño de aplicaciones resistentes de Azure][resiliency].
 
@@ -133,9 +133,9 @@ Para obtener instrucciones generales sobre el diseño de soluciones resistentes,
 
 En este escenario va a usar el proyecto de Azure DevOps para crear la canalización de CI/CD.
 
-El proyecto de DevOps implementará App Service, un plan de App Service y un recurso de App Insights y configurará el proyecto de Visual Studio Team Services en su lugar.
+El proyecto de DevOps implementará App Service, un plan de App Service y un recurso de App Insights, y configurará el proyecto de Visual Studio Team Services en su lugar.
 
-Una vez que tenga el proyecto de DevOps y se haya completado la compilación, revise los cambios de código asociados, los elementos de trabajo y los resultados de las pruebas. Como puede observar, no se muestra ningún resultado de la prueba, ya que el código no contiene pruebas para ejecutarlas.
+Una vez que tenga implementado el proyecto de DevOps y se haya completado la compilación, revise los cambios de código asociados, los elementos de trabajo y los resultados de las pruebas. Como puede observar, no se muestra ningún resultado de la prueba, ya que el código no contiene pruebas para ejecutarlas.
 
 Revise las definiciones de versión. Tenga en cuenta que se ha configurado una canalización de versión que ha permitido publicar nuestra aplicación en Dev. Observe que hay un **desencadenador de implementación continua** establecido en el artefacto de compilación **Drop**, con versiones automáticas en los entornos de Dev. Como parte de un proceso de implementación continua, puede que vea extenderse versiones en varios entornos. Una versión puede abarcar la infraestructura (mediante técnicas como la de infraestructura como código) y también implementar los paquetes de aplicación necesarios así como todas las tareas posteriores a la configuración.
 

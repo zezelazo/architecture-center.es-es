@@ -3,12 +3,12 @@ title: Ejecución de una VM con Linux en Azure
 description: Cómo ejecutar una única máquina virtual en Azure teniendo en cuenta la escalabilidad, resistencia, manejabilidad y seguridad.
 author: telmosampaio
 ms.date: 04/03/2018
-ms.openlocfilehash: 3d0492d05280e8c296cdfc4157aa0387a70337bf
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: b53db016a594bace880aaac4e16f0586fe3057b1
+ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142325"
+ms.lasthandoff: 09/14/2018
+ms.locfileid: "45584738"
 ---
 # <a name="run-a-linux-vm-on-azure"></a>Ejecución de una VM con Linux en Azure
 
@@ -133,6 +133,8 @@ Use los [registros de auditoría][audit-logs] para ver las acciones de aprovisio
 
 **Cifrado de datos.** Considere la posibilidad de usar [Azure Disk Encryption][disk-encryption] si necesita cifrar los discos de datos y del sistema operativo. 
 
+**DDoS Protection**. Se recomienda habilitar [DDoS Protection Standard](/azure/virtual-network/ddos-protection-overview), que mitiga los riesgos de DDoS para los recursos de una red virtual. Aunque la protección contra DDoS básica se habilita automáticamente como parte de la plataforma Azure, DDoS Protection Standard proporciona funcionalidades de mitigación de riesgos ajustadas específicamente a los recursos de Azure Virtual Network.  
+
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
 Hay una implementación disponible en [GitHub][github-folder]. Implementa lo siguiente:
@@ -142,7 +144,7 @@ Hay una implementación disponible en [GitHub][github-folder]. Implementa lo sig
   * Una máquina virtual en la que se ejecuta la última versión de Ubuntu 16.04.3 LTS.
   * Extensión de script personalizada de ejemplo que da formato a los dos discos de datos e implementa el servidor HTTP de Apache en la máquina virtual Ubuntu.
 
-### <a name="prerequisites"></a>requisitos previos
+### <a name="prerequisites"></a>Requisitos previos
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
