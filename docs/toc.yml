@@ -65,30 +65,6 @@ items:
         href: guide/design-principles/build-for-business.md
     - name: Fundamentos de calidad del software
       href: guide/pillars.md
-    - name: Procedimientos recomendados para arquitecturas en la nube
-      items:
-      - name: Diseño de API
-        href: best-practices/api-design.md
-      - name: Implementación de API
-        href: best-practices/api-implementation.md
-      - name: Escalado automático
-        href: best-practices/auto-scaling.md
-      - name: Trabajos en segundo plano
-        href: best-practices/background-jobs.md
-      - name: Almacenamiento en caché
-        href: best-practices/caching.md
-      - name: Content Delivery Network
-        href: best-practices/cdn.md
-      - name: Creación de particiones de datos
-        href: best-practices/data-partitioning.md
-      - name: Supervisión y diagnóstico
-        href: best-practices/monitoring.md
-      - name: Convenciones de nomenclatura
-        href: best-practices/naming-conventions.md
-      - name: Control de errores transitorios
-        href: best-practices/transient-faults.md
-      - name: Guía de reintentos para servicios específicos
-        href: best-practices/retry-service-specific.md
   - name: Guía de arquitectura de datos
     items:
     - name: Introducción
@@ -251,6 +227,30 @@ items:
       href: patterns/throttling.md
     - name: Clave auxiliar
       href: patterns/valet-key.md
+  - name: Procedimientos recomendados para aplicaciones en la nube
+    items:
+    - name: Diseño de API
+      href: best-practices/api-design.md
+    - name: Implementación de API
+      href: best-practices/api-implementation.md
+    - name: Escalado automático
+      href: best-practices/auto-scaling.md
+    - name: Trabajos en segundo plano
+      href: best-practices/background-jobs.md
+    - name: Almacenamiento en caché
+      href: best-practices/caching.md
+    - name: Content Delivery Network
+      href: best-practices/cdn.md
+    - name: Creación de particiones de datos
+      href: best-practices/data-partitioning.md
+    - name: Supervisión y diagnóstico
+      href: best-practices/monitoring.md
+    - name: Convenciones de nomenclatura
+      href: best-practices/naming-conventions.md
+    - name: Control de errores transitorios
+      href: best-practices/transient-faults.md
+    - name: Guía de reintentos para servicios específicos
+      href: best-practices/retry-service-specific.md
   - name: Antipatrones de rendimiento
     items:
     - name: Información general
@@ -271,62 +271,12 @@ items:
       href: antipatterns/no-caching/index.md
     - name: E/S síncrona
       href: antipatterns/synchronous-io/index.md
-  - name: Creación de microservicios en Azure
+  - name: Azure para profesionales de AWS
     items:
-    - name: Introducción
-      href: microservices/index.md
-    - name: Análisis de dominios
-      href: microservices/domain-analysis.md
-    - name: Identificación de los límites de los microservicios
-      href: microservices/microservice-boundaries.md
-    - name: Consideraciones sobre los datos
-      href: microservices/data-considerations.md
-    - name: Comunicación entre servicios
-      href: microservices/interservice-communication.md
-    - name: Diseño de API
-      href: microservices/api-design.md
-    - name: Ingesta de datos y flujo de trabajo
-      href: microservices/ingestion-workflow.md
-    - name: Puertas de enlace de API
-      href: microservices/gateway.md
-    - name: Registro y supervisión
-      href: microservices/logging-monitoring.md
-    - name: CI/CD
-      href: microservices/ci-cd.md
-  - name: Administración de identidades multiinquilino
-    items:
-    - name: Introducción
-      href: multitenant-identity/index.md
-    - name: El escenario de Tailspin
-      href: multitenant-identity/tailspin.md
-    - name: Autenticación
-      href: multitenant-identity/authenticate.md
-    - name: Identidad basada en notificaciones
-      href: multitenant-identity/claims.md
-    - name: Registro de inquilinos
-      href: multitenant-identity/signup.md
-    - name: Roles de la aplicación
-      href: multitenant-identity/app-roles.md
-    - name: Autorización
-      href: multitenant-identity/authorize.md
-    - name: Protección de una web API
-      href: multitenant-identity/web-api.md
-    - name: Almacenamiento en caché de los tokens de acceso
-      href: multitenant-identity/token-cache.md
-    - name: Aserción de cliente
-      href: multitenant-identity/client-assertion.md
-    - name: Protección de los secretos de aplicación
-      href: multitenant-identity/key-vault.md
-    - name: Federación con un servicio AD FS de un cliente
-      href: multitenant-identity/adfs.md
-    - name: Ejecución de la aplicación Surveys
-      href: multitenant-identity/run-the-app.md
-  - name: Migración de Cloud Services a Service Fabric
-    items:
-    - name: Migrar una aplicación de Cloud Services a Service Fabric
-      href: service-fabric/migrate-from-cloud-services.md
-    - name: Refactorización de una aplicación de Service Fabric
-      href: service-fabric/refactor-migrated-app.md
+    - name: Información general
+      href: aws-professional/index.md
+    - name: Comparación de servicios
+      href: aws-professional/services.md
 - name: Escenarios de ejemplo
   items:
   - name: Información general
@@ -389,14 +339,6 @@ items:
   items:
   - name: Información general
     href: reference-architectures/index.md
-  - name: Aplicación web de App Service
-    items:
-    - name: Aplicación web básica
-      href: reference-architectures/app-service-web-app/basic-web-app.md
-    - name: Escalabilidad mejorada
-      href: reference-architectures/app-service-web-app/scalable-web-app.md
-    - name: Implementación en varias regiones
-      href: reference-architectures/app-service-web-app/multi-region.md
   - name: Macrodatos
     items:
     - name: Inteligencia empresarial con SQL Data Warehouse
@@ -431,7 +373,7 @@ items:
       href: reference-architectures/identity/adds-forest.md
     - name: Extensión de AD FS a Azure
       href: reference-architectures/identity/adfs.md
-  - name: Aplicación de n niveles
+  - name: Aplicaciones de n niveles
     items:
     - name: Aplicación de n niveles con SQL Server
       href: reference-architectures/n-tier/n-tier-sql-server.md
@@ -459,10 +401,78 @@ items:
       href: reference-architectures/sap/sap-s4hana.md
     - name: SAP HANA en Azure (instancias grandes)
       href: reference-architectures/sap/hana-large-instances.md
-  - name: Servidor Jenkins
-    href: reference-architectures/jenkins/index.md
-  - name: SharePoint Server 2016
-    href: reference-architectures/sharepoint/index.md
+  - name: Cargas de trabajo de máquinas virtuales
+    items:
+    - name: Servidor Jenkins
+      href: reference-architectures/jenkins/index.md
+    - name: SharePoint Server 2016
+      href: reference-architectures/sharepoint/index.md
+  - name: Aplicaciones web
+    items:
+    - name: Aplicación web básica
+      href: reference-architectures/app-service-web-app/basic-web-app.md
+    - name: Escalabilidad mejorada
+      href: reference-architectures/app-service-web-app/scalable-web-app.md
+    - name: Implementación en varias regiones
+      href: reference-architectures/app-service-web-app/multi-region.md
+- name: Guías de diseño
+  items:
+  - name: Creación de microservicios en Azure
+    items:
+    - name: Introducción
+      href: microservices/index.md
+    - name: Análisis de dominios
+      href: microservices/domain-analysis.md
+    - name: Identificación de los límites de los microservicios
+      href: microservices/microservice-boundaries.md
+    - name: Consideraciones sobre los datos
+      href: microservices/data-considerations.md
+    - name: Comunicación entre servicios
+      href: microservices/interservice-communication.md
+    - name: Diseño de API
+      href: microservices/api-design.md
+    - name: Ingesta de datos y flujo de trabajo
+      href: microservices/ingestion-workflow.md
+    - name: Puertas de enlace de API
+      href: microservices/gateway.md
+    - name: Registro y supervisión
+      href: microservices/logging-monitoring.md
+    - name: CI/CD
+      href: microservices/ci-cd.md
+  - name: Administración de identidades multiinquilino
+    items:
+    - name: Introducción
+      href: multitenant-identity/index.md
+    - name: El escenario de Tailspin
+      href: multitenant-identity/tailspin.md
+    - name: Autenticación
+      href: multitenant-identity/authenticate.md
+    - name: Identidad basada en notificaciones
+      href: multitenant-identity/claims.md
+    - name: Registro de inquilinos
+      href: multitenant-identity/signup.md
+    - name: Roles de la aplicación
+      href: multitenant-identity/app-roles.md
+    - name: Autorización
+      href: multitenant-identity/authorize.md
+    - name: Protección de una web API
+      href: multitenant-identity/web-api.md
+    - name: Almacenamiento en caché de los tokens de acceso
+      href: multitenant-identity/token-cache.md
+    - name: Aserción de cliente
+      href: multitenant-identity/client-assertion.md
+    - name: Protección de los secretos de aplicación
+      href: multitenant-identity/key-vault.md
+    - name: Federación con un servicio AD FS de un cliente
+      href: multitenant-identity/adfs.md
+    - name: Ejecución de la aplicación Surveys
+      href: multitenant-identity/run-the-app.md
+  - name: Migración de Cloud Services a Service Fabric
+    items:
+    - name: Migrar una aplicación de Cloud Services a Service Fabric
+      href: service-fabric/migrate-from-cloud-services.md
+    - name: Refactorización de una aplicación de Service Fabric
+      href: service-fabric/refactor-migrated-app.md
 - name: Diseño de plataforma de revisión
   items:
   - name: Diseño para lograr resistencia
@@ -517,17 +527,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: Implementación de plantillas scaffold de Azure Enterprise
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-- name: Centro de datos virtual de Azure
-  href: vdc/index.md
-- name: Azure para profesionales de AWS
-  items:
-  - name: Información general
-    href: aws-professional/index.md
-  - name: Comparación de servicios
-    href: aws-professional/services.md
-ms.openlocfilehash: 804207bfa17a0ef1ef61d5f0729c8e5df6af2089
-ms.sourcegitcommit: b7e521ba317f4fcd3253c80ac0c0a355eaaa56c5
+ms.openlocfilehash: 87c781aabb78f339487dea41885a5e562be9df3e
+ms.sourcegitcommit: 36398937420b9a6a2c45759b90847a1819df4451
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/21/2018
-ms.locfileid: "46533956"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47175631"
