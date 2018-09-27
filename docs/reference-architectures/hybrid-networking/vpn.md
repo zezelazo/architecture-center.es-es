@@ -7,12 +7,12 @@ pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute
 pnp.series.prev: ./index
 cardTitle: VPN
-ms.openlocfilehash: ef89cdd3e2a175f82929b613159a99557560cc7a
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: d0966791642ee174d020c960c9fc6e72d8768539
+ms.sourcegitcommit: b38ba378c9d6110da2dfd50b4233fadd94604bb0
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325395"
+ms.lasthandoff: 09/25/2018
+ms.locfileid: "47167445"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>Conexión de una red local a Azure mediante VPN Gateway
 
@@ -486,7 +486,10 @@ Para implementar la solución, siga estos pasos:
 [vpn-appliances]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-architectures.vsdx
 [vpn-appliance-ipsec]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices#ipsec-parameters
-<!--[solution-script]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/Deploy-ReferenceArchitecture.ps1-->
-<!--[solution-script-bash]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/deploy-reference-architecture.sh-->
-<!--[virtualNetworkGateway-parameters]: https://github.com/mspnp/reference-architectures/tree/master/guidance-hybrid-network-vpn/parameters/virtualNetworkGateway.parameters.json-->
-[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/ [CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing [0]: ./images/vpn.png "Extensión de redes híbridas locales e infraestructuras de Azure" [2]: ../_images/guidance-hybrid-network-vpn/audit-logs.png "Registros de auditoría en Azure Portal" [3]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-counters.png "Contadores de rendimiento para la supervisión del trafico de red VPN" [4]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-graph.png "Ejemplo de gráfico de rendimiento de red VPN""
+[virtualNetworkGateway-parameters]: https://github.com/mspnp/hybrid-networking/vpn/parameters/virtualNetworkGateway.parameters.json
+[azure-cli]: https://azure.microsoft.com/documentation/articles/xplat-cli-install/
+[CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
+[0]: ./images/vpn.png "Red híbrida que abarca las infraestructuras de Azure y local"
+[2]: ../_images/guidance-hybrid-network-vpn/audit-logs.png "Registros de auditoría en Azure Portal"
+[3]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-counters.png "Contadores de rendimiento para supervisar el tráfico de red VPN"
+[4]: ../_images/guidance-hybrid-network-vpn/RRAS-perf-graph.png "Ejemplo de gráfico de rendimiento de red VPN"
