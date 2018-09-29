@@ -3,12 +3,12 @@ title: Antipatrón Chatty I/O
 description: Un gran número de solicitudes de E/S puede afectar al rendimiento y la capacidad de respuesta.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: daa0c581d31c9389e2853f84075dc44d1e5ba78b
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 17193198918cc742b2e3f30e77dfc5c3f2726ebf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325883"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428574"
 ---
 # <a name="chatty-io-antipattern"></a>Antipatrón Chatty I/O
 
@@ -217,7 +217,7 @@ await SaveCustomerListToFileAsync(customers);
 
 - Al escribir los datos, evite bloquear los recursos durante más tiempo del necesario para reducir las posibilidades de contención durante las operaciones largas. Si una operación de escritura abarca varios almacenes de datos, archivos o servicios, adopte un enfoque coherente. Consulte la [guía de coherencia de los datos][data-consistency-guidance].
 
-- Si almacena los datos en búfer en memoria antes de escribir, estos son vulnerables si se bloquea el proceso. Si la velocidad de los datos normalmente tiene ráfagas o es relativamente dispersa, puede ser más seguro para almacenarlos en búfer en una cola durable externa como [Event Hubs](http://azure.microsoft.com/services/event-hubs/).
+- Si almacena los datos en búfer en memoria antes de escribir, estos son vulnerables si se bloquea el proceso. Si la velocidad de los datos normalmente tiene ráfagas o es relativamente dispersa, puede ser más seguro para almacenarlos en búfer en una cola durable externa como [Event Hubs](https://azure.microsoft.com/services/event-hubs/).
 
 - Considere la posibilidad de almacenar en caché los datos que recupere de un servicio o una base de datos. Esto puede ayudar a reducir el volumen de E/S, al evitar repetir las solicitudes de los mismos datos. Para más información, consulte los [procedimientos recomendados para el almacenamiento en caché][caching-guidance].
 
@@ -308,7 +308,7 @@ El seguimiento de la instrucción SQL muestra que todos los datos se capturan en
 [api-design]: ../../best-practices/api-design.md
 [caching-guidance]: ../../best-practices/caching.md
 [code-sample]:  https://github.com/mspnp/performance-optimization/tree/master/ChattyIO
-[data-consistency-guidance]: http://https://msdn.microsoft.com/library/dn589800.aspx
+[data-consistency-guidance]: https://msdn.microsoft.com/library/dn589800.aspx
 [ef]: /ef/
 [extraneous-fetching]: ../extraneous-fetching/index.md
 [new-relic]: https://newrelic.com/application-monitoring

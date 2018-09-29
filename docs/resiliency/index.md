@@ -4,12 +4,12 @@ description: Cómo crear aplicaciones resistentes de Azure, para alta disponibil
 author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
-ms.openlocfilehash: b92a26323b4329f3dbe4f941b98da0080e730d65
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: f5dfca30b3587e198c1c0f99ad4903ed7b0e33d4
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389441"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429302"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Diseño de aplicaciones resistentes de Azure
 
@@ -333,16 +333,16 @@ Estos son los puntos principales que se pueden extraer de este artículo:
 
 <!-- links -->
 
-[blue-green]: http://martinfowler.com/bliki/BlueGreenDeployment.html
-[canary-release]: http://martinfowler.com/bliki/CanaryRelease.html
+[blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
+[canary-release]: https://martinfowler.com/bliki/CanaryRelease.html
 [circuit-breaker-pattern]: https://msdn.microsoft.com/library/dn589784.aspx
 [compensating-transaction-pattern]: https://msdn.microsoft.com/library/dn589804.aspx
 [containers]: https://en.wikipedia.org/wiki/Operating-system-level_virtualization
 [dsc]: /azure/automation/automation-dsc-overview
-[contingency-planning-guide]: http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-34r1.pdf
+[contingency-planning-guide]: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-34r1.pdf
 [fma]: failure-mode-analysis.md
-[hystrix]: http://techblog.netflix.com/2012/11/hystrix.html
-[jmeter]: http://jmeter.apache.org/
+[hystrix]: https://medium.com/netflix-techblog/introducing-hystrix-for-resilience-engineering-13531c1ab362
+[jmeter]: https://jmeter.apache.org/
 [load-leveling-pattern]: ../patterns/queue-based-load-leveling.md
 [monitoring-guidance]: ../best-practices/monitoring.md
 [ra-basic-web]: ../reference-architectures/app-service-web-app/basic-web-app.md

@@ -3,12 +3,12 @@ title: Centro de datos virtual de Azure
 description: Recursos para el centro de datos virtual de Microsoft Azure
 keywords: Azure
 layout: LandingPage
-ms.openlocfilehash: 9b82122358085c37f89fb258034a4c9a91ecb054
-ms.sourcegitcommit: 8ec48a0e2c080c9e2e0abbfdbc463622b28de2f2
+ms.openlocfilehash: 5b5b6f58911e39ae1296722194b58c601b9baea8
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/18/2018
-ms.locfileid: "43324807"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428098"
 ---
 # <a name="azure-virtual-datacenter-and-the-enterprise-control-plane"></a>Centro de datos virtual de Azure y el plano de control empresarial
 
@@ -17,9 +17,9 @@ El centro de datos virtual de Azure permite sacar el máximo partido a las funci
 ## <a name="resources"></a>Recursos
 <table>
 <tr>
-    <td style="width: 64px; vertical-align: middle;"><a href="http://aka.ms/VDC/Concepts"><img src="../_images/virtual-datacenter.svg" alt="Virtual Datacenter eBook" /></a></td>
+    <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Concepts"><img src="../_images/virtual-datacenter.svg" alt="Virtual Datacenter eBook" /></a></td>
     <td>
-        <h3><a href="http://aka.ms/VDC/Concepts">Centro de datos virtual de Azure: conceptos</a></h3>
+        <h3><a href="https://aka.ms/VDC/Concepts">Centro de datos virtual de Azure: conceptos</a></h3>
         <p>Este libro electrónico muestra cómo implementar cargas de trabajo empresariales en la plataforma de nube de Azure, al tiempo que se respetan las directivas existentes de red y de seguridad.</p>
     </td>
 </tr>
@@ -31,16 +31,16 @@ El centro de datos virtual de Azure permite sacar el máximo partido a las funci
     </td>
 </tr>
 <tr>
-    <td style="width: 64px; vertical-align: middle;"><a href="http://aka.ms/VDC/Lift"><img src="./images/vdc-lift-and-shift.png" alt="Lift and Shift Guide" /></a></td>
+    <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Lift"><img src="./images/vdc-lift-and-shift.png" alt="Lift and Shift Guide" /></a></td>
     <td>
-        <h3><a href="http://aka.ms/VDC/Lift">Centro de datos virtual de Azure: guía para una migración lift-and-shift </a></h3>
+        <h3><a href="https://aka.ms/VDC/Lift">Centro de datos virtual de Azure: guía para una migración lift-and-shift </a></h3>
         <p>En estas notas del producto se explica el proceso empresarial que el personal de TI y los responsables de decisiones pueden utilizar para identificar y planear la migración de las aplicaciones y los servidores a Azure mediante lift-and-shift, para minimizar los posibles costos de desarrollo adicionales y optimizar las opciones de hospedaje en la nube.</p>
     </td>
 </tr>
 <tr>
-    <td style="width: 64px; vertical-align: middle;"><a href="http://aka.ms/VDC/Deck"><img src="./images/vdc-deck.png" alt="Presentation Deck" /></a></td>
+    <td style="width: 64px; vertical-align: middle;"><a href="https://aka.ms/VDC/Deck"><img src="./images/vdc-deck.png" alt="Presentation Deck" /></a></td>
     <td>
-        <h3><a href="http://aka.ms/VDC/Deck">Centro de datos virtual de Azure: presentación </a></h3>
+        <h3><a href="https://aka.ms/VDC/Deck">Centro de datos virtual de Azure: presentación </a></h3>
         <p>Esta presentación ofrece una guía y herramientas para el centro de datos virtual de Azure. Describe los objetivos de un centro de datos virtual, los controladores de cliente, las regiones de Azure, los elementos de automatización de un centro de datos virtual, los centros de datos virtuales de Azure industrializados y de confianza, y termina con un plan de acción para guiar a los responsables de informática. También se proporciona información de soporte técnico y aprendizaje.</p>
     </td>
 </tr>
@@ -57,4 +57,4 @@ Estos cuatro componentes hacen posible los centros de datos virtuales de Azure: 
 En el modelo de centro de datos virtual de Azure, puede aplicar directivas de aislamiento, hacer que la nube se parezca más a los centros de datos físicos que conoce y lograr los niveles de seguridad y confianza que necesita. Esto es posible gracias a cuatro componentes que cualquier equipo de TI empresarial reconocería: redes definidas por software, cifrado, administración de identidades y las normas y certificaciones de cumplimiento subyacentes a la plataforma de Azure. Estos cuatro componentes son fundamentales para hacer que un centro de datos virtual sea una extensión de confianza de su infraestructura existente.
 
 
-Siga leyendo el libro electrónico <a href="http://aka.ms/VDC/eBook">Centro de datos virtual de Azure: conceptos</a>.
+Siga leyendo el libro electrónico <a href="https://aka.ms/VDC/eBook">Centro de datos virtual de Azure: conceptos</a>.

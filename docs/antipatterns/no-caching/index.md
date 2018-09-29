@@ -3,12 +3,12 @@ title: Antipatrón No Caching
 description: Si se capturan los mismos datos varias veces, puede reducirse el rendimiento la y escalabilidad.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 8a2bc3b473a30536cc1bef9e1dcad87acb46c4a9
-ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
+ms.openlocfilehash: f94a9f3f9166e87949a0e60af818cd89796dc3e2
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/05/2018
-ms.locfileid: "27595992"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428962"
 ---
 # <a name="no-caching-antipattern"></a>Antipatrón No Caching
 
@@ -211,7 +211,7 @@ El volumen de pruebas superadas todavía alcanza un nivel estable, pero con una 
 [caching-guidance]: ../../best-practices/caching.md
 [circuit-breaker]: ../../patterns/circuit-breaker.md
 [api-implementation]: ../../best-practices/api-implementation.md#optimizing-client-side-data-access
-[NewRelic]: http://newrelic.com/azure
+[NewRelic]: https://newrelic.com/partner/azure
 [NewRelic-server-requests]: _images/New-Relic.jpg
 [Performance-Load-Test-Results-Uncached]:_images/InitialLoadTestResults.jpg
 [Dynamic-Management-Views]: _images/SQLServerManagementStudio.jpg

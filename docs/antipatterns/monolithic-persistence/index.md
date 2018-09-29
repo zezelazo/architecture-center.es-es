@@ -3,12 +3,12 @@ title: Antipatrón Monolithic Persistence
 description: Colocar todos los datos de una aplicación en un único almacén de datos puede perjudicar el rendimiento.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 7f04b9f0805c281068b6b2edaf040683773e6f6e
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 8cc67a41adf7ca4e3c5475eea86e38b75dd65d4d
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24538687"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429118"
 ---
 # <a name="monolithic-persistence-antipattern"></a>Antipatrón Monolithic Persistence
 
@@ -142,7 +142,7 @@ De forma similar, la utilización de DTU máxima de la base de datos de registro
 - [Creación de particiones de datos][DataPartitioningGuidance]
 
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/MonolithicPersistence
-[CosmosDB]: http://azure.microsoft.com/services/cosmos-db/
+[CosmosDB]: https://azure.microsoft.com/services/cosmos-db/
 [Azure-cache]: /azure/redis-cache/
 [Data-Access-Guide]: https://msdn.microsoft.com/library/dn271399.aspx
 [DataPartitioningGuidance]: ../../best-practices/data-partitioning.md
