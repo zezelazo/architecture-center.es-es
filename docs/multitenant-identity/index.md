@@ -5,12 +5,12 @@ author: MikeWasson
 ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.next: tailspin
-ms.openlocfilehash: c363ac01e798b522fa95f39586e28fe3af5fae4a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 9c2efe9aea9da53177478161b90406d0c2021550
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541679"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429441"
 ---
 # <a name="manage-identity-in-multitenant-applications"></a>Administración de identidades en aplicaciones multiinquilino
 
@@ -18,7 +18,7 @@ En esta serie se artículos se describen los procedimientos recomendados para la
 
 [![GitHub](../_images/github.png) Código de ejemplo][sample application]
 
-Cuando está creando una aplicación multiinquilino, uno de los primeros desafíos es administrar las identidades de usuario, ya que ahora todos los usuarios pertenecen a un inquilino. Por ejemplo:
+Cuando está creando una aplicación multiinquilino, uno de los primeros desafíos es administrar las identidades de usuario, ya que ahora todos los usuarios pertenecen a un inquilino. Por ejemplo: 
 
 * Los usuarios inician sesión con las credenciales de la organización.
 * Los usuarios deben tener acceso a datos de su organización, pero no a los datos que pertenecen a otros inquilinos.
@@ -84,7 +84,7 @@ En esta guía, examinaremos específicamente el uso de Azure AD para la administ
 * Se supone que el cliente almacena sus perfiles de usuario en Azure AD (incluidos los inquilinos de Office 365 y Dynamics CRM).
 * Los clientes con Active Directory (AD) local pueden usar [Azure AD Connect][ADConnect] para sincronizar su instancia de AD local con Azure AD.
 
-Si un cliente con AD local no puede usar Azure AD Connect (debido a la directiva de TI corporativa u otras razones), el proveedor de SaaS puede federarse con el AD del cliente a través de los Servicios de federación de Active Directory (AD FS). Esta opción se describe en [Federating with a customer's AD FS](Federación con AD FS de un cliente).
+Si un cliente con AD local no puede usar Azure AD Connect (debido a la directiva de TI corporativa u otras razones), el proveedor de SaaS puede federarse con el AD del cliente a través de los Servicios de federación de Active Directory (AD FS). Esta opción se describe en [Federación con AD FS de un cliente].
 
 Esta guía no tiene en cuenta otros aspectos de la arquitectura multiinquilino como la partición de datos, la configuración de cada inquilino, etc.
 
@@ -93,10 +93,10 @@ Esta guía no tiene en cuenta otros aspectos de la arquitectura multiinquilino c
 
 
 <!-- Links -->
-[ADConnect]: /azure/active-directory/active-directory-aadconnect
+[ADConnect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [AzureAD]: /azure/active-directory
 
-[Federating with a customer's AD FS]: adfs.md
+[Federación con AD FS de un cliente]: adfs.md
 [tailpin]: tailspin.md
 
 [running-the-app]: ./run-the-app.md
