@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: 9a0bf170c9b54c3b2ee9cc91d6dcb5c55a13b96a
-ms.sourcegitcommit: ea7108f71dab09175ff69322874d1bcba800a37a
+ms.openlocfilehash: 1cb63b61f5eb97726e266f797dfe13011907c95f
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/17/2018
-ms.locfileid: "29963217"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429339"
 ---
 # <a name="event-sourcing-pattern"></a>Patrón Event Sourcing
 
@@ -82,7 +82,7 @@ En el almacén de eventos pueden guardar eventos las aplicaciones multiproceso y
 
 No hay ningún enfoque estándar ni mecanismos existentes como consultas SQL para leer los eventos y obtener información. Los únicos datos que se pueden extraer son un flujo de eventos con un identificador de evento como criterio. El identificador de evento normalmente se asigna a entidades individuales. Se puede determinar el estado actual de una entidad solo mediante la reproducción de todos los eventos relacionados con ella en comparación con el estado original de la entidad.
 
-La longitud de los flujos de eventos afecta a la administración y la actualización del sistema. Si son grandes, considere la posibilidad de crear instantáneas a intervalos específicos, como de un número determinado de eventos. El estado actual de la entidad puede obtenerse de la instantánea y al reproducir los eventos que se produjeran después de ese momento. Para más información sobre la creación de instantáneas de datos, consulte [Snapshot](http://martinfowler.com/eaaDev/Snapshot.html) (Instantáneas) en el sitio web de la arquitectura de las aplicaciones empresariales de Martin Fowler y [Master-Subordinate Snapshot Replication](https://msdn.microsoft.com/library/ff650012.aspx) (Replicación maestro-subordinado de instantáneas).
+La longitud de los flujos de eventos afecta a la administración y la actualización del sistema. Si son grandes, considere la posibilidad de crear instantáneas a intervalos específicos, como de un número determinado de eventos. El estado actual de la entidad puede obtenerse de la instantánea y al reproducir los eventos que se produjeran después de ese momento. Para más información sobre la creación de instantáneas de datos, consulte [Snapshot](https://martinfowler.com/eaaDev/Snapshot.html) (Instantáneas) en el sitio web de la arquitectura de las aplicaciones empresariales de Martin Fowler y [Master-Subordinate Snapshot Replication](https://msdn.microsoft.com/library/ff650012.aspx) (Replicación maestro-subordinado de instantáneas).
 
 Aunque Event Sourcing reduce la posibilidad de conflicto entre actualizaciones de los datos, la aplicación sigue teniendo que procesar las incoherencias derivadas de la coherencia final y la falta de transacciones. Por ejemplo, un evento que indica una reducción en el inventario estándar puede llegar al almacén de datos mientras se realiza un pedido de ese elemento, lo que requeriría una conciliación de las dos operaciones mediante un aviso al cliente o la creación de un pedido en espera.
 
@@ -162,5 +162,3 @@ Los patrones y las directrices siguientes también pueden ser importantes a la h
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Manual básico de coherencia de datos). Al usar Event Sourcing con otro almacén de lectura o vistas materializadas independientes, los datos de lectura no serán coherentes de manera inmediata, sino que tendrán coherencia final. Resume los problemas que pueden surgir sobre el mantenimiento de la coherencia en los datos distribuidos.
 
 - [Guía de creación de particiones de datos](https://msdn.microsoft.com/library/dn589795.aspx). Se suelen generar particiones en los datos al usar Event Sourcing para mejorar la escalabilidad, reducir la contención y optimizar el rendimiento. Describe cómo dividir los datos en particiones discretas y los problemas que pueden surgir.
-
-- Publicación [Why use Event Sourcing?](http://codebetter.com/gregyoung/2010/02/20/why-use-event-sourcing/) (¿Por qué usar Event Sourcing?) de Greg Young.
