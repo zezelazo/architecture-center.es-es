@@ -4,12 +4,12 @@ description: Arquitectura recomendada para una aplicación web básica que se ej
 author: MikeWasson
 ms.date: 12/12/2017
 cardTitle: Basic web application
-ms.openlocfilehash: e4992564bc4e8a7b71fc7c5f0bf1662f5e13d5c1
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 570ee23341bb956a4430f1dc91f30b5194d4b4f0
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389407"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429065"
 ---
 # <a name="basic-web-application"></a>Aplicación web básica
 [!INCLUDE [header](../../_includes/header.md)]
@@ -233,7 +233,7 @@ Para más información, consulte [Implementación de recursos con las plantillas
 [diagnostic-logs]: /azure/app-service-web/web-sites-enable-diagnostic-log
 [kudu]: https://azure.microsoft.com/blog/windows-azure-websites-online-tools-you-should-know-about/
 [monitoring-guidance]: ../../best-practices/monitoring.md
-[new-relic]: http://newrelic.com/
+[new-relic]: https://newrelic.com/
 [paas-basic-arm-template]: https://github.com/mspnp/reference-architectures/tree/master/managed-web-app/basic-web-app/Paas-Basic/Templates
 [perf-analysis]: https://github.com/mspnp/performance-optimization/blob/master/Performance-Analysis-Primer.md
 [rbac]: /azure/active-directory/role-based-access-control-what-is

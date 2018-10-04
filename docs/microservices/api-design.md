@@ -3,12 +3,12 @@ title: Diseño de API
 description: Diseño de API para microservicios
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: d85407f3092ddb5f77aacfea8def2784c4741eb9
-ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
+ms.openlocfilehash: e3524fca177d8c15b280d0f8a706539369c1773a
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/12/2017
-ms.locfileid: "26653205"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429135"
 ---
 # <a name="designing-microservices-api-design"></a>Diseño de microservicios: diseño de API
 
@@ -124,10 +124,10 @@ Al diseñar las API, tenga en cuenta cómo expresan el modelo de dominio, no sol
 | Concepto de DDD | Equivalente en REST | Ejemplo | 
 |-------------|-----------------|---------|
 | Agregado | Recurso | `{ "1":1234, "status":"pending"... }` | 
-| Identidad | URL | `http://delivery-service/deliveries/1` |
+| Identidad | URL | `https://delivery-service/deliveries/1` |
 | Entidades secundarias | Vínculos | `{ "href": "/deliveries/1/confirmation" }` |
-| Actualización de objetos de valor | PUT o PATCH | `PUT http://delivery-service/deliveries/1/dropoff` |
-| Repositorio | Colección | `http://delivery-service/deliveries?status=pending` |
+| Actualización de objetos de valor | PUT o PATCH | `PUT https://delivery-service/deliveries/1/dropoff` |
+| Repositorio | Colección | `https://delivery-service/deliveries?status=pending` |
 
 
 ## <a name="api-versioning"></a>Control de versiones de la API

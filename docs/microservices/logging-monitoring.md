@@ -3,12 +3,12 @@ title: Registro y supervisión en los microservicios
 description: Registro y supervisión en los microservicios
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 1da67047daa9ae87cda5dd7dd581d6081183c428
-ms.sourcegitcommit: 786bafefc731245414c3c1510fc21027afe303dc
+ms.openlocfilehash: b7206e2f35b9f227ff298f077ddafef1c6015b15
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/12/2017
-ms.locfileid: "26653001"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428778"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a>Diseño de microservicios: registro y supervisión
 
@@ -64,7 +64,7 @@ En el artículo [Supervisión y diagnóstico](../best-practices/monitoring.md) s
 
 ## <a name="distributed-tracing"></a>Seguimiento distribuido
 
-Tal como se ha mencionado, uno de los retos en los microservicios es entender el flujo de eventos a través de los servicios. Una única operación o transacción puede implicar llamadas a varios servicios. Para reconstruir toda la secuencia de pasos, cada servicio debe propagar un *identificador de correlación* que actúa como identificador único para esa operación. El identificador de correlación habilita el [seguimiento distribuido](http://microservices.io/patterns/observability/distributed-tracing.html) a través de los servicios.
+Tal como se ha mencionado, uno de los retos en los microservicios es entender el flujo de eventos a través de los servicios. Una única operación o transacción puede implicar llamadas a varios servicios. Para reconstruir toda la secuencia de pasos, cada servicio debe propagar un *identificador de correlación* que actúa como identificador único para esa operación. El identificador de correlación habilita el [seguimiento distribuido](https://microservices.io/patterns/observability/distributed-tracing.html) a través de los servicios.
 
 El primer servicio que recibe una solicitud de cliente debe generar el identificador de correlación. Si el servicio realiza una llamada HTTP a otro servicio, coloca el identificador de correlación en un encabezado de solicitud. De forma similar, si el servicio envía un mensaje asincrónico, coloca el identificador de correlación en el mensaje. Los servicios descendentes siguen propagando el identificador de correlación para que fluya a través de todo el sistema. Además, todo el código que escribe métricas de aplicación o eventos de registro debe incluir el identificador de correlación.
 
@@ -114,7 +114,7 @@ Otra opción consiste en enviar registros a Log Analytics de Operations Manageme
 
 ## <a name="example-logging-with-correlation-ids"></a>Ejemplo: registro con identificadores de correlación
 
-Para ilustrar algunos de los puntos que se describen en este capítulo, se muestra un ejemplo completo sobre cómo el servicio de paquete implementa el registro. El servicio de paquete está escrito en TypeScript y utiliza la plataforma web [Koa](http://koajs.com/) para Node.js. Hay varias bibliotecas de registro de Node.js para elegir. Hemos elegido [Winston](https://github.com/winstonjs/winston), una biblioteca de registro conocida que ha cumplido nuestros requisitos de rendimiento cuando la hemos probado.
+Para ilustrar algunos de los puntos que se describen en este capítulo, se muestra un ejemplo completo sobre cómo el servicio de paquete implementa el registro. El servicio de paquete está escrito en TypeScript y utiliza la plataforma web [Koa](https://koajs.com/) para Node.js. Hay varias bibliotecas de registro de Node.js para elegir. Hemos elegido [Winston](https://github.com/winstonjs/winston), una biblioteca de registro conocida que ha cumplido nuestros requisitos de rendimiento cuando la hemos probado.
 
 Para encapsular los detalles de implementación, hemos definido una interfaz `ILogger` abstracta:
 

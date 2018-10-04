@@ -3,12 +3,12 @@ title: 'Adopción de la nube empresarial: Administración de acceso a los recurs
 description: 'Explica los elementos de la administración de acceso a los recursos en Azure: Azure Resource Manager, suscripciones, grupos de recursos y recursos'
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 2e64d8828574ebe216da1e76b19ec3ce5aeda993
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: c26b01d207bc4eb100653a826a053b394d03d1e6
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389084"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428710"
 ---
 # <a name="enterprise-cloud-adoption-resource-access-management-in-azure"></a>Adopción de la nube empresarial: Administración de acceso a los recursos en Azure
 
@@ -84,7 +84,7 @@ El control siguiente es una comprobación de que el usuario tiene permisos sufic
 
 Un rol de RBAC especifica un conjunto de permisos que un usuario puede tener en un recurso específico. Cuando se asigna el rol al usuario, se aplican estos permisos. Por ejemplo, el [rol integrado **propietario**](/azure/role-based-access-control/built-in-roles#owner) permite a un usuario realizar cualquier acción en un recurso.
 
-El siguiente control es una comprobación de que la solicitud se permite de acuerdo con la configuración especificada para la [directiva de recursos de Azure](/azure/azure-policy/). Las directivas de recursos de Azure especifican las operaciones permitidas para un recurso específico. Por ejemplo, una directiva de recursos de Azure puede especificar que los usuarios solo pueden implementar un tipo específico de máquina virtual.
+El siguiente control es una comprobación de que la solicitud se permite de acuerdo con la configuración especificada para la [directiva de recursos de Azure](/azure/governance/policy/). Las directivas de recursos de Azure especifican las operaciones permitidas para un recurso específico. Por ejemplo, una directiva de recursos de Azure puede especificar que los usuarios solo pueden implementar un tipo específico de máquina virtual.
 
 ![](../_images/governance-1-19.png)   
 *Ilustración 11. Directiva de recursos de Azure.*

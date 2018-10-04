@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
 - resiliency
-ms.openlocfilehash: 03bfe2fe96b3b81d547cfedb075bcf855846b668
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 7914708413d68689e2326df28ced00e5fc3a5dd8
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542431"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428676"
 ---
 # <a name="scheduler-agent-supervisor-pattern"></a>Patrón Scheduler Agent Supervisor
 
@@ -35,7 +35,7 @@ El patrón Scheduler Agent Supervisor define los actores siguientes. Estos actor
 
 - El componente **Scheduler** organiza la ejecución de los pasos que forman la tarea y orquesta su funcionamiento. Estos pasos se pueden combinar en una canalización o un flujo de trabajo. El componente Scheduler es responsable de garantizar que se realicen los pasos de este flujo de trabajo en el orden correcto. A medida que se realiza cada paso, el componente Scheduler registra el estado del flujo de trabajo, como "paso aún no iniciado", "paso en ejecución" o "paso completado". La información de estado también debe incluir un límite superior de tiempo permitido para que finalice el paso, se denomina "tiempo de vigencia". Si un paso requiere acceso a un recurso o servicio remoto, el componente Scheduler invoca al componente Agent adecuado y le pasa los detalles del trabajo que se debe realizar. Normalmente, el componente Scheduler se comunica con un componente Agent a través de la mensajería de solicitud/respuesta asincrónica. Esto se puede implementar mediante colas, aunque también se pueden usar otras tecnologías de mensajería distribuidas.
 
-    > El componente Scheduler realiza una función similar a la de Process Manager del [patrón Process Manager](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html). El flujo de trabajo real normalmente lo define e implementa un motor de flujo de trabajo que el componente Scheduler controla. Este enfoque separa la lógica de negocios del flujo de trabajo del componente Scheduler.
+    > El componente Scheduler realiza una función similar a la de Process Manager del [patrón Process Manager](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html). El flujo de trabajo real normalmente lo define e implementa un motor de flujo de trabajo que el componente Scheduler controla. Este enfoque separa la lógica de negocios del flujo de trabajo del componente Scheduler.
 
 - El componente **Agent** contienen lógica que encapsula una llamada a un servicio remoto o acceso a un recurso remoto a los cuales hace referencia un paso de una tarea. Normalmente, cada componente Agent encapsula las llamadas a un único servicio o recurso, al implementar el control de errores y la lógica de reintento adecuados (de acuerdo con una restricción de tiempo de espera, que se describe más adelante). Si los pasos del flujo de trabajo que ejecuta el componente Scheduler utilizan varios servicios y recursos en pasos diferentes, cada paso puede hacer referencia a una instancia de Agent diferente (es un detalle de implementación del patrón).
 
@@ -142,7 +142,7 @@ Los patrones y las directrices siguientes también pueden ser importantes a la h
 - [Manual de mensajería asincrónica](https://msdn.microsoft.com/library/dn589781.aspx). En general, los componentes del patrón Scheduler Agent Supervisor se ejecutan desacoplados entre ellos y se comunican de forma asincrónica. Describe algunos de los posibles enfoques para implementar la comunicación asincrónica basada en colas de mensajes.
 - [Patrón Leader Election](leader-election.md). Podría ser necesario coordinar las acciones de varias instancias de Supervisor para impedir que intenten recuperar el mismo proceso con error. El patrón Leader Election describe cómo hacerlo.
 - [Cloud Architecture: The Scheduler-Agent-Supervisor Pattern](https://blogs.msdn.microsoft.com/clemensv/2010/09/27/cloud-architecture-the-scheduler-agent-supervisor-pattern/) (Arquitectura en la nube: patrón Scheduler-Agent-Supervisor) en el blog de Clemens Vasters
-- [Patrón Process Manager](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html)
+- [Patrón Process Manager](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html)
 - [Reference 6: A Saga on Sagas](https://msdn.microsoft.com/library/jj591569.aspx) (Referencia 6: una saga sobre sagas). Ejemplo que muestra el uso de un administrador de procesos por el patrón CQRS (parte de la guía de viaje de CQRS).
 - [Microsoft Azure Scheduler](https://azure.microsoft.com/services/scheduler/)
 

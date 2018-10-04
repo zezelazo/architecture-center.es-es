@@ -6,12 +6,12 @@ ms.date: 05/02/2018
 pnp.series.title: Identity management
 pnp.series.prev: azure-ad
 pnp.series.next: adds-forest
-ms.openlocfilehash: ecf24a05d071c0d0283fc962b13285108b5ac4bd
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: 1e19d03998a18d997c2840f573e7bc79b24efbbc
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142288"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47427979"
 ---
 # <a name="extend-active-directory-domain-services-ad-ds-to-azure"></a>Extensión de Active Directory Domain Services (AD DS) a Azure
 
@@ -27,7 +27,7 @@ Esta arquitectura suele usarse cuando la red local y la red virtual de Azure est
 
 Para consideraciones adicionales, consulte [Selección de una solución para la integración de Active Directory local con Azure][considerations]. 
 
-## <a name="architecture"></a>Architecture 
+## <a name="architecture"></a>Arquitectura 
 
 Esta arquitectura extiende la arquitectura mostrada en [Red perimetral entre Internet y Azure][implementing-a-secure-hybrid-network-architecture-with-internet-access]. Tiene los siguientes componentes.
 
@@ -103,7 +103,7 @@ Utilice BitLocker o Azure Disk Encryption para cifrar el disco que hospeda la ba
 
 Hay disponible una implementación de esta arquitectura en [GitHub][github]. Tenga en cuenta que la implementación completa puede tardar hasta dos horas, lo que incluye la creación de una instancia de VPN Gateway y ejecutar los scripts que configuran AD DS.
 
-### <a name="prerequisites"></a>requisitos previos
+### <a name="prerequisites"></a>Requisitos previos
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
@@ -175,7 +175,7 @@ Una vez que se completa la implementación, puede probar la conectividad desde e
 [availability-set]: /azure/virtual-machines/virtual-machines-windows-create-availability-set
 [azure-expressroute]: /azure/expressroute/expressroute-introduction
 [azure-vpn-gateway]: /azure/vpn-gateway/vpn-gateway-about-vpngateways
-[capacity-planning-for-adds]: http://social.technet.microsoft.com/wiki/contents/articles/14355.capacity-planning-for-active-directory-domain-services.aspx
+[capacity-planning-for-adds]: https://social.technet.microsoft.com/wiki/contents/articles/14355.capacity-planning-for-active-directory-domain-services.aspx
 [considerations]: ./considerations.md
 [GitHub]: https://github.com/mspnp/reference-architectures/tree/master/identity/adds-extend-domain
 [microsoft_systems_center]: https://www.microsoft.com/server-cloud/products/system-center-2016/

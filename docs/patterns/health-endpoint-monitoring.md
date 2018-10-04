@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - availability
 - management-monitoring
 - resiliency
-ms.openlocfilehash: 3b3bce46b460148af17bfe6064cd052a5f9a6458
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 22a4e47c4dd8dd3dd11a4238e859acbea49f9d1b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847856"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428982"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>Patrón Health Endpoint Monitoring (supervisión de puntos de conexión de estado)
 
@@ -89,7 +89,7 @@ Configuración de la seguridad de los puntos de conexión de supervisión para p
 
      >  Es probable que los ataques por denegación de servicio tengan menos impacto en un punto de conexión independiente que realiza pruebas funcionales básicas que no afectan a las operaciones de la aplicación. En la medida de lo posible, evite el uso de una prueba que pueda exponer información confidencial. Si debe devolver información que pueda resultar útil a un atacante, tenga en cuenta la protección del punto de conexión y de los datos ante accesos no autorizados. En este caso, confiar simplemente en la oscuridad de un punto de conexión no es suficiente. También debe considerar el uso de una conexión HTTPS y el cifrado de todos los datos confidenciales, aunque esto aumentará la carga en el servidor.
 
-- Acceso a un punto de conexión protegido mediante autenticación. No todas las herramientas y marcos pueden configurarse para incluir las credenciales con la solicitud de comprobación de estado. Por ejemplo, las características de comprobación de estado integradas en Microsoft Azure no pueden proporcionar credenciales de autenticación. Algunas alternativas de terceros son [Pingdom](https://www.pingdom.com/), [Panopta](http://www.panopta.com/), [NewRelic](https://newrelic.com/) y [Statuscake](https://www.statuscake.com/).
+- Acceso a un punto de conexión protegido mediante autenticación. No todas las herramientas y marcos pueden configurarse para incluir las credenciales con la solicitud de comprobación de estado. Por ejemplo, las características de comprobación de estado integradas en Microsoft Azure no pueden proporcionar credenciales de autenticación. Algunas alternativas de terceros son [Pingdom](https://www.pingdom.com/), [Panopta](https://www.panopta.com/), [NewRelic](https://newrelic.com/) y [Statuscake](https://www.statuscake.com/).
 
 - Cómo asegurarse de que el agente de supervisión funciona correctamente. Un enfoque consiste en exponer un punto de conexión que solo devuelve un valor de la configuración de la aplicación o un valor aleatorio que se puede utilizar para probar el agente.
 

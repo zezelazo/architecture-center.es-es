@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: claims
 pnp.series.next: app-roles
-ms.openlocfilehash: dde577d5bab63fb436d52fb4548399d5bd8bb38f
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 512fd37080b99a7e6249db70f0d2bc673cf87978
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541407"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429169"
 ---
 # <a name="tenant-sign-up-and-onboarding"></a>Registro e incorporación de inquilinos
 
@@ -259,6 +259,6 @@ Este es un resumen del flujo de registro completo en la aplicación Surveys:
 [app roles]: app-roles.md
 [Tailspin]: tailspin.md
 
-[state]: http://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
+[state]: https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
 [Autenticación]: authenticate.md
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance

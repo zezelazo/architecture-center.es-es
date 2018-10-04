@@ -4,12 +4,12 @@ description: Guía de reintentos para el control de errores transitorios.
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: 9562e3447b2219fe2f3df96cfca24b845efa39b0
-ms.sourcegitcommit: c53adf50d3a787956fc4ebc951b163a10eeb5d20
+ms.openlocfilehash: 85264faa89e827821a71544f1bf8dc8e0619ef24
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/23/2017
-ms.locfileid: "25545984"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429254"
 ---
 # <a name="transient-fault-handling"></a>Control de errores transitorios
 
@@ -62,16 +62,16 @@ Las directrices siguientes le ayudarán a diseñar un mecanismo de control de er
   * Utilice el tipo de la excepción y los datos que contiene o los códigos de error y los mensajes devueltos desde el servicio para optimizar el intervalo y el número de reintentos. Por ejemplo, algunas excepciones o códigos de error (como el código HTTP 503 Servicio no disponible con un encabezado Retry-After en la respuesta) pueden indicar cuánto puede durar el error o que el servicio ha producido un error y no responderá a todos los intentos posteriores.
 * **Evitar antipatrones**:
   * En la mayoría de los casos, debe evitar las implementaciones que incluyen capas duplicadas de código de reintento. Evite los diseños que incluyan mecanismos de reintento en cascada, o que implementan reintentos en cada etapa de una operación que implica a una jerarquía de solicitudes, a menos que tenga requisitos específicos que requieran esto. En estas circunstancias excepcionales, use directivas que impidan números excesivos de reintentos y de períodos de retraso y asegúrese de que comprende las consecuencias. Por ejemplo, si un componente realiza una solicitud a otro, que a continuación accede al servicio de destino e implementa el reintento con un recuento de tres en ambas llamadas habrá nueve reintentos en total en el servicio. Muchos servicios y recursos implementan un mecanismo de reintento integrado y debe investigar cómo deshabilitar o modificar este comportamiento si necesita implementar reintentos en un nivel superior.
-  * Nunca implemente un mecanismo de reintento infinito. Esto es probable que evite la recuperación del recurso o servicio de situaciones de sobrecarga y que provoque una limitación y conexiones rechazas para continuar durante un período más largo. Use un número finito de reintentos o implemente un patrón como [Disyuntor](http://msdn.microsoft.com/library/dn589784.aspx) para permitir que el servicio se recupere.
+  * Nunca implemente un mecanismo de reintento infinito. Esto es probable que evite la recuperación del recurso o servicio de situaciones de sobrecarga y que provoque una limitación y conexiones rechazas para continuar durante un período más largo. Use un número finito de reintentos o implemente un patrón como [Disyuntor](../patterns/circuit-breaker.md) para permitir que el servicio se recupere.
   * Nunca realice un reintento inmediato más de una vez.
   * Evite el uso de un intervalo de reintento regular, especialmente si hay un gran número de reintentos, al obtener acceso a servicios y recursos de Azure. El enfoque óptimo es que este escenario es una estrategia de interrupción exponencial con una capacidad de disyunción.
   * Evite que varias instancias del mismo cliente o varias instancias de clientes diferentes, envíen reintentos al mismo tiempo. Si es probable que esto se produzca, introduzca la selección aleatoria en los intervalos de reintento.
 * **Pruebe su estrategia de reintento e implementación:**
   * Asegúrese de probar completamente la implementación de la estrategia de reintento en el conjunto de circunstancias más amplio posible, especialmente cuando tanto la aplicación y los recursos de destino o servicios que use estén bajo una carga extrema. Para comprobar el comportamiento durante las pruebas, puede:
-    * Insertar errores transitorios y no transitorios en el servicio. Por ejemplo, envíe solicitudes no válidas o agregue código que detecte solicitudes de prueba y responda con distintos tipos de errores. Para obtener un ejemplo con TestApi, consulte [Pruebas de inyección de errores con TestApi](http://msdn.microsoft.com/magazine/ff898404.aspx) e [Introducción a TestApi – Parte 5: API de inyección de errores de código administrado](http://blogs.msdn.com/b/ivo_manolov/archive/2009/11/25/9928447.aspx).
+    * Insertar errores transitorios y no transitorios en el servicio. Por ejemplo, envíe solicitudes no válidas o agregue código que detecte solicitudes de prueba y responda con distintos tipos de errores. Para obtener un ejemplo con TestApi, consulte [Pruebas de inyección de errores con TestApi](https://msdn.microsoft.com/magazine/ff898404.aspx) e [Introducción a TestApi – Parte 5: API de inyección de errores de código administrado](https://blogs.msdn.microsoft.com/ivo_manolov/2009/11/25/introduction-to-testapi-part-5-managed-code-fault-injection-apis/).
     * Cree un simulacro del recurso o servicio que devuelve un rango de errores que puede devolver el servicio real. Asegúrese de abarcar todos los tipos de error que su estrategia de reintento está diseñada para detectar.
     * Fuerce el que se produzcan errores transitorios deshabilitando o sobrecargando el servicio temporalmente si es un servicio personalizado que ha creado e implementado (no debe, por supuesto, intentar sobrecargar los recursos o servicios compartidos dentro de Azure).
-    * Para las API basadas en HTTP, considere la posibilidad de usar la biblioteca FiddlerCore en las pruebas automatizadas para cambiar el resultado de las solicitudes HTTP, mediante la adición de tiempos de ida y vuelta adicionales o cambiando la respuesta (por ejemplo, el código de estado HTTP, los encabezados, el cuerpo u otros factores). Esto permite realizar una prueba determinista de un subconjunto de condiciones de error, tanto si son errores transitorios como si son otros tipos de error. Para obtener más información, consulte [FiddlerCore](http://www.telerik.com/fiddler/fiddlercore). Para obtener ejemplos de cómo usar la biblioteca, especialmente la clase **HttpMangler** , examine el [código fuente del SDK de Azure Storage](https://github.com/Azure/azure-storage-net/tree/master/Test).
+    * Para las API basadas en HTTP, considere la posibilidad de usar la biblioteca FiddlerCore en las pruebas automatizadas para cambiar el resultado de las solicitudes HTTP, mediante la adición de tiempos de ida y vuelta adicionales o cambiando la respuesta (por ejemplo, el código de estado HTTP, los encabezados, el cuerpo u otros factores). Esto permite realizar una prueba determinista de un subconjunto de condiciones de error, tanto si son errores transitorios como si son otros tipos de error. Para obtener más información, consulte [FiddlerCore](https://www.telerik.com/fiddler/fiddlercore). Para obtener ejemplos de cómo usar la biblioteca, especialmente la clase **HttpMangler** , examine el [código fuente del SDK de Azure Storage](https://github.com/Azure/azure-storage-net/tree/master/Test).
     * Realice pruebas simultáneas y de factor de carga elevado para asegurarse de que el mecanismo de reintento y la estrategia funcionan correctamente en estas condiciones y no tienen un efecto adverso en el funcionamiento del cliente ni provocan contaminación cruzada entre las solicitudes.
 * **Administrar las configuraciones de directivas de reintento:**
   * Una *directiva de reintentos* es una combinación de todos los elementos de la estrategia de reintentos. Define el mecanismo de detección que determina si es posible que un error sea transitorio, el tipo de intervalo que se debe usar (por ejemplo, normal, interrupción exponencial y selección aleatoria), los valores de intervalo reales y el número de reintentos.
@@ -88,7 +88,7 @@ Las directrices siguientes le ayudarán a diseñar un mecanismo de control de er
   
   * Habrá casos en los que la operación sigue produciendo errores en cada intento y es esencial tener en cuenta cómo tratar esta situación:
     * Aunque una estrategia de reintento definirá el número máximo de veces que se debe reintentar una operación, ello no impide que la aplicación repeta la operación de nuevo, con el mismo número de reintentos. Por ejemplo, si se produce un error grave en un servicio de procesamiento de pedidos que lo pone fuera de funcionamiento de manera permanente, la estrategia de reintento puede detectar un tiempo de espera de conexión y considerarlo un error transitorio. El código reintentará la operación un número especificado de veces y, a continuación, renunciará. Sin embargo, cuando otro cliente realiza un pedido, la operación se intentará de nuevo (aunque sea seguro que vaya a fallar siempre).
-    * Para evitar reintentos continuos de operaciones que producen un error continuamente, considere la posibilidad de implementar el [patrón de disyuntor](http://msdn.microsoft.com/library/dn589784.aspx). En este patrón, si el número de errores dentro de un período de tiempo especificado supera el umbral, las solicitudes se devuelven al llamador inmediatamente como errores, sin intentar tener acceso al recurso o servicio con error.
+    * Para evitar reintentos continuos de operaciones que producen un error continuamente, considere la posibilidad de implementar el [patrón de disyuntor](../patterns/circuit-breaker.md). En este patrón, si el número de errores dentro de un período de tiempo especificado supera el umbral, las solicitudes se devuelven al llamador inmediatamente como errores, sin intentar tener acceso al recurso o servicio con error.
     * La aplicación puede comprobar periódicamente el servicio, de forma intermitente y con intervalos muy largos entre solicitudes para detectar cuando está disponible. Un intervalo adecuado dependerá de la situación, por ejemplo, la importancia de la operación y la naturaleza del servicio y puede estar comprendido entre unos pocos minutos y varias horas. En el punto en el que la prueba se realiza correctamente, la aplicación puede reanudar las operaciones normales y pasar solicitudes al servicio recién recuperado.
     * Mientras tanto, es posible revertir a otra instancia del servicio (quizás en un centro de datos o una aplicación diferente), use un servicio similar que ofrezca una funcionalidad (quizás más sencilla) compatible o realice algún operación alternativa con la esperanza de que el servicio pase a estar disponible pronto. Por ejemplo, puede ser adecuado almacenar solicitudes para el servicio en una cola o almacén de datos y volver a reproducirlas posteriormente. En caso contrario, es posible que pueda redirigir al usuario a una instancia alternativa de la aplicación, reducir el rendimiento de la aplicación pero seguir ofreciendo funcionalidad aceptable o simplemente presentar un mensaje al usuario que indique que la aplicación no está disponible en este momento.
 * **Otras consideraciones**
@@ -101,10 +101,9 @@ Las directrices siguientes le ayudarán a diseñar un mecanismo de control de er
 
 ## <a name="more-information"></a>Más información
 * [Directrices de reintento específicas del servicio de Azure](./retry-service-specific.md)
-* [Bloque de aplicación de control de errores transitorios](http://msdn.microsoft.com/library/hh680934.aspx)
-* [Patrón de disyuntor](http://msdn.microsoft.com/library/dn589784.aspx)
-* [Patrón de transacción de compensación](http://msdn.microsoft.com/library/dn589804.aspx)
+* [Patrón de disyuntor](../patterns/circuit-breaker.md)
+* [Patrón de transacción de compensación](../patterns/compensating-transaction.md)
 * [Patrones de idempotencia][idempotency-patterns]
 
-[idempotency-patterns]: http://blog.jonathanoliver.com/idempotency-patterns/
+[idempotency-patterns]: https://blog.jonathanoliver.com/idempotency-patterns/
 

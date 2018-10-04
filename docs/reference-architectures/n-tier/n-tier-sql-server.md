@@ -3,12 +3,12 @@ title: Aplicación de n niveles con SQL Server
 description: Implementación de una arquitectura de varios niveles en Azure para lograr una mayor disponibilidad, seguridad, escalabilidad y facilidad de uso.
 author: MikeWasson
 ms.date: 07/19/2018
-ms.openlocfilehash: 3a291b9492c94450a42de96bea2135190c163fe7
-ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
+ms.openlocfilehash: d5f46570464916af892afcf492127402181a5df5
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45584755"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429152"
 ---
 # <a name="n-tier-application-with-sql-server"></a>Aplicación de n niveles con SQL Server
 
@@ -267,8 +267,8 @@ Para obtener más información sobre la implementación de esta arquitectura de 
 [vnet faq]: /azure/virtual-network/virtual-networks-faq
 [wsfc-whats-new]: https://technet.microsoft.com/windows-server-docs/failover-clustering/whats-new-in-failover-clustering
 [Nagios]: https://www.nagios.org/
-[Zabbix]: http://www.zabbix.com/
-[Icinga]: http://www.icinga.org/
+[Zabbix]: https://www.zabbix.com/
+[Icinga]: https://www.icinga.org/
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [0]: ./images/n-tier-sql-server.png "Arquitectura de n niveles con Microsoft Azure"
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview 

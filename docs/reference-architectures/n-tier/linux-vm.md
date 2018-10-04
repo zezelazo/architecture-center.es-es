@@ -3,12 +3,12 @@ title: Ejecución de una VM con Linux en Azure
 description: Cómo ejecutar una única máquina virtual en Azure teniendo en cuenta la escalabilidad, resistencia, manejabilidad y seguridad.
 author: telmosampaio
 ms.date: 04/03/2018
-ms.openlocfilehash: b53db016a594bace880aaac4e16f0586fe3057b1
-ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
+ms.openlocfilehash: eb695f668367a1ca559ebfd054474c8609212dde
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45584738"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429084"
 ---
 # <a name="run-a-linux-vm-on-azure"></a>Ejecución de una VM con Linux en Azure
 
@@ -197,7 +197,7 @@ Si va a esta dirección en un explorador web, verá la página de inicio predete
 [iostat]: https://en.wikipedia.org/wiki/Iostat
 [manage-vm-availability]: /azure/virtual-machines/virtual-machines-linux-manage-availability
 [managed-disks]: /azure/storage/storage-managed-disks-overview
-[naming-conventions]: /azure/architecture/best-practices/naming-conventions.md
+[naming-conventions]: ../../best-practices/naming-conventions.md
 [nsg]: /azure/virtual-network/virtual-networks-nsg
 [nsg-default-rules]: /azure/virtual-network/virtual-networks-nsg#default-rules
 [planned-maintenance]: /azure/virtual-machines/virtual-machines-linux-planned-maintenance

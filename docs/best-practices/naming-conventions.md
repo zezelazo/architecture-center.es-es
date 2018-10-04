@@ -4,12 +4,12 @@ description: Convenciones de nomenclatura para los recursos de Azure. Qué nombr
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 625f672c80b0256e93932b72367768f37c1e72f4
-ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
+ms.openlocfilehash: 96402b86b9dc0c57599aae585b41d0d03581c333
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/19/2018
-ms.locfileid: "46329885"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429662"
 ---
 # <a name="naming-conventions"></a>Convenciones de nomenclatura
 
@@ -176,7 +176,7 @@ Hay dos casos de uso principales para las cuentas de almacenamiento: respaldo de
 
 En la cuenta de Azure Storage se puede configurar un nombre de dominio personalizado para acceder a los datos del blob. El punto de conexión predeterminado de Blob service es https://\<name\>.blob.core.windows.net.
 
-Pero si asigna un dominio personalizado (como www.contoso.com) al punto de conexión del blob para su cuenta de almacenamiento, también puede acceder a los datos del blob en su cuenta de almacenamiento mediante dicho dominio. Por ejemplo, con un nombre de dominio personalizado, `http://mystorage.blob.core.windows.net/mycontainer/myblob` podría tener acceso como `http://www.contoso.com/mycontainer/myblob`.
+Pero si asigna un dominio personalizado (como www.contoso.com) al punto de conexión del blob para su cuenta de almacenamiento, también puede acceder a los datos del blob en su cuenta de almacenamiento mediante dicho dominio. Por ejemplo, con un nombre de dominio personalizado, `https://mystorage.blob.core.windows.net/mycontainer/myblob` podría tener acceso como `https://www.contoso.com/mycontainer/myblob`.
 
 Para más información acerca de cómo configurar esta característica, consulte [Configurar un nombre de dominio personalizado para el punto de conexión de Almacenamiento de blobs](/azure/storage/storage-custom-domain-name/).
 

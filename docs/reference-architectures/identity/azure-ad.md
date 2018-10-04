@@ -7,12 +7,12 @@ ms.date: 11/28/2016
 pnp.series.next: adds-extend-domain
 pnp.series.prev: ./index
 cardTitle: Integrate on-premises AD with Azure AD
-ms.openlocfilehash: 21a6474db94d34e23f79d1ba0e35943c0cb52966
-ms.sourcegitcommit: d5db5b8ed7429f056130096d0ef4b249b564599a
+ms.openlocfilehash: b5cd4d353c6d6b149c9c1b5547f8da8c25ad5a85
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/01/2018
-ms.locfileid: "37141391"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429237"
 ---
 # <a name="integrate-on-premises-active-directory-domains-with-azure-active-directory"></a>Integración de dominios locales de Active Directory con Azure Active Directory
 
@@ -38,7 +38,7 @@ Los usos habituales de esta arquitectura de referencia incluyen:
 
 Para consideraciones adicionales, consulte [Selección de una solución para la integración de Active Directory local con Azure][considerations]. 
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 La arquitectura tiene los siguientes componentes.
 
@@ -218,7 +218,7 @@ Para más información, consulte [Acceso condicional en Azure Active Directory][
 
 En GitHub, se puede encontrar una implementación de una arquitectura de referencia que implementa estas recomendaciones y consideraciones. Esta arquitectura de referencia implementa una red local simulada en Azure que puede usar para realizar pruebas y experimentar. La arquitectura de referencia se puede implementar con máquinas virtuales Windows o Linux siguiendo estas instrucciones: 
 
-1. Haga clic en el botón a continuación:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fidentity%2Fazure-ad%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+1. Haga clic en el botón a continuación:<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fidentity%2Fazure-ad%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. Una vez abierto el vínculo en Azure Portal, debe especificar los valores de algunas de las opciones: 
    * El nombre del **Grupo de recursos** ya está definido en el archivo de parámetros, así que seleccione **Crear nuevo** y escriba `ra-aad-onpremise-rg` en el cuadro de texto.
    * Seleccione la región en el cuadro de lista desplegable **Ubicación**.
@@ -236,12 +236,12 @@ En GitHub, se puede encontrar una implementación de una arquitectura de referen
 [aad-agent-installation]: /azure/active-directory/active-directory-aadconnect-health-agent-install
 [aad-application-proxy]: /azure/active-directory/active-directory-application-proxy-enable
 [aad-conditional-access]: /azure/active-directory//active-directory-conditional-access
-[aad-connect-sync-default-rules]: /azure/active-directory/active-directory-aadconnectsync-understanding-default-configuration
-[aad-connect-sync-operational-tasks]: /azure/active-directory/active-directory-aadconnectsync-operations#staging-mode
+[aad-connect-sync-default-rules]: /azure/active-directory/hybrid/concept-azure-ad-connect-sync-default-configuration
+[aad-connect-sync-operational-tasks]: /azure/active-directory/hybrid/how-to-connect-sync-operations
 [aad-dynamic-memberships]: https://youtu.be/Tdiz2JqCl9Q
 [aad-dynamic-membership-rules]: /azure/active-directory/active-directory-accessmanagement-groups-with-advanced-rules
 [aad-editions]: /azure/active-directory/active-directory-editions
-[aad-filtering]: /azure/active-directory/active-directory-aadconnectsync-configure-filtering
+[aad-filtering]: /azure/active-directory/hybrid/how-to-connect-sync-configure-filtering
 [aad-health]: /azure/active-directory/active-directory-aadconnect-health-sync
 [aad-health-adds]: /azure/active-directory/active-directory-aadconnect-health-adds
 [aad-health-adfs]: /azure/active-directory/active-directory-aadconnect-health-adfs
@@ -250,13 +250,13 @@ En GitHub, se puede encontrar una implementación de una arquitectura de referen
 [aad-powershell]: https://msdn.microsoft.com/library/azure/mt757189.aspx
 [aad-reporting-guide]: /azure/active-directory/active-directory-reporting-guide
 [aad-scalability]: https://blogs.technet.microsoft.com/enterprisemobility/2014/09/02/azure-ad-under-the-hood-of-our-geo-redundant-highly-available-distributed-cloud-directory/
-[aad-sync-best-practices]: /azure/active-directory/active-directory-aadconnectsync-best-practices-changing-default-configuration
-[aad-sync-disaster-recovery]: /azure/active-directory/active-directory-aadconnectsync-operations#disaster-recovery
+[aad-sync-best-practices]: /azure/active-directory/hybrid/how-to-connect-sync-best-practices-changing-default-configuration
+[aad-sync-disaster-recovery]: /azure/active-directory/hybrid/how-to-connect-sync-operations#disaster-recovery
 [aad-sync-requirements]: /azure/active-directory/active-directory-hybrid-identity-design-considerations-directory-sync-requirements
-[aad-topologies]: /azure/active-directory/active-directory-aadconnect-topologies
-[aad-user-sign-in]: /azure/active-directory/active-directory-aadconnect-user-signin
+[aad-topologies]: /azure/active-directory/hybrid/plan-connect-topologies
+[aad-user-sign-in]: /azure/active-directory/hybrid/plan-connect-user-signin
 [azure-active-directory]: /azure/active-directory-domain-services/active-directory-ds-overview
-[azure-ad-connect]: /azure/active-directory/active-directory-aadconnect
+[azure-ad-connect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [azure-multifactor-authentication]: /azure/multi-factor-authentication/multi-factor-authentication
 [considerations]: ./considerations.md
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview

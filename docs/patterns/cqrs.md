@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: c2832aa806909c6f0aab8b6345ffb8162eb59903
-ms.sourcegitcommit: d08f6ee27e1e8a623aeee32d298e616bc9bb87ff
+ms.openlocfilehash: 9a2eecdff7494fb627ea5c4655e6edc789bd5bdf
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/07/2018
-ms.locfileid: "33811056"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429696"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>Patrón Command and Query Responsibility Segregation (CQRS).
 
@@ -50,7 +50,7 @@ Command and Query Responsibility Segregation (CQRS) es un patrón que segrega la
 
 En comparación con el modelo de datos único que se usa en los sistemas basados en CRUD, el uso de modelos de consulta y actualización independientes para los datos de los sistemas basados en CQRS simplifica el diseño y la implementación. Sin embargo, una desventaja es que, a diferencia de los diseños CRUD, el código CQRS no se genera automáticamente mediante los mecanismos de scaffolding.
 
-El modelo de consulta para leer datos y el de actualización para escribirlos pueden acceder al mismo almacén físico, quizás mediante vistas SQL o mediante la generación de proyecciones sobre la marcha. Sin embargo, es habitual separar los datos en almacenes físicos diferentes para maximizar el rendimiento, la escalabilidad y la seguridad, tal como se muestra en la ilustración siguiente.
+El modelo de consulta para leer datos y el de actualización para escribirlos pueden acceder el mismo almacén físico, quizás mediante vistas SQL o mediante la generación de proyecciones sobre la marcha. Sin embargo, es habitual separar los datos en almacenes físicos diferentes para maximizar el rendimiento, la escalabilidad y la seguridad, tal como se muestra en la ilustración siguiente.
 
 ![Una arquitectura CQRS con almacenes independientes de lectura y escritura](./_images/command-and-query-responsibility-segregation-cqrs-separate-stores.png)
 
@@ -94,7 +94,7 @@ Este patrón no es recomendable en las situaciones siguientes:
 
 - Allí donde una interfaz de usuario simple, de estilo CRUD, y las operaciones relacionadas de acceso a datos son suficientes.
 
-- Para la implementación en todo el sistema. Hay componentes específicos de un escenario de administración de datos general donde CQRS puede ser útil, pero puede agregar una complejidad considerable e innecesaria.
+- Para la implementación en todo el sistema. Hay componentes específicos de un escenario de administración de datos general donde CQRS puede ser útil, pero puede agregar una complejidad considerable e innecesaria sin ser necesario.
 
 ## <a name="event-sourcing-and-cqrs"></a>Event Sourcing y CQRS
 
@@ -248,8 +248,6 @@ Los patrones y las directrices siguientes son útiles a la hora de implementar e
 
 - [Patrón Materialized View](materialized-view.md). El modelo de lectura de una implementación de CQRS puede contener vistas materializadas de los datos del modelo de escritura o el modelo de lectura se puede utilizar para generar vistas materializadas.
 
-- La guía de patrones y prácticas [CQRS Journey](http://aka.ms/cqrs) (Introducción a CQRS). En particular, [Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Introducción sobre el patrón Command Query Responsibility Segregation) explora el patrón y las situaciones en las que este puede resultar útil, y [Epilogue: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) que le ayudará a comprender algunos de los problemas que surgen al utilizar este patrón.
+- La guía de patrones y prácticas [CQRS Journey](https://aka.ms/cqrs) (Introducción a CQRS). En particular, [Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Introducción sobre el patrón Command Query Responsibility Segregation) explora el patrón y las situaciones en las que este puede resultar útil, y [Epilogue: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) que le ayudará a comprender algunos de los problemas que surgen al utilizar este patrón.
 
-- La entrada de blog sobre [CQRS de Martin Fowler](http://martinfowler.com/bliki/CQRS.html), que explica los aspectos básicos del patrón y contiene vínculos a otros recursos útiles.
-
-- Las [entradas de blog de Greg Young](http://codebetter.com/gregyoung/), que exploran muchos aspectos del patrón CQRS.
+- La entrada de blog sobre [CQRS de Martin Fowler](https://martinfowler.com/bliki/CQRS.html), que explica los aspectos básicos del patrón y contiene vínculos a otros recursos útiles.

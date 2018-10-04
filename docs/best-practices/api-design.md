@@ -4,12 +4,12 @@ description: Guía sobre cómo crear una API web bien diseñada.
 author: dragon119
 ms.date: 01/12/2018
 pnp.series.title: Best Practices
-ms.openlocfilehash: 68ed3f59e1fd63ae754ceabf27a182daa0de0e5d
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: 1bd53a7ccc54d086978891f1df5fdc2e25a5d638
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016092"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429390"
 ---
 # <a name="api-design"></a>Diseño de API
 
@@ -34,7 +34,7 @@ Estos son algunos de los principios de diseño más importantes de las API de RE
 - Un recurso tiene un *identificador*, que es un URI que identifica de forma única ese recurso. Por ejemplo, el URI de un pedido de cliente en particular podría ser: 
  
     ```http
-    http://adventure-works.com/orders/1
+    https://adventure-works.com/orders/1
     ```
  
 - Los clientes interactúan con un servicio mediante el intercambio de *representaciones* de recursos. Muchas API web usan JSON como formato de intercambio. Por ejemplo, una solicitud GET al URI mencionado anteriormente podría devolver este cuerpo de respuesta:
@@ -56,8 +56,8 @@ Estos son algunos de los principios de diseño más importantes de las API de RE
         "quantity":4,
         "orderValue":16.60,
         "links": [
-            {"rel":"product","href":"http://adventure-works.com/customers/3", "action":"GET" },
-            {"rel":"product","href":"http://adventure-works.com/customers/3", "action":"PUT" } 
+            {"rel":"product","href":"https://adventure-works.com/customers/3", "action":"GET" },
+            {"rel":"product","href":"https://adventure-works.com/customers/3", "action":"PUT" } 
         ]
     } 
     ```
@@ -77,9 +77,9 @@ El nivel 3 corresponde a una API verdaderamente RESTful. de acuerdo con la defin
 Se centran en las entidades empresariales que expone la API web. Por ejemplo, en un sistema de comercio electrónico, las entidades principales podrían ser clientes y pedidos. La creación de un pedido se puede lograr mediante el envío de una solicitud HTTP POST que contiene la información del pedido. La respuesta HTTP indica si el pedido se realizó correctamente o no. Siempre que sea posible, los URI de recursos deben basarse en nombres (el recurso) y no en verbos (las operaciones en el recurso). 
 
 ```HTTP
-http://adventure-works.com/orders // Good
+https://adventure-works.com/orders // Good
 
-http://adventure-works.com/create-order // Avoid
+https://adventure-works.com/create-order // Avoid
 ```
 
 Además, un recurso no tiene que estar basado en un solo elemento de datos físicos. Por ejemplo, un recurso de pedido podría implementarse internamente en forma de varias tablas de una base de datos relacional, pero presentarse al cliente como una única entidad. Evite la creación de API que simplemente reflejen la estructura interna de una base de datos. La finalidad de REST es modelar entidades y las operaciones que una aplicación puede realizar sobre esas entidades. Un cliente no debe exponerse a la implementación interna.
@@ -87,7 +87,7 @@ Además, un recurso no tiene que estar basado en un solo elemento de datos físi
 Las entidades a menudo se agrupan en colecciones (pedidos, clientes). Una colección es un recurso independiente del elemento de la colección y debe tener su propio URI. Por ejemplo, el siguiente URI podría representar la colección de pedidos: 
 
 ```HTTP
-http://adventure-works.com/orders
+https://adventure-works.com/orders
 ```
 
 Al enviar una solicitud HTTP GET al URI de la colección, se recupera una lista de elementos de la colección. Cada elemento de la colección también tiene su propio URI único. Una solicitud HTTP GET al URI del elemento devuelve los detalles de ese elemento. 
@@ -148,7 +148,7 @@ En el protocolo HTTP, los formatos se especifican mediante el uso de *tipos de m
 El encabezado Content-Type en una solicitud o respuesta especifica el formato de la representación. Este es un ejemplo de una solicitud POST que incluye datos JSON:
 
 ```HTTP
-POST http://adventure-works.com/orders HTTP/1.1
+POST https://adventure-works.com/orders HTTP/1.1
 Content-Type: application/json; charset=utf-8
 Content-Length: 57
 
@@ -160,7 +160,7 @@ Si el servidor no admite el tipo de medio, debe devolver el código de estado HT
 Una solicitud de cliente puede incluir un encabezado Accept que contenga una lista de tipos de medios que el cliente aceptará del servidor en el mensaje de respuesta. Por ejemplo: 
 
 ```HTTP
-GET http://adventure-works.com/orders/2 HTTP/1.1
+GET https://adventure-works.com/orders/2 HTTP/1.1
 Accept: application/json
 ```
 
@@ -273,7 +273,7 @@ Las solicitudes GET sobre recursos de la colección pueden devolver posiblemente
 /orders?limit=25&offset=50
 ```
 
-Considere también la posibilidad de imponer un límite superior sobre el número de elementos devueltos, para ayudar a evitar ataques por denegación de servicio. Para ayudar a las aplicaciones cliente, las solicitudes GET que devuelven datos paginados deben incluir también alguna forma de metadatos que indiquen el número total de recursos disponibles en la colección. También puede considerar otras estrategias de paginación inteligente; para obtener más información, consulte [Notas para el diseño de API: paginación inteligente](http://bizcoder.com/api-design-notes-smart-paging)
+Considere también la posibilidad de imponer un límite superior sobre el número de elementos devueltos, para ayudar a evitar ataques por denegación de servicio. Para ayudar a las aplicaciones cliente, las solicitudes GET que devuelven datos paginados deben incluir también alguna forma de metadatos que indiquen el número total de recursos disponibles en la colección. 
 
 Puede seguir una estrategia parecida para ordenar los datos que se capturan y proporcionar un parámetro de clasificación que tome un nombre de campo como valor, por ejemplo */orders?sort=ProductID*. Sin embargo, este enfoque puede tener un efecto negativo sobre el almacenamiento en caché, dado que los parámetros de la cadena de consulta forman parte del identificador de recursos que se usa en muchas implementaciones de caché como llave a los datos en caché.
 
@@ -288,7 +288,7 @@ Un recurso puede contener campos binarios de gran tamaño, como imágenes o arch
 Además, considere la posibilidad de implementar solicitudes HTTP HEAD para estos recursos. Una solicitud HEAD es similar a una solicitud GET, excepto que solo devuelve los encabezados HTTP que describen el recurso, con un cuerpo de mensaje vacío. Una aplicación cliente puede emitir una solicitud HEAD para determinar si se debe capturar un recurso mediante solicitudes GET parciales. Por ejemplo: 
 
 ```HTTP
-HEAD http://adventure-works.com/products/10?fields=productImage HTTP/1.1
+HEAD https://adventure-works.com/products/10?fields=productImage HTTP/1.1
 ```
 
 Este es un ejemplo de un mensaje de respuesta: 
@@ -304,7 +304,7 @@ Content-Length: 4580
 El encabezado Content-Length proporciona el tamaño total del recurso, y el encabezado Accept-Ranges indica que la operación GET correspondiente admite resultados parciales. La aplicación cliente puede usar esta información para recuperar la imagen en fragmentos más pequeños. La primera solicitud captura los primeros 2500 bytes mediante el encabezado Range:
 
 ```HTTP
-GET http://adventure-works.com/products/10?fields=productImage HTTP/1.1
+GET https://adventure-works.com/products/10?fields=productImage HTTP/1.1
 Range: bytes=0-2499
 ```
 
@@ -343,44 +343,44 @@ Por ejemplo, para administrar la relación entre un pedido y un cliente, la repr
   "links":[
     {
       "rel":"customer",
-      "href":"http://adventure-works.com/customers/3", 
+      "href":"https://adventure-works.com/customers/3", 
       "action":"GET",
       "types":["text/xml","application/json"] 
     },
     {
       "rel":"customer",
-      "href":"http://adventure-works.com/customers/3", 
+      "href":"https://adventure-works.com/customers/3", 
       "action":"PUT",
       "types":["application/x-www-form-urlencoded"]
     },
     {
       "rel":"customer",
-      "href":"http://adventure-works.com/customers/3",
+      "href":"https://adventure-works.com/customers/3",
       "action":"DELETE",
       "types":[]
     },
     {
       "rel":"self",
-      "href":"http://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3", 
       "action":"GET",
       "types":["text/xml","application/json"]
     },
     {
       "rel":"self",
-      "href":"http://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3", 
       "action":"PUT",
       "types":["application/x-www-form-urlencoded"]
     },
     {
       "rel":"self",
-      "href":"http://adventure-works.com/orders/3", 
+      "href":"https://adventure-works.com/orders/3", 
       "action":"DELETE",
       "types":[]
     }]
 }
 ```
 
-En este ejemplo, la matriz `links` tiene un conjunto de vínculos. Cada vínculo representa una operación en una entidad relacionada. Los datos de cada vínculo incluyen la relación ("customer"), el URI (`http://adventure-works.com/customers/3`), el método HTTP y el tipo MIME admitido. Esta es toda la información que necesita una aplicación cliente para invocar la operación. 
+En este ejemplo, la matriz `links` tiene un conjunto de vínculos. Cada vínculo representa una operación en una entidad relacionada. Los datos de cada vínculo incluyen la relación ("customer"), el URI (`https://adventure-works.com/customers/3`), el método HTTP y el tipo MIME admitido. Esta es toda la información que necesita una aplicación cliente para invocar la operación. 
 
 La matriz `links` también incluye información con una referencia a sí misma sobre el recurso propiamente dicho que se ha recuperado. Este tiene la relación *self*.
 
@@ -395,7 +395,7 @@ El control de versiones permite que una API web indique las características y r
 ### <a name="no-versioning"></a>Sin control de versiones
 Este es el enfoque más sencillo y puede ser aceptable para algunas API internas. Los grandes cambios podrían representarse como nuevos recursos o nuevos vínculos.  Agregar contenido a recursos existentes puede que no represente un cambio importante dado que las aplicaciones cliente que no esperan ver este contenido simplemente lo ignorarán.
 
-Por ejemplo, una solicitud al URI *http://adventure-works.com/customers/3* debe devolver los detalles de un solo cliente que contiene los campos `id`, `name` y `address` esperados por la aplicación cliente:
+Por ejemplo, una solicitud al URI *https://adventure-works.com/customers/3* debe devolver los detalles de un solo cliente que contiene los campos `id`, `name` y `address` esperados por la aplicación cliente:
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -423,7 +423,7 @@ Las aplicaciones cliente existentes pueden seguir funcionando correctamente si s
 ### <a name="uri-versioning"></a>Control de versiones de URI
 Cada vez que modifica la API web o cambia el esquema de recursos, agrega un número de versión al URI para cada recurso. Los URI ya existentes deben seguir funcionando como antes y devolver los recursos conforme a su esquema original.
 
-Ampliando el ejemplo anterior, si el campo `address` se reestructura en campos secundarios que contienen cada uno una parte constituyente de la dirección (como `streetAddress`, `city`, `state` y `zipCode`), esta versión del recurso podría exponerse a través de un URI que contenga un número de versión, como http://adventure-works.com/v2/customers/3:
+Ampliando el ejemplo anterior, si el campo `address` se reestructura en campos secundarios que contienen cada uno una parte constituyente de la dirección (como `streetAddress`, `city`, `state` y `zipCode`), esta versión del recurso podría exponerse a través de un URI que contenga un número de versión, como https://adventure-works.com/v2/customers/3:
 
 ```HTTP
 HTTP/1.1 200 OK
@@ -435,7 +435,7 @@ Content-Type: application/json; charset=utf-8
 Este mecanismo de control de versiones es muy sencillo, pero depende del servidor que enruta la solicitud al extremo adecuado. Sin embargo, puede volverse difícil de manejar dado que la API web madura a través de varias iteraciones y el servidor tiene que admitir un número de versiones diferentes. Además, desde el punto de vista de los más puristas, en todos los casos las aplicaciones cliente capturan los mismos datos (cliente 3), así que el URI no debería ser realmente diferente según la versión. Este esquema también complica la implementación de HATEOAS ya que todos los vínculos deberán incluir el número de versión en sus URI.
 
 ### <a name="query-string-versioning"></a>Control de versiones de cadena de consulta
-En lugar de proporcionar varios URI, puede especificar la versión del recurso mediante un parámetro dentro de la cadena de consulta anexada a la solicitud HTTP, como *http://adventure-works.com/customers/3?version=2*. El parámetro de versión debe adoptar de forma predeterminada un valor significativo como 1 si se omite en las aplicaciones cliente más antiguas.
+En lugar de proporcionar varios URI, puede especificar la versión del recurso mediante un parámetro dentro de la cadena de consulta anexada a la solicitud HTTP, como *https://adventure-works.com/customers/3?version=2*. El parámetro de versión debe adoptar de forma predeterminada un valor significativo como 1 si se omite en las aplicaciones cliente más antiguas.
 
 Este enfoque tiene la ventaja semántica de que el mismo recurso siempre se recupera del mismo URI, pero depende del código que controla la solicitud para analizar la cadena de consulta y enviar la respuesta HTTP adecuada. Este método también presenta tiene las mismas complicaciones para implementar HATEOAS que el mecanismo de control de versiones de URI.
 
@@ -450,7 +450,7 @@ En lugar de anexar el número de versión como un parámetro de cadena de consul
 Versión 1:
 
 ```HTTP
-GET http://adventure-works.com/customers/3 HTTP/1.1
+GET https://adventure-works.com/customers/3 HTTP/1.1
 Custom-Header: api-version=1
 ```
 
@@ -464,7 +464,7 @@ Content-Type: application/json; charset=utf-8
 Versión 2:
 
 ```HTTP
-GET http://adventure-works.com/customers/3 HTTP/1.1
+GET https://adventure-works.com/customers/3 HTTP/1.1
 Custom-Header: api-version=2
 ```
 
@@ -481,7 +481,7 @@ Tenga en cuenta que al igual que en los dos enfoques anteriores, la implementaci
 Cuando una aplicación cliente envía una solicitud HTTP GET a un servidor web, debe prever el formato del contenido que puede controlar mediante el uso de un encabezado Accept, como se ha descrito anteriormente en esta guía. Con frecuencia, el propósito del encabezado *Accept* es permitir que la aplicación cliente especifique si el cuerpo de la respuesta debe ser XML, JSON o algún otro formato común que pueda analizar el cliente. Sin embargo, es posible definir tipos de medios personalizados que incluyan información que permita que la aplicación cliente indique qué versión de un recurso que se espera. En el ejemplo siguiente se muestra una solicitud que especifica un encabezado *Accept* con el valor *application/vnd.adventure-works.v1+json*. El elemento *vnd.adventure-works.v1* indica al servidor web que debe devolver la versión 1 del recurso, mientras que el elemento *json* especifica que el formato del cuerpo de respuesta debe ser JSON:
 
 ```HTTP
-GET http://adventure-works.com/customers/3 HTTP/1.1
+GET https://adventure-works.com/customers/3 HTTP/1.1
 Accept: application/vnd.adventure-works.v1+json
 ```
 
@@ -516,6 +516,5 @@ Puede adoptar OpenAPI para sus API web. Algunos puntos que se deben tener en cue
 
 ## <a name="more-information"></a>Más información
 * [Directrices para API de REST de Microsoft](https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md). Recomendaciones detalladas para diseñar API de REST públicas.
-* [The REST Cookbook](http://restcookbook.com/) (El libro de cocina de REST). Introducción a la creación de API de RESTful.
 * [Web API Checklist](https://mathieu.fenniak.net/the-api-checklist/) (Lista de comprobación de API web). Una lista útil de elementos que se deben tener en cuenta al diseñar e implementar una API web.
 * [Open API Initiative](https://www.openapis.org/). Detalles de la documentación y la implementación en Open API.

@@ -3,12 +3,12 @@ title: Elección de un almacén de datos analíticos
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: cdc32c16e30aec5e1c0cb6959182215f99d56b56
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 3cf7dc533cc6ae3e6d7e2326852b585da8613e18
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846889"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428880"
 ---
 # <a name="choosing-an-analytical-data-store-in-azure"></a>Elección de un almacén de datos analíticos en Azure
 
@@ -55,10 +55,10 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 | | SQL Database | SQL Data Warehouse | HBase/Phoenix en HDInsight | Hive LLAP en HDInsight | Azure Analysis Services | Cosmos DB |
 | --- | --- | --- | --- | --- | --- | --- |
-| Es un servicio administrado | Sí | Sí | Sí <sup>1</sup> | Sí <sup>1</sup> | Sí | Sí |
+| Es un servicio administrado | SÍ | SÍ | Sí <sup>1</sup> | Sí <sup>1</sup> | SÍ | SÍ |
 | Modelo de la base de datos principal | Relacional (formato de columnas cuando se usan índices de almacén de columnas) | Tablas relacionales con almacenamiento en columnas | Almacenamiento de columnas anchas | Hive/In-Memory | Modelos semánticos tabular/MOLAP | Almacenamiento de documentos, grafos, almacenamiento de clave-valor, almacenamiento de columnas anchas |
-| Compatibilidad con lenguaje SQL | Sí | Sí | Sí (mediante el controlador JDBC [Phoenix](http://phoenix.apache.org/)) | Sí | Sin  | Sí |
-| Optimizado para la capa de servicios de velocidad | Sí <sup>2</sup> | Sin  | Sí | Sí | Sin  | Sí |
+| Compatibilidad con lenguaje SQL | SÍ | SÍ | Sí (mediante el controlador JDBC [Phoenix](https://phoenix.apache.org/)) | SÍ | Sin  | SÍ |
+| Optimizado para la capa de servicios de velocidad | Sí <sup>2</sup> | Sin  | SÍ | SÍ | Sin  | SÍ |
 
 [1] Con configuración y escalado manuales.
 
@@ -68,20 +68,20 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 |                                                  | SQL Database | SQL Data Warehouse | HBase/Phoenix en HDInsight | Hive LLAP en HDInsight | Azure Analysis Services | Cosmos DB |
 |--------------------------------------------------|--------------|--------------------|----------------------------|------------------------|-------------------------|-----------|
-| Servidores regionales redundantes para lograr alta disponibilidad |     Sí      |        Sí         |            Sí             |           Sin            |           Sin             |    Sí    |
-|             Admite el escalado horizontal de consultas             |      Sin       |        Sí         |            Sí             |          Sí           |           Sí           |    Sí    |
-|          Escalabilidad dinámica (escalado vertical)          |     Sí      |        Sí         |             Sin              |           Sin            |           Sí           |    Sí    |
-|        Admite el almacenamiento en caché en memoria de datos        |     Sí      |        Sí         |             Sin              |          Sí           |           Sí           |    Sin      |
+| Servidores regionales redundantes para lograr alta disponibilidad |     SÍ      |        Sí         |            SÍ             |           No           |           No            |    SÍ    |
+|             Admite el escalado horizontal de consultas             |      Sin       |        SÍ         |            Sí             |          Sí           |           Sí           |    SÍ    |
+|          Escalabilidad dinámica (escalado vertical)          |     SÍ      |        SÍ         |             No             |           No           |           SÍ           |    SÍ    |
+|        Admite el almacenamiento en caché en memoria de datos        |     SÍ      |        SÍ         |             Sin              |          SÍ           |           SÍ           |    Sin      |
 
 ### <a name="security-capabilities"></a>Funcionalidades de seguridad
 
 | | SQL Database | SQL Data Warehouse | HBase/Phoenix en HDInsight | Hive LLAP en HDInsight | Azure Analysis Services | Cosmos DB |
 | --- | --- | --- | --- | --- | --- | --- |
 | Autenticación  | SQL/Azure Active Directory (Azure AD) | SQL/Azure AD | local/Azure AD <sup>1</sup> | local/Azure AD <sup>1</sup> | Azure AD | usuarios de la base de datos / Azure AD a través del control de acceso (IAM) |
-| Cifrado de datos en reposo | Sí <sup>2</sup> | Sí <sup>2</sup> | Sí <sup>1</sup> | Sí <sup>1</sup> | Sí | Sí |
-| Seguridad de nivel de fila | Sí | Sin  | Sí <sup>1</sup> | Sí <sup>1</sup> | Sí (mediante la seguridad a nivel de objeto en el modelo) | Sin  |
-| Admite firewalls | Sí | Sí | Sí <sup>3</sup> | Sí <sup>3</sup> | Sí | Sí |
-| Enmascaramiento de datos dinámicos | Sí | Sin  | Sí <sup>1</sup> | Sí * | Sin  | Sin  |
+| Cifrado de datos en reposo | Sí <sup>2</sup> | Sí <sup>2</sup> | Sí <sup>1</sup> | Sí <sup>1</sup> | SÍ | SÍ |
+| Seguridad de nivel de fila | SÍ | Sin  | Sí <sup>1</sup> | Sí <sup>1</sup> | Sí (mediante la seguridad a nivel de objeto en el modelo) | Sin  |
+| Admite firewalls | SÍ | SÍ | Sí <sup>3</sup> | Sí <sup>3</sup> | SÍ | SÍ |
+| Enmascaramiento de datos dinámicos | SÍ | Sin  | Sí <sup>1</sup> | Sí * | Sin  | Sin  |
 
 [1] Requiere el uso de un [clúster de HDInsight unido a un dominio](/azure/hdinsight/domain-joined/apache-domain-joined-introduction).
 

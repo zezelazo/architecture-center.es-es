@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - resiliency
-ms.openlocfilehash: 8c8efa0846550557bb53ea81f85ac0e303a77b19
-ms.sourcegitcommit: f19314f18cd794ebe380fa722ca92066b8735b56
+ms.openlocfilehash: 6cc4b19e889cc9fc692e388498cc16ea56b1c981
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37348276"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429203"
 ---
 # <a name="leader-election-pattern"></a>Patrón Leader Election
 
@@ -43,7 +43,7 @@ El sistema debe proporcionar un mecanismo eficaz para seleccionar el líder. Est
 Existen varias estrategias para elegir un líder entre un conjunto de tareas en un entorno distribuido, como son:
 - Seleccionar la instancia de tarea con el identificador de proceso o de instancia peor clasificados.
 - Competir para adquirir una exclusión mutua compartida y distribuida. La primera instancia de tarea que adquiere la exclusión mutua es el líder. Sin embargo, el sistema debe asegurarse de que, si el líder finaliza o se desconecta del resto del sistema, se libere la exclusión mutua para permitir que otra instancia de tarea se convierta en el líder.
-- Implementar uno de los algoritmos de Leader Electrion comunes como el [algoritmo Bully](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) o el [algoritmo Ring](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html). Estos algoritmos dan por supuesto que cada candidato de la elección tiene un identificador único y que puede comunicarse con los otros candidatos de manera confiable.
+- Implementar uno de los algoritmos de Leader Electrion comunes como el [algoritmo Bully](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) o el [algoritmo Ring](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html). Estos algoritmos dan por supuesto que cada candidato de la elección tiene un identificador único y que puede comunicarse con los otros candidatos de manera confiable.
 
 ## <a name="issues-and-considerations"></a>Problemas y consideraciones
 
@@ -198,7 +198,7 @@ Las directrices siguientes también pueden ser importantes a la hora de implemen
 - [Guía de escalado automático](https://msdn.microsoft.com/library/dn589774.aspx). Es posible iniciar y detener instancias de los hosts de las tareas a medida que varía la carga de la aplicación. El escalado automático puede ayudar a mantener el rendimiento y la capacidad de proceso durante los períodos de procesamiento máximo.
 - [Compute Partitioning Guidance](https://msdn.microsoft.com/library/dn589773.aspx) (Orientación sobre la creación de particiones de proceso). En esta guía se describe cómo asignar tareas a los hosts de un servicio en la nube de tal forma que ayude a reducir los costes de ejecución mientras se mantiene la escalabilidad, el rendimiento, la disponibilidad y la seguridad del servicio.
 - El [patrón Task-based Asynchronous](https://msdn.microsoft.com/library/hh873175.aspx).
-- Un ejemplo que ilustra el [algoritmo Bully](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html).
-- Un ejemplo que ilustra el [algoritmo Ring](http://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html).
-- [Apache Curator](http://curator.apache.org/) una biblioteca cliente de Apache ZooKeeper.
+- Un ejemplo que ilustra el [algoritmo Bully](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html).
+- Un ejemplo que ilustra el [algoritmo Ring](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html).
+- [Apache Curator](https://curator.apache.org/) una biblioteca cliente de Apache ZooKeeper.
 - El artículo [Lease Blob (API de REST)](https://msdn.microsoft.com/library/azure/ee691972.aspx) en MSDN.

@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
-ms.openlocfilehash: 6e05a30245fbf5183a4e50a54650505f5a5f2aa8
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.openlocfilehash: bd212b8b4406a08058f811db030843f732e08cdc
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252931"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428846"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>Patrón Compute Resource Consolidation
 
@@ -85,7 +85,7 @@ Este patrón podría no ser adecuado con tareas que realizan operaciones crític
 
 Al crear un servicio en la nube en Azure, es posible consolidar el procesamiento que realizan varias tareas en un único rol. Normalmente, es el rol de trabajo el encargado de realizar las tareas de procesamiento en segundo plano o asincrónicas.
 
-> En algunos casos, es posible incluir dichas tareas en el rol web. Esta técnica ayuda reducir los costes y a simplificar la implementación, pero puede afectar a la escalabilidad y la capacidad de respuesta de la interfaz de acceso público proporcionada por el rol web. El artículo [Combining Multiple Azure Worker Roles into an Azure Web Role](http://www.31a2ba2a-b718-11dc-8314-0800200c9a66.com/2012/02/combining-multiple-azure-worker-roles.html) (Combinación de varios roles de trabajo de Azure en un rol web de Azure) contiene una descripción detallada de la implementación de tareas de procesamiento en segundo plano o asincrónicas en un rol web.
+> En algunos casos, es posible incluir dichas tareas en el rol web. Esta técnica ayuda reducir los costes y a simplificar la implementación, pero puede afectar a la escalabilidad y la capacidad de respuesta de la interfaz de acceso público proporcionada por el rol web. 
 
 El rol es responsable de iniciar y detener las tareas. Cuando el controlador de tejido de Azure carga un rol, se genera el evento `Start` para el rol. Puede invalidar el método `OnStart` de `WebRole` o la clase `WorkerRole` para tratar este evento, quizás para inicializar los datos y otros recursos de los que dependen las tareas de este método.
 

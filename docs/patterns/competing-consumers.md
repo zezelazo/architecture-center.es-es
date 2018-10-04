@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
-ms.openlocfilehash: d72a09ef7613bebe3701634e4eac0716400e471d
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: aea172dcdb33c0d8513fb69715f1549b4a20f5e6
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542415"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428387"
 ---
 # <a name="competing-consumers-pattern"></a>Patrón de consumidores de la competencia
 
@@ -48,7 +48,7 @@ Esta solución tiene las siguientes ventajas:
 
 Tenga en cuenta los puntos siguientes al decidir cómo implementar este patrón:
 
-- **Orden de los mensajes**. El orden en que las instancias de servicio de consumidor reciben loa mensajes no está garantizado y no refleja necesariamente el orden en que se crearon los mensajes. Diseñe el sistema para asegurarse de que el procesamiento de mensajes sea idempotente, ya que de esta forma podrá eliminar cualquier dependencia en el orden en el que se administran los mensajes. Para más información, consulte [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/) (Patrones de idempotencia) en el blog de Jonathon Oliver.
+- **Orden de los mensajes**. El orden en que las instancias de servicio de consumidor reciben loa mensajes no está garantizado y no refleja necesariamente el orden en que se crearon los mensajes. Diseñe el sistema para asegurarse de que el procesamiento de mensajes sea idempotente, ya que de esta forma podrá eliminar cualquier dependencia en el orden en el que se administran los mensajes. Para más información, consulte [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/) (Patrones de idempotencia) en el blog de Jonathon Oliver.
 
     > Las colas de Microsoft Azure Service Bus pueden implementar el orden de mensajes garantizado "primero en entrar, primero en salir" mediante sesiones de mensajes. Para más información, consulte [Sesiones de uso de patrones de mensajería](https://msdn.microsoft.com/magazine/jj863132.aspx).
 
@@ -66,7 +66,7 @@ Tenga en cuenta los puntos siguientes al decidir cómo implementar este patrón:
 
 ## <a name="when-to-use-this-pattern"></a>Cuándo usar este patrón
 
-Use este patrón cuando:
+Use este patrón en los siguientes supuestos:
 
 - La carga de trabajo de una aplicación se divida en tareas que se pueden ejecutar de forma asincrónica.
 - Las tareas sean independientes y se puedan ejecutar en paralelo.

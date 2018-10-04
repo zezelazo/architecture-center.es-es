@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - messaging
 - performance-scalability
-ms.openlocfilehash: ecfbb38304bb95587e9ca15523ad9594898d9b32
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 400bfbc03cf5640ff32a551636b01d60e6c0ec50
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24543151"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428506"
 ---
 # <a name="priority-queue-pattern"></a>Patrón de cola de prioridad
 
@@ -176,5 +176,5 @@ Los patrones y las directrices siguientes también pueden ser importantes a la h
 
 - [Guía de escalado automático](https://msdn.microsoft.com/library/dn589774.aspx). Es posible escalar el tamaño del grupo de procesos de consumidor que controlan una cola en función de la longitud de la cola. Esta estrategia puede ayudar a mejorar el rendimiento, especialmente para los grupos que controlan los mensajes con prioridad alta.
 
-- [Patrones de Integración empresarial con Service Bus](http://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/) en el blog de Abhishek Lal.
+- [Patrones de Integración empresarial con Service Bus](https://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/) en el blog de Abhishek Lal.
 

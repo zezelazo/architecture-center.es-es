@@ -3,12 +3,12 @@ title: Patrón Backends for Frontends
 description: Crea servicios independientes de back-end que determinadas aplicaciones de front-end o interfaces puedan usar.
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: 2991d7a3e05b3ce6cd5148a552bae6d4ba8f7c4c
-ms.sourcegitcommit: c441fd165e6bebbbbbc19854ec6f3676be9c3b25
+ms.openlocfilehash: a0dbc9ab58aa218f6faf40b70dad1bdc22d71458
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/30/2018
-ms.locfileid: "30270026"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428795"
 ---
 # <a name="backends-for-frontends-pattern"></a>Patrón Backends for Frontends
 
@@ -34,7 +34,7 @@ Cree un back-end por interfaz de usuario. Ajuste el comportamiento y el rendimie
 
 Como cada back-end es específico de una interfaz, se puede optimizar para esa interfaz. En consecuencia, será más pequeño, menos complejo y es probable que más rápido que un back-end genérico que intenta satisfacer los requisitos de todas las interfaces. Cada equipo de la interfaz tiene autonomía para controlar su propio back-end y no se apoya en un equipo de desarrollo de back-end centralizado. Esto proporciona flexibilidad al equipo de la interfaz en la selección del lenguaje, el ritmo de lanzamiento, la priorización de la carga de trabajo y la integración de características en el back-end.
 
-Para más información, consulte [Pattern: Backends For Frontends](http://samnewman.io/patterns/architectural/bff/) (Patrón: servidores back-end para servidores front-end).
+Para más información, consulte [Pattern: Backends For Frontends](https://samnewman.io/patterns/architectural/bff/) (Patrón: servidores back-end para servidores front-end).
 
 ## <a name="issues-and-considerations"></a>Problemas y consideraciones
 

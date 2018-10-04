@@ -3,12 +3,12 @@ title: Elección de una tecnología de almacenamiento de datos
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: b14611a2dc34bcb145cf420441795d4124e7baeb
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 496df68024aef0dcf030bb7e0138639610aa8a79
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847216"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429356"
 ---
 # <a name="choosing-a-big-data-storage-technology-in-azure"></a>Elección de una tecnología de almacenamiento de macrodatos en Azure
 
@@ -26,7 +26,7 @@ Existen varias opciones para la ingesta de datos en Azure en función de sus nec
 **Bases de datos no SQL**
 
 - [Azure Cosmos DB](/azure/cosmos-db/)
-- [HBase en HDInsight](http://hbase.apache.org/)
+- [HBase en HDInsight](https://hbase.apache.org/)
 
 ## <a name="azure-storage-blobs"></a>Blobs de Azure Storage
 
@@ -45,7 +45,7 @@ Otras características que hacen de Azure Storage una buena opción de almacenam
 - [Cifrado en reposo](/azure/storage/common/storage-service-encryption?toc=%2fazure%2fstorage%2fblobs%2ftoc.json).
 - [Control de acceso basado en roles (RBAC)](/azure/storage/common/storage-security-guide?toc=%2fazure%2fstorage%2fblobs%2ftoc.json#management-plane-security) para controlar el acceso mediante grupos y usuarios de Azure Active Directory.
 
-## <a name="azure-data-lake-store"></a>Almacén de Azure Data Lake
+## <a name="azure-data-lake-store"></a>Azure Data Lake Store
 
 [Azure Data Lake Store](/azure/data-lake-store/) es un repositorio de gran escala en toda la empresa para cargas de trabajo de análisis de macrodatos. Data Lake permite capturar datos de cualquier tamaño, tipo y velocidad de ingesta en una única ubicación [segura](/azure/data-lake-store/data-lake-store-overview#DataLakeStoreSecurity) para realizar análisis exploratorios y operativos.
 
@@ -69,7 +69,7 @@ Características de Azure Cosmos DB:
 
 ## <a name="hbase-on-hdinsight"></a>HBase en HDInsight
 
-[Apache HBase](http://hbase.apache.org/) es una base de datos no SQL de código abierto construida sobre Hadoop y modelada según Google BigTable. HBase proporciona acceso aleatorio y alta coherencia para grandes cantidades de datos no estructurados y semiestructurados en una base de datos sin esquemas organizada por familias de columnas.
+[Apache HBase](https://hbase.apache.org/) es una base de datos no SQL de código abierto construida sobre Hadoop y modelada según Google BigTable. HBase proporciona acceso aleatorio y alta coherencia para grandes cantidades de datos no estructurados y semiestructurados en una base de datos sin esquemas organizada por familias de columnas.
 
 Los datos se almacenan en las filas de una tabla, mientras que los datos de una fila se agrupan por familia de columnas. HBase no tiene esquema en el sentido de que no es preciso que ni las columnas ni el tipo de datos almacenados en ellas se definan antes de usarlos. El código abierto se escala linealmente para controlar petabytes de datos en miles de nodos. Puede basarse en la redundancia de datos, el procesamiento por lotes y otras características proporcionadas por aplicaciones distribuidas en el ecosistema Hadoop.
 
@@ -93,7 +93,7 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 ### <a name="file-storage-capabilities"></a>Funcionalidades de almacenamiento de archivos
 
-|  | Almacén de Azure Data Lake | Contenedores de Azure Blob Storage |
+|  | Azure Data Lake Store | Contenedores de Azure Blob Storage |
 | --- | --- | --- |
 | Propósito | Almacenamiento optimizado para cargas de trabajo de análisis de macrodatos |Almacén general de objetos para una amplia variedad de escenarios de almacenamiento |
 | Casos de uso | Datos en lotes, de análisis de streaming y de aprendizaje automático, como archivos de registro, datos de IoT, transmisiones de clic y conjuntos de datos grandes | Cualquier tipo de texto o datos binarios, por ejemplo, back-end de aplicación, datos de copia de seguridad, almacenamiento multimedia para streaming y datos de propósito general |
@@ -113,8 +113,8 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 |                                    |                                           Azure Cosmos DB                                           |                                                             HBase en HDInsight                                                             |
 |------------------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 |       Modelo de la base de datos principal       |                      Almacenamiento de documentos, grafos, almacenamiento de clave-valor, almacenamiento de columnas anchas                      |                                                             Almacenamiento de columnas anchas                                                              |
-|         Índices secundarios          |                                                 Sí                                                 |                                                                     Sin                                                                      |
-|        Compatibilidad con lenguaje SQL        |                                                 Sí                                                 |                                     Sí (mediante el controlador JDBC [Phoenix](http://phoenix.apache.org/))                                      |
+|         Índices secundarios          |                                                 SÍ                                                 |                                                                     Sin                                                                      |
+|        Compatibilidad con lenguaje SQL        |                                                 SÍ                                                 |                                     Sí (mediante el controlador JDBC [Phoenix](https://phoenix.apache.org/))                                      |
 |            Coherencia             |                   Alta, de obsolescencia limitada, sesión, prefijo coherente, eventual                   |                                                                   Alta                                                                   |
 | Integración nativa con Azure Functions |                        [Sí](/azure/cosmos-db/serverless-computing-database)                        |                                                                     Sin                                                                      |
 |   Distribución global automática    |                          [Sí](/azure/cosmos-db/distribute-data-globally)                           | No es posible [configurar la replicación de clúster de HBase](/azure/hdinsight/hbase/apache-hbase-replication) entre regiones con coherencia eventual |

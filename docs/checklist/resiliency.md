@@ -4,12 +4,12 @@ description: Lista de comprobación que ofrece una guía para las preocupaciones
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 883424d5d3535f822cdba61ecb9520ce05f75ec7
-ms.sourcegitcommit: 2154e93a0a075e1f7425a6eb11fc3f03c1300c23
+ms.openlocfilehash: 17612ee08e2329ea648fd21d6764e7bae1ca20e2
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352651"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429101"
 ---
 # <a name="resiliency-checklist"></a>Lista de comprobación de resistencia
 
@@ -81,7 +81,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 ## <a name="security"></a>Seguridad
 
-**Implemente la protección de nivel de aplicación frente a la denegación de servicio distribuido (DDoS).** Los servicios de Azure están protegidos frente a ataques de DDos en la capa de red. Sin embargo, Azure no puede protegerse contra los ataques de la capa de aplicación, ya que es difícil distinguir entre las solicitudes de usuarios reales y las solicitudes de usuarios malintencionados. Para más información sobre cómo protegerse de ataques de DDoS de capa de aplicación, consulte la sección "Protecting against DDoS" (Proteger frente a DDoS) de [Microsoft Azure Network Security](http://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf) (descarga de PDF).
+**Implemente la protección de nivel de aplicación frente a la denegación de servicio distribuido (DDoS).** Los servicios de Azure están protegidos frente a ataques de DDos en la capa de red. Sin embargo, Azure no puede protegerse contra los ataques de la capa de aplicación, ya que es difícil distinguir entre las solicitudes de usuarios reales y las solicitudes de usuarios malintencionados. Para más información sobre cómo protegerse de ataques de DDoS de capa de aplicación, consulte la sección "Protecting against DDoS" (Proteger frente a DDoS) de [Microsoft Azure Network Security](https://download.microsoft.com/download/C/A/3/CA3FC5C0-ECE0-4F87-BF4B-D74064A00846/AzureNetworkSecurity_v3_Feb2015.pdf) (descarga de PDF).
 
 **Implemente el principio del privilegio mínimo para acceder a los recursos de la aplicación.** El acceso predeterminado a los recursos de la aplicación debe ser lo más restrictivo posible. Otorgue permisos de mayor nivel sobre la base de la aprobación. Conceder un acceso excesivamente permisivo a los recursos de la aplicación de forma predeterminada puede dar lugar a que alguien elimine recursos de forma intencionada o accidental. Azure proporciona [control de acceso basado en rol](/azure/active-directory/role-based-access-built-in-roles/) para administrar privilegios de usuario, pero es importante comprobar los permisos de privilegio mínimo para otros recursos que tienen sus propios sistemas de permisos, como SQL Server.
 
@@ -99,7 +99,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Automatice el proceso de implementación de la aplicación.** Si se requiere que el personal de operaciones implemente manualmente la aplicación, un error humano puede causar un error en la implementación. 
 
-**Diseñe el proceso de lanzamiento para maximizar la disponibilidad de la aplicación.** Si su proceso de lanzamiento requiere que los servicios se desconecten durante la implementación, la aplicación no estará disponible hasta que vuelvan a conectarse. Utilice la técnica de implementación [verde/azul](http://martinfowler.com/bliki/BlueGreenDeployment.html) o de [lanzamiento controlado](http://martinfowler.com/bliki/CanaryRelease.html) para implementar la aplicación en producción. Ambas técnicas implican la implementación del código de lanzamiento junto con el código de producción, para que los usuarios del código de lanzamiento puedan redireccionarse al código de producción en caso de producirse un error.
+**Diseñe el proceso de lanzamiento para maximizar la disponibilidad de la aplicación.** Si su proceso de lanzamiento requiere que los servicios se desconecten durante la implementación, la aplicación no estará disponible hasta que vuelvan a conectarse. Utilice la técnica de implementación [verde/azul](https://martinfowler.com/bliki/BlueGreenDeployment.html) o de [lanzamiento controlado](https://martinfowler.com/bliki/CanaryRelease.html) para implementar la aplicación en producción. Ambas técnicas implican la implementación del código de lanzamiento junto con el código de producción, para que los usuarios del código de lanzamiento puedan redireccionarse al código de producción en caso de producirse un error.
 
 **Registre y audite las implementaciones de la aplicación.** Si utiliza técnicas de implementación por etapas, como las implementaciones azul/verde o el lanzamiento controlado, habrá más de una versión de su aplicación que se ejecuta en producción. Si se produce un problema, es fundamental determinar qué versión de la aplicación lo está causando. Implemente una estrategia de registro robusta para capturar tanta información específica de la versión como sea posible.
 

@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - performance-scalability
-ms.openlocfilehash: a4e35a19851f4742b5c154197c22bb1fe13de108
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: bc2b6aeb6966d14327a21849adbbfe635eae59df
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37091111"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428863"
 ---
 # <a name="sharding-pattern"></a>Patrón de particionamiento
 
@@ -219,6 +219,3 @@ Los patrones y las directrices siguientes también pueden ser importantes a la h
 - [Guía de creación de particiones de datos](https://msdn.microsoft.com/library/dn589795.aspx). El particionamiento de un almacén de datos puede introducir diferentes problemas adicionales. Describe estos problemas en relación con el particionamiento de los almacenes de datos en la nube para mejorar la escalabilidad, reducir la contención y optimizar el rendimiento.
 - [Patrón Index Table](index-table.md). A veces no es posible dar soporte completo a las consultas solo con el diseño de la clave de partición. Permite que una aplicación recupere rápidamente los datos de un almacén de datos de gran tamaño mediante la especificación de una clave distinta de la clave de partición.
 - [Patrón Materialized View](materialized-view.md). Para mantener el rendimiento de algunas operaciones de consulta, es útil crear vistas materializadas que agreguen y resuman los datos, especialmente si estos datos de resumen se basan en información que se distribuye entre las particiones. Describe cómo generar y rellenar estas vistas.
-- [Shard Lessons](http://www.addsimplicity.com/adding_simplicity_an_engi/2008/08/shard-lessons.html) (Lecciones de partición) en el blog Adding Simplicity.
-- [Database Sharding](http://dbshards.com/database-sharding/) (Particionamiento de bases de datos) en el sitio web de CodeFutures.
-- [Building Scalable Databases: Pros and Cons of Various Database Sharding Schemes](http://www.25hoursaday.com/weblog/2009/01/16/BuildingScalableDatabasesProsAndConsOfVariousDatabaseShardingSchemes.aspx) (Creación de bases de datos escalables: ventajas e inconvenientes de esquemas de partición de bases de datos diferentes) en el blog de Dare Obasanjo.

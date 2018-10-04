@@ -7,12 +7,12 @@ ms.date: 06/23/2017
 pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - resiliency
-ms.openlocfilehash: a822de990d6ce933024207073b110e98f8da40bf
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 3d58537d9c77b97332bcabf762b9af7ed2f20421
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359407"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428149"
 ---
 # <a name="compensating-transaction-pattern"></a>Patrón Compensating Transaction (Transacción de compensación)
 
@@ -38,9 +38,9 @@ La solución pasa por implementar una transacción de compensación. Los pasos d
 
 Un enfoque común es usar un flujo de trabajo para implementar una operación de coherencia definitiva que requiere compensación. Mientras se realiza la operación original, el sistema registra información acerca de cada paso y cómo se puede deshacer el trabajo realizado por ese paso. Si se produce un error en la operación en cualquier momento, el flujo de trabajo retrocede a los pasos completados y realiza el trabajo que invierte cada paso. Tenga en cuenta que es posible que una transacción de compensación no tenga que deshacer el trabajo en el orden inverso exacto de la operación original, algunos de los pasos para deshacer podrían realizarse en paralelo.
 
-> Este enfoque es similar a la estrategia de Sagas que se describe en el [blog de Clemens Vasters](http://vasters.com/clemensv/2012/09/01/Sagas.aspx).
+> Este enfoque es similar a la estrategia de Sagas que se describe en el [blog de Clemens Vasters](https://vasters.com/clemensv/2012/09/01/Sagas.aspx).
 
-Una transacción de compensación es asimismo una operación de coherencia definitiva y también podría dar error. El sistema debería poder reanudar la transacción de compensación en el punto de error y continuar. Como podría ser necesario repetir un paso que no se pudo realizar, los pasos de una transacción de compensación deben definirse como comandos idempotentes. Para más información, consulte los [patrones de idempotencia](http://blog.jonathanoliver.com/idempotency-patterns/) en el blog de Jonathan Oliver.
+Una transacción de compensación es asimismo una operación de coherencia definitiva y también podría dar error. El sistema debería poder reanudar la transacción de compensación en el punto de error y continuar. Como podría ser necesario repetir un paso que no se pudo realizar, los pasos de una transacción de compensación deben definirse como comandos idempotentes. Para más información, consulte los [patrones de idempotencia](https://blog.jonathanoliver.com/idempotency-patterns/) en el blog de Jonathan Oliver.
 
 En algunos casos, puede que no sea posible recuperarse de un paso que ha dado error si no es mediante intervención manual. En estas situaciones el sistema debe generar una alerta y proporcionar tanta información como sea posible sobre el motivo del error.
 

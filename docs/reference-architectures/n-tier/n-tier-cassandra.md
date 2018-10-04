@@ -3,12 +3,12 @@ title: Aplicación de n niveles con Apache Cassandra
 description: Cómo ejecutar máquinas virtuales Linux para una arquitectura de n niveles en Microsoft Azure.
 author: MikeWasson
 ms.date: 05/03/2018
-ms.openlocfilehash: fa5faeda4ef1dcae46181c0a3be8f4e139dc27d0
-ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
+ms.openlocfilehash: 9c186527a7f7980a5232186a52f9b0089612226f
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45584721"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429064"
 ---
 # <a name="n-tier-application-with-apache-cassandra"></a>Aplicación de n niveles con Apache Cassandra
 
@@ -177,13 +177,13 @@ Para obtener más información sobre la implementación de esta arquitectura de 
 
 [host bastión]: https://en.wikipedia.org/wiki/Bastion_host
 [cassandra-in-azure]: https://academy.datastax.com/resources/deployment-guide-azure
-[cassandra-consistency]: http://docs.datastax.com/en/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html
-[cassandra-replication]: http://www.planetcassandra.org/data-replication-in-nosql-databases-explained/
+[cassandra-consistency]: https://docs.datastax.com/en/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html
+[cassandra-replication]: https://academy.datastax.com/planet-cassandra/data-replication-in-nosql-databases-explained
 [cassandra-consistency-usage]: https://medium.com/@foundev/cassandra-how-many-nodes-are-talked-to-with-quorum-also-should-i-use-it-98074e75d7d5#.b4pb4alb2
 
 [CIDR]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing
 [chef]: https://www.chef.io/solutions/azure/
-[datastax]: http://www.datastax.com/products/datastax-enterprise
+[datastax]: https://www.datastax.com/products/datastax-enterprise
 [git]: https://github.com/mspnp/template-building-blocks
 [github-folder]: https://github.com/mspnp/reference-architectures/tree/master/virtual-machines/n-tier-linux
 [lb-external-create]: /azure/load-balancer/load-balancer-get-started-internet-portal
@@ -202,8 +202,8 @@ Para obtener más información sobre la implementación de esta arquitectura de 
 [vnet faq]: /azure/virtual-network/virtual-networks-faq
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [Nagios]: https://www.nagios.org/
-[Zabbix]: http://www.zabbix.com/
-[Icinga]: http://www.icinga.org/
+[Zabbix]: https://www.zabbix.com/
+[Icinga]: https://www.icinga.org/
 [0]: ./images/n-tier-cassandra.png "Arquitectura de n niveles con Microsoft Azure"
 
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview 

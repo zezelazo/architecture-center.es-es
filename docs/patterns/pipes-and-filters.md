@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - design-implementation
 - messaging
-ms.openlocfilehash: 2c17504f594843c10fcfe221f0087f1087a73fb8
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: fd616676f9487bdfe1bf23b3d0fec6c65b97a8f4
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847114"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429577"
 ---
 # <a name="pipes-and-filters-pattern"></a>Patrón Pipes and Filters
 
@@ -59,7 +59,7 @@ A la hora de decidir cómo implementar este patrón, debe considerar los siguien
 
 - **Confiabilidad**. Use una infraestructura que garantice que el flujo de datos entre los filtros de una canalización no se pierda.
 
-- **Idempotencia**. Si se produce un error en un filtro de una canalización después de recibir un mensaje y el trabajo se vuelve a programar para otra instancia del filtro, puede que parte del trabajo ya se haya completado. Si este trabajo actualiza algún aspecto del estado global (por ejemplo, la información almacenada en una base de datos), se podría repetir la misma actualización. Un problema similar puede surgir si se produce un error en un filtro después de publicar sus resultados en el filtro siguiente de la canalización, pero antes de que indique que ha completado su trabajo correctamente. En estos casos, otra instancia del filtro podría repetir el mismo trabajo, lo que provoca que los mismos resultados se publiquen dos veces. Esto podría dar lugar a que los sucesivos filtros de la canalización procesaran los mismos datos dos veces. Por lo tanto, los filtros de una canalización se deben diseñar para que sean idempotentes. Para más información, consulte los [patrones de idempotencia](http://blog.jonathanoliver.com/idempotency-patterns/) en el blog de Jonathan Oliver.
+- **Idempotencia**. Si se produce un error en un filtro de una canalización después de recibir un mensaje y el trabajo se vuelve a programar para otra instancia del filtro, puede que parte del trabajo ya se haya completado. Si este trabajo actualiza algún aspecto del estado global (por ejemplo, la información almacenada en una base de datos), se podría repetir la misma actualización. Un problema similar puede surgir si se produce un error en un filtro después de publicar sus resultados en el filtro siguiente de la canalización, pero antes de que indique que ha completado su trabajo correctamente. En estos casos, otra instancia del filtro podría repetir el mismo trabajo, lo que provoca que los mismos resultados se publiquen dos veces. Esto podría dar lugar a que los sucesivos filtros de la canalización procesaran los mismos datos dos veces. Por lo tanto, los filtros de una canalización se deben diseñar para que sean idempotentes. Para más información, consulte los [patrones de idempotencia](https://blog.jonathanoliver.com/idempotency-patterns/) en el blog de Jonathan Oliver.
 
 - **Mensajes repetidos**. Si se produce un error en un filtro de una canalización después de publicarse un mensaje en la siguiente fase de esta, podría ejecutarse otra instancia del filtro y publicarse una copia del mismo mensaje en la canalización. Como consecuencia, dos instancias del mismo mensaje pasarían al siguiente filtro. Para evitar esto, la canalización debe detectar y eliminar los mensajes duplicados.
 
@@ -282,4 +282,4 @@ Los patrones y las directrices siguientes también pueden ser importantes a la h
 - [Patrón de consumidores de la competencia](competing-consumers.md). Una canalización puede contener varias instancias de uno o varios filtros. Este enfoque es útil para la ejecución en paralelo de instancias de filtros lentos, que permiten que el sistema reparta la carga y mejore el rendimiento. Cada instancia de un filtro competirá por la entrada con las demás instancias; dos instancias de un filtro nunca deberían poder procesar los mismos datos. Proporciona una explicación de este enfoque.
 - [Patrón Compute Resource Consolidation](compute-resource-consolidation.md). Los filtros que podrían escalarse juntos, se pueden agrupar en el mismo proceso. Proporciona más información sobre las ventajas e inconvenientes de esta estrategia.
 - [Patrón Compensating Transaction](compensating-transaction.md). Un filtro puede implementarse como una operación que se puede invertir o que tiene una operación de compensación que restaura el estado a una versión anterior en caso de error. Explica cómo se puede implementar para mantener o lograr coherencia definitiva.
-- [Patrones de idempotencia](http://blog.jonathanoliver.com/idempotency-patterns/) en el blog de Jonathan Oliver.
+- [Patrones de idempotencia](https://blog.jonathanoliver.com/idempotency-patterns/) en el blog de Jonathan Oliver.

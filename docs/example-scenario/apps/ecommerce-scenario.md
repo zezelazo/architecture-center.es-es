@@ -3,12 +3,12 @@ title: Front-end de comercio electrónico en Azure
 description: Escenario de eficacia probada de hospedaje de un sitio de comercio electrónico en Azure
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 1af481476c74b365ce5145636426683c6896b00b
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 340f60628bf932489a9fbd11ac3ff1be723a685c
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389203"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428081"
 ---
 # <a name="e-commerce-frontend-on-azure"></a>Front-end de comercio electrónico en Azure
 
@@ -123,7 +123,7 @@ Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tr�
 [small-pricing]: https://azure.com/e/90fbb6a661a04888a57322985f9b34ac
 [medium-pricing]: https://azure.com/e/38d5d387e3234537b6859660db1c9973
 [large-pricing]: https://azure.com/e/f07f99b6c3134803a14c9b43fcba3e2f
-[app-service-reference-architecture]: /azure/architecture/reference-architectures/app-service-web-app/
+[app-service-reference-architecture]: ../../reference-architectures/app-service-web-app/basic-web-app.md
 [architecture-diagram]: ./media/architecture-diagram-ecommerce-solution.png
 [availability]: /azure/architecture/checklist/availability
 [circuit-breaker]: /azure/architecture/patterns/circuit-breaker

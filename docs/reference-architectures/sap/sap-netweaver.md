@@ -3,12 +3,12 @@ title: Implementación de SAP NetWeaver (Windows) para AnyDB en Azure Virtual Ma
 description: Prácticas probadas para ejecutar SAP S/4HANA en un entorno de Linux en Azure con alta disponibilidad.
 author: lbrader
 ms.date: 05/11/2018
-ms.openlocfilehash: f4a33e7a3f30bdd6d8bdd41599a5e3b47501b874
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: b4a254980dd9aac2847bb194f22f99f3f05376de
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016089"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428812"
 ---
 # <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Implementación de SAP NetWeaver (Windows) para AnyDB en Azure Virtual Machines
 
@@ -145,7 +145,7 @@ Para la recuperación ante desastres (DR), debe ser capaz de realizar la conmuta
 
 - **Nivel de servidores de aplicaciones**. Los servidores de aplicaciones de SAP no contienen datos empresariales. En Azure, una estrategia de recuperación ante desastres simple es crear servidores de aplicaciones SAP en la región secundaria y apagarlos. Tras cualquier cambio de configuración o actualización del kernel en el servidor de aplicaciones principal, los mismos cambios se deben copiar en las máquinas virtuales de la región secundaria. Por ejemplo, los archivos ejecutables del kernel copiados en las máquinas virtuales de recuperación ante desastres. Para la replicación automática de los servidores de aplicaciones en una región secundaria, [Azure Site Recovery](/azure/site-recovery/site-recovery-overview) es la solución recomendada.
 
-- **Central Services**. Este componente de la pila de aplicaciones SAP tampoco conserva los datos empresariales. Puede crear una máquina virtual en la región de recuperación ante desastres para ejecutar el rol de Central Services. El único contenido del nodo de Central Services principal que se sincroniza es el del recurso compartido /sapmnt. Además, si los cambios de configuración o las actualizaciones del kernel tienen lugar en los servidores principales de Central Services, se deben repetir en la máquina virtual de la región de recuperación ante desastres que ejecuta Central Services. Para sincronizar los dos servidores, puede usar Azure Site Recovery para replicar los nodos del clúster o simplemente usar un trabajo de copia programado regularmente para copiar /sapmnt en la región de recuperación ante desastres. Para más información acerca del proceso de creación, copia y conmutación por error de prueba de este método de replicación simple, descargue [SAP NetWeaver: Building a Hyper-V and Microsoft Azure–based Disaster Recovery Solution](http://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx) (SAP NetWeaver: Creación de una solución de recuperación ante desastres basada en Hyper-V y Microsoft Azure) y consulte "4.3. Capa de SAP SPOF (ASCS)."
+- **Central Services**. Este componente de la pila de aplicaciones SAP tampoco conserva los datos empresariales. Puede crear una máquina virtual en la región de recuperación ante desastres para ejecutar el rol de Central Services. El único contenido del nodo de Central Services principal que se sincroniza es el del recurso compartido /sapmnt. Además, si los cambios de configuración o las actualizaciones del kernel tienen lugar en los servidores principales de Central Services, se deben repetir en la máquina virtual de la región de recuperación ante desastres que ejecuta Central Services. Para sincronizar los dos servidores, puede usar Azure Site Recovery para replicar los nodos del clúster o simplemente usar un trabajo de copia programado regularmente para copiar /sapmnt en la región de recuperación ante desastres. Para más información acerca del proceso de creación, copia y conmutación por error de prueba de este método de replicación simple, descargue [SAP NetWeaver: Building a Hyper-V and Microsoft Azure–based Disaster Recovery Solution](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx) (SAP NetWeaver: Creación de una solución de recuperación ante desastres basada en Hyper-V y Microsoft Azure) y consulte "4.3. Capa de SAP SPOF (ASCS)."
 
 - **Nivel de base de datos**. La recuperación ante desastres se implementa mejor con la tecnología de replicación integrada propia de la base de datos. Por ejemplo, en el caso de SQL Server, se recomienda usar Grupos de disponibilidad AlwaysOn para establecer una réplica en una región remota, lo que replica las transacciones de forma asincrónica con la conmutación por error manual. La replicación asincrónica que el rendimiento de las cargas de trabajo interactivas del sitio principal resulte afectado. La conmutación por error manual ofrece la oportunidad de que una persona evalúe el impacto de recuperación ante desastres y decida si está justificada la operación desde el sitio de recuperación ante desastres.
 

@@ -4,12 +4,12 @@ description: Guía sobre cómo implementar una API.
 author: dragon119
 ms.date: 07/13/2016
 pnp.series.title: Best Practices
-ms.openlocfilehash: cc28864de36afdeed2f8a7155a307e312c3a398e
-ms.sourcegitcommit: c93f1b210b3deff17cc969fb66133bc6399cfd10
+ms.openlocfilehash: fff377d347ce93e9fb83fff1f5a44fe1c7b4dbea
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/05/2018
-ms.locfileid: "27596026"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429407"
 ---
 # <a name="api-implementation"></a>Implementación de API
 
@@ -24,7 +24,7 @@ Tenga en cuenta los puntos siguientes cuando implemente el código para administ
 El código que implementa estas solicitudes no debe imponer efectos secundarios. La misma solicitud repetida en el mismo recurso debe dar como resultado el mismo estado. Por ejemplo, enviar varias solicitudes DELETE para el mismo URI debe tener el mismo efecto, aunque el código de estado HTTP en los mensajes de respuesta sea diferente. La primera solicitud DELETE podría devolver el código de estado 204 (sin contenido), mientras que una solicitud DELETE posterior podría devolver el código de estado 404 (no encontrado).
 
 > [!NOTE]
-> En el artículo [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/) del blog de Jonathan Oliver se ofrece una visión general de la idempotencia y cómo se relaciona con las operaciones de administración de datos.
+> En el artículo [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/) del blog de Jonathan Oliver se ofrece una visión general de la idempotencia y cómo se relaciona con las operaciones de administración de datos.
 >
 
 ### <a name="post-actions-that-create-new-resources-should-not-have-unrelated-side-effects"></a>Las acciones POST que crean nuevos recursos no deben tener efectos secundarios no relacionados.
@@ -35,7 +35,7 @@ Si el objetivo de una solicitud POST es crear un recurso nuevo, los efectos de l
 
 Admita las solicitudes POST, PUT y DELETE en las colecciones de recursos. Una solicitud POST puede contener los detalles de varios recursos nuevos y agregarlos todos a la misma colección, una solicitud PUT puede reemplazar todo el conjunto de recursos de una colección y una solicitud DELETE puede eliminar una colección completa.
 
-La compatibilidad con OData que se incluye en API Web 2 de ASP.NET permite las solicitudes por lotes. Una aplicación cliente puede empaquetar varias solicitudes de API web, enviarlas al servidor en una sola solicitud HTTP y recibir una respuesta HTTP única que contenga las respuestas a cada solicitud. Para más información, consulte [Introducing Batch Support in Web API and Web API OData](http://blogs.msdn.com/b/webdev/archive/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata.aspx) (Incorporación de compatibilidad para procesos por lotes en Web API Y Web API OData).
+La compatibilidad con OData que se incluye en API Web 2 de ASP.NET permite las solicitudes por lotes. Una aplicación cliente puede empaquetar varias solicitudes de API web, enviarlas al servidor en una sola solicitud HTTP y recibir una respuesta HTTP única que contenga las respuestas a cada solicitud. Para más información, consulte [Introducing Batch Support in Web API and Web API OData](https://blogs.msdn.microsoft.com/webdev/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata/) (Incorporación de compatibilidad para procesos por lotes en Web API Y Web API OData).
 
 ### <a name="follow-the-http-specification-when-sending-a-response"></a>Siga la especificación HTTP al enviar una respuesta. 
 
@@ -56,7 +56,7 @@ El enfoque de HATEOAS permite que un cliente navegue y detecte recursos desde un
 Actualmente no hay estándares que rijan la implementación de HATEOAS, pero en el ejemplo siguiente se muestra un posible enfoque. En este ejemplo, una solicitud HTTP GET que encuentre los detalles de un cliente devuelve una respuesta que incluye vínculos de HATEOAS que hacen referencia a los pedidos de ese cliente:
 
 ```HTTP
-GET http://adventure-works.com/customers/2 HTTP/1.1
+GET https://adventure-works.com/customers/2 HTTP/1.1
 Accept: text/json
 ...
 ```
@@ -69,23 +69,23 @@ Content-Type: application/json; charset=utf-8
 Content-Length: ...
 {"CustomerID":2,"CustomerName":"Bert","Links":[
     {"rel":"self",
-    "href":"http://adventure-works.com/customers/2",
+    "href":"https://adventure-works.com/customers/2",
     "action":"GET",
     "types":["text/xml","application/json"]},
     {"rel":"self",
-    "href":"http://adventure-works.com/customers/2",
+    "href":"https://adventure-works.com/customers/2",
     "action":"PUT",
     "types":["application/x-www-form-urlencoded"]},
     {"rel":"self",
-    "href":"http://adventure-works.com/customers/2",
+    "href":"https://adventure-works.com/customers/2",
     "action":"DELETE",
     "types":[]},
     {"rel":"orders",
-    "href":"http://adventure-works.com/customers/2/orders",
+    "href":"https://adventure-works.com/customers/2/orders",
     "action":"GET",
     "types":["text/xml","application/json"]},
     {"rel":"orders",
-    "href":"http://adventure-works.com/customers/2/orders",
+    "href":"https://adventure-works.com/customers/2/orders",
     "action":"POST",
     "types":["application/x-www-form-urlencoded"]}
 ]}
@@ -120,11 +120,11 @@ La operación HTTP GET recupera los datos del cliente del almacenamiento, constr
 
 Los vínculos de HATEOAS que se muestran en la respuesta HTTP de ejemplo indican que una aplicación cliente puede realizar las siguientes operaciones:
 
-* Una solicitud HTTP GET al URI `http://adventure-works.com/customers/2` para capturar los detalles del cliente (nuevamente). Los datos se pueden devolver como XML o JSON.
-* Una solicitud HTTP PUT al URI `http://adventure-works.com/customers/2` para modificar los detalles del cliente. Los nuevos datos se deben facilitar en el mensaje de solicitud en formato x-www-form-urlencoded.
-* Una solicitud HTTP DELETE al URI `http://adventure-works.com/customers/2` para eliminar el cliente. La solicitud no espera ninguna información adicional ni datos devueltos en el cuerpo del mensaje de respuesta.
-* Una solicitud HTTP GET al URI `http://adventure-works.com/customers/2/orders` para buscar todos los pedidos del cliente. Los datos se pueden devolver como XML o JSON.
-* Una solicitud HTTP PUT al URI `http://adventure-works.com/customers/2/orders` para crear un nuevo pedido para este cliente. Los datos se deben facilitar en el mensaje de solicitud en formato x-www-form-urlencoded.
+* Una solicitud HTTP GET al URI `https://adventure-works.com/customers/2` para capturar los detalles del cliente (nuevamente). Los datos se pueden devolver como XML o JSON.
+* Una solicitud HTTP PUT al URI `https://adventure-works.com/customers/2` para modificar los detalles del cliente. Los nuevos datos se deben facilitar en el mensaje de solicitud en formato x-www-form-urlencoded.
+* Una solicitud HTTP DELETE al URI `https://adventure-works.com/customers/2` para eliminar el cliente. La solicitud no espera ninguna información adicional ni datos devueltos en el cuerpo del mensaje de respuesta.
+* Una solicitud HTTP GET al URI `https://adventure-works.com/customers/2/orders` para buscar todos los pedidos del cliente. Los datos se pueden devolver como XML o JSON.
+* Una solicitud HTTP PUT al URI `https://adventure-works.com/customers/2/orders` para crear un nuevo pedido para este cliente. Los datos se deben facilitar en el mensaje de solicitud en formato x-www-form-urlencoded.
 
 ## <a name="handling-exceptions"></a>Control de excepciones
 
@@ -132,7 +132,7 @@ Tenga en cuenta lo siguiente si una operación produce una excepción no detecta
 
 ### <a name="capture-exceptions-and-return-a-meaningful-response-to-clients"></a>Capture las excepciones y devuelva una respuesta significativa a los clientes.
 
-El código que implementa una operación HTTP debe proporcionar un control total de las excepciones en lugar de permitir que las excepciones no detectadas se propaguen al marco. Si una excepción impide que se complete correctamente la operación, puede devolver la excepción en el mensaje de respuesta, pero debe incluir una descripción significativa del error que provocó la excepción. La excepción también debe incluir el código de estado HTTP adecuado, en lugar de simplemente devolver el código de estado 500 para todas las situaciones. Por ejemplo, si una solicitud de usuario provoca una actualización de la base de datos que infringe una restricción (por ejemplo, intenta eliminar un cliente que tiene pedidos pendientes), se debe devolver el código de estado 409 (conflicto) y un cuerpo de mensaje que indique el motivo del conflicto. Si alguna otra condición hace que la solicitud no se pueda procesar, puede devolver un código de estado 400 (solicitud incorrecta). Puede encontrar una lista completa de códigos de estado HTTP en la página [Status Code Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) del sitio web de W3C.
+El código que implementa una operación HTTP debe proporcionar un control total de las excepciones en lugar de permitir que las excepciones no detectadas se propaguen al marco. Si una excepción impide que se complete correctamente la operación, puede devolver la excepción en el mensaje de respuesta, pero debe incluir una descripción significativa del error que provocó la excepción. La excepción también debe incluir el código de estado HTTP adecuado, en lugar de simplemente devolver el código de estado 500 para todas las situaciones. Por ejemplo, si una solicitud de usuario provoca una actualización de la base de datos que infringe una restricción (por ejemplo, intenta eliminar un cliente que tiene pedidos pendientes), se debe devolver el código de estado 409 (conflicto) y un cuerpo de mensaje que indique el motivo del conflicto. Si alguna otra condición hace que la solicitud no se pueda procesar, puede devolver un código de estado 400 (solicitud incorrecta). Puede encontrar una lista completa de códigos de estado HTTP en la página [Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) del sitio web de W3C.
 
 El código de ejemplo intercepta diferentes condiciones y devuelve una respuesta adecuada.
 
@@ -198,7 +198,7 @@ En un entorno distribuido, como los que implican un servidor web y aplicaciones 
 El protocolo HTTP 1.1 admite el almacenamiento en caché de los clientes y servidores intermedios a través de los cuales se enruta una solicitud mediante el uso del encabezado Cache-Control. Cuando una aplicación cliente envía una solicitud HTTP GET a la API web, la respuesta puede incluir un encabezado Cache-Control que indique si los datos en el cuerpo de la respuesta pueden almacenarse en caché de forma segura por parte del cliente o un servidor intermedio a través del cual se ha enrutado la solicitud, y cuánto tiempo debe pasar antes de que expiren y se consideren caducados. En el ejemplo siguiente se muestra una solicitud HTTP GET y la respuesta correspondiente que incluye un encabezado Cache-Control:
 
 ```HTTP
-GET http://adventure-works.com/orders/2 HTTP/1.1
+GET https://adventure-works.com/orders/2 HTTP/1.1
 ```
 
 ```HTTP
@@ -339,7 +339,7 @@ Una aplicación cliente puede emitir una solicitud GET posterior para recuperar 
 * El cliente crea una solicitud GET que contiene la ETag de la versión actualmente en caché del recurso al que hace referencia en un encabezado If-None-Match HTTP:
 
     ```HTTP
-    GET http://adventure-works.com/orders/2 HTTP/1.1
+    GET https://adventure-works.com/orders/2 HTTP/1.1
     If-None-Match: "2147483648"
     ```
 * La operación GET de la API web obtiene la ETag actual de los datos solicitados (el pedido 2 en el ejemplo anterior) y la compara con el valor del encabezado If-None-Match.
@@ -452,7 +452,7 @@ Para habilitar las actualizaciones en datos anteriormente almacenados en caché,
 * El cliente crea una solicitud PUT que contiene los nuevos detalles para el recurso y la ETag de la versión actualmente en caché del recurso al que hace referencia en un encabezado If-Match HTTP: En el ejemplo siguiente se muestra una solicitud PUT que actualiza un pedido:
 
     ```HTTP
-    PUT http://adventure-works.com/orders/1 HTTP/1.1
+    PUT https://adventure-works.com/orders/1 HTTP/1.1
     If-Match: "2282343857"
     Content-Type: application/x-www-form-urlencoded
     Content-Length: ...
@@ -571,7 +571,7 @@ Si hospeda un servicio mediante IIS, el controlador HTTP.sys detecta y controla 
 Si está creando aplicaciones cliente mediante .NET Framework, todos los mensajes POST y PUT enviarán primero mensajes con encabezados Expect: 100-Continue de forma predeterminada. Al igual que con el lado servidor, el proceso lo controla de forma transparente .NET Framework. Sin embargo, este proceso hace que cada solicitud POST y PUT necesite dos envíos de ida y vuelta al servidor, incluso para las solicitudes pequeñas. Si la aplicación no envía solicitudes con grandes cantidades de datos, puede deshabilitar esta característica mediante la clase `ServicePointManager` para crear objetos `ServicePoint` en la aplicación cliente. Un objeto `ServicePoint` controla las conexiones que el cliente realiza en un servidor basado en el esquema y los fragmentos de host de los URI que identifican recursos en el servidor. Después, puede establecer la propiedad `Expect100Continue` del objeto `ServicePoint` en false. Todas las solicitudes POST y PUT posteriores que realice el cliente a través de un URI que coincida con el esquema y los fragmentos de host del objeto `ServicePoint` se enviarán sin encabezados Expect: 100-Continue. El código siguiente muestra cómo configurar un objeto `ServicePoint` que configura todas las solicitudes enviadas a los URI con un esquema de `http` y un host de `www.contoso.com`.
 
 ```csharp
-Uri uri = new Uri("http://www.contoso.com/");
+Uri uri = new Uri("https://www.contoso.com/");
 ServicePoint sp = ServicePointManager.FindServicePoint(uri);
 sp.Expect100Continue = false;
 ```
@@ -601,7 +601,7 @@ public class OrdersController : ApiController
 }
 ```
 
-Una aplicación cliente puede emitir una solicitud para recuperar 30 pedidos empezando con un desplazamiento de 50 mediante el URI `http://www.adventure-works.com/api/orders?limit=30&offset=50`.
+Una aplicación cliente puede emitir una solicitud para recuperar 30 pedidos empezando con un desplazamiento de 50 mediante el URI `https://www.adventure-works.com/api/orders?limit=30&offset=50`.
 
 > [!TIP]
 > Evite permitir que las aplicaciones de cliente especifiquen las cadenas de consulta que resultan en un URI que tenga más de 2000 caracteres. Muchos servidores y clientes web no pueden controlar los URI así de largos.
@@ -631,7 +631,7 @@ Algunas opciones para implementar notificaciones son:
 
 - El uso de un Centro de notificaciones de Azure para insertar respuestas asíncronas en las aplicaciones cliente. Para más información, consulte [Azure Notification Hubs notifica a los usuarios](/azure/notification-hubs/notification-hubs-aspnet-backend-windows-dotnet-wns-notification/).
 - El uso del modelo Comet para conservar una conexión de red persistente entre el cliente y el servidor que hospeda la API web y el uso de esta conexión para insertar mensajes desde el servidor de nuevo en el cliente. El artículo de MSDN magazine [Creación de una aplicación Comet sencilla en Microsoft .NET Framework](https://msdn.microsoft.com/magazine/jj891053.aspx) describe una solución de ejemplo.
-- El uso de SignalR para insertar datos en tiempo real desde el servidor web en el cliente a través de una conexión de red persistente. SignalR está disponible para las aplicaciones web de ASP.NET como un paquete de NuGet. Puede encontrar más información en el sitio web de [ASP.NET SignalR](http://signalr.net/) .
+- El uso de SignalR para insertar datos en tiempo real desde el servidor web en el cliente a través de una conexión de red persistente. SignalR está disponible para las aplicaciones web de ASP.NET como un paquete de NuGet. Puede encontrar más información en el sitio web de [ASP.NET SignalR](https://www.asp.net/signalr) .
 
 ### <a name="ensure-that-each-request-is-stateless"></a>Asegúrese de que ninguna de las solicitudes tenga estado.
 
@@ -662,7 +662,7 @@ Para que una API web esté disponible para las aplicaciones cliente, la API web 
 * Los requisitos normativos podrían requerir un registro y una auditoría de todas las solicitudes y respuestas.
 * Para garantizar la disponibilidad, puede ser necesario supervisar el estado del servidor que hospeda la API web y reiniciarlo si hiciera falta.
 
-Es útil poder separar estos problemas de los problemas técnicos relativos a la implementación de la API web. Por este motivo, considere la creación de una [fachada](http://en.wikipedia.org/wiki/Facade_pattern),que se ejecute como un proceso independiente y que enrute las solicitudes a la API web. La fachada puede proporcionar las operaciones de administración y redirigir las solicitudes validadas a la API web. El uso de una fachada también puede aportar muchas ventajas funcionales, entre las que se incluyen:
+Es útil poder separar estos problemas de los problemas técnicos relativos a la implementación de la API web. Por este motivo, considere la creación de una [fachada](https://en.wikipedia.org/wiki/Facade_pattern),que se ejecute como un proceso independiente y que enrute las solicitudes a la API web. La fachada puede proporcionar las operaciones de administración y redirigir las solicitudes validadas a la API web. El uso de una fachada también puede aportar muchas ventajas funcionales, entre las que se incluyen:
 
 * Actuar como un punto de integración para varias API web.
 * Transformar los mensajes y traducir protocolos de comunicaciones de los clientes creados mediante tecnologías distintas.
@@ -784,10 +784,10 @@ Puede usar esta información para determinar si una operación o API web determi
 >
 
 ## <a name="more-information"></a>Más información
-* [ASP.NET Web API OData](http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api) contiene ejemplos e información adicional sobre la implementación de una API web de OData mediante ASP.NET.
-* [Introducing batch support in Web API and Web API OData](http://blogs.msdn.com/b/webdev/archive/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata.aspx) (Incorporación de compatibilidad con procesos por lotes en Web API y Web API OData).
-* En el artículo [Idempotency Patterns](http://blog.jonathanoliver.com/idempotency-patterns/) del blog de Jonathan Oliver se ofrece una visión general de la idempotencia y cómo se relaciona con las operaciones de administración de datos.
-* La página [Status Code Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) del sitio web de W3C contiene una lista completa de códigos de estado HTTP y sus descripciones.
+* [ASP.NET Web API OData](https://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api) contiene ejemplos e información adicional sobre la implementación de una API web de OData mediante ASP.NET.
+* [Introducing batch support in Web API and Web API OData](https://blogs.msdn.microsoft.com/webdev/2013/11/01/introducing-batch-support-in-web-api-and-web-api-odata/) (Incorporación de compatibilidad con procesos por lotes en Web API y Web API OData).
+* En el artículo [Idempotency Patterns](https://blog.jonathanoliver.com/idempotency-patterns/) del blog de Jonathan Oliver se ofrece una visión general de la idempotencia y cómo se relaciona con las operaciones de administración de datos.
+* La página [Status Code Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) del sitio web de W3C contiene una lista completa de códigos de estado HTTP y sus descripciones.
 * En la página [Ejecutar tareas en segundo plano con WebJobs](/azure/app-service-web/web-sites-create-web-jobs/) se ofrece información y ejemplos sobre el uso de WebJobs para realizar operaciones en segundo plano.
 * En la página [Notificación a los usuarios con Azure Notification Hubs](/azure/notification-hubs/notification-hubs-aspnet-backend-windows-dotnet-wns-notification/) se muestra cómo usar un centro de notificaciones de Azure para insertar respuestas asincrónicas en las aplicaciones cliente.
 * En la página [API Management](https://azure.microsoft.com/services/api-management/) se describe cómo publicar un producto que ofrezca un acceso seguro y controlado a una API web.
