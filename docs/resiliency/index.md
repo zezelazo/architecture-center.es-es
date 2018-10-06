@@ -4,12 +4,12 @@ description: Cómo crear aplicaciones resistentes de Azure, para alta disponibil
 author: MikeWasson
 ms.date: 05/26/2017
 ms.custom: resiliency
-ms.openlocfilehash: f5dfca30b3587e198c1c0f99ad4903ed7b0e33d4
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 55e54347953dc9967ab8ccf67490757e1d58e143
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429302"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819217"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Diseño de aplicaciones resistentes de Azure
 
@@ -354,4 +354,4 @@ Estos son los puntos principales que se pueden extraer de este artículo:
 [throttling-pattern]: ../patterns/throttling.md
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [tm-failover]: /azure/traffic-manager/traffic-manager-monitoring
-[tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
+[tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager
