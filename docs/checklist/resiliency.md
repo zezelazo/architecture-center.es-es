@@ -4,12 +4,12 @@ description: Lista de comprobación que ofrece una guía para las preocupaciones
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 17612ee08e2329ea648fd21d6764e7bae1ca20e2
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 15ad749c12dc8a45c9e7e08376452685d8ad7c9b
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429101"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819030"
 ---
 # <a name="resiliency-checklist"></a>Lista de comprobación de resistencia
 
@@ -39,7 +39,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Use el equilibrio de carga para distribuir las solicitudes.** El equilibrio de carga distribuye las solicitudes de la aplicación a las instancias de servicio correctas mediante la eliminación de la rotación de las instancias no correctas. Si el servicio utiliza Azure App Service o Azure Cloud Services, ya tiene la carga equilibrada. Sin embargo, si la aplicación usa Azure Virtual Machines, debe aprovisionar un equilibrador de carga. Para más información, consulte la introducción a [Azure Load Balancer](/azure/load-balancer/load-balancer-overview/).
 
-**Configure instancias de Azure Application Gateway para usar varias instancias.** Dependiendo de los requisitos de la aplicación, una instancia de [Azure Application Gateway](/azure/application-gateway/application-gateway-introduction/) puede ser más adecuada para distribuir solicitudes a los servicios de la aplicación. Sin embargo, las instancias individuales del servicio Application Gateway no están garantizadas por un Acuerdo de Nivel de Servicio, por lo que es posible que la aplicación pueda producir un error si la instancia Application Gateway también produce un error. Proporcione más de una instancia de Application Gateway mediana o más grande para garantizar la disponibilidad del servicio bajo los términos del [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/application-gateway/v1_0/).
+**Configure instancias de Azure Application Gateway para usar varias instancias.** Dependiendo de los requisitos de la aplicación, una instancia de [Azure Application Gateway](/azure/application-gateway/application-gateway-introduction/) puede ser más adecuada para distribuir solicitudes a los servicios de la aplicación. Sin embargo, las instancias individuales del servicio Application Gateway no están garantizadas por un Acuerdo de Nivel de Servicio, por lo que es posible que la aplicación pueda producir un error si la instancia Application Gateway también produce un error. Proporcione más de una instancia de Application Gateway mediana o más grande para garantizar la disponibilidad del servicio bajo los términos del [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/application-gateway/).
 
 **Use los conjuntos de disponibilidad para cada capa de aplicación.** Al colocar las instancias en un [conjunto de disponibilidad][availability-sets], se proporciona un mayor [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/virtual-machines/). 
 

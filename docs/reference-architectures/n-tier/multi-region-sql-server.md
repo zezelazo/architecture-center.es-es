@@ -5,12 +5,12 @@ author: MikeWasson
 ms.date: 07/19/2018
 pnp.series.title: Windows VM workloads
 pnp.series.prev: n-tier
-ms.openlocfilehash: a8dafab9ce8312004e99f0f19d06d6b47b6b19d8
-ms.sourcegitcommit: c704d5d51c8f9bbab26465941ddcf267040a8459
+ms.openlocfilehash: 34dd47175e7fd0002cba577ad6c1034968ed4098
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/24/2018
-ms.locfileid: "39229259"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819132"
 ---
 # <a name="multi-region-n-tier-application-for-high-availability"></a>Aplicación de n niveles para varias regiones para obtener alta disponibilidad
 
@@ -182,8 +182,8 @@ Medición de los tiempos de recuperación y comprobación de que cumplen los req
 [tm-configure-failover]: /azure/traffic-manager/traffic-manager-configure-failover-routing-method
 [tm-monitoring]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-routing]: /azure/traffic-manager/traffic-manager-routing-methods
-[tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
-[traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
+[tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager
+[traffic-manager]: https://azure.microsoft.com/services/traffic-manager
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
 [vnet-dns]: /azure/virtual-network/manage-virtual-network#change-dns-servers
 [vnet-to-vnet]: /azure/vpn-gateway/vpn-gateway-vnet-vnet-rm-ps
