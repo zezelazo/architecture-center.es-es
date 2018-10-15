@@ -405,6 +405,12 @@ items:
       href: reference-architectures/sap/sap-s4hana.md
     - name: SAP HANA en Azure (instancias grandes)
       href: reference-architectures/sap/hana-large-instances.md
+  - name: Sin servidor
+    items:
+    - name: Aplicación web sin servidor
+      href: reference-architectures/serverless/web-app.md
+    - name: Procesamiento de eventos sin servidor
+      href: reference-architectures/serverless/event-processing.md
   - name: Cargas de trabajo de máquinas virtuales
     items:
     - name: Servidor Jenkins
@@ -531,9 +537,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: Implementación de plantillas scaffold de Azure Enterprise
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: 9f2dcd31b5d3a36badf9db6ce5f64fae6085ff96
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: a79c29c0673de7eb14371d60377dd589cdf78720
+ms.sourcegitcommit: 42797fffb82bbbf86f6deb1da52c61d456be631e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819115"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49313206"
