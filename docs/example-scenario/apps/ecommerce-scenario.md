@@ -1,22 +1,22 @@
 ---
 title: Front-end de comercio electrónico en Azure
-description: Escenario de eficacia probada de hospedaje de un sitio de comercio electrónico en Azure
+description: Hospede un sitio de comercio electrónico en Azure.
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 340f60628bf932489a9fbd11ac3ff1be723a685c
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 6ca85665a5bf63bf71f5badc16406db5df2a34c2
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428081"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819098"
 ---
-# <a name="e-commerce-frontend-on-azure"></a>Front-end de comercio electrónico en Azure
+# <a name="an-e-commerce-front-end-on-azure"></a>Front-end de comercio electrónico en Azure
 
 Este escenario de ejemplo le guiará por la implementación de un front-end de comercio electrónico mediante herramientas de plataforma como servicio (PaaS) de Azure. Muchos sitios web de comercio electrónico se enfrentan a la estacionalidad y la variabilidad del tráfico a lo largo del tiempo. Cuando la demanda de sus productos o servicios despegue, de forma predecible o impredecible, el uso de herramientas de PaaS le permitirá manejar más clientes y más transacciones automáticamente. Además, en este escenario puede aprovechar la economía de la nube pagando solo por la capacidad que usa.
 
 Este documento le ayudará a obtener información sobre los distintos componentes y consideraciones de PaaS de Azure que se utilizan a la hora de implementar una aplicación de comercio electrónico de ejemplo llamada *Relecloud Concerts*, una plataforma de venta de entradas para conciertos en línea.
 
-## <a name="potential-use-cases"></a>Posibles casos de uso
+## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
 Tenga en cuenta este escenario para los casos de uso siguientes:
 
@@ -25,7 +25,7 @@ Tenga en cuenta este escenario para los casos de uso siguientes:
 
 ## <a name="architecture"></a>Arquitectura
 
-![Arquitectura del escenario de ejemplo para una aplicación de comercio electrónico][architecture-diagram]
+![Arquitectura del escenario de ejemplo para una aplicación de comercio electrónico][architecture]
 
 En este escenario se incluye la compra de entradas desde un sitio de comercio electrónico y los datos fluyen a través del escenario de la siguiente manera:
 
@@ -52,7 +52,7 @@ En este escenario se incluye la compra de entradas desde un sitio de comercio el
 * [Cognitive Services: Análisis de sentimiento][docs-sentiment-analysis] usa las API de aprendizaje automático y permite a los desarrolladores agregar fácilmente características inteligentes (como detección de vídeo y emociones; reconocimiento facial, de voz y de visión; y comprensión de voz y del lenguaje) en sus aplicaciones.
 * [Azure Search][docs-search] es una solución de búsqueda como servicio en la nube que ofrece una experiencia de búsqueda de datos enriquecida en un contenido privado y heterogéneo en las aplicaciones web, para dispositivos móviles y empresariales.
 * [Blob Storage][docs-storage-blobs] está optimizado para el almacenamiento de grandes cantidades de datos no estructurados, como texto o datos binarios.
-* [Redis Cache][docs-redis-cache] mejora el rendimiento y escalabilidad de los sistemas que dependen en gran medida de almacenes de datos de back-end copiando temporalmente los datos a los que se accede frecuentemente en un almacenamiento rápido ubicado cerca de la aplicación.
+* [Redis Cache][docs-redis-cache] mejora el rendimiento y la escalabilidad de los sistemas que dependen en gran medida de almacenes de datos de back-end mediante la copia temporal de los datos a los que se accede frecuentemente en un almacenamiento rápido ubicado cerca de la aplicación.
 * [SQL Database][docs-sql-database] es un servicio administrado de base de datos relacional de uso general de Microsoft Azure que admite estructuras como datos relacionales, JSON, espacial y XML.
 * [Application Insights][docs-application-insights] está diseñado para ayudarle a mejorar continuamente el rendimiento y facilidad de uso detectando automáticamente las anomalías de rendimiento a través de herramientas de análisis integradas que le ayudarán a comprender qué hacen los usuarios con una aplicación.
 
@@ -69,7 +69,7 @@ Otras opciones para el nivel y las funciones web incluyen:
 
 Otras opciones de la capa de datos incluyen:
 
-* [Cosmos DB][docs-cosmosdb] es la base de datos multimodelo de distribución global de Microsoft. Este servicio proporciona una plataforma para ejecutar otros modelos de datos, como Mongo DB, Cassandra, Graph o almacenamiento de tablas simple.
+* [Cosmos DB](/azure/cosmos-db/introduction): base de datos multimodelo de distribución global de Microsoft. Este servicio proporciona una plataforma para ejecutar otros modelos de datos, como Mongo DB, Cassandra, Graph o almacenamiento de tablas simple.
 
 ## <a name="considerations"></a>Consideraciones
 
@@ -120,11 +120,11 @@ Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tr�
 * [eShop en el ejemplo de referencia de contenedores][microservices-ecommerce]
 
 <!-- links -->
+[architecture]: ./media/architecture-ecommerce-scenario.png
 [small-pricing]: https://azure.com/e/90fbb6a661a04888a57322985f9b34ac
 [medium-pricing]: https://azure.com/e/38d5d387e3234537b6859660db1c9973
 [large-pricing]: https://azure.com/e/f07f99b6c3134803a14c9b43fcba3e2f
 [app-service-reference-architecture]: ../../reference-architectures/app-service-web-app/basic-web-app.md
-[architecture-diagram]: ./media/architecture-diagram-ecommerce-solution.png
 [availability]: /azure/architecture/checklist/availability
 [circuit-breaker]: /azure/architecture/patterns/circuit-breaker
 [design-patterns-availability]: /azure/architecture/patterns/category/availability
@@ -136,7 +136,6 @@ Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tr�
 [docs-cdn]: /azure/cdn/cdn-overview
 [docs-container-instances]: /azure/container-instances/
 [docs-kubernetes-service]: /azure/aks/
-[docs-cosmosdb]: /azure/cosmos-db/
 [docs-functions]: /azure/azure-functions/functions-overview
 [docs-redis-cache]: /azure/redis-cache/cache-overview
 [docs-search]: /azure/search/search-what-is-azure-search
@@ -154,6 +153,6 @@ Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tr�
 [resiliency-app-service]: /azure/architecture/checklist/resiliency-per-service#app-service
 [resiliency]: /azure/architecture/checklist/resiliency
 [scalability]: /azure/architecture/checklist/scalability
-[secure-development]: https://www.microsoft.com/en-us/SDL/process/design.aspx
+[secure-development]: https://www.microsoft.com/SDL/process/design.aspx
 [sql-geo-replication]: /azure/sql-database/sql-database-geo-replication-overview
 [storage-geo-redudancy]: /azure/storage/common/storage-redundancy-grs

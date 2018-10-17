@@ -1,14 +1,14 @@
 ---
 title: Detección de fraudes en tiempo real en Azure
-description: Escenario probado para detectar actividades fraudulentas en tiempo real con Azure Event Hubs y Stream Analytics.
+description: Detecte actividades fraudulentas en tiempo real con Azure Event Hubs y Stream Analytics.
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: d80fab460938cceeb84f3ed2ecd97e9e149f8e2d
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: 4de988731aa1c5b0e4c0ba06fa5aed59e2bb7d81
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389135"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48818673"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Detección de fraudes en tiempo real en Azure
 
@@ -20,7 +20,7 @@ Gracias a los servicios de Azure totalmente administrados, como Event Hubs y Str
 
 Este ejemplo representa una parte de una estrategia y una arquitectura de procesamiento de datos más amplia. Otras opciones para este aspecto de una arquitectura global se tratan más adelante en este artículo.
 
-## <a name="related-use-cases"></a>Casos de uso relacionados
+## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
 Tenga en cuenta este escenario para los casos de uso siguientes:
 
@@ -30,7 +30,7 @@ Tenga en cuenta este escenario para los casos de uso siguientes:
 
 ## <a name="architecture"></a>Arquitectura
 
-![Introducción a la arquitectura de los componentes de Azure de un escenario de detección de fraudes en tiempo real][architecture-diagram]
+![Introducción a la arquitectura de los componentes de Azure de un escenario de detección de fraudes en tiempo real][architecture]
 
 Este escenario trata los componentes de back-end de una canalización de análisis en tiempo real. Los datos fluyen por el escenario de la siguiente manera:
 
@@ -43,7 +43,7 @@ Este escenario trata los componentes de back-end de una canalización de anális
 
 * [Azure Event Hubs][docs-event-hubs] es una plataforma de streaming en tiempo real y un servicio de ingesta de eventos de gran escalabilidad capaz de recibir y procesar millones de eventos por segundo. Event Hubs puede procesar y almacenar eventos, datos o telemetría generados por dispositivos y software distribuido. En este escenario, Event Hubs recibe todos los metadatos de las llamadas de teléfono que se van a analizar en busca de actividades fraudulentas.
 * [Azure Stream Analytics][docs-stream-analytics] es un motor de procesamiento de eventos que permite analizar grandes volúmenes de streaming de datos procedentes de dispositivos y otros orígenes de datos. También permite extraer información de los flujos de datos e identificar patrones y relaciones. Estos patrones pueden desencadenar otras acciones en niveles inferiores. En este escenario, Stream Analytics transforma la secuencia de entrada de Event Hubs para identificar las llamadas fraudulentas.
-* [Blob Storage][docs-blob-storage] se utiliza en este escenario para almacenar los resultados del trabajo de Stream Analytics.
+* [Blob Storage](/azure/storage/blobs/storage-blobs-introduction) se utiliza en este escenario para almacenar los resultados del trabajo de Stream Analytics.
 
 ## <a name="considerations"></a>Consideraciones
 
@@ -61,7 +61,7 @@ Para ver otras consideraciones sobre escalabilidad, consulte la [lista de compro
 
 ### <a name="scalability"></a>Escalabilidad
 
-Los componentes de este escenario están diseñados para una ingesta a hiperescala y análisis en tiempo real masivo en paralelo. Azure Event Hubs es muy escalable, capaz de recibir y procesar millones de eventos por segundo con una baja latencia.  Event Hubs puede [escalar verticalmente](/azure/event-hubs/event-hubs-auto-inflate) el número de unidades de rendimiento para responder a las necesidades de uso. Azure Stream Analytics puede analizar grandes volúmenes de datos de varios orígenes de streaming. Para escalar Stream Analytics verticalmente, puede aumentar el número de [unidades de streaming](/azure/stream-analytics/stream-analytics-streaming-unit-consumption) asignado para ejecutar el trabajo de streaming.
+Los componentes de este escenario están diseñados para una ingesta a hiperescala y análisis en tiempo real masivo en paralelo. Azure Event Hubs es muy escalable, capaz de recibir y procesar millones de eventos por segundo con una baja latencia. Event Hubs puede [escalar verticalmente](/azure/event-hubs/event-hubs-auto-inflate) el número de unidades de rendimiento para responder a las necesidades de uso. Azure Stream Analytics puede analizar grandes volúmenes de datos de varios orígenes de streaming. Para escalar Stream Analytics verticalmente, puede aumentar el número de [unidades de streaming](/azure/stream-analytics/stream-analytics-streaming-unit-consumption) asignado para ejecutar el trabajo de streaming.
 
 Para obtener instrucciones generales sobre cómo diseñar escenarios escalables, consulte la [lista de comprobación de escalabilidad][scalability] en el centro de arquitectura de Azure.
 
@@ -91,7 +91,7 @@ Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tr�
 
 ## <a name="related-resources"></a>Recursos relacionados
 
-Los escenarios de detección de fraudes más complejos pueden beneficiarse de un modelo de aprendizaje automático. Para ver escenarios creados con Machine Learning Server, consulte [Detección de fraudes con Machine Learning Server][r-server-fraud-detection]. Para ver otras plantillas de solución con Machine Learning Server, consulte [Escenarios de ciencia de datos y plantillas de solución][docs-r-server-sample-solutions]. Para ver una solución de ejemplo con Azure Data Lake Analytics, consulte [Uso de Azure Data Lake y R para la detección de fraudes][technet-fraud-detection].  
+Los escenarios de detección de fraudes más complejos pueden beneficiarse de un modelo de aprendizaje automático. Para ver escenarios creados con Machine Learning Server, consulte [Detección de fraudes con Machine Learning Server][r-server-fraud-detection]. Para ver otras plantillas de solución con Machine Learning Server, consulte [Escenarios de ciencia de datos y plantillas de solución][docs-r-server-sample-solutions]. Para ver una solución de ejemplo con Azure Data Lake Analytics, consulte [Uso de Azure Data Lake y R para la detección de fraudes][technet-fraud-detection].
 
 <!-- links -->
 [product-category]: https://azure.microsoft.com/product-categories/analytics/
@@ -99,11 +99,10 @@ Los escenarios de detección de fraudes más complejos pueden beneficiarse de un
 [small-pricing]: https://azure.com/e/74149ec312c049ccba79bfb3cfa67606
 [medium-pricing]: https://azure.com/e/4fc94f7376de484d8ae67a6958cae60a
 [large-pricing]: https://azure.com/e/7da8804396f9428a984578700003ba42
-[architecture-diagram]: ./media/architecture-diagram-fraud-detection.png
+[architecture]: ./media/architecture-fraud-detection.png
 [docs-event-hubs]: /azure/event-hubs/event-hubs-what-is-event-hubs
 [docs-event-hubs-security-model]: /azure/event-hubs/event-hubs-authentication-and-security-model-overview
 [docs-stream-analytics]: /azure/stream-analytics/stream-analytics-introduction
-[docs-blob-storage]: /azure/storage/blobs/storage-blobs-introduction
 [docs-r-server-sample-solutions]: /machine-learning-server/r/sample-solutions
 [r-server-fraud-detection]: https://microsoft.github.io/r-server-fraud-detection/
 [technet-fraud-detection]: https://blogs.technet.microsoft.com/machinelearning/2017/06/28/using-azure-data-lake-and-r-for-fraud-detection/

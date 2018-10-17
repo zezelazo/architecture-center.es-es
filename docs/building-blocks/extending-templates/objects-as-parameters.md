@@ -3,12 +3,12 @@ title: Uso de un objeto como parámetro en una plantilla de Azure Resource Manag
 description: Se describe cómo ampliar la funcionalidad de las plantillas de Azure Resource Manager para utilizar objetos como parámetros.
 author: petertay
 ms.date: 06/09/2017
-ms.openlocfilehash: 27bc4be02f202ae5d6a3c28553a8c8afe435f743
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: dd53c55a26b2452c375d8d1e1a98886b15febaeb
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429322"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876770"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>Uso de un objeto como parámetro en una plantilla de Azure Resource Manager
 
@@ -27,7 +27,7 @@ Veamos un ejemplo que implementa un recurso de red virtual. En primer lugar, vam
 Después, vamos a proporcionar los valores para el objeto `VNetSettings`:
 
 > [!NOTE]
-> Para ver cómo proporcionar los valores de parámetro durante la implementación, consulte la sección **parámetros** del tema [Nociones sobre la estructura y la sintaxis de las plantillas de Azure Resource Manager][azure-resource-manager-authoring-templates]. 
+> Para ver cómo proporcionar los valores de los parámetros durante la implementación, consulte la sección **parámetros** del tema [Nociones sobre la estructura y la sintaxis de las plantillas de Azure Resource Manager][azure-resource-manager-authoring-templates]. 
 
 ```json
 "parameters":{

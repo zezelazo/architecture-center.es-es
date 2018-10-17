@@ -3,12 +3,12 @@ title: Refactorización de una aplicación de Azure Service Fabric migrada de Az
 description: Cómo refactorizar una aplicación de Azure Service Fabric existente migrada de Azure Cloud Services
 author: petertay
 ms.date: 01/30/2018
-ms.openlocfilehash: 08ef3af68b8eaba36a5b871449f0aba764fe5a04
-ms.sourcegitcommit: 2123c25b1a0b5501ff1887f98030787191cf6994
+ms.openlocfilehash: 7b5c115acdbfca0c105e2b861af9a8049b890dca
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/08/2018
-ms.locfileid: "29782553"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819081"
 ---
 # <a name="refactor-an-azure-service-fabric-application-migrated-from-azure-cloud-services"></a>Refactorización de una aplicación de Azure Service Fabric migrada de Azure Cloud Services
 
@@ -44,7 +44,7 @@ El servicio **Tailspin.Web.Survey.Public** se porta desde el rol web *Tailspin.W
 El servicio **Tailspin.AnswerAnalysisService** se porta desde el rol de trabajo *Tailspin.Workers.Survey* original.
 
 > [!NOTE] 
-> Aunque apenas se realizaron cambios en el código en cada uno de los roles web y de trabajo, **Tailspin.Web** y **Tailspin.Web.Survey.Public** se modificaron para autohospedar un servidor web [Kestrel]. La aplicación Surveys anterior es una aplicación ASP.Net que se hospedaba mediante Internet Information Services (IIS), pero no es posible ejecutar IIS como un servicio en Service Fabric. Por lo tanto, cualquier servidor web debe ser capaz de autohospedarse, como [Kestrel]. En ciertos casos, es posible ejecutar IIS en un contenedor en Service Fabric. Consulte los [escenarios para usar contenedores][container-scenarios] para más información.  
+> Aunque apenas se realizaron cambios en el código en cada uno de los roles web y de trabajo, **Tailspin.Web** y **Tailspin.Web.Survey.Public** se modificaron para autohospedar un servidor web [Kestrel]. La aplicación Surveys anterior es una aplicación ASP.NET que se hospedaba mediante Internet Information Services (IIS), pero no es posible ejecutar IIS como un servicio en Service Fabric. Por lo tanto, cualquier servidor web debe ser capaz de autohospedarse, como [Kestrel]. En ciertos casos, es posible ejecutar IIS en un contenedor en Service Fabric. Consulte los [escenarios para usar contenedores][container-scenarios] para más información.  
 
 Ahora, Tailspin refactoriza la aplicación Surveys a una arquitectura más pormenorizada. El objetivo de Tailspin al refactorizar es facilitar el desarrollo, la compilación y la implementación de la aplicación Surveys. Al descomponer los roles web y de trabajo existentes en una arquitectura más pormenorizada, Tailspin busca eliminar las dependencias de comunicación y datos estrechamente acopladas existentes entre estos roles.
 
@@ -142,8 +142,8 @@ La aplicación Surveys refactorizada se compone de cinco servicios sin estado y 
 Tailspin implementa el clúster mediante Azure Portal. El tipo de recurso de clúster de Service Fabric implementa toda la infraestructura necesaria, incluidos los conjuntos de escalado de la máquina virtual y un equilibrador de carga. Los tamaños de máquina virtual recomendados se muestran en Azure Portal durante el proceso de aprovisionamiento para el clúster de Service Fabric. Tenga en cuenta que dado que las máquinas virtuales se implementan en un conjunto de escalado de máquina virtual, se pueden escalar tanto vertical como horizontalmente a medida que aumente la carga de usuarios.
 
 > [!NOTE]
-> Tal y como se indicó anteriormente, en la versión migrada de la aplicación Surveys, los dos servidores front-end web estaban autohospedados con ASP.Net Core y Kestrel como servidor web. Aunque la versión migrada de la aplicación Surveys no utiliza un proxy inverso, se recomienda encarecidamente usar uno, como IIS, Nginx o Apache. Para más información, consulte la [introducción a la implementación del servidor web Kestrel en ASP.NET Core][kestrel-intro].
-> En la aplicación Surveys refactorizada, los dos servidores front-end web se autohospedan mediante ASP.Net Core con [WebListener][weblistener] como servidor web, por lo que no es necesario un proxy inverso.
+> Tal y como se indicó anteriormente, en la versión migrada de la aplicación Surveys, los dos servidores de front-end web estaban autohospedados con ASP.Net Core y Kestrel como servidor web. Aunque la versión migrada de la aplicación Surveys no utiliza un proxy inverso, se recomienda encarecidamente usar uno, como IIS, Nginx o Apache. Para más información, consulte la [introducción a la implementación del servidor web Kestrel en ASP.NET Core][kestrel-intro].
+> En la aplicación Surveys refactorizada, los dos servidores de front-end web se autohospedan mediante ASP.NET Core con [WebListener][weblistener] como servidor web, por lo que no es necesario un proxy inverso.
 
 ## <a name="next-steps"></a>Pasos siguientes
 

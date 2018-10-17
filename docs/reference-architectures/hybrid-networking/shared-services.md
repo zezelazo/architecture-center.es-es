@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 06/19/2018
 pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
 pnp.series.prev: hub-spoke
-ms.openlocfilehash: 283251d5b11f76985405410c5c237e5a64ee98fe
-ms.sourcegitcommit: 71cbef121c40ef36e2d6e3a088cb85c4260599b9
+ms.openlocfilehash: 0238c5d6f28bacbc32268d4586b30395de36384b
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/14/2018
-ms.locfileid: "39060802"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876875"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure
 
@@ -116,7 +116,7 @@ En este paso se implementa el centro de datos local simulado como una red virtua
 
 2. Abra el archivo `onprem.json` . 
 
-3. Busque todas las instancias de `Password` y `adminPassword`. Escriba los valores del nombre de usuario y la contraseña en los parámetros y guarde el archivo. 
+3. Busque todas las instancias de `UserName`, `adminUserName`,`Password` y `adminPassword`. Escriba los valores del nombre de usuario y la contraseña en los parámetros y guarde el archivo. 
 
 4. Ejecute el siguiente comando:
 

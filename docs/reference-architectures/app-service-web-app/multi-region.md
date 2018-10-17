@@ -4,12 +4,12 @@ description: Arquitectura recomendada para aplicaciones web con alta disponibili
 author: MikeWasson
 ms.date: 11/23/2016
 cardTitle: Run in multiple regions
-ms.openlocfilehash: 2efcc591695e1c592053ea32832fe15e624df2e1
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: 5493deea871f25fb6ea3531a22d92d83916930b1
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016115"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876824"
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>Ejecución de una aplicación web en varias regiones
 [!INCLUDE [header](../../_includes/header.md)]
@@ -96,7 +96,7 @@ Traffic Manager conmuta por error automáticamente si la región primaria deja d
 
 Para más información, consulte [Acerca de la supervisión de Traffic Manager][tm-monitoring].
 
-Traffic Manager es un posible punto de error en el sistema. Si el servicio no funciona, los clientes no pueden acceder a la aplicación durante el tiempo de inactividad. Revise el [Acuerdo de Nivel de Servicio (SLA) de Traffic Manager] [tm-sla] y determine si el uso de Traffic Manager por sí solo cumple sus requisitos empresariales de alta disponibilidad. Si no es así, considere la posibilidad de agregar otra solución de administración de tráfico como conmutación por recuperación. Si el servicio Azure Traffic Manager no funciona, cambie los registros de nombre canónico (CNAME) en DNS para que apunten a otro servicio de administración del tráfico. Este paso debe realizarse manualmente, y la aplicación dejará de estar disponible hasta que se propaguen los cambios de DNS.
+Traffic Manager es un posible punto de error en el sistema. Si el servicio no funciona, los clientes no pueden acceder a la aplicación durante el tiempo de inactividad. Revise el [Acuerdo de Nivel de Servicio (SLA) de Traffic Manager] [tm-sla] y determine si el uso de Traffic Manager por sí solo cumple sus requisitos empresariales de alta disponibilidad. Si no es así, considere la posibilidad de agregar otra solución de administración de tráfico como reserva. Si el servicio Azure Traffic Manager no funciona, cambie los registros de nombre canónico (CNAME) en DNS para que apunten a otro servicio de administración del tráfico. Este paso debe realizarse manualmente, y la aplicación dejará de estar disponible hasta que se propaguen los cambios de DNS.
 
 ### <a name="sql-database"></a>SQL Database
 El objetivo de punto de recuperación (RPO) y el tiempo de recuperación estimado (ERT) de SQL Database se documentan en [Introducción a la continuidad empresarial con Azure SQL Database][sql-rpo]. 
@@ -165,6 +165,6 @@ Si se produce un error en la base de datos principal, realice una conmutación p
 [tm-monitoring]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-ps]: /powershell/module/azurerm.trafficmanager
 [tm-routing]: /azure/traffic-manager/traffic-manager-routing-methods
-[tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager/v1_0/
-[traffic-manager]: https://azure.microsoft.com/services/traffic-manager/
+[tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager
+[traffic-manager]: https://azure.microsoft.com/services/traffic-manager
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx

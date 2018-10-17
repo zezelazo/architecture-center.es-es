@@ -5,14 +5,14 @@ author: tracsman
 manager: rossort
 tags: azure-resource-manager
 ms.service: virtual-network
-ms.date: 04/3/2018
+ms.date: 09/24/2018
 ms.author: jonor
-ms.openlocfilehash: 2dbbad3dd8d1a45b94bb4e265d306815d1f5242c
-ms.sourcegitcommit: f1dcc388c8b4fc983549c36d7e6b009fa1f072ba
+ms.openlocfilehash: 61b8e8347fb54e95dcf1bff959e01ef00ecee189
+ms.sourcegitcommit: 5d1ee2acb5beb2afea19bcc0cef34655dc70e372
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/19/2018
-ms.locfileid: "46329919"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48812532"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Centro de datos virtual de Azure: una perspectiva de red
 
@@ -44,7 +44,7 @@ El centro de datos virtual puede ayudar a que las empresas lleven cargas de trab
 -   Implementación de requisitos de seguridad y acceso compartido o centralizado para las cargas de trabajo
 -   Combinación de DevOps e IT centralizada adecuada para una gran empresa
 
-La clave para poder disfrutar de todas las ventajas del centro de datos virtual es una topología centralizada (concentrador y radios) con una combinación de características de Azure: [red virtual de Azure][VNet], [grupos de seguridad de red][NSG], [emparejamiento de redes virtuales][VNetPeering], [rutas definidas por el usuario (UDR)][UDR] e identidad de Azure con [control de acceso basado en roles (RBAC)][RBAC].
+La clave para poder disfrutar de todas las ventajas del centro de datos virtual es una topología centralizada (centro y radios) con una combinación de características de Azure: [red virtual de Azure][VNet], [grupos de seguridad de red][NSG], [emparejamiento de VNET][VNetPeering], [rutas definidas por el usuario (UDR)][UDR] e identidad de Azure con [control de acceso basado en roles (RBAC)][RBAC], así como, opcionalmente, [Azure Firewall][AzFW], [Azure DNS][DNS], [Azure Front Door][AFD] y [Azure Virtual WAN][vWAN].
 
 ## <a name="who-needs-a-virtual-data-center"></a>¿Quién necesita un centro de datos virtual?
 Cualquier cliente de Azure que necesite mover más de un par de cargas de trabajo a Azure puede obtener ventajas al contemplar el uso de recursos comunes. Dependiendo de la magnitud, incluso las aplicaciones únicas pueden beneficiarse del uso de los patrones y componentes que se utilizan para crear un centro de datos virtual.
@@ -66,11 +66,11 @@ Los servicios de identidad y directorio son un aspecto clave de todos los centro
 
 Cualquier empresa de gran tamaño precisa definir un proceso de administración de identidad que describa la administración de identidades individuales, su autenticación, autorización, roles y privilegios dentro del centro de datos virtual. Los objetivos de este proceso deben ser mejorar la seguridad y productividad al reducir el costo, el tiempo de inactividad y las tareas manuales repetitivas.
 
-La empresas y organizaciones pueden requerir una combinación exigente de servicios para diferentes líneas de negocio (LOB) y los empleados a menudo tienen distintos roles cuando están implicados en proyectos diferentes. Un centro de datos virtual requiere buena cooperación entre distintos equipos, cada uno con definiciones de rol específicas, para tener una buena gestión de los sistemas en ejecución. La matriz de responsabilidades, acceso y derechos puede ser muy compleja. La administración de identidad en el centro de datos virtual se implementa a través de [*Azure Active Directory* (AAD)][AAD] y el control de acceso basado en roles (RBAC).
+La empresas y organizaciones pueden requerir una combinación exigente de servicios para diferentes líneas de negocio (LOB) y los empleados a menudo tienen distintos roles cuando están implicados en proyectos diferentes. Un centro de datos virtual requiere buena cooperación entre distintos equipos, cada uno con definiciones de rol específicas, para tener una buena gestión de los sistemas en ejecución. La matriz de responsabilidades, acceso y derechos puede ser muy compleja. La administración de identidad en el centro de datos virtual se implementa a través de [*Azure Active Directory* (Azure AD)][AAD] y el control de acceso basado en roles (RBAC).
 
 Un servicio de directorio es una infraestructura de información compartida para buscar, gestionar, administrar y organizar los elementos cotidianos y los recursos de red. Estos recursos pueden incluir volúmenes, carpetas, archivos, impresoras, usuarios, grupos, dispositivos y otros objetos. El servidor de directorio considera cada recurso de la red como un objeto. La información sobre un recurso se almacena como una colección de atributos asociada a ese recurso u objeto.
 
-Todos los servicios de negocio en línea de Microsoft dependen de Azure Active Directory (AAD) para el inicio de sesión y otras necesidades de identidad. Azure Active Directory es solución en la nube de administración de acceso e identidades completa y de alta disponibilidad que combina una administración de acceso a aplicaciones, gobernancia de identidades avanzada y servicios de directorio fundamentales. AAD se puede integrar con Active Directory local para habilitar el inicio de sesión único para todas las aplicaciones basadas en la nube y hospedadas localmente. Los atributos de usuario de Active Directory local se pueden sincronizar automáticamente con AAD.
+Todos los servicios de negocio en línea de Microsoft dependen de Azure Active Directory (Azure AD) para el inicio de sesión y otras necesidades de identidad. Azure Active Directory es solución en la nube de administración de acceso e identidades completa y de alta disponibilidad que combina una administración de acceso a aplicaciones, gobernancia de identidades avanzada y servicios de directorio fundamentales. Azure AD se puede integrar con Active Directory local a fin de habilitar el inicio de sesión único para todas las aplicaciones basadas en la nube y hospedadas localmente. Los atributos de usuario de Active Directory local se pueden sincronizar automáticamente con Azure AD.
 
 No es necesario un administrador global único para asignar todos los permisos en un centro de datos virtual. En su lugar, cada departamento específico (o grupo de usuarios o servicios en el servicio de directorio) puede tener los permisos necesarios para administrar sus propios recursos dentro del centro de datos virtual. La estructura de permisos requiere un equilibrio. Demasiados permisos pueden disminuir el rendimiento y muy pocos permisos o permisos flexibles pueden aumentar los riesgos de seguridad. Gracias al control de acceso basado en roles (RBAC) de Azure, podrá abordar este problema, ya que es posible realizar una administración avanzada del acceso a los recursos del centro de datos virtual.
 
@@ -82,15 +82,17 @@ El tejido de Azure asigna recursos de infraestructura para las cargas de trabajo
 #### <a name="connectivity-to-the-cloud"></a>Conectividad a la nube
 El centro de datos virtual necesita conectividad con redes externas para ofrecer servicios a los clientes, asociados o usuarios internos. Esto suele significar conectividad no solo con Internet, sino también con redes y centros de datos locales.
 
-Los clientes pueden crear directivas de seguridad para controlar qué servicios hospedados en el centro de datos virtual son accesibles desde Internet y de qué modo lo son mediante el uso de aplicaciones virtuales de red (con filtrado e inspección de tráfico) y de directivas de enrutamiento personalizadas y filtrado de red (enrutamiento definido por el usuario y grupos de seguridad de red).
+Los clientes pueden crear directivas de seguridad para controlar qué servicios hospedados en el centro de datos virtual son accesibles desde Internet y de qué modo lo son mediante [Azure Firewall][AzFW] o aplicaciones virtuales de red y directivas de enrutamiento personalizadas y filtrado de red ([enrutamiento definido por el usuario][UDR] y [grupos de seguridad de red][NSG]). Se recomienda que todos los recursos accesibles desde Internet estén además protegidos por [**Azure DDOS Protection estándar**][DDOS].
 
 Las empresas a menudo necesitan conectar los centros de datos virtuales con centros de datos locales u otros recursos. La conectividad entre Azure y las redes locales, por tanto, es un aspecto fundamental al diseñar una arquitectura efectiva. Las empresas tienen dos maneras diferentes de crear una interconexión entre el centro de datos virtual y el local en Azure: tránsito a través de Internet o a través de conexiones directas privadas.
 
 Una [**red privada virtual sitio a sitio de Azure**][VPN] es un servicio de interconexión a través de Internet entre redes locales y el centro de datos virtual establecido a través de conexiones cifradas seguras (túneles IPsec y IKE). La conexión sitio a sitio de Azure es flexible, rápida de crear y no requiere ninguna adquisición adicional, ya que todas las conexiones se realizan a través de Internet.
 
-[**ExpressRoute**][ExR] es un servicio de conectividad de Azure que le permite crear conexiones privadas entre el centro de datos virtual y las redes locales. Las conexiones ExpressRoute no se realizan sobre una conexión a Internet pública, ofrecen una mayor confiabilidad, seguridad y velocidades mayores (hasta 10 Gbps) con una latencia menor. ExpressRoute es muy útil para los centros de datos virtuales, ya que los clientes de ExpressRoute pueden tener las ventajas de las reglas de cumplimiento de normas asociadas con las conexiones privadas.
+Para un gran número de conexiones VPN, [**Azure Virtual WAN**][vWAN] es un servicio de redes que ofrece conectividad de rama a rama automatizada y optimizada mediante Azure. Azure Virtual WAN permite conectar y configurar los dispositivos de rama para comunicarse con Azure. Esto puede realizarse manualmente o con dispositivos de proveedores preferidos mediante un asociado de Virtual WAN. El uso de dispositivos de proveedores preferidos permite la administración de la configuración, facilita el uso y simplifica la conectividad. El panel integrado de Azure WAN proporciona información instantánea para solucionar problemas que puede ayudarle a ahorrar tiempo y le ofrece una manera fácil de ver la conectividad de sitio a sitio y a gran escala.
 
-La implementación de conexiones ExpressRoute implica tomar contacto con un proveedor de servicios de ExpressRoute. Para clientes que necesitan comenzar rápidamente, es habitual usar inicialmente una red privada virtual de sitio a sitio para establecer la conectividad entre el centro de datos virtual y los recursos locales y, posteriormente, migrar a una conexión ExpressRoute.
+[**ExpressRoute**][ExR] es un servicio de conectividad de Azure que le permite crear conexiones privadas entre el centro de datos virtual y las redes locales. Las conexiones ExpressRoute no se realizan sobre una conexión a Internet pública, ofrecen una mayor confiabilidad, seguridad y velocidades mayores (hasta 10 Gbps) con una latencia menor. ExpressRoute es muy útil para los centros de datos virtuales, ya que los clientes de ExpressRoute pueden tener las ventajas de las reglas de cumplimiento de normas asociadas con las conexiones privadas. Con [ExpressRoute Direct][ExRD], puede conectarse directamente a los enrutadores de Microsoft a 100 Gbps, para los clientes con mayores necesidades de ancho de banda.
+
+La implementación de conexiones ExpressRoute implica normalmente tomar contacto con un proveedor de servicios de ExpressRoute. Para los clientes que necesitan comenzar rápidamente, es habitual usar inicialmente una red privada virtual de sitio a sitio para establecer la conectividad entre el centro de datos virtual y los recursos locales y, posteriormente, migrar a una conexión ExpressRoute cuando la interconexión física con el proveedor de servicios se haya completado.
 
 #### <a name="connectivity-within-the-cloud"></a>*Conectividad dentro de la nube*
 Las [redes virtuales][VNet] y el [emparejamiento de redes virtuales][VNetPeering] son los servicios de conectividad de red básica dentro de un centro de datos virtual. Una red virtual garantiza un límite de aislamiento natural para los recursos del centro de datos virtual y el emparejamiento de redes virtuales permite la intercomunicación entre distintas redes virtuales dentro de la misma región de Azure o incluso de distintas regiones. El control de tráfico dentro de una red virtual y entre redes virtuales debe cumplir con un conjunto de reglas de seguridad especificado a través de listas de control de acceso ([Grupo de seguridad de red][NSG]), [aplicaciones virtuales de red][NVA] y tablas de enrutamiento personalizadas ([UDR][UDR]).
@@ -107,7 +109,7 @@ El concentrador es la zona central que controla e inspecciona el tráfico de ent
 El concentrador contiene los componentes de los servicios comunes utilizados por los radios. Estos son algunos ejemplos típicos de servicios centrales comunes:
 
 -   La infraestructura de Active Directory de Windows (con el servicio ADFS relacionado) necesaria para la autenticación de usuarios de terceros que acceden desde redes que no son de confianza antes de obtener acceso a las cargas de trabajo del radio
--   Un servicio DNS para resolver nombres para la carga de trabajo en los radios para el acceso a recursos locales y en Internet
+-   Un servicio DNS que resuelve los nombres de la carga de trabajo en los radios para acceder a recursos locales y en Internet si no se utiliza [Azure DNS][DNS].
 -   Una infraestructura PKI, para implementar el inicio de sesión único en las cargas de trabajo
 -   Control de flujo (TCP/UDP) entre los radios e Internet
 -   Control de flujo entre el radio y local
@@ -120,7 +122,7 @@ El rol de cada radio puede ser el hospedaje de diferentes tipos de cargas de tra
 #### <a name="subscription-limits-and-multiple-hubs"></a>Límites de la suscripción y múltiples concentradores
 En Azure, todos los componentes, de cualquier tipo, se implementan en una suscripción de Azure. El aislamiento de componentes de Azure en distintas suscripciones de Azure puede satisfacer los requisitos de diferentes líneas de negocio, como la configuración de niveles diferenciados de acceso y autorización.
 
-Un único centro de datos virtual puede escalar verticalmente a gran número de radios, aunque, al igual que en todos los sistemas de TI, existen límites en las plataformas. La implementación de un concentrador se enlaza a una suscripción de Azure específica, que tiene restricciones y límites (por ejemplo, un número máximo de emparejamientos de redes virtuales: consulte [Suscripción de Azure y límites de servicio, cuotas y restricciones][Limits] para más información). En los casos en los que los límites puedan ser un problema, la arquitectura se puede escalar verticalmente más allá extiendo el modelo desde un único concentrador-radios a un clúster de concentradores y radios. Varios centros en una o más regiones de Azure pueden estar conectados entre sí mediante el emparejamiento de redes virtuales, ExpressRoute o una red privada virtual de sitio a sitio.
+Un único centro de datos virtual puede escalar verticalmente a gran número de radios, aunque, al igual que en todos los sistemas de TI, existen límites en las plataformas. La implementación de un concentrador se enlaza a una suscripción de Azure específica, que tiene restricciones y límites (por ejemplo, un número máximo de emparejamientos de redes virtuales: consulte [Suscripción de Azure y límites de servicio, cuotas y restricciones][Limits] para más información). En los casos en los que los límites puedan ser un problema, la arquitectura se puede escalar verticalmente más allá extiendo el modelo desde un único concentrador-radios a un clúster de concentradores y radios. Varios centros en una o más regiones de Azure pueden estar conectados entre sí mediante el emparejamiento de VNET, ExpressRoute, Virtual WAN o una red privada virtual de sitio a sitio.
 
 [![2]][2]
 
@@ -187,7 +189,7 @@ Los componentes de infraestructura contienen la siguiente funcionalidad:
 -   [**Virtual Network**][VPN]. Las redes virtuales son uno de los componentes principales de un centro de datos virtual y le permiten crear un límite de aislamiento de tráfico en la plataforma de Azure. Una red virtual se compone de uno o varios segmentos de red virtual, cada uno con un prefijo de red IP específico (una subred). La red virtual define un área de perímetro interno en el que las máquinas virtuales de IaaS y los servicios de PaaS pueden establecer comunicaciones privadas. Las máquinas virtuales (y los servicios de PaaS) de una red virtual no pueden comunicar directamente con máquinas virtuales (y servicios de PaaS) de una red virtual diferente, incluso si ambas redes virtuales se han creado en la misma suscripción y por el mismo cliente. El aislamiento consiste en una propiedad fundamental que garantiza que las máquinas virtuales del cliente y la comunicación sigan siendo privadas en una red virtual.
 -   [**UDR**][UDR]. El tráfico en una red virtual se enruta de forma predeterminada en función de la tabla de enrutamiento del sistema. Una ruta definida por el usuario (UDR) es una tabla de enrutamiento personalizada que los administradores de red pueden asociar a una o varias subredes para sobrescribir el comportamiento de la tabla de enrutamiento del sistema y definir una ruta de comunicación en una red virtual. La presencia de una UDR garantiza que el tráfico de salida del radio transita a través de máquinas virtuales personalizadas específicas o aplicaciones virtuales de red y equilibradores de carga presentes en el concentrador y los radios.
 -   [**NSG**][NSG]. Un grupo de seguridad de red (NSG) es una lista de reglas de seguridad que actúa como filtro de tráfico en direcciones IP de origen y destino, protocolos y puertos IP de origen y destino. El NSG se puede aplicar a una subred, una tarjeta NIC virtual asociada a una máquina virtual de Azure, o ambos. Los NSG son fundamentales para implementar un control de flujo correcto en el concentrador y los radios. El nivel de seguridad permitido por el NSG está una función de los puertos que abra y su finalidad. Los clientes deben aplicar filtros adicionales en cada máquina virtual con firewalls basados en host, como IPtables o el Firewall de Windows.
--   [**DNS**][DNS]. La resolución de nombres de recursos en las redes virtuales de un centro de datos virtual se proporciona mediante DNS. Azure proporciona servicios DNS para la resolución de nombres tanto [DNS][pública] como [privada][PrivateDNS]. Las zonas privadas proporcionan la resolución de nombres dentro de una red virtual o en redes virtuales distintas. Puede hacer que las zonas privadas abarquen redes virtuales de la misma región, e incluso de distintas regiones y suscripciones. Azure DNS proporciona un servicio de hospedaje de dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure (resolución pública). Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
+-   [**DNS**][DNS]. La resolución de nombres de recursos en las redes virtuales de un centro de datos virtual se proporciona mediante DNS. Azure proporciona servicios DNS tanto para la resolución de nombres [públicos][DNS] como [privados][PrivateDNS]. Las zonas privadas proporcionan la resolución de nombres dentro de una red virtual o en redes virtuales distintas. Puede hacer que las zonas privadas abarquen redes virtuales de la misma región, e incluso de distintas regiones y suscripciones. Azure DNS proporciona un servicio de hospedaje de dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure (resolución pública). Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
 -   [**Administración de la suscripción**][SubMgmt] y del [**Grupo de recursos**][RGMgmt]. Una suscripción define un límite natural para crear varios grupos de recursos en Azure. Los recursos de una suscripción se ensamblan juntos en contenedores lógicos llamados grupos de recursos. El grupo de recursos representa un grupo lógico para organizar los recursos de un centro de datos virtual.
 -   [**RBAC**][RBAC]. Mediante RBAC, es posible asignar roles organizativos junto con los derechos de acceso a recursos específicos de Azure, lo que le permite restringir a los usuarios a solo un subconjunto determinado de acciones. Con RBAC puede conceder acceso asignando el rol adecuado a usuarios, grupos y aplicaciones dentro del ámbito correspondiente. El ámbito de una asignación de roles puede ser una suscripción de Azure, un grupo de recursos o un único recurso. RBAC permite la herencia de permisos. Un rol asignado en un ámbito principal también concede acceso a los elementos secundarios dentro del mismo. Con RBAC podrá repartir las tareas y conceder a los usuarios únicamente el nivel de acceso que necesitan para realizar su trabajo. Por ejemplo, utilice RBAC para dejar que un empleado administre máquinas virtuales en una suscripción y que otro pueda administrar bases de datos SQL en la misma suscripción.
 -   [**Emparejamiento de redes virtuales**][VNetPeering]. La característica fundamental utilizada para crear la infraestructura de un centro de datos virtual es el emparejamiento de redes virtuales, un mecanismo que conecta dos redes virtuales (VNet) de la misma región mediante la red del centro de datos de Azure o de la red troncal mundial de Azure para regiones distintas.
@@ -204,36 +206,42 @@ Los componentes de la red perimetral proporcionan las siguientes característica
 -   [Equilibrador de carga][ALB]
 -   [Application Gateway][AppGW] / [WAF][WAF]
 -   [Direcciones IP públicas][PIP]
+-   [Azure Front Door][AFD]
+-   [Azure Firewall][AzFW]
 
 Normalmente, los equipos de TI central y de seguridad tienen la responsabilidad de la definición de requisitos y las operaciones de las redes perimetrales.
 
 [![7]][7]
 
-El diagrama anterior muestra el cumplimiento de dos perímetros con acceso a Internet y a una red local, ambos residentes en el concentrador. En un único concentrador, la red perimetral a Internet puede escalar verticalmente para admitir grandes cantidades de líneas de negocio, utilizando varias granjas de firewalls de aplicaciones web (WAF) y/o firewalls.
+El diagrama anterior muestra el cumplimiento de dos perímetros con acceso a Internet y a una red local, ambos residentes en los centros DMZ y WAN virtual. En el centro DMZ, la red perimetral a Internet puede escalar verticalmente para admitir grandes cantidades de líneas de negocio mediante varias granjas de firewalls de aplicaciones web (WAF) y/o instancias de Azure Firewall. En el centro WAN virtual, la conectividad altamente escalable rama a rama y rama a Azure se logra a través de VPN o ExpressRoute según sea necesario.
 
 [**Redes virtuales**][VNet] El concentrador normalmente se basa en una red virtual con varias subredes para hospedar los distintos tipos de servicios con filtrado e inspección del tráfico hacia o desde Internet utilizando NVA, WAF y Azure Application Gateway.
 
 [**UDR**][UDR] Con UDR, los clientes pueden implementar un firewall, IDS/IPS y otras aplicaciones virtuales y enrutar el tráfico de red a través de estas aplicaciones de seguridad para la aplicación de directivas de límites de seguridad, auditoría e inspección. Las UDR pueden crearse en el concentrador y los radios para garantizar que el tráfico transita a través de máquinas virtuales personalizadas específicas, aplicaciones virtuales de red y equilibradores de carga utilizados en el centro de datos virtual. Para garantizar que el tráfico generado desde máquinas virtuales residentes en el radio transita a las aplicaciones virtuales correctas, se debe establecer una UDR en las subredes del radio configurando la dirección IP del front-end del equilibrador de carga interno como el próximo salto. El equilibrador de carga interno distribuye el tráfico interno a las aplicaciones virtuales (grupo de back-end de equilibradores de carga).
 
-[![8]][8]
+[**Azure Firewall**][AzFW] es un servicio de seguridad de red administrado y basado en la nube que protege los recursos de Azure Virtual Network. Se trata de un firewall como servicio con estado completo que incorpora alta disponibilidad y escalabilidad a la nube sin restricciones. Puede crear, aplicar y registrar directivas de aplicaciones y de conectividad de red a nivel central en suscripciones y redes virtuales. Azure Firewall usa una dirección IP pública estática para los recursos de red virtual, que permite que los firewall externos identifiquen el tráfico procedente de la red virtual. El servicio está totalmente integrado con Azure Monitor para los registros y análisis.
 
-[**Aplicaciones virtuales de red**][NVA] En el concentrador, la red perimetral con acceso a Internet se administra normalmente a través de una granja de firewalls o firewalls de aplicaciones web (WAF).
+[**Aplicaciones virtuales de red**][NVA] En el centro, la red perimetral con acceso a Internet se administra normalmente a través de una instancia de Azure Firewall o una granja de firewalls y/o firewalls de aplicaciones web (WAF).
 
 Las diferentes líneas de negocio normalmente utilizan diversas aplicaciones web y estas aplicaciones tienden a sufrir varias vulnerabilidades y puntos débiles potenciales. Los firewall de aplicaciones web son un tipo especial de producto que se usa para detectar ataques contra las aplicaciones web (HTTP/HTTPS) con mayor profundidad que un firewall genérico. En comparación con la tecnología de firewall tradicional, los WAF tienen un conjunto de características específicas para proteger los servidores web internos frente a amenazas.
 
-Una granja de firewalls es un grupo de firewalls que trabajan conjuntamente bajo una administración común, con un conjunto de reglas de seguridad para proteger las cargas de trabajo hospedadas en los radios y controlar el acceso a las redes locales. Una granja de firewalls tiene menos software especializado en comparación con un WAF, pero tiene un ámbito más amplio de aplicación para filtrar e inspeccionar cualquier tipo de tráfico de entrada y salida. Las granjas de firewalls se implementan normalmente en Azure a través de aplicaciones virtuales de red (NVA), que están disponibles en Azure Marketplace.
+Una instancia de Azure Firewall o una granja de firewalls de aplicación virtual de red utilizan un plano de administración común, con un conjunto de reglas de seguridad para proteger las cargas de trabajo hospedadas en los radios y controlar el acceso a las redes locales. Azure Firewall tiene escalabilidad integrada, mientras que los firewalls de aplicación virtual de red se pueden escalar manualmente detrás de un equilibrador de carga. En general, una granja de firewalls tiene menos software especializado en comparación con un WAF, pero tiene un ámbito más amplio de aplicación para filtrar e inspeccionar cualquier tipo de tráfico de entrada y salida. Si se usa un enfoque de aplicación virtual de red, puede encontrarlos e implementarlos desde Azure Marketplace.
 
-Se recomienda usar un conjunto de NVA para el tráfico que se origina en Internet y otro para el tráfico que se origina en local. Utilizar únicamente un conjunto de NVA para ambos es un riesgo de seguridad, ya que no proporciona ningún perímetro de seguridad entre los dos conjuntos de tráfico de red. El uso de NVA independientes reduce la complejidad de la comprobación de las reglas de seguridad y deja claro qué reglas se corresponden con cada solicitud de red entrante.
+Se recomienda usar un conjunto de instancias de Azure Firewall (o aplicaciones de red virtual) para el tráfico que se origina en Internet y otro para el tráfico que se origina en local. Utilizar únicamente un conjunto de firewalls para ambos es un riesgo de seguridad, ya que no proporciona ningún perímetro de seguridad entre los dos conjuntos de tráfico de red. El uso de capas de firewalls independientes reduce la complejidad de la comprobación de las reglas de seguridad y deja claro qué reglas se corresponden con cada solicitud de red entrante.
 
-La mayoría de las empresas de tamaño grande administran varios dominios. El servicio DNS de Azure se puede usar para hospedar los registros DNS de un dominio concreto. Como ejemplo, se puede registrar la dirección IP virtual (VIP) del equilibrador de carga externo de Azure (o de los WAF) en el registro A de un registro DNS de Azure.
+La mayoría de las empresas de tamaño grande administran varios dominios. [**Azure DNS**][DNS] se puede usar para hospedar los registros DNS de un dominio concreto. Como ejemplo, se puede registrar la dirección IP virtual (VIP) del equilibrador de carga externo de Azure (o de los WAF) en el registro A de un registro DNS de Azure. [**DNS privado** ][PrivateDNS] también está disponible para administrar los espacios de direcciones privadas dentro de las redes virtuales.
 
 [**Azure Load Balancer**][ALB] El equilibrador de carga de Azure ofrece un servicio de nivel 4 (TCP, UDP) de alta disponibilidad que puede distribuir el tráfico entrante entre instancias del servicio definidas en un conjunto de equilibrio de carga. El tráfico enviado al equilibrador de carga desde los puntos de conexión front-end (puntos de conexión de direcciones IP públicas o privadas) se puede redistribuir con o sin traducción de direcciones a un conjunto de grupo de direcciones IP de back-end (ejemplo: aplicaciones virtuales de red o máquinas virtuales).
 
 Azure Load Balancer puede sondear el estado de las diversas instancias de servidor y, cuando un sondeo no responde, el equilibrador de carga deja de enviar tráfico a la instancia incorrecta. En un centro de datos virtual, tenemos la presencia de un equilibrador de carga externo en el concentrador (por ejemplo, para equilibrar el tráfico a los NVA) y en los radios (para realizar tareas como equilibrar el tráfico entre diferentes máquinas virtuales de una aplicación de varios niveles).
 
+[**Azure Front Door**][AFD] (AFD) es la plataforma de aceleración de aplicaciones web altamente disponible y escalable de Microsoft, el equilibrador de carga HTTP global, la protección de aplicaciones y Content Delivery Network. Al ejecutarse en más de 100 ubicaciones en el perímetro de la red global de Microsoft, AFD le permite crear, operar y escalar horizontalmente una aplicación web dinámica y contenido estático. AFD proporciona a la aplicación un rendimiento de usuario final de primer orden, una automatización de mantenimiento de marca/regional unificada, una automatización de BCDR, una información de cliente/usuario unificada, un almacenamiento en caché y una información detallada de servicios. La plataforma ofrece rendimiento, confiabilidad y compatibilidad con los acuerdos de nivel de servicio, certificaciones de cumplimiento y prácticas de seguridad auditables desarrolladas y operadas por Azure, y compatibles de forma nativa con Azure.
+
 [**Application Gateway**][AppGW] Microsoft Azure Application Gateway es una aplicación virtual dedicada que cuenta con un controlador de entrega de aplicaciones (ADC) que se ofrece como servicio y que proporciona numerosas funcionalidades de equilibrio de carga de nivel 7 para la aplicación. Le permite optimizar la productividad de las granjas de servidores web traspasando la carga de la terminación SSL con mayor actividad de la CPU a Application Gateway. Además, dispone de otras funcionalidades de enrutamiento de nivel 7, como la distribución round robin del tráfico entrante, la afinidad de sesiones basada en cookies, el enrutamiento basado en rutas de acceso URL y la capacidad de hospedar varios sitios web detrás de una única puerta de enlace de aplicaciones. También se proporciona un firewall de aplicaciones web (WAF) como parte de la SKU de WAF de Application Gateway. Esta SKU proporciona protección a las aplicaciones web frente a vulnerabilidades web y vulnerabilidades de seguridad comunes. Application Gateway puede configurarse como una puerta de enlace orientada a Internet, una puerta de enlace solo para uso interno o una combinación de las dos. 
 
 [**Direcciones IP públicas**][PIP] Algunas características de Azure le permiten asociar los puntos de conexión de servicio a una dirección IP pública que permite al recurso estar accesible desde Internet. Este punto de conexión usa la traducción de direcciones de red (NAT) para enrutar el tráfico a la dirección interna y el puerto de la red virtual de Azure. Esta ruta es la vía principal para que el tráfico externo pase a la red virtual. Las direcciones IP públicas se pueden configurar para determinar qué tráfico se pasa y cómo y dónde se traduce en la red virtual.
+
+[**Azure DDoS Protection estándar**][DDOS] ofrece funcionalidades adicionales de mitigación en comparación con el nivel de [Servicio básico][DDOS], adaptadas específicamente a los recursos de Azure Virtual Network. El servicio Protección contra DDoS estándar es fácil de habilitar y no requiere ningún cambio en la aplicación. Las directivas de protección se ajustan a través de la supervisión del tráfico dedicado y los algoritmos de Machine Learning. Las directivas se aplican a direcciones IP públicas asociadas a recursos implementados en redes virtuales, como instancias de Azure Load Balancer, Azure Application Gateway y Azure Service Fabric. La telemetría en tiempo real está disponible a través de las vistas de Azure Monitor durante un ataque y para el historial. Se puede agregar protección en la capa de aplicación mediante el firewall de aplicaciones web de Azure Application Gateway. Se proporciona protección para direcciones IP públicas de Azure IPv4.
 
 #### <a name="component-type-monitoring"></a>Tipo de componente: supervisión
 Los componentes de supervisión proporcionan visibilidad y alertas sobre todos los demás tipos de componentes. Todos los equipos deben tener acceso a la supervisión de los componentes y servicios a los que tienen acceso. Si tiene equipos de soporte técnico o de operaciones centralizados, necesitarán un acceso integrado a los datos proporcionados por estos componentes.
@@ -261,7 +269,21 @@ Las grandes empresas pueden haber adquirido previamente un marco estándar para 
 
 Log Analytics es un servicio de Azure que ayuda a recopilar, correlacionar, buscar y actuar en los datos de registro y rendimiento generados por los sistemas operativos, aplicaciones y componentes de infraestructura en la nube. Ofrece a los clientes una visión operativa en tiempo real mediante la búsqueda integrada y los paneles personalizados para analizar todos los registros en todas las cargas de trabajo del centro de datos virtual.
 
-La solución [Network Performance Monitor (NPM)][NPM] de OMS proporciona información de un extremo a otro de la red, incluida una vista única de las redes de Azure y las locales. Con monitores específicos para los servicios públicos y ExpressRoute.
+[Azure Network Watcher][NetWatch] proporciona herramientas para supervisar, diagnosticar, ver las métricas y habilitar o deshabilitar registros de recursos en una red virtual de Azure. Es un servicio polifacético, lo que permite las funcionalidades siguientes y muchas más:
+-    Supervisión de la comunicación entre una máquina virtual y un punto de conexión
+-    Visualización de recursos de una red virtual y sus relaciones
+-    Diagnóstico de problemas de filtrado del tráfico de red hacia o desde una máquina virtual
+-    Diagnóstico de problemas de enrutamiento de red desde una máquina virtual
+-    Diagnóstico de conexiones de salida desde una máquina virtual
+-    Captura de paquetes hacia y desde una máquina virtual
+-    Diagnóstico de problemas con conexiones y la puerta de enlace de una red virtual de Azure
+-    Determinación de latencias relativas entre las regiones de Azure y los proveedores de acceso a Internet
+-    Visualización de las reglas de seguridad para una interfaz de red
+-    Visualización de métricas de red
+-    Análisis del tráfico hacia y desde un grupo de seguridad de red
+-    Visualización de registros de diagnóstico de recursos de red
+
+La solución [Network Performance Monitor ][NPM] (NPM) de OMS puede proporcionar información detallada de un extremo a otro de la red, incluida una vista única de las redes de Azure y las locales. Con monitores específicos para los servicios públicos y ExpressRoute.
 
 #### <a name="component-type-workloads"></a>Tipo de componente: cargas de trabajo
 Los componentes de carga de trabajo son donde residen los servicios y aplicaciones reales. También es donde los equipos de desarrollo de aplicaciones dedican la mayor parte de su tiempo.
@@ -328,17 +350,15 @@ Las siguientes características se describen en este documento. Haga clic en los
 | | | |
 |-|-|-|
 |Características de red|Equilibrio de carga|Conectividad|
-|[Redes virtuales de Azure][VNet]</br>[Grupos de seguridad de red][NSG]</br>[Registros NSG][NSGLog]</br>[Enrutamiento definido por el usuario][UDR]</br>[Aplicaciones virtuales de red][NVA]</br>[Direcciones IP públicas][PIP]</br>[DNS]|[Azure Load Balancer (L3) ][ALB]</br>[Application Gateway (L7) ][AppGW]</br>[Firewall de aplicaciones web][WAF]</br>[Azure Traffic Manager][TM] |[Emparejamiento de redes virtuales][VNetPeering]</br>[Red privada virtual][VPN]</br>[ExpressRoute][ExR]
+|[Redes virtuales de Azure][VNet]</br>[Grupos de seguridad de red][NSG]</br>[Registros NSG][NSGLog]</br>[Enrutamiento definido por el usuario][UDR]</br>[Aplicaciones virtuales de red][NVA]</br>[Direcciones IP públicas][PIP]</br>[Azure DDOS][DDOS]</br>[Azure Firewall][AzFW]</br>[Azure DNS][DNS]|[Azure Front Door][AFD]</br>[Azure Load Balancer (L3) ][ALB]</br>[Application Gateway (L7) ][AppGW]</br>[Firewall de aplicaciones web][WAF]</br>[Azure Traffic Manager][TM]</br></br></br></br></br> |[Emparejamiento de redes virtuales][VNetPeering]</br>[Red privada virtual][VPN]</br>[Virtual WAN][vWAN]</br>[ExpressRoute][ExR]</br>[ExpressRoute Direct][ExRD]</br></br></br></br></br>
 |Identidad</br>|Supervisión</br>|Prácticas recomendadas</br>|
-|[Azure Active Directory][AAD]</br>[Multi-Factor Authentication][MFA]</br>[Control de acceso basado en roles][RBAC]</br>[Roles predeterminados de AAD][Roles] |[Azure Monitor][Monitor]</br>[Registros de actividad][ActLog]</br>[Registros de diagnóstico][DiagLog]</br>[Microsoft Operations Management Suite][OMS]</br>[Network Performance Monitor][NPM]|[Procedimientos recomendados en redes perimetrales][DMZ]</br>[Administración de suscripciones][SubMgmt]</br>[Administración de grupos de recursos][RGMgmt]</br>[Límites de la suscripción de Azure][Limits] |
+|[Azure Active Directory][AAD]</br>[Multi-Factor Authentication][MFA]</br>[Control de acceso basado en roles][RBAC]</br>[Roles de Azure AD predeterminados][Roles]</br></br></br> |[Network Watcher][NetWatch]</br>[Azure Monitor][Monitor]</br>[Registros de actividad][ActLog]</br>[Registros de diagnóstico][DiagLog]</br>[Microsoft Operations Management Suite][OMS]</br>[Network Performance Monitor][NPM]|[Procedimientos recomendados en redes perimetrales][DMZ]</br>[Administración de suscripciones][SubMgmt]</br>[Administración de grupos de recursos][RGMgmt]</br>[Límites de la suscripción de Azure][Limits] </br></br></br>|
 |Otros servicios de Azure|
 |[Azure Web Apps][WebApps]</br>[HDInsights (Hadoop) ][HDI]</br>[Event Hubs][EventHubs]</br>[Service Bus][ServiceBus]|
 
-
-
 ## <a name="next-steps"></a>Pasos siguientes
  - Explore [Emparejamiento de redes virtuales][VNetPeering], la tecnología subyacente a los diseños de concentrador y radio del centro de datos virtual
- - Implemente [AAD][AAD] para empezar a trabajar con la exploración de [RBAC][RBAC]
+ - Implemente [Azure AD][AAD] para empezar a trabajar con la exploración de [RBAC][RBAC]
  - Desarrolle un modelo para la administración de los recursos y suscripciones, y un modelo de RBAC para satisfacer la estructura, requisitos y directivas de su organización. La actividad más importante es el planeamiento. Siempre que resulte práctico, planee reorganizaciones, fusiones, nuevas líneas de producto, etc.
 
 <!--Image References-->
@@ -350,7 +370,7 @@ Las siguientes características se describen en este documento. Haga clic en los
 [5]: ./images/networking-users-groups-subsciptions.png "Usuarios, grupos, suscripciones y proyectos"
 [6]: ./images/networking-infrastructure-high-level.png "Diagrama genérico de infraestructura"
 [7]: ./images/networking-highlevel-perimeter-networks.png "Diagrama genérico de infraestructura"
-[8]: ./images/networking-vnet-peering-perimeter-neworks.png "Emparejamiento de VNET y redes perimetrales"
+[8]: ./images/networking-vnet-peering-perimeter-neworks.png "Emparejamiento de redes virtuales y redes perimetrales"
 [9]: ./images/networking-high-level-diagram-monitoring.png "Diagrama genérico para supervisión"
 [10]: ./images/networking-high-level-workloads.png "Diagrama genérico para cargas de trabajo"
 
@@ -367,13 +387,18 @@ Las siguientes características se describen en este documento. Haga clic en los
 [MFA]: /azure/multi-factor-authentication/multi-factor-authentication
 [AAD]: /azure/active-directory/active-directory-whatis
 [VPN]: /azure/vpn-gateway/vpn-gateway-about-vpngateways 
-[ExR]: /azure/expressroute/expressroute-introduction 
+[ExR]: /azure/expressroute/expressroute-introduction
+[ExRD]: https://docs.microsoft.com/en-us/azure/expressroute/expressroute-erdirect-about
+[vWAN]: /azure/virtual-wan/virtual-wan-about
 [NVA]: /azure/architecture/reference-architectures/dmz/nva-ha
+[AzFW]: /azure/firewall/overview
 [SubMgmt]: /azure/architecture/cloud-adoption/appendix/azure-scaffold 
 [RGMgmt]: /azure/azure-resource-manager/resource-group-overview
 [DMZ]: /azure/best-practices-network-security
 [ALB]: /azure/load-balancer/load-balancer-overview
+[DDOS]: /azure/virtual-network/ddos-protection-overview
 [PIP]: /azure/virtual-network/resource-groups-networking#public-ip-address
+[AFD]: https://docs.microsoft.com/en-us/azure/frontdoor/front-door-overview
 [AppGW]: /azure/application-gateway/application-gateway-introduction
 [WAF]: /azure/application-gateway/application-gateway-web-application-firewall-overview
 [Monitor]: /azure/monitoring-and-diagnostics/
@@ -382,8 +407,10 @@ Las siguientes características se describen en este documento. Haga clic en los
 [NSGLog]: /azure/virtual-network/virtual-network-nsg-manage-log
 [OMS]: /azure/operations-management-suite/operations-management-suite-overview
 [NPM]: /azure/log-analytics/log-analytics-network-performance-monitor
+[NetWatch]: /azure/network-watcher/network-watcher-monitoring-overview
 [WebApps]: /azure/app-service/
 [HDI]: /azure/hdinsight/hdinsight-hadoop-introduction
 [EventHubs]: /azure/event-hubs/event-hubs-what-is-event-hubs 
 [ServiceBus]: /azure/service-bus-messaging/service-bus-messaging-overview
 [TM]: /azure/traffic-manager/traffic-manager-overview
+

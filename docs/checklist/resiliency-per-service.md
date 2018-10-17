@@ -4,12 +4,12 @@ description: Lista de comprobación que proporciona una orientación sobre la re
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 735d4466f53ff03b67063b49b86f4184bbf1af41
-ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
+ms.openlocfilehash: 50808a837132e905cc89c3c43d40852a04f4885c
+ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45584772"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "48819200"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Lista de comprobación de resistencia para servicios de Azure específicos
 
@@ -39,11 +39,11 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Cree una cuenta de almacenamiento para los registros.** No use la misma cuenta de almacenamiento para los registros y los datos de la aplicación. Esto ayuda a evitar que el registro reduzca el rendimiento de la aplicación.
 
-**Supervise el rendimiento.** Use un servicio de supervisión de rendimiento, como [New Relic](http://newrelic.com/) o [Application Insights](/azure/application-insights/app-insights-overview/), para supervisar el rendimiento de la aplicación y el comportamiento sometido a carga.  La supervisión del rendimiento le ofrece una visión en tiempo real de la aplicación. Le permite diagnosticar problemas y realizar análisis de causa raíz de errores.
+**Supervise el rendimiento.** Use un servicio de supervisión de rendimiento, como [New Relic](https://newrelic.com/) o [Application Insights](/azure/application-insights/app-insights-overview/), para supervisar el rendimiento de la aplicación y el comportamiento sometido a carga.  La supervisión del rendimiento le ofrece una visión en tiempo real de la aplicación. Le permite diagnosticar problemas y realizar análisis de causa raíz de errores.
 
 ## <a name="application-gateway"></a>Application Gateway
 
-**Aprovisione al menos dos instancias.** Implemente Application Gateway con al menos dos instancias. Una única instancia es un único punto de error. Utilice dos o más instancias para redundancia y escalabilidad. Para calificar para el [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/application-gateway/v1_0/), debe proporcionar dos o más instancias medianas o más grandes.
+**Aprovisione al menos dos instancias.** Implemente Application Gateway con al menos dos instancias. Una única instancia es un único punto de error. Utilice dos o más instancias para redundancia y escalabilidad. Para calificar para el [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/application-gateway), debe proporcionar dos o más instancias medianas o más grandes.
 
 ## <a name="cosmos-db"></a>Cosmos DB
 
@@ -77,6 +77,21 @@ Si usa Redis Cache como caché de datos temporal y no como almacén persistente,
 
   * Si el origen de datos está replicado geográficamente, por lo general debe dirigir cada indexador de cada servicio regional de Azure Search a su réplica local del origen de datos. Sin embargo, este enfoque no se recomienda para grandes conjuntos de datos almacenados en Azure SQL Database. La razón es que Azure Search no puede realizar la indexación incremental desde réplicas secundarias de SQL Database, solo desde réplicas principales. En su lugar, seleccione todos los indexadores a la réplica principal. Después de una conmutación por error, elija los indexadores de Azure Search a la nueva réplica principal.  
   * Si el origen de datos no está replicado geográficamente, seleccione varios indexadores en el mismo origen de datos, de modo que los servicios de Azure Search en múltiples regiones se indexen continua e independientemente en el origen de datos. Para más información, consulte [Consideraciones sobre el rendimiento y la optimización de Azure Search][search-optimization].
+
+## <a name="service-bus"></a>Azure Service Bus
+
+**Utilice el nivel Premium para cargas de trabajo de producción**. La [mensajería Premium de Service Bus](/azure/service-bus-messaging/service-bus-premium-messaging) proporciona recursos de procesamiento dedicados y reservados y capacidad de memoria para permitir un rendimiento predecible. El nivel de mensajería Premium también ofrece acceso a nuevas características que solo están disponibles para los clientes Premium en primer lugar. Puede decidir el número de unidades de mensajería en función de las cargas de trabajo esperadas.
+
+**Controle los mensajes duplicados**. Si se produce un error en un publicador inmediatamente después de enviar un mensaje o experimenta problemas de red o del sistema, es posible que por error no se registre que se entregó el mensaje y se podría enviar el mismo mensaje al sistema dos veces. Service Bus puede controlar este problema habilitando la detección de duplicados. Para más información, consulte [Detección de duplicados](/azure/service-bus-messaging/duplicate-detection).
+
+**Controle las excepciones**. Las API de mensajería generan excepciones cuando se produce un error de usuario, un error de configuración u otro error. El cliente (remitentes y receptores) debe controlar estas excepciones en su código. Esto es especialmente importante en el procesamiento por lotes, donde se puede usar el control de excepciones para evitar la pérdida de un lote completo de mensajes. Para más información, consulte [Excepciones de mensajería de Service Bus](/azure/service-bus-messaging/service-bus-messaging-exceptions).
+
+**Directiva de reintentos**. Service Bus permite elegir la mejor directiva de reintentos para las aplicaciones. La directiva predeterminada es permitir un máximo de 9 intentos de reintento y esperar 30 segundos, pero esto se puede ajustar aún más. Para más información, consulte [Directiva de reintentos: Service Bus](/azure/architecture/best-practices/retry-service-specific#service-bus).
+
+**Use una cola de mensajes fallidos**. Si un mensaje no se puede procesar o entregar a algún receptor después de varios reintentos, se mueve a una cola de mensajes fallidos. Implemente un proceso para leer los mensajes de la cola de mensajes fallidos, inspeccionarlos y corregir el problema. Según el escenario, puede reintentar el envío del mensaje tal cual es, realizar cambios y volver a intentarlo o descartar el mensaje. Para más información, consulte [Introducción a las colas de mensajes fallidos de Service Bus](/azure/service-bus-messaging/service-bus-dead-letter-queues).
+
+**Utilice la recuperación ante desastres geográfica**. La recuperación ante desastres geográfica garantiza que el procesamiento de datos siga funcionando en otra región o centro de datos si una región de Azure completa o el centro de datos dejan de estar disponibles debido a un desastre. Para obtener más información, consulte [Recuperación ante desastres con localización geográfica de Azure Service Bus](/azure/service-bus-messaging/service-bus-geo-dr).
+
 
 ## <a name="storage"></a>Storage
 

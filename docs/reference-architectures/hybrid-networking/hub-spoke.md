@@ -5,12 +5,12 @@ author: telmosampaio
 ms.date: 04/09/2018
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: abe9d6a58f3deeab388c20471c5559d63ef2f245
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.openlocfilehash: fcdbb7ca8d02745d4d9ab82f0bce79ab378d843c
+ms.sourcegitcommit: f6be2825bf2d37dfe25cfab92b9e3973a6b51e16
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016024"
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48858204"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke en Azure
 
@@ -52,7 +52,7 @@ La arquitectura consta de los siguientes componentes:
 
 * **Redes virtuales de radios**. Una o varias redes virtuales de Azure que se usan como radios en la topología en estrella tipo hub-and-spoke. Los radios pueden utilizarse para aislar las cargas de trabajo en sus propias redes virtuales, administradas por separado desde otros radios. Cada carga de trabajo puede incluir varios niveles, con varias subredes que se conectan a través de equilibradores de carga de Azure. Para obtener más información acerca de la infraestructura de aplicaciones, consulte [Ejecutar cargas de trabajo de máquinas virtuales Windows][windows-vm-ra] y [Ejecutar cargas de trabajo de máquinas virtuales Linux][linux-vm-ra].
 
-* **Emparejamiento de VNET**. Se pueden conectar dos redes virtuales en la misma región de Azure mediante una [conexión de emparejamiento][vnet-peering]. Las conexiones de emparejamiento son conexiones no transitivas de baja latencia entre las redes virtuales. Una vez establecido el emparejamiento, las redes virtuales intercambian el tráfico mediante la red troncal de Azure, sin necesidad de un enrutador. En una topología de red en estrella tipo hub-and-spoke, el emparejamiento de VNET se usa para conectar el concentrador a cada radio.
+* **Emparejamiento de VNET**. Se pueden conectar dos redes virtuales mediante una [conexión de emparejamiento][vnet-peering]. Las conexiones de emparejamiento son conexiones no transitivas de baja latencia entre las redes virtuales. Una vez establecido el emparejamiento, las redes virtuales intercambian el tráfico mediante la red troncal de Azure, sin necesidad de un enrutador. En una topología de red en estrella tipo hub-and-spoke, el emparejamiento de VNET se usa para conectar el concentrador a cada radio. Puede emparejar redes virtuales de la misma región o de regiones diferentes. Para más información, consulte [Requisitos y restricciones][vnet-peering-requirements].
 
 > [!NOTE]
 > En este artículo solo se tratan las implementaciones de [Resource Manager](/azure/azure-resource-manager/resource-group-overview), pero también puede conectar una red virtual clásica a una red virtual de Resource Manager en la misma suscripción. De este modo, los radios pueden hospedar implementaciones clásicas y seguir beneficiándose de los servicios compartidos en el concentrador.
@@ -63,7 +63,7 @@ Las siguientes recomendaciones sirven para la mayoría de los escenarios. Sígal
 
 ### <a name="resource-groups"></a>Grupos de recursos
 
-La red virtual del concentrador y la red virtual de cada radio se pueden implementar en diferentes grupos de recursos e incluso en distintas suscripciones, siempre y cuando pertenezcan al mismo inquilino de Azure Active Directory (Azure AD) en la misma región. Esto permite realizar una administración descentralizada de cada carga de trabajo, mientras se comparten los servicios que se mantienen en la red virtual del concentrador.
+La red virtual del concentrador y la red virtual de cada radio se pueden implementar en distintos grupos de recursos e incluso en distintas suscripciones. Cuando empareja redes virtuales en distintas suscripciones, ambas suscripciones pueden estar asociadas al mismo inquilino de Azure Active Directory o a uno diferente. Esto permite realizar una administración descentralizada de cada carga de trabajo, mientras se comparten los servicios que se mantienen en la red virtual del concentrador. 
 
 ### <a name="vnet-and-gatewaysubnet"></a>VNet y GatewaySubnet
 
@@ -319,6 +319,7 @@ Este paso es opcional. Si desea permitir que los radios se conecten unos con otr
 [resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
 [vnet-peering]: /azure/virtual-network/virtual-network-peering-overview
 [vnet-peering-limit]: /azure/azure-subscription-service-limits#networking-limits
+[vnet-peering-requirements]: /azure/virtual-network/virtual-network-manage-peering#requirements-and-constraints
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [windows-vm-ra]: ../virtual-machines-windows/index.md
 

@@ -3,12 +3,12 @@ title: Inteligencia empresarial automatizada con SQL Data Warehouse y Azure Data
 description: Automatizar un flujo de trabajo de ECT en Azure mediante Azure Data Factory
 author: MikeWasson
 ms.date: 07/01/2018
-ms.openlocfilehash: ffd75ba8c57a9afbc6abad61f21f738c644c9bc8
-ms.sourcegitcommit: 58d93e7ac9a6d44d5668a187a6827d7cd4f5a34d
+ms.openlocfilehash: f004c02da93335e74b07b9720236832ad7f744db
+ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/02/2018
-ms.locfileid: "37142291"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48876909"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>Inteligencia empresarial automatizada con SQL Data Warehouse y Azure Data Factory
 
@@ -23,7 +23,7 @@ Esta arquitectura se basa en la que se muestra en [Inteligencia empresarial con 
 -   Integración de varios orígenes de datos.
 -   Carga de datos binarios como datos geoespaciales e imágenes.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 La arquitectura consta de los siguientes componentes:
 
@@ -198,7 +198,7 @@ Hay disponible una implementación para esta arquitectura de referencia en [GitH
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-### <a name="variables"></a>Variables
+### <a name="variables"></a>variables
 
 Los pasos siguientes incluyen algunas variables definidas por el usuario. Deberá reemplazarlas por los valores que defina.
 
