@@ -3,12 +3,12 @@ title: Supervisión de aplicaciones web en Azure
 description: Supervise una aplicación web hospedada en Azure App Service.
 author: adamboeglin
 ms.date: 09/12/2018
-ms.openlocfilehash: b1beb5cf5e29ab1ceb760bf95eab85d819b69342
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: ea57ba50f4e9390d5527587752c3bebad01b6139
+ms.sourcegitcommit: 42797fffb82bbbf86f6deb1da52c61d456be631e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876858"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49313223"
 ---
 # <a name="web-application-monitoring-on-azure"></a>Supervisión de aplicaciones web en Azure
 
@@ -99,7 +99,7 @@ Los datos de telemetría de Application Insights se envían a Azure Portal duran
 
 Después de la implementación, puede ver un [Live Metrics Stream][Live Metrics Stream] de indicadores de rendimiento. No se almacenan estos datos (está viendo las métricas en tiempo real), pero los datos de telemetría se pueden recopilar y analizar posteriormente. No se efectúa ningún cargo por los datos de Live Stream.
 
-Log Analytics se factura por gigabyte (GB) de datos ingeridos en el servicio. Los primeros 5 GB de datos ingeridos en el servicio Azure Log Analytics cada mes se ofrecen de forma gratuita y los datos se conservan sin ningún costo los primeros 31 días en el área de trabajo de Log Analytics.
+Log Analytics se factura por gigabyte (GB) de datos ingeridos en el servicio. Los primeros 5 GB de datos ingeridos en el servicio Azure Log Analytics cada mes se ofrecen de forma gratuita y los datos se conservan sin ningún costo los primeros 31 días en el área de trabajo de Log Analytics. 
 
 ## <a name="next-steps"></a>Pasos siguientes
 
