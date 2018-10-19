@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: 08bf567085a940287de310f61b9f447d0ce5d5ec
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.openlocfilehash: 4b54f031d13449e4d87075af5606967da8b5d3df
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29477451"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428931"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>Federación con un servicio AD FS de un cliente
 
@@ -180,15 +180,15 @@ Los usuarios deben hacer lo siguiente:
 
 
 <!-- Links -->
-[Azure AD Connect]: /azure/active-directory/active-directory-aadconnect/
+[Azure AD Connect]: /azure/active-directory/hybrid/whatis-hybrid-identity
 [confianza de federación]: https://technet.microsoft.com/library/cc770993(v=ws.11).aspx
 [asociado de cuentas]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx
 [asociado de recursos]: https://technet.microsoft.com/library/cc731141(v=ws.11).aspx
 [Instante de autenticación]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.authenticationinstant%28v=vs.110%29.aspx
-[Fecha de expiración]: http://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1.
+[Fecha de expiración]: https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1.
 [Identificador de nombre]: https://msdn.microsoft.com/library/system.security.claims.claimtypes.nameidentifier(v=vs.110).aspx
 [active-directory-on-azure]: https://msdn.microsoft.com/library/azure/jj156090.aspx
-[entrada de blog]: http://www.cloudidentity.com/blog/2015/08/21/OPENID-CONNECT-WEB-SIGN-ON-WITH-ADFS-IN-WINDOWS-SERVER-2016-TP3/
+[entrada de blog]: https://www.cloudidentity.com/blog/2015/08/21/OPENID-CONNECT-WEB-SIGN-ON-WITH-ADFS-IN-WINDOWS-SERVER-2016-TP3/
 [Personalizar las páginas de inicio de sesión de AD FS]: https://technet.microsoft.com/library/dn280950.aspx
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance
 [client assertion]: client-assertion.md

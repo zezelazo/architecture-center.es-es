@@ -3,12 +3,12 @@ title: Ingesta y flujo de trabajo en los microservicios
 description: Ingesta y flujo de trabajo en los microservicios
 author: MikeWasson
 ms.date: 12/08/2017
-ms.openlocfilehash: 6477c3f2b0cc6d37dcd4637dc0dde4f7a6e3cc74
-ms.sourcegitcommit: 94c769abc3d37d4922135ec348b5da1f4bbcaa0a
+ms.openlocfilehash: 1851d979ed23b35046474f299128064d1abb375e
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/13/2017
-ms.locfileid: "26678737"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429492"
 ---
 # <a name="designing-microservices-ingestion-and-workflow"></a>Diseño de microservicios: ingesta y flujo de trabajo
 
@@ -83,7 +83,7 @@ En la aplicación de dron, un lote de mensajes se puede procesar en paralelo. Pe
 
 ### <a name="iothub-react"></a>IotHub React 
 
-[IotHub React](https://github.com/Azure/toketi-iothubreact) es una biblioteca de Akka Streams para la lectura de eventos del centro de eventos. Akka Streams es un marco de programación basado en secuencias que implementa la especificación [Reactive Streams](http://www.reactive-streams.org/). Proporciona una manera de crear canalizaciones de streaming eficientes, donde las operaciones de streaming se realizan de forma asincrónica y la canalización administra la resistencia fácilmente. La resistencia se produce cuando el origen de un evento produce eventos a una velocidad tan alta que los consumidores descendentes no pueden recibirlos &mdash; que es exactamente la situación en la que el sistema de entrega con dron tiene un pico en el tráfico. Si los servicios back-end funcionan más lento, IoTHub React se ralentiza. Si se aumenta la capacidad, IoTHub React inserta más mensajes a través de la canalización.
+[IotHub React](https://github.com/Azure/toketi-iothubreact) es una biblioteca de Akka Streams para la lectura de eventos del centro de eventos. Akka Streams es un marco de programación basado en secuencias que implementa la especificación [Reactive Streams](https://www.reactive-streams.org/). Proporciona una manera de crear canalizaciones de streaming eficientes, donde las operaciones de streaming se realizan de forma asincrónica y la canalización administra la resistencia fácilmente. La resistencia se produce cuando el origen de un evento produce eventos a una velocidad tan alta que los consumidores descendentes no pueden recibirlos &mdash; que es exactamente la situación en la que el sistema de entrega con dron tiene un pico en el tráfico. Si los servicios back-end funcionan más lento, IoTHub React se ralentiza. Si se aumenta la capacidad, IoTHub React inserta más mensajes a través de la canalización.
 
 Akka Streams es también un modelo de programación muy natural para eventos de streaming desde Event Hubs. En lugar de recorrer en bucle un lote de eventos, se define un conjunto de operaciones que se aplicará a cada evento y se permite que Akka Streams administre el streaming. Akka Streams define una canalización de streaming en términos de *orígenes*, *flujos* y *receptores*. Un origen genera una secuencia de salida, un flujo procesa una secuencia de entrada y produce una secuencia de salida y un receptor consume una secuencia sin producir ninguna salida.
 

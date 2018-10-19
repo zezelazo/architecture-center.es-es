@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: e85817626675cec4d126921c19a31a0983ecd62d
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 70f4a96369c207740400b9dfe72e1e964507f729
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359261"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47428132"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>Autenticación con Azure AD y OpenID Connect
 
@@ -61,7 +61,7 @@ app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions {
 Tenga en cuenta que algunos de los valores se toman de opciones de configuración en tiempo de ejecución. Esto es lo que significan las opciones de middleware:
 
 * **ClientId**. El identificador de cliente de la aplicación, que obtuvo al registrar la aplicación en Azure AD.
-* **Authority**. Para una aplicación multiinquilino, establezca esta propiedad en `https://login.microsoftonline.com/common/`. Se trata de la dirección URL para el punto de conexión común de Azure AD, que permite a los usuarios de cualquier inquilino de Azure AD iniciar sesión. Para más información sobre el punto de conexión común, consulte [esta entrada de blog](http://www.cloudidentity.com/blog/2014/08/26/the-common-endpoint-walks-like-a-tenant-talks-like-a-tenant-but-is-not-a-tenant/).
+* **Authority**. Para una aplicación multiinquilino, establezca esta propiedad en `https://login.microsoftonline.com/common/`. Se trata de la dirección URL para el punto de conexión común de Azure AD, que permite a los usuarios de cualquier inquilino de Azure AD iniciar sesión. Para más información sobre el punto de conexión común, consulte [esta entrada de blog](https://www.cloudidentity.com/blog/2014/08/26/the-common-endpoint-walks-like-a-tenant-talks-like-a-tenant-but-is-not-a-tenant/).
 * En **TokenValidationParameters**, establezca **ValidateIssuer** en false. Esto significa que la aplicación se encargará de validar el valor del emisor en el token de identificador. (El middleware sigue validando el token por sí mismo). Para obtener más información acerca de la validación del emisor, consulte [Issuer validation](claims.md#issuer-validation) (Validación de emisor).
 * **PostLogoutRedirectUri**. Especifique una dirección URL a la que redirigir a los usuarios tras el cierre de sesión. Debe tratarse de una página que permita las solicitudes anónimas, normalmente la página principal.
 * **SignInScheme**. Establezca esta opción en `CookieAuthenticationDefaults.AuthenticationScheme`. Esta configuración significa que, después de autenticarse el usuario, las notificaciones de usuario se almacenan localmente en una cookie. Esta cookie es la forma en que la sesión del usuario permanece iniciada durante la sesión del explorador.
