@@ -6,12 +6,12 @@ ms:date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authenticate
 pnp.series.next: signup
-ms.openlocfilehash: 61788d9759715b21ef1bdda59c5b54d923fd8f62
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 46c43c9bfa4514f206b5e7eabd9223ad4c61628b
+ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541919"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47429384"
 ---
 # <a name="work-with-claims-based-identities"></a>Uso de identidades basadas en notificaciones
 
@@ -27,17 +27,17 @@ En un alto nivel:
 3. La aplicación normaliza o aumenta las notificaciones (opcionales).
 4. La aplicación usa las notificaciones para tomar decisiones de autorización.
 
-En OpenID Connect, el [parámetro de ámbito] de la solicitud de autenticación controla el conjunto de notificaciones que se obtienen. Sin embargo, Azure AD emite un conjunto limitado de notificaciones a través de OpenID Connect; vea [Tipos de notificaciones y tokens admitidos]. Si desea obtener más información sobre el usuario, debe usar la API Graph de Azure AD.
+En OpenID Connect, el [parámetro de ámbito] de la solicitud de autenticación controla el conjunto de notificaciones que se obtienen. Sin embargo, Azure AD emite un conjunto limitado de notificaciones a través de OpenID Connect; vea [Tipos de notificaciones y tokens admitidos]. Si desea obtener más información sobre el usuario, debe usar Graph API de Azure AD.
 
 Estas son algunas de las notificaciones de AAD de las que normalmente podría encargarse una aplicación:
 
-| Tipo de notificación en el token de identificador. | Descripción |
+| Tipo de notificación en el token de identificador. | DESCRIPCIÓN |
 | --- | --- |
 | aud |Para quién se emitió el token. Será el identificador de cliente de la aplicación. Por lo general, no es necesario preocuparse por esta notificación porque el middleware la valida automáticamente. Ejemplo: `"91464657-d17a-4327-91f3-2ed99386406f"` |
 | groups |Una lista de grupos de AAD de los que el usuario es miembro. Ejemplo: `["93e8f556-8661-4955-87b6-890bc043c30f", "fc781505-18ef-4a31-a7d5-7d931d7b857e"]` |
 | iss |El [emisor] del token OIDC. Ejemplo: `https://sts.windows.net/b9bd2162-77ac-4fb2-8254-5c36e9c0a9c4/` |
-| name |Nombre para mostrar del usuario. Ejemplo: `"Alice A."` |
-| oid |El identificador de objeto para el usuario en AAD. Este valor es el identificador inmutable y no reutilizable del usuario. Utilice este valor, no el correo electrónico, como un identificador único para los usuarios; las direcciones de correo electrónico pueden cambiar. Si utiliza la API Graph de Azure AD en su aplicación, el identificador de objeto es el valor que se usa para consultar la información de perfil. Ejemplo: `"59f9d2dc-995a-4ddf-915e-b3bb314a7fa4"` |
+| Nombre |Nombre para mostrar del usuario. Ejemplo: `"Alice A."` |
+| oid |El identificador de objeto para el usuario en AAD. Este valor es el identificador inmutable y no reutilizable del usuario. Utilice este valor, no el correo electrónico, como un identificador único para los usuarios; las direcciones de correo electrónico pueden cambiar. Si utiliza Graph API de Azure AD en su aplicación, el identificador de objeto es el valor que se usa para consultar la información de perfil. Ejemplo: `"59f9d2dc-995a-4ddf-915e-b3bb314a7fa4"` |
 | roles |Una lista de roles de aplicación para el usuario.    Ejemplo: `["SurveyCreator"]` |
 | tid |Identificador de inquilino. Este valor es un identificador único para el inquilino en Azure AD. Ejemplo: `"b9bd2162-77ac-4fb2-8254-5c36e9c0a9c4"` |
 | unique_name |Un nombre del usuario para mostrar en lenguaje natural. Ejemplo: `"alice@contoso.com"` |
@@ -51,7 +51,7 @@ Esta tabla enumera los tipos de notificación tal y como aparecen en el token de
 * upn > `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn`
 
 ## <a name="claims-transformations"></a>Transformaciones de notificaciones
-Durante el flujo de autenticación, puede que desee modificar las notificaciones que obtiene del IDP. En ASP.NET Core, puede realizar la transformación de notificaciones dentro del evento **AuthenticationValidated** desde el middleware OpenID Connect. Vea [Authentication events (Eventos de autenticación)].
+Durante el flujo de autenticación, puede que desee modificar las notificaciones que obtiene del IDP. En ASP.NET Core, puede realizar la transformación de notificaciones dentro del evento **AuthenticationValidated** desde el middleware OpenID Connect. Vea [Eventos de autenticación].
 
 Todas las notificaciones que agregue durante **AuthenticationValidated** se almacenan en la cookie de autenticación de sesión. No se hacen retroceder a Azure AD.
 
@@ -117,10 +117,10 @@ Para más información, consulte [Autorización basada en recursos y roles en ap
 
 <!-- Links -->
 
-[parámetro de ámbito]: http://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
+[parámetro de ámbito]: https://nat.sakimura.org/2012/01/26/scopes-and-claims-in-openid-connect/
 [Tipos de notificaciones y tokens admitidos]: /azure/active-directory/active-directory-token-and-claims/
-[emisor]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
-[Authentication events (Eventos de autenticación)]: authenticate.md#authentication-events
+[emisor]: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
+[Eventos de autenticación]: authenticate.md#authentication-events
 [signup]: signup.md
 [Claims-Based Authorization]: /aspnet/core/security/authorization/claims
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance
