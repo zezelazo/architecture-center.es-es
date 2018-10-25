@@ -2,13 +2,13 @@
 title: Consideraciones de datos para los microservicios
 description: Consideraciones de datos para los microservicios
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: 9bd7a8424309b5753b42cfb70559836288a3ce9d
-ms.sourcegitcommit: c7f46b14ad7d55cf553b2d0b01045c9c25aefcdb
+ms.date: 10/23/2018
+ms.openlocfilehash: 5ef2578820c3e02ac2293a5fcb5581bdccf96966
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/09/2017
-ms.locfileid: "26587763"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962847"
 ---
 # <a name="designing-microservices-data-considerations"></a>Diseño de microservicios: consideraciones de datos
 

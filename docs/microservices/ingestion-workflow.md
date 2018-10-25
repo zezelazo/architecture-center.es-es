@@ -2,13 +2,13 @@
 title: Ingesta y flujo de trabajo en los microservicios
 description: Ingesta y flujo de trabajo en los microservicios
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: 1851d979ed23b35046474f299128064d1abb375e
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/23/2018
+ms.openlocfilehash: 5b39087297a05e5a59644c5ae1cf1f0334c996d0
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429492"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962932"
 ---
 # <a name="designing-microservices-ingestion-and-workflow"></a>Diseño de microservicios: ingesta y flujo de trabajo
 

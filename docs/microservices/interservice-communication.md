@@ -2,13 +2,13 @@
 title: Comunicación entre servicios en los microservicios
 description: Comunicación entre servicios en los microservicios
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: aff2fb7b2be25ca32d6224cee15363880cfb1488
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.date: 10/23/2018
+ms.openlocfilehash: 19a54ffc362a1fc88c3255c9346bd697a319b143
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/29/2017
-ms.locfileid: "27549134"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962966"
 ---
 # <a name="designing-microservices-interservice-communication"></a>Diseño de microservicios: comunicación entre servicios
 
@@ -99,7 +99,7 @@ Una *malla de servicio* es una capa de software que controla la comunicación de
 > [!NOTE]
 > La malla de servicio es un ejemplo del [patrón Ambassador](../patterns/ambassador.md) &mdash;, un servicio de aplicación auxiliar que envía solicitudes de red en nombre de la aplicación. 
 
-En estos momentos, las opciones principales para una malla de servicio en Kubernetes son [linkerd](https://linkerd.io/) y [Istio](https://istio.io/). Estas dos tecnologías están evolucionando rápidamente. En el momento de redactar esta guía, la versión más reciente de Istio es 0.2, osea que sigue siendo muy nuevo. De todas formas, algunas características que tienen en común linkerd y Istio incluyen: 
+En estos momentos, las opciones principales para una malla de servicio en Kubernetes son [linkerd](https://linkerd.io/) y [Istio](https://istio.io/). Estas dos tecnologías están evolucionando rápidamente. De todas formas, algunas características que tienen en común linkerd y Istio incluyen: 
 
 - El equilibrio de carga en el nivel de sesión, en función de las latencias observadas o el número de solicitudes pendientes. Esto puede mejorar el rendimiento sobre el equilibrio de carga de nivel 4 que proporciona Kubernetes. 
 

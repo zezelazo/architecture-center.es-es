@@ -2,13 +2,13 @@
 title: Diseño de API
 description: Diseño de API para microservicios
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: e3524fca177d8c15b280d0f8a706539369c1773a
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/23/2018
+ms.openlocfilehash: 21cbd0d8e218e0928f137dff15c5a4762cad8dc7
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429135"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962813"
 ---
 # <a name="designing-microservices-api-design"></a>Diseño de microservicios: diseño de API
 

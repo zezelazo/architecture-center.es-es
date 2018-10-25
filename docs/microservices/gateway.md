@@ -2,13 +2,13 @@
 title: Puertas de enlace de API
 description: Puertas de enlace de API en microservicios
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: 6483d416363e24f4084d6b856847a740bf4054d9
-ms.sourcegitcommit: a8453c4bc7c870fa1a12bb3c02e3b310db87530c
+ms.date: 10/23/2018
+ms.openlocfilehash: 41554e6abf4db61d1fa6e501419425d331495afc
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/29/2017
-ms.locfileid: "27549185"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962830"
 ---
 # <a name="designing-microservices-api-gateways"></a>Diseño de microservicios: puertas de enlace de API
 
@@ -57,7 +57,7 @@ Aquí tiene algunas opciones para implementar una puerta de enlace de API en una
 
 - [Azure Application Gateway](/azure/application-gateway/). Application Gateway es un servicio de equilibrio de carga administrada que puede realizar el enrutamiento de nivel 7 y la terminación SSL. También proporciona un firewall de aplicación web (WAF).
 
-- [Azure API Management](/azure/api-management/). Azure API Management es una solución completa para publicar API para clientes externos e internos. Proporciona características que resultan útiles para administrar una API expuesta al público, incluida la limitación de velocidad, la lista de direcciones IP permitidas y la autenticación con Azure Active Directory u otros proveedores de identidad. API Management no realiza el equilibrio de carga, por lo que debe usarse junto con un equilibrador de carga como Application Gateway o un proxy inverso.
+- [Azure API Management](/azure/api-management/). Azure API Management es una solución completa para publicar API para clientes externos e internos. Proporciona características que resultan útiles para administrar una API expuesta al público, incluida la limitación de velocidad, la lista de direcciones IP permitidas y la autenticación con Azure Active Directory u otros proveedores de identidad. API Management no realiza el equilibrio de carga, por lo que debe usarse junto con un equilibrador de carga como Application Gateway o un proxy inverso. Para obtener información acerca del uso de API Management con Application Gateway, consulte [Integración de API Management en una red virtual interna con Application Gateway](/azure/api-management/api-management-howto-integrate-internal-vnet-appgateway).
 
 Al elegir una tecnología de puerta de enlace, tenga en cuenta lo siguiente:
 
@@ -67,15 +67,11 @@ Al elegir una tecnología de puerta de enlace, tenga en cuenta lo siguiente:
 
 **Administración**. Cuando los servicios se actualizan o se agregan otros nuevos, las reglas de enrutamiento de puerta de enlace tienen que actualizarse. Tenga en cuenta cómo se administrará este proceso. Algunas consideraciones similares se aplican a la administración de certificados SSL, listas de direcciones IP permitidas y otros aspectos de la configuración.
 
-## <a name="deployment-considerations"></a>Consideraciones de la implementación
-
-### <a name="deploying-nginx-or-haproxy-to-kubernetes"></a>Implementación de Nginx o HAProxy en Kubernetes
+## <a name="deploying-nginx-or-haproxy-to-kubernetes"></a>Implementación de Nginx o HAProxy en Kubernetes
 
 Puede implementar Nginx o HAProxy en Kubernetes como [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/) o [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) que especifica la imagen de contenedor de Nginx o HAProxy. Use ConfigMap para almacenar el archivo de configuración del proxy y móntelo como un volumen. Cree un servicio del tipo del equilibrador de carga para exponer la puerta de enlace a través de Azure Load Balancer. 
 
-<!-- - Configure a readiness probe that serves a static file from the gateway (rather than routing to another service). -->
-
-Una alternativa es crear un recurso Ingress Controller. Se trata de un recurso de Kubernetes que implementa un servidor proxy inverso o un equilibrador de carga. Existen varias implementaciones, como son Nginx y HAProxy. Un recurso independiente denominado elemento Ingress define la configuración de Ingress Controller, tales como las reglas de enrutamiento y los certificados TLS. De este modo, no es necesario administrar los complejos archivos de configuración específicos de una tecnología de servidor proxy determinada. Ingress Controllers sigue siendo una característica beta de Kubernetes en el momento de redactar este artículo y continuará evolucionando.
+Una alternativa es crear un recurso Ingress Controller. Se trata de un recurso de Kubernetes que implementa un servidor proxy inverso o un equilibrador de carga. Existen varias implementaciones, como son Nginx y HAProxy. Un recurso independiente denominado elemento Ingress define la configuración de Ingress Controller, tales como las reglas de enrutamiento y los certificados TLS. De este modo, no es necesario administrar los complejos archivos de configuración específicos de una tecnología de servidor proxy determinada.
 
 La puerta de enlace es un posible cuello de botella o un único punto de error en el sistema, por lo que siempre debe implementar al menos dos réplicas para lograr una elevada disponibilidad. Puede que deba escalar horizontalmente las réplicas todavía más, según la carga. 
 
@@ -86,35 +82,6 @@ Considere también ejecutar la puerta de enlace en un conjunto dedicado de nodos
 - Configuración estable. Si la puerta de enlace está mal configurada, toda la aplicación podría dejar de estar disponible. 
 
 - Rendimiento. Puede utilizar una configuración de máquina virtual específica para la puerta de enlace por motivos de rendimiento.
-
-<!-- - Load balancing. You can configure the external load balancer so that requests always go to a gateway node. That can save a network hop, which would otherwise happen whenever a request lands on a node that isn't running a gateway pod. This consideration applies mainly to large clusters, where the gateway runs on a relatively small fraction of the total nodes. In Azure Container Service (ACS), this approach currently requires [ACS Engine](https://github.com/Azure/acs-engine)) which allows you to create multiple agent pools. Then you can deploy the gateway as a DaemonSet to the front-end pool. -->
-
-### <a name="azure-application-gateway"></a>Azure Application Gateway
-
-Para conectar Application Gateway a un clúster de Kubernetes de Azure:
-
-1. Cree una subred vacía en la red virtual del clúster.
-2. Implemente Application Gateway.
-3. Cree un servicio de Kubernetes con el tipo =[NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport). Así se expone el servicio en cada nodo para que se pueda llegar desde fuera del clúster. No crea un equilibrador de carga.
-5. Obtenga el número de puerto asignado para el servicio.
-6. Agregue una regla de Application Gateway en la que:
-    - El grupo de back-end contenga las máquinas virtuales del agente.
-    - La configuración HTTP especifique el número de puerto de servicio.
-    - El agente de escucha de la puerta de enlace realice escuchas en los puertos 80 y 443.
-    
-Establezca el número de instancias en dos o más para lograr una elevada disponibilidad.
-
-### <a name="azure-api-management"></a>Azure API Management 
-
-Para conectar API Management a un clúster de Kubernetes en Azure:
-
-1. Cree una subred vacía en la red virtual del clúster.
-2. Implemente API Management en esa subred.
-3. Cree un servicio de Kubernetes del tipo LoadBalancer (equilibrador de carga). Use la anotación del [equilibrador de carga interno](https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer) para crear uno de ese tipo, en lugar de uno expuesto a Internet, que es lo predeterminado.
-4. Busque la dirección IP privada del equilibrador de carga interno, mediante kubectl o la CLI de Azure.
-5. Use API Management para crear una API que dirija a la dirección IP privada del equilibrador de carga.
-
-Considere la posibilidad de combinar API Management con un proxy inverso, ya sea Nginx, HAProxy o Azure Application Gateway. Para obtener información acerca del uso de API Management con Application Gateway, consulte [Integración de API Management en una red virtual interna con Application Gateway](/azure/api-management/api-management-howto-integrate-internal-vnet-appgateway).
 
 > [!div class="nextstepaction"]
 > [Registro y supervisión](./logging-monitoring.md)

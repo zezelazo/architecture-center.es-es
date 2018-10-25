@@ -3,12 +3,12 @@ title: Selección de una tecnología de procesamiento de flujos
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: fd93418c62b584e79f229e9f42703d148aeb0eca
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: b78ebe253e927eece38930ba7f6186f485a956f7
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37091070"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962929"
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a>Selección de una tecnología de procesamiento de flujos
 
@@ -60,13 +60,12 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 | | Azure Stream Analytics | HDInsight con Spark Streaming | Apache Spark en Azure Databricks | HDInsight con Storm | Azure Functions | Azure App Service WebJobs |
 | --- | --- | --- | --- | --- | --- | --- | 
-| Compatibilidad integrada con almacenamiento temporal o basado en ventanas | Sí | Sí | Sí | Sí | Sin  | Sin  |
+| Compatibilidad integrada con almacenamiento temporal o basado en ventanas | SÍ | Sí | Sí | SÍ | No | Sin  |
 | Formatos de datos de entrada | Avro, JSON o CSV, con codificación UTF-8 | Cualquier formato que use código personalizado | Cualquier formato que use código personalizado | Cualquier formato que use código personalizado | Cualquier formato que use código personalizado | Cualquier formato que use código personalizado |
 | Escalabilidad | [Particiones de consulta](/azure/stream-analytics/stream-analytics-parallelization) | Limitada por el tamaño del clúster | Limitado por la configuración de escalado del clúster de Databricks | Limitada por el tamaño del clúster | Hasta 200 instancias de aplicación de función procesándose en paralelo | Limitada por la capacidad del plan de App Service | 
-| Compatibilidad con control de eventos desordenados y llegada tardía | Sí | Sí | Sí | Sí | Sin  | Sin  |
+| Compatibilidad con control de eventos desordenados y llegada tardía | SÍ | Sí | Sí | SÍ | No | Sin  |
 
 Consulte también:
 
 - [Elección de una tecnología de ingesta de mensajes en tiempo real](./real-time-ingestion.md)
-- [Comparación de Apache Storm y Azure Stream Analytics](/azure/stream-analytics/stream-analytics-comparison-storm)
 - [Procesamiento en tiempo real](../big-data/real-time-processing.md)
