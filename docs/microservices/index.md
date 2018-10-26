@@ -2,13 +2,13 @@
 title: Diseño, compilación y operación de microservicios en Azure con Kubernetes
 description: Diseño, compilación y operación de microservicios en Azure
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: 857e91a8eeefec18b459f2e66fde9a4f8bbe7b21
-ms.sourcegitcommit: 744ad1381e01bbda6a1a7eff4b25e1a337385553
+ms.date: 10/23/2018
+ms.openlocfilehash: cac16c9212432c72aeaecac1a578828a00838431
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/08/2018
-ms.locfileid: "27701109"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962779"
 ---
 # <a name="designing-building-and-operating-microservices-on-azure"></a>Diseño, compilación y operación de microservicios en Azure
 
@@ -85,7 +85,7 @@ Este escenario implica un dominio bastante complicado. Algunas de las cuestiones
 > [!NOTE]
 > Para ayuda para elegir entre una arquitectura de microservicios y otros estilos de arquitectura, consulte la [Guía de la arquitectura de aplicaciones en Azure](../guide/index.md).
 
-Nuestra implementación de referencia usa Kubernetes con [Azure Container Service (ACS)](/azure/container-service/kubernetes/). Sin embargo, muchos de los desafíos y las decisiones de arquitectura de alto nivel se aplicarán a cualquier orquestador de contenedor, incluido [Azure Service Fabric](/azure/service-fabric/). 
+Nuestra implementación de referencia usa Kubernetes con [Azure Kubernetes Service](/azure/aks/) (AKS). Sin embargo, muchos de los desafíos y las decisiones de arquitectura de alto nivel se aplicarán a cualquier orquestador de contenedor, incluido [Azure Service Fabric](/azure/service-fabric/). 
 
 > [!div class="nextstepaction"]
 > [Análisis del dominio](./domain-analysis.md)
