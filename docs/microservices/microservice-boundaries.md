@@ -2,13 +2,13 @@
 title: Identificación de los límites de los microservicios
 description: Identificación de los límites de los microservicios
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: d35b92ffd97c4fda5d6599340925ce3dfea7f15b
-ms.sourcegitcommit: a5e549c15a948f6fb5cec786dbddc8578af3be66
+ms.date: 10/23/2018
+ms.openlocfilehash: 679696818d50b70a5116916bd9198a390abfd7fe
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/06/2018
-ms.locfileid: "33673409"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962796"
 ---
 # <a name="designing-microservices-identifying-microservice-boundaries"></a>Diseño de microservicios: identificación de los límites de los microservicios
 
@@ -83,13 +83,18 @@ Aunque estas no son las únicas opciones, ambas son métodos probados para gener
 
 ### <a name="service-orchestrators"></a>Orquestadores de servicios
 
-Un orquestador controla las tareas relacionadas con la implementación y administración de un conjunto de servicios. Estas tareas incluyen colocar servicios en los nodos, supervisar el estado de los servicios, reiniciar los servicios en mal estado, equilibrar la carga del tráfico de red en todas las instancias de servicio, detectar servicios, escalar el número de instancias de un servicio y aplicar actualizaciones de configuración. Entre los orquestadores más populares se encuentran Kubernetes, DC/OS, Docker Swarm y Service Fabric. 
+Un orquestador controla las tareas relacionadas con la implementación y administración de un conjunto de servicios. Estas tareas incluyen colocar servicios en los nodos, supervisar el estado de los servicios, reiniciar los servicios en mal estado, equilibrar la carga del tráfico de red en todas las instancias de servicio, detectar servicios, escalar el número de instancias de un servicio y aplicar actualizaciones de configuración. Entre los orquestadores más conocidos se encuentran Kubernetes, Service Fabric, DC/OS y Docker Swarm
 
-- [Azure Container Service](/azure/container-service/) (ACS) es un servicio de Azure que le permite implementar un clúster de Kubernetes, DC/OS o Docker Swarm listo para producción.
+En la plataforma Azure, tenga en cuenta las siguientes opciones:
 
-- [AKS (Azure Container Service)](/azure/aks/) es un servicio administrado de Kubernetes. AKS aprovisiona Kubernetes y expone los puntos de conexión de la API de Kubernetes, pero hospeda y administra el plano de control de Kubernetes, realizando actualizaciones automatizadas, correcciones automatizadas, autoescala y otras tareas de administración. Se puede considerar AKS como "API de Kubernetes como servicio". En el momento de redactar este texto, AKS sigue aún en versión preliminar. De todas formas, se espera que AKS se convertirá en la mejor manera de ejecutar Kubernetes en Azure. 
+- [Azure Kubernetes Service](/azure/aks/) (AKS) es un servicio administrado de Kubernetes. AKS aprovisiona Kubernetes y expone los puntos de conexión de la API de Kubernetes, pero hospeda y administra el plano de control de Kubernetes, realizando actualizaciones automatizadas, correcciones automatizadas, autoescala y otras tareas de administración. Se puede considerar AKS como "API de Kubernetes como servicio". 
 
 - [Service Fabric](/azure/service-fabric/) es una plataforma de sistemas distribuidos para empaquetar, implementar y administrar microservicios. Los microservicios pueden implementarse en Service Fabric como contenedores, como archivos ejecutables binarios o como [Reliable Services](/azure/service-fabric/service-fabric-reliable-services-introduction). Usando el modelo de programación de Reliable Services, los servicios pueden utilizar directamente las API de programación de Service Fabric para consultar el sistema, informar del estado, recibir notificaciones acerca de la configuración y los cambios de código y detectar otros servicios. Una diferencia clave con Service Fabric es el enfoque prioritario dado a la creación de servicios con estado mediante [Reliable Collections](/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
+
+- [Azure Container Service](/azure/container-service/) (ACS) es un servicio de Azure que permite implementar un clúster de Kubernetes, DC/OS o Docker Swarm listo para producción. 
+
+  > [!NOTE]
+  > Aunque Kubernetes es compatible con ACS, se recomienda AKS para ejecutar Kubernetes en Azure. AKS proporciona funcionalidades de administración mejoradas y ventajas en los costos.
 
 ### <a name="containers"></a>Contenedores
 
@@ -103,7 +108,7 @@ A veces se habla de contenedores y microservicios como si fueran lo mismo. Aunqu
 
 ### <a name="serverless-functions-as-a-service"></a>Arquitectura sin servidor (funciones como un servicio)
 
-Con una arquitectura sin servidor, no se administran las máquinas virtuales ni la infraestructura de red virtual. En su lugar, se implementa código y el servicio de hospedaje controla la colocación de ese código en una máquina virtual y lo ejecuta. Este enfoque tiende a favorecer a las pequeñas funciones pormenorizadas que se coordinan mediante el uso de los desencadenadores basados en eventos. Por ejemplo, un mensaje que se colocan en una cola puede desencadenar una función que lee de la cola y procesa el mensaje.
+Con una arquitectura [sin servidor](https://azure.microsoft.com/solutions/serverless/), no se administran las máquinas virtuales ni la infraestructura de red virtual. En su lugar, se implementa código y el servicio de hospedaje controla la colocación de ese código en una máquina virtual y lo ejecuta. Este enfoque tiende a favorecer a las pequeñas funciones pormenorizadas que se coordinan mediante el uso de los desencadenadores basados en eventos. Por ejemplo, un mensaje que se colocan en una cola puede desencadenar una función que lee de la cola y procesa el mensaje.
 
 [Azure Functions][functions] es un servicio de proceso sin servidor que admite varios desencadenadores de función, incluidas las solicitudes HTTP, las colas de Service Bus y los eventos de Event Hubs. Si desea una lista completa consulte [Conceptos básicos sobre los enlaces y desencadenadores de Azure Functions][functions-triggers]. Tenga en cuenta también a [Azure Event Grid][event-grid], que es un servicio de enrutamiento de evento administrado de Azure.
 

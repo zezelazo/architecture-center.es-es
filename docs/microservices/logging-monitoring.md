@@ -2,13 +2,13 @@
 title: Registro y supervisión en los microservicios
 description: Registro y supervisión en los microservicios
 author: MikeWasson
-ms.date: 12/08/2017
-ms.openlocfilehash: b7206e2f35b9f227ff298f077ddafef1c6015b15
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/23/2018
+ms.openlocfilehash: c2a935f51c57936977fb4402de2113938351069c
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428778"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962881"
 ---
 # <a name="designing-microservices-logging-and-monitoring"></a>Diseño de microservicios: registro y supervisión
 
@@ -18,19 +18,19 @@ En las aplicaciones complejas, en algún momento algo puede salir mal. En una ap
 
 En una arquitectura de microservicios, puede ser especialmente difícil identificar la causa exacta de los errores o los cuellos de botella de rendimiento. Una única operación de usuario puede abarcar varios servicios. Los servicios pueden experimentar límites de E/S de red dentro del clúster. Una cadena de llamadas a través de los servicios puede provocar una contrapresión en el sistema, y generar una latencia alta o errores en cascada. Además, por lo general, no sabe en qué nodo se va a ejecutar un contenedor determinado. Los contenedores que se encuentran en el mismo nodo pueden competir entre sí por una CPU o una memoria limitada. 
 
-Para facilitar la lectura de lo que está sucediendo, la aplicación debe emitir eventos de telemetría. Puede clasificar estos elementos en métricas y registros basados en texto. 
+Para comprender lo que está pasando, debe recopilar la telemetría de la aplicación.  Los datos de telemetría se pueden dividir en *registros* y *métricas*. [Azure Monitor](/azure/monitoring-and-diagnostics/monitoring-overview) recopila registros y métricas en toda la plataforma Azure.
 
-Las *métricas* son valores numéricos que se pueden analizar. Puede usarlas para observar el sistema en tiempo real (o casi en tiempo real) o para analizar las tendencias de rendimiento a lo largo del tiempo. Entre las métricas se incluyen:
+Los **registros** son registros de eventos basados en texto que tienen lugar mientras la aplicación está en ejecución. Incluyen elementos como registros de aplicación (instrucciones de seguimiento) o registros de servidor web. Los registros son sobre todo útiles para analizar la causa raíz y los análisis forenses. 
 
-- Métricas del sistema en el nivel de nodo, incluidos CPU, memoria, red, disco y uso del sistema de archivos. Las métricas del sistema le ayudan a comprender la asignación de recursos para cada nodo del clúster y solucionar problemas de valores atípicos.
- 
-- Métricas de Kubernetes. Dado que los servicios se ejecutan en contenedores, debe recopilar métricas en el nivel de contenedor, no solo en el nivel de máquina virtual. En Kubernetes, cAdvisor (asesor de contenedor) es el agente que recopila estadísticas acerca de la CPU, la memoria, el sistema de archivos y los recursos de red utilizados por cada contenedor. El demonio kubelet recopila estadísticas de recursos de cAdvisor y los expone a través de una API de REST.
-   
-- Métricas de aplicación. Aquí se incluyen todas las métricas que sean pertinentes para conocer el comportamiento de un servicio. Entre los ejemplos se encuentran el número de solicitudes HTTP entrantes en cola, la latencia de solicitud, la longitud de la cola de mensajes o el número de transacciones procesadas por segundo.
+Las **métricas** son valores numéricos que se pueden analizar. Puede usarlas para observar el sistema en tiempo real (o casi en tiempo real) o para analizar las tendencias de rendimiento a lo largo del tiempo. Las métricas se pueden subclasificar además de la siguiente manera:
 
-- Métricas de servicios dependientes. Los servicios del clúster pueden llamar a servicios externos que estén fuera del clúster, como los servicios administrados de PaaS. Puede supervisar los servicios de Azure mediante [Azure Monitor](/azure/monitoring-and-diagnostics/monitoring-overview). Los servicios de terceros pueden proporcionar o no todas las métricas. Si no es así, tendrá que depender de sus propias métricas de aplicación para realizar el seguimiento de estadísticas de latencia y tasa de errores.
+- Métricas de **nivel de nodo**, lo que incluye uso de CPU, memoria, red, disco y sistema de archivos. Las métricas del sistema le ayudan a comprender la asignación de recursos para cada nodo del clúster y solucionar problemas de valores atípicos.
 
-Los *registros* son registros de eventos que se producen mientras se ejecuta la aplicación. Incluyen elementos como registros de aplicación (instrucciones de seguimiento) o registros de servidor web. Los registros son sobre todo útiles para analizar la causa raíz y los análisis forenses. 
+- Métricas de **contenedor**. Si los servicios se ejecutan en contenedores, debe recopilar las métricas en el nivel de contenedor, no solo en el nivel de máquina virtual. Puede configurar Azure Monitor para supervisar las cargas de trabajo de contenedor en Azure Kubernetes Service (AKS). Para más información, consulte [Introducción a Azure Monitor para contenedores](/azure/monitoring/monitoring-container-insights-overview). Para otros orquestadores de contenedores, use la [solución de supervisión de contenedores de Log Analytics](/azure/log-analytics/log-analytics-containers).
+
+- Métricas de **aplicación**. Aquí se incluyen todas las métricas que sean pertinentes para conocer el comportamiento de un servicio. Algunos ejemplos son el número de solicitudes HTTP entrantes en cola, la latencia de solicitud o la longitud de cola de mensajes. Las aplicaciones también pueden crear métricas personalizadas que son específicas del dominio, como el número de transacciones de negocio procesadas por minuto. Use [Application Insights](/azure/application-insights/app-insights-overview) para habilitar las métricas de la aplicación. 
+
+- Métricas de **servicios dependientes**. Los servicios pueden llamar a servicios o puntos de conexión externos, como servicios PaaS o SaaS administrados. Los servicios de terceros pueden proporcionar o no todas las métricas. Si no es así, tendrá que depender de sus propias métricas de aplicación para realizar el seguimiento de estadísticas de latencia y tasa de errores.
 
 ## <a name="considerations"></a>Consideraciones
 

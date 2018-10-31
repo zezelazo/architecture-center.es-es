@@ -4,12 +4,12 @@ description: Convenciones de nomenclatura para los recursos de Azure. Qué nombr
 author: telmosampaio
 ms.date: 05/18/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: 96402b86b9dc0c57599aae585b41d0d03581c333
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 7a94e7b3a54f48a8b1996415e194ecacb4261399
+ms.sourcegitcommit: fdcacbfdc77370532a4dde776c5d9b82227dff2d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429662"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49962983"
 ---
 # <a name="naming-conventions"></a>Convenciones de nomenclatura
 
@@ -78,7 +78,7 @@ En general, evite tener caracteres especiales (`-` o `_`) como primer o último 
 
 | Entidad | Ámbito | Length | Uso de mayúsculas y minúsculas | Caracteres válidos | Patrón sugerido | Ejemplo |
 | --- | --- | --- | --- | --- | --- | --- |
-|Grupo de recursos |Subscription |1-90 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado, paréntesis, guión, punto (excepto al final) y caracteres Unicode |`<service short name>-<environment>-rg` |`profx-prod-rg` |
+|Grupo de recursos |Subscription |1-90 |No distingue mayúsculas de minúsculas |Alfanuméricos, subrayado, paréntesis, guion, punto (excepto al final) y caracteres Unicode que coincidan con la expresión regular documentada [aquí](/rest/api/resources/resourcegroups/createorupdate).  |`<service short name>-<environment>-rg` |`profx-prod-rg` |
 |Conjunto de disponibilidad |Grupo de recursos |1-80 |No distingue mayúsculas de minúsculas |Alfanuméricos, carácter de subrayado y guión |`<service-short-name>-<context>-as` |`profx-sql-as` |
 |Etiqueta |Entidad asociada |512 (nombre), 256 (valor) |No distingue mayúsculas de minúsculas |Alfanuméricas |`"key" : "value"` |`"department" : "Central IT"` |
 

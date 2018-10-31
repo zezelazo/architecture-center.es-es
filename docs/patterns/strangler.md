@@ -3,12 +3,12 @@ title: Patrón Strangler
 description: Migra de forma incremental un sistema heredado reemplazando gradualmente funciones específicas por los servicios y aplicaciones nuevas.
 author: dragon119
 ms.date: 06/23/2017
-ms.openlocfilehash: d03e8a1ef9077b6e00ea5a17423bf7e09b68111a
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 0bf0b76a69f947419da83edd894a04dbea02371b
+ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540991"
+ms.lasthandoff: 10/25/2018
+ms.locfileid: "50001888"
 ---
 # <a name="strangler-pattern"></a>Patrón Strangler
 
@@ -47,6 +47,7 @@ Este patrón puede no ser adecuado:
 
 ## <a name="related-guidance"></a>Instrucciones relacionadas
 
+- Entrada de blog de Martin en [StranglerApplication](https://www.martinfowler.com/bliki/StranglerApplication.html)
 - [Anti-Corruption Layer pattern](./anti-corruption-layer.md) (Patrón Anti-Corruption Layer)
 - [Gateway Routing pattern](./gateway-routing.md) (Patrón Gateway Routing)
 
