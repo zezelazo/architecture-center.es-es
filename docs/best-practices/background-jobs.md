@@ -4,12 +4,12 @@ description: Orientación sobre las tareas en segundo plano que se ejecutan inde
 author: dragon119
 ms.date: 05/24/2017
 pnp.series.title: Best Practices
-ms.openlocfilehash: fa5c6352da289591d92b9427c44b8ba9f01245aa
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 57fd7a6cc400b53e51e08fb5a1377dce4ae61327
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429628"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251930"
 ---
 # <a name="background-jobs"></a>Trabajos en segundo plano
 [!INCLUDE [header](../_includes/header.md)]
@@ -238,10 +238,10 @@ Tenga en cuenta los siguientes puntos si está implementando tareas en segundo p
     var freeze = CloudConfigurationManager.GetSetting("Freeze");
     if (freeze != null)
     {
-     if (Boolean.Parse(freeze))
-       {
-         Thread.Sleep(System.Threading.Timeout.Infinite);
-     }
+      if (Boolean.Parse(freeze))
+      {
+        Thread.Sleep(System.Threading.Timeout.Infinite);
+      }
     }
     ```
     

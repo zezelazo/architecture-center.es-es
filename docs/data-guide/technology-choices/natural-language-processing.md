@@ -3,12 +3,12 @@ title: Elección de una tecnología de procesamiento de lenguaje natural
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: dacf7bf9cf3e9efed212f34da93c1470954965cf
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.openlocfilehash: bac0318a587a944c104360eb31223cc8755c1860
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288857"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251777"
 ---
 # <a name="choosing-a-natural-language-processing-technology-in-azure"></a>Elección de una tecnología de procesamiento de lenguaje natural en Azure
 
@@ -19,7 +19,8 @@ El procesamiento de texto de forma libre se realiza en documentos que contienen 
 En Azure, los servicios siguientes proporcionan funcionalidades de procesamiento de lenguaje natural (NLP):
 
 - [Azure HDInsight con Spark y Spark MLlib](/azure/hdinsight/spark/apache-spark-overview)
-- [Microsoft Cognitive Services](/azure/#pivot=products&panel=cognitive)
+- [Azure Databricks](/azure/azure-databricks/what-is-azure-databricks)
+- [Microsoft Cognitive Services](/azure/cognitive-services/welcome)
 
 ## <a name="key-selection-criteria"></a>Principales criterios de selección
 
@@ -41,10 +42,10 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 | | HDInsight de Azure | Microsoft Cognitive Services |
 | --- | --- | --- |
-| Proporciona modelos previamente entrenados como un servicio | Sin  | Sí |
-| API DE REST | Sí | Sí |
+| Proporciona modelos previamente entrenados como un servicio | Sin  | SÍ |
+| API DE REST | SÍ | SÍ |
 | Capacidad de programación | Python, Scala, Java | C#, Java, Node.js, Python, PHP, Ruby |
-| Admite el procesamiento de macrodatos y documentos de gran tamaño | Sí | Sin  |
+| Admite el procesamiento de macrodatos y documentos de gran tamaño | SÍ | Sin  |
 
 ### <a name="low-level-natural-language-processing-capabilities"></a>Funcionalidades de procesamiento de lenguaje natural de bajo nivel
 
