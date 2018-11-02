@@ -2,13 +2,13 @@
 title: Ejecución de un servidor Jenkins en Azure
 description: Esta arquitectura de referencia muestra cómo implementar y hacer funcionar un servidor Jenkins escalable y de nivel empresarial en Azure protegido con un inicio de sesión único (SSO).
 author: njray
-ms.date: 01/21/18
-ms.openlocfilehash: 5f9c54e71a8750e88de1ae633ccc1316f8375d3a
-ms.sourcegitcommit: 0de300b6570e9990e5c25efc060946cb9d079954
+ms.date: 04/30/2018
+ms.openlocfilehash: 89839b0f1c9624176a7b51dca53713070c88b154
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/03/2018
-ms.locfileid: "32323931"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916403"
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>Ejecución de un servidor Jenkins en Azure
 
@@ -22,7 +22,7 @@ Esta arquitectura admite la recuperación ante desastres con los servicios de Az
 
 El enfoque de este documento se centra en las operaciones centrales de Azure necesarias para admitir Jenkins, como el uso de Azure Storage para mantener artefactos de compilación, los elementos de seguridad necesarios para el inicio de sesión único, otros servicios que se pueden integrar y la escalabilidad para la canalización. La arquitectura está diseñada para que funcione con un repositorio de control de código fuente existente. Por ejemplo, un escenario común consiste en iniciar trabajos de Jenkins basados en confirmaciones de GitHub.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 La arquitectura consta de los siguientes componentes:
 
@@ -152,7 +152,7 @@ El servidor Jenkins tiene su propio sistema de administración de usuarios y la 
 
 Utilice los grupos de recursos para organizar los recursos de Azure que se implementan. Implemente entornos de producción y entornos de desarrollo o prueba en grupos de recursos independientes, de modo que pueda supervisar los recursos de cada entorno y acumular los costos de facturación por grupo de recursos. También se pueden eliminar recursos en conjunto, lo que resulta muy útil para implementaciones de prueba.
 
-Azure proporciona varias características para la [supervisión y el diagnóstico][monitoring-diag] de la infraestructura global. Para supervisar el uso de CPU, esta arquitectura implementa Azure Monitor. Por ejemplo, puede utilizar Azure Monitor para supervisar el uso de CPU y enviar una notificación si dicho uso supera el 80 por ciento. (Un uso elevado de CPU indica que es posible que quiera escalar verticalmente la máquina virtual del servidor Jenkins). También puede notificar a un usuario designado si se produce un error en la máquina virtual o deja de estar disponible.
+Azure proporciona varias características para la [supervisión y el diagnóstico][monitoring-diag] de la infraestructura global. Para supervisar el uso de CPU, esta arquitectura implementa Azure Monitor. Por ejemplo, puede utilizar Azure Monitor para supervisar el uso de la CPU y enviar una notificación si dicho uso supera el 80 %. (Un uso elevado de CPU indica que es posible que quiera escalar verticalmente la máquina virtual del servidor Jenkins). También puede notificar a un usuario designado si se produce un error en la máquina virtual o deja de estar disponible.
 
 ## <a name="communities"></a>Comunidades
 
@@ -168,7 +168,7 @@ Para conocer más procedimientos recomendados de la comunidad Jenkins, visite [J
 
 Para implementar esta arquitectura, siga los pasos que se indican a continuación para instalar la [plantilla de solución para Jenkins en Azure][azure-market] y, después, instale los scripts que configuran la supervisión y la recuperación ante desastres en los pasos siguientes.
 
-### <a name="prerequisites"></a>requisitos previos
+### <a name="prerequisites"></a>Requisitos previos
 
 - Esta arquitectura de referencia requiere una suscripción de Azure. 
 - Para crear una entidad de servicio de Azure, debe tener derechos de administrador para el inquilino de Azure AD que está asociado al servidor Jenkins implementado.
