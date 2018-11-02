@@ -3,14 +3,14 @@ title: Azure para profesionales de AWS
 description: Comprenda los conceptos básicos de las cuentas, la plataforma y los servicios de Microsoft Azure. Conozca también las similitudes y diferencias principales entre las plataformas Azure y AWS. Aproveche su experiencia con AWS en Azure.
 keywords: Expertos de AWS, comparación de Azure, comparación de AWS, diferencia entre azure y aws, azure y aws
 author: lbrader
-ms.date: 03/24/2017
+ms.date: 09/19/2018
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 04157b9a647779ae47ad0aff8132289a30544acf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 0735d24b223a5e5cab6030774280c038c28f35e6
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429645"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916692"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure para profesionales de AWS
 

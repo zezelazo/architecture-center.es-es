@@ -4,12 +4,12 @@ description: Arquitecturas de referencia, planos y guía de implementación prec
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: c96fc08aca97beb886fa96807d6f9cc5c09d0555
-ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
+ms.openlocfilehash: c5abe208d5d294559681700b57332a33f0bd15d5
+ms.sourcegitcommit: ca5283af555189e830eed7884c83d058fa7ebaa0
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48243638"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50757746"
 ---
 # <a name="azure-reference-architectures"></a>Arquitecturas de referencia de Azure
 
@@ -256,7 +256,7 @@ Vaya a: [IA](#ai-and-machine-learning) | [Macrodatos](#big-data-solutions) | [Ap
 </li>
 <!-- Shared services -->
 <li style="display: flex; flex-direction: column;">
-    <a href="./hybrid-networking/hub-spoke.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./hybrid-networking/shared-services.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
