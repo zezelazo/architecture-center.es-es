@@ -243,6 +243,8 @@ items:
       href: best-practices/cdn.md
     - name: Creación de particiones de datos
       href: best-practices/data-partitioning.md
+    - name: Estrategias de creación de particiones de datos (por servicio)
+      href: best-practices/data-partitioning-strategies.md
     - name: Supervisión y diagnóstico
       href: best-practices/monitoring.md
     - name: Convenciones de nomenclatura
@@ -347,7 +349,7 @@ items:
     items:
     - name: Inteligencia empresarial con SQL Data Warehouse
       href: reference-architectures/data/enterprise-bi-sqldw.md
-    - name: Inteligencia empresarial automatizada con SQL Data Warehouse y Data Factory
+    - name: Inteligencia empresarial automatizada con Azure Data Factory
       href: reference-architectures/data/enterprise-bi-adf.md
     - name: Procesamiento de flujos de datos con Azure Stream Analytics
       href: reference-architectures/data/stream-processing-stream-analytics.md
@@ -541,9 +543,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: Implementación de plantillas scaffold de Azure Enterprise
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: bb4f5188f3f85561a08331a15c797a15c375157f
-ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
+ms.openlocfilehash: 087c1573a34735dd33b1c52a83bf4a11322540a1
+ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50001922"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51263803"
