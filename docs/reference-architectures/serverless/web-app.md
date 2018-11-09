@@ -3,12 +3,12 @@ title: Aplicación web sin servidor
 description: Arquitectura de referencia que muestra una aplicación web sin servidor y una API web
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: c2b46a60a57381ac3fd3f77cffe53b2dab2dacd6
-ms.sourcegitcommit: 113a7248b9793c670b0f2d4278d30ad8616abe6c
+ms.openlocfilehash: d1af03811bda6267fd40ee17823ac8357829f988
+ms.sourcegitcommit: 949b9d3e5a9cdee1051e6be700ed169113e914ae
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/16/2018
-ms.locfileid: "49349962"
+ms.lasthandoff: 11/05/2018
+ms.locfileid: "50983403"
 ---
 # <a name="serverless-web-application"></a>Aplicación web sin servidor 
 
@@ -148,20 +148,13 @@ Para configurar la autenticación:
 
 - Habilite la autenticación de Azure AD en la aplicación de función. Para más información, consulte [Autenticación y autorización en Azure App Service][app-service-auth].
 
-- Agregue una directiva a API Management para autorizar previamente la solicitud mediante la validación del token de acceso:
-
-    ```xml
-    <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
-        <openid-config url="https://login.microsoftonline.com/[Azure AD tenant ID]/.well-known/openid-configuration" />
-        <required-claims>
-            <claim name="aud">
-                <value>[Application ID]</value>
-            </claim>
-        </required-claims>
-    </validate-jwt>
-    ```
+- Agregue la [directiva validate-jwt][apim-validate-jwt] a API Management para autorizar previamente la solicitud mediante la validación del token de acceso.
 
 Para más información, consulte el [Léame de GitHub][readme].
+
+Se recomienda crear registros de aplicaciones independientes de Azure AD para el cliente de aplicación y la API de back-end. Conceda el permiso de aplicación cliente para llamar a la API. Este enfoque le ofrece la posibilidad de definir varias API y clientes y de controlar los permisos de cada uno. 
+
+En una API, use los [ámbitos][scopes] para dotar a las aplicaciones con un control detallado sobre los permisos que solicitan a un usuario. Por ejemplo, puede que una API tenga los ámbitos `Read` y `Write`, y puede que una aplicación cliente determinada solicite al usuario que autorice solo permisos `Read`.
 
 ### <a name="authorization"></a>Autorización
 
@@ -275,11 +268,21 @@ Como alternativa, puede almacenar los secretos de aplicación en Key Vault. Esto
 
 ## <a name="devops-considerations"></a>Consideraciones sobre DevOps
 
+### <a name="deployment"></a>Implementación
+
+Para implementar la aplicación de función, se recomienda usar [archivos de paquete][functions-run-from-package] ("Ejecución desde el paquete"). Con este enfoque, puede cargar un archivo zip en un contenedor de Blob Storage y el entorno de ejecución de Functions monta el archivo zip como un sistema de archivos de solo lectura. Se trata de una operación atómica, lo que reduce la posibilidad de que una implementación con errores deje la aplicación en un estado incoherente. También puede mejorar los tiempos de arranque en frío, especialmente para las aplicaciones de Node.js, porque todos los archivos se intercambian a la vez.
+
 ### <a name="api-versioning"></a>Control de versiones de la API
 
-Una API es un contrato entre un servicio y los clientes o los consumidores de ese servicio. Permita el control de versiones en el contrato de API. Si el cambio de API puede afectar, introduzca una nueva versión de API. Implemente la nueva versión en paralelo con la versión original, en una aplicación de función independiente. Esto le permite migrar los clientes existentes a la nueva API sin interrumpir las aplicaciones cliente. Finalmente, puede dejar de utilizar la versión anterior. Para más información acerca del control de versiones de API, consulte [Control de versiones de una API web RESTful][api-versioning].
+Una API es un contrato entre un servicio y los clientes. En esta arquitectura, el contrato de API se define en el nivel de API Management. API Management admite dos [conceptos de control de versiones][apim-versioning] distintos, pero complementarios:
 
-Para actualizaciones que no son cambios importantes en la API, implemente la nueva versión en un espacio de ensayo en la misma aplicación de función. Compruebe que la implementación se realizó correctamente y, a continuación, cambie la versión de ensayo por la versión de producción.
+- Las *versiones* permiten a los consumidores de API elegir una versión de API en función de sus necesidades, por ejemplo, v1 en lugar de v2. 
+
+- Las *revisiones* permiten a los administradores de API realizar cambios no importantes en una API e implementar esos cambios, junto con un registro de cambios para informar a los consumidores de API sobre dichos cambios.
+
+Si realiza un cambio importante en una API, publique una nueva versión en API Management. Implemente la nueva versión en paralelo con la versión original, en una aplicación de función independiente. Esto le permite migrar los clientes existentes a la nueva API sin interrumpir las aplicaciones cliente. Finalmente, puede dejar de utilizar la versión anterior. API Management admite varios [esquemas de control de versiones][apim-versioning-schemes]: ruta de acceso URL, encabezado HTTP o cadena de consulta. Para más información acerca del control de versiones de API en general, consulte [Control de versiones de una API web RESTful][api-versioning].
+
+Para actualizaciones que no son cambios importantes en la API, implemente la nueva versión en un espacio de ensayo en la misma aplicación de función. Compruebe que la implementación se realizó correctamente y, a continuación, cambie la versión de ensayo por la versión de producción. Publique una revisión en API Management.
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
@@ -292,6 +295,9 @@ Para implementar esta arquitectura de referencia, consulte el [Léame de GitHub]
 [apim-ip]: /azure/api-management/api-management-faq#is-the-api-management-gateway-ip-address-constant-can-i-use-it-in-firewall-rules
 [api-geo]: /azure/api-management/api-management-howto-deploy-multi-region
 [apim-scale]: /azure/api-management/api-management-howto-autoscale
+[apim-validate-jwt]: /azure/api-management/api-management-access-restriction-policies#ValidateJWT
+[apim-versioning]: /azure/api-management/api-management-get-started-publish-versions
+[apim-versioning-schemes]: /azure/api-management/api-management-get-started-publish-versions#choose-a-versioning-scheme
 [app-service-auth]: /azure/app-service/app-service-authentication-overview
 [app-service-ip-restrictions]: /azure/app-service/app-service-ip-restrictions
 [app-service-security]: /azure/app-service/app-service-security
@@ -310,9 +316,11 @@ Para implementar esta arquitectura de referencia, consulte el [Léame de GitHub]
 [functions-bindings]: /azure/azure-functions/functions-triggers-bindings
 [functions-cold-start]: https://blogs.msdn.microsoft.com/appserviceteam/2018/02/07/understanding-serverless-cold-start/
 [functions-https]: /azure/app-service/app-service-web-tutorial-custom-ssl#enforce-https
-[functions-proxy]: /azure-functions/functions-proxies
+[functions-proxy]: /azure/azure-functions/functions-proxies
+[functions-run-from-package]: /azure/azure-functions/run-functions-from-deployment-package
 [functions-scale]: /azure/azure-functions/functions-scale
 [functions-timeout]: /azure/azure-functions/functions-scale#consumption-plan
+[functions-zip-deploy]: /azure/azure-functions/deployment-zip-push
 [graph]: https://developer.microsoft.com/graph/docs/concepts/overview
 [key-vault-web-app]: /azure/key-vault/tutorial-web-application-keyvault
 [microservices-domain-analysis]: ../../microservices/domain-analysis.md
@@ -321,6 +329,7 @@ Para implementar esta arquitectura de referencia, consulte el [Léame de GitHub]
 [partition-key]: /azure/cosmos-db/partition-data
 [pipelines]: /azure/devops/pipelines/index
 [ru]: /azure/cosmos-db/request-units
+[scopes]: /azure/active-directory/develop/v2-permissions-and-consent
 [static-hosting]: /azure/storage/blobs/storage-blob-static-website
 [static-hosting-preview]: https://azure.microsoft.com/blog/azure-storage-static-web-hosting-public-preview/
 [storage-https]: /azure/storage/common/storage-require-secure-transfer

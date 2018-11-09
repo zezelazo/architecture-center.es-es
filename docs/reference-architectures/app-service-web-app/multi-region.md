@@ -2,14 +2,14 @@
 title: Aplicación web de varias regiones
 description: Arquitectura recomendada para aplicaciones web con alta disponibilidad que se ejecutan en Microsoft Azure.
 author: MikeWasson
-ms.date: 11/23/2016
+ms.date: 10/25/2018
 cardTitle: Run in multiple regions
-ms.openlocfilehash: 5493deea871f25fb6ea3531a22d92d83916930b1
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 1ed69f4f7e79fe2025e2a10d50e851ac4c02f1a6
+ms.sourcegitcommit: 065fa8ecb37c8be1827da861243ad6a33c75c99d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876824"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "50136665"
 ---
 # <a name="run-a-web-application-in-multiple-regions"></a>Ejecución de una aplicación web en varias regiones
 [!INCLUDE [header](../../_includes/header.md)]
@@ -70,9 +70,7 @@ Por otro lado, no use el sondeo de estado para comprobar los servicios de priori
 Use la [replicación geográfica activa][sql-replication] para crear una réplica secundaria legible en una región distinta. Puede tener hasta cuatro réplicas secundarias legibles. Conmute por error a una base de datos secundaria si la base de datos principal da error o debe desconectarse. La replicación geográfica activa puede configurarse para cualquier base de datos de cualquier grupo de bases de datos elásticas.
 
 ### <a name="cosmos-db"></a>Cosmos DB
-Cosmos DB admite la replicación geográfica entre regiones. Una región se designa como de escritura y los demás son réplicas de solo lectura.
-
-Si se produce una interrupción regional del sistema, puede conmutar por error y seleccionar otra región como la región de escritura. El SDK de cliente envía automáticamente las solicitudes de escritura a la región de escritura actual, por lo que no es necesario actualizar la configuración del cliente después de una conmutación por error. Para más información, consulte [Cómo se distribuyen datos globalmente con Azure Cosmos DB][cosmosdb-geo].
+Cosmos DB admite la replicación geográfica entre regiones con arquitectura multimaestro (varias regiones de escritura). Como alternativa, puede designar una región como la región de escritura y las demás como réplicas de solo lectura. Si se produce una interrupción regional del sistema, puede conmutar por error y seleccionar otra región como la región de escritura. El SDK de cliente envía automáticamente las solicitudes de escritura a la región de escritura actual, por lo que no es necesario actualizar la configuración del cliente después de una conmutación por error. Para más información, consulte [Distribución de datos global con Azure Cosmos DB][cosmosdb-geo].
 
 > [!NOTE]
 > Todas las réplicas pertenecen al mismo grupo de recursos.
@@ -136,10 +134,11 @@ Set-AzureRmTrafficManagerEndpoint -TrafficManagerEndpoint $endpoint
 
 Para más información, consulte [Cmdlets de Azure Traffic Manager][tm-ps].
 
-**Interfaz de la línea de comandos (CLI) de Azure**
+**CLI de Azure**
 
 ```bat
-azure network traffic-manager endpoint set --name <endpoint> --profile-name <profile> --resource-group <resource-group> --type AzureEndpoints --priority 3
+az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile> \
+    --name <endpoint-name> --type azureEndpoints --priority 3
 ```    
 
 ### <a name="sql-database"></a>SQL Database

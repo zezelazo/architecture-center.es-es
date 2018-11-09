@@ -2,13 +2,13 @@
 title: Implementación de un recopilador y transformador de propiedades en una plantilla de Azure Resource Manager
 description: Describe cómo implementar un recopilador y transformador de propiedades en una plantilla de Azure Resource Manager
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: 2c2fd93c977b82bed05ebe0ae68233a700df0f4f
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/30/2018
+ms.openlocfilehash: ad5b3a71f516ec12fee311e25c43f434f9f306ed
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428591"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251794"
 ---
 # <a name="implement-a-property-transformer-and-collector-in-an-azure-resource-manager-template"></a>Implementación de un recopilador y transformador de propiedades en una plantilla de Azure Resource Manager
 
@@ -126,7 +126,8 @@ La plantilla también define una variable llamada `instance`. Realiza la transfo
 Por último, el valor de `output` de nuestra plantilla concatena las transformaciones recopiladas del parámetro `state` con la transformación actual realizada por la variable `instance`:
 
 ```json
-  "outputs": {
+    "resources": [],
+    "outputs": {
     "collection": {
       "type": "array",
       "value": "[concat(parameters('state'), variables('instance'))]"
@@ -264,7 +265,7 @@ Como cabría esperar, este es el URI de la **plantilla de recopilador** que usar
     "properties": {
         "mode": "Incremental",
         "templateLink": {
-            "uri": "[variables('linkedTemplateUri')]",
+            "uri": "[variables('collectorTemplateUri')]",
             "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -288,25 +289,36 @@ Por último, el recurso `Microsoft.Network/networkSecurityGroups` asigna directa
       "name": "networkSecurityGroup1",
       "location": "[resourceGroup().location]",
       "properties": {
-        "securityRules": "[reference('firstResource').outputs.result.value]"
+        "securityRules": "[reference('collector').outputs.result.value]"
       }
     }
   ],
   "outputs": {
       "instance":{
           "type": "array",
-          "value": "[reference('firstResource').outputs.result.value]"
+          "value": "[reference('collector').outputs.result.value]"
       }
 
   }
 ```
 
-## <a name="next-steps"></a>Pasos siguientes
+## <a name="try-the-template"></a>Prueba de la plantilla
 
-* Esta técnica se implementa en el [proyecto de bloques de creación de plantillas](https://github.com/mspnp/template-building-blocks) y las [arquitecturas de referencia de Azure](/azure/architecture/reference-architectures/). Puede usarlas para crear su propia arquitectura o implementar una de nuestras arquitecturas de referencia.
+[GitHub][github] tiene una plantilla de ejemplo a su disposición. Para implementar la plantilla, clone el repositorio y ejecute los siguientes comandos de la [CLI de Azure][cli]:
+
+```bash
+git clone https://github.com/mspnp/template-examples.git
+cd template-examples/example4-collector
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example4-collector/deploy.json \
+    --parameters deploy.parameters.json
+```
 
 <!-- links -->
 [objects-as-parameters]: ./objects-as-parameters.md
 [resource-manager-linked-template]: /azure/azure-resource-manager/resource-group-linked-templates
 [resource-manager-variables]: /azure/azure-resource-manager/resource-group-template-functions-deployment
 [nsg]: /azure/virtual-network/virtual-networks-nsg
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

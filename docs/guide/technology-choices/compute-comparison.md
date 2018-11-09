@@ -2,13 +2,13 @@
 title: Criterios para elegir un servicio de proceso de Azure
 description: Compare los servicios de proceso de Azure a través de varios ejes
 author: MikeWasson
-ms.date: 06/13/2018
-ms.openlocfilehash: b7a5b08e1d9a9eba33003b3d478a61388a496272
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.date: 08/08/2018
+ms.openlocfilehash: dbd5314c4c77e83f5b45ef0b49e83860479c8f92
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "43016082"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916395"
 ---
 # <a name="criteria-for-choosing-an-azure-compute-service"></a>Criterios para elegir un servicio de proceso de Azure
 

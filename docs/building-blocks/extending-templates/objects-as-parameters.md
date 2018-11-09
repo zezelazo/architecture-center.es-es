@@ -2,13 +2,13 @@
 title: Uso de un objeto como parámetro en una plantilla de Azure Resource Manager
 description: Se describe cómo ampliar la funcionalidad de las plantillas de Azure Resource Manager para utilizar objetos como parámetros.
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: dd53c55a26b2452c375d8d1e1a98886b15febaeb
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.date: 10/30/2018
+ms.openlocfilehash: c1955823b3474efa0abea1d9634add5f13d02eda
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876770"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251896"
 ---
 # <a name="use-an-object-as-a-parameter-in-an-azure-resource-manager-template"></a>Uso de un objeto como parámetro en una plantilla de Azure Resource Manager
 
@@ -301,25 +301,21 @@ Vamos a echar un vistazo más de cerca a cómo se especifican los valores de pro
 
 ## <a name="try-the-template"></a>Prueba de la plantilla
 
-Si desea experimentar con esta plantilla, siga estos pasos: 
+[GitHub][github] tiene una plantilla de ejemplo a su disposición. Para implementar la plantilla, clone el repositorio y ejecute los siguientes comandos de la [CLI de Azure][cli]:
 
-1.  Vaya a Azure Portal, seleccione el icono **+** y busque el tipo de recurso **implementación de plantilla**.
-2.  Vaya a la página **Implementación de plantilla** y seleccione el botón **crear**. Este botón abre la hoja de **Implementación personalizada**.
-3.  Seleccione el botón **Editar plantilla**.
-4.  Elimine la plantilla vacía. 
-5.  Copie y pegue la plantilla de ejemplo en el panel derecho.
-6.  Seleccione el botón **Guardar**.
-7.  Cuando vuelva al panel **Implementación personalizada**, seleccione el botón **Editar parámetros**.
-8.  En la hoja **Editar parámetros**, elimine la plantilla existente.
-9.  Copie y pegue la plantilla de parámetro de ejemplo anterior.
-10. Seleccione el botón **Guardar**, que vuelve a abrir la hoja **Implementación personalizada**.
-11. En la hoja **Implementación personalizada**, seleccione la suscripción, cree un grupo de recursos nuevo o use uno existente y seleccione una ubicación. Revise los términos y condiciones, y haga clic en la casilla **Acepto**.
-12. Seleccione el botón **Comprar**.
+```bash
+git clone https://github.com/mspnp/template-examples.git
+cd template-examples/example3-object-param
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example3-object-param/deploy.json \
+    --parameters deploy.parameters.json
+```
 
 ## <a name="next-steps"></a>Pasos siguientes
 
-* Puede ampliar estas técnicas para implementar un [recopilador y transformador de objetos de propiedad](./collector.md). Las técnicas de recopilador y transformador son más generales y se pueden vincular desde las plantillas.
-* Esta técnica se implementa también en el [proyecto de bloques de creación de plantillas](https://github.com/mspnp/template-building-blocks) y las [arquitecturas de referencia de Azure](/azure/architecture/reference-architectures/). Puede revisar nuestras plantillas para ver cómo hemos implementado esta técnica.
+- Aprenda a crear una plantilla que recorre en iteración una matriz de objetos y los transforma en un esquema JSON. Consulte [Implementación de un recopilador y transformador de propiedades en una plantilla de Azure Resource Manager](./collector.md)
+
 
 <!-- links -->
 [azure-resource-manager-authoring-templates]: /azure/azure-resource-manager/resource-group-authoring-templates
@@ -327,3 +323,5 @@ Si desea experimentar con esta plantilla, siga estos pasos:
 [azure-resource-manager-create-multiple-instances]: /azure/azure-resource-manager/resource-group-create-multiple
 [azure-resource-manager-functions]: /azure/azure-resource-manager/resource-group-template-functions-resource
 [nsg]: /azure/virtual-network/virtual-networks-nsg
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

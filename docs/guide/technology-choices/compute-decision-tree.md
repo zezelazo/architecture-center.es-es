@@ -2,13 +2,13 @@
 title: Árbol de decisión para los servicios de proceso de Azure
 description: Un diagrama de flujo para la selección de un servicio de proceso
 author: MikeWasson
-ms.date: 10/23/2018
-ms.openlocfilehash: 35002b4840b80bcc35b5baf36ec8e414ed8f20be
-ms.sourcegitcommit: 2ae794de13c45cf24ad60d4f4dbb193c25944eff
+ms.date: 11/03/2018
+ms.openlocfilehash: cb074272b8d00a71223d8c5755ef8cde3a3f2592
+ms.sourcegitcommit: 225251ee2dd669432a9c9abe3aa8cd84d9e020b7
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/25/2018
-ms.locfileid: "50001905"
+ms.lasthandoff: 11/04/2018
+ms.locfileid: "50981987"
 ---
 # <a name="decision-tree-for-azure-compute-services"></a>Árbol de decisión para los servicios de proceso de Azure
 

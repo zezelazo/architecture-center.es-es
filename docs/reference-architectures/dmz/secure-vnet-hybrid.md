@@ -2,17 +2,17 @@
 title: Implementación de una arquitectura de red híbrida segura en Azure
 description: Proceso para implementar una arquitectura de red híbrida segura en Azure.
 author: telmosampaio
-ms.date: 07/01/2018
+ms.date: 10/22/2018
 pnp.series.title: Network DMZ
 pnp.series.prev: ./index
 pnp.series.next: secure-vnet-dmz
 cardTitle: DMZ between Azure and on-premises
-ms.openlocfilehash: e397a8691a1b7b37cc0129d914dc85d92c876139
-ms.sourcegitcommit: f4069cf68456b5c74acb1b890dc4e45e11f12b59
+ms.openlocfilehash: e13503c65430e46ef50898e471594a2ade3824b6
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/04/2018
-ms.locfileid: "43675814"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916488"
 ---
 # <a name="dmz-between-azure-and-your-on-premises-datacenter"></a>Red perimetral entre Azure y el centro de datos local
 

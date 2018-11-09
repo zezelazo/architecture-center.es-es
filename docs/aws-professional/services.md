@@ -5,20 +5,18 @@ keywords: comparación de servicios en la nube, servicios en la nube comparados,
 author: lbrader
 ms.date: 11/30/2017
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: d665adb946b9c93827fbc55243edc3a558668416
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 33b67f57c8c725cfb68c400b4e2b67102e5d4872
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819234"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251964"
 ---
 # <a name="aws-to-azure-services-comparison"></a>Comparación de AWS con los servicios de Azure
 
 Este artículo le ayudará a comprender cómo se comparan los servicios de Microsoft Azure con Amazon Web Services (AWS). Si tiene intención de implementar una solución de nube múltiple con Azure y AWS, o migrar a Azure, puede comparar las funcionalidades de TI de los servicios de Azure y AWS en todas las categorías.
 
 En las tablas siguientes se enumeran varios servicios de Azure en comparación con algunos servicios de AWS. Los servicios de Azure son similares entre sí, pero varían en profundidad y amplitud de funcionalidades.
-
-[Descargar el PDF Microsoft Azure & AWS Cloud Service Map](https://aka.ms/awsazureguide) (Mapa de servicios en la nube de Azure y AWS)
 
 ## <a name="azure-and-aws-for-multicloud-solutions"></a>Azure y AWS para soluciones de nube múltiple
 
@@ -102,7 +100,7 @@ Para obtener información general de Azure para usuarios de AWS, consulte [Azure
 | <strong>&nbsp;</strong> |          None           |                                                                                       [Power BI Embedded](https://azure.microsoft.com/services/power-bi-embedded/)                                                                                       |                                                               Permite que las herramientas de visualización y análisis de datos se integren en las aplicaciones.                                                               |
 |         Search          |  Elasticsearch Service  |                                                                     [Marketplace: Elasticsearch](https://azuremarketplace.microsoft.com/marketplace/apps?page=1&search=Elasticsearch)                                                                     |                                                                             Servidor de búsqueda escalable basado en Apache Lucene.                                                                             |
 | <strong>&nbsp;</strong> |       CloudSearch       |                                                                                               [Azure Search](https://azure.microsoft.com/services/search/)                                                                                               |                                                                 Ofrece búsqueda de texto completo, análisis de búsquedas y otras características relacionadas.                                                                 |
-|    Machine Learning     |    Machine Learning     |                          [Azure Machine Learning Studio](https://azure.microsoft.com/services/machine-learning/) <br/><br/>[Azure Machine Learning Workbench](https://azure.microsoft.com/services/machine-learning-services/)                           |                    Produce un flujo de trabajo completo para crear, procesar, optimizar y publicar modelos predictivos que se pueden usar para comprender lo que puede ocurrir a partir de conjuntos de datos complejos.                    |
+|    Machine Learning     |    Machine Learning     |                          [Azure Machine Learning Studio](https://azure.microsoft.com/services/machine-learning/) <br/><br/>[Servicio Azure Machine Learning](https://azure.microsoft.com/services/machine-learning-services/)                           |                    Produce un flujo de trabajo completo para crear, procesar, optimizar y publicar modelos predictivos que se pueden usar para comprender lo que puede ocurrir a partir de conjuntos de datos complejos.                    |
 |     Detección de datos      |          None           |                                                                                            [Data Catalog](https://azure.microsoft.com/services/data-catalog/)                                                                                            |                                                     Proporciona la capacidad de registrar, enriquecer, detectar, comprender y consumir orígenes de datos de un modo mejor.                                                     |
 | <strong>&nbsp;</strong> |      Amazon Athena      |                                                                                  [Análisis con Azure Data Lake](https://azure.microsoft.com/services/data-lake-analytics/)                                                                                  |                                                     Proporciona un servicio de consultas interactivo sin servidor que usa lenguaje SQL estándar para analizar las bases de datos.                                                      |
 

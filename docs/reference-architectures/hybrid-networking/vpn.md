@@ -2,17 +2,17 @@
 title: Conexión de una red local a Azure mediante VPN
 description: Procedimiento para implementar una arquitectura de red de sitio a sitio segura que abarque una instancia de Azure Virtual Network y una red local conectada mediante VPN.
 author: RohitSharma-pnp
-ms.date: 11/28/2016
+ms.date: 10/22/2018
 pnp.series.title: Connect an on-premises network to Azure
 pnp.series.next: expressroute
 pnp.series.prev: ./index
 cardTitle: VPN
-ms.openlocfilehash: 283fbd340d9d37c9521715e9512cc67793983585
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 6e705c40663eff421e79067f916a1ebad6e72822
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428965"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916557"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>Conexión de una red local a Azure mediante VPN Gateway
 

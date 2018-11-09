@@ -5,14 +5,14 @@ author: MikeWasson
 pnp.series.title: Azure App Service
 pnp.series.prev: basic-web-app
 pnp.series.next: multi-region-web-app
-ms.date: 11/23/2016
+ms.date: 10/25/2018
 cardTitle: Improve scalability
-ms.openlocfilehash: 6459acebfa25491332e2118b9e8fe51d5fc79ff3
-ms.sourcegitcommit: 5d99b195388b7cabba383c49a81390ac48f86e8a
+ms.openlocfilehash: 208413a49fe4a3f9ca308fa1a939ba426e7fa636
+ms.sourcegitcommit: 065fa8ecb37c8be1827da861243ad6a33c75c99d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/10/2018
-ms.locfileid: "37958813"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "50136699"
 ---
 # <a name="improve-scalability-in-a-web-application"></a>Mejora de la escalabilidad en una aplicación web
 
@@ -22,20 +22,20 @@ Esta arquitectura de referencia muestra procedimientos de demostrada eficacia pa
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Arquitectura  
+## <a name="architecture"></a>Arquitectura
 
 Esta arquitectura se basa en la que se muestra en [Aplicación web básica][basic-web-app]. Incluye los siguientes componentes:
 
 * **Grupo de recursos**. Un [grupo de recursos][resource-group] es un contenedor lógico de recursos de Azure.
-* **[Aplicación web][app-service-web-app]** y **[aplicación de API][app-service-api-app]**. Una aplicación moderna típica podría incluir un sitio web y una o varias web API web de RESTful. Los clientes del explorador podrían consumir una API web mediante AJAX, y también las aplicaciones nativas o las aplicaciones del lado servidor podrían consumirla. Para conocer las consideraciones sobre el diseño de las API web, consulte la [guía de diseño de API][api-guidance].    
-* **WebJob**. Use [Azure WebJobs][webjobs] para ejecutar tareas de ejecución prolongada en segundo plano. Los trabajos web se pueden ejecutar de forma programada, continuamente o en respuesta a un desencadenador, como poner un mensaje en una cola. Un trabajo web se ejecuta como un proceso en segundo plano en el contexto de una aplicación de App Service.
-* **Cola**. En la arquitectura que se muestra aquí, la aplicación pone en cola las tareas en segundo plano mediante la colocación de un mensaje en una cola de [Azure Queue Storage][queue-storage]. El mensaje desencadena una función en el trabajo web. Como alternativa, puede usar colas de Service Bus. Para ver una comparación, consulte [Colas de Storage y de Service Bus: comparación y diferencias][queues-compared].
+* **[Aplicación web][app-service-web-app]**. Una aplicación moderna típica podría incluir un sitio web y una o varias web API web de RESTful. Los clientes del explorador podrían consumir una API web mediante AJAX, y también las aplicaciones nativas o las aplicaciones del lado servidor podrían consumirla. Para conocer las consideraciones sobre el diseño de las API web, consulte la [guía de diseño de API][api-guidance].
+* **Aplicación de función**. Use [Function Apps][functions] para ejecutar tareas en segundo plano. Las funciones se invocan mediante un desencadenador como, por ejemplo, un evento del temporizador o un mensaje que se coloca en cola. Para las tareas con estado de ejecución prolongada, use [Durable Functions][durable-functions].
+* **Cola**. En la arquitectura que se muestra aquí, la aplicación pone en cola las tareas en segundo plano mediante la colocación de un mensaje en una cola de [Azure Queue Storage][queue-storage]. El mensaje desencadena una función de aplicación. Como alternativa, puede usar colas de Service Bus. Para ver una comparación, consulte [Colas de Storage y de Service Bus: comparación y diferencias][queues-compared].
 * **Caché**. Almacene datos parcialmente estáticos en [Azure Redis Cache][azure-redis].  
 * <strong>CDN</strong>. Use [Azure Content Delivery Network][ azure-cdn] (CDN) para almacenar en caché el contenido disponible públicamente y así reducir latencia y acelerar la entrega de contenido.
-* **Almacenamiento de datos**. Use [Azure SQL Database][sql-db] con datos relacionales. Con datos no relacionales, podría usar un almacén NoSQL, como [Cosmos DB][cosmosdb].
+* **Almacenamiento de datos**. Use [Azure SQL Database][sql-db] con datos relacionales. Para datos no relacionales, considere la posibilidad de usar [Cosmos DB][cosmosdb].
 * **Azure Search**. Use [Azure Search][azure-search] para agregar funcionalidad de búsqueda, como sugerencias de búsqueda, búsqueda aproximada y búsqueda específica del idioma. Azure Search se usa normalmente en combinación con otro almacén de datos, en especial si el almacén de datos principal requiere una coherencia estricta. En este enfoque, almacene los datos acreditado en el otro almacén de datos y el índice de búsqueda en Azure Search. Azure Search también se puede usar para consolidar un índice de búsqueda sencillo desde varios almacenes de datos.  
-* **Correo electrónico/SMS**. Use un servicio de terceros como SendGrid o Twilio para enviar correo electrónico o mensajes SMS en lugar de generar esta funcionalidad directamente en la aplicación.
 * **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS que permite resolver nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
+* **Application Gateway**. [Application Gateway](/azure/application-gateway/) es un equilibrador de carga de nivel 7. En esta arquitectura, enruta las solicitudes HTTP al front-end web. Application Gateway proporciona también un [firewall de aplicaciones web](/azure/application-gateway/waf-overview) (WAF) que protege la aplicación contra puntos vulnerables de la seguridad comunes. 
 
 ## <a name="recommendations"></a>Recomendaciones
 
@@ -48,11 +48,6 @@ Se recomienda crear la aplicación web y la API web como aplicaciones de App Ser
 > Los planes Básico, Estándar y Premium se facturan por las instancias de máquina virtual, no por aplicación. Consulte [Precios de App Service][app-service-pricing].
 > 
 > 
-
-Si tiene pensado usar las características *Tablas fáciles* o *API fáciles* de App Service Mobile Apps, cree una aplicación de App Service distinta para este fin.  Estas características dependen de un marco de la aplicación específico para habilitarlas.
-
-### <a name="webjobs"></a>Trabajos web
-Considere la posibilidad de implementar trabajos web que consumen muchos recursos en una aplicación de App Service vacía dentro de un plan de App Service independiente. De esta manera, se dispone de instancias dedicados para el trabajo web. Consulte la [guía sobre los trabajos de segundo plano][webjobs-guidance].  
 
 ### <a name="cache"></a>Memoria caché
 Puede mejorar el rendimiento y la escalabilidad mediante [Azure Redis Cache][azure-redis] para almacenar en caché algunos datos. Considere el uso de Redis Cache para:
@@ -86,6 +81,8 @@ Las aplicaciones modernas suelen procesan grandes cantidades de datos. Para esca
 | Datos no relacionales con un esquema flexible que requiere consulta básica |Catálogo de productos |Base de datos de documentos, como Azure Cosmos DB, MongoDB o Apache CouchDB |
 | Datos relacionales que requieren compatibilidad más completa con consultas, un esquemas estricto o fuerte coherencia |Inventario de productos |Azure SQL Database |
 
+ Consulte [Elección del almacén de datos apropiado][datastore].
+
 ## <a name="scalability-considerations"></a>Consideraciones sobre escalabilidad
 
 Una de las ventajas principales de Azure App Service es la posibilidad de escalar la aplicación en función de la carga. Estas son algunas consideraciones que se deben tener en cuenta al planear el escalado de la aplicación.
@@ -93,7 +90,7 @@ Una de las ventajas principales de Azure App Service es la posibilidad de escala
 ### <a name="app-service-app"></a>Aplicación de App Service
 Si la solución incluye varias aplicaciones de App Service, podría implementarlas en planes de App Service diferentes. Este enfoque permite escalarlas por separado porque se ejecutan en instancias independientes. 
 
-De igual forma, considere la posibilidad de colocar un trabajo web en su propio plan de modo que las tareas en segundo plano no se ejecuten en las mismas instancias que administran las solicitudes HTTP.  
+De igual forma, considere la posibilidad de colocar una aplicación de función en su propio plan de modo que las tareas en segundo plano no se ejecuten en las mismas instancias que administran las solicitudes HTTP. Si las tareas en segundo plano se ejecutan de forma intermitente, considere la posibilidad de usar un [plan de consumo][functions-consumption-plan], que se facture según el número de ejecuciones en lugar de por horas. 
 
 ### <a name="sql-database"></a>SQL Database
 Aumente la escalabilidad de una base de datos SQL mediante el *particionamiento* de la base de datos. El particionamiento hace referencia a la creación de particiones de la base de datos de manera horizontal. El particionamiento permite escalar la base de datos horizontalmente mediante [herramientas Elastic Database][sql-elastic]. Entre las posibles ventajas del particionamiento se incluyen:
@@ -133,7 +130,6 @@ Use [Cifrado de datos transparente][sql-encryption] si necesita cifrar los datos
 [azure-redis]: https://azure.microsoft.com/services/cache/
 [azure-search]: https://azure.microsoft.com/documentation/services/search/
 [azure-search-scaling]: /azure/search/search-capacity-planning
-[background-jobs]: ../../best-practices/background-jobs.md
 [basic-web-app]: basic-web-app.md
 [basic-web-app-scalability]: basic-web-app.md#scalability-considerations
 [caching-guidance]: ../../best-practices/caching.md
@@ -142,6 +138,10 @@ Use [Cifrado de datos transparente][sql-encryption] si necesita cifrar los datos
 [cdn-guidance]: ../../best-practices/cdn.md
 [cors]: /azure/app-service-api/app-service-api-cors-consume-javascript
 [cosmosdb]: /azure/cosmos-db/
+[datastore]: ../..//guide/technology-choices/data-store-overview.md
+[durable-functions]: /azure/azure-functions/durable-functions-overview
+[functions]: /azure/azure-functions/functions-overview
+[functions-consumption-plan]: /azure/azure-functions/functions-scale#consumption-plan
 [queue-storage]: /azure/storage/storage-dotnet-how-to-use-queues
 [queues-compared]: /azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted
 [resource-group]: /azure/azure-resource-manager/resource-group-overview#resource-groups
@@ -151,6 +151,4 @@ Use [Cifrado de datos transparente][sql-encryption] si necesita cifrar los datos
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/app-service-reference-architectures.vsdx
 [web-app-multi-region]: ./multi-region.md
-[webjobs-guidance]: ../../best-practices/background-jobs.md
-[webjobs]: /azure/app-service/app-service-webjobs-readme
 [0]: ./images/scalable-web-app.png "Aplicación web en Azure con escalabilidad mejorada"

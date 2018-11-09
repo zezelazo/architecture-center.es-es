@@ -2,13 +2,13 @@
 title: Actualización de un recurso en una plantilla de Azure Resource Manager
 description: Se describe cómo ampliar la funcionalidad de las plantillas de Azure Resource Manager para actualizar un recurso.
 author: petertay
-ms.date: 06/09/2017
-ms.openlocfilehash: f235f0b4d54d65ccc2fa67876916e922d75f6d07
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.date: 10/31/2018
+ms.openlocfilehash: dc97534e658c9728ac617b4e52031e2553600458
+ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429061"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50251828"
 ---
 # <a name="update-a-resource-in-an-azure-resource-manager-template"></a>Actualización de un recurso en una plantilla de Azure Resource Manager
 
@@ -122,16 +122,13 @@ Veamos primero el objeto de recurso de nuestro recurso `firstVNet`. Observe que 
 
 ## <a name="try-the-template"></a>Prueba de la plantilla
 
-Si desea experimentar con esta plantilla, siga estos pasos:
+[GitHub][github] tiene una plantilla de ejemplo a su disposición. Para implementar la plantilla, ejecute los siguientes comandos de la [CLI de Azure][cli]:
 
-1.  Vaya a Azure Portal, seleccione el icono **+** y busque el tipo de recurso **implementación de plantilla**.
-2.  Vaya a la página **Implementación de plantilla** y seleccione el botón **crear**. Este botón abre la hoja de **Implementación personalizada**.
-3.  Seleccione el icono **Editar**.
-4.  Elimine la plantilla vacía.
-5.  Copie y pegue la plantilla de ejemplo en el panel derecho.
-6.  Seleccione el botón **Guardar**.
-7.  Volverá al panel **Implementación personalizada**, pero esta vez hay algunos cuadros desplegables. Seleccione la suscripción, cree o use un grupo de recursos existente y seleccione una ubicación. Revise los términos y condiciones y seleccione el botón **Acepto**.
-8.  Seleccione el botón **Comprar**.
+```bash
+az group create --location <location> --name <resource-group-name>
+az group deployment create -g <resource-group-name> \
+    --template-uri https://raw.githubusercontent.com/mspnp/template-examples/master/example1-update/deploy.json
+```
 
 Cuando haya finalizado la implementación, abra el grupo de recursos especificado en el portal. Verá una red virtual llamada `firstVNet` y una NIC llamada `nic1`. Haga clic en `firstVNet` y luego en `subnets`. Verá el `firstSubnet` que se creó originalmente, y verá el `secondSubnet` que se agregó en el recurso `updateVNet`. 
 
@@ -145,4 +142,7 @@ El `firstVNet` original se ha actualizado, en lugar de haberse creado de nuevo. 
 
 ## <a name="next-steps"></a>Pasos siguientes
 
-* Esta técnica se implementa en el [proyecto de bloques de creación de plantillas](https://github.com/mspnp/template-building-blocks) y las [arquitecturas de referencia de Azure](/azure/architecture/reference-architectures/). Puede usarlas para crear su propia arquitectura o implementar una de nuestras arquitecturas de referencia.
+* Aprenda a implementar un recurso basado en una condición como, por ejemplo, si está presente un valor de parámetro o no. Consulte [Implementación condicional de un recurso en una plantilla de Azure Resource Manager](./conditional-deploy.md).
+
+[cli]: /cli/azure/?view=azure-cli-latest
+[github]: https://github.com/mspnp/template-examples

@@ -2,17 +2,17 @@
 title: Implementación de una red perimetral entre Azure e Internet
 description: Cómo implementar una arquitectura de red híbrida segura con acceso a Internet en Azure.
 author: telmosampaio
-ms.date: 07/02/2018
+ms.date: 10/22/2018
 pnp.series.title: Network DMZ
 pnp.series.next: nva-ha
 pnp.series.prev: secure-vnet-hybrid
 cardTitle: DMZ between Azure and the Internet
-ms.openlocfilehash: 7a062d2394ae8b3bd1b17c19cbdf512327f9a766
-ms.sourcegitcommit: 9b459f75254d97617e16eddd0d411d1f80b7fe90
+ms.openlocfilehash: d12c76a08f028d54784de330c62311f294802cb9
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/03/2018
-ms.locfileid: "37403154"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916339"
 ---
 # <a name="dmz-between-azure-and-the-internet"></a>Red perimetral entre Internet y Azure
 
@@ -29,7 +29,7 @@ Los usos habituales de esta arquitectura incluyen:
 * Aplicaciones híbridas donde parte de las cargas de trabajo se ejecutan de forma local y parte en Azure.
 * Infraestructura de Azure que enruta el tráfico entrante procedente del entorno local e Internet.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 La arquitectura consta de los siguientes componentes:
 
@@ -84,7 +84,7 @@ Todas las solicitudes entrantes se deben registrar en todos los puertos. Realice
 
 Se puede encontrar una implementación de una arquitectura de referencia que implementa estas recomendaciones en [GitHub][github-folder]. 
 
-### <a name="prerequisites"></a>requisitos previos
+### <a name="prerequisites"></a>Requisitos previos
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 

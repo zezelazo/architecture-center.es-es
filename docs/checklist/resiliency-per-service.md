@@ -5,11 +5,11 @@ author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
 ms.openlocfilehash: 50808a837132e905cc89c3c43d40852a04f4885c
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819200"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916709"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Lista de comprobación de resistencia para servicios de Azure específicos
 
