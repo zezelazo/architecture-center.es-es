@@ -3,12 +3,12 @@ title: Aplicación web sin servidor
 description: Arquitectura de referencia que muestra una aplicación web sin servidor y una API web
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: d1af03811bda6267fd40ee17823ac8357829f988
-ms.sourcegitcommit: 949b9d3e5a9cdee1051e6be700ed169113e914ae
+ms.openlocfilehash: 9ce80aa904b7a04f78127438f9898244c979c2b5
+ms.sourcegitcommit: 69fc16f2b3bd3e3ffeff5bba277a4204e125cf78
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/05/2018
-ms.locfileid: "50983403"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "50150274"
 ---
 # <a name="serverless-web-application"></a>Aplicación web sin servidor 
 
@@ -316,7 +316,7 @@ Para implementar esta arquitectura de referencia, consulte el [Léame de GitHub]
 [functions-bindings]: /azure/azure-functions/functions-triggers-bindings
 [functions-cold-start]: https://blogs.msdn.microsoft.com/appserviceteam/2018/02/07/understanding-serverless-cold-start/
 [functions-https]: /azure/app-service/app-service-web-tutorial-custom-ssl#enforce-https
-[functions-proxy]: /azure/azure-functions/functions-proxies
+[functions-proxy]: /azure-functions/functions-proxies
 [functions-run-from-package]: /azure/azure-functions/run-functions-from-deployment-package
 [functions-scale]: /azure/azure-functions/functions-scale
 [functions-timeout]: /azure/azure-functions/functions-scale#consumption-plan
