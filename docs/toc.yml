@@ -345,6 +345,8 @@ items:
     items:
     - name: Puntuación de Batch para modelos de aprendizaje profundo
       href: reference-architectures/ai/batch-scoring-deep-learning.md
+    - name: Puntuación en tiempo real de los modelos de Python
+      href: reference-architectures/ai/realtime-scoring-python.md
   - name: Macrodatos
     items:
     - name: Inteligencia empresarial con SQL Data Warehouse
@@ -383,18 +385,6 @@ items:
       href: reference-architectures/identity/adds-forest.md
     - name: Extensión de AD FS a Azure
       href: reference-architectures/identity/adfs.md
-  - name: Aplicaciones de n niveles
-    items:
-    - name: Aplicación de n niveles con SQL Server
-      href: reference-architectures/n-tier/n-tier-sql-server.md
-    - name: Aplicación de n niveles para varias regiones
-      href: reference-architectures/n-tier/multi-region-sql-server.md
-    - name: Aplicación de n niveles con Cassandra
-      href: reference-architectures/n-tier/n-tier-cassandra.md
-    - name: Implementación de una máquina virtual Linux
-      href: reference-architectures/n-tier/linux-vm.md
-    - name: Implementación de una máquina virtual Windows
-      href: reference-architectures/n-tier/windows-vm.md
   - name: Red perimetral
     items:
     - name: Red perimetral entre Azure y una red local
@@ -419,8 +409,18 @@ items:
       href: reference-architectures/serverless/event-processing.md
   - name: Cargas de trabajo de máquinas virtuales
     items:
+    - name: Máquina virtual Linux única
+      href: reference-architectures/n-tier/linux-vm.md
+    - name: Máquina virtual Windows única
+      href: reference-architectures/n-tier/windows-vm.md
     - name: Servidor Jenkins
       href: reference-architectures/jenkins/index.md
+    - name: Aplicación de n niveles con SQL Server
+      href: reference-architectures/n-tier/n-tier-sql-server.md
+    - name: Aplicación de n niveles para varias regiones
+      href: reference-architectures/n-tier/multi-region-sql-server.md
+    - name: Aplicación de n niveles con Cassandra
+      href: reference-architectures/n-tier/n-tier-cassandra.md
     - name: SharePoint Server 2016
       href: reference-architectures/sharepoint/index.md
   - name: Aplicaciones web
@@ -543,9 +543,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: Implementación de plantillas scaffold de Azure Enterprise
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: 087c1573a34735dd33b1c52a83bf4a11322540a1
-ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
+ms.openlocfilehash: 8df93c4b01953902e56a1cd2aab1231b3de3ae52
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51263803"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527684"

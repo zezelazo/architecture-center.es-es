@@ -4,23 +4,23 @@ description: Arquitecturas de referencia, planos y guía de implementación prec
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: c5abe208d5d294559681700b57332a33f0bd15d5
-ms.sourcegitcommit: ca5283af555189e830eed7884c83d058fa7ebaa0
+ms.openlocfilehash: 43c780876e903f7d4f86d3877fb961b0dc0ba60b
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/01/2018
-ms.locfileid: "50757746"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527599"
 ---
 # <a name="azure-reference-architectures"></a>Arquitecturas de referencia de Azure
 
 Nuestras arquitecturas de referencia se organizan por escenario, agrupando juntas aquellas arquitecturas relacionadas. Cada arquitectura incluye procedimientos recomendados junto con consideraciones sobre escalabilidad, disponibilidad, capacidad de administración y seguridad. La mayoría también incluye una solución que se puede implementar.
 
-Vaya a: [IA](#ai-and-machine-learning) | [Macrodatos](#big-data-solutions) | [Aplicaciones de N-niveles](#n-tier-applications) | [Redes virtuales](#virtual-networks) | [Active Directory](#extending-on-premises-active-directory-to-azure) | [Cargas de trabajo de máquinas virtuales](#vm-workloads) | [Aplicaciones web](#web-applications)
+Vaya a: [AI](#ai-and-machine-learning) | [Macrodatos](#big-data-solutions) | [Sin servidor](##serverless-applications) | [Redes virtuales](#virtual-networks) | [Cargas de trabajo de máquinas virtuales](#vm-workloads) | [SAP](#sap) | [Aplicaciones web](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
 
 ## <a name="ai-and-machine-learning"></a>AI y aprendizaje automático
 
 <ul  class="panelContent cardsF">
-<!-- SQL Data Warehouse -->
+<!-- Batch scoring for deep learning models -->
 <li style="display: flex; flex-direction: column;">
     <a href="./ai/batch-scoring-deep-learning.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
@@ -34,6 +34,26 @@ Vaya a: [IA](#ai-and-machine-learning) | [Macrodatos](#big-data-solutions) | [Ap
                     <div class="cardText">
                         <h3>Puntuación de Batch para modelos de aprendizaje profundo</h3>
                         <p>Automatización de la ejecución de trabajos por lotes que aplican transferencias de estilo neuronal a un vídeo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Batch scoring for deep learning models -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./ai/realtime-scoring-python.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/python-powered-h.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Puntuación en tiempo real de los modelos de Python</h3>
+                        <p>Implementación de modelos de Python como servicios web para realizar predicciones en tiempo real mediante modelos habituales de Python o modelos de aprendizaje profundo.</p>
                     </div>
                 </div>
             </div>
@@ -106,64 +126,43 @@ Vaya a: [IA](#ai-and-machine-learning) | [Macrodatos](#big-data-solutions) | [Ap
 </li>
 </ul>
 
-## <a name="n-tier-applications"></a>Aplicaciones de n niveles
+## <a name="serverless-applications"></a>Aplicaciones sin servidor
 
-<ul  class="panelContent cardsF">
+<ul class="panelContent cardsF">
+<!-- Serverless web application -->
 <li style="display: flex; flex-direction: column;">
-    <a href="./n-tier/n-tier-sql-server.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./serverless/web-app.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="../_images/icons/windows.svg" height="140px" />
+                            <img src="../_images/icons/functions.svg" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Aplicación de n niveles con SQL Server</h3>
-                        <p>Máquinas virtuales configuradas para una aplicación de n niveles mediante SQL Server en Windows.</p>
+                        <h3>Aplicación web sin servidor</h3>
+                        <p>Una aplicación web sin servidor proporciona contenido estático desde Blob Storage e implementa una API con Azure Functions.</p>
                     </div>
                 </div>
             </div>
         </div>
     </a>
 </li>
-
-<!-- Multi-region Windows -->
+<!-- Serverless web application -->
 <li style="display: flex; flex-direction: column;">
-    <a href="./n-tier/multi-region-sql-server.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+    <a href="./serverless/event-processing.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
         <div class="cardSize" style="flex: 1 0 auto; display: flex;">
             <div class="cardPadding" style="display: flex;">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="../_images/icons/windows.svg" height="140px" />
+                            <img src="../_images/icons/functions.svg" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Aplicación de n niveles para varias regiones</h3>
-                        <p>Aplicación de n niveles en dos regiones para lograr alta disponibilidad mediante los Grupos de disponibilidad Always On de SQL Server.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-
-<!-- N-tier Linux -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./n-tier/n-tier-cassandra.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/linux-penguin.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Aplicación de n niveles con Cassandra</h3>
-                        <p>Máquinas virtuales configuradas para una aplicación de n niveles mediante Apache Cassandra en Linux.</p>
+                        <h3>Procesamiento de eventos con Azure Functions</h3>
+                        <p>Una arquitectura basada en eventos que ingiere un flujo de datos y usa Functions para procesar los datos.</p>
                     </div>
                 </div>
             </div>
@@ -316,7 +315,175 @@ Vaya a: [IA](#ai-and-machine-learning) | [Macrodatos](#big-data-solutions) | [Ap
 </li>
 </ul>
 
-## <a name="extending-on-premises-active-directory-to-azure"></a>Ampliación de una instancia local de Active Directory a Azure
+## <a name="vm-workloads"></a>Cargas de trabajo de máquinas virtuales
+
+<ul  class="panelContent cardsF">
+<!-- n-tier windows -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./n-tier/n-tier-sql-server.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/windows.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Aplicación de n niveles con SQL Server</h3>
+                        <p>Máquinas virtuales configuradas para una aplicación de n niveles mediante SQL Server en Windows.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Multi-region n-tier windows -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./n-tier/multi-region-sql-server.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/windows.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Aplicación de n niveles para varias regiones</h3>
+                        <p>Aplicación de n niveles en dos regiones para lograr alta disponibilidad mediante los Grupos de disponibilidad Always On de SQL Server.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- N-tier Linux -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./n-tier/n-tier-cassandra.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/linux-penguin.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Aplicación de n niveles con Cassandra</h3>
+                        <p>Máquinas virtuales configuradas para una aplicación de n niveles mediante Apache Cassandra en Linux.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- Jenkins -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./jenkins/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/jenkins.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Servidor de compilación de Jenkins</h3>
+                        <p>Servidor Jenkins escalable y de nivel empresarial en Azure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<!-- SharePoint -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./sharepoint/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/sharepoint.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Granja de SharePoint Server 2016</h3>
+                        <p>Granja de alta disponibilidad de SharePoint Server 2016 en Azure con Grupos de disponibilidad AlwaysOn de SQL Server.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="sap"></a>SAP
+
+<ul  class="panelContent cardsF">
+<!-- SAP -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./sap/sap-netweaver.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/sap.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>SAP NetWeaver</h3>
+                        <p>SAP NetWeaver en Windows, en un entorno de alta disponibilidad que admite recuperación ante desastres.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./sap/sap-s4hana.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/sap.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>SAP S/4HANA</h3>
+                        <p>SAP S/4HANA en Linux, en un entorno de alta disponibilidad que admite recuperación ante desastres.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+<li style="display: flex; flex-direction: column;">
+    <a href="./sap/hana-large-instances.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="../_images/icons/sap.svg" height="140px" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>SAP HANA en Azure (instancias grandes)</h3>
+                        <p>Las instancias de gran tamaño de HANA se implementan en servidores físicos en regiones de Azure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="extend-on-premises-active-directory-to-azure"></a>Extensión de Active Directory local a Azure
 
 <ul class="panelContent cardsF">
 <!-- Azure AD -->
@@ -401,110 +568,6 @@ Vaya a: [IA](#ai-and-machine-learning) | [Macrodatos](#big-data-solutions) | [Ap
 </li>
 </ul>
 
-## <a name="vm-workloads"></a>Cargas de trabajo de máquinas virtuales
-
-<ul  class="panelContent cardsF">
-<!-- Jenkins -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./jenkins/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/jenkins.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Servidor de compilación de Jenkins</h3>
-                        <p>Servidor Jenkins escalable y de nivel empresarial en Azure.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<!-- SharePoint -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./sharepoint/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/sharepoint.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>Granja de SharePoint Server 2016</h3>
-                        <p>Granja de alta disponibilidad de SharePoint Server 2016 en Azure con Grupos de disponibilidad AlwaysOn de SQL Server.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<!-- SAP -->
-<li style="display: flex; flex-direction: column;">
-    <a href="./sap/sap-netweaver.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/sap.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>SAP NetWeaver</h3>
-                        <p>SAP NetWeaver en Windows, en un entorno de alta disponibilidad que admite recuperación ante desastres.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
-    <a href="./sap/sap-s4hana.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/sap.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>SAP S/4HANA</h3>
-                        <p>SAP S/4HANA en Linux, en un entorno de alta disponibilidad que admite recuperación ante desastres.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-<li style="display: flex; flex-direction: column;">
-    <a href="./sap/hana-large-instances.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
-        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
-            <div class="cardPadding" style="display: flex;">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="../_images/icons/sap.svg" height="140px" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>SAP HANA en Azure (instancias grandes)</h3>
-                        <p>Las instancias de gran tamaño de HANA se implementan en servidores físicos en regiones de Azure.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-</li>
-</ul>
-
-
 ## <a name="web-applications"></a>Aplicaciones web
 
 <ul  class="panelContent cardsF">
@@ -566,3 +629,4 @@ Vaya a: [IA](#ai-and-machine-learning) | [Macrodatos](#big-data-solutions) | [Ap
     </a>
 </li>
 </ul>
+
