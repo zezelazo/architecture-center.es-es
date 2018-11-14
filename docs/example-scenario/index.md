@@ -1,22 +1,22 @@
 ---
-title: Escenario de ejemplo de Azure
-description: Escenarios de ejemplo que ofrecen soluciones a casos de uso empresariales concretos
+title: Escenarios de ejemplo de Azure
+description: Escenarios de ejemplo para casos de uso empresariales concretos
 author: david-stanford
-ms:date: 08/01/2018
+ms:date: 11/01/2018
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 63a566126168dba382792967b3625bd6e085c054
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 01b2db150c66eaa7f8911361dd39786f53c39c07
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818843"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610505"
 ---
 # <a name="azure-example-scenarios"></a>Escenarios de ejemplo de Azure
 
-Los escenarios de ejemplo muestran procesos de solución de problemas empresariales y de arquitectura específicos en Azure.  Cada escenario se basa en el ejemplo de un cliente real y está pensado para que le proporcione una rápida y sencilla guía que permita acelerar su propia implementación.
+Escenarios de ejemplo que muestran cómo afrontar desafíos empresariales o técnicos específicos mediante Azure. Cada escenario se basa en el ejemplo de un cliente real y le proporciona una rápida y sencilla guía que le permite acelerar su propia implementación.
 
-Dentro de cada escenario puede encontrar un diagrama de arquitectura, flujos de datos y detalles de todos los componentes.  También puede conocer más información sobre tecnologías alternativas que se pueden adecuar mejor a las necesidades de su empresa, precios aproximados de las soluciones y consideraciones a tener en cuenta a la hora de ejecutar las soluciones en producción.  Muchos de los escenarios también incluyen un método para implementar fácilmente la solución en su propia cuenta de Azure.
+Dentro de cada escenario encontrará un diagrama de arquitectura, flujos de datos y detalles de todos los componentes técnicos. También aprenderá sobre las consideraciones a la hora de ejecutar la solución en producción, factores de costo y otras opciones para solucionar problemas similares. Muchos de los escenarios también incluyen un método para implementar fácilmente la solución en su propia suscripción de Azure.
 
 Vaya: [Escenarios de inteligencia artificial](#ai-scenarios) | [Escenarios de aplicación](#application-scenarios) | [Escenarios de datos](#data-scenarios) | [Escenarios de infraestructura](#infrastructure-scenarios)
 
