@@ -2,17 +2,15 @@
 title: Orientación sobre los trabajos de segundo plano
 description: Orientación sobre las tareas en segundo plano que se ejecutan independientemente de la interfaz de usuario.
 author: dragon119
-ms.date: 05/24/2017
-pnp.series.title: Best Practices
-ms.openlocfilehash: 57fd7a6cc400b53e51e08fb5a1377dce4ae61327
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.date: 11/05/2018
+ms.openlocfilehash: 0c48121a0d5cff33893a8f242c70f4a275c46f73
+ms.sourcegitcommit: d59e2631fb08665bc30f6b65bfc7e1b75935cbd5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251930"
+ms.lasthandoff: 11/05/2018
+ms.locfileid: "51021940"
 ---
 # <a name="background-jobs"></a>Trabajos en segundo plano
-[!INCLUDE [header](../_includes/header.md)]
 
 Muchos tipos de aplicaciones requieren tareas en segundo plano que se ejecutan independientemente de la interfaz de usuario (UI). Algunos ejemplos incluyen trabajos por lotes, tareas de procesamiento intensivas y procesos de ejecución prolongada, como flujos de trabajo. Los trabajos en segundo plano pueden ejecutarse sin intervención del usuario. La aplicación puede iniciar el trabajo y seguir procesando las solicitudes interactivas de los usuarios. Esto puede ayudar a reducir la carga en la interfaz de usuario de la aplicación, lo que puede mejorar la disponibilidad y reducir los tiempos de respuesta interactiva.
 
@@ -74,8 +72,7 @@ Puede hospedar tareas en segundo plano usando una variedad de diferentes servici
 * [**Azure Web Apps y WebJobs**](#azure-web-apps-and-webjobs). Puede usar WebJobs para ejecutar trabajos personalizados basados en una variedad de distintos tipos de scripts o programas ejecutables en el contexto de una aplicación web.
 * [**Azure Virtual Machines**](#azure-virtual-machines). Si tiene un servicio de Windows o quiere usar el Programador de tareas de Windows, es común hospedar las tareas en segundo plano dentro de una máquina virtual dedicada.
 * [**Azure Batch**](#azure-batch). Batch es un servicio de plataforma que programa el trabajo que hace un uso intensivo de los recursos de proceso para que se ejecute en una colección administrada de máquinas virtuales. Puede escalar automáticamente los recursos de proceso.
-* [**Azure Container Service**](#azure-container-service). Azure Container Service es un entorno de hospedaje de contenedores en Azure. 
-* [**Azure Cloud Services**](#azure-cloud-services). Puede escribir código dentro de un rol que se ejecuta como una tarea en segundo plano.
+* [**Azure Kubernetes Service**](#azure-kubernetes-service) (AKS). Azure Kubernetes Service proporciona un entorno de hospedaje administrado para Kubernetes en Azure. 
 
 En las siguientes secciones se describe cada una de estas opciones con más detalle y se incluyen consideraciones para ayudarle a elegir la opción adecuada.
 
@@ -110,11 +107,8 @@ Azure WebJobs tiene las siguientes características:
 * De forma predeterminada, los trabajos web se escalan con la aplicación web. Sin embargo, puede configurar los trabajos para que se ejecuten en una instancia única; para ello, establezca la propiedad de configuración **is_singleton** en **true**. Los WebJobs de instancia única son útiles para las tareas que no quiera escalar o ejecutar como varias instancias simultáneas, por ejemplo, la reindexación, el análisis de datos y tareas similares.
 * Para minimizar el impacto de los trabajos en el rendimiento de la aplicación web, considere la posibilidad de crear una instancia vacía de aplicación web de Azure en un nuevo plan de App Service para hospedar WebJobs que pueden tardar tiempo en ejecutarse o que consumen muchos recursos.
 
-### <a name="more-information"></a>Más información
-* [recursos recomendados de Azure WebJobs](/azure/app-service-web/websites-webjobs-resources) se indican varios recursos, descargas y ejemplos útiles para WebJobs.
-
 ### <a name="azure-virtual-machines"></a>Azure Virtual Machines
-Las tareas en segundo plano se podrían implementar de forma que se les impida implementarse en Azure Web Apps o Cloud Services, o puede que estas opciones no sean convenientes. Entre algunos ejemplos típicos se incluyen los servicios de Windows y las utilidades y programas ejecutables de terceros. Otro ejemplo podrían ser programas escritos para un entorno de ejecución diferente del que hospeda la aplicación. Por ejemplo, podría ser un programa de Unix o Linux que quiere ejecutar desde una aplicación de Windows o .NET. Puede elegir entre una variedad de sistemas operativos para una máquina virtual de Azure y ejecutar el servicio o ejecutable en esa máquina virtual.
+Las tareas en segundo plano se pueden implementar de forma tal que se evite su implementación en Azure Web Apps o puede que estas opciones no sean prácticas. Entre algunos ejemplos típicos se incluyen los servicios de Windows y las utilidades y programas ejecutables de terceros. Otro ejemplo podrían ser programas escritos para un entorno de ejecución diferente del que hospeda la aplicación. Por ejemplo, podría ser un programa de Unix o Linux que quiere ejecutar desde una aplicación de Windows o .NET. Puede elegir entre una variedad de sistemas operativos para una máquina virtual de Azure y ejecutar el servicio o ejecutable en esa máquina virtual.
 
 Para ayudarle a elegir cuándo usar Virtual Machines, consulte [Comparación de Azure App Services, Cloud Services y Virtual Machines](/azure/app-service-web/choose-web-site-cloud-service-vm/). Para más información sobre las opciones de las máquinas virtuales, vea [Tamaños de las máquinas virtuales Windows en Azure](/azure/virtual-machines/windows/sizes). Para más información sobre los sistemas operativos y las imágenes preconfiguradas que están disponibles para las máquinas virtuales, consulte [Marketplace de Azure Virtual Machines](https://azure.microsoft.com/gallery/virtual-machines/).
 
@@ -133,8 +127,9 @@ Tenga en cuenta los siguientes puntos cuando decida si va a implementar tareas e
 * No existe ninguna utilidad que permita supervisar las tareas en Azure Portal ni ninguna funcionalidad de reinicio automatizado para las tareas con error; sin embargo, puede supervisar el estado básico de la máquina virtual y administrarla con los [cmdlets de Azure Service Management](https://msdn.microsoft.com/library/mt125356.aspx). No obstante, no hay funcionalidad para controlar los procesos y subprocesos en los nodos de proceso. Normalmente, el uso de una máquina virtual requiere un esfuerzo adicional para implementar un mecanismo que recopile datos de instrumentación en la tarea y del sistema operativo en la máquina virtual. Una solución que podría ser adecuada es usar el [paquete de administración de System Center para Azure](https://www.microsoft.com/download/details.aspx?id=50013).
 * Considere la posibilidad de crear sondeos de supervisión que se exponen a través de puntos de conexión HTTP. El código para estos sondeos podría realizar comprobaciones de estado, recopilar información operativa y estadísticas o intercalar información de error y devolverla a una aplicación de administración. Para más información, consulte el artículo sobre el [patrón de supervisión del extremo de estado](../patterns/health-endpoint-monitoring.md).
 
-#### <a name="more-information"></a>Más información
-* [Máquinas virtuales](https://azure.microsoft.com/services/virtual-machines/) en Azure
+Para más información, consulte:
+
+* [Máquinas virtuales](https://azure.microsoft.com/services/virtual-machines/)
 * [Preguntas más frecuentes sobre Azure Virtual Machines](/azure/virtual-machines/virtual-machines-linux-classic-faq?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ### <a name="azure-batch"></a>Azure Batch 
@@ -149,15 +144,15 @@ Batch funciona bien con cargas de trabajo intrínsecamente paralelas. También p
 
 Un trabajo de Azure Batch se ejecuta en un grupo de nodos (máquinas virtuales). Un enfoque es asignar un grupo solo cuando sea necesario y eliminarlo una vez completado el trabajo. Esto permite maximizar el uso porque los nodos no están inactivos, pero el trabajo debe esperar a que se asignen los nodos. También puede crear un grupo de antemano. Esto permite minimizar el tiempo que un trabajo tarda en iniciarse, pero el resultado puede ser tener nodos inactivos. Para más información, consulte [Vigencia de grupo y nodo de proceso](/azure/batch/batch-api-basics#pool-and-compute-node-lifetime).
 
-#### <a name="more-information"></a>Más información 
+Para más información, consulte:
 
-* [Ejecución de cargas de trabajo intrínsecamente paralelas con Batch](/azure/batch/batch-technical-overview) 
+* [¿Qué es Azure Batch?](/azure/batch/batch-technical-overview) 
 * [Desarrollo de soluciones de procesos paralelos a gran escala con Batch](/azure/batch/batch-api-basics) 
 * [Soluciones de Batch y HPC para cargas de trabajo de procesos a gran escala](/azure/batch/batch-hpc-solutions)
 
-### <a name="azure-container-service"></a>Azure Container Service 
+### <a name="azure-kubernetes-service"></a>Azure Kubernetes Service
 
-Azure Container Service permite configurar y administrar un clúster de máquinas virtuales en Azure para ejecutar aplicaciones en contenedor. Permite elegir los orquestadores Docker Swarm, DC/OS o Kubernetes. 
+Azure Kubernetes Service (AKS) administra su entorno hospedado de Kubernetes, lo que facilita la implementación y administración de aplicaciones en contenedores. 
 
 Los contenedores pueden ser útiles para ejecutar trabajos en segundo plano. Estas son algunas de las ventajas: 
 
@@ -168,92 +163,15 @@ Los contenedores pueden ser útiles para ejecutar trabajos en segundo plano. Est
 
 #### <a name="considerations"></a>Consideraciones
 
-- Requiere conocer cómo se usa un orquestador de contenedores. Según las habilidades de su equipo de DevOps, esto puede ser un problema o no.  
-- Container Service se ejecuta en un entorno IaaS. Aprovisiona un clúster de máquinas virtuales dentro de una red virtual dedicada. 
+- Requiere conocer cómo se usa un orquestador de contenedores. Según las habilidades de su equipo de DevOps, esto puede ser un problema o no.
 
-#### <a name="more-information"></a>Más información 
+Para más información, consulte:
 
-* [Introducción a las soluciones de hospedaje de contenedores de Docker mediante Azure Container Service](/azure/container-service/container-service-intro) 
+* [Introducción a los contenedores en Azure](https://azure.microsoft.com/overview/containers/) 
 * [Introducción a los registros de contenedores privados de Docker](/azure/container-registry/container-registry-intro) 
 
-### <a name="azure-cloud-services"></a>Azure Cloud Services 
-Puede ejecutar tareas en segundo plano dentro de un rol web o en un rol de trabajo independiente. Cuando decida si debe usar un rol de trabajo, considere los requisitos de elasticidad y escalabilidad, la duración de la tarea, la cadencia de la versión, la seguridad, la tolerancia a errores, la contención, la complejidad y la arquitectura lógica. Para más información, consulte el artículo sobre el [patrón de consolidación de recursos de proceso](../patterns/compute-resource-consolidation.md).
-
-Hay varias maneras de implementar tareas en segundo plano dentro de un rol de Cloud Services:
-
-* Crear una implementación de la clase **RoleEntryPoint** en el rol y usar sus métodos para ejecutar tareas en segundo plano. Las tareas se ejecutan en el contexto de WaIISHost.exe. Pueden usar el método **GetSetting** de la clase **CloudConfigurationManager** para cargar las opciones de configuración. Para más información, consulte [Ciclo de vida](#lifecycle).
-* Use las tareas de inicio para ejecutar tareas en segundo plano al iniciarse la aplicación. Para forzar que las tareas sigan ejecutándose en segundo plano, establezca la propiedad **taskType** en **background** (si no lo hace, el proceso de inicio de la aplicación se detendrá y esperará a que finalice la tarea). Para más información, consulte [Ejecutar tareas de inicio en Azure](/azure/cloud-services/cloud-services-startup-tasks).
-* Use el SDK de WebJobs para implementar tareas en segundo plano como WebJobs que se inician como tarea de inicio. Para más información, consulte cómo [crear un trabajo web de .NET en Azure App Service](/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started).
-* Use una tarea de inicio para instalar un servicio de Windows que ejecuta una o más tareas en segundo plano. Debe establecer la propiedad **taskType** en **background** para que el servicio se ejecute en segundo plano. Para más información, consulte [Ejecutar tareas de inicio en Azure](/azure/cloud-services/cloud-services-startup-tasks).
-
-La principal ventaja de ejecutar tareas en segundo plano en el rol web es el ahorro en costos de hospedaje porque no hay ningún requisito que exige implementar funciones adicionales.
-
-Ejecutar tareas en segundo plano en un rol de trabajo tiene varias ventajas:
-
-* Permite administrar el escalado por separado para cada tipo de rol. Por ejemplo, puede que necesite más instancias de un rol web para admitir la carga actual, pero menos instancias del rol de trabajo que ejecuta tareas en segundo plano. Al escalar instancias de proceso de tarea de segundo plano por separado desde los roles de la interfaz de usuario, puede reducir los costos de hospedaje, al mismo tiempo que mantiene un rendimiento aceptable.
-* Descarga la sobrecarga de procesamiento de las tareas en segundo plano del rol web. El rol web que proporciona la interfaz de usuario puede seguir respondiendo y es posible que implique la necesidad de un menor número de instancias para admitir un volumen determinado de las solicitudes de usuarios.
-* Permite implementar la separación de preocupaciones. Cada tipo de rol puede implementar un conjunto específico de tareas claramente definidas y relacionadas. Esto facilita el diseño y mantenimiento del código porque hay menos interdependencia de código y funcionalidad entre cada rol.
-* Puede ayudar a aislar los datos y procesos confidenciales. Por ejemplo, los roles de web que implementan la interfaz de usuario no necesitan tener acceso a los datos que administra y controla un rol de trabajo. Esto puede ser útil al reforzar la seguridad, especialmente cuando usa un patrón como el [patrón Gatekeeper](../patterns/gatekeeper.md).  
-
-#### <a name="considerations"></a>Consideraciones
-Tenga en cuenta los siguientes puntos a la hora de elegir cómo y dónde implementar tareas en segundo plano cuando se usan los roles web y de trabajo de Cloud Services:
-
-* Hospedar tareas en segundo plano en un rol web existente puede ahorrar el costo de la ejecución de un rol de trabajo independiente solo para estas tareas. Sin embargo, es probable que afecten al rendimiento y la disponibilidad de la aplicación si existe contención de procesos y otros recursos. El uso de un rol de trabajo independiente protege al rol web ante el impacto de las tareas en segundo plano de larga ejecución o que hacen un uso intensivo de los recursos.
-* Si hospeda tareas en segundo plano con la clase **RoleEntryPoint** , puede moverlo fácilmente a otro rol. Por ejemplo, si crea la clase en un rol web y más adelante decide que necesita ejecutar las tareas en un rol de trabajo, puede mover la implementación de la clase **RoleEntryPoint** al rol de trabajo.
-* Las tareas de inicio están diseñadas para ejecutar un programa o un script. La implementación de un trabajo en segundo plano como un programa ejecutable podría ser más difícil, especialmente si también requiere la implementación de ensamblados dependientes. Podría ser más fácil implementar y usar un script para definir un trabajo en segundo plano si usa tareas de inicio.
-* Las excepciones que provocan un error en una tarea en segundo plano tienen un impacto diferente, según la manera en que se hospedan:
-  * Si usa el método de la clase **RoleEntryPoint** , una tarea con error hará que el rol se reinicie para que la tarea se reinicie automáticamente. Esto puede afectar a la disponibilidad de la aplicación. Para evitar esto, asegúrese de incluir una gestión sólida de excepciones dentro de la clase **RoleEntryPoint** y todas las tareas en segundo plano. Use código para reiniciar las tareas con error cuando resulte adecuado y lance la excepción para reiniciar el rol únicamente si no puede recuperarse correctamente tras un error dentro del código.
-  * Si usa tareas de inicio, es su responsabilidad administrar la ejecución de la tarea y de la comprobación cuando si se produce un error.
-* La administración y supervisión de tareas de inicio son más difíciles que usar el método de la clase **RoleEntryPoint** . Sin embargo, el SDK de Azure WebJobs incluye un panel para facilitar la administración de WebJobs que se inician a través de las tareas de inicio.
-
-#### <a name="lifecycle"></a>Ciclo de vida 
- Si decide implementar trabajos en segundo plano para aplicaciones de Cloud Services que usan roles web y de trabajo mediante la clase **RoleEntryPoint** , es importante comprender el ciclo de vida de esta clase para poder usarla correctamente.
-
-Los roles web y de trabajo pasan por un conjunto de fases como al iniciarse, ejecutarse y detenerse. La clase **RoleEntryPoint** expone una serie de eventos que indican cuándo se producen estas fases. Estos se usan para inicializar, ejecutar y detener las tareas en segundo plano personalizadas. El ciclo completo es el siguiente:
-
-* Azure carga el ensamblado de roles y busca en él una clase que deriva de **RoleEntryPoint**.
-* Si encuentra esta clase, llama a **RoleEntryPoint.OnStart()**. Invalide este método para inicializar las tareas en segundo plano.
-* Una vez que el método **OnStart** se ha completado, Azure llama a **Application_Start()** en el archivo Global de la aplicación, si está presente (por ejemplo, Global.asax en un rol web que ejecuta ASP.NET).
-* Azure llama a **RoleEntryPoint.Run()** en un nuevo subproceso en primer plano que se ejecuta en paralelo con **OnStart()**. Invalide este método para iniciar las tareas en segundo plano.
-* Cuando finalice el método Run, Azure llama primero a **Application_End()** en el archivo Global de la aplicación si está presente y luego a **RoleEntryPoint.OnStop()**. Invalide el método **OnStop** para detener las tareas en segundo plano, limpiar los recursos, eliminar objetos y cerrar las conexiones que las tareas podrían haber usado.
-* Se detiene el proceso de host del rol de trabajo de Azure. En este punto, el rol se reciclará y se reiniciará.
-
-Para obtener más detalles y un ejemplo del uso de los métodos de la clase **RoleEntryPoint** , consulte el artículo sobre el [patrón de consolidación de recursos de proceso](../patterns/compute-resource-consolidation.md).
-
-#### <a name="implementation-considerations"></a>Consideraciones de implementación
-
-Tenga en cuenta los siguientes puntos si está implementando tareas en segundo plano en un rol web o de trabajo:
-
-* La implementación predeterminada del método **Run** en la clase **RoleEntryPoint** contiene una llamada a **Thread.Sleep(Timeout.Infinite)** que mantiene el rol activo de manera indefinida. Si invalida el método **Run** (esto suele ser necesario para ejecutar tareas en segundo plano), no debe permitir que el código salga del método, a menos que quiera reciclar la instancia de rol.
-* En una implementación típica del método **Run** se incluye código para iniciar cada una de las tareas en segundo plano, así como una construcción de bucle que comprueba periódicamente el estado de todas las tareas en segundo plano. Puede reiniciar las que tengan errores o supervisar en búsqueda de tokens de cancelación que indican que los trabajos se han completado.
-* Si una tarea en segundo plano lanza una excepción no controlada, dicha tarea debería reciclarse a la vez que permite que las otras tareas en segundo plano del rol sigan en ejecución. Sin embargo, si la excepción se debe a daños en los objetos fuera de la tarea, como en el almacenamiento compartido, la excepción debería controlarla la clase **RoleEntryPoint**, se deberían cancelar todas las tareas y se debería permitir que el método **Run** finalice. Azure entonces reiniciará el rol.
-* Use el método **OnStop** para pausar o detener las tareas en segundo plano y limpiar los recursos. Esto puede implicar la interrupción de tareas de ejecución prolongada o de varios pasos. Es esencial tener en cuenta cómo puede realizarse esto para evitar incoherencias en los datos. Si una instancia de rol se detiene por algún motivo que no sea un cierre iniciado por el usuario, el código que se ejecuta en el método **OnStop** debe completarse en un plazo de cinco minutos antes de que se finalice forzosamente. Asegúrese de que el código pueda completarse en ese tiempo o que pueda tolerar que no se ejecute hasta completarse.  
-* Azure Load Balancer comienza a dirigir el tráfico a la instancia de rol cuando el método **RoleEntryPoint.OnStart** devuelve el valor **true**. Por lo tanto, considere la posibilidad de colocar el código de inicialización en el método **OnStart** para que las instancias de rol que no se inicializan correctamente no reciban tráfico.
-* Puede usar tareas de inicio además de los métodos de la clase **RoleEntryPoint** . Debería usar tareas de inicio para inicializar las opciones de configuración que necesite cambiar en el equilibrador de carga de Azure porque estas tareas se ejecutarán antes de que el rol reciba cualquier solicitud. Para más información, consulte [Ejecutar tareas de inicio en Azure](/azure/cloud-services/cloud-services-startup-tasks/).
-* Si se produce un error en una tarea de inicio, es posible que obligue al rol a reiniciarse continuamente. Esto puede impedir la realización de un intercambio de dirección IP virtual (VIP) a una versión de ensayo anterior porque el intercambio requiere acceso exclusivo al rol. Esto no se puede obtener mientras se reinicia el rol. Para resolver este problema:
-  
-  * Agregue el siguiente código al principio de los métodos **OnStart** y **Run** en el rol:
-    
-    ```C#
-    var freeze = CloudConfigurationManager.GetSetting("Freeze");
-    if (freeze != null)
-    {
-      if (Boolean.Parse(freeze))
-      {
-        Thread.Sleep(System.Threading.Timeout.Infinite);
-      }
-    }
-    ```
-    
-  * Agregue la definición de la opción **Freeze** como un valor booleano a los archivos ServiceDefinition.csdef y ServiceConfiguration.\*.cscfg para el rol y establézcala en **false**. Si el rol entra en un modo de reinicio repetido, puede cambiar la opción a **true** para inmovilizar la ejecución del rol y permitir que se intercambie con una versión anterior.
-
-#### <a name="more-information"></a>Más información
-* [Patrón de consolidación de recursos de proceso](../patterns/compute-resource-consolidation.md)
-* [Introducción al SDK de Azure WebJobs](/azure/app-service-web/websites-dotnet-webjobs-sdk-get-started/)
-
-
 ## <a name="partitioning"></a>Creación de particiones
-Si decide incluir tareas en segundo plano dentro de una instancia de proceso existente (por ejemplo, una aplicación web, un rol web, un rol de trabajo existente o una máquina virtual), debe tener en cuenta cómo afectará a los atributos de calidad de la instancia de proceso y la tarea de segundo plano propiamente dicha. Estos factores le ayudarán a decidir si las tareas se deben colocalizar con la instancia de proceso existente o si se deben separar en una instancia de proceso independiente:
+Si decide incluir tareas en segundo plano en una instancia de proceso existente, debe tener en cuenta cómo afectará a los atributos de calidad de la instancia de proceso y la tarea de segundo plano propiamente dicha. Estos factores le ayudarán a decidir si las tareas se deben colocalizar con la instancia de proceso existente o si se deben separar en una instancia de proceso independiente:
 
 * **Disponibilidad**: es posible que las tareas en segundo plano no necesiten tener el mismo nivel de disponibilidad que otras partes de la aplicación, en concreto, la interfaz de usuario y otras partes que están implicadas directamente en la interacción con el usuario. Las tareas en segundo plano podrían ser más tolerantes a la latencia, a los errores de reintento de conexión y a otros factores que afectan a la disponibilidad, ya que las operaciones se pueden poner en cola. Sin embargo, debe haber capacidad suficiente como para evitar la copia de seguridad de las solicitudes que podrían bloquear las colas y afectar a la aplicación en su totalidad.
 * **Escalabilidad**: es probable que las tareas en segundo plano tengan un requisito de escalabilidad diferente al de la interfaz de usuario y las partes interactivas de la aplicación. El escalado de la interfaz de usuario podría ser necesario para satisfacer los picos de demanda, mientras que las tareas en segundo plano pendientes podrían completarse en horarios de menor actividad usando un menor número de instancias de proceso.
@@ -285,9 +203,8 @@ La coordinación de varias tareas y pasos puede suponer un reto, pero hay tres p
 ## <a name="resiliency-considerations"></a>Consideraciones de resistencia
 Las tareas en segundo plano deben ser resistentes para proporcionar servicios confiables a la aplicación. Cuando esté planeando y diseñando tareas en segundo plano, tenga en cuenta los siguientes puntos:
 
-* Las tareas en segundo plano deben poder controlar correctamente los reinicios de rol o servicio sin dañar los datos ni introducir incoherencias en la aplicación. Para las tareas de ejecución prolongada o con varios pasos, considere el uso de *puntos de comprobación* guardando el estado de los trabajos en el almacenamiento persistente o como mensajes en una cola, si fuera apropiado. Por ejemplo, puede conservar la información de estado de un mensaje en una cola y actualizar esta información de estado en incrementos con el progreso de la tarea para que esta se pueda procesar desde el último punto de comprobación correcto conocido, en lugar de reiniciar desde el principio. Al usar las colas de Azure Service Bus, puede usar sesiones de mensajes para habilitar el mismo escenario. Las sesiones le permiten guardar y recuperar el estado de procesamiento de la aplicación mediante los métodos [SetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.setstate?view=azureservicebus-4.0.0) y [GetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.getstate?view=azureservicebus-4.0.0). Para más información sobre el diseño de procesos y flujos de trabajo confiables de varios pasos, consulte [Scheduler Agent Supervisor Pattern](../patterns/scheduler-agent-supervisor.md)(Patrón de supervisor de agente de programador).
-* Cuando se usan roles web o de trabajo para hospedar varias tareas en segundo plano, diseñe la invalidación del método **Run** para supervisar las tareas detenidas o con errores y reiniciarlas. Cuando esto no sea práctico, y usa un rol de trabajado, obligue el reinicio del rol de trabajo mediante la salida del método **Run** .
-* Cuando use las colas para comunicarse con las tareas en segundo plano, las colas pueden actuar como un búfer para almacenar las solicitudes que se envían a las tareas cuando la aplicación se encuentra con una mayor carga que la habitual. Esto permite que las tareas se pongan al día con la interfaz de usuario durante los períodos de menor actividad. También significa que el reciclaje del rol no bloqueará la interfaz de usuario. Para más información, consulte [Patrón de equilibrio de carga basado en colas](../patterns/queue-based-load-leveling.md). Si algunas tareas son más importantes que otras, considere la posibilidad de implementar el [patrón de cola de prioridad](../patterns/priority-queue.md) para asegurarse de que estas tareas se ejecuten antes que las tareas menos importantes.
+* Las tareas en segundo plano deben poder controlar correctamente los reinicios sin dañar los datos ni introducir incoherencias en la aplicación. Para las tareas de ejecución prolongada o con varios pasos, considere el uso de *puntos de comprobación* guardando el estado de los trabajos en el almacenamiento persistente o como mensajes en una cola, si fuera apropiado. Por ejemplo, puede conservar la información de estado de un mensaje en una cola y actualizar esta información de estado en incrementos con el progreso de la tarea para que esta se pueda procesar desde el último punto de comprobación correcto conocido, en lugar de reiniciar desde el principio. Al usar las colas de Azure Service Bus, puede usar sesiones de mensajes para habilitar el mismo escenario. Las sesiones le permiten guardar y recuperar el estado de procesamiento de la aplicación mediante los métodos [SetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.setstate?view=azureservicebus-4.0.0) y [GetState](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagesession.getstate?view=azureservicebus-4.0.0). Para más información sobre el diseño de procesos y flujos de trabajo confiables de varios pasos, consulte [Scheduler Agent Supervisor Pattern](../patterns/scheduler-agent-supervisor.md)(Patrón de supervisor de agente de programador).
+* Cuando use las colas para comunicarse con las tareas en segundo plano, las colas pueden actuar como un búfer para almacenar las solicitudes que se envían a las tareas cuando la aplicación se encuentra con una mayor carga que la habitual. Esto permite que las tareas se pongan al día con la interfaz de usuario durante los períodos de menor actividad. También significa que los reinicios no bloquearán la interfaz de usuario. Para más información, consulte [Patrón de equilibrio de carga basado en colas](../patterns/queue-based-load-leveling.md). Si algunas tareas son más importantes que otras, considere la posibilidad de implementar el [patrón de cola de prioridad](../patterns/priority-queue.md) para asegurarse de que estas tareas se ejecuten antes que las tareas menos importantes.
 * Las tareas en segundo plano que procesan los mensajes, o que estos inician, se deben diseñar para controlar las incoherencias, como los mensajes que llegan sin orden, los mensajes que generan un error de forma repetida (con frecuencia denominados *mensajes dudosos*) y los mensajes que se entregan más de una vez. Tenga en cuenta lo siguiente.
   * Los mensajes que se deben procesar en un orden específico, tales como los que cambian los datos según su valor de datos existente (por ejemplo, al agregar un valor a un valor existente), podrían no llegar en el orden original en el que se enviaron. Como alternativa, los podrían controlar instancias diferentes de una tarea en segundo plano en un orden diferente debido a cargas variables en cada instancia. Los mensajes que se deben procesar en un orden específico deben incluir un número de secuencia, clave o algún otro indicador que las tareas en segundo plano pueden usar para garantizar que se procesan en el orden correcto. Si usa Azure Service Bus, puede usar sesiones de mensajes para garantizar el orden de entrega. Sin embargo, suele ser más eficaz cuando sea posible diseñar el proceso de modo que el orden de los mensajes no sea importante.
   * Normalmente, una tarea en segundo plano inspeccionará los mensajes de la cola, que los oculta temporalmente de los demás consumidores de mensajes. A continuación, elimina los mensajes una vez que se hayan procesado correctamente. Si se produce un error en una tarea en segundo plano al procesar un mensaje, ese mensaje volverá a aparecer en la cola después de que expire el tiempo de espera de la inspección. Se procesará por otra instancia de la tarea o durante el próximo ciclo de procesamiento de esta instancia. Si el mensaje produce un error sistemáticamente en el consumidor, bloqueará la tarea, la cola y, en última instancia, la aplicación en sí cuando se llene la cola. Por lo tanto, es fundamental detectar y quitar los mensajes dudosos de la cola. Usa Azure Service Bus, los mensajes que produzcan un error se pueden mover automática o manualmente a una cola de mensajes fallidos asociada.
@@ -297,31 +214,20 @@ Las tareas en segundo plano deben ser resistentes para proporcionar servicios co
 ## <a name="scaling-and-performance-considerations"></a>Consideraciones de escalado y rendimiento
 Las tareas en segundo plano deben ofrecer un rendimiento suficiente como para asegurarse de que no bloqueen la aplicación ni provoquen incoherencias debido al funcionamiento diferido cuando el sistema está bajo carga. Normalmente, el rendimiento se mejora al escalar las instancias de proceso que hospedan las tareas en segundo plano. Cuando esté planeando y diseñando tareas en segundo plano, tenga en cuenta los siguientes puntos en relación con la escalabilidad y el rendimiento:
 
-* Azure admite el escalado automático (escalar horizontalmente y reducir horizontalmente) en función de la demanda y carga actuales o según una programación predefinida, para roles web y de trabajo de Web Apps, Cloud Services e implementaciones hospedadas de máquinas virtuales. Use esta característica para garantizar que la aplicación en su conjunto tiene funcionalidades de rendimiento suficientes a la vez que se minimizan los costos de tiempo de ejecución.
-* En las tareas en segundo plano con una capacidad de rendimiento diferente de las demás partes de una aplicación de Cloud Services (por ejemplo, la interfaz de usuario o los componentes, como la capa de acceso a datos), el hospedaje de las tareas en segundo plano en un rol de trabajo independiente permite que los roles de la interfaz de usuario y de tarea en segundo plano se escalen independientemente para administrar la carga. Si varias tareas en segundo plano tienen funcionalidades de rendimiento muy diferentes entre sí, considere la posibilidad de dividirlas en roles de trabajo independientes y escalar cada tipo de rol de forma independiente. Sin embargo, tenga en cuenta que esto puede aumentar los costos de tiempo de ejecución en comparación con la combinación de todas las tareas en menos roles.
-* Es posible que el simple escalado de los roles no sea suficiente para impedir la pérdida de rendimiento bajo carga. También es posible que necesite escalar las colas de almacenamiento y otros recursos para impedir que un único punto de la cadena de procesamiento general se convierta en un cuello de botella. Asimismo, considere otras limitaciones, como por ejemplo, el rendimiento máximo de almacenamiento y otros servicios de los que dependen la aplicación y las tareas en segundo plano.
+* Azure admite el escalado automático (escalar horizontalmente y reducir horizontalmente) en función de la demanda y carga actuales, o según una programación predefinida, para implementaciones hospedadas de Web Apps y Virtual Machines. Use esta característica para garantizar que la aplicación en su conjunto tiene funcionalidades de rendimiento suficientes a la vez que se minimizan los costos de tiempo de ejecución.
+* Si las tareas en segundo plano tienen una funcionalidad de rendimiento diferente de las demás partes de una aplicación (por ejemplo, la interfaz de usuario o componentes como la capa de acceso a datos), el hospedaje de todas las tareas en segundo plano en un servicio de proceso independiente permite que la interfaz de usuario y las tareas en segundo plano se escalen independientemente para administrar la carga. Si varias tareas en segundo plano tienen funcionalidades de rendimiento muy diferentes entre sí, considere la posibilidad de dividirlas y escalar cada tipo de forma independiente. Sin embargo, tenga en cuenta que esto puede aumentar los costos del runtime.
+* Es posible que el simple escalado de los recursos de proceso no sea suficiente para impedir la pérdida de rendimiento bajo carga. También es posible que necesite escalar las colas de almacenamiento y otros recursos para impedir que un único punto de la cadena de procesamiento general se convierta en un cuello de botella. Asimismo, considere otras limitaciones, como por ejemplo, el rendimiento máximo de almacenamiento y otros servicios de los que dependen la aplicación y las tareas en segundo plano.
 * Las tareas en segundo plano deben diseñarse para el escalado. Por ejemplo, debe poder detectar dinámicamente el número de colas de almacenamiento en uso para escuchar en la cola adecuada o enviar mensajes a ella.
 * De manera predeterminada, los trabajos web se escalan con su instancia asociada de Azure Web Apps. Sin embargo, si quiere que un trabajo web se ejecute solo como una única instancia, puede crear un archivo Settings.job que contenga los datos JSON **{ "is_singleton": true }**. Esto obliga a Azure a ejecutar solo una instancia del WebJob, incluso si hay varias instancias de la aplicación web asociada. Esto puede ser una técnica útil para los trabajos programados que deben ejecutarse como una única instancia.
 
 ## <a name="related-patterns"></a>Patrones relacionados
-* [Manual de mensajería asincrónica](https://msdn.microsoft.com/library/dn589781.aspx)
-* [Instrucciones de escalado automático](https://msdn.microsoft.com/library/dn589774.aspx)
 * [Patrón de transacción de compensación](../patterns/compensating-transaction.md)
 * [Patrón de consumidores de la competencia](../patterns/competing-consumers.md)
 * [Orientación sobre la creación de particiones de proceso](https://msdn.microsoft.com/library/dn589773.aspx)
-* [Patrón de consolidación de recursos de proceso](https://msdn.microsoft.com/library/dn589778.aspx)
 * [Patrón de Gatekeeper](../patterns/gatekeeper.md)
 * [Patrón de elección de líder](../patterns/leader-election.md)
 * [Patrón de canalizaciones y filtros](../patterns/pipes-and-filters.md)
 * [Patrón de cola de prioridad](../patterns/priority-queue.md)
 * [Patrón de equilibrio de carga basado en colas](../patterns/queue-based-load-leveling.md)
 * [Patrón de supervisor de agente de programador](../patterns/scheduler-agent-supervisor.md)
-
-## <a name="more-information"></a>Más información
-* [Ejecutar tareas en segundo plano](https://msdn.microsoft.com/library/ff803365.aspx)
-* [Ciclo de vida del rol de Azure Cloud Services](https://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Windows-Azure-Cloud-Services-Role-Lifecycle) (vídeo)
-* [Qué es el SDK de Azure WebJobs](https://docs.microsoft.com/azure/app-service-web/websites-dotnet-webjobs-sdk)
-* [Ejecución de tareas en segundo plano con WebJobs](https://docs.microsoft.com/azure/app-service-web/web-sites-create-web-jobs)
-* [Colas de Azure y colas de Service Bus: comparación y diferencias](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
-* [Cómo habilitar diagnósticos en un servicio en la nube](https://docs.microsoft.com/azure/cloud-services/cloud-services-dotnet-diagnostics)
 

@@ -2,17 +2,19 @@
 title: Procesamiento de flujos de datos con Azure Stream Analytics
 description: Creación de una canalización de procesamiento de flujos de datos de un extremo a otro en Azure
 author: MikeWasson
-ms.date: 08/09/2018
-ms.openlocfilehash: 82887bdd45f811ac733ead18c1f256098e575253
-ms.sourcegitcommit: c4106b58ad08f490e170e461009a4693578294ea
+ms.date: 11/06/2018
+ms.openlocfilehash: e16547ccdcb81007e154e341f09be555ac82d1a1
+ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/10/2018
-ms.locfileid: "40025522"
+ms.lasthandoff: 11/07/2018
+ms.locfileid: "51263769"
 ---
 # <a name="stream-processing-with-azure-stream-analytics"></a>Procesamiento de flujos de datos con Azure Stream Analytics
 
-Esta arquitectura de referencia muestra una canalización de procesamiento de flujos de datos de un extremo a otro. La canalización ingiere los datos de dos orígenes, correlaciona los registros de los dos flujos de datos y calcula una media acumulada en un intervalo de tiempo. Los resultados se almacenan para su posterior análisis. [**Implemente esta solución**.](#deploy-the-solution)
+Esta arquitectura de referencia muestra una canalización de procesamiento de flujos de datos de un extremo a otro. La canalización ingiere los datos de dos orígenes, correlaciona los registros de los dos flujos de datos y calcula una media acumulada en un intervalo de tiempo. Los resultados se almacenan para su posterior análisis. 
+
+Hay disponible una implementación de referencia de esta arquitectura en [GitHub][github]. 
 
 ![](./images/stream-processing-asa/stream-processing-asa.png)
 
@@ -37,6 +39,8 @@ La arquitectura consta de los siguientes componentes:
 ## <a name="data-ingestion"></a>Ingesta de datos
 
 Para simular un origen de datos, esta arquitectura de referencia usa el conjunto de datos [New York City Taxi Data](https://uofi.app.box.com/v/NYCtaxidata/folder/2332218797)<sup>[[1]](#note1)</sup>. Este conjunto de datos contiene datos acerca de carreras de taxi en la ciudad de Nueva York durante un período de 4 años (de 2010 a 2013). Contiene dos tipos de registros: datos de carreras y datos de tarifas. Los datos de carreras incluyen la duración del viaje, la distancia de viaje y la ubicación de recogida y destino. Los datos de tarifas incluyen las tarifas, los impuestos y las propinas. Los campos comunes en ambos tipos de registro son la placa y el número de licencia, y el identificador del proveedor. Juntos, estos tres campos identifican un taxi además del conductor. Los datos se almacenan en formato CSV. 
+
+[1] <span id="note1">Donovan, Brian; Work, Dan (2016): New York City Taxi Trip Data (2010-2013). Universidad de Illinois en Urbana-Champaign. https://doi.org/10.13012/J8PN93H8
 
 El generador de datos es una aplicación de .NET Core que lee los registros y los envía a Azure Event Hubs. El generador envía los datos de carreras en formato JSON y los datos de tarifas en formato CSV. 
 
@@ -209,162 +213,7 @@ Curiosamente, esto tuvo el efecto secundario de aumentar el uso de las unidades 
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-Hay disponible una implementación de esta arquitectura de referencia en [GitHub](https://github.com/mspnp/reference-architectures/tree/master/data). 
+Para la implementación y ejecución de la implementación de referencia, siga los pasos del [Léame de GitHub][github]. 
 
-### <a name="prerequisites"></a>Requisitos previos
 
-1. Clone, bifurque o descargue el archivo zip del repositorio de GitHub de [arquitecturas de referencia](https://github.com/mspnp/reference-architectures).
-
-2. Instale [Docker](https://www.docker.com/) para ejecutar el generador de datos.
-
-3. Instale la [CLI de Azure 2.0](/cli/azure/install-azure-cli?view=azure-cli-latest).
-
-4. Desde un símbolo del sistema, un símbolo del sistema de Bash o un símbolo del sistema de PowerShell, inicie sesión en su cuenta de Azure como se indica a continuación:
-
-    ```
-    az login
-    ```
-
-### <a name="download-the-source-data-files"></a>Descarga de archivos de datos de origen
-
-1. Cree un directorio llamado `DataFile` en el directorio `data/streaming_asa`, en el repositorio de GitHub.
-
-2. Abra un explorador web y vaya a https://uofi.app.box.com/v/NYCtaxidata/folder/2332219935.
-
-3. Haga clic en el botón **Descargar** en esta página para descargar un archivo zip con todos los datos de taxi de ese año.
-
-4. Extraiga el archivo zip en el directorio `DataFile` local.
-
-    > [!NOTE]
-    > Este archivo zip contiene otros archivos zip. No extraiga los archivos zip secundarios.
-
-La estructura de directorios debe tener el siguiente aspecto:
-
-```
-/data
-    /streaming_asa
-        /DataFile
-            /FOIL2013
-                trip_data_1.zip
-                trip_data_2.zip
-                trip_data_3.zip
-                ...
-```
-
-### <a name="deploy-the-azure-resources"></a>Implementación de los recursos de Azure
-
-1. Desde un shell o símbolo del sistema de Windows, ejecute el siguiente comando y siga las indicaciones de inicio de sesión:
-
-    ```bash
-    az login
-    ```
-
-2. Vaya a la carpeta `data/streaming_asa` del repositorio de GitHub.
-
-    ```bash
-    cd data/streaming_asa
-    ```
-
-2. Ejecute los siguientes comandos para implementar los recursos de Azure:
-
-    ```bash
-    export resourceGroup='[Resource group name]'
-    export resourceLocation='[Location]'
-    export cosmosDatabaseAccount='[Cosmos DB account name]'
-    export cosmosDatabase='[Cosmod DB database name]'
-    export cosmosDataBaseCollection='[Cosmos DB collection name]'
-    export eventHubNamespace='[Event Hubs namespace name]'
-
-    # Create a resource group
-    az group create --name $resourceGroup --location $resourceLocation
-
-    # Deploy resources
-    az group deployment create --resource-group $resourceGroup \
-      --template-file ./azure/deployresources.json --parameters \
-      eventHubNamespace=$eventHubNamespace \
-      outputCosmosDatabaseAccount=$cosmosDatabaseAccount \
-      outputCosmosDatabase=$cosmosDatabase \
-      outputCosmosDatabaseCollection=$cosmosDataBaseCollection
-
-    # Create a database 
-    az cosmosdb database create --name $cosmosDatabaseAccount \
-        --db-name $cosmosDatabase --resource-group $resourceGroup
-
-    # Create a collection
-    az cosmosdb collection create --collection-name $cosmosDataBaseCollection \
-        --name $cosmosDatabaseAccount --db-name $cosmosDatabase \
-        --resource-group $resourceGroup
-    ```
-
-3. En Azure Portal, vaya al grupo de recursos creado.
-
-4. Abra la hoja del trabajo de Stream Analytics.
-
-5. Haga clic en **Iniciar** para iniciar el trabajo. Seleccione **Ahora** como hora de inicio de la salida. Espere a que el trabajo se inicie.
-
-### <a name="run-the-data-generator"></a>Ejecución del generador de datos
-
-1. Obtenga la cadena de conexión del centro de eventos. Puede obtener esta información en Azure Portal o con los siguientes comandos de la CLI:
-
-    ```bash
-    # RIDE_EVENT_HUB
-    az eventhubs eventhub authorization-rule keys list \
-        --eventhub-name taxi-ride \
-        --name taxi-ride-asa-access-policy \
-        --namespace-name $eventHubNamespace \
-        --resource-group $resourceGroup \
-        --query primaryConnectionString
-
-    # FARE_EVENT_HUB
-    az eventhubs eventhub authorization-rule keys list \
-        --eventhub-name taxi-fare \
-        --name taxi-fare-asa-access-policy \
-        --namespace-name $eventHubNamespace \
-        --resource-group $resourceGroup \
-        --query primaryConnectionString
-    ```
-
-2. Vaya al directorio `data/streaming_asa/onprem` del repositorio de GitHub.
-
-3. Actualice los valores en el archivo `main.env` de la siguiente manera:
-
-    ```
-    RIDE_EVENT_HUB=[Connection string for taxi-ride event hub]
-    FARE_EVENT_HUB=[Connection string for taxi-fare event hub]
-    RIDE_DATA_FILE_PATH=/DataFile/FOIL2013
-    MINUTES_TO_LEAD=0
-    PUSH_RIDE_DATA_FIRST=false
-    ```
-
-4. Ejecute el siguiente comando para compilar la imagen de Docker.
-
-    ```bash
-    docker build --no-cache -t dataloader .
-    ```
-
-5. Vuelva al directorio principal, `data/stream_asa`.
-
-    ```bash
-    cd ..
-    ```
-
-6. Ejecute el siguiente comando para ejecutar la imagen de Docker.
-
-    ```bash
-    docker run -v `pwd`/DataFile:/DataFile --env-file=onprem/main.env dataloader:latest
-    ```
-
-La salida debe tener un aspecto similar al siguiente:
-
-```
-Created 10000 records for TaxiFare
-Created 10000 records for TaxiRide
-Created 20000 records for TaxiFare
-Created 20000 records for TaxiRide
-Created 30000 records for TaxiFare
-...
-```
-
-Deje que el programa se ejecute durante al menos 5 minutos, que es el intervalo definido en la consulta de Stream Analytics. Para comprobar que el trabajo de Stream Analytics se ejecuta correctamente, abra Azure Portal y vaya a la base de datos de Cosmos DB. Abra la hoja **Explorador de datos** y vea los documentos. 
-
-[1] <span id="note1">Donovan, Brian; Work, Dan (2016): New York City Taxi Trip Data (2010-2013). Universidad de Illinois en Urbana-Champaign. https://doi.org/10.13012/J8PN93H8
+[github]: https://github.com/mspnp/reference-architectures/tree/master/data/streaming_asa
