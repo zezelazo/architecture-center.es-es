@@ -3,12 +3,12 @@ title: Protección de aplicaciones web de Windows para sectores regulados
 description: Compile una aplicación web segura, de varios niveles, con Windows Server en Azure que use conjuntos de escalado, Application Gateway y equilibradores de carga.
 author: iainfoulds
 ms.date: 07/11/2018
-ms.openlocfilehash: 584b5891f9b3d8e174c3eb29835a525ae4a4f156
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: c7137988bd9b5e26718b4fe0955a3dca3dc638b8
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819013"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610726"
 ---
 # <a name="secure-windows-web-application-for-regulated-industries"></a>Protección de aplicaciones web de Windows para sectores regulados
 
@@ -18,7 +18,7 @@ Entre los escenarios de aplicación se incluyen aplicaciones para quirófanos, c
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Tenga en cuenta este escenario para los casos de uso siguientes:
+Otros casos de uso pertinentes incluyen:
 
 * Modernización de implementaciones de aplicaciones en un entorno seguro en la nube.
 * Reducción de la administración de aplicaciones y servicios locales heredados.

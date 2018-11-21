@@ -3,30 +3,30 @@ title: Motor de búsqueda inteligente de productos para comercio electrónico
 description: Proporcione una experiencia de búsqueda de alcance mundial en una aplicación de comercio electrónico.
 author: jelledruyts
 ms.date: 09/14/2018
-ms.openlocfilehash: f18e9fd3705c24da71da747c46ab42f263fd06af
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: a57477c26665b4560671550f6fdd81c2d9505e71
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818760"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610675"
 ---
 # <a name="intelligent-product-search-engine-for-e-commerce"></a>Motor de búsqueda inteligente de productos para comercio electrónico
 
 Este escenario de ejemplo muestra cómo el uso de un servicio de búsqueda dedicada puede aumentar considerablemente el nivel de pertinencia en los resultados de búsqueda para los clientes de comercio electrónico.
 
-La búsqueda es el mecanismo principal que los clientes usan para encontrar y compran productos, por ello es esencial que los resultados de las búsquedas sean pertinentes en relación a la _intención_ de la consulta realizada mediante la búsqueda, y que la experiencia de búsqueda de principio a fin coincida con la que ofrecen los gigantes de la búsqueda, proporcionando resultados casi instantáneos, análisis lingüístico, coincidencias de ubicación geográfica, filtrado, búsqueda facetada, autocompletar, resaltado de referencias, etc.
+La búsqueda es el mecanismo principal que los clientes usan para encontrar y, en último término, comprar productos, y por ello es esencial que los resultados de las búsquedas sean pertinentes en relación a la _intención_ de la consulta realizada mediante la búsqueda, y que la experiencia de búsqueda de principio a fin coincida con la que ofrecen los gigantes de la búsqueda, proporcionando resultados casi instantáneos, análisis lingüístico, coincidencias de ubicación geográfica, filtrado, búsqueda por facetas, autocompletado, resaltado de referencias, etc.
 
 Imagine una aplicación web de comercio electrónico típica con datos de producto almacenados en una base de datos relacional como SQL Server o Azure SQL Database. Generalmente las consultas de búsqueda se controlan dentro de la base de datos usando las características consultas `LIKE` o [búsqueda de texto completo][docs-sql-fts]. Al usar [Azure Search][docs-search] en su lugar, se libera la base de datos operativa del procesamiento de consultas, y se pueden empezar a aprovechar esas características de difícil implementación que proporcionan a los clientes la mejor experiencia de búsqueda posible. Además, dado que Azure Search es un componente de plataforma como servicio (PaaS), no tiene que preocuparse por administrar infraestructura o convertirse en una experto de búsqueda.
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Estos otros casos de usos tienen patrones de diseño similares:
+Otros casos de uso pertinentes incluyen:
 
 * Búsqueda de anuncios inmobiliarias o tiendas cerca de la ubicación física del usuario.
 * Búsqueda de artículos en un sitio de noticias o búsqueda de resultados deportivos, con una preferencia más alta por la información más _reciente_.
 * Búsqueda en repositorios de gran tamaño de organizaciones _centradas en documentos_ tales como organismos legisladores y notarías.
 
-En última instancia _cualquier_ aplicación que tenga algún tipo de funcionalidad de búsqueda puede beneficiarse de tener un servicio de búsqueda dedicada.
+En última instancia _todas_ las aplicaciones que tenga algún tipo de funcionalidad de búsqueda pueden beneficiarse de un servicio de búsqueda dedicado.
 
 ## <a name="architecture"></a>Arquitectura
 
@@ -42,7 +42,7 @@ Este escenario incluye una solución de comercio electrónico donde los clientes
 
 ### <a name="components"></a>Componentes
 
-* [App Services: Web Apps][docs-webapps] hospeda aplicaciones web que permiten escalado automático y alta disponibilidad sin tener que administrar la infraestructura.
+* [App Services: Web Apps][docs-webapps] hospeda aplicaciones web que permiten la escalabilidad automática y la alta disponibilidad sin tener que administrar la infraestructura.
 * [SQL Database][docs-sql-database] es un servicio administrado de base de datos relacional de uso general de Microsoft Azure que admite estructuras como datos relacionales, JSON, espacial y XML.
 * [Azure Search][docs-search] es una solución de búsqueda como servicio en la nube que ofrece una experiencia de búsqueda de datos enriquecida en un contenido privado y heterogéneo en las aplicaciones web, para dispositivos móviles y empresariales.
 * [Bot Service][docs-botservice] proporciona herramientas para crear, probar, implementar y administrar bots inteligentes.

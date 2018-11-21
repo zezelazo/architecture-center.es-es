@@ -3,12 +3,12 @@ title: Representación de vídeo en 3D en Azure
 description: Ejecute cargas de trabajo de HPC nativas en Azure mediante el servicio Azure Batch.
 author: adamboeglin
 ms.date: 07/13/2018
-ms.openlocfilehash: 1206fa7d931fca635118929d433abe232ec5ca9a
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 1ffdaa5467fec73a01b8caa18b71c2bc4e49abbe
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818639"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610692"
 ---
 # <a name="3d-video-rendering-on-azure"></a>Representación de vídeo en 3D en Azure
 
@@ -18,7 +18,7 @@ El servicio Batch ofrece una experiencia coherente de administración y programa
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Tenga en cuenta este escenario para otros casos de uso parecidos:
+Otros casos de uso pertinentes incluyen:
 
 * Modelado 3D
 * Representación en Visual FX (VFX)

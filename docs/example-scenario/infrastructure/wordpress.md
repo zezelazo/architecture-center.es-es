@@ -3,12 +3,12 @@ title: Sitios web altamente escalables y seguros de WordPress en Azure
 description: Cree un sitio web de WordPress altamente escalable y seguro para eventos multimedia.
 author: david-stanford
 ms.date: 09/18/2018
-ms.openlocfilehash: f7dd73524b2b63cd7d38e8e03bfd4b8edac251a9
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 6ff39d09fa301c8c68ce2a644cc489c0e87a22fa
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818486"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610614"
 ---
 # <a name="highly-scalable-and-secure-wordpress-website"></a>Sitio web altamente escalable y seguro de WordPress
 
@@ -16,7 +16,7 @@ Este escenario de ejemplo es aplicable a las empresas que necesitan una instalac
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Tenga en cuenta este escenario para los casos de uso siguientes:
+Otros casos de uso pertinentes incluyen:
 
 * Eventos de medios que provocan picos de tráfico.
 * Blogs que usan WordPress como su sistema de administración de contenido.

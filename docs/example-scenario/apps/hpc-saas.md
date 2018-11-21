@@ -3,12 +3,12 @@ title: Un servicio de ingeniería asistida por PC en Azure
 description: Proporcione una plataforma de software como servicio (SaaS) de ingeniería asistida por PC (CAE) en Azure.
 author: alexbuckgit
 ms.date: 08/22/2018
-ms.openlocfilehash: d17ac218052c5b98e8790f1386be035618a2d957
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 8bdf7198223f7194d0cd717949699bb3a508674e
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818690"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610556"
 ---
 # <a name="a-computer-aided-engineering-service-on-azure"></a>Un servicio de ingeniería asistida por PC en Azure
 
@@ -26,7 +26,7 @@ Los objetivos de la empresa incluyen:
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Otros escenarios en los que se use esta arquitectura pueden incluir:
+Otros casos de uso pertinentes incluyen:
 
 * Investigación genómica
 * Simulación de tiempo metereológico
@@ -37,7 +37,7 @@ Otros escenarios en los que se use esta arquitectura pueden incluir:
 ![Arquitectura de una solución de SaaS que habilita las funcionalidades de HPC][architecture]
 
 * Los usuarios pueden acceder a máquinas virtuales de serie NV mediante un explorador con una conexión RDP basada en HTML5 usando el [servicio Apache Guacamole](https://guacamole.apache.org/). Estas instancias de máquina virtual proporcionan GPU eficaces para las tareas de representación y colaboración. Los usuarios pueden modificar los diseños y ver los resultados sin necesidad de acceso a equipos portátiles o dispositivos móviles de alta gama. El programador pone en marcha máquinas virtuales adicionales en función de la heurística definida por el usuario.
-* Desde una sesión de escritorio CAD, los usuarios pueden enviar cargas de trabajo para su ejecución en los nodos de clúster HPC disponibles. Estas cargas de trabajo realizan tareas como análisis de tensión o cálculos de dinámica de fluidos computacional, lo que elimina la necesidad de clústeres de cálculo local dedicados. Estos nodos del clúster se pueden configurar para el escalado automático en función de la carga o la profundidad de cola según la demanda del usuario activo para los recursos de proceso.
+* Desde una sesión de escritorio CAD, los usuarios pueden enviar cargas de trabajo para su ejecución en los nodos de clúster HPC disponibles. Estas cargas de trabajo realizan tareas como análisis de tensión o cálculos de dinámica de fluidos computacional, lo que elimina la necesidad de clústeres de cálculo local dedicados. Estos nodos del clúster se pueden configurar para la escalabilidad automática en función de la carga o de la profundidad de cola según la demanda del usuario activo para los recursos de proceso.
 * Azure Kubernetes Service (AKS) se utiliza para hospedar los recursos web disponibles para los usuarios finales.
 
 ### <a name="components"></a>Componentes
@@ -54,7 +54,7 @@ Otros escenarios en los que se use esta arquitectura pueden incluir:
 
 * [Azure CycleCloud](/azure/cyclecloud/overview) simplifica la creación, administración, funcionamiento y optimización de los clústeres de HPC. Ofrece una directiva avanzada y características de gobierno. CycleCloud admite cualquier programador de trabajos o pila de software.
 * [HPC Pack](/azure/virtual-machines/windows/hpcpack-cluster-options) puede crear y administrar un clúster de HPC de Azure para cargas de trabajo basadas en Windows Server. HPC Pack no es una opción para cargas de trabajo basadas en Linux.
-* [Azure Automation State Configuration](/azure/automation/automation-dsc-overview) proporciona un enfoque de infraestructura como código para definir las máquinas virtuales y software que se van a implementar. Las máquinas virtuales se pueden implementar como parte de un conjunto de escalado de máquinas virtuales con reglas de escalado automático para los nodos de proceso en función del número de trabajos enviados a la cola de trabajos. Cuando se necesita una nueva máquina virtual, se aprovisiona con la imagen de revisión más reciente desde la Galería de imágenes de Azure y, a continuación, se instala y configura el software necesario mediante un script de configuración de DSC de PowerShell.
+* [Azure Automation State Configuration](/azure/automation/automation-dsc-overview) proporciona un enfoque de infraestructura como código para definir las máquinas virtuales y software que se van a implementar. Las máquinas virtuales se pueden implementar como parte de un conjunto de escalado de máquinas virtuales con reglas de escalabilidad automática para los nodos de proceso en función del número de trabajos enviados a la cola de trabajos. Cuando se necesita una nueva máquina virtual, se aprovisiona con la imagen de revisión más reciente desde la Galería de imágenes de Azure y, a continuación, se instala y configura el software necesario mediante un script de configuración de DSC de PowerShell.
 * [Azure Functions](/azure/azure-functions/functions-overview)
 
 ## <a name="considerations"></a>Consideraciones

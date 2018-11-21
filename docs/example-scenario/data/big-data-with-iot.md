@@ -3,12 +3,12 @@ title: IoT y el análisis de datos en el sector de la construcción
 description: Use dispositivos de IoT y análisis de datos para proporcionar una administración y un funcionamiento integral de proyectos de construcción.
 author: alexbuckgit
 ms.date: 08/29/2018
-ms.openlocfilehash: 7ab0de50b0eba1ab420e450f3408fe5dc45f04ac
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 74868191687e63a54a69fdacb7276983d98faf74
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818503"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610930"
 ---
 # <a name="iot-and-data-analytics-in-the-construction-industry"></a>IoT y el análisis de datos en el sector de la construcción
 
@@ -29,7 +29,7 @@ Usar los servicios administrados de Azure, como IoT Hub y HDInsight, permitirá 
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Tenga en cuenta esta solución para los casos de uso siguientes:
+Otros casos de uso pertinentes incluyen:
 
 * Escenarios de construcción, minería de datos o fabricación de equipos
 * Colección a gran escala de datos del dispositivo de almacenamiento y análisis
@@ -47,7 +47,7 @@ Los datos fluyen por la solución de la siguiente manera:
 4. Los datos sin procesar recopilados se envían directamente desde IoT Hub a Azure Blob Storage y están disponibles inmediatamente para verlos y analizarlos.
 5. Los datos recopilados a través de IoT Hub se obtienen casi en tiempo real en un trabajo de Azure Stream Analytics que los almacena en una base de datos SQL de Azure.
 6. La aplicación web en la nube de construcción inteligente está disponible para que los analistas y usuarios finales vean y analicen imágenes y datos del sensor. 
-7. Los trabajos por lotes se inician a petición de los usuarios de la aplicación web. El trabajo por lotes se ejecuta en Apache Spark en HDInsight y analiza los nuevos datos almacenados en el clúster de Cassandra. 
+7. Los trabajos por lotes se inician a petición de los usuarios de la aplicación web. El trabajo por lotes se ejecuta en Apache Spark en HDInsight y analiza los nuevos datos almacenados en el clúster de Cassandra. 
 
 ### <a name="components"></a>Componentes
 

@@ -3,12 +3,12 @@ title: Migración de una aplicación web heredada a una arquitectura basada en A
 description: Use Azure API Management para modernizar una aplicación web heredada.
 author: begim
 ms.date: 09/13/2018
-ms.openlocfilehash: 1aa7ea6dc895146e13677dd9867fb2530f0a8f04
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: f468b3c6dc1c58e03555613b152882316ae2a017
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876805"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610590"
 ---
 # <a name="migrating-a-legacy-web-application-to-an-api-based-architecture-on-azure"></a>Migración de una aplicación web heredada a una arquitectura basada en API en Azure
 
@@ -17,10 +17,10 @@ Una empresa de comercio electrónico del sector del turismo va a modernizar su p
 Los objetivos del proyecto incluyen la solución de la deuda técnica, la mejora del mantenimiento continuo y la aceleración del desarrollo de características con menos errores de regresión. El proyecto usará un proceso iterativo para evitar el riesgo, con algunos pasos que se realizan en paralelo:
 
 * El equipo de desarrollo modernizará el back-end de la aplicación, que se compone de bases de datos relacionales hospedadas en máquinas virtuales.
-* El equipo de desarrollo de la empresa escribirá nuevas funcionalidades de negocio, que se expondrán mediante nuevas API HTTP.
+* El equipo de desarrollo interno de la empresa escribirá nuevas funcionalidades de negocio que se expondrán mediante nuevas API de HTTP.
 * Un equipo de desarrollo subcontratado creará una nueva interfaz de usuario basada en explorador, que se hospedará en Azure.
 
-Las nuevas características de la aplicación se entregará en fases. Se realizará una *sustitución gradual* de la funcionalidad de la interfaz de usuario cliente-servidor basada en explorador existente (hospedada en el entorno local) que impulsa su negocio de comercio electrónico actualmente.
+Las nuevas características de la aplicación se entregará en fases. Dichas características reemplazarán gradualmente la funcionalidad de la interfaz de usuario cliente-servidor basada en explorador existente (hospedada en el entorno local) que impulsa su negocio de comercio electrónico actualmente.
 
 El equipo de administración no está interesado en modernizar innecesariamente. También desean mantener el control del ámbito y los costos. Para ello, se ha decidido mantener los servicios HTTP SOAP existentes. También pretenden minimizar los cambios en la interfaz de usuario existente. [Azure API Management (APIM)][apim] se puede utilizar para solucionar muchos de los requisitos y restricciones del proyecto.
 
@@ -81,11 +81,12 @@ Los clientes pueden escalar API Management agregando o quitando unidades. Cada u
 > [!NOTE]
 > El nivel Desarrollador se puede usar para la evaluación de las características de API Management. El nivel Desarrollador no se debe usar en producción.
 
-Para ver los costos proyectados y personalizar según las necesidades de la implementación, puede modificar el número de unidades de escalado y las instancias de App Service en la [Calculadora de precios de Azure][pricing-calculator].
+Para ver los costos proyectados y realizar la personalización pertinente en función de las necesidades de la implementación, puede modificar el número de unidades de escalado y las instancias de App Service en la [Calculadora de precios de Azure][pricing-calculator].
 
 ## <a name="related-resources"></a>Recursos relacionados
 
 Consulte la amplia [documentación y artículos de referencia][apim] de Azure API Management.
+
 
 <!-- links -->
 [architecture]: ./media/architecture-apim-api-scenario.png

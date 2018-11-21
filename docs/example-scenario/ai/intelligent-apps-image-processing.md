@@ -3,12 +3,12 @@ title: Clasificación de imágenes de reclamaciones de seguros en Azure
 description: Compile el procesamiento de imágenes en sus aplicaciones de Azure.
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 31d328f8e5e27ea255024b7f461f2bfaeffc3ca7
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 9640f8b5454891ed00f669bada9f7c9c69b89734
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818544"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610539"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Clasificación de imágenes de reclamaciones de seguros en Azure
 
@@ -20,9 +20,9 @@ Con los servicios de Azure tales como Computer Vision API y Azure Functions, las
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Tenga en cuenta este escenario para los casos de uso siguientes:
+Otros casos de uso pertinentes incluyen:
 
-* Clasificar imágenes en un sitio web de moda.
+* Clasificar las imágenes en un sitio web de moda.
 * Clasificar los datos de telemetría de las capturas de pantalla de juegos.
 
 ## <a name="architecture"></a>Arquitectura
@@ -56,9 +56,9 @@ Este escenario trata los componentes de back-end de una aplicación web o móvil
 
 La mayoría de los componentes usados en este escenario de ejemplo son servicios administrados que escalan automáticamente. Hay dos excepciones destacables: Azure Functions tiene un límite máximo de 200 instancias. Si necesita escalar más allá de este límite, considere la posibilidad de usar varias regiones o planes de aplicación.
 
-Cosmos DB no reduce horizontalmente la escala de forma automática en términos de unidades de solicitud (RU) aprovisionadas. Para obtener instrucciones sobre cómo calcular los requisitos, consulte [unidades de solicitud](/azure/cosmos-db/request-units) en nuestra documentación. Para aprovechar al máximo el escalado en Cosmos DB, sepa cómo funcionan las [claves de partición](/azure/cosmos-db/partition-data) en CosmosDB.
+Cosmos DB no realiza escalabilidad automática en términos de unidades de solicitud (RU) aprovisionadas. Para obtener instrucciones sobre cómo calcular los requisitos, consulte [unidades de solicitud](/azure/cosmos-db/request-units) en nuestra documentación. Para aprovechar al máximo el escalado en Cosmos DB, sepa cómo funcionan las [claves de partición](/azure/cosmos-db/partition-data) en CosmosDB.
 
-Las bases de datos NoSQL suelen renunciar a la coherencia (en el sentido del teorema CAP) frente a la disponibilidad, escalabilidad y creación de particiones. En este escenario de ejemplo, se usa un modelo de datos de pares clave-valor y la coherencia de la transacción rara vez es necesaria porque, por definición, la mayoría de las operaciones son atómicas. Para más información sobre cómo [elegir el almacén de datos correcto](../../guide/technology-choices/data-store-overview.md), consulte el Centro de arquitectura de Azure.  Si su implementación requiere una coherencia alta, puede [elegir su nivel de coherencia](/azure/cosmos-db/consistency-levels) en CosmosDB.
+Las bases de datos NoSQL suelen renunciar a la coherencia (en el sentido del teorema CAP) frente a la disponibilidad, escalabilidad y creación de particiones. En este escenario de ejemplo, se usa un modelo de datos de pares clave-valor y la coherencia de la transacción rara vez es necesaria porque, por definición, la mayoría de las operaciones son atómicas. Para más información sobre cómo [elegir el almacén de datos correcto](../../guide/technology-choices/data-store-overview.md), consulte el Centro de arquitectura de Azure. Si su implementación requiere una coherencia alta, puede [elegir su nivel de coherencia](/azure/cosmos-db/consistency-levels) en CosmosDB.
 
 Para obtener instrucciones generales sobre cómo diseñar soluciones escalables, consulte la [lista de comprobación de escalabilidad][scalability] en el centro de arquitectura de Azure.
 
@@ -86,9 +86,9 @@ Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tr�
 
 ## <a name="related-resources"></a>Recursos relacionados
 
-Para ver una ruta de aprendizaje guiado de este escenario, consulte [Compilación de una aplicación web sin servidor en Azure][serverless].
+Para ver una ruta de aprendizaje guiado, consulte [Compilación de una aplicación web sin servidor en Azure][serverless].
 
-Antes de implementar este escenario de ejemplo en un entorno de producción, revise los [procedimientos recomendados][functions-best-practices] de Azure Functions.
+Antes de implementar este escenario de ejemplo en un entorno de producción, consulte las prácticas recomendadas para [optimizar el rendimiento y confiabilidad de Azure Functions][functions-best-practices].
 
 <!-- links -->
 [architecture]: ./media/architecture-intelligent-apps-image-processing.png

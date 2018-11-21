@@ -3,12 +3,12 @@ title: Canalización de CI/CD con Azure DevOps
 description: Compilación y publicación de una aplicación .NET en Azure Web Apps con Azure DevOps.
 author: christianreddington
 ms.date: 07/11/18
-ms.openlocfilehash: 80890784d4c97aac418cef4e49f9075dbef10b8a
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 97f16b2d3d9c15bc6f5db6fad4c9d8097243ad3d
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818945"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610794"
 ---
 # <a name="cicd-pipeline-with-azure-devops"></a>Canalización de CI/CD con Azure DevOps
 
@@ -109,7 +109,7 @@ Para obtener instrucciones generales sobre el diseño de soluciones seguras, con
 
 ### <a name="resiliency"></a>Resistencia
 
-Revise los [patrones de diseño típicos de resistencia][design-patterns-resiliency] y considere la posibilidad de implementar estos cuando corresponda.
+Considere la posibilidad de implementar los [patrones de diseño típicos de resistencia][design-patterns-resiliency] cuando corresponda.
 
 Encontrará varios [procedimientos recomendados para App Service][resiliency-app-service] en el Centro de arquitectura de Azure.
 

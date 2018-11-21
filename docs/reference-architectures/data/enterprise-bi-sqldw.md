@@ -3,14 +3,14 @@ title: Inteligencia empresarial con SQL Data Warehouse
 description: Use Azure para obtener perspectivas empresariales de datos relacionales almacenados localmente
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: d5b680346267a17b5016b8897dc03ddcf18a7fe9
-ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
+ms.openlocfilehash: 2822cf6d2a75d521f182c267f4bf2bac462d2b7f
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51263820"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527718"
 ---
-# <a name="enterprise-bi-with-sql-data-warehouse"></a>Inteligencia empresarial con SQL Data Warehouse
+# <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>Inteligencia empresarial en Azure con SQL Data Warehouse
 
 Esta arquitectura de referencia implementa una canalización [ELT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (extracción, carga y transformación) que mueve los datos desde una base de datos de SQL Server local a SQL Data Warehouse y transforma los datos para el análisis. 
 
@@ -199,7 +199,7 @@ Para la implementación y ejecución de la implementación de referencia, siga l
 
 ## <a name="next-steps"></a>Pasos siguientes
 
-- Use Azure Data Factory para automatizar la canalización de ELT. Consulte [Inteligencia empresarial automatizada con SQL Data Warehouse y Azure Data Factory][adf=ra].
+- Use Azure Data Factory para automatizar la canalización de ELT. Consulte [Inteligencia empresarial automatizada con SQL Data Warehouse y Azure Data Factory][adf-ra].
 
 <!-- links -->
 

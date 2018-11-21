@@ -3,16 +3,14 @@ title: Aplicación web de varias regiones
 description: Arquitectura recomendada para aplicaciones web con alta disponibilidad que se ejecutan en Microsoft Azure.
 author: MikeWasson
 ms.date: 10/25/2018
-cardTitle: Run in multiple regions
-ms.openlocfilehash: 1ed69f4f7e79fe2025e2a10d50e851ac4c02f1a6
-ms.sourcegitcommit: 065fa8ecb37c8be1827da861243ad6a33c75c99d
+ms.openlocfilehash: 7780a3d2f39f398d2776c783fbc3922c3353e44c
+ms.sourcegitcommit: 877777094b554559dc9cb1f0d9214d6d38197439
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/26/2018
-ms.locfileid: "50136665"
+ms.lasthandoff: 11/11/2018
+ms.locfileid: "51527667"
 ---
-# <a name="run-a-web-application-in-multiple-regions"></a>Ejecución de una aplicación web en varias regiones
-[!INCLUDE [header](../../_includes/header.md)]
+# <a name="run-a-web-application-in-multiple-azure-regions"></a>Ejecución de una aplicación web en varias regiones de Azure
 
 Esta arquitectura de referencia muestra cómo ejecutar una aplicación de Azure App Service en varias regiones para lograr una alta disponibilidad. 
 

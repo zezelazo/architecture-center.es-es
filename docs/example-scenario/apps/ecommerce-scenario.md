@@ -3,12 +3,12 @@ title: Front-end de comercio electrónico en Azure
 description: Hospede un sitio de comercio electrónico en Azure.
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 6ca85665a5bf63bf71f5badc16406db5df2a34c2
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 7baaf4d2986a00ab72b60a540bcd9d864893b109
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819098"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610828"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Front-end de comercio electrónico en Azure
 
@@ -18,7 +18,7 @@ Este documento le ayudará a obtener información sobre los distintos componente
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Tenga en cuenta este escenario para los casos de uso siguientes:
+Otros casos de uso pertinentes incluyen:
 
 * Compilación de una aplicación que necesita escalado elástico para controlar ráfagas de clientes a diferentes horas.
 * Compilación de una aplicación diseñada para funcionar con alta disponibilidad en diferentes regiones de Azure de todo el mundo.
@@ -45,7 +45,7 @@ En este escenario se incluye la compra de entradas desde un sitio de comercio el
 
 * [Azure CDN][docs-cdn] ofrece contenido estático almacenado en caché desde ubicaciones cercanas a los usuarios para reducir la latencia.
 * [Azure Traffic Manager][docs-traffic-manager] controla la distribución del tráfico de usuario en los puntos de conexión de servicio de las diferentes regiones de Azure.
-* [App Services: Web Apps][docs-webapps] hospeda aplicaciones web que permiten escalado automático y alta disponibilidad sin tener que administrar la infraestructura.
+* [App Services: Web Apps][docs-webapps] hospeda aplicaciones web que permiten la escalabilidad automática y la alta disponibilidad sin tener que administrar la infraestructura.
 * [Azure Active Directory B2C][docs-b2c] es un servicio de administración de identidades que le permite personalizar y controlar la manera en que los clientes se registran, inician sesión y administran sus perfiles de una aplicación.
 * [Las colas de Storage][docs-storage-queues] almacenan grandes cantidades de mensajes en cola a los que una aplicación puede acceder.
 * Las [funciones][docs-functions] son opciones de proceso sin servidor que permiten ejecutar aplicaciones a petición sin tener que administrar la infraestructura.

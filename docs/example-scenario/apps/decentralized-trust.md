@@ -3,12 +3,12 @@ title: Confianza descentralizada entre bancos en Azure
 description: Establezca un entorno de confianza para la comunicación y el uso compartido de información sin tener que recurrir a una base de datos centralizada.
 author: vitoc
 ms.date: 09/09/2018
-ms.openlocfilehash: fe27f885635ce5ae4ce368992affa1a85d7af416
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: bc472bc5bafc3eb20e583f41d71ed783725a039e
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876772"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610573"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Confianza descentralizada entre bancos en Azure
 
@@ -18,17 +18,17 @@ Tradicionalmente, los bancos de un sistema financiero confían en orígenes cent
 
 Con DLT (tecnología de libro de contabilidad distribuida), un consorcio de bancos puede establecer un sistema descentralizado que puede ser más eficiente y menos susceptible a ataques y actuar como una nueva plataforma en la que se pueden implementar estructuras innovadoras para resolver los desafíos tradicionales en materia de privacidad, velocidad y costo.
 
-En este ejemplo se mostrará cómo se pueden aprovisionar rápidamente los servicios de Azure, como el conjunto de escalado de máquinas virtuales, Virtual Network, Key Vault, Storage, Load Balancer y Monitor para la implementación de una cadena de bloques Ethereum PoA privada eficaz en la que los bancos miembros pueden establecer sus propios nodos.
+En este ejemplo se mostrará cómo se pueden aprovisionar rápidamente los servicios de Azure, como los conjuntos de escalado de máquinas virtuales, Virtual Network, Key Vault, Storage, Load Balancer y Monitor para la implementación de una cadena de bloques Ethereum PoA privada eficaz en la que los bancos miembros pueden establecer sus propios nodos.
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Estos otros casos de usos tienen patrones de diseño similares:
+Otros casos de uso pertinentes incluyen:
 
 * Movimiento de los presupuestos asignados entre distintas unidades empresariales de una organización multinacional
 * Pagos transfronterizos
 * Escenarios de comercio financiero
 * Sistemas de fidelidad que implican a diferentes empresas
-* Ecosistemas de la cadena de suministro y muchos más
+* Ecosistemas de la cadena de suministro
 
 ## <a name="architecture"></a>Arquitectura
 
@@ -44,7 +44,7 @@ Este escenario trata los componentes de back-end necesarios para crear una red d
 
 ### <a name="components"></a>Componentes
 
-* Las máquinas virtuales del conjunto de escalado de máquinas virtuales proporcionan la capacidad de proceso a petición para hospedar los procesos del validador para la cadena de bloques
+* Las máquinas virtuales de los conjuntos de escalado de máquinas virtuales proporcionan la capacidad de proceso a petición para hospedar los procesos del validador para la cadena de bloques
 * Key Vault se usa como la instalación de almacenamiento seguro para las claves privadas de cada validador
 * Azure Load Balancer distribuye las solicitudes de RPC, de emparejamiento y de aplicaciones descentralizadas de gobierno
 * Azure Storage para hospedar la información de red persistente y coordinar la concesión
@@ -70,9 +70,9 @@ Para ver otros temas de disponibilidad, consulte la [lista de comprobación de d
 
 ### <a name="scalability"></a>Escalabilidad
 
-Una preocupación popular en las cadenas de bloques es el número de transacciones que puede incluir una cadena de bloques en un período de tiempo preestablecido. Este escenario utiliza la prueba de autoridad, en la que la escalabilidad se puede administrar mejor que en la prueba de trabajo. En las redes basadas en la prueba de autoridad, se conocen y administran los participantes de consenso, lo que es más apropiado para una cadena de bloques privada para un consorcio de organizaciones que se conocen entre sí. Mediante el panel personalizado, se pueden supervisar fácilmente parámetros como el tiempo medio del bloque, las transacciones por minuto y el consumo de recursos de proceso. A continuación, se pueden ajustar los recursos según corresponda en función de los requisitos de escala.
+Una preocupación popular en las cadenas de bloques es el número de transacciones que puede incluir una cadena de bloques en un período de tiempo preestablecido. Este escenario utiliza la prueba de autoridad, en la que la escalabilidad se puede administrar mejor que en la prueba de trabajo. En las redes con prueba de autoridad, se conocen y administran los participantes de consenso, lo que es más apropiado para una cadena de bloques privada para un consorcio de organizaciones que se conozcan entre sí. Mediante el panel personalizado, se pueden supervisar fácilmente parámetros como el tiempo medio del bloque, las transacciones por minuto y el consumo de recursos de proceso. A continuación, se pueden ajustar los recursos según corresponda en función de los requisitos de escala.
 
-Para obtener instrucciones generales sobre cómo diseñar escenarios escalables, consulte la [lista de comprobación de escalabilidad][scalability] en el centro de arquitectura de Azure.
+Para obtener instrucciones generales sobre cómo diseñar soluciones escalables, consulte la [lista de comprobación de escalabilidad][scalability] en el centro de arquitectura de Azure.
 
 ### <a name="security"></a>Seguridad
 
@@ -82,7 +82,7 @@ Para obtener instrucciones generales sobre el diseño de soluciones seguras, con
 
 ### <a name="resiliency"></a>Resistencia
 
-La cadena de bloques Ethereum PoA puede proporcionar por sí misma cierto grado de resistencia, ya que los nodos de validador se pueden implementar en distintas regiones. Azure tiene opciones para implementaciones en más de 54 regiones en todo el mundo. Una cadena de bloques como la de este escenario proporciona posibilidades de colaboración únicas para aumentar la resistencia. La resistencia de la red no se proporciona solo para una única entidad centralizada, sino por todos los miembros del consorcio. Una cadena de bloques basada en la prueba de autoridad permite que la resistencia de la red sea más planeada y deliberada aún.
+La cadena de bloques Ethereum PoA puede proporcionar por sí misma cierto grado de resistencia, ya que los nodos de validador se pueden implementar en distintas regiones. Azure tiene opciones para implementaciones en más de 54 regiones en todo el mundo. Una cadena de bloques como la de este escenario proporciona posibilidades de colaboración únicas para aumentar la resistencia. La resistencia de la red no se proporciona solo para una única entidad centralizada, sino por todos los miembros del consorcio. Una cadena de bloques con prueba de autoridad permite que la resistencia de la red sea más planeada y deliberada aún.
 
 Para obtener instrucciones generales sobre el diseño de soluciones resistentes, consulte [Diseño de aplicaciones resistentes de Azure][resiliency].
 
@@ -100,7 +100,7 @@ Los precios anteriores son para que un miembro del consorcio inicie o se una a u
 
 ## <a name="next-steps"></a>Pasos siguientes
 
-Para ver un ejemplo de este escenario, implemente la [aplicación de demostración de la cadena de bloques Ethereum PoA][deploy] en Azure y, a continuación, vaya al archivo [Léame del código fuente del escenario][source].
+Para ver un ejemplo de este escenario, implemente la [aplicación de demostración de la cadena de bloques Ethereum PoA][deploy] en Azure. y, después, vaya al [Léame del código fuente del escenario][source].
 
 ## <a name="related-resources"></a>Recursos relacionados
 

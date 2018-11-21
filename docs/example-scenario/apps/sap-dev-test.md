@@ -3,12 +3,12 @@ title: Entornos de desarrollo y pruebas para cargas de trabajo SAP en Azure
 description: Cree un entorno de desarrollo y pruebas para las cargas de trabajo SAP.
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: b47e4cb527d3e4ecd74bee7bcf08f2794da56d6c
-ms.sourcegitcommit: 62945777e519d650159f0f963a2489b6bb6ce094
+ms.openlocfilehash: 1cfd15b0287a1979ae5ad60e41a0b1627a2e115c
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/09/2018
-ms.locfileid: "48876812"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610811"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Entornos de desarrollo y pruebas para cargas de trabajo SAP en Azure
 
@@ -22,7 +22,7 @@ Para casos de uso de producción, revise las arquitecturas de referencia de SAP 
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Tenga en cuenta este escenario para los casos de uso siguientes:
+Otros casos de uso pertinentes incluyen:
 
 * Cargas de trabajo no productivas de instancias de SAP no importantes (espacio aislado, desarrollo, prueba, control de calidad)
 * Cargas de trabajo empresariales de SAP no críticas

@@ -3,12 +3,12 @@ title: Canalización de CI/CD para cargas de trabajo basadas en contenedores
 description: Cree una canalización de DevOps para una aplicación web de Node.js con Jenkins, Azure Container Registry, Azure Kubernetes Service, Cosmos DB y Grafana.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 3212fae2c68eef3a5ed4963d28c0d97ac8f332e0
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: db8de674ee2789c5b41cebebee5745ecc8544122
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818743"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610845"
 ---
 # <a name="cicd-pipeline-for-container-based-workloads"></a>Canalización de CI/CD para cargas de trabajo basadas en contenedores
 
@@ -20,7 +20,7 @@ Con servicios de Azure como Azure Kubernetes Service, Container Registry y Cosmo
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Tenga en cuenta este escenario para los casos de uso siguientes:
+Otros casos de uso pertinentes incluyen:
 
 * Modernización de procedimientos de desarrollo de aplicaciones a un modelo de microservicios basado en contenedores.
 * Aceleración del desarrollo de aplicaciones y los ciclos de vida de implementación.

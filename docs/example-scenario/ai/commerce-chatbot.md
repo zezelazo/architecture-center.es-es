@@ -3,12 +3,12 @@ title: Bot conversacional para reservas de hotel en Azure
 description: Cree un bot conversacional para aplicaciones de comercio con Azure Bot Service.
 author: iainfoulds
 ms.date: 07/05/2018
-ms.openlocfilehash: 826aa36da5f30a871abd90fd8ab2b202ffdf93f0
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: a922a75d621672fcac95296b1d99112d68c91107
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819676"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610777"
 ---
 # <a name="conversational-chatbot-for-hotel-reservations-on-azure"></a>Bot conversacional para reservas de hotel en Azure
 
@@ -20,10 +20,10 @@ Con los servicios de Azure como Bot Service, LUIS o Speech API, las compañías 
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Tenga en cuenta este escenario para los casos de uso siguientes:
+Otros casos de uso pertinentes incluyen:
 
-* Ver el menú del restaurante para llevar y pedir comida
-* Comprobar la disponibilidad del hotel y reservar una habitación
+* Ver el menú de comida para llevar de un restaurante y pedir comida
+* Comprobar la disponibilidad de habitaciones de un hotel y realizar una reserva
 * Buscar las fotografías disponibles y solicitar copias impresas
 
 ## <a name="architecture"></a>Arquitectura
@@ -96,7 +96,7 @@ Este escenario se divide en tres componentes para explorar las áreas que más l
 
 ### <a name="deploy-infrastructure-components"></a>Implementación de los componentes de infraestructura
 
-Para implementar los componentes de infraestructura con una plantilla de Azure Resource Manager, realice los pasos siguientes.
+Para implementar los componentes de infraestructura con una plantilla de Resource Manager, realice los pasos siguientes.
 
 1. Haga clic en botón **Implementar en Azure**.<br><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fcommerce-chatbot.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
 2. Espere a que la implementación de plantilla se abra en Azure Portal y complete los pasos siguientes:
@@ -149,7 +149,8 @@ Hemos proporcionado tres ejemplos de perfiles de costo según el número de mens
 
 ## <a name="related-resources"></a>Recursos relacionados
 
-Para obtener un conjunto de tutoriales guiados sobre cómo sacar partido de Azure Bot Service, consulte el [nodo de tutoriales][botservice-docs] de la documentación.
+Para obtener un conjunto de tutoriales guiados de Azure Bot Service, consulte la [sección de tutoriales][botservice-docs] de la documentación.
+
 
 <!-- links -->
 [aadb2c-docs]: /azure/active-directory-b2c/active-directory-b2c-overview

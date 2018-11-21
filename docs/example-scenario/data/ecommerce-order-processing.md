@@ -3,12 +3,12 @@ title: Procesamiento de pedidos escalable en Azure
 description: Cree una canalización de procesamiento de pedidos altamente escalable con Azure Cosmos DB.
 author: alexbuckgit
 ms.date: 07/10/2018
-ms.openlocfilehash: fe642ffde733914389c36c5be50f35d242a22edf
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: 1c3bb2cc33be74f5ff8ee0513de4c3f7df70aa37
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818520"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610862"
 ---
 # <a name="scalable-order-processing-on-azure"></a>Procesamiento de pedidos escalable en Azure
 
@@ -20,7 +20,7 @@ El uso de servicios de Azure administrados como Cosmos DB y HDInsight puede ayud
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Tenga en cuenta este escenario para los casos de uso siguientes:
+Otros casos de uso pertinentes incluyen:
 
 * Sistemas back-end de comercio electrónico o punto de venta.
 * Sistemas de administración de inventario.
