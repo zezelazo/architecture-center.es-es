@@ -3,12 +3,12 @@ title: Almacenamiento de datos y análisis de ventas y marketing
 description: Consolide datos de varios orígenes y optimice el análisis de datos.
 author: alexbuckgit
 ms.date: 09/15/2018
-ms.openlocfilehash: f9ca9785b65f18098a91aedc1f3157f49456a6e1
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: e4c0a37f61f3edfb1f29d26df546f02d31fd40f7
+ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48818656"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610709"
 ---
 # <a name="data-warehousing-and-analytics-for-sales-and-marketing"></a>Almacenamiento de datos y análisis de ventas y marketing
 
@@ -24,7 +24,7 @@ La empresa necesita un enfoque moderno para analizar los datos, para que las dec
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-También podría usar este enfoque para lo siguiente:
+Este enfoque también se puede utilizar para:
 
 * Establecer un almacén de datos como origen de datos único.
 * Integrar orígenes de datos relacionales con otros conjuntos de datos desestructurados.
@@ -88,7 +88,7 @@ Revise un [precio de ejemplo para un escenario de almacenamiento de datos][calcu
 
 * [SQL Data Warehouse](https://azure.microsoft.com/pricing/details/sql-data-warehouse/gen2) permite escalar los niveles de proceso y almacenamiento por separado. Los recursos de proceso se cobran por hora; además, estos recursos se pueden escalar o pausar a petición. Los recursos de almacenamiento se facturan por terabyte, por lo que los costos aumentan con la ingestión de datos.
 * Los costos de [Data Factory](https://azure.microsoft.com/pricing/details/data-factory) se basan en el número de operaciones de lectura/escritura, las operaciones de supervisión y las actividades de orquestación realizadas en una carga de trabajo. Estos aumentan con cada flujo de datos adicional y la cantidad de datos que procese cada uno.
-* [Analysis Services](https://azure.microsoft.com/pricing/details/analysis-services) está disponible en los planes de tarifa estándar, básica y de desarrollador. Las instancias se pagan en función de las unidades de procesamiento de consultas (QPU) y la memoria disponible. Para mantener los costos más bajos, minimice el número de consultas que ejecuta, la cantidad de datos que procesa, y la frecuencia de ejecución.
+* [Analysis Services](https://azure.microsoft.com/pricing/details/analysis-services) está disponible en los planes de tarifa estándar, básica y de desarrollador. Las instancias se pagan en función de las unidades de procesamiento de consultas (QPU) y la memoria disponible. Para mantener los costos más bajos, minimice el número de consultas que ejecuta, la cantidad de datos que procesan y la frecuencia de ejecución.
 * [Power BI](https://powerbi.microsoft.com/pricing) tiene opciones de producto diferentes para distintos requisitos. [Power BI Embedded](https://azure.microsoft.com/pricing/details/power-bi-embedded) proporciona una opción basada en Azure para insertar la funcionalidad de Power BI en las aplicaciones. En el precio de ejemplo anterior se incluye una instancia de Power BI Embedded.
 
 ## <a name="next-steps"></a>Pasos siguientes
