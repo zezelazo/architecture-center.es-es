@@ -4,12 +4,12 @@ description: Cómo crear aplicaciones resistentes de Azure, para alta disponibil
 author: MikeWasson
 ms.date: 07/29/2018
 ms.custom: resiliency
-ms.openlocfilehash: b925748e1d3d4a8d490bbd5d7cb76f3961ffcfb2
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 73600650dc96fe85ad59e286079a3523ef25d055
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916607"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305968"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Diseño de aplicaciones resistentes de Azure
 
@@ -174,7 +174,9 @@ Azure dispone de una serie de características que permiten hacer que la aplicac
 
 **Conjuntos de disponibilidad**. Para protegerse frente a errores de hardware localizados, como un error en un conmutador de red o un disco, implemente dos o más máquinas virtuales en un conjunto de disponibilidad. Un conjunto de disponibilidad se compone de dos o más *dominios de error* que comparten una fuente de alimentación y un conmutador de red. Las máquinas virtuales incluidas en un conjunto de disponibilidad se distribuyen entre los dominios de error, por lo que, si un error de hardware afecta a un dominio de error, el tráfico de la red puede enrutarse a las máquinas virtuales de otros dominios de error. Para más información acerca de los conjuntos disponibilidad, consulte [Administración de la disponibilidad de las máquinas virtuales Windows en Azure](/azure/virtual-machines/windows/manage-availability).
 
-**Zonas de disponibilidad**.  Una zona de disponibilidad es una zona separada físicamente dentro de una región de Azure. Cada zona de disponibilidad tiene una fuente de alimentación, una red y un sistema de refrigeración distintos. Cuando las máquinas virtuales están implementadas en diferentes zonas de disponibilidad, es más fácil proteger una aplicación frente a errores que afectan a todo el centro de datos. 
+**Zonas de disponibilidad**.  Una zona de disponibilidad es una zona separada físicamente dentro de una región de Azure. Cada zona de disponibilidad tiene una fuente de alimentación, una red y un sistema de refrigeración distintos. Cuando las máquinas virtuales están implementadas en diferentes zonas de disponibilidad, es más fácil proteger una aplicación frente a errores que afectan a todo el centro de datos.
+
+**Azure Site Recovery**.  Replique las máquinas virtuales de Azure en otra región de Azure para satisfacer sus necesidades de continuidad empresarial y recuperación ante desastres. Puede realizar pruebas de recuperación ante desastres periódicas para asegurarse de que satisface los requisitos de cumplimiento. La máquina virtual se replicará en la región seleccionada con la configuración que especifique, de forma que podrá recuperar las aplicaciones en caso de interrupciones del servicio en la región de origen. Para más información, consulte [Replicación de máquinas virtuales de Azure con ASR][site-recovery].
 
 **Regiones emparejadas**. Para proteger una aplicación frente a una interrupción regional, puede implementar la aplicación en varias regiones y utilizar Azure Traffic Manager para distribuir el tráfico de Internet en las distintas regiones. Cada región de Azure está emparejada con otra región. Juntas, forman un [par regional](/azure/best-practices-availability-paired-regions). A excepción del Sur de Brasil, los pares regionales se encuentran en la misma ubicación geográfica para, de este modo, cumplir los requisitos de residencia de datos a efectos de jurisdicción fiscal y aplicación de las leyes.
 
@@ -202,9 +204,11 @@ Cada reintento se suma a la latencia total. Además, demasiadas solicitudes con 
 * Escale horizontalmente una aplicación de Azure App Service en varias instancias. App Service equilibra automáticamente la carga entre instancias. Consulte [Basic web application][ra-basic-web] (Aplicación web básica).
 * Use [Azure Traffic Manager][tm] para distribuir el tráfico a través de un conjunto de puntos de conexión.
 
-**Replique los datos**. La replicación de datos es una estrategia general para tratar errores no transitorios en un almacén de datos. Muchas tecnologías de almacenamiento proporcionan replicación integrada, como Azure SQL Datase y Cosmos DB y Apache Cassandra. Es importante tener en cuenta las rutas de lectura y escritura. Según la tecnología de almacenamiento, puede tener varias réplicas de escritura, o una única réplica de escritura y múltiples réplicas de solo lectura. 
+**Replique los datos**. La replicación de datos es una estrategia general para tratar errores no transitorios en un almacén de datos. Muchas tecnologías de almacenamiento proporcionan replicación integrada, como Azure SQL Datase y Cosmos DB y Apache Cassandra. Es importante tener en cuenta las rutas de lectura y escritura. Según la tecnología de almacenamiento, puede tener varias réplicas de escritura, o una única réplica de escritura y múltiples réplicas de solo lectura.
 
-Para maximizar la disponibilidad, las réplicas pueden colocarse en varias regiones. Sin embargo, esto aumenta la latencia al replicar los datos. Por lo general, la replicación entre las regiones se realiza de forma asincrónica, lo que implica un modelo de coherencia final y la posible pérdida de datos si se produce un error en una réplica. 
+Para maximizar la disponibilidad, las réplicas pueden colocarse en varias regiones. Sin embargo, esto aumenta la latencia al replicar los datos. Por lo general, la replicación entre las regiones se realiza de forma asincrónica, lo que implica un modelo de coherencia final y la posible pérdida de datos si se produce un error en una réplica.
+
+Puede usar [Azure Site Recovery][site-recovery] para replicar máquinas virtuales de Azure de una región a otra. Site Recovery replica datos continuamente en la región de destino. Cuando se produce una interrupción en el sitio principal, se conmuta por error a la ubicación secundaria.
 
 **Degrade de manera correcta**. Si se produce un error en un servicio y no hay ninguna ruta de conmutación por error, es posible que la aplicación pueda degradarse correctamente y al mismo tiempo proporcionar una experiencia de usuario aceptable. Por ejemplo: 
 
@@ -355,3 +359,4 @@ Estos son los puntos principales que se pueden extraer de este artículo:
 [tm]: https://azure.microsoft.com/services/traffic-manager/
 [tm-failover]: /azure/traffic-manager/traffic-manager-monitoring
 [tm-sla]: https://azure.microsoft.com/support/legal/sla/traffic-manager
+[site-recovery]:/azure/site-recovery/azure-to-azure-quickstart/

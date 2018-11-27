@@ -3,12 +3,12 @@ title: Elección de una solución para conectar una red local a Azure
 description: Compara las arquitecturas de referencia para conectar una red local a Azure.
 author: telmosampaio
 ms.date: 07/02/2018
-ms.openlocfilehash: 0cc07d3b7d45accf9f99ce32914b0ef065d62f32
-ms.sourcegitcommit: 776b8c1efc662d42273a33de3b82ec69e3cd80c5
+ms.openlocfilehash: a9e2a212d65530e714635bbfae3a57766e77c3a6
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/12/2018
-ms.locfileid: "38987485"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295499"
 ---
 # <a name="connect-an-on-premises-network-to-azure"></a>Conexión de una red local a Azure
 
@@ -28,7 +28,7 @@ Esta arquitectura es adecuada para las aplicaciones híbridas en las que es prob
 
 - Requiere un dispositivo VPN local.
 - Aunque Microsoft garantiza la disponibilidad del 99,9 % para cada VPN Gateway, este [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/vpn-gateway/) solo cubre VPN Gateway y no la conexión de red a la puerta de enlace.
-- Una conexión VPN a través de Azure VPN Gateway admite actualmente un ancho de banda máximo de 200 Mbps. Quizá tenga que dividir su red Azure Virtual Network entre varias conexiones VPN si espera que se supere este rendimiento.
+- Una conexión VPN a través de Azure VPN Gateway admite actualmente un ancho de banda máximo de 1,25 Gbps. Quizá tenga que dividir su red Azure Virtual Network entre varias conexiones VPN si espera que se supere este rendimiento.
 
 **Arquitectura de referencia**
 

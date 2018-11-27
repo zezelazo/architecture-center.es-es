@@ -3,12 +3,12 @@ title: Antipatrón No Caching
 description: Si se capturan los mismos datos varias veces, puede reducirse el rendimiento la y escalabilidad.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: f94a9f3f9166e87949a0e60af818cd89796dc3e2
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: ec19cde567fb63248c121328322e834d99c841e8
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428962"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295589"
 ---
 # <a name="no-caching-antipattern"></a>Antipatrón No Caching
 
@@ -59,7 +59,7 @@ La estrategia de almacenamiento en caché más popular es el sistema *a petició
 - En las lecturas, la aplicación intenta leer los datos de la memoria caché. Si los datos no están allí, la aplicación los recupera del origen de datos y los agrega.
 - Durante las escrituras, la aplicación escribe el cambio directamente en el origen de datos y quita el valor antiguo de la memoria caché. Se recuperará y se agregará a la memoria caché la próxima vez que se requiera.
 
-Este enfoque es adecuado para los datos que cambian con frecuencia. Aquí se muestra el ejemplo anterior actualizado para utilizar el modelo [cache-aside].  
+Este enfoque es adecuado para los datos que cambian con frecuencia. Aquí se muestra el ejemplo anterior actualizado para utilizar el modelo [Cache-Aside][cache-aside-pattern].  
 
 ```csharp
 public class CachedPersonRepository : IPersonRepository
