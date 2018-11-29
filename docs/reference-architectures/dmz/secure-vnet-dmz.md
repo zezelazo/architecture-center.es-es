@@ -7,12 +7,12 @@ pnp.series.title: Network DMZ
 pnp.series.next: nva-ha
 pnp.series.prev: secure-vnet-hybrid
 cardTitle: DMZ between Azure and the Internet
-ms.openlocfilehash: d12c76a08f028d54784de330c62311f294802cb9
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 8d394d8cacd17b3af2b3de13ecb2c3181ef568ba
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916339"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295637"
 ---
 # <a name="dmz-between-azure-and-the-internet"></a>Red perimetral entre Internet y Azure
 
@@ -90,7 +90,7 @@ Se puede encontrar una implementación de una arquitectura de referencia que imp
 
 ### <a name="deploy-resources"></a>Implementación de recursos
 
-1. Vaya a la carpeta `/dmz/secure-vnet-hybrid` del repositorio de GitHub de las arquitecturas de referencia.
+1. Vaya a la carpeta `/dmz/secure-vnet-dmz` del repositorio de GitHub de las arquitecturas de referencia.
 
 2. Ejecute el siguiente comando:
 

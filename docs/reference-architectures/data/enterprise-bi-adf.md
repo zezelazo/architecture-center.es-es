@@ -3,16 +3,18 @@ title: Inteligencia empresarial automatizada con SQL Data Warehouse y Azure Data
 description: Automatizar un flujo de trabajo de ECT en Azure mediante Azure Data Factory
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: 39089d80047b584ac590d285097020212ab72911
-ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
+ms.openlocfilehash: 3fedcd08572a9fe1fc610f5fbab12f8ff0d53073
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51263736"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295638"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>Inteligencia empresarial automatizada con SQL Data Warehouse y Azure Data Factory
 
-Esta arquitectura de referencia muestra cómo realizar una carga incremental en una canalización de [ECT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (extracción, carga y transformación). Usa Azure Data Factory para automatizar la canalización de ECT. La canalización mueve de forma incremental los datos más recientes de OLTP de una base de datos de SQL Server local a SQL Data Warehouse. Los datos transaccionales se transforman en un modelo tabular para su análisis. 
+Esta arquitectura de referencia muestra cómo realizar una carga incremental en una canalización de [ECT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (extracción, carga y transformación). Usa Azure Data Factory para automatizar la canalización de ECT. La canalización mueve de forma incremental los datos más recientes de OLTP de una base de datos de SQL Server local a SQL Data Warehouse. Los datos transaccionales se transforman en un modelo tabular para su análisis.
+
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
 
 Hay disponible una implementación de referencia de esta arquitectura en [GitHub][github].
 
