@@ -4,12 +4,12 @@ description: Lista de comprobación que proporciona una orientación sobre la re
 author: petertaylor9999
 ms.date: 03/02/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 50808a837132e905cc89c3c43d40852a04f4885c
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 53a37595bd6e70fa3a43e9a72b2ae47d2225009f
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916709"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305934"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Lista de comprobación de resistencia para servicios de Azure específicos
 
@@ -139,6 +139,8 @@ Si usa Redis Cache como caché de datos temporal y no como almacén persistente,
 
 **Ponga cada capa de aplicación en un conjunto de disponibilidad independiente.** En una aplicación de n niveles, no coloque máquinas virtuales de diferentes niveles en el mismo conjunto de disponibilidad. Las máquinas virtuales de un conjunto de disponibilidad se colocan en dominios de error y en dominios de actualización. Sin embargo, para obtener el beneficio de redundancia de los dominios de error y de los dominios de disponibilidad, cada máquina virtual en el conjunto de disponibilidad debe ser capaz de tratar las mismas solicitudes del cliente.
 
+**Replicación de máquinas virtuales con Azure Site Recovery** Al replicar máquinas virtuales de Azure con [Site Recovery][site-recovery], todos los discos de máquina virtual se replican continuamente de forma asincrónica en la región de destino. Los puntos de recuperación se crean cada pocos minutos. Esto le ofrece un objetivo de punto de recuperación (RPO) en el orden de minutos. Puede realizar tantos simulacros de recuperación ante desastres como desee, sin que afecte a la aplicación de producción ni la replicación en curso. Para más información, consulte [Ejecución de un simulacro de recuperación ante desastres en Azure][site-recovery-test].
+
 **Elija el tamaño de la máquina virtual adecuado según los requisitos de rendimiento.** Al mover una carga de trabajo existente a Azure, comience con el tamaño de máquina virtual que más se acerque a los servidores locales. Luego, mida el rendimiento de la carga de trabajo real con respecto a la CPU, la memoria y la IOPS de disco, y ajuste el tamaño, si es necesario. Esto ayuda a asegurar que la aplicación se comporte según lo previsto en un entorno de nube. Además, si tiene varias tarjetas NIC, tenga en cuenta el límite de NIC para cada tamaño.
 
 **Use Managed Disks en discos duros virtuales.** [Managed Disks][managed-disks] proporciona una mayor confiabilidad para las máquinas virtuales en los conjuntos de disponibilidad, porque los discos están suficientemente aislados entre sí para evitar únicos puntos de error. Además, Managed Disks no está sujeto a los límites de IOPS de los discos duros virtuales creados en una cuenta de almacenamiento. Para más información, consulte [Administración de la disponibilidad de las máquinas virtuales Windows en Azure][vm-manage-availability].
@@ -166,6 +168,8 @@ Si usa Redis Cache como caché de datos temporal y no como almacén persistente,
 [diagnostics-logs]: /azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs/
 [managed-disks]: /azure/storage/storage-managed-disks-overview
 [search-optimization]: /azure/search/search-performance-optimization/
+[site-recovery]: /azure/site-recovery/
+[site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
 [sql-backup]: /azure/sql-database/sql-database-automated-backups/
 [sql-restore]: /azure/sql-database/sql-database-recovery-using-backups/
 [vm-manage-availability]: /azure/virtual-machines/windows/manage-availability#use-managed-disks-for-vms-in-an-availability-set

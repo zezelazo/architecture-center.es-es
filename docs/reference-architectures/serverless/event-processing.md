@@ -3,16 +3,16 @@ title: Procesamiento de eventos sin servidor con Azure Functions
 description: Arquitectura de referencia que muestra la ingesta y el procesamiento de eventos sin servidor
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: 2bb7600fbed95e4b9368cf342c0bc6a75c5f8755
-ms.sourcegitcommit: 113a7248b9793c670b0f2d4278d30ad8616abe6c
+ms.openlocfilehash: 76c8b9c1244c987c96e38e50ecad7814cc49cd88
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/16/2018
-ms.locfileid: "49349945"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295657"
 ---
 # <a name="serverless-event-processing-using-azure-functions"></a>Procesamiento de eventos sin servidor con Azure Functions
 
-Esta arquitectura de referencia muestra una arquitectura sin servidor orientada a eventos que ingiere un flujo de datos, procesa los datos y escribe los resultados en una base de datos de back-end. Hay disponible una implementación de referencia de esta arquitectura en [GitHub][github].
+Esta arquitectura de referencia muestra una arquitectura [sin servidor](https://azure.microsoft.com/solutions/serverless/) orientada a eventos que ingiere un flujo de datos, procesa los datos y escribe los resultados en una base de datos de back-end. Hay disponible una implementación de referencia de esta arquitectura en [GitHub][github].
 
 ![](./_images/serverless-event-processing.png)
 

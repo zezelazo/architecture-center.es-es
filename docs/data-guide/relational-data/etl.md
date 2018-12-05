@@ -3,12 +3,12 @@ title: Extracción, transformación y carga de datos (ETL)
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 1879b649fa3dfdf5c00f8ee30e53b83f7139fbf0
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: b10b0cb3cbc98ff9fadda6915b01b6f6564c4d00
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298643"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295555"
 ---
 # <a name="extract-transform-and-load-etl"></a>Extracción, transformación y carga de datos (ETL)
 
@@ -79,3 +79,10 @@ Otras herramientas:
 - [Almacenes de datos de procesamiento analítico en línea (OLAP)](./online-analytical-processing.md#olap-in-azure)
 - [Almacenamientos de datos](./data-warehousing.md)
 - [Orquestación de canalizaciones](../technology-choices/pipeline-orchestration-data-movement.md)
+
+## <a name="next-steps"></a>Pasos siguientes
+
+Las arquitecturas de referencia siguientes muestran las canalizaciones ELT de un extremo a otro en Azure:
+
+- [Inteligencia empresarial en Azure con SQL Data Warehouse](../../reference-architectures/data/enterprise-bi-sqldw.md)
+- [Inteligencia empresarial automatizada con SQL Data Warehouse y Azure Data Factory](../../reference-architectures/data/enterprise-bi-adf.md)

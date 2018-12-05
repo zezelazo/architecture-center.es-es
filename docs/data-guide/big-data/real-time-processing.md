@@ -3,12 +3,12 @@ title: Procesamiento en tiempo real
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: 4abb159924f902b5babe0673cc021e80b00c8529
-ms.sourcegitcommit: e9d9e214529edd0dc78df5bda29615b8fafd0e56
+ms.openlocfilehash: 1499fecc20dcbf51472b92bb588b91db0fb58a7f
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/28/2018
-ms.locfileid: "37090992"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295606"
 ---
 # <a name="real-time-processing"></a>Procesamiento en tiempo real
 
@@ -24,7 +24,7 @@ Los datos procesados a menudo se escriben en un almacén de datos analíticos qu
 
 Uno de los grandes desafíos de las soluciones de procesamiento en tiempo real es ingerir, procesar y almacenar mensajes en tiempo real y en grandes volúmenes. El procesamiento se debe realizar de tal forma que no bloquee la canalización de ingesta. El almacén de datos debe admitir la escritura de grandes volúmenes. Otro desafío es poder actuar sobre los datos rápidamente para, por ejemplo, generar alertas en tiempo real o presentar los datos en un panel en tiempo real (o casi en tiempo real).
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 Una arquitectura de procesamiento en tiempo real tiene los siguientes componentes lógicos.
 
@@ -76,3 +76,8 @@ Para más información, consulte [Análisis e informes](../technology-choices/an
 
 En una solución exclusivamente en tiempo real, la mayor parte de la orquestación del procesamiento se administra mediante los componentes de ingesta de mensajes y procesamiento de flujos. Sin embargo, en una arquitectura lambda que combina el procesamiento por lotes y el procesamiento en tiempo real, puede que deba usar una plataforma de orquestación como Azure Data Factory o Apache Oozie y Sqoop para administrar flujos de trabajo por lotes para los datos capturados en tiempo real.
 
+## <a name="next-steps"></a>Pasos siguientes
+
+La siguiente arquitectura de referencia muestra una canalización de procesamiento de flujos de datos de un extremo a otro:
+
+- [Procesamiento de flujos de datos con Azure Stream Analytics](../../reference-architectures/data/stream-processing-stream-analytics.md)

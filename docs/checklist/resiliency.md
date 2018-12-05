@@ -4,12 +4,12 @@ description: Lista de comprobación que ofrece una guía para las preocupaciones
 author: petertaylor9999
 ms.date: 01/10/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 15ad749c12dc8a45c9e7e08376452685d8ad7c9b
-ms.sourcegitcommit: b2a4eb132857afa70201e28d662f18458865a48e
+ms.openlocfilehash: ce538a0b234a5b120415980e983096f567f9cf86
+ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/05/2018
-ms.locfileid: "48819030"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52305951"
 ---
 # <a name="resiliency-checklist"></a>Lista de comprobación de resistencia
 
@@ -43,6 +43,8 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Use los conjuntos de disponibilidad para cada capa de aplicación.** Al colocar las instancias en un [conjunto de disponibilidad][availability-sets], se proporciona un mayor [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/virtual-machines/). 
 
+**Replicación de máquinas virtuales con Azure Site Recovery** Al replicar máquinas virtuales de Azure con [Site Recovery][site-recovery], todos los discos de máquina virtual se replican continuamente de forma asincrónica en la región de destino. Los puntos de recuperación se crean cada pocos minutos. Esto le ofrece un objetivo de punto de recuperación (RPO) en el orden de minutos.
+
 **Considere la posibilidad de implementar la aplicación en varias regiones.** Si su aplicación se implementa en una sola región, en el caso excepcional de que toda la región no esté disponible, la aplicación tampoco estará disponible. Esto puede ser inaceptable bajo los términos del Acuerdo de Nivel de Servicio de la aplicación. Si ese fuera el caso, considere la posibilidad de implementar la aplicación en varias regiones. Una implementación en varias regiones puede utilizar un modelo activo-activo (que distribuye las solicitudes en varias instancias activas) o un modelo activo-pasivo (que mantiene una instancia "activa" en reserva, en caso de que la instancia principal produzca un error). Le recomendamos que implemente varias instancias de los servicios de la aplicación en pares de regiones. Para más información, consulte [Continuidad empresarial y recuperación ante desastres (BCDR): regiones emparejadas de Azure](/azure/best-practices-availability-paired-regions).
 
 **Utilice Azure Traffic Manager para enrutar el tráfico de la aplicación a diferentes regiones.**  [Azure Traffic Manager][traffic-manager] realiza el equilibrio de carga a nivel de DNS y enrutará el tráfico a regiones diferentes en función del método de [enrutamiento del tráfico][traffic-manager-routing] que se especifique y del estado de los puntos de conexión de la aplicación. Sin Traffic Manager, el usuario está limitado a una única región para la implementación, lo que limita la escala, aumenta la latencia para algunos usuarios y causa tiempo de inactividad de la aplicación en caso de una interrupción del servicio a nivel regional.
@@ -64,7 +66,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 ## <a name="data-management"></a>Administración de datos
 
-**Comprenda los métodos de replicación para los orígenes de datos de la aplicación.** Los datos de aplicación se almacenarán en orígenes de datos diferentes y tendrán distintos requisitos de disponibilidad. Evalúe los métodos de replicación para cada tipo de almacenamiento de datos en Azure, incluidos la [replicación de Azure Storage](/azure/storage/storage-redundancy/) y la [replicación geográfica activa de SQL Database](/azure/sql-database/sql-database-geo-replication-overview/) para asegurarse de que se cumplen los requisitos de datos de la aplicación.
+**Comprenda los métodos de replicación para los orígenes de datos de la aplicación.** Los datos de aplicación se almacenarán en orígenes de datos diferentes y tendrán distintos requisitos de disponibilidad. Evalúe los métodos de replicación para cada tipo de almacenamiento de datos en Azure, incluidos la [replicación de Azure Storage](/azure/storage/storage-redundancy/) y la [replicación geográfica activa de SQL Database](/azure/sql-database/sql-database-geo-replication-overview/) para asegurarse de que se cumplen los requisitos de datos de la aplicación. Si replica máquinas virtuales de Azure con [Site Recovery][site-recovery], todos los discos de máquina virtual se replican continuamente de forma asincrónica en la región de destino. Los puntos de recuperación se crean cada pocos minutos. 
 
 **Asegúrese de que ninguna cuenta de usuario individual tenga acceso a los datos de producción y de copia de seguridad.** Las copias de seguridad de datos estarán expuestas a riesgos si una sola cuenta de usuario tiene permiso para escribir tanto en los orígenes de producción y como en los de copia de seguridad. Un usuario malintencionado puede eliminar intencionadamente todos los datos, mientras que un usuario normal puede eliminarlos accidentalmente. Diseñe la aplicación para limitar los permisos de cada cuenta de usuario de modo que solo los usuarios que requieren acceso de escritura tengan acceso de escritura y solo sea a producción o a copia de seguridad, pero no a ambas.
 
@@ -87,7 +89,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 ## <a name="testing"></a>Prueba
 
-**Realice pruebas de conmutación por error y de conmutación por recuperación para la aplicación.** Si no ha probado completamente la conmutación por error y la conmutación por recuperación, no puede estar seguro de que los servicios dependientes de la aplicación se recuperen de manera sincronizada durante la recuperación ante desastres. Asegúrese de que los servicios dependientes de la aplicación realizan la conmutación por error y la conmutación por recuperación en el orden correcto.
+**Realice pruebas de conmutación por error y de conmutación por recuperación para la aplicación.** Si no ha probado completamente la conmutación por error y la conmutación por recuperación, no puede estar seguro de que los servicios dependientes de la aplicación se recuperen de manera sincronizada durante la recuperación ante desastres. Asegúrese de que los servicios dependientes de la aplicación realizan la conmutación por error y la conmutación por recuperación en el orden correcto. Si usa [Azure Site Recovery][site-recovery] para replicar máquinas virtuales, ejecute un simulacro de recuperación ante desastres periódicamente mediante una prueba de conmutación por error. Para más información, consulte [Ejecución de un simulacro de recuperación ante desastres en Azure][site-recovery-test].
 
 **Realice pruebas de inyección de errores en la aplicación.** La aplicación puede producir un error por muchas razones diferentes, como la expiración de certificados, el agotamiento de los recursos del sistema en una máquina virtual o errores de almacenamiento. Pruebe la aplicación en un entorno lo más cercano posible a producción, mediante la simulación o el desencadenamiento de errores reales. Por ejemplo, elimine certificados, consuma recursos del sistema de forma artificial o elimine un origen de almacenamiento. Compruebe la capacidad de la aplicación para recuperarse de todo tipo de errores, sola y en combinación. Compruebe que los errores no se estén propagando en cascada por todo el sistema.
 
@@ -176,6 +178,8 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 [resource-manager]: /azure/azure-resource-manager/resource-group-overview/
 [retry-pattern]: ../patterns/retry.md
 [retry-service-guidance]: ../best-practices/retry-service-specific.md
+[site-recovery]: /azure/site-recovery/
+[site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
 [traffic-manager]: /azure/traffic-manager/traffic-manager-overview/
 [traffic-manager-routing]: /azure/traffic-manager/traffic-manager-routing-methods/
 [vmss-autoscale]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview/

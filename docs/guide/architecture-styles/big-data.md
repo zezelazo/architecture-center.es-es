@@ -3,12 +3,12 @@ title: Estilo de arquitectura de macrodatos
 description: Describe las ventajas, las dificultades y los procedimientos recomendados para las arquitecturas de macrodatos en Azure.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 073a1a88f1aaca7f09bd1f47ba79216b0727ca24
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: 107ea7ad4e97a891236596291b0cee41a72eb865
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325378"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295572"
 ---
 # <a name="big-data-architecture-style"></a>Estilo de arquitectura de macrodatos
 
@@ -124,6 +124,10 @@ Los cuadros que aparecen en gris sombreado muestran los componentes de un sistem
 - Algunas soluciones IoT permiten el envío de **mensajes de comando y control** a los dispositivos.
 
 > En esta sección se ha presentado una vista de muy alto nivel de IoT y hay muchos matices y desafíos que se deben tener en cuenta. Para más información y obtener un análisis de una arquitectura de referencia, consulte [Microsoft Azure IoT Reference Architecture][iot-ref-arch] (Arquitectura de referencia de Microsoft Azure IoT) (descarga PDF).
+
+## <a name="next-steps"></a>Pasos siguientes
+
+- Más información sobre [arquitecturas de macrodatos](../../data-guide/big-data/index.md).
 
  <!-- links -->
 

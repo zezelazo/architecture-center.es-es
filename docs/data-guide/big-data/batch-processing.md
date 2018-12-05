@@ -3,12 +3,12 @@ title: Procesamiento por lotes
 description: ''
 author: zoinerTejada
 ms:date: 02/12/2018
-ms.openlocfilehash: d6843bf4e20c3eb26e61cfa09300ad533e969c2e
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.openlocfilehash: eecee13e9b22b0382a0128e1c6ab8b960cbd4fea
+ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298663"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52550485"
 ---
 # <a name="batch-processing"></a>Procesamiento por lotes
 
@@ -30,7 +30,7 @@ Un ejemplo de procesamiento por lotes sería la transformación de un conjunto g
 
 - **Orquestación de los segmentos de tiempo.** A menudo, los datos de origen se colocan en una jerarquía de carpetas que refleja las ventanas de procesamiento, organizadas por año, mes, día, hora y así sucesivamente. En algunos casos, los datos pueden llegar tarde. Por ejemplo, suponga que se produce un error en un servidor web y los registros del 7 de marzo no llegan a la carpeta para su procesamiento hasta el 9 de marzo. ¿Se ignoran solo porque llegaron demasiado tarde? ¿Puede la lógica de procesamiento descendente controlar registros desordenados?
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 Una arquitectura de procesamiento por lotes tiene los siguientes componentes lógicos, según se muestra en el diagrama anterior.
 
@@ -75,7 +75,7 @@ Para más información, consulte [Almacenes de datos analíticos](../technology-
 
 ### <a name="analytics-and-reporting"></a>Análisis e informes
 
-- **Azure Analysis Services**. Muchas soluciones de macrodatos emulan arquitecturas de inteligencia de negocio empresarial tradicional mediante la inclusión de un modelo de datos de procesamiento analítico en línea (OLAP) centralizado (a menudo denominado un cubo) en el que se basan los informes, paneles y el análisis interactivo "segmentar y desglosar". Azure Analysis Services admite la creación de modelos multidimensionales y tabulares para satisfacer esta necesidad.
+- **Azure Analysis Services**. Muchas soluciones de macrodatos emulan arquitecturas de inteligencia de negocio empresarial tradicional mediante la inclusión de un modelo de datos de procesamiento analítico en línea (OLAP) centralizado (a menudo denominado un cubo) en el que se basan los informes, paneles y el análisis interactivo "segmentar y desglosar". Azure Analysis Services admite la creación de modelos tabulares para satisfacer esta necesidad.
 - **Power BI**. Power BI permite a los analistas de datos crear visualizaciones de datos interactivas basadas en modelos de datos en un modelo OLAP o directamente desde un almacén de datos analíticos.
 - **Microsoft Excel**. Microsoft Excel es una de las aplicaciones de software más usadas en el mundo y ofrece una gran variedad de funcionalidades de análisis de datos y visualización. Los analistas de datos pueden utilizar Excel para crear modelos de datos de documentos desde almacenes de datos analíticos o para recuperar datos desde modelos de datos OLAP en tablas dinámicas interactivas y gráficos.
 
