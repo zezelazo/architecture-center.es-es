@@ -2,16 +2,16 @@
 title: Autorización en aplicaciones multiinquilino
 description: Realización de la autorización en una aplicación multiinquilino
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: app-roles
 pnp.series.next: web-api
-ms.openlocfilehash: 321dc52a3e6f803a032288c2341e490cdba8c20a
-ms.sourcegitcommit: 9a2d56ac7927f0a2bbfee07198d43d9c5cb85755
+ms.openlocfilehash: bbf702fe6651625a1aeceff7e4e321dd08c38544
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/22/2018
-ms.locfileid: "36327660"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902500"
 ---
 # <a name="role-based-and-resource-based-authorization"></a>Autorización basada en roles y en recursos
 
@@ -84,7 +84,7 @@ services.AddAuthorization(options =>
 });
 ```
 
-Este código también establece el esquema de autenticación, que indica a ASP.NET qué middleware de autenticación se debe ejecutar si se produce un error en la autorización. En este caso, especificamos el middleware de autenticación de cookies porque dicho middleware puede redirigir al usuario a una página "Prohibido". La ubicación de la página Prohibido se establece en la opción `AccessDeniedPath` para el middleware de cookies; consulte [Configuración del software intermedio de autenticación] (Configuración del middleware de autenticación).
+Este código también establece el esquema de autenticación, que indica a ASP.NET qué middleware de autenticación se debe ejecutar si se produce un error en la autorización. En este caso, especificamos el middleware de autenticación de cookies porque dicho middleware puede redirigir al usuario a una página "Prohibido". La ubicación de la página Prohibido se establece en la opción `AccessDeniedPath` para el middleware de cookies; consulte [Configuración del middleware de autenticación].
 
 ### <a name="authorize-controller-actions"></a>Autorización de acciones de controlador
 Por último, para autorizar una acción en un controlador MVC, establezca la directiva en el atributo `Authorize` :
@@ -112,7 +112,7 @@ Esto todavía se admite en ASP.NET Core, pero tiene algunos inconvenientes en co
 * Las directivas permiten decisiones de autorización más complejas (por ejemplo, edad > = 21) que no se pueden expresar mediante la pertenencia de rol simple.
 
 ## <a name="resource-based-authorization"></a>Autorización basada en recursos
-La *autorización basada en recursos* tiene lugar siempre que la autorización depende de un recurso específico que se verá afectado por una operación. En la aplicación Tailspin Surveys , cada encuesta tiene un propietario y de cero a muchos colaboradores.
+*Autorización basada en recursos* tiene lugar siempre que la autorización depende de un recurso específico que se verá afectado por una operación. En la aplicación Tailspin Surveys , cada encuesta tiene un propietario y de cero a muchos colaboradores.
 
 * El propietario puede leer, actualizar, eliminar, publicar y cancelar la publicación de la encuesta.
 * El propietario puede asignar colaboradores a la encuesta.
@@ -253,6 +253,6 @@ static readonly Dictionary<OperationAuthorizationRequirement, Func<List<UserPerm
 [Roles de la aplicación]: app-roles.md
 [policies]: /aspnet/core/security/authorization/policies
 [Implementación de referencia]: tailspin.md
-[Configuración del software intermedio de autenticación]: authenticate.md#configure-the-auth-middleware
+[Configuración del middleware de autenticación]: authenticate.md#configure-the-auth-middleware
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance
 [web-api]: web-api.md

@@ -2,16 +2,16 @@
 title: Roles de la aplicación
 description: Realización de la autorización mediante roles de aplicación
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: signup
 pnp.series.next: authorize
-ms.openlocfilehash: ec563936e5f00aba79d65844762feeed97ad547d
-ms.sourcegitcommit: bb348bd3a8a4e27ef61e8eee74b54b07b65dbf98
+ms.openlocfilehash: 4a694eb65de717e6b5a7c65a2d6fb28f192dcdc5
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/21/2018
-ms.locfileid: "34422973"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902517"
 ---
 # <a name="application-roles"></a>Roles de la aplicación
 
@@ -49,7 +49,7 @@ Ventajas de este enfoque:
 Inconvenientes:
 
 * Los clientes que no tienen Azure AD Premium no pueden asignar grupos de seguridad a roles. Para estos clientes, todas las asignaciones de usuario las debe llevar a cabo un administrador de AD.
-* Si tiene una API web back-end, que es independiente de la aplicación web, las asignaciones de roles de la aplicación web no se aplican entonces a la API web. Para más información sobre este punto, consulte [Securing a backend web API] (Protección de una API web back-end).
+* Si tiene una API web back-end, que es independiente de la aplicación web, las asignaciones de roles de la aplicación web no se aplican entonces a la API web. Para más información sobre este punto, consulte [Protección de una API web de back-end] (Protección de una API web back-end).
 
 ### <a name="implementation"></a>Implementación
 **Definir los roles.** El proveedor de SaaS declara los roles de aplicación en el [manifiesto de aplicación]. Por ejemplo, a continuación se muestra la entrada de manifiesto de la aplicación Surveys:
@@ -167,6 +167,6 @@ Inconvenientes:
 [Tailspin]: tailspin.md
 
 [autorización]: authorize.md
-[Securing a backend web API]: web-api.md
+[Protección de una API web de back-end]: web-api.md
 [manifiesto de aplicación]: /azure/active-directory/active-directory-application-manifest/
 [sample application]: https://github.com/mspnp/multitenant-saas-guidance

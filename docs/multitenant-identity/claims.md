@@ -2,16 +2,16 @@
 title: Uso de identidades basadas en notificaciones en aplicaciones multiinquilino
 description: Uso de las notificaciones para la autorización y validación del emisor
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: authenticate
 pnp.series.next: signup
-ms.openlocfilehash: 46c43c9bfa4514f206b5e7eabd9223ad4c61628b
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 3ed6c7c9a48f3617f82112e76878c770099fde3e
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429384"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902432"
 ---
 # <a name="work-with-claims-based-identities"></a>Uso de identidades basadas en notificaciones
 

@@ -2,16 +2,16 @@
 title: Uso de aserción de cliente para obtener tokens de acceso de Azure AD
 description: Uso de aserción de cliente para obtener tokens de acceso de Azure AD.
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: adfs
 pnp.series.next: key-vault
-ms.openlocfilehash: 9fe1ee2ec5a540edc41c3a310476507f8d862f0c
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 58eed82c982fe1c6cba0f04b237d92d117a26fd4
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24540287"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902279"
 ---
 # <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a>Uso de aserción de cliente para obtener tokens de acceso de Azure AD
 
@@ -41,7 +41,7 @@ El secreto es una cadena, por lo que debe asegurarse de no perder el valor. La p
 
 Sin embargo, cualquier persona con acceso a la suscripción de Azure puede ver la configuración de la aplicación. Además, siempre existe la tentación de proteger los secretos en el control de código fuente (por ejemplo, en los scripts de implementación), compartirlos por correo electrónico, etc.
 
-Para obtener seguridad adicional, puede usar [aserción de cliente] en lugar de un secreto de cliente. Con aserción de cliente, el cliente utiliza un certificado X.509 para demostrar que la solicitud de token procedía del cliente. El certificado de cliente se instala en el servidor web. Por lo general, será más fácil restringir el acceso al certificado que garantizar que nadie revela inadvertidamente un secreto de cliente. Para más información sobre cómo configurar certificados en una aplicación web, consulte [Using Certificates in Azure Websites Applications][using-certs-in-websites] (Uso de certificados en aplicaciones de Azure Websites).
+Para obtener seguridad adicional, puede usar [aserción cliente] en lugar de un secreto de cliente. Con aserción de cliente, el cliente utiliza un certificado X.509 para demostrar que la solicitud de token procedía del cliente. El certificado de cliente se instala en el servidor web. Por lo general, será más fácil restringir el acceso al certificado que garantizar que nadie revela inadvertidamente un secreto de cliente. Para más información sobre cómo configurar certificados en una aplicación web, consulte [Using Certificates in Azure Websites Applications][using-certs-in-websites] (Uso de certificados en aplicaciones de Azure Websites).
 
 A continuación figura una solicitud de token utilizando aserción de cliente:
 
@@ -103,7 +103,7 @@ Para información sobre cómo configurar la aserción de cliente en la aplicaci�
 <!-- Links -->
 [configure-web-app]: /azure/app-service-web/web-sites-configure/
 [azure-management-portal]: https://portal.azure.com
-[aserción de cliente]: https://tools.ietf.org/html/rfc7521
+[aserción cliente]: https://tools.ietf.org/html/rfc7521
 [key vault]: key-vault.md
 [Setup-KeyVault]: https://github.com/mspnp/multitenant-saas-guidance/blob/master/scripts/Setup-KeyVault.ps1
 [Surveys]: tailspin.md

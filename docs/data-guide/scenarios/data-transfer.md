@@ -2,13 +2,13 @@
 title: Elección de una tecnología de transferencia de datos
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 53dcf8a69ad8ae100dbdbb230a9280efd419342a
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.date: 02/12/2018
+ms.openlocfilehash: d5fbdc3a49ab16be2626b772ffd1af782963a2f0
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252760"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902687"
 ---
 # <a name="transferring-data-to-and-from-azure"></a>Transferencia de datos a Azure y desde este
 
@@ -33,7 +33,7 @@ Hay dos opciones principales para transportar físicamente los datos a Azure:
 
 Tenga en cuenta estas opciones cuando desee que la transferencia de datos se realice mediante programación y mediante scripts.
 
-- **CLI de Azure** La [CLI de Azure](/azure/hdinsight/hdinsight-upload-data#commandline) es una herramienta multiplataforma que permite administrar los servicios de Azure y cargar datos en Azure Storage. 
+- **Azure CLI**. La [CLI de Azure](/azure/hdinsight/hdinsight-upload-data#commandline) es una herramienta multiplataforma que permite administrar los servicios de Azure y cargar datos en Azure Storage. 
 
 - **AzCopy**. Use AzCopy desde una línea de comandos de [Windows](/azure/storage/common/storage-use-azcopy?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) o [Linux](/azure/storage/common/storage-use-azcopy-linux?toc=%2fazure%2fstorage%2fblobs%2ftoc.json) para copiar datos fácilmente tanto a Azure Blob, File y Table Storage como desde estos servicios con un rendimiento óptimo. AzCopy admite la simultaneidad y el paralelismo, y permite reanudar operaciones de copia cuando si se interrumpen. También es una de las opciones más rápidas. Para acceder mediante programación, la [Biblioteca de movimiento de datos de Microsoft Azure Storage](/azure/storage/common/storage-use-data-movement-library) es el marco principal que alimenta AzCopy. Se proporciona en forma de biblioteca de .NET Core. 
 
@@ -84,9 +84,9 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 | | Servicio Azure Import/Export | Azure Data Box |
 | --- | --- | --- |
 | Factor de forma | Unidades de disco duro o SSD SATA internas | Dispositivo de hardware individual seguro y a prueba de alteraciones |
-| Microsoft administra la logística de envío | Sin  | Sí |
-| Se integra con productos de asociados | Sin  | Sí |
-| Dispositivo personalizado | Sin  | Sí |
+| Microsoft administra la logística de envío | Sin  | SÍ |
+| Se integra con productos de asociados | Sin  | SÍ |
+| Dispositivo personalizado | Sin  | SÍ |
 
 ### <a name="command-line-tools"></a>Herramientas de línea de comandos
 
@@ -94,26 +94,26 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 | | Distcp | Sqoop | CLI de Hadoop |
 | --- | --- | --- | --- |
-| Optimizado para macrodatos | Sí | Sí |  Sí |
+| Optimizado para macrodatos | SÍ | Sí |  SÍ |
 | Copiar a base de datos relacional |  Sin  | Sí | Sin  |
 | Copiar de base de datos relacional |  Sin  | Sí | Sin  |
-| Copiar a Blob Storage |  Sí | Sí | Sí |
-| Copiar de Blob Storage | Sí |  Sí | Sin  |
-| Copiar a Data Lake Store | Sí | Sí | Sí |
-| Copiar de Data Lake Store | Sí | Sí | Sin  |
+| Copiar a Blob Storage |  SÍ | Sí | SÍ |
+| Copiar de Blob Storage | SÍ |  SÍ | Sin  |
+| Copiar a Data Lake Store | SÍ | Sí | SÍ |
+| Copiar de Data Lake Store | SÍ | SÍ | Sin  |
 
 **Otros**
 
 | | Azure CLI | AzCopy | PowerShell | AdlCopy | PolyBase |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Plataformas compatibles | Linux, OS X y Windows | Linux y Windows | Windows | Linux, OS X y Windows | SQL Server y Azure SQL Data Warehouse | 
-| Optimizado para macrodatos | Sin  | Sin  | Sin  | Sí <sup>1</sup> | Sí <sup>2</sup> |
-| Copiar a base de datos relacional | Sin  | Sin  | Sin  | Sin  | Sí | 
-| Copiar de base de datos relacional | Sin  | Sin  | Sin  | Sin  | Sí | 
-| Copiar a Blob Storage | Sí | Sí | Sí | Sin  | Sí | 
-| Copiar de Blob Storage | Sí | Sí | Sí | Sí | Sí |
-| Copiar a Data Lake Store | Sin  | Sin  | Sí | Sí |  Sí | 
-| Copiar de Data Lake Store | Sin  | Sin  | Sí | Sí | Sí | 
+| Optimizado para macrodatos | Sin  | No | Sin  | Sí <sup>1</sup> | Sí <sup>2</sup> |
+| Copiar a base de datos relacional | Sin  | No | No | No | SÍ | 
+| Copiar de base de datos relacional | Sin  | No | No | No | SÍ | 
+| Copiar a Blob Storage | SÍ | Sí | SÍ | Sin  | SÍ | 
+| Copiar de Blob Storage | SÍ | Sí | Sí | Sí | SÍ |
+| Copiar a Data Lake Store | Sin  | No | SÍ | Sí |  SÍ | 
+| Copiar de Data Lake Store | Sin  | No | SÍ | Sí | SÍ | 
 
 
 [1] AdlCopy está optimizado para la transferencia de macrodatos cuando se utiliza con una cuenta de Data Lake Analytics.
@@ -124,17 +124,17 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 | | Explorador de Azure Storage | Azure Portal* | Azure Data Factory |
 | --- | --- | --- | --- |
-| Optimizado para macrodatos | Sin  | Sin  | Sí | 
-| Copiar a base de datos relacional | Sin  | Sin  | Sí |
-| Copiar a base de datos relacional | Sin  | Sin  | Sí |
-| Copiar a Blob Storage | Sí | Sin  | Sí |
-| Copiar de Blob Storage | Sí | Sin  | Sí |
-| Copiar a Data Lake Store | Sin  | Sin  | Sí |
-| Copiar de Data Lake Store | Sin  | Sin  | Sí |
-| Cargar en Blob Storage | Sí | Sí | Sí |
-| Cargar en Data Lake Store | Sí | Sí | Sí |
-| Orquestar las transferencias de datos | Sin  | Sin  | Sí |
-| Personalizar las transformaciones de datos | Sin  | Sin  | Sí |
+| Optimizado para macrodatos | Sin  | No | SÍ | 
+| Copiar a base de datos relacional | Sin  | No | SÍ |
+| Copiar a base de datos relacional | Sin  | No | SÍ |
+| Copiar a Blob Storage | SÍ | Sin  | SÍ |
+| Copiar de Blob Storage | SÍ | Sin  | SÍ |
+| Copiar a Data Lake Store | Sin  | No | SÍ |
+| Copiar de Data Lake Store | Sin  | No | SÍ |
+| Cargar en Blob Storage | SÍ | Sí | SÍ |
+| Cargar en Data Lake Store | SÍ | Sí | SÍ |
+| Orquestar las transferencias de datos | Sin  | No | SÍ |
+| Personalizar las transformaciones de datos | Sin  | No | SÍ |
 | Modelo de precios | Gratuito | Gratuito | Pago por uso |
 
 \* En este caso, Azure Portal significa usar las herramientas de exploración basada en web para Blob Storage y Data Lake Store.

@@ -3,16 +3,16 @@ title: Aplicación web sin servidor
 description: Arquitectura de referencia que muestra una aplicación web sin servidor y una API web
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: d1af03811bda6267fd40ee17823ac8357829f988
-ms.sourcegitcommit: 949b9d3e5a9cdee1051e6be700ed169113e914ae
+ms.openlocfilehash: 9263c8bec794e4b2bb9f397289b23307eb02f0c7
+ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/05/2018
-ms.locfileid: "50983403"
+ms.lasthandoff: 11/26/2018
+ms.locfileid: "52295691"
 ---
 # <a name="serverless-web-application"></a>Aplicación web sin servidor 
 
-Esta arquitectura de referencia muestra una aplicación web sin servidor. La aplicación proporciona contenido estático desde Azure Blob Storage e implementa una API con Azure Functions. La API lee datos de Cosmos DB y devuelve los resultados a la aplicación web. Hay disponible una implementación de referencia de esta arquitectura en [GitHub][github].
+Esta arquitectura de referencia muestra una aplicación web [sin servidor](https://azure.microsoft.com/solutions/serverless/). La aplicación proporciona contenido estático desde Azure Blob Storage e implementa una API con Azure Functions. La API lee datos de Cosmos DB y devuelve los resultados a la aplicación web. Hay disponible una implementación de referencia de esta arquitectura en [GitHub][github].
 
 ![](./_images/serverless-web-app.png)
  
