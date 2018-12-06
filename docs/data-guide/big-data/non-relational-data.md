@@ -2,13 +2,13 @@
 title: Datos no relacionales y NoSQL
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 2c284099bd7e8bbb85f1252a24d699d9fca09eae
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.date: 02/12/2018
+ms.openlocfilehash: f5655f7245b7150941969b1bc7917d540ab84343
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298673"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902763"
 ---
 # <a name="non-relational-data-and-nosql"></a>Datos no relacionales y NoSQL
 
@@ -147,8 +147,8 @@ A continuación, se comparan los requisitos de cada uno de los almacenes de dato
 | Patrón de acceso | Acceso aleatorio | Agregados en datos en formato ancho y en formato largo | Acceso aleatorio | Acceso aleatorio |
 | Indización | Índices principales y secundarios | Índices principales y secundarios | Solo índice principal | Índices principales y secundarios | 
 | Forma de los datos | Documento | Tabular con familias de columnas que contienen columnas | Clave y valor | Grafo que contiene bordes y vértices | 
-| Dispersos | Sí | Sí | Sí | Sin  | 
-| Ancho (muchas columnas y atributos) | Sí | Sí | Sin  | Sin  |  
+| Dispersos | SÍ | Sí | SÍ | Sin  | 
+| Ancho (muchas columnas y atributos) | SÍ | SÍ | No | Sin  |  
 | Tamaño de los datos | Pequeño (KB) a mediano (pocos MB) | Mediano (MB) a grande (pocos GB) | Pequeño (KB) | Pequeño (KB) | 
 | Escala máxima global | Muy grande (PB) | Muy grande (PB) | Muy grande (PB) | Grande (TB) | 
 
@@ -163,7 +163,7 @@ A continuación, se comparan los requisitos de cada uno de los almacenes de dato
 | Indización | Índices principales y secundarios | Solo índice principal | N/D |
 | Forma de los datos | Tabular | Blob y metadatos | Documento |
 | Dispersos | Sin  | N/D | Sin  | 
-| Ancho (muchas columnas y atributos) |  Sin  | Sí | Sí |  
+| Ancho (muchas columnas y atributos) |  Sin  | SÍ | SÍ |  
 | Tamaño de los datos | Pequeño (KB) | Grande (GB) a muy grande (TB) | Pequeño (KB) |
 | Escala máxima global | Grande (pocos TB)  | Muy grande (PB) | Grande (pocos TB) | 
 

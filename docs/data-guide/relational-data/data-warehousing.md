@@ -2,13 +2,13 @@
 title: Almacenamiento de datos y data marts
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 9b90d77ce1a81cd4a7532f5d4230ada8b4991d13
-ms.sourcegitcommit: 85334ab0ccb072dac80de78aa82bcfa0f0044d3f
+ms.date: 02/12/2018
+ms.openlocfilehash: 92f8ab8d828dd4b30c43a07e15959e5670852195
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/11/2018
-ms.locfileid: "35252812"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902789"
 ---
 # <a name="data-warehousing-and-data-marts"></a>Almacenamiento de datos y data marts
 
@@ -120,13 +120,13 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 | | Azure SQL Database | SQL Server (máquina virtual) | SQL Data Warehouse | Apache Hive en HDInsight | Hive LLAP en HDInsight |
 | --- | --- | --- | --- | --- | --- | -- |
-| Es un servicio administrado | Sí | Sin  | Sí | Sí <sup>1</sup> | Sí <sup>1</sup> |
-| Requiere la orquestación de datos (contiene una copia de los datos y datos históricos) | Sin  | Sin  | Sí | Sí | Sí |
-| Integra fácilmente varios orígenes de datos | Sin  | Sin  | Sí | Sí | Sí |
-| Admite la pausa del proceso | Sin  | Sin  | Sí | No <sup>2</sup> | No <sup>2</sup> |
-| Almacenes de datos relacionales | Sí | Sí |  Sí | Sin  | Sin  |
-| Informes en tiempo real | Sí | Sí | Sin  | Sin  | Sí |
-| Puntos de restauración de copia de seguridad flexibles | Sí | Sí | No <sup>3</sup> | Sí <sup>4</sup> | Sí <sup>4</sup> |
+| Es un servicio administrado | SÍ | Sin  | SÍ | Sí <sup>1</sup> | Sí <sup>1</sup> |
+| Requiere la orquestación de datos (contiene una copia de los datos y datos históricos) | Sin  | No | SÍ | Sí | SÍ |
+| Integra fácilmente varios orígenes de datos | Sin  | No | SÍ | Sí | SÍ |
+| Admite la pausa del proceso | Sin  | No | SÍ | No <sup>2</sup> | No <sup>2</sup> |
+| Almacenes de datos relacionales | SÍ | Sí |  SÍ | No | Sin  |
+| Informes en tiempo real | SÍ | SÍ | No | No | SÍ |
+| Puntos de restauración de copia de seguridad flexibles | SÍ | SÍ | No <sup>3</sup> | Sí <sup>4</sup> | Sí <sup>4</sup> |
 | SMP/MPP | SMP | SMP | MPP | MPP | MPP |
 
 [1] Configuración y escalado manuales.
@@ -141,10 +141,10 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 | | Azure SQL Database | SQL Server (máquina virtual) |  SQL Data Warehouse | Apache Hive en HDInsight | Hive LLAP en HDInsight |
 | --- | --- | --- | --- | --- | --- | -- |
-| Servidores regionales redundantes para lograr alta disponibilidad  | Sí | Sí | Sí | Sin  | Sin  |
-| Admite escalado horizontal de consultas (consultas distribuidas)  | Sin  | Sin  | Sí | Sí | Sí |
-| Escalabilidad dinámica | Sí | Sin  | Sí <sup>1</sup> | Sin  | Sin  |
-| Admite el almacenamiento en caché en memoria de datos | Sí |  Sí | Sin  | Sí | Sí |
+| Servidores regionales redundantes para lograr alta disponibilidad  | SÍ | Sí | SÍ | No | Sin  |
+| Admite escalado horizontal de consultas (consultas distribuidas)  | Sin  | No | SÍ | Sí | SÍ |
+| Escalabilidad dinámica | SÍ | Sin  | Sí <sup>1</sup> | Sin  | Sin  |
+| Admite el almacenamiento en caché en memoria de datos | SÍ |  SÍ | Sin  | SÍ | SÍ |
 
 [1] SQL Data Warehouse le permite realizar el escalado vertical u horizontal ajustando el número de unidades de almacenamiento de datos (DWU). Consulte [Administración de la potencia de proceso en Azure SQL Data Warehouse (información general)](/azure/sql-data-warehouse/sql-data-warehouse-manage-compute-overview).
 
@@ -153,12 +153,12 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 |                         |           Azure SQL Database            |  SQL Server en una máquina virtual  | SQL Data Warehouse |   Apache Hive en HDInsight    |    Hive LLAP en HDInsight     |
 |-------------------------|-----------------------------------------|-----------------------------------|--------------------|-------------------------------|-------------------------------|
 |     Autenticación      | SQL/Azure Active Directory (Azure AD) | SQL/Azure AD/Active Directory |   SQL/Azure AD   | local/Azure AD <sup>1</sup> | local/Azure AD <sup>1</sup> |
-|      Autorización      |                   Sí                   |                Sí                |        Sí         |              Sí              |       Sí <sup>1</sup>        |
-|        Auditoría         |                   Sí                   |                Sí                |        Sí         |              Sí              |       Sí <sup>1</sup>        |
+|      Autorización      |                   SÍ                   |                Sí                |        Sí         |              SÍ              |       Sí <sup>1</sup>        |
+|        Auditoría         |                   SÍ                   |                Sí                |        Sí         |              SÍ              |       Sí <sup>1</sup>        |
 | Cifrado de datos en reposo |            Sí <sup>2</sup>             |         Sí <sup>2</sup>          |  Sí <sup>2</sup>  |       Sí <sup>2</sup>        |       Sí <sup>1</sup>        |
-|   Seguridad de nivel de fila    |                   Sí                   |                Sí                |        Sí         |              Sin                |       Sí <sup>1</sup>        |
-|   Admite firewalls    |                   Sí                   |                Sí                |        Sí         |              Sí              |       Sí <sup>3</sup>        |
-|  Enmascaramiento de datos dinámicos   |                   Sí                   |                Sí                |        Sí         |              Sin                |       Sí <sup>1</sup>        |
+|   Seguridad de nivel de fila    |                   SÍ                   |                Sí                |        SÍ         |              Sin                |       Sí <sup>1</sup>        |
+|   Admite firewalls    |                   SÍ                   |                Sí                |        Sí         |              SÍ              |       Sí <sup>3</sup>        |
+|  Enmascaramiento de datos dinámicos   |                   SÍ                   |                Sí                |        SÍ         |              Sin                |       Sí <sup>1</sup>        |
 
 [1] Requiere el uso de un [clúster de HDInsight unido a un dominio](/azure/hdinsight/domain-joined/apache-domain-joined-introduction).
 

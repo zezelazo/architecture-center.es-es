@@ -2,13 +2,13 @@
 title: Procesamiento de transacciones en línea (OLTP)
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 8650b919fc1a59240343015493a1fe41c8729a72
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.date: 02/12/2018
+ms.openlocfilehash: be24bc173359539785385de4a188e7536f6d2ffe
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30848706"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902772"
 ---
 # <a name="online-transaction-processing-oltp"></a>Procesamiento de transacciones en línea (OLTP)
 
@@ -34,10 +34,10 @@ Los datos transaccionales suelen tener los siguientes rasgos:
 | Esquema | Esquema durante la escritura, altamente aplicado|
 | Coherencia | Coherencia alta, garantías ACID |
 | Integridad | Integridad alta |
-| Usa transacciones | Sí |
+| Usa transacciones | SÍ |
 | Estrategia de bloqueo | Optimista o pesimista|
-| Actualizable | Sí |
-| Anexable | Sí |
+| Actualizable | SÍ |
+| Anexable | SÍ |
 | Carga de trabajo | Grandes escrituras, lecturas moderadas |
 | Indización | Índices principales y secundarios |
 | Tamaño de los datos | Pequeño a mediano tamaño |
@@ -98,7 +98,7 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 |                              | Azure SQL Database | SQL Server en una máquina virtual de Azure | Azure Database for MySQL | Azure Database for PostgreSQL |
 |------------------------------|--------------------|----------------------------------------|--------------------------|-------------------------------|
-|      Es un servicio administrado      |        Sí         |                   Sin                    |           Sí            |              Sí              |
+|      Es un servicio administrado      |        SÍ         |                   Sin                    |           SÍ            |              SÍ              |
 |       Se ejecuta en una plataforma       |        N/D         |         Windows, Linux, Docker         |           N/D            |              N/D              |
 | Capacidad de programación <sup>1</sup> |   T-SQL, .NET, R   |         T-SQL, .NET, R, Python         |  T-SQL, .NET, R, Python  |              SQL              |
 
@@ -109,40 +109,40 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 | | Azure SQL Database | SQL Server en una máquina virtual de Azure| Azure Database for MySQL | Azure Database for PostgreSQL|
 | --- | --- | --- | --- | --- | --- |
 | Tamaño máximo de la instancia de base de datos | [4 TB](/azure/sql-database/sql-database-resource-limits) | 256 TB | [1 TB](/azure/mysql/concepts-limits) | [1 TB](/azure/postgresql/concepts-limits) |
-| Es compatible con grupos de capacidad  | Sí | Sí | Sin  | Sin  |
-| Es compatible con el escalado horizontal de clústeres  | Sin  | Sí | Sin  | Sin  |
-| Escalabilidad dinámica (escalado vertical)  | Sí | Sin  | Sí | Sí |
+| Es compatible con grupos de capacidad  | SÍ | SÍ | No | Sin  |
+| Es compatible con el escalado horizontal de clústeres  | Sin  | Sí | No | Sin  |
+| Escalabilidad dinámica (escalado vertical)  | SÍ | Sin  | SÍ | SÍ |
 
 ### <a name="analytic-workload-capabilities"></a>Funcionalidades de cargas de trabajo de análisis
 
 | | Azure SQL Database | SQL Server en una máquina virtual de Azure| Azure Database for MySQL | Azure Database for PostgreSQL|
 | --- | --- | --- | --- | --- | --- | 
-| Tablas temporales | Sí | Sí | Sin  | Sin  |
-| Tablas en memoria (optimizadas para memoria) | Sí | Sí | Sin  | Sin  |
-| Compatible con almacén de columnas | Sí | Sí | Sin  | Sin  |
-| Procesamiento adaptable de consultas | Sí | Sí | Sin  | Sin  |
+| Tablas temporales | SÍ | SÍ | No | Sin  |
+| Tablas en memoria (optimizadas para memoria) | SÍ | SÍ | No | Sin  |
+| Compatible con almacén de columnas | SÍ | SÍ | No | Sin  |
+| Procesamiento adaptable de consultas | SÍ | SÍ | No | Sin  |
 
 ### <a name="availability-capabilities"></a>Funcionalidades de disponibilidad
 
 | | Azure SQL Database | SQL Server en una máquina virtual de Azure| Azure Database for MySQL | Azure Database for PostgreSQL|
 | --- | --- | --- | --- | --- | --- | 
-| Réplicas secundarias legibles | Sí | Sí | Sin  | Sin  | 
-| Replicación geográfica | Sí | Sí | Sin  | Sin  | 
-| Conmutación automática por error en replicación secundaria | Sí | Sin  | Sin  | Sin |
-| Restauración a un momento dado | Sí | Sí | Sí | Sí |
+| Réplicas secundarias legibles | SÍ | SÍ | No | Sin  | 
+| Replicación geográfica | SÍ | SÍ | No | Sin  | 
+| Conmutación automática por error en replicación secundaria | SÍ | No | No | Sin |
+| Restauración a un momento dado | SÍ | Sí | Sí | SÍ |
 
 ### <a name="security-capabilities"></a>Funcionalidades de seguridad
 
 |                                                                                                             | Azure SQL Database | SQL Server en una máquina virtual de Azure | Azure Database for MySQL | Azure Database for PostgreSQL |
 |-------------------------------------------------------------------------------------------------------------|--------------------|----------------------------------------|--------------------------|-------------------------------|
-|                                             Seguridad de nivel de fila                                              |        Sí         |                  Sí                   |           Sí            |              Sí              |
-|                                                Enmascaramiento de datos                                                 |        Sí         |                  Sí                   |            Sin             |              Sin                |
-|                                         Cifrado de datos transparente                                         |        Sí         |                  Sí                   |           Sí            |              Sí              |
-|                                  Restricción del acceso a determinadas direcciones IP                                   |        Sí         |                  Sí                   |           Sí            |              Sí              |
-|                                  Restricción del acceso para permitir solo el acceso de la red virtual                                  |        Sí         |                  Sí                   |            Sin             |              Sin                |
-|                                    Autenticación con Azure Active Directory                                    |        Sí         |                  Sí                   |            Sin             |              Sin                |
-|                                       Autenticación de Active Directory                                       |         Sin          |                  Sí                   |            Sin             |              Sin                |
-|                                         Multi-Factor Authentication                                         |        Sí         |                  Sí                   |            Sin             |              Sin                |
-| Compatible con [Always Encrypted](/sql/relational-databases/security/encryption/always-encrypted-database-engine) |        Sí         |                  Sí                   |           Sí            |              Sin                |
-|                                                 Dirección IP privada                                                  |         Sin          |                  Sí                   |           Sí            |              Sin                |
+|                                             Seguridad de nivel de fila                                              |        SÍ         |                  Sí                   |           Sí            |              SÍ              |
+|                                                Enmascaramiento de datos                                                 |        SÍ         |                  SÍ                   |            No            |              Sin                |
+|                                         Cifrado de datos transparente                                         |        SÍ         |                  Sí                   |           Sí            |              SÍ              |
+|                                  Restricción del acceso a determinadas direcciones IP                                   |        SÍ         |                  Sí                   |           Sí            |              SÍ              |
+|                                  Restricción del acceso para permitir solo el acceso de la red virtual                                  |        SÍ         |                  SÍ                   |            No            |              Sin                |
+|                                    Autenticación con Azure Active Directory                                    |        SÍ         |                  SÍ                   |            No            |              Sin                |
+|                                       Autenticación de Active Directory                                       |         Sin          |                  Sí                   |            No            |              Sin                |
+|                                         Multi-Factor Authentication                                         |        SÍ         |                  SÍ                   |            No            |              Sin                |
+| Compatible con [Always Encrypted](/sql/relational-databases/security/encryption/always-encrypted-database-engine) |        SÍ         |                  Sí                   |           SÍ            |              Sin                |
+|                                                 Dirección IP privada                                                  |         Sin          |                  SÍ                   |           SÍ            |              Sin                |
 

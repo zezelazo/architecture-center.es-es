@@ -2,13 +2,13 @@
 title: Ampliación de las soluciones de datos locales a la nube
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 66fc225dc123202ba587d82f15ea0883e1bbf3b5
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.date: 02/12/2018
+ms.openlocfilehash: 410162ff318846cbe695168abbcc2ae363f47e24
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29289691"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901735"
 ---
 # <a name="extending-on-premises-data-solutions-to-the-cloud"></a>Ampliación de las soluciones de datos locales a la nube
 

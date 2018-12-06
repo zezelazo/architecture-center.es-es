@@ -2,16 +2,16 @@
 title: Almacenamiento en caché de tokens de acceso en una aplicación multiinquilino
 description: Almacenamiento en caché de tokens de acceso utilizados para invocar una API web de back-end
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: web-api
 pnp.series.next: adfs
-ms.openlocfilehash: cffc15686ef9d77fafb40982efdbcd4a79f5aaf2
-ms.sourcegitcommit: 8ab30776e0c4cdc16ca0dcc881960e3108ad3e94
+ms.openlocfilehash: 950b638e629ad97e24b05e781da844bc110bad91
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2017
-ms.locfileid: "26359245"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901718"
 ---
 # <a name="cache-access-tokens"></a>Almacenamiento en caché de los tokens de acceso
 

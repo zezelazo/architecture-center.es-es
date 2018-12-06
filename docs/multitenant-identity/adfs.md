@@ -2,16 +2,16 @@
 title: Federación con un servicio AD FS de un cliente
 description: Cómo federar con el servicio AD FS de un cliente en una aplicación multiinquilino
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: token-cache
 pnp.series.next: client-assertion
-ms.openlocfilehash: 4b54f031d13449e4d87075af5606967da8b5d3df
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: fec10ca0e067b3b51bf9dba70d66ceb12423787d
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428931"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902704"
 ---
 # <a name="federate-with-a-customers-ad-fs"></a>Federación con un servicio AD FS de un cliente
 
@@ -113,11 +113,11 @@ Estos son los pasos con más detalle.
 1. Haga clic con el botón derecho en la confianza de proveedor de notificaciones recién agregada y seleccione **Editar reglas de notificaciones**.
 2. Haga clic en **Agregar regla**.
 3. Seleccione "Pasar a través o filtrar una notificación entrante" y haga clic en **Siguiente**.
-   ![Asistente para agregar regla de notificación de transformación](./images/edit-claims-rule.png)
+   ![Asistente para agregar reglas de notificación de transformación](./images/edit-claims-rule.png)
 4. Escriba un nombre para la regla.
 5. En "Tipo de notificación entrante", seleccione **UPN**.
 6. Seleccione "Pasar todos los valores de notificación".
-   ![Asistente para agregar regla de notificación de transformación](./images/edit-claims-rule2.png)
+   ![Asistente para agregar reglas de notificación de transformación](./images/edit-claims-rule2.png)
 7. Haga clic en **Finalizar**
 8. Repita los pasos 2 a 7 y especifique **Tipo de delimitador de notificación** para el tipo de notificación entrante.
 9. Haga clic en **Aceptar** para completar el asistente.
@@ -144,7 +144,7 @@ Los usuarios deben hacer lo siguiente:
 2. En el árbol de consola, bajo **AD FS**, haga clic en **Veracidades de usuarios de confianza**. Seleccione **Agregar confianza para usuario de confianza**.
 3. Seleccione **Compatible con notificaciones** y haga clic en **Iniciar**.
 4. En la página **Seleccionar origen de datos** , seleccione la opción "Importar datos acerca del proveedor de notificaciones publicado en línea o en una red local". Escriba el identificador URI del punto de conexión de metadatos de federación del proveedor de SaaS.
-   ![Asistente para agregar relación de confianza para usuario autenticado](./images/add-rp-trust.png)
+   ![Asistente para agregar confianza para usuario de confianza](./images/add-rp-trust.png)
 5. En la página **Especificar nombre para mostrar** , escriba cualquier nombre.
 6. En la página **Elegir la directiva de control de acceso** , elija una directiva. Puede dar permiso a todos los usuarios de la organización o elegir un grupo de seguridad específico.
    ![Asistente para agregar relación de confianza para usuario autenticado](./images/add-rp-trust2.png)
@@ -157,11 +157,11 @@ Los usuarios deben hacer lo siguiente:
 3. Seleccione "Enviar atributos LDAP como notificaciones" y haga clic en **Siguiente**.
 4. Escriba un nombre para la regla, por ejemplo, “UPN”.
 5. En el **almacén de atributos**, seleccione **Active Directory**.
-   ![Asistente para agregar regla de notificación de transformación](./images/add-claims-rules.png)
+   ![Asistente para agregar reglas de notificación de transformación](./images/add-claims-rules.png)
 6. En la sección **Asignación de atributos LDAP** :
    * En **Atributo LDAP**, seleccione **User-Principal-Name**.
    * En **Tipo de notificación saliente**, seleccione **UPN**.
-     ![Asistente para agregar regla de notificación de transformación](./images/add-claims-rules2.png)
+     ![Asistente para agregar reglas de notificación de transformación](./images/add-claims-rules2.png)
 7. Haga clic en **Finalizar**
 8. Haga clic en **Agregar regla** de nuevo.
 9. Seleccione “Enviar notificaciones con una regla personalizada” y haga clic en **No**.

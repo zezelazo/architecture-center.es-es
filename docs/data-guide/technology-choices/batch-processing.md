@@ -2,13 +2,13 @@
 title: Selección de una tecnología de procesamiento por lotes
 description: ''
 author: zoinerTejada
-ms:date: 11/03/2018
-ms.openlocfilehash: 2314a1413fa674f43bd7a4bcb868a5322ad99497
-ms.sourcegitcommit: 225251ee2dd669432a9c9abe3aa8cd84d9e020b7
+ms.date: 11/03/2018
+ms.openlocfilehash: 51de9ab5a0d8e3f91ddcc4dceb4a748f49fa925b
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/04/2018
-ms.locfileid: "50982004"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902296"
 ---
 # <a name="choosing-a-batch-processing-technology-in-azure"></a>Selección de una tecnología de procesamiento por lotes en Azure
 

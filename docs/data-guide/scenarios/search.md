@@ -2,13 +2,13 @@
 title: Procesamiento de texto sin formato para búsquedas
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: e53730bd2e179c82399e0f92b6c5ce7f451a2f46
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.date: 02/12/2018
+ms.openlocfilehash: 2e61713dccb6064968bfb906fb17b0bd62ae013d
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288817"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902041"
 ---
 # <a name="processing-free-form-text-for-search"></a>Procesamiento de texto sin formato para búsquedas
 
@@ -26,7 +26,7 @@ El procesamiento de texto sin formato puede producir datos útiles y procesables
 - El procesamiento de una colección de documentos de texto sin formato suele consumir muchos recursos de cálculo y también una gran cantidad de tiempo.
 - Para buscar texto sin formato de forma eficaz, el índice de búsqueda debe admitir la búsqueda aproximada basándose en términos que tengan una construcción similar. Por ejemplo, los índices de búsqueda se crean con lematización, de forma que las consultas de "ejecutar" encuentren documentos que contengan "ejecutó" y "ejecución".
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 En la mayoría de los casos, los documentos de texto de origen se cargan en un servicio de almacenamiento de objetos, como Azure Storage o Azure Data Lake Store. Una excepción es la realización de una búsqueda de texto completo en SQL Server o Azure SQL Database. En este caso, los datos del documento se cargan en tablas administradas por la base de datos. Una vez almacenados, los documentos se procesan en un lote para crear el índice.
 

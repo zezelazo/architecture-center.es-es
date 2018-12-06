@@ -2,13 +2,13 @@
 title: Procesamiento de archivos CSV y JSON
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: b9a0deae5499a4df4e43e15914490b89e0e3a50c
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.date: 02/12/2018
+ms.openlocfilehash: 18fb06ec5c44b9db5ebad4d315858df4c75eb594
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251811"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902271"
 ---
 # <a name="working-with-csv-and-json-files-for-data-solutions"></a>Trabajo con archivos CSV y JSON en soluciones de datos
 

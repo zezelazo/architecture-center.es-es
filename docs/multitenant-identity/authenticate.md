@@ -2,16 +2,16 @@
 title: Autenticación en aplicaciones multiinquilino
 description: Cómo una aplicación multiinquilino puede autenticar los usuarios desde Azure AD
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: tailspin
 pnp.series.next: claims
-ms.openlocfilehash: 70f4a96369c207740400b9dfe72e1e964507f729
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 58ccf75cd34f8efec17898c85295587da282cf45
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428132"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902721"
 ---
 # <a name="authenticate-using-azure-ad-and-openid-connect"></a>Autenticación con Azure AD y OpenID Connect
 
@@ -142,7 +142,7 @@ Durante el proceso de autenticación, el software intermedio OpenID Connect gene
 * **RedirectToIdentityProvider**. Se llama justo antes de que el software intermedio redirija al punto de conexión de autenticación. Puede usar este evento para modificar la dirección URL de redireccionamiento; por ejemplo, para agregar parámetros de solicitud. Consulte [Incorporación de la petición de consentimiento del administrador](signup.md#adding-the-admin-consent-prompt) para ver un ejemplo.
 * **AuthorizationCodeReceived**. Se llama con el código de autorización.
 * **TokenResponseReceived**. Se llama después de que el software intermedio obtiene un token de acceso desde el IDP, pero antes de que se valide. Se aplica solo al flujo de código de autorización.
-* **TokenValidated**. Se llama después de que el software intermedio valide el token de identificador. En este punto, la aplicación tiene un conjunto de notificaciones validadas sobre el usuario. Puede usar este evento para realizar una validación adicional de las notificaciones o para transformarlas. Consulte [Working with claims-based identities](claims.md) (Trabajo con identidades basadas en notificaciones).
+* **TokenValidated**. Se llama después de que el software intermedio valide el token de identificador. En este punto, la aplicación tiene un conjunto de notificaciones validadas sobre el usuario. Puede usar este evento para realizar una validación adicional de las notificaciones o para transformarlas. Consulte [Working with claims-based identities in multitenant applications](claims.md)(Trabajo con identidades basadas en notificaciones en aplicaciones multiinquilino)
 * **UserInformationReceived**. Se llama si el software intermedio obtiene el perfil de usuario desde el punto de conexión de información de usuario. Solo se aplica al flujo de código de autorización y solamente con `GetClaimsFromUserInfoEndpoint = true` en las opciones del software intermedio.
 * **TicketReceived**. Se llama cuando se completa la autenticación. Se trata del último evento, siempre que la autenticación se realice correctamente. Una vez que se controla este evento, el usuario inicia sesión en la aplicación.
 * **AuthenticationFailed**. Se llama si se produce un error de autenticación. Use este evento para controlar los errores de autenticación; por ejemplo, redirigiendo a una página de error.

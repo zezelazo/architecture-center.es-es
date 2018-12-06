@@ -2,15 +2,15 @@
 title: Escenarios de ejemplo de Azure
 description: Escenarios de ejemplo para casos de uso empresariales concretos
 author: david-stanford
-ms:date: 11/01/2018
+ms.date: 11/01/2018
 layout: LandingPage
 ms.topic: landing-page
-ms.openlocfilehash: 5fcfc1566256a54d9907c66dbb550616f0155a3f
-ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
+ms.openlocfilehash: 6872cc17e8d7262e36c97e765ecc9de1043269c0
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52550519"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901429"
 ---
 # <a name="azure-example-scenarios"></a>Escenarios de ejemplo de Azure
 

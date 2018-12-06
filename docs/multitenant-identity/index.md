@@ -2,15 +2,15 @@
 title: Administración de identidades en aplicaciones multiinquilino
 description: Procedimientos recomendados para autenticación, autorización y administración de identidades en aplicaciones multiinquilino.
 author: MikeWasson
-ms:date: 07/21/2017
+ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.next: tailspin
-ms.openlocfilehash: 9c2efe9aea9da53177478161b90406d0c2021550
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: 24e09720d3257cbfae350995fa5238663da1d26e
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429441"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902058"
 ---
 # <a name="manage-identity-in-multitenant-applications"></a>Administración de identidades en aplicaciones multiinquilino
 
@@ -40,13 +40,13 @@ Sin embargo, los usuarios pertenecen a las organizaciones:
 
 Ejemplo: Tailspin oferta suscripciones a su aplicación de SaaS. Contoso y Fabrikam se registran en la aplicación. Cuando Alice (`alice@contoso`) inicia sesión, la aplicación debe saber que esta usuaria forma parte de Contoso.
 
-* Alice *debería* tener acceso a los datos de Contoso.
+* Alice *debería* tener acceso a datos de Contoso.
 * Alice *no debería* tener acceso a los datos de Fabrikam.
 
 Esta guía muestra cómo administrar identidades de usuario en una aplicación multiinquilino, usando [Azure Active Directory][AzureAD] (Azure AD) para controlar el inicio de sesión y la autenticación.
 
 ## <a name="what-is-multitenancy"></a>¿Qué significa multiinquilino?
-Un *inquilino* es un grupo de usuarios. En una aplicación SaaS, el inquilino es un suscriptor o un usuario de la aplicación. La *arquitectura multiinquilino* es una arquitectura en la que varios inquilinos comparten la misma instancia física de la aplicación. Aunque los inquilinos comparten los recursos físicos (como las máquinas virtuales o el almacenamiento), cada inquilino obtiene su propia instancia lógica de la aplicación.
+Un *inquilino* es un grupo de usuarios. En una aplicación SaaS, el inquilino es un suscriptor o un usuario de la aplicación. *arquitectura multiinquilino* es una arquitectura en la que varios inquilinos comparten la misma instancia física de la aplicación. Aunque los inquilinos comparten los recursos físicos (como las máquinas virtuales o el almacenamiento), cada inquilino obtiene su propia instancia lógica de la aplicación.
 
 Normalmente, los datos de la aplicación se comparten entre los usuarios de un mismo inquilino, pero no con otros inquilinos.
 

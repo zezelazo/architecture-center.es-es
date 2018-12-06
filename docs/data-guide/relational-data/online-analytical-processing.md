@@ -2,13 +2,13 @@
 title: Procesamiento analítico en línea (OLAP)
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 92b71934f2081e95c3c9b0d4dc9edeb3885b12e8
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.date: 02/12/2018
+ms.openlocfilehash: beed0d642e85096efc0b6fe492181b8dcd771d2d
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30846814"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902605"
 ---
 # <a name="online-analytical-processing-olap"></a>Procesamiento analítico en línea (OLAP)
 
@@ -127,13 +127,13 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 | | Azure Analysis Services | SQL Server Analysis Services | SQL Server con índices de almacén de columnas | Azure SQL Database con índices de almacén de columnas |
 | --- | --- | --- | --- | --- |
-| Es un servicio administrado | Sí | Sin  | Sin  | Sí |
-| Admite cubos multidimensionales | Sin  | Sí | Sin  | Sin  |
-| Admite modelos semánticos tabulares | Sí | Sí | Sin  | Sin  |
-| Integra fácilmente varios orígenes de datos | Sí | Sí | No <sup>1</sup> | No <sup>1</sup> |
-| Admite análisis en tiempo real | Sin  | Sin  | Sí | Sí |
-| Requiere un proceso para copiar los datos de los orígenes | Sí | Sí | Sin  | Sin  |
-| Integración de Azure AD | Sí | Sin  | No <sup>2</sup> | Sí |
+| Es un servicio administrado | SÍ | No | No | SÍ |
+| Admite cubos multidimensionales | Sin  | Sí | No | Sin  |
+| Admite modelos semánticos tabulares | SÍ | SÍ | No | Sin  |
+| Integra fácilmente varios orígenes de datos | SÍ | SÍ | No <sup>1</sup> | No <sup>1</sup> |
+| Admite análisis en tiempo real | Sin  | No | SÍ | SÍ |
+| Requiere un proceso para copiar los datos de los orígenes | SÍ | SÍ | No | Sin  |
+| Integración de Azure AD | SÍ | Sin  | No <sup>2</sup> | SÍ |
 
 [1] Aunque SQL Server y Azure SQL Database no se pueden usar para consultar varios orígenes de datos externos, e integrarlos, puede crear una canalización que lo haga automáticamente mediante [SSIS](/sql/integration-services/sql-server-integration-services) o [Azure Data Factory](/azure/data-factory/). SQL Server hospedado en una máquina virtual de Azure tiene opciones adicionales, como los servidores vinculados y [PolyBase](/sql/relational-databases/polybase/polybase-guide). Para más información, consulte [Choosing a data pipeline orchestration technology in Azure](../technology-choices/pipeline-orchestration-data-movement.md) (Elección de una tecnología de orquestación de canalizaciones de datos en Azure).
 
@@ -143,7 +143,7 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 
 |                                                  | Azure Analysis Services | SQL Server Analysis Services | SQL Server con índices de almacén de columnas | Azure SQL Database con índices de almacén de columnas |
 |--------------------------------------------------|-------------------------|------------------------------|-------------------------------------|---------------------------------------------|
-| Servidores regionales redundantes para lograr alta disponibilidad |           Sí           |              Sin               |                 Sí                 |                     Sí                     |
-|             Admite el escalado horizontal de consultas             |           Sí           |              Sin               |                 Sí                 |                     Sin                       |
-|          Escalabilidad dinámica (escalado vertical)          |           Sí           |              Sin               |                 Sí                 |                     Sin                       |
+| Servidores regionales redundantes para lograr alta disponibilidad |           SÍ           |              Sin               |                 SÍ                 |                     SÍ                     |
+|             Admite el escalado horizontal de consultas             |           SÍ           |              Sin               |                 Sí                 |                     Sin                       |
+|          Escalabilidad dinámica (escalado vertical)          |           SÍ           |              Sin               |                 Sí                 |                     Sin                       |
 

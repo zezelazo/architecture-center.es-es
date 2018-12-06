@@ -2,13 +2,13 @@
 title: Datos de serie temporal
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 80ff6c45988062afcb0eb92cc79e640d39dbb21f
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.date: 02/12/2018
+ms.openlocfilehash: 9664940729430b08d7be52564e4971ec5e2b94d8
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298114"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901973"
 ---
 # <a name="time-series-solutions"></a>Soluciones de serie temporal
 
@@ -56,7 +56,7 @@ Idealmente, debería tener una capa de procesamiento de flujos que pueda manejar
 * Los datos de series temporales a menudo tienen un volumen muy elevado, especialmente en escenarios de IoT. Almacenar, indexar, consultar, analizar y visualizar datos de series temporales puede suponer un desafío. 
 * Puede resultar complicado encontrar la combinación correcta entre almacenamiento de alta velocidad y operaciones de proceso eficaz para controlar el análisis en tiempo real, al tiempo que se minimiza el tiempo de comercialización y el costo de la inversión total.
 
-## <a name="architecture"></a>Architecture
+## <a name="architecture"></a>Arquitectura
 
 En muchos escenarios que implican datos de series temporales, como IoT, los datos se capturan en tiempo real. Por lo tanto, una arquitectura de [procesamiento en tiempo real](../big-data/real-time-processing.md) resulta adecuada. 
 

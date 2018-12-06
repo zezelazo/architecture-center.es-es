@@ -2,13 +2,13 @@
 title: Arquitecturas de macrodatos
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 2a1336faea81470b082d4eef8e2cc53a082c63c7
-ms.sourcegitcommit: 51f49026ec46af0860de55f6c082490e46792794
+ms.date: 02/12/2018
+ms.openlocfilehash: f0c90d88c1350d12b03531ae009f952ea823bc30
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/03/2018
-ms.locfileid: "30298862"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902398"
 ---
 # <a name="big-data-architectures"></a>Arquitecturas de macrodatos
 

@@ -2,13 +2,13 @@
 title: Elección de una tecnología de servicios cognitivos
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 055769188fbd6742b94094ee18766293812849fa
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.date: 02/12/2018
+ms.openlocfilehash: 0551bf05cb47cb3972b0d5f2e5226e23cbdacc68
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847788"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902557"
 ---
 # <a name="choosing-a-microsoft-cognitive-services-technology"></a>Elección de una tecnología de servicios cognitivos de Microsoft
 
@@ -82,14 +82,14 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 |                 Content Moderator                 |        Texto, imágenes o vídeo        |                                                               Moderación automatizada de imágenes, texto y vídeo.                                                                |
 |                    Emotion API                    | Imágenes (fotos con seres humanos) |                                                              Identifique la gama de emociones de los seres humanos.                                                               |
 |                     Face API                      | Imágenes (fotos con seres humanos) |                                                       Detecte, identifique, analice, organice y etiquete las caras en las fotos.                                                       |
-|                   Indexador de vídeo                   |                Vídeo                |                        Información acerca del vídeo, como la opinión, transcriba la voz, traduzca la voz, reconozca caras y emociones, y extraiga las palabras clave.                         |
+|                   Video Indexer                   |                Vídeo                |                        Información acerca del vídeo, como la opinión, transcriba la voz, traduzca la voz, reconozca caras y emociones, y extraiga las palabras clave.                         |
 
 ### <a name="trained-with-custom-data-you-provide"></a>Entrenado con los datos personalizados que proporcione
 
 | | Tipo de entrada | Principal ventaja |
 | --- | --- | --- |
-| Servicio de visión personalizada | Imágenes (o fotogramas de vídeo) | Personalice sus propios modelos de visión del equipo. |
-| Servicio de voz personalizado | Voz | Elimine las barreras del reconocimiento de voz, como el estilo en que se habla, el ruido de fondo y el vocabulario. | 
-| Servicio de decisión personalizado | Contenido web (por ejemplo, fuente RSS) | Use el aprendizaje automático para seleccionar automáticamente el contenido adecuado para la página principal |
+| Custom Vision Service | Imágenes (o fotogramas de vídeo) | Personalice sus propios modelos de visión del equipo. |
+| Custom Speech Service | Voz | Elimine las barreras del reconocimiento de voz, como el estilo en que se habla, el ruido de fondo y el vocabulario. | 
+| Custom Decision Service | Contenido web (por ejemplo, fuente RSS) | Use el aprendizaje automático para seleccionar automáticamente el contenido adecuado para la página principal |
 | Bing Custom Search API | Texto (consulta de búsqueda web) | Herramienta de búsqueda comercial. |
 

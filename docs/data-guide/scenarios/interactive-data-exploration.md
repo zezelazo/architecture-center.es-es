@@ -2,13 +2,13 @@
 title: Exploración interactiva de datos
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: be27df79d445cf9949318e4483ce0f95c26b6e09
-ms.sourcegitcommit: e9eb2b895037da0633ef3ccebdea2fcce047620f
+ms.date: 02/12/2018
+ms.openlocfilehash: 81301e1d81a76d074d001cc9b20bdaf5231e536b
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50251879"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901582"
 ---
 # <a name="interactive-data-exploration"></a>Exploración interactiva de datos
 

@@ -2,13 +2,13 @@
 title: Soluciones de protección de datos
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: 57897c31a8abdcd801874bf92d60360f7a80d1fa
-ms.sourcegitcommit: 90cf2de795e50571d597cfcb9b302e48933e7f18
+ms.date: 02/12/2018
+ms.openlocfilehash: 453897d1dde205ec8eb094df06ec66da43f7de7b
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/14/2018
-ms.locfileid: "29288927"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52901650"
 ---
 # <a name="securing-data-solutions"></a>Soluciones de protección de datos
 

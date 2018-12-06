@@ -2,13 +2,13 @@
 title: Aprendizaje automático a escala
 description: ''
 author: zoinerTejada
-ms:date: 02/12/2018
-ms.openlocfilehash: f2d35f7344a1e760fc6d3ce2292f33b8d3dd7df7
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.date: 02/12/2018
+ms.openlocfilehash: 3c2c494337e4c2f703a70d4d63b2965d3b49dec8
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295504"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902007"
 ---
 # <a name="machine-learning-at-scale"></a>Aprendizaje automático a escala
 
