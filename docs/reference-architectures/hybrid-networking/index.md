@@ -1,16 +1,17 @@
 ---
-title: Elección de una solución para conectar una red local a Azure
-description: Compara las arquitecturas de referencia para conectar una red local a Azure.
+title: Conexión de una red local a Azure
+titleSuffix: Azure Reference Architectures
+description: Compare las arquitecturas de referencia para conectar una red local a Azure.
 author: telmosampaio
 ms.date: 07/02/2018
-ms.openlocfilehash: a9e2a212d65530e714635bbfae3a57766e77c3a6
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.openlocfilehash: de509b6d95805f4fc871f6dbd76a87d2c0bec6f1
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295499"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119921"
 ---
-# <a name="connect-an-on-premises-network-to-azure"></a>Conexión de una red local a Azure
+# <a name="choose-a-solution-for-connecting-an-on-premises-network-to-azure"></a>Elección de una solución para conectar una red local a Azure
 
 En este artículo se comparan las opciones para conectar una red local a una instancia de Azure Virtual Network (VNet). Para cada opción, hay disponible una arquitectura de referencia más detallada.
 
@@ -75,11 +76,9 @@ Esta arquitectura es adecuada para aplicaciones híbridas que necesitan un mayor
 
 - [Red híbrida con ExpressRoute y conmutación por error de VPN](./expressroute-vpn-failover.md)
 
-
 ## <a name="hub-spoke-network-topology"></a>Topología de red en estrella tipo hub-and-spoke
 
 Una topología de red en estrella de tipo hub-and-spoke constituye una forma de aislar cargas de trabajo mientras se comparten servicios como los de identidad y seguridad. El centro (hub) es una red virtual (VNet) en Azure que actúa como un punto central de conectividad para la red local. Los radios son redes virtuales que se emparejan con el concentrador. Los servicios compartidos se implementan en el centro, mientras que las cargas de trabajo individuales se implementan como radios.
-
 
 **Arquitecturas de referencia**
 

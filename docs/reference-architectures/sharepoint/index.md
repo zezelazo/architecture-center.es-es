@@ -1,20 +1,22 @@
 ---
 title: Ejecución de una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure
-description: Procedimientos de demostrada eficacia para configurar una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure.
+titleSuffix: Azure Reference Architectures
+description: Arquitectura recomendada para implementar una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure.
 author: njray
 ms.date: 07/26/2018
-ms.openlocfilehash: 5db146956134f9b297b520d666d8dabbc8793caf
-ms.sourcegitcommit: 77d62f966d910cd5a3d11ade7ae5a73234e093f2
+ms.custom: seodec18
+ms.openlocfilehash: 6cc8255f95cb4944ff3ef138ad5edf2e5bbea4b4
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51293272"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120108"
 ---
-# <a name="run-a-high-availability-sharepoint-server-2016-farm-in-azure"></a>Ejecución de una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure
+# <a name="run-a-highly-available-sharepoint-server-2016-farm-in-azure"></a>Ejecución de una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure
 
-Esta arquitectura de referencia muestra un conjunto de procedimientos de demostrada eficacia para configurar una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure, mediante la topología MinRole y los grupos de disponibilidad AlwaysOn de SQL Server. La granja de servidores de SharePoint se implementa en una red virtual protegida sin puntos de conexión accesibles desde Internet ni presencia en la susodicha red. [**Implementación de la solución**.](#deploy-the-solution) 
+Esta arquitectura de referencia muestra procedimientos de demostrada eficacia para implementar una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure, mediante la topología MinRole y los grupos de disponibilidad AlwaysOn de SQL Server. La granja de servidores de SharePoint se implementa en una red virtual protegida sin puntos de conexión accesibles desde Internet ni presencia en la susodicha red. [**Implemente esta solución**](#deploy-the-solution).
 
-![](./images/sharepoint-ha.png)
+![Arquitectura de referencia de una granja de servidores de SharePoint Server 2016 de alta disponibilidad en Azure](./images/sharepoint-ha.png)
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
@@ -26,15 +28,15 @@ La arquitectura consta de los siguientes componentes:
 
 - **Grupos de recursos**. Un [grupo de recursos][resource-group] es un contenedor que incluye recursos de Azure relacionados. Un grupo de recursos se usa para los servidores de SharePoint y otro grupo de recursos para los componentes de infraestructura que son independientes de las máquinas virtuales, como la red virtual y los equilibradores de carga.
 
-- **Red virtual**. Las máquinas virtuales se implementan en una red virtual con un espacio de direcciones de intranet único. La red virtual se subdivide además en subredes. 
+- **Red virtual**. Las máquinas virtuales se implementan en una red virtual con un espacio de direcciones de intranet único. La red virtual se subdivide además en subredes.
 
 - **Máquinas virtuales (VM)**. Las máquinas virtuales se implementan en la red virtual y se les asignan direcciones IP estáticas privadas a todas ellas. Se recomiendan las direcciones IP estáticas para las máquinas virtuales que ejecutan SQL Server y SharePoint Server 2016, a fin de evitar problemas con el almacenamiento en caché de direcciones IP y los cambios de direcciones después de un reinicio.
 
-- **Conjuntos de disponibilidad**. Coloque las máquinas virtuales de cada rol de SharePoint en distintos [conjuntos de disponibilidad][availability-set] y aprovisione al menos dos máquinas virtuales (VM) para cada rol. Esto hace que las máquinas virtuales sean aptas para un Acuerdo de Nivel de Servicio (SLA) mayor. 
+- **Conjuntos de disponibilidad**. Coloque las máquinas virtuales de cada rol de SharePoint en distintos [conjuntos de disponibilidad][availability-set] y aprovisione al menos dos máquinas virtuales (VM) para cada rol. Esto hace que las máquinas virtuales sean aptas para un Acuerdo de Nivel de Servicio (SLA) mayor.
 
-- **Equilibrador de carga interno**. El [equilibrador de carga][load-balancer] distribuye el tráfico de solicitudes de SharePoint desde la red local hasta los servidores web front-end de la granja de servidores de SharePoint. 
+- **Equilibrador de carga interno**. El [equilibrador de carga][load-balancer] distribuye el tráfico de solicitudes de SharePoint desde la red local hasta los servidores web front-end de la granja de servidores de SharePoint.
 
-- **Grupos de seguridad de red (NSG)**. Para cada subred que contiene máquinas virtuales, se crea un [grupo de seguridad de red][nsg]. Use NSG para restringir el tráfico de red dentro de la red virtual, con el fin de aislar las subredes. 
+- **Grupos de seguridad de red (NSG)**. Para cada subred que contiene máquinas virtuales, se crea un [grupo de seguridad de red][nsg]. Use NSG para restringir el tráfico de red dentro de la red virtual, con el fin de aislar las subredes.
 
 - **Puerta de enlace**. La puerta de enlace proporciona una conexión entre la red local y la red virtual de Azure. La conexión puede usar ExpressRoute o VPN de sitio a sitio. Para más información, consulte [Connect an on-premises network to Azure][hybrid-ra] (Conexión de una red local a Azure).
 
@@ -42,11 +44,11 @@ La arquitectura consta de los siguientes componentes:
 
   SharePoint Server 2016 también admite el uso de [Azure Active Directory Domain Services](/azure/active-directory-domain-services/). Azure AD Domain Services proporciona servicios de dominio administrado, por lo que no necesitará implementar y administrar controladores de dominio en Azure.
 
-- **Grupo de disponibilidad AlwaysOn de SQL Server** Para lograr una alta disponibilidad de la base de datos de SQL Server, se recomiendan los [grupos de disponibilidad AlwaysOn de SQL Server][sql-always-on]. Se usan dos máquinas virtuales para SQL Server. Una contiene la réplica de base de datos principal y la otra la réplica secundaria. 
+- **Grupo de disponibilidad AlwaysOn de SQL Server** Para lograr una alta disponibilidad de la base de datos de SQL Server, se recomiendan los [grupos de disponibilidad AlwaysOn de SQL Server][sql-always-on]. Se usan dos máquinas virtuales para SQL Server. Una contiene la réplica de base de datos principal y la otra la réplica secundaria.
 
 - **Máquina virtual de mayoría de nodos**. Esta máquina virtual permite que el clúster de conmutación por error establezca el cuórum. Para más información, consulte [Descripción de las configuraciones de cuórum en un clúster de conmutación por error][sql-quorum].
 
-- **Servidores de SharePoint**. Los servidores de SharePoint desempeñan funciones de front-end web, almacenamiento en caché, aplicación y búsqueda. 
+- **Servidores de SharePoint**. Los servidores de SharePoint desempeñan funciones de front-end web, almacenamiento en caché, aplicación y búsqueda.
 
 - **JumpBox**. También se le conoce como [bastion host][bastion-host]. Se trata de una máquina virtual segura en la red que usan los administradores para conectarse al resto de máquinas virtuales. El JumpBox tiene un NSG que solo permite el tráfico remoto que procede de direcciones IP públicas de una lista segura. El NSG debe permitir el tráfico de escritorio remoto (RDP).
 
@@ -60,7 +62,7 @@ Se recomienda separar los grupos de recursos de acuerdo con el rol del servidor 
 
 ### <a name="virtual-network-and-subnet-recommendations"></a>Recomendaciones para red virtual y subred
 
-Use una subred para cada rol de SharePoint, más una subred para la puerta de enlace y otra para el JumpBox. 
+Use una subred para cada rol de SharePoint, más una subred para la puerta de enlace y otra para el JumpBox.
 
 La subred de puerta de enlace debe tener el nombre *GatewaySubnet*. Asigne el espacio de direcciones de subred de puerta de enlace desde la última parte del espacio de direcciones de red virtual. Para más información, consulte la sección [Connect an on-premises network to Azure using a VPN gateway][hybrid-vpn-ra] (Conexión de una red local a Azure mediante una puerta de enlace de VPN).
 
@@ -74,28 +76,28 @@ Esta arquitectura requiere un mínimo de 44 núcleos:
 - 1 mayoría de nodos en Standard_DS1_v2 = 1 núcleo
 - 1 servidor de administración en Standard_DS1_v2 = 1 núcleo
 
-Asegúrese de que su suscripción de Azure tenga suficiente cuota de núcleos de máquina virtual para la implementación, o esta no se realizará correctamente. Consulte [Límites, cuotas y restricciones de suscripción y servicios de Azure][quotas]. 
+Asegúrese de que su suscripción de Azure tenga suficiente cuota de núcleos de máquina virtual para la implementación, o esta no se realizará correctamente. Consulte [Límites, cuotas y restricciones de suscripción y servicios de Azure][quotas].
 
-Para todos los roles de SharePoint, excepto indexador de búsqueda, se recomienda usar el tamaño de máquina virtual [Standard_DS3_v2][vm-sizes-general]. El indexador de búsqueda debe tener como mínimo el tamaño [Standard_DS13_v2][vm-sizes-memory]. Para la realización de pruebas, los archivos de parámetro de esta arquitectura de referencia deben especificar el tamaño de DS3_v2 más pequeño para el rol Indexador de búsqueda. En un entorno de producción, actualice los archivos de parámetro para que usen el tamaño DS13 u otro mayor. Para más información, consulte [Requisitos de hardware y software para SharePoint Server 2016][sharepoint-reqs]. 
+Para todos los roles de SharePoint, excepto indexador de búsqueda, se recomienda usar el tamaño de máquina virtual [Standard_DS3_v2][vm-sizes-general]. El indexador de búsqueda debe tener como mínimo el tamaño [Standard_DS13_v2][vm-sizes-memory]. Para la realización de pruebas, los archivos de parámetro de esta arquitectura de referencia deben especificar el tamaño de DS3_v2 más pequeño para el rol Indexador de búsqueda. En un entorno de producción, actualice los archivos de parámetro para que usen el tamaño DS13 u otro mayor. Para más información, consulte [Requisitos de hardware y software para SharePoint Server 2016][sharepoint-reqs].
 
-Para las máquinas virtuales con SQL Server, se recomienda un mínimo de 4 núcleos y 8 GB de RAM. Los archivos de parámetros de esta arquitectura de referencia especifican el tamaño DS3_v2. Para una implementación de producción, debe especificar un tamaño mayor de máquina virtual. Para más información, consulte [Almacenamiento y configuración y planeamiento de capacidad de SQL Server (SharePoint Server)](/sharepoint/administration/storage-and-sql-server-capacity-planning-and-configuration#estimate-memory-requirements). 
- 
+Para las máquinas virtuales con SQL Server, se recomienda un mínimo de 4 núcleos y 8 GB de RAM. Los archivos de parámetros de esta arquitectura de referencia especifican el tamaño DS3_v2. Para una implementación de producción, debe especificar un tamaño mayor de máquina virtual. Para más información, consulte [Almacenamiento y configuración y planeamiento de capacidad de SQL Server (SharePoint Server)](/sharepoint/administration/storage-and-sql-server-capacity-planning-and-configuration#estimate-memory-requirements).
+
 ### <a name="nsg-recommendations"></a>Recomendaciones para las aplicaciones virtuales de red
 
-Se recomienda tener un NSG para cada subred que contenga máquinas virtuales, para permitir el aislamiento de la subred. Si quiere configurar el aislamiento de la subred, agregue reglas NSG que definan el tráfico entrante o saliente permitido o denegado para cada subred. Para más información, consulte [Filtrado del tráfico de red con grupos de seguridad de red][virtual-networks-nsg]. 
+Se recomienda tener un NSG para cada subred que contenga máquinas virtuales, para permitir el aislamiento de la subred. Si quiere configurar el aislamiento de la subred, agregue reglas NSG que definan el tráfico entrante o saliente permitido o denegado para cada subred. Para más información, consulte [Filtrado del tráfico de red con grupos de seguridad de red][virtual-networks-nsg].
 
-No asigne un NSG a la subred de puerta de enlace o la puerta de enlace dejará de funcionar. 
+No asigne un NSG a la subred de puerta de enlace o la puerta de enlace dejará de funcionar.
 
 ### <a name="storage-recommendations"></a>Recomendaciones para almacenamiento
 
 La configuración del almacenamiento de las máquinas virtuales de la granja de servidores debe coincidir con los procedimientos recomendados usados en las implementaciones locales. Los servidores de SharePoint deben tener un disco aparte para los registros. Los servidores de SharePoint que hospedan roles de índice de búsqueda requieren espacio en disco adicional para que se almacene el índice de búsqueda. En SQL Server, el procedimiento habitual consiste en separar datos y registros. Agregue más discos para el almacenamiento de copia de seguridad de base de datos y use un disco independiente para [tempdb][tempdb].
 
-Para lograr la máxima confiabilidad, se recomienda usar [Azure Managed Disks][managed-disks]. Los discos administrados garantizan que los discos de las máquinas virtuales de un conjunto de disponibilidad estén aislados, con el fin de evitar únicos puntos de error. 
+Para lograr la máxima confiabilidad, se recomienda usar [Azure Managed Disks][managed-disks]. Los discos administrados garantizan que los discos de las máquinas virtuales de un conjunto de disponibilidad estén aislados, con el fin de evitar únicos puntos de error.
 
 > [!NOTE]
 > Actualmente la plantilla de Resource Manager para esta arquitectura de referencia no usa discos administrados, pero está previsto actualizarla para que los use.
 
-Use discos administrados Premium en todas las máquinas virtuales de SQL Server y SharePoint. Puede usar discos administrados Estándar para el servidor de mayoría de nodos, los controladores de dominio y el servidor de administración. 
+Use discos administrados Premium en todas las máquinas virtuales de SQL Server y SharePoint. Puede usar discos administrados Estándar para el servidor de mayoría de nodos, los controladores de dominio y el servidor de administración.
 
 ### <a name="sharepoint-server-recommendations"></a>Recomendaciones para el servidor de SharePoint
 
@@ -113,10 +115,9 @@ Antes de configurar la granja de servidores de SharePoint, asegúrese de que tie
 
 Para satisfacer el requisito de compatibilidad con el rendimiento del disco de 200 MB por segundo como mínimo, asegúrese de planear la arquitectura de búsqueda. Consulte [Planear la arquitectura de búsqueda empresarial en SharePoint Server 2013][sharepoint-search]. Además, siga las directrices descritas en [Best practices for crawling in SharePoint Server 2016][sharepoint-crawling] (Procedimientos recomendados para rastreo en SharePoint Server 2016).
 
-Asimismo, almacene los datos del componente de búsqueda en un volumen de almacenamiento independiente o en una partición con alto rendimiento. Para reducir la carga y mejorar el rendimiento, configure las cuentas de usuario de caché de objeto, que son necesarias en esta arquitectura. Divida los archivos del sistema operativo Windows Server, los archivos de programa de SharePoint Server 2016 y los registros de diagnóstico en tres volúmenes de almacenamiento independientes o particiones con un rendimiento normal. 
+Asimismo, almacene los datos del componente de búsqueda en un volumen de almacenamiento independiente o en una partición con alto rendimiento. Para reducir la carga y mejorar el rendimiento, configure las cuentas de usuario de caché de objeto, que son necesarias en esta arquitectura. Divida los archivos del sistema operativo Windows Server, los archivos de programa de SharePoint Server 2016 y los registros de diagnóstico en tres volúmenes de almacenamiento independientes o particiones con un rendimiento normal.
 
 Para más información sobre estas recomendaciones, consulte [Cuentas de servicio y administrativas de implementación inicial en SharePoint Server 2016][sharepoint-accounts].
-
 
 ### <a name="hybrid-workloads"></a>Cargas de trabajo híbridas
 
@@ -132,11 +133,11 @@ También se recomienda agregar una dirección IP de escucha al clúster, que es 
 
 Para conocer los tamaños de máquina virtual recomendados y otras recomendaciones sobre rendimiento para SQL Server en Azure, consulte [Procedimientos recomendados para SQL Server en Azure Virtual Machines][sql-performance]. Además, siga las recomendaciones de [Procedimientos recomendados para SQL Server en una granja de servidores de SharePoint 2016][sql-sharepoint-best-practices].
 
-Se recomienda que el servidor de mayoría de nodos resida en un equipo independiente de los asociados de replicación. El servidor permite que el servidor asociado de replicación secundaria en una sesión en modo de alta seguridad reconozca si debe iniciar una conmutación por error automática. A diferencia de los dos asociados, los servidores de mayoría de nodos no atienden la base de datos, sino que admiten la conmutación por error automática. 
+Se recomienda que el servidor de mayoría de nodos resida en un equipo independiente de los asociados de replicación. El servidor permite que el servidor asociado de replicación secundaria en una sesión en modo de alta seguridad reconozca si debe iniciar una conmutación por error automática. A diferencia de los dos asociados, los servidores de mayoría de nodos no atienden la base de datos, sino que admiten la conmutación por error automática.
 
 ## <a name="scalability-considerations"></a>Consideraciones sobre escalabilidad
 
-Para escalar verticalmente los servidores existentes, simplemente cambie el tamaño de la máquina virtual. 
+Para escalar verticalmente los servidores existentes, simplemente cambie el tamaño de la máquina virtual.
 
 Con la funcionalidad [MinRoles][minroles] de SharePoint Server 2016, puede escalar horizontalmente los servidores según el rol del servidor y también quitar servidores de un rol. Cuando agregue servidores a un rol, puede especificar cualquiera de los roles únicos o uno de los roles combinados. Sin embargo, si agrega servidores al rol de búsqueda, también debe reconfigurar la topología de búsqueda mediante PowerShell. Además, puede convertir roles mediante MinRoles. Para más información, consulte [Administración de una granja de servidores de MinRole en SharePoint Server 2016][sharepoint-minrole].
 
@@ -152,7 +153,7 @@ Para protegerse frente a un error regional, cree una granja de servidores de rec
 
 Para operar y mantener servidores, granjas de servidores y sitios, siga los procedimientos recomendados para las operaciones de SharePoint. Para más información, consulte [Operaciones para SharePoint Server 2016][sharepoint-ops].
 
-Las tareas que debe tener en cuenta al administrar SQL Server en un entorno de SharePoint pueden diferir de aquellas que se suelen considerar para una aplicación de base de datos. Un procedimiento recomendado es realizar una copia de seguridad semanal completa de todas las bases de datos SQL con copias de seguridad incrementales durante la noche. Realice copia de seguridad de los registros de transacciones cada 15 minutos. Otro procedimiento consiste en implementar tareas de mantenimiento de SQL Server en las bases de datos y deshabilitar las integradas de SharePoint. Para más información, consulte [Almacenamiento y configuración y planeamiento de capacidad de SQL Server][sql-server-capacity-planning]. 
+Las tareas que debe tener en cuenta al administrar SQL Server en un entorno de SharePoint pueden diferir de aquellas que se suelen considerar para una aplicación de base de datos. Un procedimiento recomendado es realizar una copia de seguridad semanal completa de todas las bases de datos SQL con copias de seguridad incrementales durante la noche. Realice copia de seguridad de los registros de transacciones cada 15 minutos. Otro procedimiento consiste en implementar tareas de mantenimiento de SQL Server en las bases de datos y deshabilitar las integradas de SharePoint. Para más información, consulte [Almacenamiento y configuración y planeamiento de capacidad de SQL Server][sql-server-capacity-planning].
 
 ## <a name="security-considerations"></a>Consideraciones sobre la seguridad
 
@@ -175,7 +176,7 @@ La implementación crea los siguientes grupos de recursos en su suscripción:
 - ra-onprem-sp2016-rg
 - ra-sp2016-network-rg
 
-Los archivos de parámetro de plantilla hacen referencia a estos nombres, por lo que si se cambian es necesario actualizar los archivos de parámetro para que coincidan. 
+Los archivos de parámetro de plantilla hacen referencia a estos nombres, por lo que si se cambian es necesario actualizar los archivos de parámetro para que coincidan.
 
 Los archivos de parámetros incluyen una contraseña codificada de forma rígida en varios lugares. Cambie estos valores antes de realizar la implementación.
 
@@ -183,7 +184,7 @@ Los archivos de parámetros incluyen una contraseña codificada de forma rígida
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-### <a name="deploy-the-solution"></a>Implementación de la solución 
+### <a name="deployment-steps"></a>Pasos de implementación
 
 1. Ejecute el siguiente comando para implementar una red local simulada.
 
@@ -203,12 +204,13 @@ Los archivos de parámetros incluyen una contraseña codificada de forma rígida
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure1.json --deploy
     ```
 
-4. Ejecute el siguiente comando para crear el clúster de conmutación por error y el grupo de disponibilidad. 
+4. Ejecute el siguiente comando para crear el clúster de conmutación por error y el grupo de disponibilidad.
 
     ```bash
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure2-cluster.json --deploy
+    ```
 
-5. Run the following command to deploy the remaining VMs.
+5. Ejecute el siguiente comando para implementar las máquinas virtuales restantes.
 
     ```bash
     azbb -s <subscription_id> -g ra-onprem-sp2016-rg -l <location> -p azure3.json --deploy
@@ -230,7 +232,7 @@ En este punto, compruebe que puede realizar una conexión TCP desde el front-end
 
 La salida debe tener una apariencia similar a la siguiente:
 
-```powershell
+```console
 ComputerName     : 10.0.3.100
 RemoteAddress    : 10.0.3.100
 RemotePort       : 1433
@@ -239,7 +241,7 @@ SourceAddress    : 10.0.0.132
 TcpTestSucceeded : True
 ```
 
-Si se produce un error, use Azure Portal para reiniciar la máquina virtual denominada `ra-sp-sql-vm2`. Después de que se reinicia la máquina virtual, ejecute el comando `Test-NetConnection` de nuevo. Puede que tenga que esperar alrededor de un minuto después de reiniciar la máquina virtual para que la conexión se realice correctamente. 
+Si se produce un error, use Azure Portal para reiniciar la máquina virtual denominada `ra-sp-sql-vm2`. Después de que se reinicia la máquina virtual, ejecute el comando `Test-NetConnection` de nuevo. Puede que tenga que esperar alrededor de un minuto después de reiniciar la máquina virtual para que la conexión se realice correctamente.
 
 Ahora, finalice la implementación como se indica a continuación.
 
@@ -265,17 +267,17 @@ Ahora, finalice la implementación como se indica a continuación.
 
 1. En [Azure Portal][azure-portal], vaya al grupo de recursos `ra-onprem-sp2016-rg`.
 
-2. En la lista de recursos, seleccione el recurso de máquina virtual denominado `ra-onpr-u-vm1`. 
+2. En la lista de recursos, seleccione el recurso de máquina virtual denominado `ra-onpr-u-vm1`.
 
 3. Conéctese a la máquina virtual como se describe en [Conexión a la máquina virtual][connect-to-vm]. El nombre de usuario es `\onpremuser`.
 
-5.  Cuando se establezca la conexión remota a la máquina virtual, abra un explorador en la máquina virtual y vaya a `http://portal.contoso.local`.
+4. Cuando se establezca la conexión remota a la máquina virtual, abra un explorador en la máquina virtual y vaya a `http://portal.contoso.local`.
 
-6.  En el cuadro **Seguridad de Windows**, inicie sesión en el portal de SharePoint con `contoso.local\testuser` como nombre de usuario.
+5. En el cuadro **Seguridad de Windows**, inicie sesión en el portal de SharePoint con `contoso.local\testuser` como nombre de usuario.
 
 Este inicio de sesión crea un túnel desde el dominio de Fabrikam.com que usa la red local hasta el dominio de contoso.local que usa el portal de SharePoint. Cuando se abra el sitio de SharePoint, verá el sitio de demostración raíz.
 
-**_Personas que han contribuido a esta arquitectura de referencia_**  &mdash; Joe Davies, Bob Fox, Neil Hodgkinson, Paul Stork
+**_Colaboradores a esta arquitectura de referencia_**  &mdash; Joe Davies, Bob Fox, Neil Hodgkinson, Paul Stork
 
 <!-- links -->
 
