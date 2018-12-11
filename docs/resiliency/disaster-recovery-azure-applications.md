@@ -3,12 +3,12 @@ title: Recuperación ante desastres para aplicaciones de Azure
 description: Información general técnica y detallada sobre cómo diseñar aplicaciones para recuperación ante desastres en Microsoft Azure.
 author: adamglick
 ms.date: 09/12/2018
-ms.openlocfilehash: 4f879445154e37502bbeeeb90939737b6072e6ec
-ms.sourcegitcommit: 25bf02e89ab4609ae1b2eb4867767678a9480402
+ms.openlocfilehash: ff5da8a3d2612d7c122ec8ed87979eddf778dbf0
+ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2018
-ms.locfileid: "45584806"
+ms.lasthandoff: 12/05/2018
+ms.locfileid: "52902857"
 ---
 # <a name="disaster-recovery-for-azure-applications"></a>Recuperación ante desastres para aplicaciones de Azure
 
@@ -27,7 +27,7 @@ Azure mantiene centros de datos en muchas regiones del mundo. Esta infraestructu
 
 ## <a name="azure-site-recovery"></a>Azure Site Recovery
 
-[Azure Site Recovery](/azure/site-recovery/) cuenta con un sencillo mecanismo para replicar máquinas virtuales de Azure entre regiones. La sobrecarga de administración es mínima, ya que no es necesario aprovisionar otros recursos en la región secundaria. Cuando se habilita la replicación, Site Recovery crea automáticamente los recursos necesarios en la región de destino, con arreglo a la configuración de la máquina virtual de origen. Proporciona una replicación continua y automatizada, y permite realizar la conmutación por error de las aplicaciones con un solo clic. También puede ejecutar simulacros de recuperación ante desastres con conmutaciones por error de prueba, sin que la replicación en curso o las cargas de trabajo de producción se vean afectadas. 
+[Azure Site Recovery](/azure/site-recovery/) cuenta con un sencillo mecanismo para replicar máquinas virtuales de Azure entre regiones. La sobrecarga de administración es mínima, ya que no es necesario aprovisionar recursos adicionales en la región secundaria. Cuando se habilita la replicación, Site Recovery crea automáticamente los recursos necesarios en la región de destino, con arreglo a la configuración de la máquina virtual de origen. Proporciona una replicación continua y automatizada, y permite realizar la conmutación por error de las aplicaciones con un solo clic. También puede ejecutar simulacros de recuperación ante desastres con conmutaciones por error de prueba, sin que la replicación en curso o las cargas de trabajo de producción se vean afectadas. 
 
 ## <a name="azure-traffic-manager"></a>Administrador de tráfico de Azure
 Si se produce un error en una región concreta, el tráfico debe redirigirse a los servicios o implementaciones de otra región. Es más eficaz controlar esta situación a través de servicios como Azure Traffic Manager, que automatiza la conmutación por error del tráfico de usuario en otra región si se produce un error en la región principal. Es importante entender los conceptos básicos de Traffic Manager al diseñar una estrategia eficaz de recuperación ante desastres.
