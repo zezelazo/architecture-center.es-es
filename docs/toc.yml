@@ -527,6 +527,26 @@ items:
       href: cloud-adoption/getting-started/what-is-governance.md
     - name: Gobierno del acceso a los recursos en Azure
       href: cloud-adoption/getting-started/azure-resource-access.md
+  - name: Justificación comercial
+    items:
+    - name: Creación de un caso empresarial de migración a nube
+      href: cloud-adoption/business-strategy/cloud-migration-business-case.md
+    - name: Descripción de los modelos financieros
+      href: cloud-adoption/business-strategy/financial-models.md
+  - name: Patrimonio digital
+    items:
+    - name: Las 5 "R" de la racionalización
+      href: cloud-adoption/digital-estate/5-rs-of-rationalization.md
+    - name: ¿Qué es un patrimonio digital?
+      href: cloud-adoption/digital-estate/overview.md
+    - name: Enfoques de planeamiento del patrimonio digital
+      href: cloud-adoption/digital-estate/approach.md
+    - name: Recopilación de datos de inventario
+      href: cloud-adoption/digital-estate/inventory.md
+    - name: Racionalización del patrimonio digital
+      href: cloud-adoption/digital-estate/rationalize.md
+    - name: Previsión de costos de la nube
+      href: cloud-adoption/digital-estate/calculate.md
   - name: Gobierno
     items:
     - name: Información general
@@ -547,13 +567,15 @@ items:
       href: cloud-adoption/operations/operational-fitness-review.md
   - name: Anexo
     items:
+    - name: Centro de datos virtual (VDC)
+      href: vdc/index.md
     - name: Scaffold de Azure Enterprise
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: Implementación de plantillas scaffold de Azure Enterprise
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: 79bb5441b72d85f410d57b0f030772ac34a6e2b3
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 6e20f9e9212191109faf5a7ca09fcf5ac991a821
+ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902806"
+ms.lasthandoff: 12/10/2018
+ms.locfileid: "53179321"
