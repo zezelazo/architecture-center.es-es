@@ -2,13 +2,13 @@
 title: Patrones de diseño en la nube
 description: Patrones de diseño en la nube para Microsoft Azure
 keywords: Azure
-ms.date: 06/23/2017
-ms.openlocfilehash: 308e9bc784fc791d04adcecaae64bf258edeb20b
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.date: 12/10/2018
+ms.openlocfilehash: 26ee59ef15fc63bb5e823cd85f610cd9ad01177a
+ms.sourcegitcommit: 9a15af3a25f25b8730968d32cbb006434b183e18
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326204"
+ms.lasthandoff: 12/11/2018
+ms.locfileid: "53234057"
 ---
 # <a name="cloud-design-patterns"></a>Patrones de diseño en la nube
 
@@ -104,6 +104,7 @@ Cada patrón describe el problema al que hace frente, las consideraciones sobre 
 |              [Materialized View](./materialized-view.md)              |                                        Genera vistas rellenadas previamente de los datos en uno o más almacenes de datos cuando los datos no tienen el formato idóneo para las operaciones de consulta requeridas.                                        |
 |              [Pipes and Filters](./pipes-and-filters.md)              |                                                        Desglosa una tarea que realiza un procesamiento complejo en una serie de elementos independientes que se pueden volver a utilizar.                                                        |
 |                 [Priority Queue](./priority-queue.md)                 |                                 Clasifica por orden de prioridad las solicitudes enviadas a los servicios para que aquellas con una prioridad más alta se reciban y procesen más rápidamente que las que tienen una prioridad más baja.                                  |
+| [Publicador y suscriptor](./publisher-subscriber.md) | Permita que una aplicación anuncie eventos de forma asincrónica a varios consumidores interesados, sin necesidad de emparejar los remitentes con los receptores. |
 |      [Queue-Based Load Leveling](./queue-based-load-leveling.md)      |                                               Usa una cola que actúa como búfer entre una tarea y un servicio que invoca para equilibrar cargas pesadas intermitentes.                                               |
 |                          [Retry](./retry.md)                          |               Permite que una aplicación trate los errores temporales anticipados cuando intenta conectarse a un servicio o un recurso de red, mediante el reintento de forma transparente de una operación que anteriormente produjo error.                |
 |     [Scheduler Agent Supervisor](./scheduler-agent-supervisor.md)     |                                                              Coordina un conjunto de acciones en un conjunto distribuido de servicios y otros recursos remotos.                                                               |
