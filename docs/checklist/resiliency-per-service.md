@@ -1,15 +1,16 @@
 ---
 title: Lista de comprobación de resistencia para servicios de Azure
+titleSuffix: Azure Design Review Framework
 description: Lista de comprobación que proporciona una orientación sobre la resistencia de varios servicios de Azure.
 author: petertaylor9999
-ms.date: 03/02/2018
+ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 53a37595bd6e70fa3a43e9a72b2ae47d2225009f
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 55f17d3b24af4be4f313c66923f4153296041545
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305934"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307187"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Lista de comprobación de resistencia para servicios de Azure específicos
 
@@ -19,15 +20,15 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Utilice el nivel Estándar o Premium.** Estos niveles admiten espacios de ensayo y copias de seguridad automáticas. Para más información, consulte [Introducción detallada sobre los planes de Azure App Service](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview/).
 
-**Evite el escalado o la reducción verticales.** En su lugar, seleccione un nivel y un tamaño de instancia que satisfagan sus requisitos de rendimiento con la carga típica y, a continuación, [escale horizontalmente](/azure/app-service-web/web-sites-scale/) las instancias para controlar los cambios en el volumen de tráfico. El escalado y la reducción verticales pueden desencadenar un reinicio de la aplicación.  
+**Evite el escalado o la reducción verticales.** En su lugar, seleccione un nivel y un tamaño de instancia que satisfagan sus requisitos de rendimiento con la carga típica y, a continuación, [escale horizontalmente](/azure/app-service-web/web-sites-scale/) las instancias para controlar los cambios en el volumen de tráfico. El escalado y la reducción verticales pueden desencadenar un reinicio de la aplicación.
 
 **Almacene la configuración como valores de configuración de la aplicación.** Utilice la configuración de la aplicación para almacenar los valores de configuración como valores de configuración de la aplicación. Defina la configuración en las plantillas de Resource Manager o utilice PowerShell para que pueda aplicarlas como parte de un proceso automatizado de implementación o actualización, que es más confiable. Para más información, consulte [Configuración de aplicaciones web en Azure App Service](/azure/app-service-web/web-sites-configure/).
 
-**Cree planes de App Service independientes para producción y prueba.** No utilice ranuras en la implementación de producción para pruebas.  Todas las aplicaciones del mismo plan de App Service comparten las mismas instancias de máquina virtual. Si coloca implementaciones de producción y prueba en el mismo plan, puede afectar negativamente a la implementación de producción. Por ejemplo, las pruebas de carga pueden degradar el sitio de producción en vivo. Al colocar las implementaciones de prueba en un plan independiente, se aíslan de la versión de producción.  
+**Cree planes de App Service independientes para producción y prueba.** No utilice ranuras en la implementación de producción para pruebas.  Todas las aplicaciones del mismo plan de App Service comparten las mismas instancias de máquina virtual. Si coloca implementaciones de producción y prueba en el mismo plan, puede afectar negativamente a la implementación de producción. Por ejemplo, las pruebas de carga pueden degradar el sitio de producción en vivo. Al colocar las implementaciones de prueba en un plan independiente, se aíslan de la versión de producción.
 
 **Aplicaciones web independiente de las API web.** Si la solución tiene un front-end web y una API web, considere descomponerlas en aplicaciones de App Service independientes. Este diseño facilita la descomposición de la solución por carga de trabajo. Puede ejecutar la aplicación web y la API en planes de App Service diferentes, por lo que se pueden escalar de forma independiente. Si inicialmente no necesita ese nivel de escalabilidad, puede implementar las aplicaciones en el mismo plan y moverlas más tarde a planes diferentes si es necesario.
 
-**Evite utilizar la característica de copia de seguridad de App Service para hacer copias de seguridad de las bases de datos Azure SQL Database.** En cambio, utilice las [copias de seguridad automatizadas de SQL Database][sql-backup]. La copia de seguridad de App Service exporta la base de datos a un archivo .bacpac de SQL, que cuesta unidades de transmisión de datos.  
+**Evite utilizar la característica de copia de seguridad de App Service para hacer copias de seguridad de las bases de datos Azure SQL Database.** En cambio, utilice las [copias de seguridad automatizadas de SQL Database][sql-backup]. La copia de seguridad de App Service exporta la base de datos a un archivo .bacpac de SQL, que cuesta unidades de transmisión de datos.
 
 **Realice la implementación en un espacio de ensayo.** Cree una ranura de implementación para el almacenamiento provisional. Implemente las actualizaciones de la aplicación en el espacio de ensayo y compruebe la implementación antes de cambiarla a producción. Esto reduce la posibilidad de una mala actualización en la producción. También garantiza que todas las instancias estén preparadas antes de pasarlas a producción. Muchas aplicaciones presentan tiempos de preparación y arranque en frío considerables. Para más información, consulte [Configuración de entornos de ensayo para aplicaciones web en Azure App Service](/azure/app-service-web/web-sites-staged-publishing/).
 
@@ -57,7 +58,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Controle las excepciones**. Normalmente, un consumidor de eventos procesa un lote de mensajes en un bucle. Debe controlar las excepciones dentro de este bucle de procesamiento para evitar la pérdida de un lote completo de mensajes si un solo mensaje provoca una excepción.
 
-**Use una cola de mensajes con problemas de entrega**. Si al procesar un mensaje se produce un error no transitorio, coloque el mensaje en una cola de mensajes con problemas de entrega para que pueda hacer un seguimiento del estado. Según el escenario, puede volver a intentar enviar el mensaje más tarde, aplicar una transacción de compensación o realizar alguna otra acción. Tenga en cuenta que Event Hubs no tiene ninguna funcionalidad integrada de cola de mensajes con problemas de entrega. Puede usar Azure Queue Storage o Service Bus para implementar una cola de mensajes con problemas de entrega o emplear Azure Functions, o algún otro mecanismo de eventos.  
+**Use una cola de mensajes con problemas de entrega**. Si al procesar un mensaje se produce un error no transitorio, coloque el mensaje en una cola de mensajes con problemas de entrega para que pueda hacer un seguimiento del estado. Según el escenario, puede volver a intentar enviar el mensaje más tarde, aplicar una transacción de compensación o realizar alguna otra acción. Tenga en cuenta que Event Hubs no tiene ninguna funcionalidad integrada de cola de mensajes con problemas de entrega. Puede usar Azure Queue Storage o Service Bus para implementar una cola de mensajes con problemas de entrega o emplear Azure Functions, o algún otro mecanismo de eventos.
 
 **Implemente la recuperación ante desastres mediante la conmutación por error en un espacio de nombres secundario de Event Hubs.** Para más información, consulte [Recuperación ante desastres con localización geográfica de Azure Event Hubs](/azure/event-hubs/event-hubs-geo-dr).
 
@@ -67,7 +68,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Configurar la persistencia de los datos.** La persistencia de Redis le permite conservar los datos almacenados en Redis. También puede tomar instantáneas y realizar copias de seguridad de los datos que puede cargar en el caso de un error de hardware. Para más información, consulte [Cómo configurar la persistencia de datos para una instancia premium de Azure Redis Cache](/azure/redis-cache/cache-how-to-premium-persistence).
 
-Si usa Redis Cache como caché de datos temporal y no como almacén persistente, puede que estas recomendaciones no se apliquen. 
+Si usa Redis Cache como caché de datos temporal y no como almacén persistente, puede que estas recomendaciones no se apliquen.
 
 ## <a name="search"></a>Search
 
@@ -75,8 +76,9 @@ Si usa Redis Cache como caché de datos temporal y no como almacén persistente,
 
 **Configure los indexadores para implementaciones en varias regiones**. Si tiene una implementación de varias regiones, tenga en cuenta las opciones para la continuidad en la indexación.
 
-  * Si el origen de datos está replicado geográficamente, por lo general debe dirigir cada indexador de cada servicio regional de Azure Search a su réplica local del origen de datos. Sin embargo, este enfoque no se recomienda para grandes conjuntos de datos almacenados en Azure SQL Database. La razón es que Azure Search no puede realizar la indexación incremental desde réplicas secundarias de SQL Database, solo desde réplicas principales. En su lugar, seleccione todos los indexadores a la réplica principal. Después de una conmutación por error, elija los indexadores de Azure Search a la nueva réplica principal.  
-  * Si el origen de datos no está replicado geográficamente, seleccione varios indexadores en el mismo origen de datos, de modo que los servicios de Azure Search en múltiples regiones se indexen continua e independientemente en el origen de datos. Para más información, consulte [Consideraciones sobre el rendimiento y la optimización de Azure Search][search-optimization].
+- Si el origen de datos está replicado geográficamente, por lo general debe dirigir cada indexador de cada servicio regional de Azure Search a su réplica local del origen de datos. Sin embargo, este enfoque no se recomienda para grandes conjuntos de datos almacenados en Azure SQL Database. La razón es que Azure Search no puede realizar la indexación incremental desde réplicas secundarias de SQL Database, solo desde réplicas principales. En su lugar, seleccione todos los indexadores a la réplica principal. Después de una conmutación por error, elija los indexadores de Azure Search a la nueva réplica principal.
+
+- Si el origen de datos no está replicado geográficamente, seleccione varios indexadores en el mismo origen de datos, de modo que los servicios de Azure Search en múltiples regiones se indexen continua e independientemente en el origen de datos. Para más información, consulte [Consideraciones sobre el rendimiento y la optimización de Azure Search][search-optimization].
 
 ## <a name="service-bus"></a>Azure Service Bus
 
@@ -92,14 +94,13 @@ Si usa Redis Cache como caché de datos temporal y no como almacén persistente,
 
 **Utilice la recuperación ante desastres geográfica**. La recuperación ante desastres geográfica garantiza que el procesamiento de datos siga funcionando en otra región o centro de datos si una región de Azure completa o el centro de datos dejan de estar disponibles debido a un desastre. Para obtener más información, consulte [Recuperación ante desastres con localización geográfica de Azure Service Bus](/azure/service-bus-messaging/service-bus-geo-dr).
 
-
 ## <a name="storage"></a>Storage
 
 **Para los datos de aplicación, use almacenamiento con redundancia geográfica con acceso de lectura (RA-GRS).** El almacenamiento con redundancia geográfica con acceso de lectura replica los datos en una región secundaria y proporciona acceso de solo lectura desde la región secundaria. Si hay una interrupción de almacenamiento en la región primaria, la aplicación puede leer los datos de la región secundaria. Para más información, consulte [Replicación de Azure Storage](/azure/storage/storage-redundancy/).
 
 **Para los discos de máquinas virtuales, use Managed Disks.** [Managed Disks][managed-disks] proporciona una mayor confiabilidad para las máquinas virtuales en los conjuntos de disponibilidad, porque los discos están suficientemente aislados entre sí para evitar únicos puntos de error. Además, Managed Disks no está sujeto a los límites de IOPS de los discos duros virtuales creados en una cuenta de almacenamiento. Para más información, consulte [Administración de la disponibilidad de las máquinas virtuales Windows en Azure][vm-manage-availability].
 
-**Para Queue Storage, cree una cola de copia de seguridad en otra región.** Para Queue Storage, las réplicas de solo lectura tienen un uso limitado, ya que no se puede poner elementos en cola o quitarlos. En su lugar, cree una cola de copia de seguridad en una cuenta de almacenamiento en otra región. Si se produce una interrupción de almacenamiento, la aplicación puede usar la cola de copia de seguridad hasta que la región primaria vuelva a estar disponible. De este modo, la aplicación puede seguir procesando nuevas solicitudes.  
+**Para Queue Storage, cree una cola de copia de seguridad en otra región.** Para Queue Storage, las réplicas de solo lectura tienen un uso limitado, ya que no se puede poner elementos en cola o quitarlos. En su lugar, cree una cola de copia de seguridad en una cuenta de almacenamiento en otra región. Si se produce una interrupción de almacenamiento, la aplicación puede usar la cola de copia de seguridad hasta que la región primaria vuelva a estar disponible. De este modo, la aplicación puede seguir procesando nuevas solicitudes.
 
 ## <a name="sql-database"></a>SQL Database
 
@@ -155,7 +156,7 @@ Si usa Redis Cache como caché de datos temporal y no como almacén persistente,
 
 ## <a name="virtual-network"></a>Virtual Network
 
-**Para permitir o bloquear direcciones IP públicas, agregue un grupo de seguridad de red a la subred.** Bloquee el acceso de usuarios malintencionados o permita el acceso solo a los usuarios que tienen privilegios para acceder a la aplicación.  
+**Para permitir o bloquear direcciones IP públicas, agregue un grupo de seguridad de red a la subred.** Bloquee el acceso de usuarios malintencionados o permita el acceso solo a los usuarios que tienen privilegios para acceder a la aplicación.
 
 **Cree un sondeo de estado personalizado.** Los sondeos de estado de Load Balancer pueden probar los protocolos HTTP o TCP. Si una máquina virtual ejecuta un servidor HTTP, el sondeo de HTTP es un indicador del estado de mantenimiento mejor que un sondeo de TCP. Para un sondeo de HTTP, utilice un punto de conexión personalizado que informa del estado general de la aplicación, incluidas todas las dependencias críticas. Para más información, consulte [Información general sobre Azure Load Balancer](/azure/load-balancer/load-balancer-overview/).
 
