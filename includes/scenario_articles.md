@@ -110,11 +110,11 @@
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="./apps/media/architecture-devops-dotnet-webapp.png" height="140px" />
+                            <img src="./apps/media/architecture-devops-dotnet-webapp.svg" height="140px" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Canalización de CI/CD con Azure DevOps</h3>
+                        <h3>Diseño de una canalización de CI/CD con Azure DevOps</h3>
                         <p>Compilación y publicación de una aplicación .NET en Azure Web Apps con Azure DevOps.</p>
                     </div>
                 </div>
@@ -430,7 +430,7 @@
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Protección de aplicaciones web de Windows para sectores regulados</h3>
+                        <h3>Compilación de aplicaciones web seguras con máquinas virtuales Windows en Azure</h3>
                         <p>Compile una aplicación web segura, de varios niveles, con Windows Server en Azure que use conjuntos de escalado, Application Gateway y equilibradores de carga.</p>
                     </div>
                 </div>
