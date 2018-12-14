@@ -5,14 +5,12 @@ description: Implemente una topología de red en estrella tipo hub-and-spoke en 
 author: telmosampaio
 ms.date: 10/08/2018
 ms.custom: seodec18
-pnp.series.title: Implement a hub-spoke network topology in Azure
-pnp.series.prev: expressroute
-ms.openlocfilehash: 23821353fe943d3e389ed89ca26b946ff6afeed3
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: fe56630b621f02fe71b864642b75688ba1965862
+ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120311"
+ms.lasthandoff: 12/13/2018
+ms.locfileid: "53329439"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke en Azure
 
