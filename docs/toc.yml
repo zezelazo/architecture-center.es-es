@@ -297,8 +297,6 @@ items:
       href: example-scenario/apps/hpc-saas.md
     - name: Confianza descentralizada entre bancos
       href: example-scenario/apps/decentralized-trust.md
-    - name: Supervisión de aplicaciones web
-      href: example-scenario/apps/app-monitoring.md
     - name: DevOps con contenedores
       href: example-scenario/apps/devops-with-aks.md
     - name: DevOps con Azure DevOps
@@ -373,7 +371,7 @@ items:
       href: reference-architectures/enterprise-integration/queues-events.md
   - name: Redes híbridas
     items:
-    - name: Información general
+    - name: Elección de una arquitectura de red híbrida
       href: reference-architectures/hybrid-networking/index.md
     - name: VPN
       href: reference-architectures/hybrid-networking/vpn.md
@@ -385,9 +383,11 @@ items:
       href: reference-architectures/hybrid-networking/hub-spoke.md
     - name: Topología en estrella tipo hub-and-spoke con servicios compartidos
       href: reference-architectures/hybrid-networking/shared-services.md
+    - name: Solución de problemas de una conexión VPN híbrida
+      href: reference-architectures/hybrid-networking/troubleshoot-vpn.md
   - name: Administración de identidades
     items:
-    - name: Información general
+    - name: Elección de una arquitectura de integración de Active Directory
       href: reference-architectures/identity/index.md
     - name: Integración de AD local con Azure AD
       href: reference-architectures/identity/azure-ad.md
@@ -443,6 +443,8 @@ items:
       href: reference-architectures/app-service-web-app/scalable-web-app.md
     - name: Implementación en varias regiones
       href: reference-architectures/app-service-web-app/multi-region.md
+    - name: Supervisión de aplicaciones web
+      href: reference-architectures/app-service-web-app/app-monitoring.md
 - name: Guías de diseño
   items:
   - name: Creación de microservicios en Azure
@@ -577,9 +579,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: Implementación de plantillas scaffold de Azure Enterprise
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: fee468da7720c26920c6dab4c810e2ebb408c75c
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: d3f9b76294ab25fed8ebc5cd3391d87ea6305858
+ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307034"
+ms.lasthandoff: 12/13/2018
+ms.locfileid: "53329456"
