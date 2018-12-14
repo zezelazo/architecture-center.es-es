@@ -1,58 +1,59 @@
 ---
 title: Implementación de una topología de red en estrella tipo hub-and-spoke en Azure
-description: Cómo implementar una topología de red en estrella tipo hub-and-spoke en Azure.
+titleSuffix: Azure Reference Architectures
+description: Implemente una topología de red en estrella tipo hub-and-spoke en Azure.
 author: telmosampaio
 ms.date: 10/08/2018
+ms.custom: seodec18
 pnp.series.title: Implement a hub-spoke network topology in Azure
 pnp.series.prev: expressroute
-ms.openlocfilehash: e14abb5526b6ecd8637fb89c4ef7154d3b26f7a4
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: 23821353fe943d3e389ed89ca26b946ff6afeed3
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916352"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120311"
 ---
 # <a name="implement-a-hub-spoke-network-topology-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke en Azure
 
-En esta arquitectura de referencia se muestra cómo implementar una topología en estrella tipo hub-and-spoke en Azure. El *concentrador* (hub) es una red virtual (VNet) en Azure que actúa como un punto central de conectividad para la red local. Los *radios* (spoke) son redes virtuales (VNet) que se emparejan con el concentrador y que se pueden usar para aislar cargas de trabajo. El tráfico fluye entre el centro de datos local y el concentrador a través de una conexión a ExpressRoute o a VPN Gateway.  [**Implemente esta solución**](#deploy-the-solution).
+En esta arquitectura de referencia se muestra cómo implementar una topología en estrella tipo hub-and-spoke en Azure. El *concentrador* (hub) es una red virtual (VNet) en Azure que actúa como un punto central de conectividad para la red local. Los *radios* (spoke) son redes virtuales (VNet) que se emparejan con el concentrador y que se pueden usar para aislar cargas de trabajo. El tráfico fluye entre el centro de datos local y el concentrador a través de una conexión a ExpressRoute o a VPN Gateway. [**Implemente esta solución**](#deploy-the-solution).
 
 ![[0]][0]
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-
 Las ventajas de esta topología son:
 
-* **Ahorros en costos** gracias a la centralización de los servicios que se pueden compartir entre varias cargas de trabajo, como las aplicaciones virtuales de red (NVA) y los servidores DNS, en una única ubicación.
-* **Superar los límites de las suscripciones** gracias al emparejamiento de las redes virtuales de diferentes suscripciones con el concentrador central.
-* **Separación de intereses** entre la TI central (SecOps e InfraOps) y las cargas de trabajo (DevOps).
+- **Ahorros en costos** gracias a la centralización de los servicios que se pueden compartir entre varias cargas de trabajo, como las aplicaciones virtuales de red (NVA) y los servidores DNS, en una única ubicación.
+- **Superar los límites de las suscripciones** gracias al emparejamiento de las redes virtuales de diferentes suscripciones con el concentrador central.
+- **Separación de intereses** entre la TI central (SecOps e InfraOps) y las cargas de trabajo (DevOps).
 
 Los usos habituales de esta arquitectura incluyen:
 
-* Cargas de trabajo implementadas en distintos entornos, como desarrollo, pruebas y producción, que requieren servicios compartidos como DNS, IDS, NTP o AD DS. Los servicios compartidos se colocan en la red virtual del concentrador, mientras que cada entorno se implementa en un radio para mantener el aislamiento.
-* Cargas de trabajo que no requieren conectividad entre sí, pero requieren acceso a los servicios compartidos.
-* Empresas que requieren el control centralizado sobre aspectos de seguridad, como un firewall en el concentrador como una red perimetral, así como la administración segregada de las cargas de trabajo en cada radio.
+- Cargas de trabajo implementadas en distintos entornos, como desarrollo, pruebas y producción, que requieren servicios compartidos como DNS, IDS, NTP o AD DS. Los servicios compartidos se colocan en la red virtual del concentrador, mientras que cada entorno se implementa en un radio para mantener el aislamiento.
+- Cargas de trabajo que no requieren conectividad entre sí, pero requieren acceso a los servicios compartidos.
+- Empresas que requieren el control centralizado sobre aspectos de seguridad, como un firewall en el concentrador como una red perimetral, así como la administración segregada de las cargas de trabajo en cada radio.
 
 ## <a name="architecture"></a>Arquitectura
 
 La arquitectura consta de los siguientes componentes:
 
-* **Red local**. Una red de área local privada que se ejecuta dentro de una organización.
+- **Red local**. Una red de área local privada que se ejecuta dentro de una organización.
 
-* **Dispositivo VPN**. Un dispositivo o servicio que proporciona conectividad externa a la red local. El dispositivo VPN puede ser un dispositivo de hardware, o puede ser una solución de software como el servicio de Enrutamiento y acceso remoto (RRAS) en Windows Server 2012. Para obtener una lista de dispositivos VPN compatibles e información acerca de cómo configurar dispositivos VPN seleccionados para conectarse a Azure, consulte [Acerca de los dispositivos VPN y los parámetros de IPsec/IKE para conexiones de VPN Gateway de sitio a sitio][vpn-appliance].
+- **Dispositivo VPN**. Un dispositivo o servicio que proporciona conectividad externa a la red local. El dispositivo VPN puede ser un dispositivo de hardware, o puede ser una solución de software como el servicio de Enrutamiento y acceso remoto (RRAS) en Windows Server 2012. Para obtener una lista de dispositivos VPN compatibles e información acerca de cómo configurar dispositivos VPN seleccionados para conectarse a Azure, consulte [Acerca de los dispositivos VPN y los parámetros de IPsec/IKE para conexiones de VPN Gateway de sitio a sitio][vpn-appliance].
 
-* **Puerta de enlace de red virtual de VPN o puerta de enlace de ExpressRoute**. La puerta de enlace de red virtual permite que la red virtual se conecte al dispositivo VPN o al circuito de ExpressRoute que se usa para la conectividad con la red local. Para más información, consulte [Conectar una red local con una red virtual de Microsoft Azure][connect-to-an-Azure-vnet].
+- **Puerta de enlace de red virtual de VPN o puerta de enlace de ExpressRoute**. La puerta de enlace de red virtual permite que la red virtual se conecte al dispositivo VPN o al circuito de ExpressRoute que se usa para la conectividad con la red local. Para más información, consulte [Conectar una red local con una red virtual de Microsoft Azure][connect-to-an-Azure-vnet].
 
 > [!NOTE]
 > Los scripts de implementación para esta arquitectura de referencia usan una instancia de VPN Gateway para la conectividad y una red virtual en Azure para simular la red local.
 
-* **Red virtual del concentrador**. La red virtual de Azure utilizada como el concentrador en la topología en estrella tipo hub-and-spoke. El concentrador es el punto central de conectividad a la red local y un lugar para hospedar los servicios que se pueden usar en las diferentes cargas de trabajo hospedadas en las redes virtuales de los radios.
+- **Red virtual del concentrador**. La red virtual de Azure utilizada como el concentrador en la topología en estrella tipo hub-and-spoke. El concentrador es el punto central de conectividad a la red local y un lugar para hospedar los servicios que se pueden usar en las diferentes cargas de trabajo hospedadas en las redes virtuales de los radios.
 
-* **Subred de puerta de enlace**. Las puertas de enlace de red virtual se conservan en la misma subred.
+- **Subred de puerta de enlace**. Las puertas de enlace de red virtual se conservan en la misma subred.
 
-* **Redes virtuales de radios**. Una o varias redes virtuales de Azure que se usan como radios en la topología en estrella tipo hub-and-spoke. Los radios pueden utilizarse para aislar las cargas de trabajo en sus propias redes virtuales, administradas por separado desde otros radios. Cada carga de trabajo puede incluir varios niveles, con varias subredes que se conectan a través de equilibradores de carga de Azure. Para obtener más información acerca de la infraestructura de aplicaciones, consulte [Ejecutar cargas de trabajo de máquinas virtuales Windows][windows-vm-ra] y [Ejecutar cargas de trabajo de máquinas virtuales Linux][linux-vm-ra].
+- **Redes virtuales de radios**. Una o varias redes virtuales de Azure que se usan como radios en la topología en estrella tipo hub-and-spoke. Los radios pueden utilizarse para aislar las cargas de trabajo en sus propias redes virtuales, administradas por separado desde otros radios. Cada carga de trabajo puede incluir varios niveles, con varias subredes que se conectan a través de equilibradores de carga de Azure. Para obtener más información acerca de la infraestructura de aplicaciones, consulte [Ejecutar cargas de trabajo de máquinas virtuales Windows][windows-vm-ra] y [Ejecutar cargas de trabajo de máquinas virtuales Linux][linux-vm-ra].
 
-* **Emparejamiento de VNET**. Se pueden conectar dos redes virtuales mediante una [conexión de emparejamiento][vnet-peering]. Las conexiones de emparejamiento son conexiones no transitivas de baja latencia entre las redes virtuales. Una vez establecido el emparejamiento, las redes virtuales intercambian el tráfico mediante la red troncal de Azure, sin necesidad de un enrutador. En una topología de red en estrella tipo hub-and-spoke, el emparejamiento de VNET se usa para conectar el concentrador a cada radio. Puede emparejar redes virtuales de la misma región o de regiones diferentes. Para más información, consulte [Requisitos y restricciones][vnet-peering-requirements].
+- **Emparejamiento de VNET**. Se pueden conectar dos redes virtuales mediante una [conexión de emparejamiento][vnet-peering]. Las conexiones de emparejamiento son conexiones no transitivas de baja latencia entre las redes virtuales. Una vez establecido el emparejamiento, las redes virtuales intercambian el tráfico mediante la red troncal de Azure, sin necesidad de un enrutador. En una topología de red en estrella tipo hub-and-spoke, el emparejamiento de VNET se usa para conectar el concentrador a cada radio. Puede emparejar redes virtuales de la misma región o de regiones diferentes. Para más información, consulte [Requisitos y restricciones][vnet-peering-requirements].
 
 > [!NOTE]
 > En este artículo solo se tratan las implementaciones de [Resource Manager](/azure/azure-resource-manager/resource-group-overview), pero también puede conectar una red virtual clásica a una red virtual de Resource Manager en la misma suscripción. De este modo, los radios pueden hospedar implementaciones clásicas y seguir beneficiándose de los servicios compartidos en el concentrador.
@@ -63,7 +64,7 @@ Las siguientes recomendaciones sirven para la mayoría de los escenarios. Sígal
 
 ### <a name="resource-groups"></a>Grupos de recursos
 
-La red virtual del concentrador y la red virtual de cada radio se pueden implementar en distintos grupos de recursos e incluso en distintas suscripciones. Cuando empareja redes virtuales en distintas suscripciones, ambas suscripciones pueden estar asociadas al mismo inquilino de Azure Active Directory o a uno diferente. Esto permite realizar una administración descentralizada de cada carga de trabajo, mientras se comparten los servicios que se mantienen en la red virtual del concentrador. 
+La red virtual del concentrador y la red virtual de cada radio se pueden implementar en distintos grupos de recursos e incluso en distintas suscripciones. Cuando empareja redes virtuales en distintas suscripciones, ambas suscripciones pueden estar asociadas al mismo inquilino de Azure Active Directory o a uno diferente. Esto permite realizar una administración descentralizada de cada carga de trabajo, mientras se comparten los servicios que se mantienen en la red virtual del concentrador.
 
 ### <a name="vnet-and-gatewaysubnet"></a>VNet y GatewaySubnet
 
@@ -76,7 +77,7 @@ Para más información sobre la configuración de la puerta de enlace, consulte 
 
 Para una mayor disponibilidad, puede utilizar ExpressRoute y una VPN para la conmutación por error. Vea [Conexión de una red local a Azure mediante ExpressRoute con conmutación por error de VPN][hybrid-ha].
 
-También se puede utilizar una topología en estrella tipo hub-and-spoke sin una puerta de enlace, en caso de que no se necesite la conectividad con la red local. 
+También se puede utilizar una topología en estrella tipo hub-and-spoke sin una puerta de enlace, en caso de que no se necesite la conectividad con la red local.
 
 ### <a name="vnet-peering"></a>Emparejamiento de VNET
 
@@ -86,9 +87,9 @@ Sin embargo, si tiene varios radios que necesitan conectarse entre sí, se queda
 
 También puede configurar los radios para que usen la puerta de enlace de la red virtual del concentrador para comunicarse con las redes remotas. Para permitir que el tráfico de la puerta de enlace fluya del radio al concentrador y para conectarse a las redes remotas, debe:
 
-  - Configurar la conexión de emparejamiento de VNET en el concentrador para **permitir el tránsito de la puerta de enlace**.
-  - Configurar la conexión de emparejamiento de VNET en cada radio para **usar las puertas de enlace remotas**.
-  - Configurar todas las conexiones de emparejamiento de VNET para **permitir el tráfico reenviado**.
+- Configurar la conexión de emparejamiento de VNET en el concentrador para **permitir el tránsito de la puerta de enlace**.
+- Configurar la conexión de emparejamiento de VNET en cada radio para **usar las puertas de enlace remotas**.
+- Configurar todas las conexiones de emparejamiento de VNET para **permitir el tráfico reenviado**.
 
 ## <a name="considerations"></a>Consideraciones
 
@@ -135,7 +136,7 @@ Para implementar el centro de datos local simulado como una red virtual de Azure
 
 2. Abra el archivo `onprem.json` . Reemplace los valores de `adminUsername` y `adminPassword`.
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -156,7 +157,7 @@ Para implementar red virtual del concentrador, siga los pasos a continuación.
 
 1. Abra el archivo `hub-vnet.json` . Reemplace los valores de `adminUsername` y `adminPassword`.
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -165,7 +166,7 @@ Para implementar red virtual del concentrador, siga los pasos a continuación.
 
 3. Busque ambas instancias de `sharedKey` y especifique una clave compartida para la conexión VPN. Los valores deben coincidir.
 
-    ```bash
+    ```json
     "sharedKey": "",
     ```
 
@@ -192,6 +193,7 @@ Pruebe la conectividad desde el entorno local simulado a la red virtual del conc
    ```powershell
    Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
    ```
+
 La salida debe tener una apariencia similar a la siguiente:
 
 ```powershell
@@ -216,7 +218,7 @@ TcpTestSucceeded : True
 
 4. Use el comando `ping` para probar la conectividad con la máquina virtual de JumpBox en la red virtual del concentrador:
 
-   ```bash
+   ```shell
    ping 10.0.0.68
    ```
 
@@ -226,7 +228,7 @@ Para implementar las redes virtuales de radios, siga estos pasos.
 
 1. Abra el archivo `spoke1.json` . Reemplace los valores de `adminUsername` y `adminPassword`.
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -238,7 +240,7 @@ Para implementar las redes virtuales de radios, siga estos pasos.
    ```bash
    azbb -s <subscription_id> -g spoke1-vnet-rg -l <location> -p spoke1.json --deploy
    ```
-  
+
 4. Repita los pasos 1 y 2 para el archivo `spoke2.json`.
 
 5. Ejecute el siguiente comando:
@@ -276,11 +278,11 @@ Para probar la conectividad desde el entorno local simulado a las redes virtuale
 
 1. Use Azure Portal para encontrar la máquina virtual denominada `jb-vm1` en el grupo de recursos `onprem-jb-rg`.
 
-2. Haga clic en `Connect` y copie el comando `ssh`que se muestra en el portal. 
+2. Haga clic en `Connect` y copie el comando `ssh`que se muestra en el portal.
 
 3. Desde un símbolo del sistema de Linux, ejecute `ssh` para conectar con el entorno local simulado. Usar la contraseña que especificó en el `onprem.json` archivo de parámetros.
 
-5. Use el comando `ping` para probar la conectividad con las máquinas virtuales de JumpBox en cada radio:
+4. Use el comando `ping` para probar la conectividad con las máquinas virtuales de JumpBox en cada radio:
 
    ```bash
    ping 10.1.0.68
@@ -293,7 +295,7 @@ Este paso es opcional. Si desea permitir que los radios se conecten unos con otr
 
 1. Abra el archivo `hub-nva.json` . Reemplace los valores de `adminUsername` y `adminPassword`.
 
-    ```bash
+    ```json
     "adminUsername": "<user name>",
     "adminPassword": "<password>",
     ```
@@ -322,9 +324,9 @@ Este paso es opcional. Si desea permitir que los radios se conecten unos con otr
 [vnet-peering-requirements]: /azure/virtual-network/virtual-network-manage-peering#requirements-and-constraints
 [vpn-appliance]: /azure/vpn-gateway/vpn-gateway-about-vpn-devices
 [windows-vm-ra]: ../virtual-machines-windows/index.md
-
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-hub-spoke.vsdx
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
+
 [0]: ./images/hub-spoke.png "Topología en estrella tipo hub-and-spoke en Azure"
 [1]: ./images/hub-spoke-gateway-routing.svg "Topología en estrella tipo hub-and-spoke en Azure con enrutamiento transitivo"
 [2]: ./images/hub-spoke-no-gateway-routing.svg "Topología en estrella tipo hub-and-spoke en Azure con enrutamiento transitivo mediante una NVA"
