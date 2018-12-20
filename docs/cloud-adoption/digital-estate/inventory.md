@@ -1,0 +1,37 @@
+---
+title: Recopilación de datos de inventario de un patrimonio digital
+titleSuffix: Enterprise Cloud Adoption
+description: Cómo crear un inventario de un patrimonio digital
+author: BrianBlanchard
+ms.date: 12/10/2018
+ms.openlocfilehash: c8c2671a76ab09ab3f817872fb9d78cf84d7daa5
+ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
+ms.translationtype: HT
+ms.contentlocale: es-ES
+ms.lasthandoff: 12/10/2018
+ms.locfileid: "53179719"
+---
+# <a name="enterprise-cloud-adoption-gather-inventory-data-for-a-digital-estate"></a><span data-ttu-id="d7086-103">Adopción de la nube empresarial: Recopilación de datos de inventario de un patrimonio digital</span><span class="sxs-lookup"><span data-stu-id="d7086-103">Enterprise Cloud Adoption: Gather inventory data for a digital estate</span></span>
+
+<span data-ttu-id="d7086-104">El desarrollo de un inventario es el primer paso del [Planeamiento del patrimonio digital](overview.md).</span><span class="sxs-lookup"><span data-stu-id="d7086-104">Developing an inventory is the first step in [Digital Estate Planning](overview.md).</span></span> <span data-ttu-id="d7086-105">En este proceso, se recopilará una lista de recursos de TI que posibilitan funciones de negocio específicas para su posterior análisis y racionalización.</span><span class="sxs-lookup"><span data-stu-id="d7086-105">In this process, a list of IT assets that support specific business functions would be collected for later analysis and rationalization.</span></span> <span data-ttu-id="d7086-106">En este artículo se da por supuesto que un enfoque de abajo a arriba para el análisis es más adecuado para la planeación de las necesidades.</span><span class="sxs-lookup"><span data-stu-id="d7086-106">This article assumes that a bottom-up approach to analysis is most appropriate for planning needs.</span></span> <span data-ttu-id="d7086-107">Para más información, consulte [Enfoques para el planeamiento del patrimonio digital](./approach.md).</span><span class="sxs-lookup"><span data-stu-id="d7086-107">For more information, see [Approaches to digital estate planning](./approach.md).</span></span>
+
+## <a name="how-can-a-digital-estate-be-inventoried"></a><span data-ttu-id="d7086-108">¿Cómo se puede hacer un inventario de un patrimonio digital?</span><span class="sxs-lookup"><span data-stu-id="d7086-108">How can a digital estate be inventoried?</span></span>
+
+<span data-ttu-id="d7086-109">El inventario que posibilita un patrimonio digital cambia en función de la transformación digital deseada y el viaje de transformación correspondiente.</span><span class="sxs-lookup"><span data-stu-id="d7086-109">The inventory supporting a digital estate changes depending on the desired Digital Transformation and corresponding Transformation Journey.</span></span>
+
+- <span data-ttu-id="d7086-110">Transformación operativa: Durante una transformación operativa, a menudo se recomienda que el inventario se recopile a partir de herramientas de análisis que pueden crear una lista centralizada de todas las máquinas virtuales y servidores.</span><span class="sxs-lookup"><span data-stu-id="d7086-110">Operational Transformation: During an operational transformation, it is often advised that the inventory be collected from scanning tools which can create a centralized list of all VMs and servers.</span></span> <span data-ttu-id="d7086-111">Algunas herramientas también pueden crear asignaciones de red y dependencias, lo que ayudará a definir la alineación de la carga de trabajo.</span><span class="sxs-lookup"><span data-stu-id="d7086-111">Some tools can also create network mappings and dependencies, which will help define workload alignment.</span></span>
+
+- <span data-ttu-id="d7086-112">Transformación incremental: El inventario de una transformación incremental comienza por el cliente.</span><span class="sxs-lookup"><span data-stu-id="d7086-112">Incremental Transformation: Inventory for an incremental transformation begins with the customer.</span></span> <span data-ttu-id="d7086-113">Un buen lugar para comenzar es la asignación de la experiencia del cliente de principio a fin.</span><span class="sxs-lookup"><span data-stu-id="d7086-113">Mapping the customer experience from start to finish is a good place to begin.</span></span> <span data-ttu-id="d7086-114">La alineación de dicha asignación con las aplicaciones, API, datos y otros recursos creará un inventario detallado para el análisis.</span><span class="sxs-lookup"><span data-stu-id="d7086-114">Aligning that map to applications, APIs, data, and other assets will create a detailed inventory for analysis.</span></span>
+
+- <span data-ttu-id="d7086-115">Transformación disruptiva: La transformación disruptiva se centra en el producto o servicio.</span><span class="sxs-lookup"><span data-stu-id="d7086-115">Disruptive Transformation: Disruptive transformation focuses on the product or service.</span></span> <span data-ttu-id="d7086-116">A partir de ahí, un inventario incluiría una asignación de las oportunidades para romper el mercado y las capacidades necesarias.</span><span class="sxs-lookup"><span data-stu-id="d7086-116">From there an inventory would include a mapping of the opportunities to disrupt the market and the capabilities needed.</span></span>
+
+## <a name="accuracy-and-completeness-of-an-inventory"></a><span data-ttu-id="d7086-117">Precisión e exhaustividad de un inventario</span><span class="sxs-lookup"><span data-stu-id="d7086-117">Accuracy and completeness of an inventory</span></span>
+
+<span data-ttu-id="d7086-118">Un inventario rara vez está totalmente completo en su primera iteración.</span><span class="sxs-lookup"><span data-stu-id="d7086-118">An inventory is seldom fully complete in its first iteration.</span></span> <span data-ttu-id="d7086-119">Se recomienda que diversos miembros del equipo de estrategia en la nube alineen a las partes interesadas y posibiliten que los usuarios puedan validar el inventario.</span><span class="sxs-lookup"><span data-stu-id="d7086-119">It is highly advised that various members of the Cloud Strategy team align stakeholders and power users to validate the inventory.</span></span> <span data-ttu-id="d7086-120">Cuando sea posible, se pueden utilizar herramientas adicionales, como el análisis de la red y las dependencias, para identificar los recursos a los que se está enviando tráfico, pero no están en el inventario.</span><span class="sxs-lookup"><span data-stu-id="d7086-120">When possible, additional tools like network and dependency analysis can be used to identify assets that are being sent traffic, but are not in the inventory.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="d7086-121">Pasos siguientes</span><span class="sxs-lookup"><span data-stu-id="d7086-121">Next steps</span></span>
+
+<span data-ttu-id="d7086-122">Una vez que se recopila y valida un inventario, se puede racionalizar.</span><span class="sxs-lookup"><span data-stu-id="d7086-122">Once an inventory is compiled and validated, it can rationalized.</span></span> <span data-ttu-id="d7086-123">La racionalización del inventario es el siguiente paso en el planeamiento del patrimonio digital.</span><span class="sxs-lookup"><span data-stu-id="d7086-123">Inventory Rationalization is the next step to digital estate planning.</span></span>
+
+> [!div class="nextstepaction"]
+> [<span data-ttu-id="d7086-124">Racionalización del patrimonio digital</span><span class="sxs-lookup"><span data-stu-id="d7086-124">Rationalize the digital estate</span></span>](rationalize.md)
