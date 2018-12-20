@@ -3,12 +3,13 @@ title: Simulaciones de dinámicas de fluido computacionales (CFD) en Azure
 description: Ejecute simulaciones de dinámicas de fluido computacionales (CFD) en Azure.
 author: mikewarr
 ms.date: 09/20/2018
-ms.openlocfilehash: f32e055838d6c62584130f61a0d92b06cc46ec63
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 42921122d74d07bf890f55be61b04c7e9a4f4e87
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610641"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004652"
 ---
 # <a name="running-computational-fluid-dynamics-cfd-simulations-on-azure"></a>Simulaciones de dinámicas de fluido computacionales (CFD) en Azure
 
@@ -93,7 +94,7 @@ Este escenario muestra cómo se ejecutan las aplicaciones de CFD en Azure, por l
 * Servidor de Azure CycleCloud: 1 x D3 estándar (4 x CPU, 14 GB de memoria, HDD estándar de 32 GB)
 * Servidor maestro de Azure CycleCloud: 1 x D12 estándar (4 x CPU, 28 GB de memoria, HDD estándar de 32 GB)
 * Matriz de nodos de Azure CycleCloud: 10 x H16r estándar (16 x CPU, 112 GB de memoria)
-* Avere vFXT en clúster de Azure: 3 x D16s v3 (sistema operativo de 200 GB, disco de datos SSD Premium de 1 TB)
+* Avere vFXT en clúster de Azure: 3 x D16s v3 (SO de 200 GB, disco de datos de 1 TB SSD Premium)
 * Salida de datos: 1 TB
 
 Revise el [precio estimado][pricing] del hardware enumerado anteriormente.

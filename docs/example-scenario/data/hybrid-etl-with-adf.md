@@ -3,12 +3,13 @@ title: Extracción, transformación y carga de datos híbrida con instancias loc
 description: Extracción, transformación y carga de datos híbrida con implementaciones locales ya existentes de SQL Server Integration Services (SSIS) y Azure Data Factory
 author: alhieng
 ms.date: 9/20/2018
-ms.openlocfilehash: c4c0cfd63ef1d6c620eb36e16622ad9ffb7b5d80
-ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
+ms.custom: tsp-team
+ms.openlocfilehash: cc6c2bfe85dc0d1eb8ad29e044611f1e435810c3
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52579481"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53306796"
 ---
 # <a name="hybrid-etl-with-existing-on-premises-ssis-and-azure-data-factory"></a>Extracción, transformación y carga de datos híbrida con instancias locales ya existentes de SQL Server Integration Services y Azure Data Factory
 
@@ -29,7 +30,7 @@ A continuación se enumeran varios posibles casos de uso en el entorno local:
 * Cargar los registros de enrutador de red a una base de datos para su análisis.
 * Preparar los datos de empleo de recursos humanos para informes analíticos.
 * Cargar datos de productos y ventas en un almacén de datos para la previsión de ventas.
-* Automatizar la carga, los almacenes de datos operativos o los almacenamientos de datos para finanzas y contabilidad.
+* Automatizar la carga de los almacenes de datos operativos o de los almacenamientos de datos para finanzas y contabilidad.
 
 ## <a name="architecture"></a>Arquitectura
 

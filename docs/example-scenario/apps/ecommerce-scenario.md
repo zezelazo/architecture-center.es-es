@@ -3,12 +3,13 @@ title: Front-end de comercio electrónico en Azure
 description: Hospede un sitio de comercio electrónico en Azure.
 author: masonch
 ms.date: 7/13/18
-ms.openlocfilehash: 7baaf4d2986a00ab72b60a540bcd9d864893b109
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: e48f7607fcef6e5048c57f4f8f63b2f6bdd4f183
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610828"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004857"
 ---
 # <a name="an-e-commerce-front-end-on-azure"></a>Front-end de comercio electrónico en Azure
 
@@ -69,7 +70,7 @@ Otras opciones para el nivel y las funciones web incluyen:
 
 Otras opciones de la capa de datos incluyen:
 
-* [Cosmos DB](/azure/cosmos-db/introduction): base de datos multimodelo de distribución global de Microsoft. Este servicio proporciona una plataforma para ejecutar otros modelos de datos, como Mongo DB, Cassandra, Graph o almacenamiento de tablas simple.
+* [Cosmos DB](/azure/cosmos-db/introduction): Base de datos multimodelo de distribución global de Microsoft. Este servicio proporciona una plataforma para ejecutar otros modelos de datos, como Mongo DB, Cassandra, Graph o almacenamiento de tablas simple.
 
 ## <a name="considerations"></a>Consideraciones
 
@@ -110,9 +111,9 @@ Para explorar el costo de ejecutar este escenario, todos los servicios están pr
 
 Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tráfico que se espera obtener:
 
-* [Pequeño][small-pricing]: representa los componentes necesarios para compilar una instancia con un nivel de producción mínimo. En este perfil damos por hecho que hay una pequeña cantidad de usuarios, de solo unos miles al mes. La aplicación usa una sola instancia de una aplicación web estándar que será suficiente para habilitar el escalado automático. Cada uno de los demás componentes se escala a un nivel básico que permitirá un costo mínimo pero garantizará un soporte según el Acuerdo de Nivel de Servicio y suficiente capacidad para controlar una carga de trabajo de nivel de producción.
-* [Mediano][medium-pricing]: representa los componentes necesarios para una implementación de tamaño moderado. En este caso, se calculan aproximadamente 100 000 usuarios utilizando el sistema en el transcurso de un mes. El tráfico esperado se controla con una instancia de App Service simple con un nivel estándar moderado. También se agregan a la calculadora los niveles moderados de Cognitive Services y Search Service.
-* [Grande][large-pricing]: representa una aplicación diseñada para operaciones a gran escala, con millones de usuarios al mes y movimientos de terabytes de datos. En este nivel de uso, se requieren aplicaciones web de alto rendimiento y de nivel premium implementadas en varias regiones y dirigidas por un administrador de tráfico. Los datos se conservan en diversas opciones: almacenamiento, bases de datos y CDN, y están configuradas para alcanzar terabytes de tamaño.
+* [Pequeño][small-pricing]: Este ejemplo de precios representa los componentes necesarios para crear una instancia con un nivel de producción mínimo. En este perfil damos por hecho que hay una pequeña cantidad de usuarios, de solo unos miles al mes. La aplicación usa una sola instancia de una aplicación web estándar que será suficiente para habilitar el escalado automático. Cada uno de los demás componentes se escala a un nivel básico que permitirá un costo mínimo pero garantizará un soporte según el Acuerdo de Nivel de Servicio y suficiente capacidad para controlar una carga de trabajo de nivel de producción.
+* [Mediano][medium-pricing]: Este ejemplo de precios representa los componentes necesarios para una implementación de tamaño moderado. En este caso, se calculan aproximadamente 100 000 usuarios utilizando el sistema en el transcurso de un mes. El tráfico esperado se controla con una instancia de App Service simple con un nivel estándar moderado. También se agregan a la calculadora los niveles moderados de Cognitive Services y Search Service.
+* [Grande][large-pricing]: Este ejemplo de precios representa una aplicación diseñada para operaciones a gran escala, con millones de usuarios al mes y movimientos de terabytes de datos. En este nivel de uso, se requieren aplicaciones web de alto rendimiento y de nivel premium implementadas en varias regiones y dirigidas por un administrador de tráfico. Los datos se conservan en diversas opciones: almacenamiento, bases de datos y CDN, y están configuradas para alcanzar terabytes de tamaño.
 
 ## <a name="related-resources"></a>Recursos relacionados
 

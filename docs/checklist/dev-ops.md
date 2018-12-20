@@ -1,15 +1,16 @@
 ---
 title: Lista de comprobación de DevOps
+titleSuffix: Azure Design Review Framework
 description: Lista de comprobación que proporciona guía relacionada con DevOps.
 author: dragon119
 ms.date: 01/10/2018
 ms.custom: checklist
-ms.openlocfilehash: 2e338d2f2e61b404223001a61f44e06e89e7f563
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.openlocfilehash: 218456c7cfbf1bdff4bf5f7404cfbd67aad5c193
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847066"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307221"
 ---
 # <a name="devops-checklist"></a>Lista de comprobación de DevOps
 
@@ -21,7 +22,7 @@ DevOps es la integración de desarrollo, control de calidad y operaciones de TI 
 
 **Asegúrese de que todo el equipo conoce el ciclo de vida del software.** El equipo debe conocer el ciclo de vida general de la aplicación y la parte del ciclo de vida de la aplicación en que se encuentra la aplicación. Esto ayuda a todos los miembros del equipo a saber lo que deberían estar haciendo y lo que deberían planear y preparar.
 
-**Reduzca el tiempo de ciclo.** El objetivo es minimizar el tiempo que se tarda en pasar de las ideas a un software desarrollado que se pueda usar. Limite el tamaño y ámbito de las versiones individuales para que no crezca la carga de prueba. Automatice los procesos de compilación, prueba, configuración e implementación siempre que sea posible. Elimine todos los obstáculos para la comunicación entre los desarrolladores, así como entre los desarrolladores y las operaciones. 
+**Reduzca el tiempo de ciclo.** El objetivo es minimizar el tiempo que se tarda en pasar de las ideas a un software desarrollado que se pueda usar. Limite el tamaño y ámbito de las versiones individuales para que no crezca la carga de prueba. Automatice los procesos de compilación, prueba, configuración e implementación siempre que sea posible. Elimine todos los obstáculos para la comunicación entre los desarrolladores, así como entre los desarrolladores y las operaciones.
 
 **Revise y mejore los procesos.** Sus procesos y procedimientos, tanto automatizados como manuales, nunca son finales. Configure revisiones periódicas de los flujos de trabajo actuales, procedimientos y documentación, con el objetivo de mejorar constantemente.
 
@@ -31,17 +32,17 @@ DevOps es la integración de desarrollo, control de calidad y operaciones de TI 
 
 **Optimize la velocidad de los datos y su recopilación.** Toda mejora planeada es una hipótesis. Trabaje en los menos incrementos posibles. Trate las ideas nuevas como experimentos. Instrumente los experimentos para que pueda recopilar datos de producción para evaluar su eficacia. Esté preparado para que se produzca un fracaso y responder rápido a los errores si la hipótesis es incorrecta.
 
-**Deje tiempo para el aprendizaje.** Tanto los errores como los aciertos proporcionan buenas oportunidades para el aprendizaje. Antes de pasar a nuevos proyectos, deje tiempo suficiente para recopilar las lecciones importantes y asegúrese de que el equipo las absorbe. Dé también tiempo al equipo para desarrollar habilidades, experimentar y obtener información acerca de las nuevas herramientas y técnicas. 
+**Deje tiempo para el aprendizaje.** Tanto los errores como los aciertos proporcionan buenas oportunidades para el aprendizaje. Antes de pasar a nuevos proyectos, deje tiempo suficiente para recopilar las lecciones importantes y asegúrese de que el equipo las absorbe. Dé también tiempo al equipo para desarrollar habilidades, experimentar y obtener información acerca de las nuevas herramientas y técnicas.
 
-**Documente las operaciones.** Documente todas las herramientas, procesos y tareas automatizadas con el mismo nivel de calidad que el código de producto. Documente el diseño actual y la arquitectura de los sistemas que admite, junto con los procesos de recuperación y otros procedimientos de mantenimiento. Céntrese en los pasos que realmente realiza, no en procesos que, teóricamente, son óptimos. Revise y actualice la documentación periódicamente. En el caso del código, asegúrese de que se incluyen comentarios significativos, sobre todo en las API públicas, y use herramientas que generen automáticamente documentación del código siempre que sea posible. 
+**Documente las operaciones.** Documente todas las herramientas, procesos y tareas automatizadas con el mismo nivel de calidad que el código de producto. Documente el diseño actual y la arquitectura de los sistemas que admite, junto con los procesos de recuperación y otros procedimientos de mantenimiento. Céntrese en los pasos que realmente realiza, no en procesos que, teóricamente, son óptimos. Revise y actualice la documentación periódicamente. En el caso del código, asegúrese de que se incluyen comentarios significativos, sobre todo en las API públicas, y use herramientas que generen automáticamente documentación del código siempre que sea posible.
 
-**Comparta sus conocimientos.** La documentación sólo es útil si se sabe que existe y que se puede encontrar. Asegúrese de que la documentación está organizada y que se puede descubrir fácilmente. Sea creativo: use bolsas marrones (presentaciones informales), vídeos o boletines para compartir sus conocimientos.
+**Comparta sus conocimientos.** La documentación sólo es útil si se sabe que existe y que se puede encontrar. Asegúrese de que la documentación está organizada y que se puede descubrir fácilmente. Sea creativo: Use bolsas marrones (presentaciones informales), vídeos o boletines para compartir sus conocimientos.
 
 ## <a name="development"></a>Desarrollo
 
 **Proporcione a los programadores entornos similares al de producción.** Si los entornos de desarrollo y prueba son distintos del de producción, es difícil probar y diagnosticar problemas. Por consiguiente, los entornos de desarrollo y prueba deben parecerse tanto como sea posible al de producción. Asegúrese de que los datos de prueba sean coherentes con los datos que se usan en producción, aunque sean datos de ejemplo, no datos de producción real (por motivos de privacidad o de cumplimiento). Planee la generación y anonimización de datos de prueba de ejemplo.
 
-**Asegúrese de que todos los miembros del equipo autorizados pueden aprovisionar la infraestructura e implementar la aplicación.** La configuración de recursos similares a los de producción y la implementación de la aplicación no deberían implicar tareas manuales complicadas ni debería ser necesario tener conocimientos técnicos del sistema. Cualquier usuario con los permisos adecuados debería poder crear o implementar recursos similares a los de producción sin tener que recurrir al equipo de operaciones. 
+**Asegúrese de que todos los miembros del equipo autorizados pueden aprovisionar la infraestructura e implementar la aplicación.** La configuración de recursos similares a los de producción y la implementación de la aplicación no deberían implicar tareas manuales complicadas ni debería ser necesario tener conocimientos técnicos del sistema. Cualquier usuario con los permisos adecuados debería poder crear o implementar recursos similares a los de producción sin tener que recurrir al equipo de operaciones.
 
 > Esta recomendación no implica que cualquier usuario pueda insertar actualizaciones directas en la implementación de producción. Más bien se refiere a reducir la fricción para que los equipos de desarrollo y control de calidad creen entornos similares a los de producción.
 
@@ -55,7 +56,7 @@ DevOps es la integración de desarrollo, control de calidad y operaciones de TI 
 
 **Automatice las pruebas.** La realización de pruebas manuales del software es una tarea tediosa y propensa a errores. Automatice las tareas comunes de las pruebas e integre estas últimas en los procesos de compilación. Las pruebas automatizadas garantizan una reproducibilidad y cobertura coherentes de las pruebas. Las pruebas de la interfaz de usuario integradas también las debe realizar una herramienta automatizada. Azure ofrece recursos de prueba y desarrollo que pueden servir de ayuda a la hora de configurar y ejecutan las pruebas. Para más información, consulte [Desarrollo y pruebas][dev-test].
 
-**Realice pruebas para detectar errores.** Si un sistema no se puede conectar a un servicio, ¿cómo responde? ¿Se puede recuperar cuando el servicio vuelva a estar disponible? Haga que las pruebas de la inserción de errores sean una parte estándar de la revisión en los entornos de prueba y de ensayo. Cuando el proceso y las prácticas de las pruebas estén maduros, considere la posibilidad de ejecutar dichas pruebas en producción. 
+**Realice pruebas para detectar errores.** Si un sistema no se puede conectar a un servicio, ¿cómo responde? ¿Se puede recuperar cuando el servicio vuelva a estar disponible? Haga que las pruebas de la inserción de errores sean una parte estándar de la revisión en los entornos de prueba y de ensayo. Cuando el proceso y las prácticas de las pruebas estén maduros, considere la posibilidad de ejecutar dichas pruebas en producción.
 
 **Realice pruebas en producción.** El proceso de lanzamiento no termina con el paso de la implementación a producción. Tenga listas las pruebas necesarias para asegurarse de que el código implementado funciona según lo previsto. En el caso de las implementaciones que se actualizan con poca frecuencia, programe las pruebas en producción como parte habitual del mantenimiento.
 
@@ -87,11 +88,11 @@ Después de la versión inicial, hay que ejecutar las pruebas de capacidad y ren
 
 **Implemente estrategias de administración de versiones para reducir el riesgo de implementación.** La implementación de una actualización de un aplicación en producción siempre conlleva cierto riesgo. Para minimizarlo, utilice estrategias como los [lanzamientos controlados][canary-release] o las [implementaciones azules-verdes][blue-green] para implementar las actualizaciones en un subconjunto de usuarios. Confirme que la actualización funciona según lo previsto y, después, implemente la actualización en el resto del sistema.
 
-**Documente todos los cambios.** Tanto las actualizaciones secundarias como los cambios en la configuración pueden ser una fuente de confusión y de conflictos entre versiones. Mantenga siempre un registro claro de todos los cambios que se realicen, sea cual sea su tamaño. Registre todos los cambios, lo que incluye las revisiones aplicadas, los cambios en las directivas y los cambios de configuración (en estos registros no se deben incluir datos confidenciales. Por ejemplo, registre que se ha actualizado una credencial y quién ha realizado el cambio, pero no registre las credenciales actualizadas). Todo el equipo debe poder ver el registro de los cambios. 
+**Documente todos los cambios.** Tanto las actualizaciones secundarias como los cambios en la configuración pueden ser una fuente de confusión y de conflictos entre versiones. Mantenga siempre un registro claro de todos los cambios que se realicen, sea cual sea su tamaño. Registre todos los cambios, lo que incluye las revisiones aplicadas, los cambios en las directivas y los cambios de configuración (en estos registros no se deben incluir datos confidenciales. Por ejemplo, registre que se ha actualizado una credencial y quién ha realizado el cambio, pero no registre las credenciales actualizadas). Todo el equipo debe poder ver el registro de los cambios.
 
 **Automatice las implementaciones.** Automatice todas las implementaciones y tenga listos sistemas que detecten cualquier problema que surja en la implementación. Tenga un proceso de mitigación para conservar los datos y el código existentes en producción, antes de que la actualización los reemplace en todas las instancias de producción. Tenga una forma automatizada de poner al día las correcciones o revertir los cambios.
 
-**Considere la posibilidad de hacer que la infraestructura sea inmutable.** La infraestructura inmutable es el principio que indica que no se debe modificar la infraestructura una vez que se implementa en producción. Esto se debe a que, si lo hace, puede entrar en un estado en el que se han aplicado cambios ad hoc, lo que hace más difícil saber exactamente qué es lo que ha cambiado. El funcionamiento de la infraestructura inmutable se basa en el reemplazo de servidores enteros cuando se hace cualquier implementación nueva. Esto permite que tanto el código como el entorno se puedan probar e implementar como un bloque. Una vez implementados, los componentes de la infraestructura no se modifican hasta el siguiente ciclo de compilación e implementación. 
+**Considere la posibilidad de hacer que la infraestructura sea inmutable.** La infraestructura inmutable es el principio que indica que no se debe modificar la infraestructura una vez que se implementa en producción. Esto se debe a que, si lo hace, puede entrar en un estado en el que se han aplicado cambios ad hoc, lo que hace más difícil saber exactamente qué es lo que ha cambiado. El funcionamiento de la infraestructura inmutable se basa en el reemplazo de servidores enteros cuando se hace cualquier implementación nueva. Esto permite que tanto el código como el entorno se puedan probar e implementar como un bloque. Una vez implementados, los componentes de la infraestructura no se modifican hasta el siguiente ciclo de compilación e implementación.
 
 ## <a name="monitoring"></a>Supervisión
 
@@ -99,7 +100,7 @@ Después de la versión inicial, hay que ejecutar las pruebas de capacidad y ren
 
 **Agregue y correlacione registros y métricas**. Un sistema de telemetría correctamente instrumentado proporcionará gran cantidad de datos de rendimiento sin procesar y de registros de eventos. Asegúrese de que tanto los datos de telemetría como los de registro se procesan y correlacionan rápidamente, con el fin de que el personal de operaciones siempre tenga una representación actualizada del mantenimiento del sistema. Organice y presente los datos de una forma que proporcione una visión cohesionada de los problemas, de forma que, siempre que sea posible, quede claro si los eventos están relacionados entre sí.
 
-> Consulte en la directiva de retención corporativa los requisitos relativos a la forma en que se procesan los datos y al tiempo durante el que deben almacenarse. 
+> Consulte en la directiva de retención corporativa los requisitos relativos a la forma en que se procesan los datos y al tiempo durante el que deben almacenarse.
 
 **Implemente alertas y notificaciones automatizadas.** Configurar herramientas de supervisión, como [Azure Monitor][azure-monitor] para que detecten patrones o condiciones que indique que hay o puede haber problemas, y envíe alertas a los miembros del equipo que pueden resolverlos. Ajuste las alertas para evitar falsos positivos.
 
@@ -109,15 +110,15 @@ Después de la versión inicial, hay que ejecutar las pruebas de capacidad y ren
 
 **Automatice las tareas de las operaciones.** El control manual de los procesos de las operaciones repetitivas es algo propenso a errores. Automatice estas tareas siempre que sea posible para garantizar que la calidad y la ejecución sean coherentes. El código que implementa la automatización debe tener versiones en el control de código fuente. Al igual que con cualquier otro código, las herramientas de automatización se deben probar.
 
-**Adopte un enfoque de infraestructura como código para realizar el aprovisionamiento.** Minimice la cantidad de configuración manual necesaria para aprovisionar los recursos. En su lugar, use scripts y las plantillas de [Azure Resource Manager][resource-manager]. Guarde los scripts y las plantillas en el control de código fuente, como haría con cualquier otro código que mantenga. 
+**Adopte un enfoque de infraestructura como código para realizar el aprovisionamiento.** Minimice la cantidad de configuración manual necesaria para aprovisionar los recursos. En su lugar, use scripts y las plantillas de [Azure Resource Manager][resource-manager]. Guarde los scripts y las plantillas en el control de código fuente, como haría con cualquier otro código que mantenga.
 
-**Considere el uso de contenedores.** Los contenedores proporcionan una interfaz estándar basado en paquetes para implementar las aplicaciones. Mediante el uso de contenedores, una aplicación se implementa mediante paquetes independientes que incluyen el software, las dependencias y los archivos necesarios para ejecutar la aplicación, lo que simplifica considerablemente el proceso de implementación. 
+**Considere el uso de contenedores.** Los contenedores proporcionan una interfaz estándar basado en paquetes para implementar las aplicaciones. Mediante el uso de contenedores, una aplicación se implementa mediante paquetes independientes que incluyen el software, las dependencias y los archivos necesarios para ejecutar la aplicación, lo que simplifica considerablemente el proceso de implementación.
 
-Los contenedores también crean una capa de abstracción entre la aplicación y el sistema operativo subyacente, lo que proporciona coherencia entre los entornos. Esta abstracción también puede aislar un contenedor de otros procesos o aplicaciones que se ejecutan en un host. 
+Los contenedores también crean una capa de abstracción entre la aplicación y el sistema operativo subyacente, lo que proporciona coherencia entre los entornos. Esta abstracción también puede aislar un contenedor de otros procesos o aplicaciones que se ejecutan en un host.
 
 **Implemente la resistencia y la recuperación automática.** La resistencia es la capacidad que tiene una aplicación para recuperarse de los errores. Las estrategias para lograr resistencia incluyen la realización de reintentos cuando los errores son transitorios y la conmutación por error a una instancia secundaria, o incluso a otra región. Para más información, consulte [Diseño de aplicaciones resistentes de Azure][resiliency]. Instrumente las aplicaciones para que los problemas se notifiquen de inmediato y pueda las interrupciones u otros errores del sistema.
 
-**Tenga un manual de operaciones.** Un manual de operaciones o *runbook* documenta los procedimientos y la información de administración necesarios para que el personal de operaciones mantenga un sistema. Documente también tanto los escenarios de las operaciones como los planes de mitigación que podrían entran en juego en caso de error o cualquier otra alteración del servicio. Cree esta documentación durante el proceso de desarrollo y manténgala actualizada posteriormente. Esto es un documento vivo y se debe revisar, probar y mejorar de forma periódica. 
+**Tenga un manual de operaciones.** Un manual de operaciones o *runbook* documenta los procedimientos y la información de administración necesarios para que el personal de operaciones mantenga un sistema. Documente también tanto los escenarios de las operaciones como los planes de mitigación que podrían entran en juego en caso de error o cualquier otra alteración del servicio. Cree esta documentación durante el proceso de desarrollo y manténgala actualizada posteriormente. Esto es un documento vivo y se debe revisar, probar y mejorar de forma periódica.
 
 La documentación compartida es crítica. Anime a los miembros del equipo a contribuir y a compartir sus conocimientos. Todo el equipo debe tener acceso a los documentos. Facilite a los miembros del equipo la tarea de mantener los documentos actualizados.
 
@@ -131,11 +132,11 @@ La documentación compartida es crítica. Anime a los miembros del equipo a cont
 
 **Siga los principios de privilegios mínimos al conceder acceso a los recursos.** Administre con precaución el acceso a los recursos. El acceso se debe denegar de forma predeterminada, salvo que a un usuario explícitamente se le concede explícitamente acceso a un recurso. Conceda a los usuarios exclusivamente el acceso que necesitan para completar sus tareas. Realice un seguimiento de los permisos de los usuario y realice auditorías de seguridad periódicas.
 
-<strong>Use el control de acceso basado en rol</strong> La asignación de cuentas de usuario y de acceso a los recursos no debe ser un proceso manual. Use el [control de acceso basado en rol][rbac] (RBAC) para la concesión de acceso en función de las identidades y grupos de [Azure Active Directory][azure-ad]. 
+**Use el control de acceso basado en rol** La asignación de cuentas de usuario y de acceso a los recursos no debe ser un proceso manual. Use el [control de acceso basado en rol][rbac] (RBAC) para la concesión de acceso en función de las identidades y grupos de [Azure Active Directory][azure-ad].
 
-**Utilice un sistema de seguimiento de errores para realizar el seguimiento de los problemas.** Sin una buena forma de realizar el seguimiento de los problemas, es fácil pasar por alto elementos, duplicar el trabajo o crear problemas adicionales. No confíe en comunicación interpersonal informal para realizar un seguimiento del estado de los errores. Use un herramienta de seguimiento de errores para registrar información detallada acerca de los problemas, asignar los recursos necesarios para solucionarlos y proporcionar una pista de auditoría de su progreso y estado. 
+**Utilice un sistema de seguimiento de errores para realizar el seguimiento de los problemas.** Sin una buena forma de realizar el seguimiento de los problemas, es fácil pasar por alto elementos, duplicar el trabajo o crear problemas adicionales. No confíe en comunicación interpersonal informal para realizar un seguimiento del estado de los errores. Use un herramienta de seguimiento de errores para registrar información detallada acerca de los problemas, asignar los recursos necesarios para solucionarlos y proporcionar una pista de auditoría de su progreso y estado.
 
-**Administre todos los recursos en un sistema de administración de cambios.** Todos los aspectos del proceso de DevOps se deben incluir en un sistema de administración y control de versiones para que los cambios pueden controlarse y auditar fácilmente. Esto incluye el código, la infraestructura, la configuración, la documentación y los scripts. Trate todos estos tipos de recursos como código en el proceso de prueba/compilación/revisión. 
+**Administre todos los recursos en un sistema de administración de cambios.** Todos los aspectos del proceso de DevOps se deben incluir en un sistema de administración y control de versiones para que los cambios pueden controlarse y auditar fácilmente. Esto incluye el código, la infraestructura, la configuración, la documentación y los scripts. Trate todos estos tipos de recursos como código en el proceso de prueba/compilación/revisión.
 
 **Use listas de comprobación.** Cree listas de comprobación de las operaciones para asegurarse de que siguen los procesos. Es habitual perder algo en un manual grande pero el uso de una lista de comprobación puede llamar la atención de detalles que, sin ella, se podrían pasar por alto. Mantenga las listas de comprobación y busque constantemente distintas formas de automatizar tareas y simplificar procesos.
 

@@ -1,58 +1,59 @@
 ---
-title: Aplicación de n niveles con SQL Server
-description: Implementación de una arquitectura de varios niveles en Azure para lograr una mayor disponibilidad, seguridad, escalabilidad y facilidad de uso.
+title: Aplicación Windows de n niveles con SQL Server
+titleSuffix: Azure Reference Architectures
+description: Implemente una arquitectura de varios niveles en Azure para lograr una mayor disponibilidad, seguridad, escalabilidad y facilidad de uso.
 author: MikeWasson
 ms.date: 11/12/2018
-ms.openlocfilehash: 857b666ef8af8fec21d7a8a9756508344aa07acc
-ms.sourcegitcommit: 9293350ab66fb5ed042ff363f7a76603bf68f568
+ms.openlocfilehash: 38983dec83718f53fc1ffd79c1347582200f5db0
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51577130"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120141"
 ---
 # <a name="windows-n-tier-application-on-azure-with-sql-server"></a>Aplicación Windows de n niveles en Azure con SQL Server
 
-Esta arquitectura de referencia muestra cómo implementar máquinas virtuales y una red virtual configurada para una aplicación de n niveles, con SQL Server en Windows para la capa de datos. [**Implemente esta solución**.](#deploy-the-solution) 
+Esta arquitectura de referencia muestra cómo implementar máquinas virtuales y una red virtual configurada para una aplicación de n niveles, con SQL Server en Windows para la capa de datos. [**Implemente esta solución**](#deploy-the-solution).
 
-![[0]][0]
+![Arquitectura de n niveles con Microsoft Azure](./images/n-tier-sql-server.png)
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-## <a name="architecture"></a>Arquitectura 
+## <a name="architecture"></a>Arquitectura
 
 La arquitectura consta de los siguientes componentes:
 
-* **Grupo de recursos.** Los [grupos de recursos][resource-manager-overview] se utilizan para agrupar los recursos, para que puedan administrarse según su duración, su propietario u otros criterios.
+- **Grupo de recursos**. Los [grupos de recursos][resource-manager-overview] se utilizan para agrupar los recursos, para que puedan administrarse según su duración, su propietario u otros criterios.
 
-* **Red virtual y subredes.** Cada máquina virtual de Azure se implementa en una red virtual que se puede dividir en subredes. Cree una subred independiente para cada nivel. 
+- **Red virtual (VNet) y subredes**. Cada máquina virtual de Azure se implementa en una red virtual que se puede dividir en subredes. Cree una subred independiente para cada nivel.
 
-* **Application Gateway**. [Azure Application Gateway](/azure/application-gateway/) es un equilibrador de carga de nivel 7. En esta arquitectura, enruta las solicitudes HTTP al front-end web. Application Gateway proporciona también un [firewall de aplicaciones web](/azure/application-gateway/waf-overview) (WAF) que protege la aplicación contra puntos vulnerables de la seguridad comunes. 
+- **Application Gateway**. [Azure Application Gateway](/azure/application-gateway/) es un equilibrador de carga de nivel 7. En esta arquitectura, enruta las solicitudes HTTP al front-end web. Application Gateway proporciona también un [firewall de aplicaciones web](/azure/application-gateway/waf-overview) (WAF) que protege la aplicación contra puntos vulnerables de la seguridad comunes.
 
-* **Grupos de seguridad de red.** Use [grupos de seguridad de red][nsg] (NSG) para restringir el tráfico de red dentro de la red virtual. Por ejemplo, en la arquitectura de tres niveles que se muestra aquí, el nivel de base de datos no acepta el tráfico procedente del front-end web, solo el procedente del nivel de empresa y la subred de administración.
+- **NSG**. Use [grupos de seguridad de red][nsg] (NSG) para restringir el tráfico de red dentro de la red virtual. Por ejemplo, en la arquitectura de tres niveles que se muestra aquí, el nivel de base de datos no acepta el tráfico procedente del front-end web, solo el procedente del nivel de empresa y la subred de administración.
 
-* **Protección contra DDoS**. Aunque la plataforma Azure proporciona protección básica contra ataques de denegación de servicio distribuido (DDoS), se recomienda usar el [estándar de protección contra DDoS][ddos], que tiene características de mitigación de DDoS. Consulte [Consideraciones sobre la seguridad](#security-considerations).
+- **Protección contra DDoS**. Aunque la plataforma Azure proporciona protección básica contra ataques de denegación de servicio distribuido (DDoS), se recomienda usar el [estándar de protección contra DDoS][ddos], que tiene características de mitigación de DDoS. Consulte [Consideraciones sobre la seguridad](#security-considerations).
 
-* **Máquinas virtuales**. Para obtener recomendaciones sobre la configuración de máquinas virtuales, consulte [Ejecución de una VM con Windows en Azure](./windows-vm.md) y [Ejecución de una VM con Linux en Azure](./linux-vm.md).
+- **Máquinas virtuales**. Para obtener recomendaciones sobre la configuración de máquinas virtuales, consulte [Ejecución de una VM con Windows en Azure](./windows-vm.md) y [Ejecución de una VM con Linux en Azure](./linux-vm.md).
 
-* **Conjuntos de disponibilidad**. Cree un [conjunto de disponibilidad][azure-availability-sets] y aprovisione al menos dos máquinas virtuales en cada nivel, que hace que las máquinas virtuales que sean aptas para un [Acuerdo de Nivel de Servicio (SLA)][vm-sla] superior.
+- **Conjuntos de disponibilidad**. Cree un [conjunto de disponibilidad][azure-availability-sets] y aprovisione al menos dos máquinas virtuales en cada nivel, que hace que las máquinas virtuales que sean aptas para un [Acuerdo de Nivel de Servicio (SLA)][vm-sla] superior.
 
-* **Equilibradores de carga.** Use [Azure Load Balancer][load-balancer] para distribuir el tráfico de red desde el nivel web al nivel de empresa y desde el nivel de empresa a SQL Server.
+- **Equilibradores de carga.** Use [Azure Load Balancer][load-balancer] para distribuir el tráfico de red desde el nivel web al nivel de empresa y desde el nivel de empresa a SQL Server.
 
-* **Dirección IP pública**. Se necesita una dirección IP pública para que la aplicación reciba el tráfico de Internet.
+- **Dirección IP pública**. Se necesita una dirección IP pública para que la aplicación reciba el tráfico de Internet.
 
-* **JumpBox.** También se denomina [host bastión]. Se trata de una máquina virtual segura en la red que usan los administradores para conectarse al resto de máquinas virtuales. El Jumpbox tiene un NSG que solo permite el tráfico remoto que procede de direcciones IP públicas de una lista segura. El NSG debe permitir el tráfico de escritorio remoto (RDP).
+- **JumpBox**. También se denomina [host bastión]. Se trata de una máquina virtual segura en la red que usan los administradores para conectarse al resto de máquinas virtuales. El JumpBox tiene un NSG que solo permite el tráfico remoto que procede de direcciones IP públicas de una lista segura. El NSG debe permitir el tráfico de escritorio remoto (RDP).
 
-* **Grupo de disponibilidad AlwaysOn de SQL Server**. Proporciona alta disponibilidad en el nivel de datos, al habilitar la replicación y la conmutación por error. Usa la tecnología de clúster de conmutación por error de Windows Server (WSFC) para la conmutación por error.
+- **Grupo de disponibilidad AlwaysOn de SQL Server** Proporciona alta disponibilidad en el nivel de datos, al habilitar la replicación y la conmutación por error. Usa la tecnología de clúster de conmutación por error de Windows Server (WSFC) para la conmutación por error.
 
-* **Servidores de Active Directory Domain Services (AD DS)**. Los objetos de equipo del clúster de conmutación por error y sus roles en clúster asociados se crean en Active Directory Domain Services (AD DS).
+- **Servidores de Active Directory Domain Services (AD DS)**. Los objetos de equipo del clúster de conmutación por error y sus roles en clúster asociados se crean en Active Directory Domain Services (AD DS).
 
-* **Testigo en la nube**. Un clúster de conmutación por error requiere que más de la mitad de sus nodos se estén ejecutando, lo que se conoce como tener cuórum. Si el clúster tiene solo dos nodos, una partición de la red podría provocar que cada uno de ellos creyera que es el principal. En ese caso, se necesita un *testigo* que sea quien dilucide cuál es el principal y establezca el cuórum. Un testigo es un recurso, como por ejemplo un disco compartido, que puede actuar como dilucidador para establecer el cuórum. Un testigo en la nube es un tipo de testigo que usa Azure Blob Storage. Para más información acerca del concepto de quórum, consulte [Understanding cluster and pool quorum](/windows-server/storage/storage-spaces/understand-quorum) (Descripción del cuórum de clúster y de grupo). Para más información acerca del testigo en la nube, consulte [Implementación de un testigo en la nube en un clúster de conmutación por error](/windows-server/failover-clustering/deploy-cloud-witness). 
+- **Testigo en la nube**. Un clúster de conmutación por error requiere que más de la mitad de sus nodos se estén ejecutando, lo que se conoce como tener cuórum. Si el clúster tiene solo dos nodos, una partición de la red podría provocar que cada uno de ellos creyera que es el principal. En ese caso, se necesita un *testigo* que sea quien dilucide cuál es el principal y establezca el cuórum. Un testigo es un recurso, como por ejemplo un disco compartido, que puede actuar como dilucidador para establecer el cuórum. Un testigo en la nube es un tipo de testigo que usa Azure Blob Storage. Para más información acerca del concepto de quórum, consulte [Understanding cluster and pool quorum](/windows-server/storage/storage-spaces/understand-quorum) (Descripción del cuórum de clúster y de grupo). Para más información acerca del testigo en la nube, consulte [Implementación de un testigo en la nube en un clúster de conmutación por error](/windows-server/failover-clustering/deploy-cloud-witness).
 
-* **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS. Proporciona resolución de nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
+- **Azure DNS**. [Azure DNS][azure-dns] es un servicio de hospedaje para dominios DNS. Proporciona resolución de nombres mediante la infraestructura de Microsoft Azure. Al hospedar dominios en Azure, puede administrar los registros DNS con las mismas credenciales, API, herramientas y facturación que con los demás servicios de Azure.
 
 ## <a name="recommendations"></a>Recomendaciones
 
-Los requisitos pueden diferir de los de la arquitectura que se describe aquí. Use estas recomendaciones como punto inicial. 
+Los requisitos pueden diferir de los de la arquitectura que se describe aquí. Use estas recomendaciones como punto inicial.
 
 ### <a name="vnet--subnets"></a>Red virtual/subredes
 
@@ -70,15 +71,14 @@ Defina reglas del equilibrador de carga para dirigir el tráfico de red a las m�
 
 ### <a name="network-security-groups"></a>Grupos de seguridad de red
 
-Use reglas NSG para restringir el tráfico entre los niveles. En la arquitectura de tres niveles mostrada anteriormente, el nivel web no se comunica directamente con el nivel de base de datos. Para exigir esto, el nivel de base de datos debe bloquear el tráfico entrante desde la subred del nivel Web.  
+Use reglas NSG para restringir el tráfico entre los niveles. En la arquitectura de tres niveles mostrada anteriormente, el nivel web no se comunica directamente con el nivel de base de datos. Para exigir esto, el nivel de base de datos debe bloquear el tráfico entrante desde la subred del nivel Web.
 
-1. Deniegue todo el tráfico entrante de la red virtual. (Use la etiqueta `VIRTUAL_NETWORK` de la regla). 
-2. Permita el tráfico entrante de la subred del nivel Business.  
+1. Deniegue todo el tráfico entrante de la red virtual. (Use la etiqueta `VIRTUAL_NETWORK` de la regla).
+2. Permita el tráfico entrante de la subred del nivel Business.
 3. Permita el tráfico entrante de la propia subred del nivel de la base de datos. Esta regla permite la comunicación entre las máquinas virtuales de la base de datos, lo cual es necesario para la replicación y la conmutación por error de esta.
 4. Permita el tráfico RDP (puerto 3389) desde la subred de JumpBox. Esta regla permite a los administradores conectarse al nivel de base de datos desde JumpBox.
 
 Cree las reglas 2 &ndash; 4 con una prioridad más alta que la primera regla para que puedan invalidarla.
-
 
 ### <a name="sql-server-always-on-availability-groups"></a>Grupos de disponibilidad AlwaysOn de SQL Server
 
@@ -88,15 +88,14 @@ Otros niveles se conectan a la base de datos a través de una [escucha de grupo 
 
 Configure el grupo de disponibilidad AlwaysOn de SQL Server como sigue:
 
-1. Cree un clúster de clústeres de conmutación por error de Windows Server (WSFC), un grupo de disponibilidad AlwaysOn de SQL Server y una réplica principal. Para más información, vea [Introducción a Grupos de disponibilidad AlwaysOn][sql-alwayson-getting-started]. 
+1. Cree un clúster de clústeres de conmutación por error de Windows Server (WSFC), un grupo de disponibilidad AlwaysOn de SQL Server y una réplica principal. Para más información, vea [Introducción a Grupos de disponibilidad AlwaysOn][sql-alwayson-getting-started].
 2. Cree un equilibrador de carga interno con una dirección IP privada estática.
-3. Cree una escucha de grupo de disponibilidad y asigne el nombre DNS de la escucha a la dirección IP del equilibrador de carga interno. 
+3. Cree una escucha de grupo de disponibilidad y asigne el nombre DNS de la escucha a la dirección IP del equilibrador de carga interno.
 4. Cree una regla del equilibrador de carga para el puerto de escucha de SQL Server (puerto TCP 1433 de forma predeterminada). La regla del equilibrador de carga debe habilitar la *IP flotante*, también denominada Direct Server Return. Esto causa que la máquina virtual responda directamente al cliente, lo que permite establecer una conexión directa con la réplica principal.
-  
+
    > [!NOTE]
    > Cuando la IP flotante está habilitada, el número de puerto de front-end debe ser el mismo que el número de puerto de back-end en la regla del equilibrador de carga.
-   > 
-   > 
+   >
 
 Cuando un cliente SQL intenta conectarse, el equilibrador de carga enruta la solicitud de conexión a la réplica principal. Si se produce una conmutación por error a otra réplica, el equilibrador de carga enruta automáticamente las nuevas solicitudes a una nueva réplica principal. Para más información, vea [Configuración de un equilibrador de carga para Grupos de disponibilidad AlwaysOn de SQL Server][sql-alwayson-ilb].
 
@@ -139,12 +138,12 @@ El equilibrador de carga usa [sondeos de mantenimiento][health-probes] para supe
 
 A continuación, se presentan algunas recomendaciones sobre los sondeos de mantenimiento del equilibrador de carga:
 
-* Los sondeos pueden probar los protocolos HTTP o TCP. Si las máquinas virtuales ejecutan un servidor HTTP, cree un sondeo HTTP. De lo contrario, cree un sondeo TCP.
-* Para un sondeo HTTP, especifique la ruta de acceso a un punto de conexión HTTP. El sondeo comprueba si hay una respuesta HTTP 200 desde esta ruta de acceso. Puede ser la ruta de acceso raíz ("/") o un punto de conexión de supervisión de mantenimiento que implementa alguna lógica personalizada para comprobar el mantenimiento de la aplicación. El punto de conexión debe permitir solicitudes HTTP anónimas.
-* El sondeo se envía desde una [dirección IP conocida][health-probe-ip], 168.63.129.16. No bloquee el tráfico que llega a esta dirección IP, ni el que parte de ella, en las directivas de firewall o en las reglas del grupo de seguridad de red.
-* Use [registros de sondeo de mantenimiento][health-probe-log] para ver el estado de los sondeos de mantenimiento. Habilite el registro en Azure Portal para cada equilibrador de carga. Los registros se escriben en Azure Blob Storage. Los registros muestran el número de máquinas virtuales que no reciben tráfico de red debido la falta de respuesta en los sondeos.
+- Los sondeos pueden probar los protocolos HTTP o TCP. Si las máquinas virtuales ejecutan un servidor HTTP, cree un sondeo HTTP. De lo contrario, cree un sondeo TCP.
+- Para un sondeo HTTP, especifique la ruta de acceso a un punto de conexión HTTP. El sondeo comprueba si hay una respuesta HTTP 200 desde esta ruta de acceso. Puede ser la ruta de acceso raíz ("/") o un punto de conexión de supervisión de mantenimiento que implementa alguna lógica personalizada para comprobar el mantenimiento de la aplicación. El punto de conexión debe permitir solicitudes HTTP anónimas.
+- El sondeo se envía desde una [dirección IP conocida][health-probe-ip], 168.63.129.16. No bloquee el tráfico que llega a esta dirección IP, ni el que parte de ella, en las directivas de firewall o en las reglas del grupo de seguridad de red.
+- Use [registros de sondeo de mantenimiento][health-probe-log] para ver el estado de los sondeos de mantenimiento. Habilite el registro en Azure Portal para cada equilibrador de carga. Los registros se escriben en Azure Blob Storage. Los registros muestran el número de máquinas virtuales que no reciben tráfico de red debido la falta de respuesta en los sondeos.
 
-Si necesita más disponibilidad de la que proporciona el [Acuerdo de Nivel de Servicio de Azure para máquinas virtuales][vm-sla], considere la replicación de la aplicación entre dos regiones y use Azure Traffic Manager para la conmutación por error. Para más información, consulte [Aplicación de n niveles para varias regiones para obtener alta disponibilidad][multi-dc].  
+Si necesita más disponibilidad de la que proporciona el [Acuerdo de Nivel de Servicio de Azure para máquinas virtuales][vm-sla], considere la replicación de la aplicación entre dos regiones y use Azure Traffic Manager para la conmutación por error. Para más información, consulte [Aplicación de n niveles para varias regiones para obtener alta disponibilidad][multi-dc].
 
 ## <a name="security-considerations"></a>Consideraciones sobre la seguridad
 
@@ -154,7 +153,7 @@ Las redes virtuales son un límite de aislamiento del tráfico de Azure. Las má
 
 **Cifrado**. Cifre información confidencial en reposo y use [Azure Key Vault][azure-key-vault] para administrar las claves de cifrado de la base de datos. Key Vault puede almacenar las claves de cifrado en módulos de seguridad de hardware (HSM). Para más información, consulte [Configuración de la integración de Azure Key Vault para SQL Server en máquinas virtuales de Azure][sql-keyvault]. También se recomienda almacenar los secretos de aplicación como, por ejemplo, las cadenas de conexión de base de datos, en Key Vault.
 
-**DDoS Protection**. De forma predeterminada, la plataforma Azure proporciona protección básica contra DDoS. El objetivo de dicha es proteger la infraestructura de Azure en su conjunto. Aunque la protección básica contra DDoS se habilita automáticamente, se recomienda usar [Azure DDoS Protection Estándar][ddos]. Para detectar las amenazas, la protección estándar usa un ajuste que se puede adaptar en función de los patrones de tráfico de red de la aplicación, lo que le permite aplicar mitigaciones frente a ataques de denegación de servicio distribuido que podrían pasar desapercibidas para las directivas de DDoS para toda la infraestructura. La protección estándar también proporciona alertas, telemetría y análisis a través de Azure Monitor. Para más información, consulte [Procedimientos recomendados y arquitecturas de referencia para Azure DDoS Protection][ddos-best-practices].
+**DDoS Protection**. De forma predeterminada, la plataforma Azure proporciona protección básica contra DDoS. El objetivo de dicha es proteger la infraestructura de Azure en su conjunto. Aunque la protección básica contra DDoS se habilita automáticamente, se recomienda usar [DDoS Protection Estándar][ddos]. Para detectar las amenazas, la protección estándar usa un ajuste que se puede adaptar en función de los patrones de tráfico de red de la aplicación, lo que le permite aplicar mitigaciones frente a ataques de denegación de servicio distribuido que podrían pasar desapercibidas para las directivas de DDoS para toda la infraestructura. La protección estándar también proporciona alertas, telemetría y análisis a través de Azure Monitor. Para más información, consulte [Azure DDoS Protection: procedimientos recomendados y arquitecturas de referencia][ddos-best-practices].
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
@@ -164,17 +163,17 @@ Hay disponible una implementación de esta arquitectura de referencia en [GitHub
 
 [!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
 
-### <a name="deploy-the-solution"></a>Implementación de la solución
+### <a name="deployment-steps"></a>Pasos de implementación
 
 1. Ejecute el siguiente comando para crear un grupo de recursos.
 
-    ```bash
+    ```azurecli
     az group create --location <location> --name <resource-group-name>
     ```
 
 2. Ejecute el siguiente comando para crear una cuenta de almacenamiento para el testigo en la nube.
 
-    ```bash
+    ```azurecli
     az storage account create --location <location> \
       --name <storage-account-name> \
       --resource-group <resource-group-name> \
@@ -183,7 +182,7 @@ Hay disponible una implementación de esta arquitectura de referencia en [GitHub
 
 3. Vaya a la carpeta `virtual-machines\n-tier-windows` del repositorio de GitHub de las arquitecturas de referencia.
 
-4. Abra el archivo `n-tier-windows.json` . 
+4. Abra el archivo `n-tier-windows.json` .
 
 5. Busque todas las instancias de "witnessStorageBlobEndPoint" y reemplace el texto del marcador de posición por el nombre de la cuenta de almacenamiento del paso 2.
 
@@ -193,7 +192,7 @@ Hay disponible una implementación de esta arquitectura de referencia en [GitHub
 
 6. Ejecute el siguiente comando para mostrar las claves de la cuenta de almacenamiento.
 
-    ```bash
+    ```azurecli
     az storage account keys list \
       --account-name <storage-account-name> \
       --resource-group <resource-group-name>
@@ -225,16 +224,15 @@ Hay disponible una implementación de esta arquitectura de referencia en [GitHub
 8. En el archivo `n-tier-windows.json`, busque todas las instancias de `[replace-with-password]` y `[replace-with-sql-password]`, y reemplácelas por una contraseña segura. Guarde el archivo.
 
     > [!NOTE]
-    > Si cambia el nombre de usuario del administrador, también debe actualizar los bloques `extensions` en el archivo JSON. 
+    > Si cambia el nombre de usuario del administrador, también debe actualizar los bloques `extensions` en el archivo JSON.
 
 9. Ejecute el siguiente comando para implementar la arquitectura.
 
-    ```bash
+    ```azurecli
     azbb -s <your subscription_id> -g <resource_group_name> -l <location> -p n-tier-windows.json --deploy
     ```
 
 Para obtener más información sobre la implementación de esta arquitectura de referencia de ejemplo mediante Azure Bulding Blocks, visite el [repositorio de GitHub][git].
-
 
 <!-- links -->
 [dmz]: ../dmz/secure-vnet-dmz.md
@@ -264,8 +262,7 @@ Para obtener más información sobre la implementación de esta arquitectura de 
 [vnet faq]: /azure/virtual-network/virtual-networks-faq
 [wsfc-whats-new]: https://technet.microsoft.com/windows-server-docs/failover-clustering/whats-new-in-failover-clustering
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/vm-reference-architectures.vsdx
-[0]: ./images/n-tier-sql-server.png "Arquitectura de n niveles con Microsoft Azure"
-[resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview 
+[resource-manager-overview]: /azure/azure-resource-manager/resource-group-overview
 [vmss]: /azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview
 [load-balancer]: /azure/load-balancer/
 [load-balancer-hashing]: /azure/load-balancer/load-balancer-overview#load-balancer-features

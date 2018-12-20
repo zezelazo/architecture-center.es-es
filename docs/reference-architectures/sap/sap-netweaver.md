@@ -1,33 +1,36 @@
 ---
-title: Implementación de SAP NetWeaver (Windows) para AnyDB en Azure Virtual Machines
+title: Implementación de SAP NetWeaver (Windows) para AnyDB en máquinas virtuales de Azure
+titleSuffix: Azure Reference Architectures
 description: Prácticas probadas para ejecutar SAP S/4HANA en un entorno de Linux en Azure con alta disponibilidad.
 author: lbrader
 ms.date: 08/03/2018
-ms.openlocfilehash: 3a8c59b63d55dea520f807efbe72ff56e678ec8e
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: 4014d5736527a2f29692720d199b4a1aa8f76020
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916590"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120193"
 ---
-# <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Implementación de SAP NetWeaver (Windows) para AnyDB en Azure Virtual Machines
+# <a name="deploy-sap-netweaver-windows-for-anydb-on-azure-virtual-machines"></a>Implementación de SAP NetWeaver (Windows) para AnyDB en máquinas virtuales de Azure
 
 Esta arquitectura de referencia muestra un conjunto de prácticas probadas para ejecutar SAP NetWeaver en un entorno Windows en Azure con alta disponibilidad. La base de datos es AnyDB, el término de SAP para todos los sistemas de administración de bases de datos compatibles que no sean SAP HANA. Esta arquitectura se implementa con tamaños de máquina virtual (VM) específicos que se pueden cambiar para acomodarse a las necesidades de la organización.
 
-![](./images/sap-netweaver.png)
+![Arquitectura de referencia para SAP NetWeaver (Windows) para AnyDB en máquinas virtuales de Azure](./images/sap-netweaver.png)
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
-> [!NOTE] 
+> [!NOTE]
 > La implementación de esta arquitectura de referencia requiere licencias adecuadas de los productos de SAP y de otras tecnologías que no son de Microsoft.
 
 ## <a name="architecture"></a>Arquitectura
+
 La arquitectura consta de la siguiente infraestructura y los siguientes componentes de software clave.
 
 **Red virtual**. El servicio de Azure Virtual Network conecta los recursos de Azure entre sí de forma segura. En esta arquitectura, la red virtual se conecta a un entorno local a través de una puerta de enlace de VPN implementada en el concentrador de una topología en estrella tipo [hub-spoke](../hybrid-networking/hub-spoke.md). El radio es la red virtual que se usa tanto para las aplicaciones de SAP como para el nivel de base de datos.
 
 **Subredes**. La red virtual se divide a su vez en subredes independientes para cada nivel: aplicación (SAP NetWeaver), base de datos, servicios compartidos (JumpBox) y Active Directory.
-    
+
 **Máquinas virtuales**. Esta arquitectura usa para la capa de aplicación y el nivel de base de datos máquinas virtuales agrupadas como se indica a continuación:
 
 - **SAP NetWeaver**. La capa de aplicación usa máquinas virtuales de Windows y ejecuta tanto SAP Central Services como los servidores de aplicaciones de SAP. Las máquinas virtuales que ejecutan Central Services están configurados como un Clúster de conmutación por error de Windows Server para poder ofrecer alta disponibilidad y son compatibles con SIOS DataKeeper Cluster Edition.
@@ -35,7 +38,7 @@ La arquitectura consta de la siguiente infraestructura y los siguientes componen
 - **JumpBox**. También se denomina bastion host. Se trata de una máquina virtual segura en la red que usan los administradores para conectarse al resto de máquinas virtuales.
 - **Controladores de dominio de Windows Server Active Directory**. Los controladores de dominio se utilizan en todas las máquinas virtuales y usuarios del dominio.
 
-**Equilibradores de carga.** Las instancias de [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) se utilizan para distribuir el tráfico a las máquinas virtuales en la subred de la capa de aplicaciones. En la capa de datos, se puede lograr alta disponibilidad mediante equilibradores de carga SAP integrados, Azure Load Balancer u otros mecanismos, dependiendo del DBMS. Para más información, consulte [Implementación de DBMS en Azure Virtual Machines para SAP NetWeaver](/azure/virtual-machines/workloads/sap/dbms-guide). 
+**Equilibradores de carga.** Las instancias de [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) se utilizan para distribuir el tráfico a las máquinas virtuales en la subred de la capa de aplicaciones. En la capa de datos, se puede lograr alta disponibilidad mediante equilibradores de carga SAP integrados, Azure Load Balancer u otros mecanismos, dependiendo del DBMS. Para más información, consulte [Implementación de DBMS en Azure Virtual Machines para SAP NetWeaver](/azure/virtual-machines/workloads/sap/dbms-guide).
 
 **Conjuntos de disponibilidad**. En las máquinas virtuales de SAP Web Dispatcher, el servidor de aplicaciones de SAP y (A)SCS, los roles se agrupan en [conjuntos de disponibilidad](/azure/virtual-machines/windows/tutorial-availability-sets) independientes y se aprovisionan un mínimo de dos máquinas virtuales por rol, lo que hace que las máquinas virtuales sean aptas para un [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/virtual-machines) (SLA) mayor.
 
@@ -45,9 +48,10 @@ La arquitectura consta de la siguiente infraestructura y los siguientes componen
 
 **Puerta de enlace**. Una puerta de enlace extiende una red local a la red virtual de Azure. [ExpressRoute](/azure/architecture/reference-architectures/hybrid-networking/expressroute) es el servicio de Azure recomendado para crear conexiones privadas que no atraviesen Internet, pero también se puede usar una conexión de [sitio a sitio](/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal).
 
-**Azure Storage**. Para proporcionar un almacenamiento persistente de disco duro virtual (VHD) de una máquina virtual, se requiere [Azure Storage](/azure/storage/storage-standard-storage). También lo usa [Cloud Witness](/windows-server/failover-clustering/deploy-cloud-witness) para implementar una operación de un clúster de conmutación por error. 
+**Azure Storage**. Para proporcionar un almacenamiento persistente de disco duro virtual (VHD) de una máquina virtual, se requiere [Azure Storage](/azure/storage/storage-standard-storage). También lo usa [Cloud Witness](/windows-server/failover-clustering/deploy-cloud-witness) para implementar una operación de un clúster de conmutación por error.
 
 ## <a name="recommendations"></a>Recomendaciones
+
 Los requisitos pueden diferir de los de la arquitectura que se describe aquí. Use estas recomendaciones como punto de partida.
 
 ### <a name="sap-web-dispatcher-pool"></a>Grupo de SAP Web Dispatcher
@@ -68,7 +72,7 @@ Para configurar las máquinas virtuales para un clúster de disco compartido, us
 
 Para obtener información, consulte "3. Important Update for SAP Customers Running ASCS on SIOS on Azure” (Actualización importante para clientes de SAP que ejecuten ASCS en SIOS en Azure) en [Running SAP applications on the Microsoft platform](https://blogs.msdn.microsoft.com/saponsqlserver/2017/05/04/sap-on-azure-general-update-for-customers-partners-april-2017/) (Ejecución de aplicaciones SAP en la plataforma Microsoft).
 
-Otra forma de controlar la agrupación en clústeres es implementar un clúster de recurso compartido de archivos mediante Windows Server Failover Cluster. [SAP](https://blogs.sap.com/2018/03/19/migration-from-a-shared-disk-cluster-to-a-file-share-cluster/) ha modificado recientemente el modelo de implementación de Central Services para acceder a los directorios globales de /sapmnt a través de una ruta de acceso UNC. Este cambio [elimina la necesidad](https://blogs.msdn.microsoft.com/saponsqlserver/2017/08/10/high-available-ascs-for-windows-on-file-share-shared-disk-no-longer-required/) de SIOS u otras soluciones de disco compartido en las máquinas virtuales de Central Services. Sigue siendo recomendable asegurarse de que el recurso compartido UNC /sapmnt tiene [alta disponibilidad](https://blogs.sap.com/2017/07/21/how-to-create-a-high-available-sapmnt-share/). Esto se puede realizar en la instancia de Central Services mediante Windows Server Failover Cluster con las características [Servidor de archivos de escalabilidad horizontal](https://blogs.msdn.microsoft.com/saponsqlserver/2017/11/14/file-server-with-sofs-and-s2d-as-an-alternative-to-cluster-shared-disk-for-clustering-of-an-sap-ascs-instance-in-azure-is-generally-available/) (SOFS) y [Espacios de almacenamiento directo ](https://blogs.sap.com/2018/03/07/your-sap-on-azure-part-5-ascs-high-availability-with-storage-spaces-direct/) (S2D) en Windows Server 2016. 
+Otra forma de controlar la agrupación en clústeres es implementar un clúster de recurso compartido de archivos mediante Windows Server Failover Cluster. [SAP](https://blogs.sap.com/2018/03/19/migration-from-a-shared-disk-cluster-to-a-file-share-cluster/) ha modificado recientemente el modelo de implementación de Central Services para acceder a los directorios globales de /sapmnt a través de una ruta de acceso UNC. Este cambio [elimina la necesidad](https://blogs.msdn.microsoft.com/saponsqlserver/2017/08/10/high-available-ascs-for-windows-on-file-share-shared-disk-no-longer-required/) de SIOS u otras soluciones de disco compartido en las máquinas virtuales de Central Services. Sigue siendo recomendable asegurarse de que el recurso compartido UNC /sapmnt tiene [alta disponibilidad](https://blogs.sap.com/2017/07/21/how-to-create-a-high-available-sapmnt-share/). Esto se puede realizar en la instancia de Central Services mediante Windows Server Failover Cluster con las características [Servidor de archivos de escalabilidad horizontal](https://blogs.msdn.microsoft.com/saponsqlserver/2017/11/14/file-server-with-sofs-and-s2d-as-an-alternative-to-cluster-shared-disk-for-clustering-of-an-sap-ascs-instance-in-azure-is-generally-available/) (SOFS) y [Espacios de almacenamiento directo ](https://blogs.sap.com/2018/03/07/your-sap-on-azure-part-5-ascs-high-availability-with-storage-spaces-direct/) (S2D) en Windows Server 2016.
 
 ### <a name="availability-sets"></a>Conjuntos de disponibilidad
 
@@ -112,7 +116,7 @@ En el caso de SAP en SQL, el blog [Top 10 Key Considerations for Deploying SAP A
 
 ## <a name="scalability-considerations"></a>Consideraciones sobre escalabilidad
 
-En el nivel de aplicación de SAP, Azure ofrece una amplia variedad de tamaños de máquina virtual tanto para el escalado vertical como para el horizontal. Para ver una lista inclusiva, consulte [SAP note 1928533](https://launchpad.support.sap.com/#/notes/1928533) - SAP Applications on Azure: Supported Products and Azure VM Types (para acceder se requiere una cuenta de SAP Service Marketplace). Tanto los servidores de aplicaciones SAP como los clústeres de Central Services pueden realizar escalados y reducciones verticales o escalados horizontales mediante la adición de más instancias. La base de datos de AnyDB puede realizar escalados y reducciones verticales, pero no escalados horizontales. El contenedor de base de datos SAP para AnyDB no admite el particionamiento.
+En el nivel de aplicación de SAP, Azure ofrece una amplia variedad de tamaños de máquina virtual tanto para el escalado vertical como para el horizontal. Para ver una lista inclusiva, consulte [Nota de SAP 1928533](https://launchpad.support.sap.com/#/notes/1928533): SAP Applications on Azure: Supported Products and Azure VM Types" (Aplicaciones de SAP en Azure: productos y tipos de máquina virtual de Azure compatibles). (para acceder se requiere una cuenta de SAP Service Marketplace). Tanto los servidores de aplicaciones SAP como los clústeres de Central Services pueden realizar escalados y reducciones verticales o escalados horizontales mediante la adición de más instancias. La base de datos de AnyDB puede realizar escalados y reducciones verticales, pero no escalados horizontales. El contenedor de base de datos SAP para AnyDB no admite el particionamiento.
 
 ## <a name="availability-considerations"></a>Consideraciones sobre disponibilidad
 
@@ -145,7 +149,7 @@ Para la recuperación ante desastres (DR), debe ser capaz de realizar la conmuta
 
 - **Nivel de servidores de aplicaciones**. Los servidores de aplicaciones de SAP no contienen datos empresariales. En Azure, una estrategia de recuperación ante desastres simple es crear servidores de aplicaciones SAP en la región secundaria y apagarlos. Tras cualquier cambio de configuración o actualización del kernel en el servidor de aplicaciones principal, los mismos cambios se deben copiar en las máquinas virtuales de la región secundaria. Por ejemplo, los archivos ejecutables del kernel copiados en las máquinas virtuales de recuperación ante desastres. Para la replicación automática de los servidores de aplicaciones en una región secundaria, [Azure Site Recovery](/azure/site-recovery/site-recovery-overview) es la solución recomendada.
 
-- **Central Services**. Este componente de la pila de aplicaciones SAP tampoco conserva los datos empresariales. Puede crear una máquina virtual en la región de recuperación ante desastres para ejecutar el rol de Central Services. El único contenido del nodo de Central Services principal que se sincroniza es el del recurso compartido /sapmnt. Además, si los cambios de configuración o las actualizaciones del kernel tienen lugar en los servidores principales de Central Services, se deben repetir en la máquina virtual de la región de recuperación ante desastres que ejecuta Central Services. Para sincronizar los dos servidores, puede usar Azure Site Recovery para replicar los nodos del clúster o simplemente usar un trabajo de copia programado regularmente para copiar /sapmnt en la región de recuperación ante desastres. Para más información acerca del proceso de creación, copia y conmutación por error de prueba de este método de replicación simple, descargue [SAP NetWeaver: Building a Hyper-V and Microsoft Azure–based Disaster Recovery Solution](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx) (SAP NetWeaver: Creación de una solución de recuperación ante desastres basada en Hyper-V y Microsoft Azure) y consulte "4.3. Capa de SAP SPOF (ASCS)."
+- **Central Services**. Este componente de la pila de aplicaciones SAP tampoco conserva los datos empresariales. Puede crear una máquina virtual en la región de recuperación ante desastres para ejecutar el rol de Central Services. El único contenido del nodo de Central Services principal que se sincroniza es el del recurso compartido /sapmnt. Además, si los cambios de configuración o las actualizaciones del kernel tienen lugar en los servidores principales de Central Services, se deben repetir en la máquina virtual de la región de recuperación ante desastres que ejecuta Central Services. Para sincronizar los dos servidores, puede usar Azure Site Recovery para replicar los nodos del clúster o simplemente usar un trabajo de copia programado regularmente para copiar /sapmnt en la región de recuperación ante desastres. Para más información acerca de la creación, copia y el proceso de conmutación por error de prueba de este sencillo método de replicación, descargue [SAP NetWeaver: Building a Hyper-V and Microsoft Azure–based Disaster Recovery Solution](https://download.microsoft.com/download/9/5/6/956FEDC3-702D-4EFB-A7D3-2DB7505566B6/SAP%20NetWeaver%20-%20Building%20an%20Azure%20based%20Disaster%20Recovery%20Solution%20V1_5%20.docx) (SAP NetWeaver: creación de una solución de recuperación ante desastres basada en Hyper-V y Microsoft Azure) y consulte "4.3. Capa de SAP SPOF (ASCS)."
 
 - **Nivel de base de datos**. La recuperación ante desastres se implementa mejor con la tecnología de replicación integrada propia de la base de datos. Por ejemplo, en el caso de SQL Server, se recomienda usar Grupos de disponibilidad AlwaysOn para establecer una réplica en una región remota, lo que replica las transacciones de forma asincrónica con la conmutación por error manual. La replicación asincrónica que el rendimiento de las cargas de trabajo interactivas del sitio principal resulte afectado. La conmutación por error manual ofrece la oportunidad de que una persona evalúe el impacto de recuperación ante desastres y decida si está justificada la operación desde el sitio de recuperación ante desastres.
 
@@ -159,7 +163,7 @@ Para proporcionar supervisión basada en SAP de los recursos y del rendimiento d
 
 ## <a name="security-considerations"></a>Consideraciones sobre la seguridad
 
-SAP tiene su propio motor de administración de usuarios (UME) para controlar el acceso basado en rol y la autorización en la aplicación de SAP. Para más información, consulte [SAP NetWeaver Application Server for ABAP Security Guide](https://help.sap.com/doc/7b932ef4728810148a4b1a83b0e91070/1610 001/en-US/frameset.htm?4dde53b3e9142e51e10000000a42189c.html) (Guía de seguridad de SAP NetWeaver Application Server para ABAP) y [SAP NetWeaver Application Server Java Security Guide](https://help.sap.com/doc/saphelp_snc_uiaddon_10/1.0/en-US/57/d8bfcf38f66f48b95ce1f52b3f5184/frameset.htm) (Guía de seguridad de SAP NetWeaver Application Server Java).
+SAP tiene su propio motor de administración de usuarios (UME) para controlar el acceso basado en rol y la autorización en la aplicación de SAP. Para más información, consulte [SAP NetWeaver Application Server for ABAP Security Guide](https://help.sap.com/viewer/864321b9b3dd487d94c70f6a007b0397/7.4.19) (Guía de seguridad de SAP NetWeaver Application Server para ABAP) y [SAP NetWeaver Application Server Java Security Guide](https://help.sap.com/doc/saphelp_snc_uiaddon_10/1.0/en-US/57/d8bfcf38f66f48b95ce1f52b3f5184/frameset.htm) (Guía de seguridad de SAP NetWeaver Application Server Java).
 
 Para aumentar la seguridad de la red, considere la posibilidad de implementar un [red perimetral](../dmz/secure-vnet-hybrid.md), que utiliza una aplicación virtual de red para crear un firewall delante de la subred para Web Dispatcher.
 

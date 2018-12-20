@@ -3,12 +3,13 @@ title: Motor de búsqueda inteligente de productos para comercio electrónico
 description: Proporcione una experiencia de búsqueda de alcance mundial en una aplicación de comercio electrónico.
 author: jelledruyts
 ms.date: 09/14/2018
-ms.openlocfilehash: a57477c26665b4560671550f6fdd81c2d9505e71
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 5eabdb94b9345e73b21526681e0dbd6ae859d7be
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610675"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004892"
 ---
 # <a name="intelligent-product-search-engine-for-e-commerce"></a>Motor de búsqueda inteligente de productos para comercio electrónico
 
@@ -98,9 +99,9 @@ Para explorar el costo de ejecutar este escenario, todos los servicios que se me
 
 Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tráfico que se espera obtener:
 
-* [Pequeño][small-pricing]: en este perfil, usamos una sola aplicación web `Standard S1` para hospedar el sitio web, el nivel gratis del servicio de Azure Bot, un único servicio `Basic` de Azure Search y una instancia `Standard S2` de SQL Database.
-* [Medio][medium-pricing]: en este caso estamos ampliando la aplicación web a dos instancias del nivel `Standard S3`, actualizando Search Service a un nivel `Standard S1` y usando una instancia `Standard S6` de SQL Database.
-* [Grande][large-pricing]: en el perfil más grande, usamos cuatro instancias de una aplicación web `Premium P2V2`, actualizamos el servicio de Azure Bot al nivel `Standard S1` (con 1.000.000 de mensajes en canales Premium), usamos 2 unidades del servicio `Standard S3` de Azure Search y una instancia `Premium P6` de SQL Database.
+* [Pequeño][small-pricing]: En este perfil, usamos una sola aplicación web `Standard S1` para hospedar el sitio web, el nivel gratis de Azure Bot Service, un único servicio `Basic` de Azure Search y una instancia `Standard S2` de SQL Database.
+* [Mediano][medium-pricing]: En este caso escalamos la aplicación web a dos instancias del nivel `Standard S3`, actualizando Search Service a un nivel `Standard S1` y con una instancia `Standard S6` de SQL Database.
+* [Grande][large-pricing]: En el perfil más grande, usamos cuatro instancias de una aplicación web `Premium P2V2`, actualizamos Azure Bot Service al nivel `Standard S1` (con 1.000.000 de mensajes en canales Premium), usamos 2 unidades del servicio `Standard S3` de Azure Search y una instancia `Premium P6` de SQL Database.
 
 ## <a name="related-resources"></a>Recursos relacionados
 

@@ -1,40 +1,41 @@
 ---
-title: Protección de aplicaciones web de Windows para sectores regulados
+title: Compilación de aplicaciones web seguras con máquinas virtuales Windows en Azure
 description: Compile una aplicación web segura, de varios niveles, con Windows Server en Azure que use conjuntos de escalado, Application Gateway y equilibradores de carga.
 author: iainfoulds
-ms.date: 07/11/2018
-ms.openlocfilehash: c7137988bd9b5e26718b4fe0955a3dca3dc638b8
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.date: 12/06/2018
+ms.custom: seodec18
+ms.openlocfilehash: 4e4d2117fbc46eda46f7ef276a71739e3a79270e
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610726"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307068"
 ---
-# <a name="secure-windows-web-application-for-regulated-industries"></a>Protección de aplicaciones web de Windows para sectores regulados
+# <a name="building-secure-web-applications-with-windows-virtual-machines-on-azure"></a>Compilación de aplicaciones web seguras con máquinas virtuales Windows en Azure
 
-Este escenario de ejemplo es aplicable a sectores regulados que necesitan proteger las aplicaciones de niveles múltiples. En este escenario, una aplicación front-end de ASP.NET se conecta de forma segura a un clúster back-end protegido de Microsoft SQL Server.
+Este escenario proporciona una guía de arquitectura y diseño para ejecutar aplicaciones web seguras y de niveles múltiples en Microsoft Azure. En este ejemplo, una aplicación de ASP.NET se conecta de forma segura a un clúster back-end protegido de Microsoft SQL Server mediante máquinas virtuales.
 
-Entre los escenarios de aplicación se incluyen aplicaciones para quirófanos, citas de pacientes y conservación de historiales o renovación y pedido de recetas. Tradicionalmente, las organizaciones usaban aplicaciones y servicios locales heredados para estos escenarios. Con una forma segura y escalable de implementar estas aplicaciones de Windows Server en Azure, las organizaciones pueden modernizar sus implementaciones y reducir los costos operativos locales y la sobrecarga de administración.
+Tradicionalmente, las organizaciones usaban aplicaciones y servicios locales heredados para proporcionar una infraestructura segura. Al implementar estas aplicaciones de Windows Server de forma segura en Azure, las organizaciones pueden modernizar sus implementaciones y reducir los costos operativos locales y la sobrecarga de administración.
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Otros casos de uso pertinentes incluyen:
+Algunos ejemplos de dónde se puede aplicar este escenario:
 
 * Modernización de implementaciones de aplicaciones en un entorno seguro en la nube.
-* Reducción de la administración de aplicaciones y servicios locales heredados.
+* Reducción de la sobrecarga de administración de las aplicaciones y servicios locales heredados.
 * Mejora de la asistencia sanitaria al paciente y experimentación con nuevas plataformas de aplicaciones.
 
 ## <a name="architecture"></a>Arquitectura
 
 ![Introducción a la arquitectura de los componentes de Azure implicados en aplicaciones de Windows Server de varios niveles para sectores regulados][architecture]
 
-Este escenario incluye una aplicación de varios niveles para sectores regulados que usa ASP.NET y Microsoft SQL Server. Los datos fluyen por el escenario de la siguiente manera:
+Este escenario muestra una aplicación web front-end conectada a una base de datos back-end, y ambas se ejecutan en Windows Server 2016. Los datos fluyen por el escenario de la siguiente manera:
 
-1. Los usuarios acceden a la aplicación front-end de ASP.NET para sectores regulados a través de una instancia de Azure Application Gateway.
+1. Los usuarios acceden a la aplicación front-end de ASP.NET mediante una instancia de Azure Application Gateway.
 2. Application Gateway distribuye el tráfico a las instancias de máquinas virtuales de un conjunto de escalado de máquinas virtuales de Azure.
-3. La aplicación ASP.NET se conecta al clúster de Microsoft SQL Server en un nivel de back-end a través de un equilibrador de carga de Azure. Estas instancias de back-end de SQL Server están en una red virtual de Azure independiente, protegidas mediante reglas de grupo de seguridad de red que limitan el flujo de tráfico.
+3. La aplicación se conecta al clúster de Microsoft SQL Server en un nivel de back-end mediante un equilibrador de carga de Azure. Estas instancias de back-end de SQL Server están en una red virtual de Azure independiente, protegidas mediante reglas de grupo de seguridad de red que limitan el flujo de tráfico.
 4. El equilibrador de carga distribuye el tráfico de SQL Server en instancias de máquinas virtuales de otro conjunto de escalado de máquinas virtuales.
-5. Azure Blob Storage actúa como un testigo en la nube para el clúster de SQL Server en el nivel de back-end. La conexión desde dentro de la red virtual se habilita con un punto de conexión de servicio de red virtual para Azure Storage.
+5. Azure Blob Storage actúa como un [testigo en la nube][cloud-witness] para el clúster de SQL Server en el nivel de back-end. La conexión desde dentro de la red virtual se habilita con un punto de conexión de servicio de red virtual para Azure Storage.
 
 ### <a name="components"></a>Componentes
 
@@ -47,7 +48,7 @@ Este escenario incluye una aplicación de varios niveles para sectores regulados
 
 ### <a name="alternatives"></a>Alternativas
 
-* *nix, Windows se puede reemplazar fácilmente por otros sistemas operativos ya que nada en la infraestructura depende del sistema operativo.
+* Linux y Windows pueden utilizarse de forma intercambiable, ya que la infraestructura no depende del sistema operativo.
 
 * [SQL Server para Linux][sql-linux] puede reemplazar el almacén de datos de back-end.
 
@@ -61,7 +62,7 @@ Las instancias de máquinas virtuales en este escenario se implementan en zonas 
 
 El nivel de base de datos se puede configurar para usar grupos de disponibilidad Always On. Con esta configuración de SQL Server, se configura una base de datos principal dentro de un clúster con un máximo de ocho bases de datos secundarias. Si se produce un problema con la base de datos principal, el clúster conmuta por error a una de las bases de datos secundarias, lo cual permite que la aplicación siga estando disponible. Para más información, consulte [Información general de los grupos de disponibilidad AlwaysOn (SQL Server)][sqlalwayson-docs].
 
-Para ver otros temas de disponibilidad, consulte la [lista de comprobación de disponibilidad][availability] que encontrará en Azure Architecture Center.
+Para ver más guías sobre disponibilidad, consulte la [lista de comprobación de disponibilidad][availability] que encontrará en Centro de arquitectura de Azure.
 
 ### <a name="scalability"></a>Escalabilidad
 
@@ -112,9 +113,9 @@ Hemos incluido tres perfiles de costos de ejemplo basados en el número de insta
 
 ## <a name="related-resources"></a>Recursos relacionados
 
-Este escenario usa un conjunto de escalado de máquinas virtuales de back-end que ejecuta un clúster de Microsoft SQL Server. También se puede usar Cosmos DB como un nivel de base de datos escalable y seguro para los datos de aplicación. Un [punto de conexión de servicio de red virtual de Azure][vnetendpoint-docs] le permite proteger los recursos de los servicios de Azure fundamentales y los limita solo a sus redes virtuales. En este escenario, los puntos de conexión de red virtual le permiten proteger el tráfico entre la capa de aplicación de front-end y Cosmos DB. Para más información, consulte la página [Introducción a Azure Cosmos DB][docs-cosmos-db](/azure/cosmos-db/introduction).
+Este escenario usa un conjunto de escalado de máquinas virtuales de back-end que ejecuta un clúster de Microsoft SQL Server. También se puede usar Cosmos DB como un nivel de base de datos escalable y seguro para los datos de aplicación. Un [punto de conexión de servicio de red virtual de Azure][vnetendpoint-docs] le permite proteger los recursos de los servicios de Azure fundamentales y los limita solo a sus redes virtuales. En este escenario, los puntos de conexión de red virtual le permiten proteger el tráfico entre la capa de aplicación de front-end y Cosmos DB. Para más información, consulte [Introducción a Azure Cosmos DB](/azure/cosmos-db/introduction).
 
-También puede ver una completa [arquitectura de referencia para una aplicación de n niveles genérica con SQL Server][ntiersql-ra].
+Para obtener guías de implementación más detalladas, revise la [arquitectura de referencia para aplicaciones de N niveles mediante SQL Server][ntiersql-ra].
 
 <!-- links -->
 [appgateway-docs]: /azure/application-gateway/overview
@@ -137,7 +138,7 @@ También puede ver una completa [arquitectura de referencia para una aplicación
 [pci-dss]: /azure/security/blueprints/pcidss-iaaswa-overview
 [dmz]: /azure/virtual-network/virtual-networks-dmz-nsg
 [sql-linux]: /sql/linux/sql-server-linux-overview?view=sql-server-linux-2017
-
+[cloud-witness]: /windows-server/failover-clustering/deploy-cloud-witness
 [small-pricing]: https://azure.com/e/711bbfcbbc884ef8aa91cdf0f2caff72
 [medium-pricing]: https://azure.com/e/b622d82d79b34b8398c4bce35477856f
 [large-pricing]: https://azure.com/e/1d99d8b92f90496787abecffa1473a93

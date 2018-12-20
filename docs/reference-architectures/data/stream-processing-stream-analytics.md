@@ -1,24 +1,26 @@
 ---
 title: Procesamiento de flujos de datos con Azure Stream Analytics
-description: Creación de una canalización de procesamiento de flujos de datos de un extremo a otro en Azure
+titleSuffix: Azure Reference Architectures
+description: Cree una canalización de procesamiento de flujos de datos de un extremo a otro en Azure.
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: e16547ccdcb81007e154e341f09be555ac82d1a1
-ms.sourcegitcommit: 02ecd259a6e780d529c853bc1db320f4fcf919da
+ms.custom: seodec18
+ms.openlocfilehash: 44eaf51f2180be250defbeb0d141ab24f7f17d4b
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/07/2018
-ms.locfileid: "51263769"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119938"
 ---
-# <a name="stream-processing-with-azure-stream-analytics"></a>Procesamiento de flujos de datos con Azure Stream Analytics
+# <a name="create-a-stream-processing-pipeline-with-azure-stream-analytics"></a>Creación de una canalización de procesamiento de flujos de datos con Azure Stream Analytics
 
-Esta arquitectura de referencia muestra una canalización de procesamiento de flujos de datos de un extremo a otro. La canalización ingiere los datos de dos orígenes, correlaciona los registros de los dos flujos de datos y calcula una media acumulada en un intervalo de tiempo. Los resultados se almacenan para su posterior análisis. 
+Esta arquitectura de referencia muestra una canalización de [procesamiento de flujos de datos](/azure/architecture/data-guide/big-data/real-time-processing) de un extremo a otro. La canalización ingiere los datos de dos orígenes, correlaciona los registros de los dos flujos de datos y calcula una media acumulada en un intervalo de tiempo. Los resultados se almacenan para su posterior análisis.
 
-Hay disponible una implementación de referencia de esta arquitectura en [GitHub][github]. 
+Hay disponible una implementación de referencia de esta arquitectura en [GitHub][github].
 
-![](./images/stream-processing-asa/stream-processing-asa.png)
+![Arquitectura de referencia para la creación de una canalización de procesamiento de flujos de datos con Azure Stream Analytics](./images/stream-processing-asa/stream-processing-asa.png)
 
-**Escenario**: una empresa de taxi recopila los datos acerca de cada carrera de taxi. En este escenario, se supone que hay dos dispositivos independientes que envían datos. El taxi tienen un medidor que envía la información acerca de cada carrera: duración, distancia y ubicaciones de recogida y destino. Un dispositivo independiente acepta los pagos de clientes y envía los datos sobre las tarifas. La empresa de taxi desea calcular el promedio de propinas por milla conducida, en tiempo real, con el fin de identificar las tendencias.
+**Escenario**: Una empresa de taxi recopila los datos acerca de cada carrera de taxi. En este escenario, se supone que hay dos dispositivos independientes que envían datos. El taxi tienen un medidor que envía la información acerca de cada carrera: duración, distancia y ubicaciones de recogida y destino. Un dispositivo independiente acepta los pagos de clientes y envía los datos sobre las tarifas. La empresa de taxi desea calcular el promedio de propinas por milla conducida, en tiempo real, con el fin de identificar las tendencias.
 
 ## <a name="architecture"></a>Arquitectura
 
@@ -34,21 +36,25 @@ La arquitectura consta de los siguientes componentes:
 
 **Microsoft Power BI**. Power BI es un conjunto de herramientas de análisis de negocios que sirve para analizar datos con el fin de obtener perspectivas empresariales. En esta arquitectura, carga los datos desde Cosmos DB. Esto permite a los usuarios analizar el conjunto completo de los datos históricos que se han recopilado. También podría transmitir los resultados directamente desde Stream Analytics a Power BI para obtener una vista en tiempo real de los datos. Para más información, consulte [Streaming en tiempo real en Power BI](/power-bi/service-real-time-streaming).
 
-**Azure Monitor**. [Azure Monitor](/azure/monitoring-and-diagnostics/) recopila métricas de rendimiento sobre los servicios de Azure implementados en la solución. Puede visualizarlos en un panel para obtener información acerca del estado de la solución. 
+**Azure Monitor**. [Azure Monitor](/azure/monitoring-and-diagnostics/) recopila métricas de rendimiento sobre los servicios de Azure implementados en la solución. Puede visualizarlos en un panel para obtener información acerca del estado de la solución.
 
 ## <a name="data-ingestion"></a>Ingesta de datos
 
-Para simular un origen de datos, esta arquitectura de referencia usa el conjunto de datos [New York City Taxi Data](https://uofi.app.box.com/v/NYCtaxidata/folder/2332218797)<sup>[[1]](#note1)</sup>. Este conjunto de datos contiene datos acerca de carreras de taxi en la ciudad de Nueva York durante un período de 4 años (de 2010 a 2013). Contiene dos tipos de registros: datos de carreras y datos de tarifas. Los datos de carreras incluyen la duración del viaje, la distancia de viaje y la ubicación de recogida y destino. Los datos de tarifas incluyen las tarifas, los impuestos y las propinas. Los campos comunes en ambos tipos de registro son la placa y el número de licencia, y el identificador del proveedor. Juntos, estos tres campos identifican un taxi además del conductor. Los datos se almacenan en formato CSV. 
+<!-- markdownlint-disable MD033 MD034 -->
 
-[1] <span id="note1">Donovan, Brian; Work, Dan (2016): New York City Taxi Trip Data (2010-2013). Universidad de Illinois en Urbana-Champaign. https://doi.org/10.13012/J8PN93H8
+Para simular un origen de datos, esta arquitectura de referencia usa el conjunto de datos [New York City Taxi Data](https://uofi.app.box.com/v/NYCtaxidata/folder/2332218797)<sup>[[1]](#note1)</sup>. Este conjunto de datos contiene datos acerca de carreras de taxi en la ciudad de Nueva York durante un período de 4 años (de 2010 a 2013). Contiene dos tipos de registros: datos de carreras y datos de tarifas. Los datos de carreras incluyen la duración del viaje, la distancia de viaje y la ubicación de recogida y destino. Los datos de tarifas incluyen las tarifas, los impuestos y las propinas. Los campos comunes en ambos tipos de registro son la placa y el número de licencia, y el identificador del proveedor. Juntos, estos tres campos identifican un taxi además del conductor. Los datos se almacenan en formato CSV.
 
-El generador de datos es una aplicación de .NET Core que lee los registros y los envía a Azure Event Hubs. El generador envía los datos de carreras en formato JSON y los datos de tarifas en formato CSV. 
+[1] <span id="note1">Donovan, Brian; Trabajo, Dan (2016): New York City Taxi Trip Data (2010-2013). Universidad de Illinois en Urbana-Champaign. https://doi.org/10.13012/J8PN93H8
 
-Event Hubs usa [particiones](/azure/event-hubs/event-hubs-features#partitions) para segmentar los datos. Las particiones permiten a los consumidores leer cada partición en paralelo. Cuando se envían datos a Event Hubs, puede especificar explícitamente la clave de partición. En caso contrario, los registros se asignan a las particiones en modo round-robin. 
+<!-- markdownlint-enable MD033 MD034 -->
+
+El generador de datos es una aplicación de .NET Core que lee los registros y los envía a Azure Event Hubs. El generador envía los datos de carreras en formato JSON y los datos de tarifas en formato CSV.
+
+Event Hubs usa [particiones](/azure/event-hubs/event-hubs-features#partitions) para segmentar los datos. Las particiones permiten a los consumidores leer cada partición en paralelo. Cuando se envían datos a Event Hubs, puede especificar explícitamente la clave de partición. En caso contrario, los registros se asignan a las particiones en modo round-robin.
 
 En este escenario en particular, los datos de carreras y los datos de tarifas deben terminar con el mismo identificador de partición para un taxi determinado. Esto permite a Stream Analytics aplicar un cierto paralelismo cuando se establece una correlación entre los dos flujos. Un registro en la partición *n* de los datos de carreras coincidirá con un registro en la partición de datos *n* de los datos de tarifas.
 
-![](./images/stream-processing-asa/stream-processing-eh.png)
+![Diagrama de procesamiento de flujos de datos con Azure Stream Analytics y Event Hubs](./images/stream-processing-asa/stream-processing-eh.png)
 
 En el generador de datos, el modelo de datos común para ambos tipos de registro tiene una propiedad `PartitionKey` que es la concatenación de `Medallion`, `HackLicense` y `VendorId`.
 
@@ -139,7 +145,7 @@ Step3 AS (
 
 Esta consulta combina los registros en un conjunto de campos que identifican los registros coincidentes de forma única (Medallion, HackLicense, VendorId y PickupTime). La instrucción `JOIN` también incluye el identificador de partición. Como ya se mencionó, esto aprovecha el hecho de que los registros coincidentes siempre tienen el mismo identificador de partición en este escenario.
 
-En Stream Analytics, las combinaciones son *temporales*, lo que significa que los registros se combinan dentro de un intervalo de tiempo determinado. De caso contrario, el trabajo podría tener que esperar indefinidamente a una coincidencia. La función [DATEDIFF](https://msdn.microsoft.com/azure/stream-analytics/reference/join-azure-stream-analytics) especifica la separación máxima en el tiempo de dos registros coincidentes para considerarlo una coincidencia. 
+En Stream Analytics, las combinaciones son *temporales*, lo que significa que los registros se combinan dentro de un intervalo de tiempo determinado. De caso contrario, el trabajo podría tener que esperar indefinidamente a una coincidencia. La función [DATEDIFF](https://msdn.microsoft.com/azure/stream-analytics/reference/join-azure-stream-analytics) especifica la separación máxima en el tiempo de dos registros coincidentes para considerarlo una coincidencia.
 
 El último paso del trabajo calcula la media de propinas por milla, agrupada por una ventana de salto de 5 minutos.
 
@@ -159,29 +165,29 @@ En la arquitectura que se muestra a continuación, solo se guardan los resultado
 
 ### <a name="event-hubs"></a>Event Hubs
 
-La capacidad de procesamiento de Event Hubs se mide en [unidades de procesamiento](/azure/event-hubs/event-hubs-features#throughput-units). Para escalar un centro de eventos automáticamente, puede habilitar el [inflado automático](/azure/event-hubs/event-hubs-auto-inflate), que permite escalar las unidades de procesamiento en función del tráfico, hasta un máximo configurado. 
+La capacidad de procesamiento de Event Hubs se mide en [unidades de procesamiento](/azure/event-hubs/event-hubs-features#throughput-units). Para escalar un centro de eventos automáticamente, puede habilitar el [inflado automático](/azure/event-hubs/event-hubs-auto-inflate), que permite escalar las unidades de procesamiento en función del tráfico, hasta un máximo configurado.
 
 ### <a name="stream-analytics"></a>Stream Analytics
 
 Para Stream Analytics, los recursos de proceso que se asignan a un trabajo se miden en unidades de streaming. Los trabajos de Stream Analytics escalan mejor si el trabajo se puede ejecutar en paralelo. De este modo, Stream Analytics puede distribuir el trabajo entre varios nodos de proceso.
 
-Para los datos de entrada de Event Hubs, utilice la palabra clave `PARTITION BY` para dividir el trabajo de Stream Analytics en particiones. Los datos se dividirán en subconjuntos en función de las particiones de Event Hubs. 
+Para los datos de entrada de Event Hubs, utilice la palabra clave `PARTITION BY` para dividir el trabajo de Stream Analytics en particiones. Los datos se dividirán en subconjuntos en función de las particiones de Event Hubs.
 
 Las funciones de intervalos de tiempo y las combinaciones temporales requieren unidades de streaming adicionales. Cuando sea posible, use `PARTITION BY` para que cada partición se procese por separado. Para más información, consulte [Descripción y ajuste de las unidades de streaming](/azure/stream-analytics/stream-analytics-streaming-unit-consumption#windowed-aggregates).
 
 Si no es posible ejecutar todo el trabajo de Stream Analytics en paralelo, intente dividirlo en varios pasos, empezando con uno o varios pasos en paralelo. De este modo, los primeros pasos que pueden ejecutar en paralelo. Por ejemplo, en esta arquitectura de referencia:
 
-- Los pasos 1 y 2 son instrucciones `SELECT` simples que seleccionan registros dentro de una sola partición. 
+- Los pasos 1 y 2 son instrucciones `SELECT` simples que seleccionan registros dentro de una sola partición.
 - El paso 3 realiza una combinación con particiones en los dos flujos de entrada. Este paso aprovecha del hecho de que los registros que coinciden comparten la misma clave de partición y, por lo tanto, garantiza que tendrán el mismo identificador de partición en cada flujo de entrada.
 - El paso 4 realiza la agregación en todas las particiones. Este paso no se puede ejecutar en paralelo.
 
 Use el [diagrama de trabajo](/azure/stream-analytics/stream-analytics-job-diagram-with-metrics) de Stream Analytics para ver cuántas particiones se asignan a cada paso del trabajo. El siguiente diagrama muestra el diagrama de trabajo de esta arquitectura de referencia:
 
-![](./images/stream-processing-asa/job-diagram.png)
+![Diagrama de trabajo](./images/stream-processing-asa/job-diagram.png)
 
 ### <a name="cosmos-db"></a>Cosmos DB
 
-La capacidad de rendimiento de Cosmos DB se mide en [unidades de solicitud](/azure/cosmos-db/request-units) (RU). Para escalar un contenedor de Cosmos DB más allá de 10 000 RU, debe especificar una [clave de partición](/azure/cosmos-db/partition-data) al crear el contenedor, e incluir la clave de partición en todos los documentos. 
+La capacidad de rendimiento de Cosmos DB se mide en [unidades de solicitud](/azure/cosmos-db/request-units) (RU). Para escalar un contenedor de Cosmos DB más allá de 10 000 RU, debe especificar una [clave de partición](/azure/cosmos-db/partition-data) al crear el contenedor, e incluir la clave de partición en todos los documentos.
 
 En esta arquitectura de referencia, se crean nuevos documentos solo una vez por minuto (el intervalo de la ventana salto), por lo que los requisitos de procesamiento son bastante bajos. Por ese motivo, no es necesario asignar una clave de partición en este escenario.
 
@@ -199,13 +205,13 @@ La arquitectura de referencia incluye un panel personalizado, que se implementa 
 
 La siguiente imagen muestra el panel después de que el trabajo de Stream Analytics se ejecutara durante una hora aproximadamente.
 
-![](./images/stream-processing-asa/asa-dashboard.png)
+![Captura de pantalla del panel de carreras de taxi](./images/stream-processing-asa/asa-dashboard.png)
 
-El panel de la parte inferior izquierda muestra que el consumo de unidades de streaming para el trabajo de Stream Analytics aumenta durante los primeros 15 minutos y después se nivela. Este es un patrón típico mientras el trabajo alcanza un estado estable. 
+El panel de la parte inferior izquierda muestra que el consumo de unidades de streaming para el trabajo de Stream Analytics aumenta durante los primeros 15 minutos y después se nivela. Este es un patrón típico mientras el trabajo alcanza un estado estable.
 
-Tenga en cuenta que Event Hubs limita las solicitudes, tal y como se muestra en el panel superior derecho. Un solicitud limitada de vez en cuanto no es un problema, porque el SDK de cliente de Event Hubs realiza reintentos automáticamente cuando recibe un error de limitación. Sin embargo, si se producen errores de limitación sistemáticamente, significa que el centro de eventos necesita más unidades de procesamiento. El gráfico siguiente muestra una ejecución de prueba con la característica de inflado automático de Event Hubs, que escala horizontalmente las unidades de procesamiento automáticamente cuando es necesario. 
+Tenga en cuenta que Event Hubs limita las solicitudes, tal y como se muestra en el panel superior derecho. Un solicitud limitada de vez en cuanto no es un problema, porque el SDK de cliente de Event Hubs realiza reintentos automáticamente cuando recibe un error de limitación. Sin embargo, si se producen errores de limitación sistemáticamente, significa que el centro de eventos necesita más unidades de procesamiento. El gráfico siguiente muestra una ejecución de prueba con la característica de inflado automático de Event Hubs, que escala horizontalmente las unidades de procesamiento automáticamente cuando es necesario.
 
-![](./images/stream-processing-asa/stream-processing-eh-autoscale.png)
+![Captura de pantalla del escalado automático de Event Hubs](./images/stream-processing-asa/stream-processing-eh-autoscale.png)
 
 El inflado automático se habilitó en la marca de 06:35 aproximadamente. Puede ver la caída de solicitudes limitadas, porque Event Hubs escaló automáticamente a 3 unidades de procesamiento.
 
@@ -213,7 +219,6 @@ Curiosamente, esto tuvo el efecto secundario de aumentar el uso de las unidades 
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-Para la implementación y ejecución de la implementación de referencia, siga los pasos del [Léame de GitHub][github]. 
-
+Para la implementación y ejecución de la implementación de referencia, siga los pasos del [Léame de GitHub][github].
 
 [github]: https://github.com/mspnp/reference-architectures/tree/master/data/streaming_asa

@@ -1,15 +1,16 @@
 ---
 title: Lista de comprobación de resistencia
+titleSuffix: Azure Design Review Framework
 description: Lista de comprobación que ofrece una guía para las preocupaciones de resistencia durante el diseño.
 author: petertaylor9999
-ms.date: 01/10/2018
+ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: ce538a0b234a5b120415980e983096f567f9cf86
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 1201e2045c6a5f7be9c8286cd192559a8d66d169
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305951"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307459"
 ---
 # <a name="resiliency-checklist"></a>Lista de comprobación de resistencia
 
@@ -23,50 +24,52 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Realice un análisis del modo de error para la aplicación.** El análisis del modo de error es un proceso para crear resistencia en una aplicación al principio de la etapa de diseño. Para más información, consulte [Failure mode analysis][fma] (Análisis del modo de error). Los objetivos de un análisis del modo de error incluyen:  
 
-* Identificar los tipos de errores que podría experimentar una aplicación.
-* Capturar los posibles efectos y el impacto de cada tipo de error en la aplicación.
-* Identificar las estrategias de recuperación.
+- Identificar los tipos de errores que podría experimentar una aplicación.
+- Capturar los posibles efectos y el impacto de cada tipo de error en la aplicación.
+- Identificar las estrategias de recuperación.
   
-
-**Implemente varias instancias de servicios.** Si la aplicación depende de una única instancia de un servicio, crea un único punto de error. El aprovisionamiento de varias instancias mejora tanto la resistencia como la escalabilidad. Para [Azure App Service](/azure/app-service/app-service-value-prop-what-is/), seleccione un [Plan de App Service](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview/) que ofrezca varias instancias. Para Azure Cloud Services, configure cada uno de los roles para utilizar [varias instancias](/azure/cloud-services/cloud-services-choose-me/#scaling-and-management). Para [Azure Virtual Machines](/azure/virtual-machines/virtual-machines-windows-about/?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json), asegúrese de que la arquitectura de máquina virtual incluya más de una máquina virtual y que cada una de ellas se incluya en un [conjunto de disponibilidad][availability-sets].   
+**Implemente varias instancias de servicios.** Si la aplicación depende de una única instancia de un servicio, crea un único punto de error. El aprovisionamiento de varias instancias mejora tanto la resistencia como la escalabilidad. Para [Azure App Service](/azure/app-service/app-service-value-prop-what-is/), seleccione un [Plan de App Service](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview/) que ofrezca varias instancias. Para Azure Cloud Services, configure cada uno de los roles para utilizar [varias instancias](/azure/cloud-services/cloud-services-choose-me/#scaling-and-management). Para [Azure Virtual Machines](/azure/virtual-machines/virtual-machines-windows-about/?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json), asegúrese de que la arquitectura de máquina virtual incluya más de una máquina virtual y que cada una de ellas se incluya en un [conjunto de disponibilidad][availability-sets].
 
 **Use el escalado automático para responder a los aumentos de carga.** Si su aplicación no está configurada para escalar horizontalmente de manera automática a medida que aumenta la carga, es posible que se produzca un error en los servicios de la aplicación si se saturan con las solicitudes de los usuarios. Para más información, consulte lo siguiente:
 
-* General: [Lista de comprobación de escalabilidad](./scalability.md)
-* Azure App Service: [Escalación del recuento de instancias de forma manual o automática][app-service-autoscale]
-* Cloud Services: [Procedimiento para configurar el escalado automático para un servicio en la nube en el Portal][cloud-service-autoscale]
-* Virtual Machines: [Introducción a los registros de escalado automático con conjuntos de escalado de máquinas virtuales de Azure][vmss-autoscale]
+- General: [Lista de comprobación de escalabilidad](./scalability.md)
+- Azure App Service: [Escalado del recuento de instancias de forma manual o automática][app-service-autoscale]
+- Cloud Services: [Escalado automático de un servicio en la nube][cloud-service-autoscale]
+- Máquinas virtuales: [Escalado automático y conjuntos de escalado de máquinas virtuales][vmss-autoscale]
 
 **Use el equilibrio de carga para distribuir las solicitudes.** El equilibrio de carga distribuye las solicitudes de la aplicación a las instancias de servicio correctas mediante la eliminación de la rotación de las instancias no correctas. Si el servicio utiliza Azure App Service o Azure Cloud Services, ya tiene la carga equilibrada. Sin embargo, si la aplicación usa Azure Virtual Machines, debe aprovisionar un equilibrador de carga. Para más información, consulte la introducción a [Azure Load Balancer](/azure/load-balancer/load-balancer-overview/).
 
 **Configure instancias de Azure Application Gateway para usar varias instancias.** Dependiendo de los requisitos de la aplicación, una instancia de [Azure Application Gateway](/azure/application-gateway/application-gateway-introduction/) puede ser más adecuada para distribuir solicitudes a los servicios de la aplicación. Sin embargo, las instancias individuales del servicio Application Gateway no están garantizadas por un Acuerdo de Nivel de Servicio, por lo que es posible que la aplicación pueda producir un error si la instancia Application Gateway también produce un error. Proporcione más de una instancia de Application Gateway mediana o más grande para garantizar la disponibilidad del servicio bajo los términos del [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/application-gateway/).
 
-**Use los conjuntos de disponibilidad para cada capa de aplicación.** Al colocar las instancias en un [conjunto de disponibilidad][availability-sets], se proporciona un mayor [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/virtual-machines/). 
+**Use los conjuntos de disponibilidad para cada capa de aplicación.** Al colocar las instancias en un [conjunto de disponibilidad][availability-sets], se proporciona un mayor [Acuerdo de Nivel de Servicio](https://azure.microsoft.com/support/legal/sla/virtual-machines/).
 
 **Replicación de máquinas virtuales con Azure Site Recovery** Al replicar máquinas virtuales de Azure con [Site Recovery][site-recovery], todos los discos de máquina virtual se replican continuamente de forma asincrónica en la región de destino. Los puntos de recuperación se crean cada pocos minutos. Esto le ofrece un objetivo de punto de recuperación (RPO) en el orden de minutos.
 
-**Considere la posibilidad de implementar la aplicación en varias regiones.** Si su aplicación se implementa en una sola región, en el caso excepcional de que toda la región no esté disponible, la aplicación tampoco estará disponible. Esto puede ser inaceptable bajo los términos del Acuerdo de Nivel de Servicio de la aplicación. Si ese fuera el caso, considere la posibilidad de implementar la aplicación en varias regiones. Una implementación en varias regiones puede utilizar un modelo activo-activo (que distribuye las solicitudes en varias instancias activas) o un modelo activo-pasivo (que mantiene una instancia "activa" en reserva, en caso de que la instancia principal produzca un error). Le recomendamos que implemente varias instancias de los servicios de la aplicación en pares de regiones. Para más información, consulte [Continuidad empresarial y recuperación ante desastres (BCDR): regiones emparejadas de Azure](/azure/best-practices-availability-paired-regions).
+**Considere la posibilidad de implementar la aplicación en varias regiones.** Si su aplicación se implementa en una sola región, en el caso excepcional de que toda la región no esté disponible, la aplicación tampoco estará disponible. Esto puede ser inaceptable bajo los términos del Acuerdo de Nivel de Servicio de la aplicación. Si ese fuera el caso, considere la posibilidad de implementar la aplicación en varias regiones. Una implementación en varias regiones puede utilizar un modelo activo-activo (que distribuye las solicitudes en varias instancias activas) o un modelo activo-pasivo (que mantiene una instancia "activa" en reserva, en caso de que la instancia principal produzca un error). Le recomendamos que implemente varias instancias de los servicios de la aplicación en pares de regiones. Para más información, consulte [Continuidad empresarial y recuperación ante desastres (BCDR): Regiones emparejadas de Azure](/azure/best-practices-availability-paired-regions).
 
 **Utilice Azure Traffic Manager para enrutar el tráfico de la aplicación a diferentes regiones.**  [Azure Traffic Manager][traffic-manager] realiza el equilibrio de carga a nivel de DNS y enrutará el tráfico a regiones diferentes en función del método de [enrutamiento del tráfico][traffic-manager-routing] que se especifique y del estado de los puntos de conexión de la aplicación. Sin Traffic Manager, el usuario está limitado a una única región para la implementación, lo que limita la escala, aumenta la latencia para algunos usuarios y causa tiempo de inactividad de la aplicación en caso de una interrupción del servicio a nivel regional.
 
 **Configure y pruebe el sondeo de estado para los equilibradores de carga y administradores de tráfico.** Asegúrese de que la lógica de estado compruebe las partes críticas del sistema y responda adecuadamente a los sondeos de estado.
 
-* Los sondeos de estado para [Azure Traffic Manager][traffic-manager] y [Azure Load Balancer][load-balancer] cumplen una función específica. Para Traffic Manager, el sondeo de estado determina si se debe conmutar por error a otra región. Para un equilibrador de carga, determina si se debe quitar una máquina virtual de la rotación.      
-* Para un sondeo de Traffic Manager, el punto de conexión de estado debe comprobar las dependencias críticas que se implementan en la misma región, y cuyo error debería desencadenar una conmutación por error a otra región.  
-* Para un equilibrador de carga, el punto de conexión de estado debe informar del estado de la máquina virtual. No se incluyen otros niveles o servicios externos. De lo contrario, un error que se produzca fuera de la máquina virtual hará que el equilibrador de carga quite la máquina virtual de la rotación.
-* Para obtener una guía sobre la implementación de la supervisión del estado en la aplicación, consulte [Health Endpoint Monitoring Pattern](https://msdn.microsoft.com/library/dn589789.aspx) (Patrón de supervisión de puntos de conexión de estado).
+- Los sondeos de estado para [Azure Traffic Manager][traffic-manager] y [Azure Load Balancer][load-balancer] cumplen una función específica. Para Traffic Manager, el sondeo de estado determina si se debe conmutar por error a otra región. Para un equilibrador de carga, determina si se debe quitar una máquina virtual de la rotación.
+
+- Para un sondeo de Traffic Manager, el punto de conexión de estado debe comprobar las dependencias críticas que se implementan en la misma región, y cuyo error debería desencadenar una conmutación por error a otra región.
+
+- Para un equilibrador de carga, el punto de conexión de estado debe informar del estado de la máquina virtual. No se incluyen otros niveles o servicios externos. De lo contrario, un error que se produzca fuera de la máquina virtual hará que el equilibrador de carga quite la máquina virtual de la rotación.
+
+- Para obtener una guía sobre la implementación de la supervisión del estado en la aplicación, consulte el [patrón de supervisión del punto de conexión de mantenimiento](../patterns/health-endpoint-monitoring.md).
 
 **Supervise los servicios de terceros.** Si la aplicación tiene dependencias en servicios de terceros, identifique dónde y cómo se produce un error en estos servicios de terceros y qué efecto tendrán esos errores en la aplicación. Un servicio de terceros puede no incluir supervisión y diagnóstico, por lo que es importante registrar sus invocaciones y correlacionarlas con el estado de la aplicación y el registro de diagnóstico mediante un identificador único. Para más información sobre las prácticas demostradas para la supervisión y diagnóstico, consulte la [Guía de supervisión y diagnóstico][monitoring-and-diagnostics-guidance].
 
 **Asegúrese de que cualquier servicio de terceros que consuma proporciona un Acuerdo de Nivel de Servicio.** Si la aplicación depende de un servicio de terceros, pero el tercero no ofrece ninguna garantía de disponibilidad en forma de Acuerdo de Nivel de Servicio, tampoco se puede garantizar la disponibilidad de su aplicación. El Acuerdo de Nivel de Servicio es tan bueno como el componente menos disponible de la aplicación.
 
-**Implemente modelos de resistencia para operaciones remotas cuando sea apropiado.** Si la aplicación depende de la comunicación entre servicios remotos, siga los [modelos de diseño](../patterns/category/resiliency.md) para tratar errores transitorios, como el [modelo Reintento][retry-pattern] y el [modelo Disyuntor][circuit-breaker]. 
+**Implemente modelos de resistencia para operaciones remotas cuando sea apropiado.** Si la aplicación depende de la comunicación entre servicios remotos, siga los [patrones de diseño](../patterns/category/resiliency.md) para tratar errores transitorios, como el [patrón de reintento](../patterns/retry.md) y el [patrón de disyuntor](../patterns/circuit-breaker.md).
 
 **Implemente operaciones asincrónicas siempre que sea posible.** Las operaciones sincrónicas pueden monopolizar los recursos y bloquear otras operaciones mientras la persona que llama espera que se complete el proceso. Diseñe cada parte de la aplicación para permitir operaciones asincrónicas, siempre que sea posible. Para más información sobre cómo implementar la programación asincrónica en C#, consulte el artículo sobre [programación asincrónica con async y await][asynchronous-c-sharp].
 
 ## <a name="data-management"></a>Administración de datos
 
-**Comprenda los métodos de replicación para los orígenes de datos de la aplicación.** Los datos de aplicación se almacenarán en orígenes de datos diferentes y tendrán distintos requisitos de disponibilidad. Evalúe los métodos de replicación para cada tipo de almacenamiento de datos en Azure, incluidos la [replicación de Azure Storage](/azure/storage/storage-redundancy/) y la [replicación geográfica activa de SQL Database](/azure/sql-database/sql-database-geo-replication-overview/) para asegurarse de que se cumplen los requisitos de datos de la aplicación. Si replica máquinas virtuales de Azure con [Site Recovery][site-recovery], todos los discos de máquina virtual se replican continuamente de forma asincrónica en la región de destino. Los puntos de recuperación se crean cada pocos minutos. 
+**Comprenda los métodos de replicación para los orígenes de datos de la aplicación.** Los datos de aplicación se almacenarán en orígenes de datos diferentes y tendrán distintos requisitos de disponibilidad. Evalúe los métodos de replicación para cada tipo de almacenamiento de datos en Azure, incluidos la [replicación de Azure Storage](/azure/storage/storage-redundancy/) y la [replicación geográfica activa de SQL Database](/azure/sql-database/sql-database-geo-replication-overview/) para asegurarse de que se cumplen los requisitos de datos de la aplicación. Si replica máquinas virtuales de Azure con [Site Recovery][site-recovery], todos los discos de máquina virtual se replican continuamente de forma asincrónica en la región de destino. Los puntos de recuperación se crean cada pocos minutos.
 
 **Asegúrese de que ninguna cuenta de usuario individual tenga acceso a los datos de producción y de copia de seguridad.** Las copias de seguridad de datos estarán expuestas a riesgos si una sola cuenta de usuario tiene permiso para escribir tanto en los orígenes de producción y como en los de copia de seguridad. Un usuario malintencionado puede eliminar intencionadamente todos los datos, mientras que un usuario normal puede eliminarlos accidentalmente. Diseñe la aplicación para limitar los permisos de cada cuenta de usuario de modo que solo los usuarios que requieren acceso de escritura tengan acceso de escritura y solo sea a producción o a copia de seguridad, pero no a ambas.
 
@@ -77,9 +80,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 **Considere la posibilidad de utilizar un tipo de cuenta de almacenamiento con redundancia geográfica.** Los datos almacenados en una cuenta de Azure Storage siempre se replican de forma local. Sin embargo, hay varias estrategias de replicación para elegir cuando se aprovisiona una cuenta de almacenamiento. Seleccione [Almacenamiento con redundancia geográfica con acceso de lectura (RA-GRS)](/azure/storage/storage-redundancy/#read-access-geo-redundant-storage) para proteger los datos de la aplicación en el raro caso en que una región entera no esté disponible.
 
 > [!NOTE]
-> En el caso de las máquinas virtuales, no confíe en la replicación RA-GRS para restaurar los discos de máquinas virtuales (archivos VHD). En su lugar, utilice [Azure Backup][azure-backup].   
->
->
+> En el caso de las máquinas virtuales, no confíe en la replicación RA-GRS para restaurar los discos de máquinas virtuales (archivos VHD). En su lugar, utilice [Azure Backup][azure-backup].
 
 ## <a name="security"></a>Seguridad
 
@@ -97,15 +98,15 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 ## <a name="deployment"></a>Implementación
 
-**Documente el proceso de lanzamiento de la aplicación.** Sin la documentación detallada del proceso de lanzamiento, el operador puede implementar una mala actualización o configurar de manera incorrecta la configuración de la aplicación. Defina y documente claramente el proceso de lanzamiento y asegúrese de que esté disponible para todo el equipo de operaciones. 
+**Documente el proceso de lanzamiento de la aplicación.** Sin la documentación detallada del proceso de lanzamiento, el operador puede implementar una mala actualización o configurar de manera incorrecta la configuración de la aplicación. Defina y documente claramente el proceso de lanzamiento y asegúrese de que esté disponible para todo el equipo de operaciones.
 
-**Automatice el proceso de implementación de la aplicación.** Si se requiere que el personal de operaciones implemente manualmente la aplicación, un error humano puede causar un error en la implementación. 
+**Automatice el proceso de implementación de la aplicación.** Si se requiere que el personal de operaciones implemente manualmente la aplicación, un error humano puede causar un error en la implementación.
 
 **Diseñe el proceso de lanzamiento para maximizar la disponibilidad de la aplicación.** Si su proceso de lanzamiento requiere que los servicios se desconecten durante la implementación, la aplicación no estará disponible hasta que vuelvan a conectarse. Utilice la técnica de implementación [verde/azul](https://martinfowler.com/bliki/BlueGreenDeployment.html) o de [lanzamiento controlado](https://martinfowler.com/bliki/CanaryRelease.html) para implementar la aplicación en producción. Ambas técnicas implican la implementación del código de lanzamiento junto con el código de producción, para que los usuarios del código de lanzamiento puedan redireccionarse al código de producción en caso de producirse un error.
 
 **Registre y audite las implementaciones de la aplicación.** Si utiliza técnicas de implementación por etapas, como las implementaciones azul/verde o el lanzamiento controlado, habrá más de una versión de su aplicación que se ejecuta en producción. Si se produce un problema, es fundamental determinar qué versión de la aplicación lo está causando. Implemente una estrategia de registro robusta para capturar tanta información específica de la versión como sea posible.
 
-**Tenga un plan de reversión para la implementación.** Es posible que la implementación de la aplicación pueda producir un error y hacer que la aplicación no esté disponible. Diseñe un proceso de reversión para regresar a una última versión buena conocida y minimizar el tiempo de inactividad. 
+**Tenga un plan de reversión para la implementación.** Es posible que la implementación de la aplicación pueda producir un error y hacer que la aplicación no esté disponible. Diseñe un proceso de reversión para regresar a una última versión buena conocida y minimizar el tiempo de inactividad.
 
 ## <a name="operations"></a>Operaciones
 
@@ -121,7 +122,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Asegúrese de que la aplicación no se encuentre con los [límites de suscripción de Azure](/azure/azure-subscription-service-limits/).** Las suscripciones a Azure tienen límites en ciertos tipos de recursos, como el número de grupos de recursos, el número de núcleos y el número de cuentas de almacenamiento.  Si los requisitos de aplicación superan los límites de suscripción de Azure, cree otra suscripción de Azure y aprovisione allí recursos suficientes.
 
-**Asegúrese de que la aplicación no se encuentre con los [límites por servicio](/azure/azure-subscription-service-limits/).** Los servicios individuales de Azure tienen límites de consumo; por ejemplo, límites de almacenamiento, rendimiento, número de conexiones, solicitudes por segundo y otras métricas. La aplicación producirá un error si intenta utilizar recursos más allá de estos límites. Esto provocará una limitación del servicio y un posible tiempo de inactividad a los usuarios afectados. Dependiendo del servicio específico y de los requisitos de su aplicación, a menudo puede evitar estos límites escalando verticalmente (por ejemplo, al seleccionar otro plan de tarifas) u horizontalmente (al agregar nuevas instancias).  
+**Asegúrese de que la aplicación no se encuentre con los [límites por servicio](/azure/azure-subscription-service-limits/).** Los servicios individuales de Azure tienen límites de consumo; por ejemplo, límites de almacenamiento, rendimiento, número de conexiones, solicitudes por segundo y otras métricas. La aplicación producirá un error si intenta utilizar recursos más allá de estos límites. Esto provocará una limitación del servicio y un posible tiempo de inactividad a los usuarios afectados. Dependiendo del servicio específico y de los requisitos de su aplicación, a menudo puede evitar estos límites escalando verticalmente (por ejemplo, al seleccionar otro plan de tarifas) u horizontalmente (al agregar nuevas instancias).
 
 **Diseñe los requisitos de almacenamiento de la aplicación para que se ajusten a los objetivos de escalabilidad y rendimiento del almacenamiento de Azure.** El almacenamiento de Azure está diseñado para funcionar dentro de objetivos de escalabilidad y rendimiento predefinidos, por lo que diseñe la aplicación para utilizar el almacenamiento dentro de dichos objetivos. Si supera estos objetivos, la aplicación experimentará una limitación del almacenamiento. Para solucionar este problema, proporcione cuentas de almacenamiento adicionales. Si se encuentra con el límite de la cuenta de almacenamiento, proporcione suscripciones de Azure adicionales y, después, proporcione cuentas de almacenamiento adicionales allí. Para obtener más información, consulte [Objetivos de escalabilidad y rendimiento de Azure Storage](/azure/storage/storage-scalability-targets/).
 
@@ -129,7 +130,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Determine si la carga de trabajo de la aplicación es estable o fluctúa con el tiempo.** Si la carga de trabajo fluctúa con el tiempo, utilice Azure VM Scale Sets para escalar automáticamente el número de instancias de máquinas virtuales. De lo contrario, tendrá que aumentar o disminuir de manera manual el número de máquinas virtuales. Para más información, consulte [Introducción a los conjuntos de escalado de máquinas virtuales](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-overview/).
 
-**Seleccione el nivel de servicio correcto para Azure SQL Database.** Si la aplicación utiliza Azure SQL Database, asegúrese de que ha seleccionado el nivel de servicio apropiado. Si selecciona un nivel que no es capaz de controlar los requisitos de la unidad de transmisión de datos (DTU) de la aplicación, el uso de datos estará limitado. Si quiere obtener más información sobre cómo seleccionar el plan de servicio correcto, consulte [Opciones y rendimiento de SQL Database: comprender lo que está disponible en cada nivel de servicio](/azure/sql-database/sql-database-service-tiers/).
+**Seleccione el nivel de servicio correcto para Azure SQL Database.** Si la aplicación utiliza Azure SQL Database, asegúrese de que ha seleccionado el nivel de servicio apropiado. Si selecciona un nivel que no es capaz de controlar los requisitos de la unidad de transmisión de datos (DTU) de la aplicación, el uso de datos estará limitado. Si quiere obtener más información sobre cómo seleccionar el plan de servicio correcto, consulte [Opciones y rendimiento de SQL Database: Comprender lo que está disponible en cada nivel de servicio](/azure/sql-database/sql-database-service-tiers/).
 
 **Cree un proceso para interactuar con el soporte técnico de Azure.** Si el proceso para contactar con el [soporte técnico de Azure](https://azure.microsoft.com/support/plans/) no está establecido antes de que surja la necesidad de ponerse en contacto con el soporte técnico, el tiempo de inactividad se prolongará a medida que el proceso de soporte técnico se recorra por primera vez. Incluya el proceso para ponerse en contacto con el soporte técnico y escalar los problemas como parte de la resistencia de la aplicación desde el principio.
 
@@ -155,7 +156,7 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 **Utilice los bloqueos de recursos para recursos críticos, como máquinas virtuales.** Los bloqueos de recursos evitan que un operador elimine accidentalmente un recurso. Para más información, consulte [Bloqueo de recursos con Azure Resource Manager](/azure/azure-resource-manager/resource-group-lock-resources/).
 
-**Elija pares regionales.** Cuando se realiza la implementación en dos regiones, elija regiones del mismo par regional. En el caso de una interrupción amplia, tiene prioridad la recuperación de una región de cada pareja. Algunos servicios, como el almacenamiento con redundancia geográfica ofrecen replicación automática a la región emparejada. Para más información, consulte [Continuidad empresarial y recuperación ante desastres (BCDR): regiones emparejadas de Azure](/azure/best-practices-availability-paired-regions).
+**Elija pares regionales.** Cuando se realiza la implementación en dos regiones, elija regiones del mismo par regional. En el caso de una interrupción amplia, tiene prioridad la recuperación de una región de cada pareja. Algunos servicios, como el almacenamiento con redundancia geográfica ofrecen replicación automática a la región emparejada. Para más información, consulte [Continuidad empresarial y recuperación ante desastres (BCDR): Regiones emparejadas de Azure](/azure/best-practices-availability-paired-regions)
 
 **Organice los grupos de recursos por función y ciclo de vida.**  En general, un grupo de recursos debe contener recursos que comparten el mismo ciclo de vida. Esto facilita la administración de implementaciones, elimina implementaciones de prueba y asigna derechos de acceso, con lo que se reduce la posibilidad de que se elimine o modifique accidentalmente una implementación de producción. Cree grupos de recursos independientes para entornos de producción, desarrollo y pruebas. En una implementación de varias regiones, ponga los recursos para cada región en grupos de recursos independientes. Esto facilita volver a implementar una región sin que afecte a las demás regiones.
 
@@ -163,7 +164,6 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 
 - [Lista de comprobación de resistencia para servicios de Azure específicos](./resiliency-per-service.md)
 - [Análisis del modo de error](../resiliency/failure-mode-analysis.md)
-
 
 <!-- links -->
 [app-service-autoscale]: /azure/monitoring-and-diagnostics/insights-how-to-scale/
@@ -176,7 +176,6 @@ La resistencia es la capacidad de un sistema para recuperarse de errores y segui
 [load-balancer]: /azure/load-balancer/load-balancer-overview/
 [monitoring-and-diagnostics-guidance]: ../best-practices/monitoring.md
 [resource-manager]: /azure/azure-resource-manager/resource-group-overview/
-[retry-pattern]: ../patterns/retry.md
 [retry-service-guidance]: ../best-practices/retry-service-specific.md
 [site-recovery]: /azure/site-recovery/
 [site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure

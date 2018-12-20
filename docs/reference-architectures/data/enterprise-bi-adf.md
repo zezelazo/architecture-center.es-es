@@ -1,31 +1,33 @@
 ---
-title: Inteligencia empresarial automatizada con SQL Data Warehouse y Azure Data Factory
-description: Automatizar un flujo de trabajo de ECT en Azure mediante Azure Data Factory
+title: Inteligencia empresarial (BI) automatizada
+titleSuffix: Azure Reference Architectures
+description: Automatice un flujo de trabajo de extracción, carga y transformación (ELT) en Azure mediante Azure Data Factory con SQL Data Warehouse.
 author: MikeWasson
 ms.date: 11/06/2018
-ms.openlocfilehash: 3fedcd08572a9fe1fc610f5fbab12f8ff0d53073
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seodec18
+ms.openlocfilehash: d87583802496f8be85e44c896ae7d6a26306cffc
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295638"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120346"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>Inteligencia empresarial automatizada con SQL Data Warehouse y Azure Data Factory
 
-Esta arquitectura de referencia muestra cómo realizar una carga incremental en una canalización de [ECT](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt) (extracción, carga y transformación). Usa Azure Data Factory para automatizar la canalización de ECT. La canalización mueve de forma incremental los datos más recientes de OLTP de una base de datos de SQL Server local a SQL Data Warehouse. Los datos transaccionales se transforman en un modelo tabular para su análisis.
+Esta arquitectura de referencia muestra cómo realizar una carga incremental en una canalización de [extracción, carga y transformación (ELT)](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt). Usa Azure Data Factory para automatizar la canalización de ECT. La canalización mueve de forma incremental los datos más recientes de OLTP de una base de datos de SQL Server local a SQL Data Warehouse. Los datos transaccionales se transforman en un modelo tabular para su análisis.
 
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
 
 Hay disponible una implementación de referencia de esta arquitectura en [GitHub][github].
 
-![](./images/enterprise-bi-sqldw-adf.png)
+![Diagrama de la arquitectura de inteligencia empresarial automatizada con SQL Data Warehouse y Azure Data Factory](./images/enterprise-bi-sqldw-adf.png)
 
 Esta arquitectura se basa en la que se muestra en [Inteligencia empresarial con SQL Data Warehouse](./enterprise-bi-sqldw.md), pero agrega algunas características que son importantes para los escenarios de almacenamiento de datos empresariales.
 
--   Automatización de la canalización mediante Data Factory.
--   Carga incremental.
--   Integración de varios orígenes de datos.
--   Carga de datos binarios como datos geoespaciales e imágenes.
+- Automatización de la canalización mediante Data Factory.
+- Carga incremental.
+- Integración de varios orígenes de datos.
+- Carga de datos binarios como datos geoespaciales e imágenes.
 
 ## <a name="architecture"></a>Arquitectura
 
@@ -35,13 +37,13 @@ La arquitectura consta de los siguientes componentes:
 
 **SQL Server local**. Los datos de origen se encuentran en una base de datos de SQL Server de forma local. Para simular el entorno local, los scripts de implementación para esta arquitectura aprovisionan una máquina virtual en Azure con SQL Server instalado. La [base de datos OLTP de ejemplo de OLTP Wide World Importers][wwi] se usa como base de datos de origen.
 
-**Datos externos**. Un escenario común para el almacenamiento de datos es integrar varios orígenes de datos. Esta arquitectura de referencia carga un conjunto de datos externo que contiene las poblaciones de las ciudades por año y lo integra con los datos de la base de datos de OLTP. Estos datos se pueden usar para conclusiones como: "¿Supera o iguala el crecimiento de las ventas en cada región el crecimiento poblacional?"
+**Datos externos**. Un escenario común para el almacenamiento de datos es integrar varios orígenes de datos. Esta arquitectura de referencia carga un conjunto de datos externo que contiene las poblaciones de las ciudades por año y lo integra con los datos de la base de datos de OLTP. Puede usar estos datos para obtener información como: "¿El crecimiento de las ventas en cada región iguala o supera el crecimiento de población?"
 
 ### <a name="ingestion-and-data-storage"></a>Ingesta y almacenamiento de datos
 
 **Blob Storage**. Blob Storage se utiliza como área de ensayo del origen de datos antes de cargarlos en SQL Data Warehouse.
 
-**Azure SQL Data Warehouse**. [SQL Data Warehouse](/azure/sql-data-warehouse/) es un sistema distribuido diseñado para realizar análisis con datos de gran tamaño. Admite el procesamiento paralelo masivo (MPP), lo que lo hace idóneo para ejecutar análisis de alto rendimiento. 
+**Azure SQL Data Warehouse**. [SQL Data Warehouse](/azure/sql-data-warehouse/) es un sistema distribuido diseñado para realizar análisis con datos de gran tamaño. Admite el procesamiento paralelo masivo (MPP), lo que lo hace idóneo para ejecutar análisis de alto rendimiento.
 
 **Azure Data Factory**. [Data Factory][adf] es un servicio administrado que organiza y automatiza el movimiento y la transformación de datos. En esta arquitectura, coordina las distintas fases del proceso de ELT.
 
@@ -59,22 +61,23 @@ Data Factory puede usar también Azure AD para autenticarse en SQL Data Warehous
 
 ## <a name="data-pipeline"></a>Canalización de datos
 
-En [Azure Data Factory][adf], una canalización es una agrupación lógica de actividades que se usa para coordinar una tarea (en este caso, la carga y transformación de los datos en SQL Data Warehouse). 
+En [Azure Data Factory][adf], una canalización es una agrupación lógica de actividades que se usa para coordinar una tarea (en este caso, la carga y transformación de los datos en SQL Data Warehouse).
 
 Esta arquitectura de referencia define una canalización maestra que ejecuta una secuencia de canalizaciones de secundarias. Cada canalización secundaria carga datos en una o varias tablas de un almacén de datos.
 
-![](./images/adf-pipeline.png)
+![Captura de pantalla de la canalización en Azure Data Factory](./images/adf-pipeline.png)
 
 ## <a name="incremental-loading"></a>Carga incremental
 
-Cuando se ejecuta un proceso automatizado de ETL o ELT, resulta más eficaz cargar solo los datos que han cambiado desde la última vez que se ejecutó. Esto se denomina una *carga incremental*, frente a una carga completa, en la que se cargan todos los datos. Para realizar una carga incremental, se necesita alguna forma de identificar qué datos han cambiado. El método más común es usar un valor *de marca de límite superior*, lo que significa que se hace un seguimiento del valor más reciente de alguna de las columnas de la tabla de origen, una columna de fecha y hora o una columna de entero único. 
+Cuando se ejecuta un proceso automatizado de ETL o ELT, resulta más eficaz cargar solo los datos que han cambiado desde la última vez que se ejecutó. Esto se denomina una *carga incremental*, frente a una carga completa, en la que se cargan todos los datos. Para realizar una carga incremental, se necesita alguna forma de identificar qué datos han cambiado. El método más común es usar un valor *de marca de límite superior*, lo que significa que se hace un seguimiento del valor más reciente de alguna de las columnas de la tabla de origen, una columna de fecha y hora o una columna de entero único.
 
-A partir de SQL Server 2016, se pueden usar las [tablas temporales](/sql/relational-databases/tables/temporal-tables), que son tablas con versiones de sistema que conservan el historial completo de los cambios de datos. El motor de base de datos registra automáticamente el historial de cada cambio en una tabla de historial independiente. Para consultar los datos históricos hay que agregar una cláusula FOR SYSTEM_TIME a una consulta. Internamente, el motor de base de datos consulta la tabla del historial, pero la aplicación no se percata de ello. 
+A partir de SQL Server 2016, se pueden usar las [tablas temporales](/sql/relational-databases/tables/temporal-tables), que son tablas con versiones de sistema que conservan el historial completo de los cambios de datos. El motor de base de datos registra automáticamente el historial de cada cambio en una tabla de historial independiente. Para consultar los datos históricos hay que agregar una cláusula FOR SYSTEM_TIME a una consulta. Internamente, el motor de base de datos consulta la tabla del historial, pero la aplicación no se percata de ello.
 
 > [!NOTE]
-> Para las versiones anteriores de SQL Server, puede usar [captura de datos modificados](/sql/relational-databases/track-changes/about-change-data-capture-sql-server) (CDC). Este método es menos práctico que las tablas temporales, ya que hay que consultar una tabla de cambios independiente y el seguimiento de los cambios se realiza por un número de secuencia de registro, en lugar de una marca de tiempo. 
+> Para las versiones anteriores de SQL Server, puede usar [captura de datos modificados](/sql/relational-databases/track-changes/about-change-data-capture-sql-server) (CDC). Este método es menos práctico que las tablas temporales, ya que hay que consultar una tabla de cambios independiente y el seguimiento de los cambios se realiza por un número de secuencia de registro, en lugar de una marca de tiempo.
+>
 
-Las tablas temporales son útiles para los datos de dimensión, que pueden cambiar con el tiempo. Las tablas de hechos suele representar una transacción inmutable, como por ejemplo una venta; en ese caso no tiene sentido mantener el historial de versiones del sistema. En su lugar, las transacciones suelen tener una columna que representa la fecha de la transacción, que se puede usar como valor de marca de agua. Por ejemplo, en la base de datos OLTP Wide World Importers, las tablas Sales.Invoices y Sales.InvoiceLines tienen un campo `LastEditedWhen` cuyo valor predeterminado es `sysdatetime()`. 
+Las tablas temporales son útiles para los datos de dimensión, que pueden cambiar con el tiempo. Las tablas de hechos suele representar una transacción inmutable, como por ejemplo una venta; en ese caso no tiene sentido mantener el historial de versiones del sistema. En su lugar, las transacciones suelen tener una columna que representa la fecha de la transacción, que se puede usar como valor de marca de agua. Por ejemplo, en la base de datos OLTP Wide World Importers, las tablas Sales.Invoices y Sales.InvoiceLines tienen un campo `LastEditedWhen` cuyo valor predeterminado es `sysdatetime()`.
 
 Este es el flujo general de la canalización de ELT:
 
@@ -86,7 +89,7 @@ Este es el flujo general de la canalización de ELT:
 
 También es útil registrar un *linaje* para cada ejecución de ELT. En el caso de un registro concreto, el linaje asocia dicho registro con la ejecución de ELT que generó los datos. En cada ejecución de ETL, se crea un nuevo registro de linaje para todas las tablas, en el que se muestran la hora inicial y final de la carga. Las claves del linaje de los registros se almacenan en tablas de hechos y de dimensiones.
 
-![](./images/city-dimension-table.png)
+![Captura de pantalla de la tabla de dimensiones de la ciudad](./images/city-dimension-table.png)
 
 Después cargar un nuevo lote de datos en el almacén, actualice el modelo tabular de Analysis Services. Consulte [Actualización asincrónica con la API REST](/azure/analysis-services/analysis-services-async-refresh).
 
@@ -94,7 +97,7 @@ Después cargar un nuevo lote de datos en el almacén, actualice el modelo tabul
 
 La limpieza de los datos debe formar parte del proceso de ELT. En esta arquitectura de referencia, un origen de datos incorrectos es la tabla de población de ciudades, donde algunas ciudades tienen una población cero, quizás porque no había datos disponibles. Durante el procesamiento, la canalización de ELT quita esas ciudades de la tabla de la población de ciudades. La limpieza de datos se debe realizar en las tablas de almacenamiento provisional, no en las tablas externas.
 
-Este es el procedimiento almacenado que elimina las ciudades con población cero rellenado de la tabla City Population (el archivo de origen se puede encontrar [aquí](https://github.com/mspnp/reference-architectures/blob/master/data/enterprise_bi_sqldw_advanced/azure/sqldw_scripts/citypopulation/%5BIntegration%5D.%5BMigrateExternalCityPopulationData%5D.sql)). 
+Este es el procedimiento almacenado que elimina las ciudades con población cero rellenado de la tabla City Population (el archivo de origen se puede encontrar [aquí](https://github.com/mspnp/reference-architectures/blob/master/data/enterprise_bi_sqldw_advanced/azure/sqldw_scripts/citypopulation/%5BIntegration%5D.%5BMigrateExternalCityPopulationData%5D.sql)).
 
 ```sql
 DELETE FROM [Integration].[CityPopulation_Staging]
@@ -109,9 +112,9 @@ HAVING COUNT(RowNumber) = 4)
 
 Las bases de datos de almacenamiento de datos a menudo consolidan datos de varios orígenes. Esta arquitectura de referencia carga un origen de datos externo que contiene datos demográficos. Este conjunto de datos está disponible en Azure Blob Storage como parte del ejemplo [WorldWideImportersDW](https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/wide-world-importers/sample-scripts/polybase).
 
-Azure Data Factory puede realizar la copia directamente desde Blob Storage, mediante el [conector de Blob Storage](/azure/data-factory/connector-azure-blob-storage). Sin embargo, el conector requiere una cadena de conexión o una firma de acceso compartido, por lo que no se puede usar para copiar un blob con acceso de lectura público. Como alternativa, puede usar PolyBase para crear una tabla externa a través de Blob Storage y, después, copiar las tablas externas en SQL Data Warehouse. 
+Azure Data Factory puede realizar la copia directamente desde Blob Storage, mediante el [conector de Blob Storage](/azure/data-factory/connector-azure-blob-storage). Sin embargo, el conector requiere una cadena de conexión o una firma de acceso compartido, por lo que no se puede usar para copiar un blob con acceso de lectura público. Como alternativa, puede usar PolyBase para crear una tabla externa a través de Blob Storage y, después, copiar las tablas externas en SQL Data Warehouse.
 
-## <a name="handling-large-binary-data"></a>Control de datos binarios de gran tamaño 
+## <a name="handling-large-binary-data"></a>Control de datos binarios de gran tamaño
 
 En la base de datos de origen, la tabla Cities tiene una columna Location que contiene un tipo de datos espaciales [geography](/sql/t-sql/spatial-geography/spatial-types-geography). De forma nativa SQL Data Warehouse no admite el tipo **geography**, por lo que este campo pasa a ser de tipo **varbinary** durante la carga (consulte [Soluciones alternativas para los tipos de datos no admitidos](/azure/sql-data-warehouse/sql-data-warehouse-tables-data-types#unsupported-data-types)).
 
@@ -129,17 +132,17 @@ Pata los datos de imagen se usa el mismo método.
 
 ## <a name="slowly-changing-dimensions"></a>Cambio lento de dimensiones
 
-Los datos de dimensiones son relativamente estáticos, pero se pueden cambiar. Por ejemplo, un producto se puede reasignar a otra categoría. Hay varios métodos para el control del cambio lento de dimensiones. Una técnica común, llamada de [tipo 2](https://wikipedia.org/wiki/Slowly_changing_dimension#Type_2:_add_new_row), consiste en agregar un nuevo registro cada vez que cambia de una dimensión. 
+Los datos de dimensiones son relativamente estáticos, pero se pueden cambiar. Por ejemplo, un producto se puede reasignar a otra categoría. Hay varios métodos para el control del cambio lento de dimensiones. Una técnica común, llamada de [tipo 2](https://wikipedia.org/wiki/Slowly_changing_dimension#Type_2:_add_new_row), consiste en agregar un nuevo registro cada vez que cambia de una dimensión.
 
 Para implementar este método, las tablas de dimensiones necesitan columnas adicionales que especifiquen el intervalo de fechas de vigencia de un registro determinado. Además, las claves principales de la base de datos de origen se duplicarán, por lo que la tabla de dimensiones debe tener una clave principal artificial.
 
 La siguiente imagen muestra la tabla Dimension.City. La columna `WWI City ID` es la clave principal de la base de datos de origen. La columna `City Key` es una clave artificial generada durante la canalización de ETL. Observe también que la tabla tiene las columnas `Valid From` y `Valid To`, que definen el intervalo de validez de cada fila. El valor de `Valid To` de los valores actuales es "9999-12-31".
 
-![](./images/city-dimension-table.png)
+![Captura de pantalla de la tabla de dimensiones de la ciudad](./images/city-dimension-table.png)
 
 La ventaja de este método es que conserva los datos históricos, lo que puede resultar muy útil de cara al análisis. Sin embargo, también significa que habrá varias filas para la misma entidad. Por ejemplo, estos son los registros que coinciden con `WWI City ID` = 28561:
 
-![](./images/city-dimension-table-2.png)
+![Segunda captura de pantalla de la tabla de dimensiones de la ciudad](./images/city-dimension-table-2.png)
 
 Para cada dato de Sales, desea asociar dicho hecho a una sola fila de la tabla de dimensiones City, correspondiente a la fecha de factura. Como parte del proceso de ETL, cree una columna. 
 
@@ -180,9 +183,9 @@ Con este método se crea una red virtual en Azure y, después, se crean puntos d
 
 Tenga en cuenta las siguientes limitaciones:
 
-- En el momento de creación de esta arquitectura de referencia, los puntos de conexión de servicio de red virtual se admiten en Azure Storage y Azure SQL Data Warehouse, pero no en Azure Analysis Service. [Aquí](https://azure.microsoft.com/updates/?product=virtual-network) puede comprobar el estado más reciente. 
+- En el momento de creación de esta arquitectura de referencia, los puntos de conexión de servicio de red virtual se admiten en Azure Storage y Azure SQL Data Warehouse, pero no en Azure Analysis Service. [Aquí](https://azure.microsoft.com/updates/?product=virtual-network) puede comprobar el estado más reciente.
 
-- Si se habilitan los puntos de conexión de servicio para Azure Storage, PolyBase no puede copiar datos de Storage a SQL Data Warehouse. Pero este problema se puede mitigar. Para más información, consulte [Efectos del uso de puntos de conexión de servicio de la red virtual con Azure Storage](/azure/sql-database/sql-database-vnet-service-endpoint-rule-overview?toc=%2fazure%2fvirtual-network%2ftoc.json#impact-of-using-vnet-service-endpoints-with-azure-storage). 
+- Si se habilitan los puntos de conexión de servicio para Azure Storage, PolyBase no puede copiar datos de Storage a SQL Data Warehouse. Pero este problema se puede mitigar. Para más información, consulte [Efectos del uso de puntos de conexión de servicio de la red virtual con Azure Storage](/azure/sql-database/sql-database-vnet-service-endpoint-rule-overview?toc=%2fazure%2fvirtual-network%2ftoc.json#impact-of-using-vnet-service-endpoints-with-azure-storage).
 
 - Para mover datos desde el entorno local a Azure Storage, será preciso incorporar a la lista blanca las direcciones IP públicas desde su entorno local o desde ExpressRoute. Para más información, consulte [Protección de servicios de Azure para las redes virtuales](/azure/virtual-network/virtual-network-service-endpoints-overview#securing-azure-services-to-virtual-networks).
 
@@ -192,14 +195,13 @@ Tenga en cuenta las siguientes limitaciones:
 
 Para la implementación y ejecución de la implementación de referencia, siga los pasos del [Léame de GitHub][github]. Implementa lo siguiente:
 
-  * Una máquina virtual Windows para simular un servidor de bases de datos local. Incluye SQL Server 2017 y herramientas relacionadas, junto con Power BI Desktop.
-  * Una cuenta de almacenamiento de Azure que proporciona almacenamiento de blobs para almacenar los datos exportados de la base de datos de SQL Server.
-  * Una instancia de Azure SQL Data Warehouse.
-  * Una instancia de Azure Analysis Services.
-  * Azure Data Factory y la canalización de Data Factory para el trabajo de ELT.
+- Una máquina virtual Windows para simular un servidor de bases de datos local. Incluye SQL Server 2017 y herramientas relacionadas, junto con Power BI Desktop.
+- Una cuenta de almacenamiento de Azure que proporciona almacenamiento de blobs para almacenar los datos exportados de la base de datos de SQL Server.
+- Una instancia de Azure SQL Data Warehouse.
+- Una instancia de Azure Analysis Services.
+- Azure Data Factory y la canalización de Data Factory para el trabajo de ELT.
 
-[adf]: //azure/data-factory
+[adf]: /azure/data-factory
 [github]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw_advanced
 [MergeLocation]: https://github.com/mspnp/reference-architectures/blob/master/data/enterprise_bi_sqldw_advanced/azure/sqldw_scripts/city/%5BIntegration%5D.%5BMergeLocation%5D.sql
-[wwi]: //sql/sample/world-wide-importers/wide-world-importers-oltp-database
-
+[wwi]: /sql/sample/world-wide-importers/wide-world-importers-oltp-database

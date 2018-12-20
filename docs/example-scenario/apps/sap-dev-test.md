@@ -3,12 +3,13 @@ title: Entornos de desarrollo y pruebas para cargas de trabajo SAP en Azure
 description: Cree un entorno de desarrollo y pruebas para las cargas de trabajo SAP.
 author: AndrewDibbins
 ms.date: 7/11/18
-ms.openlocfilehash: 1cfd15b0287a1979ae5ad60e41a0b1627a2e115c
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.custom: fasttrack
+ms.openlocfilehash: 84665bfeb6ada568c631e1db72b97269d79f2e60
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610811"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004680"
 ---
 # <a name="devtest-environments-for-sap-workloads-on-azure"></a>Entornos de desarrollo y pruebas para cargas de trabajo SAP en Azure
 
@@ -80,10 +81,10 @@ Extragrande|64000|M64s|4xP20, 1xP10|[Extragrande](https://azure.com/e/975fb58a96
 > [!NOTE]
 > Estos precios son una guía que solo indica los costos de las máquinas virtuales y el almacenamiento. Se excluyen las redes, el almacenamiento de copia de seguridad y los cargos de entrada y salida de datos.
 
-* [Pequeño](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1): un sistema pequeño que consta de una máquina virtual del tipo D8s_v3 con 8 vCPU, 32 GB de RAM y almacenamiento temporal de 200 GB, además de dos discos de almacenamiento premium de 512 GB y uno de 128 GB.
-* [Mediano](https://azure.com/e/465bd07047d148baab032b2f461550cd): un sistema mediano que consta de una máquina virtual del tipo D16s_v3 con 16 vCPU, 64 GB de RAM y almacenamiento temporal de 400 GB, además de tres discos de almacenamiento premium de 512 GB y uno de 128 GB.
-* [Grande](https://azure.com/e/ada2e849d68b41c3839cc976000c6931): un sistema grande que consta de una máquina virtual del tipo E32s_v3 con 32 vCPU, 256 GB de RAM y almacenamiento temporal de 512 GB, además de tres discos de almacenamiento premium de 512 GB y uno de 128 GB.
-* [Extragrande](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef): un sistema extra grande que consta de una máquina virtual del tipo M64s con 64 vCPU, 1024 GB de RAM y almacenamiento temporal de 2000 GB, además de cuatro discos de almacenamiento premium de 512 GB y uno de 128 GB.
+* [Pequeño](https://azure.com/e/9d26b9612da9466bb7a800eab56e71d1): Un sistema pequeño consta de una máquina virtual del tipo D8s_v3 con 8 vCPU, 32 GB de RAM y almacenamiento temporal de 200 GB, además de dos discos de almacenamiento de 512 GB y uno de almacenamiento Premium de 128 GB.
+* [Mediano](https://azure.com/e/465bd07047d148baab032b2f461550cd): Un sistema mediano consta de una máquina virtual del tipo D16s_v3 con 16 vCPU, 64 GB de RAM y almacenamiento temporal de 400 GB, además de tres discos de almacenamiento de 512 GB y uno de almacenamiento Premium de 128 GB.
+* [Grande](https://azure.com/e/ada2e849d68b41c3839cc976000c6931): Un sistema grande consta de una máquina virtual del tipo E32s_v3 con 32 vCPU, 256 GB de RAM y almacenamiento temporal de 512 GB, además de tres discos de almacenamiento Premium de 512 GB y uno de 128 GB.
+* [Extra-grande](https://azure.com/e/975fb58a965c4fbbb54c5c9179c61cef): Un sistema extra-grande consta de una máquina virtual del tipo M64s con 64 vCPU, 1024 GB de RAM y almacenamiento temporal de 2000 GB, además de cuatro discos de almacenamiento premium de 512 GB y uno de 128 GB.
 
 ## <a name="deployment"></a>Implementación
 

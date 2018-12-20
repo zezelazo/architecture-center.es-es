@@ -1,27 +1,29 @@
 ---
 title: Procesamiento de eventos sin servidor con Azure Functions
+titleSuffix: Azure Reference Architectures
 description: Arquitectura de referencia que muestra la ingesta y el procesamiento de eventos sin servidor
 author: MikeWasson
 ms.date: 10/16/2018
-ms.openlocfilehash: 76c8b9c1244c987c96e38e50ecad7814cc49cd88
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seodec18
+ms.openlocfilehash: 1a3c73ca35f7e849211837dee33a530d786c827f
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295657"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119904"
 ---
 # <a name="serverless-event-processing-using-azure-functions"></a>Procesamiento de eventos sin servidor con Azure Functions
 
 Esta arquitectura de referencia muestra una arquitectura [sin servidor](https://azure.microsoft.com/solutions/serverless/) orientada a eventos que ingiere un flujo de datos, procesa los datos y escribe los resultados en una base de datos de back-end. Hay disponible una implementación de referencia de esta arquitectura en [GitHub][github].
 
-![](./_images/serverless-event-processing.png)
+![Arquitectura de referencia para el procesamiento de eventos sin servidor con Azure Functions](./_images/serverless-event-processing.png)
 
 ## <a name="architecture"></a>Arquitectura
 
 **Event Hubs** ingiere el flujo de datos. [Event Hubs][eh] está diseñado para escenarios de transmisión de datos de alto rendimiento.
 
 > [!NOTE]
-> Para escenarios de IoT, se recomienda IoT Hub. IoT Hub tiene un punto de conexión integrado que es compatible con la API de Azure Event Hubs, por lo que puede usar cualquiera de los servicios en esta arquitectura sin realizar ningún cambio importante en el procesamiento de back-end. Para más información, consulte [Conexión de dispositivos de IoT a Azure: IoT Hub y Event Hubs][iot].
+> Para escenarios de IoT, se recomienda IoT Hub. IoT Hub tiene un punto de conexión integrado que es compatible con la API de Azure Event Hubs, por lo que puede usar cualquiera de los servicios en esta arquitectura sin realizar ningún cambio importante en el procesamiento de back-end. Para más información, consulte [Conexión de dispositivos IoT a Azure: IoT Hub y Event Hubs][iot].
 
 **Aplicación de función**. [Azure Functions][functions] es una opción de proceso sin servidor. Utiliza un modelo orientado a eventos, en el que un desencadenador invoca un fragmento de código (una "función"). En esta arquitectura, cuando los eventos llegan a Event Hubs, desencadenan una función que procesa los eventos y escribe los resultados en el almacenamiento.
 
@@ -49,16 +51,16 @@ La capacidad de rendimiento de Cosmos DB se mide en [unidades de solicitud][ru] 
 
 Estas son algunas características de una buena clave de partición:
 
-- El espacio de valores de la clave es grande. 
+- El espacio de valores de la clave es grande.
 - Habrá una distribución uniforme de lecturas y escrituras por valor de clave, evitando las claves frecuentes.
-- El máximo de datos almacenados para cualquier valor de clave único no superará el tamaño de partición física máximo (10 GB). 
-- La clave de partición de un documento no cambiará. No se puede actualizar la clave de partición de un documento existente. 
+- El máximo de datos almacenados para cualquier valor de clave único no superará el tamaño de partición física máximo (10 GB).
+- La clave de partición de un documento no cambiará. No se puede actualizar la clave de partición de un documento existente.
 
 En el escenario de esta arquitectura de referencia, la función almacena exactamente un documento por cada dispositivo que envía datos. La función actualiza continuamente los documentos con el estado del dispositivo más reciente mediante una operación de actualización e inserción de datos. El identificador de dispositivo es una buena clave de partición para este escenario, ya que las escrituras se distribuirán uniformemente entre las claves y el tamaño de cada partición estará enlazado estrictamente porque hay un documento único por cada valor de clave. Para más información sobre las claves de partición, consulte [Particionado y escalado en Azure Cosmos DB][cosmosdb-scale].
 
 ## <a name="resiliency-considerations"></a>Consideraciones de resistencia
 
-Al usar el desencadenador de Event Hubs con Azure Functions, debe detectar las excepciones dentro del bucle de procesamiento. Si se produce una excepción no controlada, el runtime de Azure Functions no vuelve a intentar el envío de los mensajes. Si no se puede procesar un mensaje, coloque el mensaje en una cola de mensajes fallidos. Utilice un proceso fuera de banda para examinar los mensajes y determinar la acción correctiva. 
+Al usar el desencadenador de Event Hubs con Azure Functions, debe detectar las excepciones dentro del bucle de procesamiento. Si se produce una excepción no controlada, el runtime de Azure Functions no vuelve a intentar el envío de los mensajes. Si no se puede procesar un mensaje, coloque el mensaje en una cola de mensajes fallidos. Utilice un proceso fuera de banda para examinar los mensajes y determinar la acción correctiva.
 
 El código siguiente muestra cómo se detectan las excepciones en la función de ingesta y cómo se colocan los mensajes no procesados en una cola de mensajes fallidos.
 
@@ -99,9 +101,9 @@ public static async Task RunAsync(
 
 Observe que la función utiliza el [enlace de salida de Queue Storage][queue-binding] para colocar los elementos en la cola.
 
-El código mostrado anteriormente también registra las excepciones en Application Insights. Puede usar el número de secuencia y la clave de partición para correlacionar los mensajes fallidos con las excepciones en los registros. 
+El código mostrado anteriormente también registra las excepciones en Application Insights. Puede usar el número de secuencia y la clave de partición para correlacionar los mensajes fallidos con las excepciones en los registros.
 
-Los mensajes de la cola de mensajes fallidos deben tener suficiente información para que pueda entender el contexto del error. En este ejemplo, la clase `DeadLetterMessage` contiene el mensaje con la excepción, los datos del evento original y el mensaje del evento deserializado (si está disponible). 
+Los mensajes de la cola de mensajes fallidos deben tener suficiente información para que pueda entender el contexto del error. En este ejemplo, la clase `DeadLetterMessage` contiene el mensaje con la excepción, los datos del evento original y el mensaje del evento deserializado (si está disponible).
 
 ```csharp
 public class DeadLetterMessage
@@ -128,7 +130,7 @@ La implementación que se muestra aquí reside en una sola región de Azure. Par
 
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
-Para implementar esta arquitectura de referencia, consulte el [Léame de GitHub][readme]. 
+Para implementar esta arquitectura de referencia, consulte el [Léame de GitHub][readme].
 
 <!-- links -->
 

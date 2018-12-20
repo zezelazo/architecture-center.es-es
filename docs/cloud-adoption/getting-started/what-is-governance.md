@@ -1,16 +1,16 @@
 ---
-title: 'Adopción de la nube empresarial: ¿Qué es el gobierno de recursos en la nube?'
+title: 'Adopción de la nube empresarial: ¿Qué es el gobierno de los recursos en la nube?'
 description: Explicación del concepto de gobierno del acceso a los recursos en Azure
 author: petertaylor9999
 ms.date: 09/10/2018
-ms.openlocfilehash: 14c26cbccdbea524a7c7220b3bb98ed2a118c30d
-ms.sourcegitcommit: c49aeef818d7dfe271bc4128b230cfc676f05230
+ms.openlocfilehash: fb01b2e2823c16e32f8ded696de0b6faf1d2e610
+ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/11/2018
-ms.locfileid: "44389220"
+ms.lasthandoff: 12/10/2018
+ms.locfileid: "53179287"
 ---
-# <a name="enterprise-cloud-adoption-what-is-cloud-resource-governance"></a>Adopción de la nube empresarial: ¿Qué es el gobierno de recursos en la nube?
+# <a name="enterprise-cloud-adoption-what-is-cloud-resource-governance"></a>Adopción de la nube empresarial: ¿Qué es el gobierno de los recursos en la nube?
 
 En [¿Cómo funciona Azure?](what-is-azure.md), ha aprendido que Azure es una colección de servidores y de hardware de red que ejecutan software y hardware virtualizado en nombre de los usuarios. Azure aporta agilidad a los departamentos de TI y desarrollo de su organización por que permite crear, leer, actualizar y eliminar fácilmente los recursos según sea necesario.
 
@@ -20,7 +20,7 @@ La solución a este problema es el **gobierno** de acceso a los recursos. Por go
 
 > [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2ii94] 
 
-Estos objetivos y requisitos son únicos para cada organización por lo que no es posible diseñar una solución de gobierno universal. En su lugar, Azure implementa dos herramientas de gobierno principales, el **control de acceso basado en rol (RBAC)** y la **directiva de recursos**, y cada organización debe decidir cuál usará para diseñar su modelo de gobierno.
+Estos objetivos y requisitos son únicos para cada organización por lo que no es posible diseñar una solución de gobierno universal. En su lugar, Azure implementa dos herramientas de gobierno principales, el **control de acceso basado en rol (RBAC)** y la **directiva de recursos** y cada organización debe decidir cuál usará para diseñar su modelo de gobierno.
 
 RBAC define roles y los roles de definen las funcionalidades de un usuario al que se asigne el rol. Por ejemplo, el rol de **propietario** habilita todas las funcionalidades (crear, leer, actualizar y eliminar) para un recurso, mientras que el rol de **lector** solo habilitan la funcionalidad de lectura. Los roles pueden definirse para un ámbito amplio que se aplique a muchos tipos de recursos, para un ámbito reducido que se aplique solo a unos pocos. 
 

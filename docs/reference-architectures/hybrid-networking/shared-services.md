@@ -1,68 +1,68 @@
 ---
-title: Implementación de una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure
-description: Implementación de una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure.
+title: Implementación de una topología de red en estrella tipo hub-and-spoke
+titleSuffix: Azure Reference Architectures
+description: Implemente una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure.
 author: telmosampaio
 ms.date: 10/09/2018
-pnp.series.title: Implement a hub-spoke network topology with shared services in Azure
-pnp.series.prev: hub-spoke
-ms.openlocfilehash: 209791950c79760ea8aaafc77ff779d6207410ce
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: 37ae02d8ef02f64329d5e5215e5a32df9f0f9491
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916306"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53120465"
 ---
 # <a name="implement-a-hub-spoke-network-topology-with-shared-services-in-azure"></a>Implementación de una topología de red en estrella tipo hub-and-spoke con servicios compartidos en Azure
 
 Esta arquitectura de referencia se basa en la arquitectura de referencia tipo [hub-and-spoke][guidance-hub-spoke] para incluir servicios compartidos en el centro que puedan consumir todos los radios. Como primer paso para migrar un centro de datos a la nube y generar un [centro de datos virtual], los primeros servicios que necesitará compartir son los de identidad y seguridad. Esta arquitectura de referencia muestra cómo ampliar los servicios de Active Directory desde el centro de datos local a Azure y cómo agregar una aplicación virtual de red (NVA) que pueda actuar como un firewall, en una topología en estrella tipo hub-and-spoke.  [**Implemente esta solución**](#deploy-the-solution).
 
-![[0]][0]
+![Topología de servicios compartidos en Azure](./images/shared-services.png)
 
 *Descargue un [archivo Visio][visio-download] de esta arquitectura.*
 
 Las ventajas de esta topología incluyen:
 
-* **Ahorros en costos** gracias a la centralización de los servicios que se pueden compartir entre varias cargas de trabajo, como las aplicaciones virtuales de red (NVA) y los servidores DNS, en una única ubicación.
-* **Superar los límites de las suscripciones** gracias al emparejamiento de las redes virtuales de diferentes suscripciones con el concentrador central.
-* **Separación de intereses** entre la TI central (SecOps e InfraOps) y las cargas de trabajo (DevOps).
+- **Ahorros en costos** gracias a la centralización de los servicios que se pueden compartir entre varias cargas de trabajo, como las aplicaciones virtuales de red (NVA) y los servidores DNS, en una única ubicación.
+- **Superar los límites de las suscripciones** gracias al emparejamiento de las redes virtuales de diferentes suscripciones con el concentrador central.
+- **Separación de intereses** entre la TI central (SecOps e InfraOps) y las cargas de trabajo (DevOps).
 
 Los usos habituales de esta arquitectura incluyen:
 
-* Cargas de trabajo implementadas en distintos entornos, como desarrollo, pruebas y producción, que requieren servicios compartidos como DNS, IDS, NTP o AD DS. Los servicios compartidos se colocan en la red virtual del concentrador, mientras que cada entorno se implementa en un radio para mantener el aislamiento.
-* Cargas de trabajo que no requieren conectividad entre sí, pero requieren acceso a los servicios compartidos.
-* Empresas que requieren el control centralizado sobre aspectos de seguridad, como un firewall en el concentrador como una red perimetral, así como la administración segregada de las cargas de trabajo en cada radio.
+- Cargas de trabajo implementadas en distintos entornos, como desarrollo, pruebas y producción, que requieren servicios compartidos como DNS, IDS, NTP o AD DS. Los servicios compartidos se colocan en la red virtual del concentrador, mientras que cada entorno se implementa en un radio para mantener el aislamiento.
+- Cargas de trabajo que no requieren conectividad entre sí, pero requieren acceso a los servicios compartidos.
+- Empresas que requieren el control centralizado sobre aspectos de seguridad, como un firewall en el concentrador como una red perimetral, así como la administración segregada de las cargas de trabajo en cada radio.
 
 ## <a name="architecture"></a>Arquitectura
 
 La arquitectura consta de los siguientes componentes:
 
-* **Red local**. Una red de área local privada que se ejecuta dentro de una organización.
+- **Red local**. Una red de área local privada que se ejecuta dentro de una organización.
 
-* **Dispositivo VPN**. Un dispositivo o servicio que proporciona conectividad externa a la red local. El dispositivo VPN puede ser un dispositivo de hardware, o puede ser una solución de software como el servicio de Enrutamiento y acceso remoto (RRAS) en Windows Server 2012. Para obtener una lista de dispositivos VPN compatibles e información acerca de cómo configurar dispositivos VPN seleccionados para conectarse a Azure, consulte [Acerca de los dispositivos VPN y los parámetros de IPsec/IKE para conexiones de VPN Gateway de sitio a sitio][vpn-appliance].
+- **Dispositivo VPN**. Un dispositivo o servicio que proporciona conectividad externa a la red local. El dispositivo VPN puede ser un dispositivo de hardware, o puede ser una solución de software como el servicio de Enrutamiento y acceso remoto (RRAS) en Windows Server 2012. Para obtener una lista de dispositivos VPN compatibles e información acerca de cómo configurar dispositivos VPN seleccionados para conectarse a Azure, consulte [Acerca de los dispositivos VPN y los parámetros de IPsec/IKE para conexiones de VPN Gateway de sitio a sitio][vpn-appliance].
 
-* **Puerta de enlace de red virtual de VPN o puerta de enlace de ExpressRoute**. La puerta de enlace de red virtual permite que la red virtual se conecte al dispositivo VPN o al circuito de ExpressRoute que se usa para la conectividad con la red local. Para más información, consulte [Conectar una red local con una red virtual de Microsoft Azure][connect-to-an-Azure-vnet].
+- **Puerta de enlace de red virtual de VPN o puerta de enlace de ExpressRoute**. La puerta de enlace de red virtual permite que la red virtual se conecte al dispositivo VPN o al circuito de ExpressRoute que se usa para la conectividad con la red local. Para más información, consulte [Conectar una red local con una red virtual de Microsoft Azure][connect-to-an-Azure-vnet].
 
 > [!NOTE]
 > Los scripts de implementación para esta arquitectura de referencia usan una instancia de VPN Gateway para la conectividad y una red virtual en Azure para simular la red local.
 
-* **Red virtual del concentrador**. La red virtual de Azure utilizada como el concentrador en la topología en estrella tipo hub-and-spoke. El concentrador es el punto central de conectividad a la red local y un lugar para hospedar los servicios que se pueden usar en las diferentes cargas de trabajo hospedadas en las redes virtuales de los radios.
+- **Red virtual del concentrador**. La red virtual de Azure utilizada como el concentrador en la topología en estrella tipo hub-and-spoke. El concentrador es el punto central de conectividad a la red local y un lugar para hospedar los servicios que se pueden usar en las diferentes cargas de trabajo hospedadas en las redes virtuales de los radios.
 
-* **Subred de puerta de enlace**. Las puertas de enlace de red virtual se conservan en la misma subred.
+- **Subred de puerta de enlace**. Las puertas de enlace de red virtual se conservan en la misma subred.
 
-* **Subred de servicios compartidos**. Una subred de la red virtual del concentrador utilizada para hospedar servicios que se pueden compartir entre todos los radios, como DNS o AD DS.
+- **Subred de servicios compartidos**. Una subred de la red virtual del concentrador utilizada para hospedar servicios que se pueden compartir entre todos los radios, como DNS o AD DS.
 
-* **Subred DMZ**. Una subred de la red virtual del centro que se usa para hospedar aplicaciones virtuales de red (NVA) que pueden actuar como aplicaciones de seguridad como, por ejemplo, firewalls.
+- **Subred DMZ**. Una subred de la red virtual del centro que se usa para hospedar aplicaciones virtuales de red (NVA) que pueden actuar como aplicaciones de seguridad como, por ejemplo, firewalls.
 
-* **Redes virtuales de radios**. Una o varias redes virtuales de Azure que se usan como radios en la topología en estrella tipo hub-and-spoke. Los radios pueden utilizarse para aislar las cargas de trabajo en sus propias redes virtuales, administradas por separado desde otros radios. Cada carga de trabajo puede incluir varios niveles, con varias subredes que se conectan a través de equilibradores de carga de Azure. Para obtener más información acerca de la infraestructura de aplicaciones, consulte [Ejecutar cargas de trabajo de máquinas virtuales Windows][windows-vm-ra] y [Ejecutar cargas de trabajo de máquinas virtuales Linux][linux-vm-ra].
+- **Redes virtuales de radios**. Una o varias redes virtuales de Azure que se usan como radios en la topología en estrella tipo hub-and-spoke. Los radios pueden utilizarse para aislar las cargas de trabajo en sus propias redes virtuales, administradas por separado desde otros radios. Cada carga de trabajo puede incluir varios niveles, con varias subredes que se conectan a través de equilibradores de carga de Azure. Para obtener más información acerca de la infraestructura de aplicaciones, consulte [Ejecutar cargas de trabajo de máquinas virtuales Windows][windows-vm-ra] y [Ejecutar cargas de trabajo de máquinas virtuales Linux][linux-vm-ra].
 
-* **Emparejamiento de VNET**. Se pueden conectar dos redes virtuales en la misma región de Azure mediante una [conexión de emparejamiento][vnet-peering]. Las conexiones de emparejamiento son conexiones no transitivas de baja latencia entre las redes virtuales. Una vez establecido el emparejamiento, las redes virtuales intercambian el tráfico mediante la red troncal de Azure, sin necesidad de un enrutador. En una topología de red en estrella tipo hub-and-spoke, el emparejamiento de VNET se usa para conectar el concentrador a cada radio.
+- **Emparejamiento de VNET**. Se pueden conectar dos redes virtuales en la misma región de Azure mediante una [conexión de emparejamiento][vnet-peering]. Las conexiones de emparejamiento son conexiones no transitivas de baja latencia entre las redes virtuales. Una vez establecido el emparejamiento, las redes virtuales intercambian el tráfico mediante la red troncal de Azure, sin necesidad de un enrutador. En una topología de red en estrella tipo hub-and-spoke, el emparejamiento de VNET se usa para conectar el concentrador a cada radio.
 
 > [!NOTE]
 > En este artículo solo se tratan las implementaciones de [Resource Manager](/azure/azure-resource-manager/resource-group-overview), pero también puede conectar una red virtual clásica a una red virtual de Resource Manager en la misma suscripción. De este modo, los radios pueden hospedar implementaciones clásicas y seguir beneficiándose de los servicios compartidos en el concentrador.
 
 ## <a name="recommendations"></a>Recomendaciones
 
-Todas las recomendaciones de la arquitectura de referencia de tipo [hub-and-spoke][guidance-hub-spoke] también se aplican a la arquitectura de referencia de los servicios compartidos. 
+Todas las recomendaciones de la arquitectura de referencia de tipo [hub-and-spoke][guidance-hub-spoke] también se aplican a la arquitectura de referencia de los servicios compartidos.
 
 Igualmente, las siguientes recomendaciones sirven para la mayoría de escenarios de servicios compartidos. Sígalas a menos que tenga un requisito concreto que las invalide.
 
@@ -74,7 +74,7 @@ Si desea utilizar los objetos de la directiva de grupo que desea controlar de fo
 
 ### <a name="security"></a>Seguridad
 
-Al trasladar cargas de trabajo desde el entorno local a Azure, algunas de estas cargas necesitarán hospedarse en máquinas virtuales. Por motivos de cumplimiento normativo, puede que tenga que aplicar restricciones al tráfico que recorre esas cargas de trabajo. 
+Al trasladar cargas de trabajo desde el entorno local a Azure, algunas de estas cargas necesitarán hospedarse en máquinas virtuales. Por motivos de cumplimiento normativo, puede que tenga que aplicar restricciones al tráfico que recorre esas cargas de trabajo.
 
 Puede usar aplicaciones virtuales de red (NVA) en Azure para hospedar diferentes tipos de servicios de seguridad y rendimiento. Si está familiarizado con un conjunto determinado de aplicaciones locales actualmente, se recomienda que use las mismas aplicaciones virtualizadas en Azure, si es posible.
 
@@ -87,7 +87,7 @@ Puede usar aplicaciones virtuales de red (NVA) en Azure para hospedar diferentes
 
 Asegúrese de tener en cuenta la [limitación del número de emparejamientos de VNET por cada red virtual][vnet-peering-limit] en Azure. Si decide que necesita más radios de los que el límite permitirá, considere la posibilidad de crear una topología en estrella tipo hub-hub-and-spoke-spoke, donde el primer nivel de radios también actúa como concentradores. En el siguiente diagrama se ilustra este enfoque.
 
-![[3]][3]
+![Topología en estrella tipo hub-and-spoke en Azure](./images/hub-spokehub-spoke.svg)
 
 También tenga en cuenta qué servicios se comparten en el concentrador, para asegurarse de que el concentrador se escala para tener un número mayor de radios. Por ejemplo, si el concentrador proporciona servicios de firewall, tenga en cuenta los límites de ancho de banda de la solución de firewall al agregar varios radios. Puede mover algunos de estos servicios compartidos a un segundo nivel de concentradores.
 
@@ -114,28 +114,29 @@ En este paso se implementa el centro de datos local simulado como una red virtua
 
 1. Vaya a la carpeta `hybrid-networking\shared-services-stack\` del repositorio de GitHub.
 
-2. Abra el archivo `onprem.json` . 
+2. Abra el archivo `onprem.json` .
 
-3. Busque todas las instancias de `UserName`, `adminUserName`,`Password` y `adminPassword`. Escriba los valores del nombre de usuario y la contraseña en los parámetros y guarde el archivo. 
+3. Busque todas las instancias de `UserName`, `adminUserName`,`Password` y `adminPassword`. Escriba los valores del nombre de usuario y la contraseña en los parámetros y guarde el archivo.
 
 4. Ejecute el siguiente comando:
 
    ```bash
    azbb -s <subscription_id> -g onprem-vnet-rg -l <location> -p onprem.json --deploy
    ```
+
 5. Espere a que finalice la implementación. Esta implementación crea una red virtual, una máquina virtual Windows y una instancia de VPN Gateway. La creación de la instancia de VPN Gateway puede durar más de cuarenta minutos.
 
 ### <a name="deploy-the-hub-vnet"></a>Implementación de la red virtual del concentrador
 
 En este paso se implementa la red virtual de concentrador y la conecta con la red virtual local simulada.
 
-1. Abra el archivo `hub-vnet.json` . 
+1. Abra el archivo `hub-vnet.json` .
 
-2. Busque `adminPassword` y escriba un nombre de usuario y una contraseña en los parámetros. 
+2. Busque `adminPassword` y escriba un nombre de usuario y una contraseña en los parámetros.
 
 3. Busque todas las instancias de `sharedKey` y escriba un valor de clave compartida. Guarde el archivo.
 
-   ```bash
+   ```json
    "sharedKey": "abc123",
    ```
 
@@ -153,14 +154,14 @@ En este paso se implementan los controladores de dominio de AD DS en Azure.
 
 1. Abra el archivo `hub-adds.json` .
 
-2. Busque todas las instancias de `Password` y `adminPassword`. Escriba los valores del nombre de usuario y la contraseña en los parámetros y guarde el archivo. 
+2. Busque todas las instancias de `Password` y `adminPassword`. Escriba los valores del nombre de usuario y la contraseña en los parámetros y guarde el archivo.
 
 3. Ejecute el siguiente comando:
 
    ```bash
    azbb -s <subscription_id> -g hub-adds-rg -l <location> -p hub-adds.json --deploy
    ```
-  
+
 Este paso de implementación puede tardar varios minutos, porque combina las dos máquinas virtuales en el dominio hospedado en el centro de datos simulados del entorno local, e instala AD DS en ellas.
 
 ### <a name="deploy-the-spoke-vnets"></a>Implementación de redes virtuales de radios
@@ -169,14 +170,14 @@ Este paso implementa las redes virtuales de radio.
 
 1. Abra el archivo `spoke1.json` .
 
-2. Busque `adminPassword` y escriba un nombre de usuario y una contraseña en los parámetros. 
+2. Busque `adminPassword` y escriba un nombre de usuario y una contraseña en los parámetros.
 
 3. Ejecute el siguiente comando:
 
    ```bash
    azbb -s <subscription_id> -g spoke1-vnet-rg -l <location> -p spoke1.json --deploy
    ```
-  
+
 4. Repita los pasos 1 y 2 para el archivo `spoke2.json`.
 
 5. Ejecute el siguiente comando:
@@ -199,7 +200,7 @@ Este paso implementa una aplicación virtual de red en la subred `dmz`.
 
 1. Abra el archivo `hub-nva.json` .
 
-2. Busque `adminPassword` y escriba un nombre de usuario y una contraseña en los parámetros. 
+2. Busque `adminPassword` y escriba un nombre de usuario y una contraseña en los parámetros.
 
 3. Ejecute el siguiente comando:
 
@@ -207,7 +208,7 @@ Este paso implementa una aplicación virtual de red en la subred `dmz`.
    azbb -s <subscription_id> -g hub-nva-rg -l <location> -p hub-nva.json --deploy
    ```
 
-### <a name="test-connectivity"></a>Comprobación de la conectividad 
+### <a name="test-connectivity"></a>Comprobación de la conectividad
 
 Pruebe la conectividad desde el entorno local simulado a la red virtual del concentrador.
 
@@ -220,6 +221,7 @@ Pruebe la conectividad desde el entorno local simulado a la red virtual del conc
    ```powershell
    Test-NetConnection 10.0.0.68 -CommonTCPPort RDP
    ```
+
 La salida debe tener una apariencia similar a la siguiente:
 
 ```powershell
@@ -240,7 +242,6 @@ Repita los mismos pasos para probar la conectividad con las redes virtuales de r
 Test-NetConnection 10.1.0.68 -CommonTCPPort RDP
 Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
 ```
-
 
 <!-- links -->
 
@@ -264,6 +265,4 @@ Test-NetConnection 10.2.0.68 -CommonTCPPort RDP
 
 [visio-download]: https://archcenter.blob.core.windows.net/cdn/hybrid-network-hub-spoke.vsdx
 [ref-arch-repo]: https://github.com/mspnp/reference-architectures
-[0]: ./images/shared-services.png "Topología de servicios compartidos en Azure"
-[3]: ./images/hub-spokehub-spoke.svg "Topología en estrella tipo hub-hub-and-spoke-spoke en Azure"
 [ARM-Templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/

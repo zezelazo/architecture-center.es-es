@@ -1,19 +1,20 @@
 ---
 title: Lista de comprobación de disponibilidad
+titleSuffix: Azure Design Review Framework
 description: Lista de comprobación que ofrece una guía para las inquietudes sobre disponibilidad durante el diseño.
 author: dragon119
-ms.date: 01/10/2018
+ms.date: 11/26/2018
 ms.custom: checklist
-ms.openlocfilehash: 5a819c5612fba9623c239bcc43f9004cd97dfb76
-ms.sourcegitcommit: 1b5411f07d74f0a0680b33c266227d24014ba4d1
+ms.openlocfilehash: 37e61b35d73007b9bac1ebaecfbf42792ae3903b
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52305900"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307238"
 ---
 # <a name="availability-checklist"></a>Lista de comprobación de disponibilidad
 
-La disponibilidad es la proporción de tiempo que un sistema es funcional y funciona, y es uno de los [pilares de la calidad del software](../guide/pillars.md). Use esta lista de comprobación para revisar la arquitectura de la aplicación desde una perspectiva de disponibilidad. 
+La disponibilidad es la proporción de tiempo que un sistema es funcional y funciona, y es uno de los [pilares de la calidad del software](../guide/pillars.md). Use esta lista de comprobación para revisar la arquitectura de la aplicación desde una perspectiva de disponibilidad.
 
 ## <a name="application-design"></a>Diseño de aplicación
 
@@ -29,7 +30,7 @@ La disponibilidad es la proporción de tiempo que un sistema es funcional y func
 
 **Diseñar aplicaciones para degradarlas de forma correcta.** La carga en una aplicación puede superar la capacidad de una o más partes y hacer que se reduzca la disponibilidad y se produzcan errores en las conexiones. El ajuste de escala puede ayudar a aliviar esto, pero puede tener un límite determinado por otros factores, como el costo o la disponibilidad de recursos. Si una aplicación alcanza un límite de recursos, debe realizar las acciones adecuadas para minimizar el impacto para el usuario. Por ejemplo, en un sistema de comercio electrónico, si el subsistema de procesamiento de pedidos está bajo presión, o no funciona en absoluto, se puede deshabilitar temporalmente y permitir que continúen otras funciones, como la exploración del catálogo de productos. Podría ser adecuado posponer las solicitudes a un subsistema con errores y permitir, por ejemplo, que los clientes envíen pedidos pero guardarlos para procesarlos más adelante, cuando el subsistema de pedidos vuelva a estar disponible.
 
-**Administrar correctamente los eventos rápidos de ráfaga.** La mayoría de las aplicaciones debe administrar cargas de trabajo que varían con el tiempo. El ajuste de escala automático puede ayudar a controlar la carga, pero se puede tardar algún tiempo en que las instancias adicionales entren en línea y controlen las solicitudes. Impida que las ráfagas repentinas e inesperadas de actividad sobrecarguen la aplicación: diséñela para poner en cola las solicitudes a los servicios que usa y para degradarlas correctamente cuando las colas estén cercanas a la capacidad completa. Asegúrese de que hay suficiente capacidad y rendimiento disponibles en condiciones sin ráfaga para descargar las colas y controlar las solicitudes pendientes. Para obtener más información, vea el [modelo de nivelación de carga basado en cola](https://msdn.microsoft.com/library/dn589783.aspx).
+**Administrar correctamente los eventos rápidos de ráfaga.** La mayoría de las aplicaciones debe administrar cargas de trabajo que varían con el tiempo. El ajuste de escala automático puede ayudar a controlar la carga, pero se puede tardar algún tiempo en que las instancias adicionales entren en línea y controlen las solicitudes. Impida que las ráfagas repentinas e inesperadas de actividad sobrecarguen la aplicación: diséñela para poner en cola las solicitudes a los servicios que usa y para degradarlas correctamente cuando las colas estén cercanas a la capacidad completa. Asegúrese de que hay suficiente capacidad y rendimiento disponibles en condiciones sin ráfaga para descargar las colas y controlar las solicitudes pendientes. Para obtener más información, consulte el [patrón de equilibrio de carga basado en colas](../patterns/queue-based-load-leveling.md).
 
 ## <a name="deployment-and-maintenance"></a>Implementación y mantenimiento
 
@@ -55,7 +56,7 @@ La disponibilidad es la proporción de tiempo que un sistema es funcional y func
 
 **Usar copias de seguridad periódicas y restauración a un momento dado**. Realice copias de seguridad de datos regulares y automáticas que no se conserven en otra parte y compruebe que puede restaurar con confiabilidad tanto los datos como la propia aplicación en el que caso de que produzca un error. Asegúrese de que las copias de seguridad cumplen el objetivo de punto de recuperación (RPO). La replicación de datos no es una característica de copia de seguridad, porque los errores humanos o las operaciones malintencionadas pueden dañar los datos en todas las réplicas. El proceso de copia de seguridad debe ser seguro para proteger los datos en tránsito y en almacenamiento. Las bases de datos o las partes de un almacén de datos se pueden recuperar normalmente para un momento anterior en el tiempo mediante registros de transacciones. Para más información, consulte [Recuperación de datos dañados o de eliminaciones accidentales](../resiliency/recovery-data-corruption.md).
 
-**Replicación de discos de máquinas virtuales con Azure Site Recovery** Al replicar máquinas virtuales de Azure con [Site Recovery][site-recovery], todos los discos de máquina virtual se replican continuamente de forma asincrónica en la región de destino. Los puntos de recuperación se crean cada pocos minutos. Esto proporciona un RPO en el orden de minutos. 
+**Replicación de discos de máquinas virtuales con Azure Site Recovery** Al replicar máquinas virtuales de Azure con [Site Recovery][site-recovery], todos los discos de máquina virtual se replican continuamente de forma asincrónica en la región de destino. Los puntos de recuperación se crean cada pocos minutos. Esto proporciona un RPO en el orden de minutos.
 
 ## <a name="errors-and-failures"></a>Errores
 
@@ -63,7 +64,7 @@ La disponibilidad es la proporción de tiempo que un sistema es funcional y func
 
 **Reintentar las operaciones con errores causadas por errores transitorios.**  Diseñe una estrategia de reintento para acceder a todos los servicios y recursos donde no admiten de manera inherente el reintento de conexión automática. Use una estrategia que incluya un retraso creciente entre reintentos conforme aumenta el número de errores para evitar la sobrecarga del recurso y para permitirle que recupere y controle de forma correcta las solicitudes en cola. Los reintentos continuos con retrasos muy breves suelen agravar el problema. Para más información, consulte [Retry guidance for specific services](../best-practices/retry-service-specific.md) (Guía de reintentos para servicios específicos).
 
-**Implementar Circuit Breaker para evitar errores en cascada.** Puede haber situaciones en las que errores transitorios o de otro tipo, con una gravedad que abarca desde una pérdida parcial de la conectividad hasta el error completo de un servicio, tarden mucho más tiempo del esperado en volver a su estado normal. Si un servicio está muy ocupado, el error en una parte del sistema puede provocar errores en cascada y hacer que se bloqueen muchas operaciones mientras se retienen en recursos críticos del sistema como la memoria, los subprocesos y las conexiones de base de datos. En lugar de reintentar continuamente una operación que es improbable que tenga éxito, la aplicación debería aceptar rápidamente que la operación ha generado error y tratar correctamente este error. Use el patrón Circuit Breaker para rechazar solicitudes para operaciones específicas durante períodos definidos. Para más información, consulte [Circuit Breaker Pattern](../patterns/circuit-breaker.md) (Patrón Circuit Breaker).
+**Implementar Circuit Breaker para evitar errores en cascada.** Puede haber situaciones en las que errores transitorios o de otro tipo, con una gravedad que abarca desde una pérdida parcial de la conectividad hasta el error completo de un servicio, tarden mucho más tiempo del esperado en volver a su estado normal. Si un servicio está muy ocupado, el error en una parte del sistema puede provocar errores en cascada y hacer que se bloqueen muchas operaciones mientras se retienen en recursos críticos del sistema como la memoria, los subprocesos y las conexiones de base de datos. En lugar de reintentar continuamente una operación que es improbable que tenga éxito, la aplicación debería aceptar rápidamente que la operación ha generado error y tratar correctamente este error. Use el patrón Circuit Breaker para rechazar solicitudes para operaciones específicas durante períodos definidos. Para más información, consulte [Patrón de disyuntor](../patterns/circuit-breaker.md).
 
 **Crear o revertir a varios componentes.** Siempre que sea posible, diseñe aplicaciones para usar varias instancias sin afectar a las operaciones y las conexiones existentes. Con el fin de maximizar la disponibilidad, use varias instancias y distribuya las solicitudes entre ellas, y detecte y evite el envío de solicitudes a instancias con error.
 
@@ -79,7 +80,7 @@ La disponibilidad es la proporción de tiempo que un sistema es funcional y func
 
 **Probar los sistemas de supervisión.**  Los sistemas automatizados de conmutación por error y de reserva, así como la visualización manual del rendimiento y el mantenimiento del sistema mediante el uso de paneles, dependen del funcionamiento correcto de la supervisión y la instrumentación. Si estos elementos generan un error, pierden información fundamental o informan de datos imprecisos, es posible que un operador no se dé cuenta de que el sistema está en mal estado o de que tiene errores.
 
-**Realizar un seguimiento del progreso de los flujos de trabajo de larga ejecución y volver a intentarlo en caso de error.** Los flujos de trabajo de larga ejecución suelen constar de varios pasos. Asegúrese de que cada paso sea independiente y de que se pueda volver a intentar para minimizar la posibilidad de que se tenga que revertir todo el flujo de trabajo o de que se tengan que ejecutar varias transacciones de compensación. Supervise y administre el progreso de los flujos de trabajo de larga ejecución implementando un patrón como [el supervisor del agente del programador](../patterns/scheduler-agent-supervisor.md).
+**Realizar un seguimiento del progreso de los flujos de trabajo de larga ejecución y volver a intentarlo en caso de error.** Los flujos de trabajo de larga ejecución suelen constar de varios pasos. Asegúrese de que cada paso sea independiente y de que se pueda volver a intentar para minimizar la posibilidad de que se tenga que revertir todo el flujo de trabajo o de que se tengan que ejecutar varias transacciones de compensación. Supervise y administre el progreso de los flujos de trabajo de larga ejecución implementando un patrón como el [patrón de supervisor de agente de programador](../patterns/scheduler-agent-supervisor.md).
 
 **Planear la recuperación ante desastres.** Cree un plan aceptado y probado para la recuperación de cualquier tipo de error que pueda afectar a la disponibilidad del sistema. Elija una arquitectura de recuperación ante desastres multisitio para las aplicaciones críticas. Designe un propietario específico del plan de recuperación ante desastres, incluida la automatización y las pruebas. Asegúrese de que el plan esté bien documentado y automatice el proceso tanto como sea posible. Establezca una estrategia de copia de seguridad para todos los datos transaccionales y de referencia, y pruebe la restauración de estas copias de seguridad con regularidad. Enseñe al personal de operaciones a ejecutar el plan y realizar simulaciones de desastres periódicas para validar y mejorar el plan. Si usa [Azure Site Recovery][site-recovery] para replicar máquinas virtuales, cree un plan de recuperación completamente automatizado para conmutar por error toda la aplicación en cuestión de minutos.
 
@@ -87,4 +88,3 @@ La disponibilidad es la proporción de tiempo que un sistema es funcional y func
 [availability-sets]:/azure/virtual-machines/virtual-machines-windows-manage-availability/
 [site-recovery]: /azure/site-recovery/
 [site-recovery-test]: /azure/site-recovery/site-recovery-test-failover-to-azure
-

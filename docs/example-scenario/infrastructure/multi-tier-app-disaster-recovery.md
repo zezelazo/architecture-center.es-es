@@ -3,20 +3,21 @@ title: Aplicación web de varios niveles creada para lograr alta disponibilidad 
 description: Cree una aplicación web de varios niveles para lograr una alta disponibilidad y recuperación ante desastres en Azure mediante máquinas virtuales, conjuntos de disponibilidad y zonas de disponibilidad de Azure, Azure Site Recovery y Azure Traffic Manager
 author: sujayt
 ms.date: 11/16/2018
-ms.openlocfilehash: 28593c680746dc5ac8f7f25641faa57569dcc53f
-ms.sourcegitcommit: 16bc6a91b6b9565ca3bcc72d6eb27c2c4ae935e4
+ms.custom: product-team
+ms.openlocfilehash: 71534dc095d5fba137a0e610d4e725c2efc6b432
+ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52579482"
+ms.lasthandoff: 12/06/2018
+ms.locfileid: "53004595"
 ---
 # <a name="multitier-web-application-built-for-high-availability-and-disaster-recovery-on-azure"></a>Aplicación web de varios niveles creada para lograr alta disponibilidad y recuperación ante desastres en Azure
 
 Este escenario de ejemplo es aplicable a cualquier sector que necesite implementar aplicaciones resistentes de varios niveles creadas para obtener una alta disponibilidad y recuperación ante desastres. En este escenario, la aplicación consta de tres niveles.
 
-- Nivel web: el nivel superior que incluye la interfaz de usuario. Este nivel analiza las interacciones del usuario y pasa las acciones al siguiente nivel para su procesamiento.
-- Nivel empresarial: procesa las interacciones de usuario y toma decisiones lógicas sobre los pasos siguientes. Este nivel conecta el nivel web con el nivel de datos.
-- Nivel de datos: almacena los datos de la aplicación. Normalmente se usa una base de datos, un almacenamiento de objetos o un almacenamiento de archivos.
+- Capa web: el nivel superior que incluye la interfaz de usuario. Este nivel analiza las interacciones del usuario y pasa las acciones al siguiente nivel para su procesamiento.
+- Capa de negocio: procesa las interacciones de usuario y toma decisiones lógicas sobre los pasos siguientes. Este nivel conecta el nivel web con el nivel de datos.
+- Capa de datos: almacena los datos de la aplicación. Normalmente se usa una base de datos, un almacenamiento de objetos o un almacenamiento de archivos.
 
 Entre los escenarios de aplicación se incluye cualquier aplicación crítica que se ejecute en Windows o Linux. Puede tratarse de una aplicación estandarizada, como SAP y SharePoint o una aplicación de línea de negocio personalizada.
 

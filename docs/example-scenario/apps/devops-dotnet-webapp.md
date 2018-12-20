@@ -1,168 +1,127 @@
 ---
-title: Canalización de CI/CD con Azure DevOps
+title: Diseño de una canalización de CI/CD con Azure DevOps
 description: Compilación y publicación de una aplicación .NET en Azure Web Apps con Azure DevOps.
 author: christianreddington
-ms.date: 07/11/18
-ms.openlocfilehash: 97f16b2d3d9c15bc6f5db6fad4c9d8097243ad3d
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.date: 12/06/2018
+ms.custom:
+- fasttrack
+- seodec18
+ms.openlocfilehash: 23945493115522d099b6b26922f567653da0367e
+ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610794"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53307289"
 ---
-# <a name="cicd-pipeline-with-azure-devops"></a>Canalización de CI/CD con Azure DevOps
+# <a name="design-a-cicd-pipeline-using-azure-devops"></a>Diseño de una canalización de CI/CD con Azure DevOps
 
-DevOps es la integración de las operaciones de desarrollo, control de calidad y TI. DevOps requiere una referencia cultural unificada y un sólido conjunto de procesos para la entrega de software.
+Este escenario proporciona una guía de arquitectura y diseño para la creación de una canalización de integración continua (CI) y de implementación continua (CD).  En este ejemplo, la canalización de CI/CD implementa una aplicación web de .NET de dos niveles en Azure App Service.
 
-Este escenario de ejemplo muestra cómo los equipos de desarrollo pueden usar Azure DevOps para implementar una aplicación web .NET de dos niveles en Azure App Service. La aplicación web depende de servicios descendentes de plataforma como servicio (PaaS) de Azure. Este documento también señala algunas consideraciones que debe tener en cuenta al diseñar un escenario como este mediante PaaS de Azure.
-
-Adoptar un enfoque moderno en el desarrollo de aplicaciones mediante el uso de la integración continua y la implementación continua (CI/CD) ayuda a proporcionar valor más rápidamente a los usuarios mediante un servicio sólido de compilación, prueba, implementación y supervisión. Con el uso de una plataforma como Azure DevOps junto con servicios de Azure como App Service, las organizaciones pueden centrarse en el desarrollo de su escenario en lugar de en la administración de la infraestructura de soporte.
+La migración a procesos modernos de CI/CD ofrece muchos beneficios para la creación, implementación, prueba y supervisión de aplicaciones. Al utilizar Azure DevOps junto con otros servicios como App Service, las organizaciones pueden centrarse en el desarrollo de sus aplicaciones en lugar de en la administración de la infraestructura de soporte.
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
-Considere la posibilidad de usar DevOps para los casos de uso siguientes:
+Considere DevOps Azure y los procesos de CI/CD para:
 
-* Aceleración del desarrollo de aplicaciones y ciclos de vida de desarrollo
-* Generación de calidad y coherencia en un proceso automatizado de compilación y lanzamiento
+- Aceleración del desarrollo de aplicaciones y ciclos de vida de desarrollo
+- Generación de calidad y coherencia en un proceso automatizado de compilación y lanzamiento
+- Aumento de la estabilidad y el tiempo de actividad de la aplicación
 
 ## <a name="architecture"></a>Arquitectura
 
-![Introducción a la arquitectura de los componentes de Azure implicados en un escenario de DevOps con Azure DevOps y Azure App Service][architecture]
+![Diagrama de la arquitectura de los componentes de Azure implicados en un escenario de DevOps con Azure DevOps y Azure App Service][architecture]
 
-Este escenario incluye una canalización de CI/CD para una aplicación web de .NET con Azure DevOps. Los datos fluyen por el escenario de la siguiente manera:
+Los datos fluyen por el escenario de la siguiente manera:
 
-1. Cambie el código fuente de la aplicación.
-2. Confirme el código de la aplicación y el archivo web.config de Web Apps.
-3. La integración continua desencadena las pruebas unitarias y la compilación de la aplicación.
-4. El desencadenador de implementación continua organiza la implementación de los artefactos de la aplicación *con valores parametrizados de configuración específicos del entorno*.
-5. Implementación en Azure App Service.
+1. Un desarrollador cambia el código fuente de la aplicación.
+2. El código de la aplicación, incluido el archivo web.config, se envía al repositorio de código fuente de Azure Repos.
+3. La integración continua desencadena las pruebas unitarias y la compilación de la aplicación mediante Azure Test Plans.
+4. La implementación continua en Azure Pipelines desencadena la implementación automatizada de los artefactos de la aplicación *con valores de configuración específicos del entorno*.
+5. Los artefactos se implementan en Azure App Service.
 6. Azure Application Insights recopila y analiza datos de mantenimiento, rendimiento y uso.
-7. Revise la información de mantenimiento, rendimiento y uso.
+7. Los desarrolladores supervisan y administran la información sobre el estado, el rendimiento y el uso.
+8. La información de trabajos pendientes se utiliza para priorizar nuevas características y correcciones de errores mediante Azure Boards.
 
 ### <a name="components"></a>Componentes
 
-* [Azure DevOps][vsts] es un servicio para administrar el ciclo de vida del desarrollo de un extremo a otro, desde el planeamiento y administración del proyecto a la administración del código, continuando con la compilación y el lanzamiento.
-* [Azure Web Apps][web-apps] es un servicio PaaS para hospedar aplicaciones web, API REST y back-ends para dispositivos móviles. Aunque este artículo se centra en. NET, hay varias opciones de plataforma de desarrollo adicionales compatibles.
-* [Application Insights][application-insights] es un servicio propio de Application Performance Management (APM) extensible para desarrolladores web en varias plataformas.
+- [Azure DevOps][vsts] es un servicio para administrar el ciclo de vida del desarrollo de un extremo a otro, desde el planeamiento y administración del proyecto a la administración del código, continuando con la compilación y el lanzamiento.
 
-### <a name="alternative-devops-tooling-options"></a>Opciones alternativas de herramientas de DevOps
+- [Azure Web Apps][web-apps] es un servicio PaaS para hospedar aplicaciones web, API REST y back-ends para dispositivos móviles. Aunque este artículo se centra en. NET, hay varias opciones de plataforma de desarrollo adicionales compatibles.
 
-Aunque este artículo se centra en Azure DevOps, se puede usar [Team Foundation Server][team-foundation-server] como sustituto en un entorno local. Como alternativa, también puede usar un conjunto de tecnologías para una canalización de desarrollo de código abierto con [Jenkins][jenkins-on-azure].
+- [Application Insights][application-insights] es un servicio propio de Application Performance Management (APM) extensible para desarrolladores web en varias plataformas.
 
-Desde una perspectiva de infraestructura como código, las [plantillas de Azure Resource Manager][arm-templates] se incluyen como parte del proyecto de Azure DevOps, pero también podría usar [Terraform][terraform] o [Chef][chef]. Si prefiere una implementación basada en una infraestructura como servicio (IaaS) y necesita administración de la configuración, podría usar [Azure Automation State Configuration][desired-state-configuration], [Ansible][ansible] o [Chef][chef].
+### <a name="alternatives"></a>Alternativas
 
-### <a name="alternatives-to-azure-web-apps"></a>Alternativas a Azure Web Apps
+Aunque este artículo se centra en Azure DevOps, se puede usar [Azure DevOps Server][azure-devops-server] (anteriormente conocido como Team Foundation Server) como sustituto en un entorno local. Como alternativa, también puede usar un conjunto de tecnologías para una canalización de desarrollo de código abierto con [Jenkins][jenkins-on-azure].
+
+Desde una perspectiva de infraestructura como código, las [plantillas de Resource Manager][arm-templates] se usaron como parte del proyecto de Azure DevOps, pero también se podrían considerar otras tecnologías de administración como [Terraform][terraform] o [Chef][chef]. Si prefiere una implementación basada en una infraestructura como servicio (IaaS) y necesita administración de la configuración, podría usar [Azure Automation State Configuration][desired-state-configuration], [Ansible][ansible] o [Chef][chef].
 
 Puede considerar estas alternativas al hospedaje en Azure Web Apps:
 
-* [Azure Virtual Machines][compare-vm-hosting] &mdash; para cargas de trabajo que requieren un alto grado de control, o dependen de componentes o servicios del sistema operativo que no son posibles con Web Apps (por ejemplo, la caché global de ensamblados de Windows o COM).
-* [Service Fabric][service-fabric] &mdash; una buena opción si la arquitectura de cargas de trabajo está centrada en torno a componentes distribuidos que se benefician de su implementación y ejecución en un clúster con un alto grado de control. Service Fabric también se puede utilizar para hospedar contenedores.
-* [Azure Functions][azure-functions]: un enfoque efectivo sin servidor si la arquitectura de las cargas de trabajo está centrada en torno a componentes distribuidos muy específicos, que requieren dependencias mínimas, donde solo se necesita que los componentes individuales se ejecuten a petición (no de forma continua) y en los que la orquestación de componentes no es necesaria.
+- [Azure Virtual Machines][compare-vm-hosting] trata las cargas de trabajo que requieren un alto grado de control, o dependen de componentes o servicios del sistema operativo que no son posibles con Web Apps (por ejemplo, la caché global de ensamblados de Windows o COM).
 
-Este [árbol de decisión](/azure/architecture/guide/technology-choices/compute-decision-tree) puede ayudar a la hora de elegir el camino correcto para realizar una migración.
+- [Service Fabric][service-fabric] es una buena opción si la arquitectura de cargas de trabajo está centrada en torno a componentes distribuidos que se benefician de su implementación y ejecución en un clúster con un alto grado de control. Service Fabric también se puede utilizar para hospedar contenedores.
 
-### <a name="devops"></a>DevOps
+- [Azure Functions][azure-functions] proporciona un enfoque efectivo sin servidor si la arquitectura de las cargas de trabajo está centrada en torno a componentes distribuidos muy específicos, que requieren dependencias mínimas, donde solo se necesita que los componentes individuales se ejecuten a petición (no de forma continua) y en los que la orquestación de componentes no es necesaria.
 
-**[Integración continua (CI)][continuous-integration]** mantiene una versión estable, con varios desarrolladores que realizan con regularidad cambios pequeños y frecuentes en el código base compartido. Como parte de la canalización de integración continua debe:
-* Confirmar con frecuencia pequeños cambios en el código. Evitar el procesamiento por lotes de cambios más grandes o complejos que pueden ser más difíciles de fusionar correctamente mediante combinación.
-* Realizar pruebas unitarias de los componentes de la aplicación con suficiente cobertura de código (incluyendo la prueba de las rutas incorrectas).
-* Garantizar que la compilación se ejecuta en la rama (o tronco) compartida maestra. Esta rama debe ser estable y permanecer "lista para implementación". Se deben aislar los cambios incompletos o en curso en una rama independiente con combinaciones frecuentes "de integración hacia delante" para evitar conflictos posteriores.
+Este [árbol de decisión para servicios de proceso de Azure](/azure/architecture/guide/technology-choices/compute-decision-tree) puede ayudar a la hora de elegir el camino correcto para realizar una migración.
 
-La **[entrega continua (CD)][continuous-delivery]** debe tener como objetivo mostrar no solo una compilación estable, sino también una implementación estable. Esto dificulta la comprensión de la implementación continua y requiere una configuración específica para el entorno y un mecanismo para configurar esos valores correctamente. Otras consideraciones de la implementación continua incluyen las siguientes:
-* Se necesita una cobertura suficiente de las pruebas de integración para asegurarse de que los distintos componentes están configurados y funcionando correctamente de un extremo a otro.
-* Puede que también necesite configurar y restablecer datos específicos del entorno y administrar versiones del esquema de la base de datos.
-* La entrega continua también se puede ampliar a los entornos de pruebas de carga y pruebas de aceptación del usuario.
-* La entrega continua se beneficia de la supervisión continua, idealmente en todos los entornos.
-* La coherencia y confiabilidad de las implementaciones y pruebas de integración en los entornos se simplifica mediante la creación de scripts de creación y configuración de la infraestructura de hospedaje. Esto es considerablemente más fácil para cargas de trabajo basadas en la nube. Para más información, consulte [Infrastructure as Code][infra-as-code] (Infraestructura como código).
-* Inicie la entrega continua tan pronto como sea posible en el ciclo de vida del proyecto. Cuanto más tarde se realice, más difícil será de incorporar.
-* Se le debe dar la misma prioridad a las pruebas unitarias y de integración que a las características de la aplicación.
-* Use paquetes de implementación independientes del entorno y administración de configuración específica del entorno a lo largo del proceso de lanzamiento.
-* Proteja la configuración confidencial utilizando las herramientas de administración de versiones o mediante una llamada a un módulo de seguridad de hardware (HSM) o instancia de [Azure Key Vault][azure-key-vault] durante el proceso de lanzamiento. No almacene configuración confidencial dentro del control de código fuente.
+## <a name="management-and-security-considerations"></a>Consideraciones sobre administración y seguridad
 
-**Aprendizaje continuo**. La supervisión más eficaz de un entorno de implementación continua la proporcionan las herramientas de supervisión de rendimiento de aplicaciones (APM) como, por ejemplo, [Application Insights][application-insights]. Un nivel suficiente de supervisión de la carga de trabajo de una aplicación resulta vital para entender los errores y el rendimiento con carga. Application Insights se puede integrar en VSTS para habilitar la [supervisión continua de la canalización de implementación continua][app-insights-cd-monitoring]. Esta se puede usar para habilitar una progresión continua a la siguiente fase, sin intervención del usuario, o una reversión si se detecta una alerta.
+- Considere la posibilidad de usar una de las [tareas de tokenización][vsts-tokenization] que están disponibles en Marketplace de VSTS.
 
-## <a name="considerations"></a>Consideraciones
+- Con las tareas de [Azure Key Vault][download-keyvault-secrets] se pueden descargar secretos desde una instancia de Azure Key Vault en su versión. Luego puede usar esos secretos como variables que formen parte de la definición de versión, lo que evita almacenarlos en el control de código fuente.
 
-### <a name="availability"></a>Disponibilidad
+- Utilice [variables de versión][vsts-release-variables] en las definiciones de versión para impulsar los cambios de configuración en los entornos. Las variables de versión se pueden limitar a una versión completa o a un entorno determinado. Cuando use variables de información secreta, asegúrese de seleccionar el icono de candado.
 
-Considere la posibilidad de aprovechar los [patrones de diseño típicos de disponibilidad][design-patterns-availability] al compilar la aplicación en la nube.
+- Las [puertas de implementación][vsts-deployment-gates] se deben utilizar en la canalización de versión. Esto le permite aprovechar los datos de supervisión en asociación con sistemas externos (por ejemplo, de administración de incidentes o con sistemas personalizados adicionales) para determinar si se debe promover una versión.
 
-Revise las consideraciones sobre disponibilidad en la correspondiente [arquitectura de referencia de aplicación web de App Service][app-service-reference-architecture]
+- Cuando se requiere intervención manual en una canalización de versión, utilice la funcionalidad de [aprobaciones][vsts-approvals].
 
-Para ver otros temas de disponibilidad, consulte la [lista de comprobación de disponibilidad][availability] que encontrará en Azure Architecture Center.
-
-### <a name="scalability"></a>Escalabilidad
-
-Al compilar una aplicación en la nube debe tener en cuenta los [patrones de diseño típicos de escalabilidad][design-patterns-scalability].
-
-Revise las consideraciones sobre escalabilidad en la correspondiente [arquitectura de referencia de aplicación web de App Service][app-service-reference-architecture]
-
-Para ver otros temas de escalabilidad, consulte la [lista de comprobación de escalabilidad][scalability] que encontrará en el centro de arquitectura de Azure.
-
-### <a name="security"></a>Seguridad
-
-Considere la posibilidad de aprovechar los [patrones de diseño típicos de seguridad][design-patterns-security] donde corresponda.
-
-Revise las consideraciones sobre seguridad en la correspondiente [arquitectura de referencia de aplicación web de App Service][app-service-reference-architecture].
-
-Para obtener instrucciones generales sobre el diseño de soluciones seguras, consulte la [documentación de seguridad de Azure][security].
-
-### <a name="resiliency"></a>Resistencia
-
-Considere la posibilidad de implementar los [patrones de diseño típicos de resistencia][design-patterns-resiliency] cuando corresponda.
-
-Encontrará varios [procedimientos recomendados para App Service][resiliency-app-service] en el Centro de arquitectura de Azure.
-
-Para obtener instrucciones generales sobre el diseño de soluciones resistentes, consulte [Diseño de aplicaciones resistentes de Azure][resiliency].
+- Considere el uso de [Application Insights][application-insights] y de herramientas de supervisión adicionales lo antes posible en la versión de canalización. Muchas organizaciones solo empiezan la supervisión en su entorno de producción. Al supervisar los demás entornos, puede identificar errores en un momento más temprano del proceso de desarrollo y evitar que los problemas lleguen al entorno de producción.
 
 ## <a name="deploy-the-scenario"></a>Implementación del escenario
 
 ### <a name="prerequisites"></a>Requisitos previos
 
-* Debe tener una cuenta de Azure. Si no tiene ninguna suscripción a Azure, cree una [cuenta gratuita][azure-free-account] antes de empezar.
-* Tiene que registrarse como organización de Azure DevOps. Para más información, consulte [Guía de inicio rápido: Creación de una organización][vsts-account-create].
+- Debe tener una cuenta de Azure. Si no tiene ninguna suscripción a Azure, cree una [cuenta gratuita][azure-free-account] antes de empezar.
+
+- Tiene que registrarse como organización de Azure DevOps. Para más información, consulte [Guía de inicio rápido: Creación de la organización][vsts-account-create].
 
 ### <a name="walk-through"></a>Ejemplo paso a paso
 
-En este escenario va a usar el proyecto de Azure DevOps para crear la canalización de CI/CD.
-
-El proyecto de DevOps implementará App Service, un plan de App Service y un recurso de App Insights, y configurará el proyecto de Azure DevOps.
+El [proyecto de Azure DevOps](/azure/devops-project/azure-devops-project-github) implementará un plan de App Service, una instancia de App Service y un recurso de App Insights, y configurará el proyecto de Azure DevOps.
 
 Una vez que tenga implementado el proyecto de Azure DevOps y se haya completado la compilación, revise los cambios de código asociados, los elementos de trabajo y los resultados de las pruebas. Como puede observar, no se muestra ningún resultado de la prueba, ya que el código no contiene pruebas para ejecutar.
 
-Revise las definiciones de versión. Tenga en cuenta que se ha configurado una canalización de versión que ha permitido publicar nuestra aplicación en el entorno de desarrollo. Observe que hay un **desencadenador de implementación continua** establecido en el artefacto de compilación **Drop**, con versiones automáticas en el entorno de desarrollo. Como parte de un proceso de implementación continua, puede que vea versiones que se extienden en varios entornos. Una versión puede abarcar la infraestructura (mediante técnicas como la de infraestructura como código) y también implementar los paquetes de aplicación necesarios así como todas las tareas posteriores a la configuración.
-
-## <a name="additional-considerations"></a>Consideraciones adicionales
-
-* Considere la posibilidad de usar una de las [tareas de tokenización][vsts-tokenization] que están disponibles en Marketplace de VSTS.
-* Considere la posibilidad de usar la tarea [Deploy: Azure Key Vault][download-keyvault-secrets] de VSTS para descargar los secretos desde Azure Key Vault en su versión. Luego puede usar esos secretos como variables que formen parte de la definición de versión y así evitar almacenarlos en el control de código fuente.
-* Considere la posibilidad de usar [variables de versión][vsts-release-variables] en las definiciones de versión para impulsar los cambios de configuración en los entornos. Las variables de versión se pueden limitar a una versión completa o a un entorno determinado. Cuando use variables de información secreta, asegúrese de seleccionar el icono de candado.
-* Piense en la posibilidad de usar [puertas de implementación][vsts-deployment-gates] en la canalización de versión. Esto le permite aprovechar los datos de supervisión en asociación con sistemas externos (por ejemplo, de administración de incidentes o con sistemas personalizados adicionales) para determinar si se debe promover una versión.
-* Cuando se requiere intervención manual en una canalización de versión, piense sobre la conveniencia de usar la funcionalidad de [aprobaciones][vsts-approvals].
-* Considere el uso de [Application Insights][application-insights] y de herramientas de supervisión adicionales lo antes posible en la versión de canalización. Muchas organizaciones solo empiezan la supervisión en su entorno de producción; mediante la supervisión de los demás entornos, puede identificar errores en un momento más temprano del proceso de desarrollo y evitar que los problemas lleguen al entorno de producción.
+El proyecto crea una canalización de versión y un desencadenador de implementación continua, con lo que se implementa nuestra aplicación en el entorno de desarrollo. Como parte de un proceso de implementación continua, puede que vea versiones que se extienden en varios entornos. Una versión puede abarcar la infraestructura (mediante técnicas como la de infraestructura como código) y también implementar los paquetes de aplicación necesarios así como todas las tareas posteriores a la configuración.
 
 ## <a name="pricing"></a>Precios
 
 El costo de Azure DevOps dependerá del número de usuarios de su organización que requieren acceso, además de otros factores como el número de versiones o compilaciones simultáneas necesarias y el número de usuarios de prueba. Para más información, consulte [Precios de Azure DevOps][vsts-pricing-page].
 
-* [Azure DevOps][vsts-pricing-calculator] es un servicio que le permite administrar el ciclo de vida del desarrollo. La facturación es por usuario por mes. Puede haber cargos adicionales en función de las canalizaciones simultáneas que se necesiten, además de usuarios de prueba o licencias de usuario básico adicionales.
+Esta [calculadora de precios][vsts-pricing-calculator] proporciona una estimación para ejecutar Azure DevOps con 20 usuarios.
+
+Azure DevOps se factura por usuario y mes. Puede haber cargos adicionales en función de las canalizaciones simultáneas que se necesiten, además de usuarios de prueba o licencias de usuario básico adicionales.
 
 ## <a name="related-resources"></a>Recursos relacionados
 
-* [¿Qué es DevOps?][devops-whatis]
-* [DevOps at Microsoft - How we work with Azure DevOps][devops-microsoft] (DevOps en Microsoft: Cómo se trabaja con Azure DevOps)
-* [Tutoriales paso a paso: DevOps con Azure DevOps][devops-with-vsts]
-* [Lista de comprobación de DevOps][devops-checklist]
-* [Creación de una canalización de CI/CD para .NET con un proyecto de Azure DevOps][devops-project-create]
+Consulte los siguientes recursos para aprender más sobre CI/CD y Azure DevOps:
+
+- [¿Qué es DevOps?][devops-whatis]
+- [DevOps at Microsoft - How we work with Azure DevOps][devops-microsoft] (DevOps en Microsoft: Cómo se trabaja con Azure DevOps)
+- [Tutoriales detallados: DevOps con Azure DevOps][devops-with-vsts]
+- [Lista de comprobación de DevOps][devops-checklist]
+- [Creación de una canalización de CI/CD para .NET con un proyecto de Azure DevOps][devops-project-create]
 
 <!-- links -->
+
 [ansible]: /azure/ansible/
 [application-insights]: /azure/application-insights/app-insights-overview
 [app-service-reference-architecture]: ../../reference-architectures/app-service-web-app/basic-web-app.md
 [azure-free-account]: https://azure.microsoft.com/free/?WT.mc_id=A261C142F
 [arm-templates]: /azure/azure-resource-manager/resource-group-overview#template-deployment
-[architecture]: ./media/architecture-devops-dotnet-webapp.png
-[availability]: /azure/architecture/checklist/availability
+[architecture]: ./media/architecture-devops-dotnet-webapp.svg
 [chef]: /azure/chef/
 [design-patterns-availability]: /azure/architecture/patterns/category/availability
 [design-patterns-resiliency]: /azure/architecture/patterns/category/resiliency
@@ -180,13 +139,10 @@ El costo de Azure DevOps dependerá del número de usuarios de su organización 
 [download-keyvault-secrets]: /vsts/pipelines/tasks/deploy/azure-key-vault?view=vsts
 [resource-groups]: /azure/azure-resource-manager/resource-group-overview
 [resiliency-app-service]: /azure/architecture/checklist/resiliency-per-service#app-service
-[resiliency]: /azure/architecture/checklist/resiliency
-[scalability]: /azure/architecture/checklist/scalability
 [vsts]: /vsts/?view=vsts#pivot=services
 [continuous-integration]: /azure/devops/what-is-continuous-integration
 [continuous-delivery]: /azure/devops/what-is-continuous-delivery
 [web-apps]: /azure/app-service/app-service-web-overview
-[terraform]: /azure/terraform/
 [vsts-account-create]: /azure/devops/organizations/accounts/create-organization-msa-or-work-student?view=vsts
 [vsts-approvals]: /vsts/pipelines/release/approvals/approvals?view=vsts
 [devops-project]: https://portal.azure.com/?feature.customportal=false#create/Microsoft.AzureProject
@@ -197,7 +153,7 @@ El costo de Azure DevOps dependerá del número de usuarios de su organización 
 [vsts-tokenization]: https://marketplace.visualstudio.com/search?term=token&target=VSTS&category=All%20categories&sortBy=Relevance
 [azure-key-vault]: /azure/key-vault/key-vault-overview
 [infra-as-code]: https://blogs.msdn.microsoft.com/mvpawardprogram/2018/02/13/infrastructure-as-code/
-[team-foundation-server]: https://visualstudio.microsoft.com/tfs/
+[azure-devops-server]: https://visualstudio.microsoft.com/tfs/
 [infra-as-code]: https://blogs.msdn.microsoft.com/mvpawardprogram/2018/02/13/infrastructure-as-code/
 [service-fabric]: /azure/service-fabric/
 [azure-functions]: /azure/azure-functions/
@@ -206,4 +162,4 @@ El costo de Azure DevOps dependerá del número de usuarios de su organización 
 [app-insights-cd-monitoring]: /azure/application-insights/app-insights-vsts-continuous-monitoring
 [azure-region-pair-bcdr]: /azure/best-practices-availability-paired-regions
 [devops-project-create]: /azure/devops-project/azure-devops-project-aspnet-core
-[security]: /azure/security/
+[terraform]: /azure/terraform/

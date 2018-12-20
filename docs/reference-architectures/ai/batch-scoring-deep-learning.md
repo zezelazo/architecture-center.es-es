@@ -1,25 +1,26 @@
 ---
-title: Puntuación de Batch en Azure para modelos de aprendizaje profundo
+title: Puntuación de Batch para modelos de aprendizaje profundo
+titleSuffix: Azure Reference Architectures
 description: Esta arquitectura de referencia muestra cómo aplicar una transferencia de estilo neuronal a un vídeo con Azure Batch AI.
 author: jiata
 ms.date: 10/02/2018
-ms.author: jiata
-ms.openlocfilehash: 1f3f3d3882b2b30eb29acd26c9eab9ff128028e2
-ms.sourcegitcommit: 9eecff565392273d11b8702f1fcecb4d75e27a15
+ms.custom: azcat-ai
+ms.openlocfilehash: 0396903a39d00a4131df65872a63f4b3fde8dce7
+ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/03/2018
-ms.locfileid: "48243741"
+ms.lasthandoff: 12/08/2018
+ms.locfileid: "53119887"
 ---
 # <a name="batch-scoring-on-azure-for-deep-learning-models"></a>Puntuación de Batch en Azure para modelos de aprendizaje profundo
 
 Esta arquitectura de referencia muestra cómo aplicar una transferencia de estilo neuronal a un vídeo con Azure Batch AI. La *transferencia de estilo* es una técnica de aprendizaje profundo que se compone de una imagen existente con el estilo de otra imagen. Esta arquitectura se puede generalizar para cualquier escenario que usa la puntuación de Batch con el aprendizaje profundo. [**Implemente esta solución**](#deploy-the-solution).
- 
-![](./_images/batch-ai-deep-learning.png)
 
-**Escenario**: una empresa mediática tiene un vídeo cuyo estilo quiere cambiar para que se parezca a una pintura específica. La organización quiere poder aplicar este estilo a todos los fotogramas del vídeo de manera oportuna y automática. Para más información sobre los algoritmos de transferencia de estilo neuronal, vea [Image Style Transfer Using Convolutional Neural Networks][image-style-transfer] (Transferencia de estilo de imagen con redes neuronales convolucionales) (PDF).
+![Diagrama de arquitectura para los modelos de aprendizaje profundo con Azure Batch AI](./_images/batch-ai-deep-learning.png)
 
-| Imagen con estilo: | Vídeo de contenido/entrada: | Vídeo de salida: | 
+**Escenario**: Una empresa mediática tiene un vídeo cuyo estilo quiere cambiar para que se parezca a una pintura específica. La organización quiere poder aplicar este estilo a todos los fotogramas del vídeo de manera oportuna y automática. Para más información sobre los algoritmos de transferencia de estilo neuronal, vea [Image Style Transfer Using Convolutional Neural Networks][image-style-transfer] (Transferencia de estilo de imagen con redes neuronales convolucionales) (PDF).
+
+| Imagen con estilo: | Vídeo de contenido/entrada: | Vídeo de salida: |
 |--------|--------|---------|
 | <img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/style_image.jpg" width="300"> | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/input_video.mp4 "Vídeo de entrada") *Haga clic para ver el vídeo* | [<img src="https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video_image_0.jpg" width="300" height="300">](https://happypathspublic.blob.core.windows.net/assets/batch_scoring_for_dl/output_video.mp4 "Vídeo de salida") *Haga clic para ver el vídeo* |
 
@@ -35,9 +36,10 @@ Esta arquitectura de referencia está diseñada para cargas de trabajo que se de
 1. Descargue los fotogramas generados y una de nuevo las imágenes en un vídeo.
 
 ## <a name="architecture"></a>Arquitectura
+
 Esta arquitectura consta de los siguientes componentes.
 
-### <a name="compute"></a>Compute
+### <a name="compute"></a>Proceso
 
 **[Azure Batch AI][batch-ai]** se usa para ejecutar el algoritmo de transferencia de estilo neuronal. Batch AI admite cargas de trabajo de aprendizaje profundo al ofrecer entornos en contenedores que están preconfigurados para marcos de aprendizaje profundo, en máquinas virtuales habilitadas para GPU. Batch AI también puede conectar el clúster de proceso con Blob Storage.
 
@@ -62,7 +64,7 @@ Esta arquitectura de referencia usa secuencias de vídeo de un orangután en un 
 3. Use FFmpeg para dividir el vídeo en fotogramas individuales. Los fotogramas se procesarán de forma independiente, en paralelo.
 4. Use AzCopy para copiar los fotogramas individuales en el contenedor de blobs.
 
-En esta fase, la secuencia de vídeo está en un formato que se puede usar para la transferencia de estilo neuronal. 
+En esta fase, la secuencia de vídeo está en un formato que se puede usar para la transferencia de estilo neuronal.
 
 ## <a name="performance-considerations"></a>Consideraciones sobre rendimiento
 
@@ -74,7 +76,7 @@ Las GPU no están habilitadas de forma predeterminada en todas las regiones. Ase
 
 ### <a name="parallelizing-across-vms-vs-cores"></a>Poner en paralelo las máquinas virtuales con los núcleos
 
-Al ejecutar un proceso de transferencia de estilo como un trabajo por lotes, los trabajos que se ejecutan principalmente en GPU tendrán que ejecutarse en paralelo en todas las máquinas virtuales. Se admiten dos enfoques: puede crear un clúster más grande con máquinas virtuales que tienen una sola GPU o crear un clúster más pequeño mediante máquinas virtuales con muchas GPU. 
+Al ejecutar un proceso de transferencia de estilo como un trabajo por lotes, los trabajos que se ejecutan principalmente en GPU tendrán que ejecutarse en paralelo en todas las máquinas virtuales. Son posibles dos enfoques: Puede crear un clúster más grande con máquinas virtuales que tengan una sola GPU o crear un clúster más pequeño con máquinas virtuales con muchas GPU.
 
 Para esta carga de trabajo, estas dos opciones presentan un rendimiento comparable. El uso de menos máquinas virtuales con más GPU por máquina virtual puede ayudar a reducir el movimiento de datos. Sin embargo, el volumen de datos por trabajo para esta carga de trabajo no es muy grande, por lo que no observará demasiadas limitaciones por Blob Storage.
 
@@ -96,7 +98,7 @@ Para escenarios con información más confidencial, asegúrese de que todas las 
 
 ### <a name="data-encryption-and-data-movement"></a>Cifrado de datos y movimiento de datos
 
-Esta arquitectura de referencia usa la transferencia de estilo como un ejemplo de un proceso de puntuación de Batch. Para escenarios de información más confidencial, los datos del almacenamiento deben cifrarse en reposo. Cada vez que los datos se muevan de una ubicación a la siguiente, use SSL para proteger la transferencia de datos. Para más información, vea la [Guía de seguridad de Azure Storage][storage-security]. 
+Esta arquitectura de referencia usa la transferencia de estilo como un ejemplo de un proceso de puntuación de Batch. Para escenarios de información más confidencial, los datos del almacenamiento deben cifrarse en reposo. Cada vez que los datos se muevan de una ubicación a la siguiente, use SSL para proteger la transferencia de datos. Para más información, vea la [Guía de seguridad de Azure Storage][storage-security].
 
 ### <a name="securing-data-in-a-virtual-network"></a>Protección de datos de una red virtual
 
@@ -108,26 +110,25 @@ En escenarios donde hay varios usuarios, asegúrese de que los datos confidencia
 
 - Utilice RBAC para limitar el acceso de los usuarios a solo los recursos que necesitan.
 - Aprovisione dos cuentas de almacenamiento independientes. Almacene los datos de entrada y salida en la primera cuenta. Los usuarios externos pueden acceder a esta cuenta. Almacene los scripts ejecutables y los archivos de registro de salida en la otra cuenta. Los usuarios externos no deben tener acceso a esta cuenta. Esto garantizará que los usuarios externos no puedan modificar los archivos ejecutables (para insertar código malintencionado) ni acceder a los archivos de registro, que podrían contener información confidencial.
-- Los usuarios malintencionados pueden realizar ataques de denegación de servicio distribuido en la cola de trabajos o insertar mensajes dudosos con formato incorrecto en dicha cola, provocando así el bloqueo del sistema o errores al quitar los mensajes de la cola. 
+- Los usuarios malintencionados pueden realizar ataques de denegación de servicio distribuido en la cola de trabajos o insertar mensajes dudosos con formato incorrecto en dicha cola, provocando así el bloqueo del sistema o errores al quitar los mensajes de la cola.
 
 ## <a name="monitoring-and-logging"></a>Supervisión y registro
 
 ### <a name="monitoring-batch-ai-jobs"></a>Supervisión de trabajos de Batch AI
 
-Mientras se ejecuta el trabajo, es importante supervisar el progreso y asegurarse de que todo funciona según lo previsto. Sin embargo, puede resultar complicado supervisar un clúster de nodos activos. 
+Mientras se ejecuta el trabajo, es importante supervisar el progreso y asegurarse de que todo funciona según lo previsto. Sin embargo, puede resultar complicado supervisar un clúster de nodos activos.
 
-Para obtener una idea del estado general del clúster, vaya a la hoja de Batch AI de Azure Portal para inspeccionar el estado de los nodos del clúster. Si un nodo está inactivo o un trabajo presenta algún error, los registros de errores se guardan en Blob Storage y también se puede acceder a ellos en la hoja Trabajos de Azure Portal. 
+Para obtener una idea del estado general del clúster, vaya a la hoja de Batch AI de Azure Portal para inspeccionar el estado de los nodos del clúster. Si un nodo está inactivo o un trabajo presenta algún error, los registros de errores se guardan en Blob Storage y también se puede acceder a ellos en la hoja Trabajos de Azure Portal.
 
 La supervisión puede enriquecerse aún más conectando los registros a Application Insights o ejecutando procesos independientes para sondear el estado del clúster de Batch AI y sus trabajos.
 
 ### <a name="logging-in-batch-ai"></a>Registros en Batch AI
 
-Batch AI registrará automáticamente todos los procesos stdout y stderr en la cuenta de Blob Storage asociada. Mediante una herramienta de exploración de almacenamiento, como el Explorador de Storage, se ofrecerá una experiencia mucho más sencilla para explorar los archivos de registro. 
+Batch AI registrará automáticamente todos los procesos stdout y stderr en la cuenta de Blob Storage asociada. Mediante una herramienta de exploración de almacenamiento, como el Explorador de Storage, se ofrecerá una experiencia mucho más sencilla para explorar los archivos de registro.
 
-Los pasos de implementación para esta arquitectura de referencia también muestran cómo configurar un sistema de registro más sencillo, de tal forma que todos los registros de los distintos trabajos se guarden en el mismo directorio, en el contenedor de blobs, tal como se muestra a continuación.
-Use estos registros para supervisar cuánto tarda cada trabajo y cada imagen en procesarse. Esto le permitirá hacerse una idea mejor de cómo optimizar más el proceso.
+Los pasos de implementación para esta arquitectura de referencia también muestran cómo configurar un sistema de registro más sencillo, de tal forma que todos los registros de los distintos trabajos se guarden en el mismo directorio, en el contenedor de blobs, tal como se muestra a continuación. Use estos registros para supervisar cuánto tarda cada trabajo y cada imagen en procesarse. Esto le permitirá hacerse una idea mejor de cómo optimizar más el proceso.
 
-![](./_images/batch-ai-logging.png)
+![Captura de pantalla del registro de Azure Batch AI](./_images/batch-ai-logging.png)
 
 ## <a name="cost-considerations"></a>Consideraciones sobre el costo
 
@@ -142,6 +143,8 @@ El escalado automático puede no resultar apropiado para trabajo por lotes que s
 ## <a name="deploy-the-solution"></a>Implementación de la solución
 
 Para implementar esta arquitectura de referencia, siga los pasos descritos en el [repositorio de GitHub][deployment].
+
+<!-- links -->
 
 [azcopy]: /azure/storage/common/storage-use-azcopy-linux
 [batch-ai]: /azure/batch-ai/
