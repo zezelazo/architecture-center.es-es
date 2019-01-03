@@ -1,15 +1,16 @@
 ---
 title: Motor de búsqueda inteligente de productos para comercio electrónico
+titleSuffix: Azure Example Scenarios
 description: Proporcione una experiencia de búsqueda de alcance mundial en una aplicación de comercio electrónico.
 author: jelledruyts
 ms.date: 09/14/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 5eabdb94b9345e73b21526681e0dbd6ae859d7be
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 9e24f7ab2104f877fcc3aec310dd21677160608c
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004892"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643473"
 ---
 # <a name="intelligent-product-search-engine-for-e-commerce"></a>Motor de búsqueda inteligente de productos para comercio electrónico
 
@@ -23,9 +24,9 @@ Imagine una aplicación web de comercio electrónico típica con datos de produc
 
 Otros casos de uso pertinentes incluyen:
 
-* Búsqueda de anuncios inmobiliarias o tiendas cerca de la ubicación física del usuario.
-* Búsqueda de artículos en un sitio de noticias o búsqueda de resultados deportivos, con una preferencia más alta por la información más _reciente_.
-* Búsqueda en repositorios de gran tamaño de organizaciones _centradas en documentos_ tales como organismos legisladores y notarías.
+- Búsqueda de anuncios inmobiliarias o tiendas cerca de la ubicación física del usuario.
+- Búsqueda de artículos en un sitio de noticias o búsqueda de resultados deportivos, con una preferencia más alta por la información más _reciente_.
+- Búsqueda en repositorios de gran tamaño de organizaciones _centradas en documentos_ tales como organismos legisladores y notarías.
 
 En última instancia _todas_ las aplicaciones que tenga algún tipo de funcionalidad de búsqueda pueden beneficiarse de un servicio de búsqueda dedicado.
 
@@ -34,6 +35,7 @@ En última instancia _todas_ las aplicaciones que tenga algún tipo de funcional
 ![Introducción a la arquitectura de los componentes de Azure implicados en un motor de búsqueda inteligente de productos para el comercio electrónico][architecture]
 
 Este escenario incluye una solución de comercio electrónico donde los clientes pueden buscar a través de un catálogo de productos.
+
 1. Los clientes van a la **aplicación web de comercio electrónico** desde cualquier dispositivo.
 2. El catálogo de productos se mantiene en una instancia de **Azure SQL Database** para el procesamiento de transacciones.
 3. Azure Search usa un **indexador de búsqueda** para mantener automáticamente actualizado su índice de búsqueda mediante el seguimiento de cambios integrado.
@@ -43,21 +45,21 @@ Este escenario incluye una solución de comercio electrónico donde los clientes
 
 ### <a name="components"></a>Componentes
 
-* [App Services: Web Apps][docs-webapps] hospeda aplicaciones web que permiten la escalabilidad automática y la alta disponibilidad sin tener que administrar la infraestructura.
-* [SQL Database][docs-sql-database] es un servicio administrado de base de datos relacional de uso general de Microsoft Azure que admite estructuras como datos relacionales, JSON, espacial y XML.
-* [Azure Search][docs-search] es una solución de búsqueda como servicio en la nube que ofrece una experiencia de búsqueda de datos enriquecida en un contenido privado y heterogéneo en las aplicaciones web, para dispositivos móviles y empresariales.
-* [Bot Service][docs-botservice] proporciona herramientas para crear, probar, implementar y administrar bots inteligentes.
-* [Cognitive Services][docs-cognitive] permite usar algoritmos inteligentes para ver, oír, hablar, comprender e interpretar las necesidades de los usuarios con formas de comunicación naturales.
+- [App Services: Web Apps][docs-webapps] hospeda aplicaciones web que permiten la escalabilidad automática y la alta disponibilidad sin tener que administrar la infraestructura.
+- [SQL Database][docs-sql-database] es un servicio administrado de base de datos relacional de uso general de Microsoft Azure que admite estructuras como datos relacionales, JSON, espacial y XML.
+- [Azure Search][docs-search] es una solución de búsqueda como servicio en la nube que ofrece una experiencia de búsqueda de datos enriquecida en un contenido privado y heterogéneo en las aplicaciones web, para dispositivos móviles y empresariales.
+- [Bot Service][docs-botservice] proporciona herramientas para crear, probar, implementar y administrar bots inteligentes.
+- [Cognitive Services][docs-cognitive] permite usar algoritmos inteligentes para ver, oír, hablar, comprender e interpretar las necesidades de los usuarios con formas de comunicación naturales.
 
 ### <a name="alternatives"></a>Alternativas
 
-* Puede usar las funcionalidades de **búsqueda en base de datos**, por ejemplo, mediante la búsqueda de texto completo de SQL Server, pero el almacén transaccional también procesa consultas (lo que aumenta la necesidad de capacidad de procesamiento) y las capacidades de búsqueda dentro de la base de datos son más limitadas.
-* Puede hospedar el código abierto [Apache Lucene][apache-lucene] (en el que se basa Azure Search) en Azure Virtual Machines, pero de esta forma, vuelve a la administración de una infraestructura como-servicio (IaaS) y no se beneficia de las muchas características que Azure Search proporciona por encima de Lucene.
-* También puede implementar [Elasticsearch][elastic-marketplace] desde Azure Marketplace, se trata de un producto de búsqueda alternativo y capaz que proporciona otro proveedor, pero en este caso también se ejecuta como una carga de trabajo de IaaS.
+- Puede usar las funcionalidades de **búsqueda en base de datos**, por ejemplo, mediante la búsqueda de texto completo de SQL Server, pero el almacén transaccional también procesa consultas (lo que aumenta la necesidad de capacidad de procesamiento) y las capacidades de búsqueda dentro de la base de datos son más limitadas.
+- Puede hospedar el código abierto [Apache Lucene][apache-lucene] (en el que se basa Azure Search) en Azure Virtual Machines, pero de esta forma, vuelve a la administración de una infraestructura como-servicio (IaaS) y no se beneficia de las muchas características que Azure Search proporciona por encima de Lucene.
+- También puede implementar [Elasticsearch][elastic-marketplace] desde Azure Marketplace, se trata de un producto de búsqueda alternativo y capaz que proporciona otro proveedor, pero en este caso también se ejecuta como una carga de trabajo de IaaS.
 
 Otras opciones de la capa de datos incluyen:
 
-* [Cosmos DB](/azure/cosmos-db/introduction): es la base de datos multimodelo de distribución global de Microsoft. Cosmos DB proporciona una plataforma para ejecutar otros modelos de datos, como Mongo DB, Cassandra, datos de grafos o almacenamiento de tablas simple. Azure Search también admite la indexación de los datos directamente de Cosmos DB.
+- [Cosmos DB](/azure/cosmos-db/introduction): es la base de datos multimodelo de distribución global de Microsoft. Cosmos DB proporciona una plataforma para ejecutar otros modelos de datos, como Mongo DB, Cassandra, datos de grafos o almacenamiento de tablas simple. Azure Search también admite la indexación de los datos directamente de Cosmos DB.
 
 ## <a name="considerations"></a>Consideraciones
 
@@ -85,11 +87,11 @@ El grado de éxito de la aplicación de comercio electrónico depende en gran me
 
 Formas habituales para optimizar el servicio de búsqueda incluyen:
 
-* Uso de [perfiles de puntuación][search-scoring] para influir en la pertinencia de los resultados de búsqueda, por ejemplo, basándose en qué campo se hizo la coincidencia con la consulta, cómo es de reciente la consulta, distancia geográfica al usuario,...
-* Uso de [analizadores de idioma proporcionados por Microsoft][search-languages] que utilizan una pila de Procesamiento de lenguaje natural (NLP) avanzada para interpretar mejor las consultas
-* Uso de [analizadores personalizados][search-analyzers] para garantizar que sus productos se pueden encontrar correctamente, especialmente para búsquedas de información no basada en el lenguaje, como la marca de un producto y el modelo.
+- Uso de [perfiles de puntuación][search-scoring] para influir en la pertinencia de los resultados de búsqueda, por ejemplo, basándose en qué campo se hizo la coincidencia con la consulta, cómo es de reciente la consulta, distancia geográfica al usuario,...
+- Uso de [analizadores de idioma proporcionados por Microsoft][search-languages] que utilizan una pila de Procesamiento de lenguaje natural (NLP) avanzada para interpretar mejor las consultas
+- Uso de [analizadores personalizados][search-analyzers] para garantizar que sus productos se pueden encontrar correctamente, especialmente para búsquedas de información no basada en el lenguaje, como la marca de un producto y el modelo.
 
-## <a name="deploy-this-scenario"></a>Implementación de este escenario
+## <a name="deploy-the-scenario"></a>Implementación del escenario
 
 Para implementar una versión de comercio electrónico más completa de este escenario, puede seguir este [tutorial paso a paso][end-to-end-walkthrough] que proporciona una aplicación de ejemplo de .NET que se ejecuta una aplicación simple para la compra de entradas. También incluye Azure Search y usa muchas de las características mencionadas aquí. Además, hay una plantilla de Resource Manager para automatizar la implementación de la mayoría de los recursos de Azure.
 
@@ -99,9 +101,9 @@ Para explorar el costo de ejecutar este escenario, todos los servicios que se me
 
 Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tráfico que se espera obtener:
 
-* [Pequeño][small-pricing]: En este perfil, usamos una sola aplicación web `Standard S1` para hospedar el sitio web, el nivel gratis de Azure Bot Service, un único servicio `Basic` de Azure Search y una instancia `Standard S2` de SQL Database.
-* [Mediano][medium-pricing]: En este caso escalamos la aplicación web a dos instancias del nivel `Standard S3`, actualizando Search Service a un nivel `Standard S1` y con una instancia `Standard S6` de SQL Database.
-* [Grande][large-pricing]: En el perfil más grande, usamos cuatro instancias de una aplicación web `Premium P2V2`, actualizamos Azure Bot Service al nivel `Standard S1` (con 1.000.000 de mensajes en canales Premium), usamos 2 unidades del servicio `Standard S3` de Azure Search y una instancia `Premium P6` de SQL Database.
+- [Pequeño][small-pricing]: En este perfil, usamos una sola aplicación web `Standard S1` para hospedar el sitio web, el nivel gratis de Azure Bot Service, un único servicio `Basic` de Azure Search y una instancia `Standard S2` de SQL Database.
+- [Mediano][medium-pricing]: En este caso escalamos la aplicación web a dos instancias del nivel `Standard S3`, actualizando Search Service a un nivel `Standard S1` y con una instancia `Standard S6` de SQL Database.
+- [Grande][large-pricing]: En el perfil más grande, usamos cuatro instancias de una aplicación web `Premium P2V2`, actualizamos Azure Bot Service al nivel `Standard S1` (con 1.000.000 de mensajes en canales Premium), usamos 2 unidades del servicio `Standard S3` de Azure Search y una instancia `Premium P6` de SQL Database.
 
 ## <a name="related-resources"></a>Recursos relacionados
 

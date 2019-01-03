@@ -1,15 +1,16 @@
 ---
-title: Confianza descentralizada entre bancos en Azure
+title: Confianza descentralizada entre bancos
+titleSuffix: Azure Example Scenarios
 description: Establezca un entorno de confianza para la comunicación y el uso compartido de información sin tener que recurrir a una base de datos centralizada.
 author: vitoc
 ms.date: 09/09/2018
 ms.custom: csa-team
-ms.openlocfilehash: 91c41f7bd6bd6f4eb8cd00859f7ce9065f8a86be
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: bd38986a86055305cec97db7a3f3f3e75ff600b0
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004720"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643717"
 ---
 # <a name="decentralized-trust-between-banks-on-azure"></a>Confianza descentralizada entre bancos en Azure
 
@@ -25,11 +26,11 @@ En este ejemplo se mostrará cómo se pueden aprovisionar rápidamente los servi
 
 Otros casos de uso pertinentes incluyen:
 
-* Movimiento de los presupuestos asignados entre distintas unidades empresariales de una organización multinacional
-* Pagos transfronterizos
-* Escenarios de comercio financiero
-* Sistemas de fidelidad que implican a diferentes empresas
-* Ecosistemas de la cadena de suministro
+- Movimiento de los presupuestos asignados entre distintas unidades empresariales de una organización multinacional
+- Pagos transfronterizos
+- Escenarios de comercio financiero
+- Sistemas de fidelidad que implican a diferentes empresas
+- Ecosistemas de la cadena de suministro
 
 ## <a name="architecture"></a>Arquitectura
 
@@ -45,11 +46,11 @@ Este escenario trata los componentes de back-end necesarios para crear una red d
 
 ### <a name="components"></a>Componentes
 
-* Las máquinas virtuales de los conjuntos de escalado de máquinas virtuales proporcionan la capacidad de proceso a petición para hospedar los procesos del validador para la cadena de bloques
-* Key Vault se usa como la instalación de almacenamiento seguro para las claves privadas de cada validador
-* Azure Load Balancer distribuye las solicitudes de RPC, de emparejamiento y de aplicaciones descentralizadas de gobierno
-* Azure Storage para hospedar la información de red persistente y coordinar la concesión
-* Operations Management Suite (una unión de algunos servicios de Azure) proporciona una visión de los nodos disponibles, las transacciones por minuto y los miembros del consorcio
+- Las máquinas virtuales de los conjuntos de escalado de máquinas virtuales proporcionan la capacidad de proceso a petición para hospedar los procesos del validador para la cadena de bloques
+- Key Vault se usa como la instalación de almacenamiento seguro para las claves privadas de cada validador
+- Azure Load Balancer distribuye las solicitudes de RPC, de emparejamiento y de aplicaciones descentralizadas de gobierno
+- Azure Storage para hospedar la información de red persistente y coordinar la concesión
+- Operations Management Suite (una unión de algunos servicios de Azure) proporciona una visión de los nodos disponibles, las transacciones por minuto y los miembros del consorcio
 
 ### <a name="alternatives"></a>Alternativas
 
@@ -57,15 +58,15 @@ Se elige el enfoque de Ethereum PoA para este ejemplo porque resulta un buen pun
 
 Para otros escenarios extendidos o diferentes, pueden surgir problemas como la privacidad de la transacción. Por ejemplo, en un escenario de transferencia de títulos, los miembros de un consorcio pueden no querer que sus transacciones sean visibles incluso para otros miembros. Existen alternativas a Ethereum PoA que abordan estos problemas en su propia manera:
 
-* Corda
-* Quorum
-* Hyperledger
+- Corda
+- Quorum
+- Hyperledger
 
 ## <a name="considerations"></a>Consideraciones
 
 ### <a name="availability"></a>Disponibilidad
 
-[Azure Monitor][monitor] se usa para supervisar continuamente la red de la cadena de bloques en busca de problemas para garantizar la disponibilidad. Tras una implementación correcta de la plantilla de la solución de cadena de bloques utilizada en este escenario, se le enviará un vínculo a un panel de supervisión personalizado basado en Azure Monitor. El panel muestra los nodos que notifican latidos en los últimos 30 minutos, así como otras estadísticas útiles. 
+[Azure Monitor][monitor] se usa para supervisar continuamente la red de la cadena de bloques en busca de problemas para garantizar la disponibilidad. Tras una implementación correcta de la plantilla de la solución de cadena de bloques utilizada en este escenario, se le enviará un vínculo a un panel de supervisión personalizado basado en Azure Monitor. El panel muestra los nodos que notifican latidos en los últimos 30 minutos, así como otras estadísticas útiles.
 
 Para ver otros temas de disponibilidad, consulte la [lista de comprobación de disponibilidad][availability] que encontrará en Azure Architecture Center.
 
@@ -93,9 +94,9 @@ Para explorar el costo de ejecutar este escenario, todos los servicios están pr
 
 Hemos incluido tres perfiles de costos de ejemplo basados en el número de instancias de conjuntos de escalado de máquinas virtuales que ejecutan las aplicaciones (las instancias pueden residir en regiones distintas).
 
-* [Pequeño][small-pricing]: este ejemplo de precios representa 2 máquinas virtuales al mes con la supervisión desactivada
-* [Mediano][medium-pricing]: este ejemplo de precios representa 7 máquinas virtuales al mes con la supervisión activada
-* [Grande][large-pricing]: este ejemplo de precios representa 15 máquinas virtuales al mes con la supervisión activada
+- [Pequeño][small-pricing]: este ejemplo de precios representa 2 máquinas virtuales al mes con la supervisión desactivada
+- [Mediano][medium-pricing]: este ejemplo de precios representa 7 máquinas virtuales al mes con la supervisión activada
+- [Grande][large-pricing]: este ejemplo de precios representa 15 máquinas virtuales al mes con la supervisión activada
 
 Los precios anteriores son para que un miembro del consorcio inicie o se una a una red de cadena de bloques. Por lo general, en un consorcio donde hay varias compañías u organizaciones implicadas, cada miembro obtendrá su propia suscripción de Azure.
 
