@@ -1,14 +1,17 @@
 ---
 title: Patrones de diseño en la nube
+titleSuffix: Azure Architecture Center
 description: Patrones de diseño en la nube para crear aplicaciones confiables, escalables y seguras en la nube
 keywords: Azure
+author: dragon119
 ms.date: 12/10/2018
-ms.openlocfilehash: 6965f4ba19bb465c4afc0e0c355b32bde8944823
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 003bef866b0cd873122cfb8d4730b95ba49d3d7f
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450860"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011300"
 ---
 # <a name="cloud-design-patterns"></a>Patrones de diseño en la nube
 
@@ -18,6 +21,7 @@ Cada patrón describe el problema al que hace frente, las consideraciones sobre 
 
 ## <a name="challenges-in-cloud-development"></a>Desafíos del desarrollo en la nube
 
+<!-- markdownlint-disable MD033 -->
 <table>
 <tr>
     <td style="width: 64px; vertical-align: middle;"><a href="./category/availability.md"><img src="_images/category/availability.svg" alt="Availability" /></a></td>
@@ -76,6 +80,7 @@ Cada patrón describe el problema al que hace frente, las consideraciones sobre 
     </td>
 </tr>
 </table>
+<!-- markdownlint-disable MD033 -->
 
 ## <a name="catalog-of-patterns"></a>Catálogo de patrones
 
@@ -114,4 +119,3 @@ Cada patrón describe el problema al que hace frente, las consideraciones sobre 
 |                      [Strangler](./strangler.md)                      |                                            Migra de forma incremental un sistema heredado reemplazando gradualmente funciones específicas por los servicios y aplicaciones nuevas.                                            |
 |                     [Limitaciones](./throttling.md)                     |                                                 Controlan el consumo de recursos que usa una instancia de una aplicación, un inquilino individual o un servicio completo.                                                 |
 |                      [Valet Key](./valet-key.md)                      |                                                        Usa un token o clave que proporciona a los clientes acceso directo restringido a un recurso o servicio específico.                                                        |
-
