@@ -349,10 +349,14 @@ items:
     items:
     - name: Puntuación de Batch para modelos de aprendizaje profundo
       href: reference-architectures/ai/batch-scoring-deep-learning.md
+    - name: Puntuación de Batch para modelos de Python
+      href: reference-architectures/ai/batch-scoring-python.md
     - name: Puntuación en tiempo real de los modelos de Python
       href: reference-architectures/ai/realtime-scoring-python.md
     - name: Puntuación en tiempo real de los modelos de Machine Learning para R
       href: reference-architectures/ai/realtime-scoring-r.md
+    - name: API de recomendaciones en tiempo real
+      href: reference-architectures/ai/real-time-recommendation.md
   - name: Macrodatos
     items:
     - name: Inteligencia empresarial con SQL Data Warehouse
@@ -579,9 +583,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: Implementación de plantillas scaffold de Azure Enterprise
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: d3f9b76294ab25fed8ebc5cd3391d87ea6305858
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: fd164df3f7b0416d4bbef85ce920e7f28c1002f4
+ms.sourcegitcommit: 032f402482762f4e674aeebbc122ad18dfba11eb
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329456"
+ms.lasthandoff: 12/14/2018
+ms.locfileid: "53396477"
