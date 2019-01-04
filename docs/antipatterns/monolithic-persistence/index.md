@@ -1,14 +1,16 @@
 ---
 title: Antipatrón Monolithic Persistence
+titleSuffix: Performance antipatterns for cloud apps
 description: Colocar todos los datos de una aplicación en un único almacén de datos puede perjudicar el rendimiento.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 8cc67a41adf7ca4e3c5475eea86e38b75dd65d4d
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: c54a99dd0754cb2cb6cf4ad85b23a518c14a978b
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429118"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010263"
 ---
 # <a name="monolithic-persistence-antipattern"></a>Antipatrón Monolithic Persistence
 
@@ -16,12 +18,12 @@ Colocar todos los datos de una aplicación en un único almacén de datos puede 
 
 ## <a name="problem-description"></a>Descripción del problema
 
-Históricamente, las aplicaciones a menudo usaban un único almacén de datos, independientemente de los distintos tipos de datos que la aplicación pudiera tener que almacenar. Normalmente, esto se hace para simplificar el diseño de la aplicación, o bien para que se corresponda con las capacidades actuales del equipo de desarrollo. 
+Históricamente, las aplicaciones a menudo usaban un único almacén de datos, independientemente de los distintos tipos de datos que la aplicación pudiera tener que almacenar. Normalmente, esto se hace para simplificar el diseño de la aplicación, o bien para que se corresponda con las capacidades actuales del equipo de desarrollo.
 
 Los sistemas modernos basados en la nube a menudo tienen requisitos no funcionales y funcionales adicionales, y necesitan almacenar muchos tipos de datos heterogéneos, como documentos, imágenes, datos almacenados en caché, mensajes en cola, registros de aplicación y telemetría. Si se sigue el enfoque tradicional y se coloca toda esta información en el mismo almacén de datos, puede perjudicar el rendimiento, por dos motivos principales:
 
 - Almacenar y recuperar grandes cantidades de datos no relacionados en el mismo almacén de datos puede ocasionar una contención, lo que a su vez conduce a tiempos de respuesta mayores y a errores de conexión.
-- Con independencia del almacén de datos elegido, podría no ser la mejor opción para todos los distintos tipos de datos o quizá no se puedan optimizar las operaciones que la aplicación realiza. 
+- Con independencia del almacén de datos elegido, podría no ser la mejor opción para todos los distintos tipos de datos o quizá no se puedan optimizar las operaciones que la aplicación realiza.
 
 En el ejemplo siguiente se muestra un controlador de ASP.NET Web API que agrega un nuevo registro a una base de datos y también registra el resultado en un registro. El registro se mantiene en la misma base de datos que los datos empresariales. Puede encontrar el ejemplo completo [aquí][sample-app].
 
@@ -43,7 +45,7 @@ La velocidad a la que se generan registros probablemente afectará al rendimient
 
 ## <a name="how-to-fix-the-problem"></a>Procedimiento para corregir el problema
 
-Separe los datos según su uso. Para cada conjunto de datos, seleccione el almacén de datos que mejor coincida con el que se va a usar. En el ejemplo anterior, la aplicación debe registrarse en un almacén independiente de la base de datos que contenga los datos empresariales: 
+Separe los datos según su uso. Para cada conjunto de datos, seleccione el almacén de datos que mejor coincida con el que se va a usar. En el ejemplo anterior, la aplicación debe registrarse en un almacén independiente de la base de datos que contenga los datos empresariales:
 
 ```csharp
 public class PolyController : ApiController
@@ -76,10 +78,10 @@ El sistema probablemente se ralentizará de forma considerable y terminará prod
 Puede realizar los pasos siguientes para ayudar a identificar la causa:
 
 1. Instrumente el sistema para registrar las estadísticas esenciales de rendimiento. Capture información de temporización para cada operación, así como los lugares en los que la aplicación lee y escribe datos.
-1. Si es posible, supervise el sistema en ejecución durante unos días, en un entorno de producción, para obtener una visión real de cómo se utiliza. Si esto no es posible, ejecute pruebas de carga generadas por script con un volumen realista de usuarios virtuales que realizan una serie de operaciones habituales.
-2. Utilice los datos de telemetría para identificar los períodos con un rendimiento bajo.
-3. Identifique a qué almacenes de datos se accedió durante esos períodos.
-4. Identifique los recursos de almacenamiento de datos que podrían estar experimentando alguna contención.
+2. Si es posible, supervise el sistema en ejecución durante unos días, en un entorno de producción, para obtener una visión real de cómo se utiliza. Si esto no es posible, ejecute pruebas de carga generadas por script con un volumen realista de usuarios virtuales que realizan una serie de operaciones habituales.
+3. Utilice los datos de telemetría para identificar los períodos con un rendimiento bajo.
+4. Identifique a qué almacenes de datos se accedió durante esos períodos.
+5. Identifique los recursos de almacenamiento de datos que podrían estar experimentando alguna contención.
 
 ## <a name="example-diagnosis"></a>Diagnóstico de ejemplo
 
@@ -107,7 +109,7 @@ El gráfico siguiente muestra la utilización de las unidades de rendimiento de 
 
 ### <a name="examine-the-telemetry-for-the-data-stores"></a>Examine la telemetría para los almacenes de datos
 
-Instrumente los almacenes de datos para capturar los detalles de bajo nivel de la actividad. En la aplicación de ejemplo, la estadísticas de acceso a los datos mostraban un alto volumen de operaciones de inserción realizadas en ambas tablas: `PurchaseOrderHeader` y `MonoLog`. 
+Instrumente los almacenes de datos para capturar los detalles de bajo nivel de la actividad. En la aplicación de ejemplo, la estadísticas de acceso a los datos mostraban un alto volumen de operaciones de inserción realizadas en ambas tablas: `PurchaseOrderHeader` y `MonoLog`.
 
 ![Estadísticas de acceso a los datos para la aplicación de ejemplo][MonolithicDataAccessStats]
 
@@ -133,12 +135,11 @@ De forma similar, la utilización de DTU máxima de la base de datos de registro
 
 ![Monitor de base de datos en el Portal de Azure clásico que muestra el uso de recursos de la base de datos de registro en el escenario con Polyglot][LogDatabaseUtilization]
 
-
 ## <a name="related-resources"></a>Recursos relacionados
 
 - [Elección del almacén de datos apropiado][data-store-overview]
 - [Criterios para elegir un almacén de datos][data-store-comparison]
-- [Data Access for Highly-Scalable Solutions: Using SQL, NoSQL, and Polyglot Persistence][Data-Access-Guide] (Acceso a datos para soluciones muy escalables: uso de la persistencia de Polyglot, SQL y NoSQL)
+- [Acceso a datos para soluciones muy escalables: uso de la persistencia de Polyglot, SQL y NoSQL][Data-Access-Guide]
 - [Creación de particiones de datos][DataPartitioningGuidance]
 
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/MonolithicPersistence

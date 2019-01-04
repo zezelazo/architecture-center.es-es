@@ -5,12 +5,12 @@ keywords: Expertos de AWS, comparación de Azure, comparación de AWS, diferenci
 author: lbrader
 ms.date: 09/19/2018
 pnp.series.title: Azure for AWS Professionals
-ms.openlocfilehash: 0735d24b223a5e5cab6030774280c038c28f35e6
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.openlocfilehash: e6077349a285df56d234f3cc2a14dc0d0d33da55
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916692"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011674"
 ---
 # <a name="azure-for-aws-professionals"></a>Azure para profesionales de AWS
 
@@ -63,7 +63,7 @@ Estos límites se pueden aumentar hasta el máximo mediante la [presentación de
 
 El término "recurso" en Azure se usa de la misma manera que en AWS, con el significado de cualquier instancia de proceso, objeto de almacenamiento, dispositivo de red u otra entidad que se puede crear o configurar dentro de la plataforma.
 
-Los recursos de Azure se implementan y administran mediante dos modelos: [Azure Resource Manager](/azure/azure-resource-manager/resource-group-overview) o el [modelo de implementación clásica](/azure/azure-resource-manager/resource-manager-deployment-model) de Azure más antiguo.
+Los recursos de Azure se implementan y administran mediante uno de estos dos modelos: [Azure Resource Manager](/azure/azure-resource-manager/resource-group-overview) o el [modelo de implementación clásica de Azure](/azure/azure-resource-manager/resource-manager-deployment-model) que es más antiguo.
 Los nuevos recursos se crean mediante el modelo de Resource Manager.
 
 ### <a name="resource-groups"></a>Grupos de recursos
@@ -174,7 +174,7 @@ Aunque los tipos de instancia de AWS y los tamaños de máquina virtual de Azure
 
 -   [Tamaños de las máquinas virtuales en Azure (Linux)](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/)
 
-A diferencia de la facturación por segundo de AWS, las máquinas virtuales de Azure a petición se facturan por minuto.
+Al igual que la facturación por segundo de AWS, las máquinas virtuales de Azure a petición se facturan por segundo.
 
 #### <a name="ebs-and-azure-storage-for-vm-disks"></a>EBS y Azure Storage para discos de máquina virtual
 

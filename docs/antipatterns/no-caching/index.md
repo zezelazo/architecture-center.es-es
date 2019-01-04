@@ -1,18 +1,20 @@
 ---
 title: Antipatrón No Caching
+titleSuffix: Performance antipatterns for cloud apps
 description: Si se capturan los mismos datos varias veces, puede reducirse el rendimiento la y escalabilidad.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: ec19cde567fb63248c121328322e834d99c841e8
-ms.sourcegitcommit: 19a517a2fb70768b3edb9a7c3c37197baa61d9b5
+ms.custom: seodec18
+ms.openlocfilehash: c2a5cdbb8863f87b8928558c8237e8659032ac32
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/26/2018
-ms.locfileid: "52295589"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011606"
 ---
 # <a name="no-caching-antipattern"></a>Antipatrón No Caching
 
-En una aplicación en la nube que controla muchas solicitudes simultáneas, capturar repetidamente los mismos datos puede reducir el rendimiento y la escalabilidad. 
+En una aplicación en la nube que controla muchas solicitudes simultáneas, capturar repetidamente los mismos datos puede reducir el rendimiento y la escalabilidad.
 
 ## <a name="problem-description"></a>Descripción del problema
 
@@ -46,7 +48,7 @@ Puede encontrar el ejemplo completo [aquí][sample-app].
 
 Este antipatrón suele ocurrir porque:
 
-- No usar una memoria caché es más fácil de implementar y funciona bien con cargas bajas. El almacenamiento en caché hace que el código sea más complicado. 
+- No usar una memoria caché es más fácil de implementar y funciona bien con cargas bajas. El almacenamiento en caché hace que el código sea más complicado.
 - No se entienden con claridad las ventajas y desventajas del uso del almacenamiento en caché.
 - Preocupa la sobrecarga que supone mantener la precisión y la actualización de los datos almacenados en caché.
 - Una aplicación se migró desde un sistema local, en el que la latencia de red no era un problema, y el sistema se ejecutaba en un costoso hardware de alto rendimiento, por lo que el almacenamiento en caché no se consideró en el diseño original.
@@ -59,7 +61,7 @@ La estrategia de almacenamiento en caché más popular es el sistema *a petició
 - En las lecturas, la aplicación intenta leer los datos de la memoria caché. Si los datos no están allí, la aplicación los recupera del origen de datos y los agrega.
 - Durante las escrituras, la aplicación escribe el cambio directamente en el origen de datos y quita el valor antiguo de la memoria caché. Se recuperará y se agregará a la memoria caché la próxima vez que se requiera.
 
-Este enfoque es adecuado para los datos que cambian con frecuencia. Aquí se muestra el ejemplo anterior actualizado para utilizar el modelo [Cache-Aside][cache-aside-pattern].  
+Este enfoque es adecuado para los datos que cambian con frecuencia. Aquí se muestra el ejemplo anterior actualizado para utilizar el modelo [Cache-Aside][cache-aside-pattern].
 
 ```csharp
 public class CachedPersonRepository : IPersonRepository
@@ -100,7 +102,7 @@ public class CacheService
 }
 ```
 
-Tenga en cuenta que el método `GetAsync` llama ahora a la clase `CacheService`, en lugar de llamar directamente a la base de datos. La clase `CacheService` primero intenta obtener el elemento de Azure Redis Cache. Si el valor no se encuentra allí, la clase `CacheService` invoca una función lambda que le pasó el responsable de realizar la llamada. La función lambda debe recuperar los datos de la base de datos. Esta implementación desvincula el repositorio de la solución de almacenamiento en caché concreta y `CacheService` de la base de datos. 
+Tenga en cuenta que el método `GetAsync` llama ahora a la clase `CacheService`, en lugar de llamar directamente a la base de datos. La clase `CacheService` primero intenta obtener el elemento de Azure Redis Cache. Si el valor no se encuentra allí, la clase `CacheService` invoca una función lambda que le pasó el responsable de realizar la llamada. La función lambda debe recuperar los datos de la base de datos. Esta implementación desvincula el repositorio de la solución de almacenamiento en caché concreta y `CacheService` de la base de datos.
 
 ## <a name="considerations"></a>Consideraciones
 
@@ -112,11 +114,11 @@ Tenga en cuenta que el método `GetAsync` llama ahora a la clase `CacheService`,
 
 - No tiene que almacenar en caché las entidades completas. Si la mayor parte de una entidad es estática, pero solo una pequeña parte cambia con frecuencia, almacene en caché los elementos estáticos y recupere los dinámicos del origen de datos. Este enfoque puede ayudar a reducir el volumen de operaciones de E/S que se realizan en el origen de datos.
 
-- En algunos casos, si los datos volátiles son de corta duración, puede ser útil almacenarlos en caché. Por ejemplo, considere un dispositivo que envía continuamente actualizaciones de estado. Podría tener sentido almacenar en memoria caché esta información cuando llega y no escribirla en un almacén persistente.  
+- En algunos casos, si los datos volátiles son de corta duración, puede ser útil almacenarlos en caché. Por ejemplo, considere un dispositivo que envía continuamente actualizaciones de estado. Podría tener sentido almacenar en memoria caché esta información cuando llega y no escribirla en un almacén persistente.
 
 - Para evitar que los datos se queden obsoletos, muchas soluciones de almacenamiento en caché admiten períodos de expiración configurables, de modo que se quitan automáticamente de la memoria caché después de un intervalo especificado. Debe ajustar la hora de expiración para su escenario. Los datos muy estáticos pueden permanecer en la memoria caché durante períodos más largos que los volátiles, que pueden quedar obsoletos con rapidez.
 
-- Si la solución de almacenamiento en caché no proporciona una expiración integrada, debe implementar un proceso en segundo plano que limpie en ocasiones la memoria caché, para evitar que crezca de forma ilimitada. 
+- Si la solución de almacenamiento en caché no proporciona una expiración integrada, debe implementar un proceso en segundo plano que limpie en ocasiones la memoria caché, para evitar que crezca de forma ilimitada.
 
 - Además de almacenar en caché datos de un origen de datos externo, puede usar el almacenamiento en caché para guardar los resultados de cálculos complejos. Sin embargo, antes debe instrumentar la aplicación para determinar si realmente está limitada por la CPU.
 
@@ -130,16 +132,15 @@ Tenga en cuenta que el método `GetAsync` llama ahora a la clase `CacheService`,
 
 Puede realizar los pasos siguientes para ayudar a identificar si la falta de almacenamiento en caché está causando problemas de rendimiento:
 
-1. Revise el código de la aplicación. Realice un inventario de todos los almacenes de datos que la aplicación usa. Para cada uno, determine si la aplicación usa una memoria caché. Si es posible, determine con qué frecuencia cambian los datos. Buenos candidatos iniciales para el almacenamiento en caché son los datos que cambian lentamente y los datos estáticos de referencia que se lean con frecuencia. 
+1. Revise el código de la aplicación. Realice un inventario de todos los almacenes de datos que la aplicación usa. Para cada uno, determine si la aplicación usa una memoria caché. Si es posible, determine con qué frecuencia cambian los datos. Buenos candidatos iniciales para el almacenamiento en caché son los datos que cambian lentamente y los datos estáticos de referencia que se lean con frecuencia.
 
 2. Instrumente la aplicación y supervise el sistema real para averiguar la frecuencia con que la aplicación recupera datos o calcula la información.
 
 3. Genere perfiles de la aplicación en un entorno de prueba para capturar las métricas de bajo nivel sobre la sobrecarga asociada a operaciones de acceso a datos u otros cálculos realizados con frecuencia.
 
-4. Realice pruebas de carga de un entorno de prueba para identificar cómo responde el sistema con una carga de trabajo normal y con una carga intensa. Las pruebas de carga deben simular el patrón de acceso a datos observado en el entorno de producción con cargas de trabajo realistas. 
+4. Realice pruebas de carga de un entorno de prueba para identificar cómo responde el sistema con una carga de trabajo normal y con una carga intensa. Las pruebas de carga deben simular el patrón de acceso a datos observado en el entorno de producción con cargas de trabajo realistas.
 
-5. Examine las estadísticas de acceso a los datos de los almacenes de datos subyacentes y revise con qué frecuencia se repiten las mismas solicitudes de datos. 
-
+5. Examine las estadísticas de acceso a los datos de los almacenes de datos subyacentes y revise con qué frecuencia se repiten las mismas solicitudes de datos.
 
 ## <a name="example-diagnosis"></a>Diagnóstico de ejemplo
 
@@ -147,17 +148,17 @@ En las secciones siguientes se aplican estos pasos para la aplicación de ejempl
 
 ### <a name="instrument-the-application-and-monitor-the-live-system"></a>Instrumentación de la aplicación y supervisión de los sistemas en vivo
 
-Instrumente la aplicación y supervísela para obtener información acerca de las solicitudes específicas que realizan los usuarios mientras está en producción. 
+Instrumente la aplicación y supervísela para obtener información acerca de las solicitudes específicas que realizan los usuarios mientras está en producción.
 
 La siguiente imagen muestra la supervisión de los datos capturados por [New Relic][NewRelic] durante una prueba de carga. En este caso, la única operación HTTP GET realizada es `Person/GetAsync`. Pero, en un entorno real de producción, conocer la frecuencia relativa con que se realiza cada solicitud puede ofrecerle una visión general de los recursos que se deben almacenar en caché.
 
 ![New Relic que muestra las solicitudes de servidor para la aplicación CachingDemo][NewRelic-server-requests]
 
-Si necesita realizar un análisis más profundo, puede usar un generador de perfiles para capturar los datos de rendimiento de bajo nivel en un entorno de prueba (no en el sistema de producción). Observe las métricas, como la velocidad de las solicitudes de E/S, el uso de la memoria y el uso de la CPU. Estas métricas pueden mostrar un gran número de solicitudes realizadas a un almacén de datos o un servicio, o que se repite un proceso que efectúa el mismo cálculo. 
+Si necesita realizar un análisis más profundo, puede usar un generador de perfiles para capturar los datos de rendimiento de bajo nivel en un entorno de prueba (no en el sistema de producción). Observe las métricas, como la velocidad de las solicitudes de E/S, el uso de la memoria y el uso de la CPU. Estas métricas pueden mostrar un gran número de solicitudes realizadas a un almacén de datos o un servicio, o que se repite un proceso que efectúa el mismo cálculo.
 
 ### <a name="load-test-the-application"></a>Prueba de carga de la aplicación
 
-El siguiente gráfico muestra los resultados de la aplicación de ejemplo de la prueba de carga. La prueba de carga simula una carga por pasos de hasta 800 usuarios que realizan una serie de operaciones habituales. 
+El siguiente gráfico muestra los resultados de la aplicación de ejemplo de la prueba de carga. La prueba de carga simula una carga por pasos de hasta 800 usuarios que realizan una serie de operaciones habituales.
 
 ![Resultados de la prueba de carga del rendimiento para el escenario sin almacenamiento en caché][Performance-Load-Test-Results-Uncached]
 
@@ -178,7 +179,7 @@ La columna `UseCount` en los resultados indica la frecuencia con la que se ejecu
 
 ![Resultados de la consulta de las vistas de administración dinámica en SQL Server Management Server][Dynamic-Management-Views]
 
-Esta es la consulta SQL que está causando tantas solicitudes de base de datos: 
+Esta es la consulta SQL que está causando tantas solicitudes de base de datos:
 
 ```SQL
 (@p__linq__0 int)SELECT TOP (2)
@@ -197,12 +198,12 @@ Después de incorporar una memoria caché, repita las pruebas de carga y compare
 
 ![Resultados de la prueba de carga del rendimiento para el escenario con almacenamiento en caché][Performance-Load-Test-Results-Cached]
 
-El volumen de pruebas superadas todavía alcanza un nivel estable, pero con una carga de usuarios mayor. La tasa de solicitudes en esta carga es significativamente más alta que la anterior. El tiempo promedio de prueba sigue aumentando con la carga, pero el tiempo de respuesta máximo es de 0,05 ms, en comparación con el valor de 1 ms anterior &mdash;una mejora del 20&times;. 
+El volumen de pruebas superadas todavía alcanza un nivel estable, pero con una carga de usuarios mayor. La tasa de solicitudes en esta carga es significativamente más alta que la anterior. El tiempo promedio de prueba sigue aumentando con la carga, pero el tiempo de respuesta máximo es de 0,05 ms, en comparación con el valor de 1 ms anterior &mdash;una mejora del 20&times;.
 
 ## <a name="related-resources"></a>Recursos relacionados
 
 - [Procedimientos recomendados para la implementación de API][api-implementation]
-- [Modelo Cache-Aside][cache-aside-pattern]
+- [Patrón reservado en caché][cache-aside-pattern]
 - [Procedimientos recomendados para el almacenamiento en caché][caching-guidance]
 - [Patrón Circuit Breaker][circuit-breaker]
 

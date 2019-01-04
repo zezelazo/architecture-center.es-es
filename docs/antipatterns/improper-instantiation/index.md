@@ -1,25 +1,27 @@
 ---
 title: Antipatrón Improper Instantiation
+titleSuffix: Performance antipatterns for cloud apps
 description: Evite la creación continua de nuevas instancias de un objeto que pretenda crearse una vez y después compartirse.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 4d5ef9ad9e675b46df94b51e81d7a4bd4c1b25e9
-ms.sourcegitcommit: 3d9ee03e2dda23753661a80c7106d1789f5223bb
+ms.custom: seodec18
+ms.openlocfilehash: b92ae5f5e79a0ababf44d7aa2d771d4d72900cae
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/23/2018
-ms.locfileid: "29477587"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009925"
 ---
 # <a name="improper-instantiation-antipattern"></a>Antipatrón Improper Instantiation
 
-La creación continua de nuevas instancias de un objeto que pretenda crearse una vez y después compartirse puede perjudicar el rendimiento. 
+La creación continua de nuevas instancias de un objeto que pretenda crearse una vez y después compartirse puede perjudicar el rendimiento.
 
 ## <a name="problem-description"></a>Descripción del problema
 
 Muchas bibliotecas proporcionan abstracciones de recursos externos. Internamente, estas clases suelen administrar sus propias conexiones a los recursos, que actúan como agentes que los clientes pueden utilizar para tener acceso al recurso. Estos son algunos ejemplos de clases de agente que son pertinentes para las aplicaciones de Azure:
 
 - `System.Net.Http.HttpClient`. Se comunica con un servicio web mediante HTTP.
-- `Microsoft.ServiceBus.Messaging.QueueClient`. Envía y recibe mensajes a una cola de Service Bus. 
+- `Microsoft.ServiceBus.Messaging.QueueClient`. Envía y recibe mensajes a una cola de Service Bus.
 - `Microsoft.Azure.Documents.Client.DocumentClient`. Se conecta a una instancia de Cosmos DB
 - `StackExchange.Redis.ConnectionMultiplexer`. Se conecta a Redis, incluida Azure Redis Cache.
 
@@ -100,15 +102,17 @@ public class SingleHttpClientInstanceController : ApiController
 
 - Los objetos que se comparten entre varias solicitudes *deben* ser seguros para subprocesos. La clase `HttpClient` está diseñada para usarse de esta manera, pero otras quizás no admitan solicitudes simultáneas, de modo que debe revisar la documentación disponible.
 
+- Tenga cuidado al establecer las propiedades de configuración de objetos compartidos ya que esto puede producir condiciones de carrera. Por ejemplo, si se establece `DefaultRequestHeaders` en la clase `HttpClient` antes de cada solicitud puede crear una condición de carrera. Establezca esas propiedades una vez (por ejemplo, durante el inicio) y cree instancias independientes si tiene que configurar valores diferentes.
+
 - Algunos tipos de recursos son escasos y no deben retenerse. Las conexiones de base de datos son un ejemplo. Al mantener abierta una conexión de base de datos que no es necesaria, puede impedir que otros usuarios simultáneos obtengan acceso a la base de datos.
 
-- En .NET Framework, muchos objetos que establecen conexiones a recursos externos se crean con métodos de factoría estáticos de otras clases que administran estas conexiones. Estos objetos de factorías están pensados para guardarse y volverse a utilizar, en lugar de desecharse y volverse a crear. Por ejemplo, en Azure Service Bus, el objeto `QueueClient` se crea a través de un objeto `MessagingFactory`. Internamente, el objeto `MessagingFactory` administra las conexiones. Para más información, consulte [Procedimientos recomendados para mejorar el rendimiento mediante la mensajería de Service Bus][service-bus-messaging].
+- En .NET Framework, muchos objetos que establecen conexiones a recursos externos se crean con métodos de factoría estáticos de otras clases que administran estas conexiones. Estos objetos están pensados para guardarse y volverse a utilizar, en lugar de desecharse y volverse a crear. Por ejemplo, en Azure Service Bus, el objeto `QueueClient` se crea a través de un objeto `MessagingFactory`. Internamente, el objeto `MessagingFactory` administra las conexiones. Para más información, consulte [Procedimientos recomendados para mejorar el rendimiento mediante la mensajería de Service Bus][service-bus-messaging].
 
 ## <a name="how-to-detect-the-problem"></a>Procedimiento para detectar el problema
 
-Entre los síntomas de este problema se incluyen una disminución del rendimiento o una tasa mayor de errores, además de los siguientes: 
+Entre los síntomas de este problema se incluyen una disminución del rendimiento o una tasa mayor de errores, además de los siguientes:
 
-- Un aumento en las excepciones que indican el agotamiento de los recursos, como sockets, conexiones de base de datos, identificadores de archivos, etc. 
+- Un aumento en las excepciones que indican el agotamiento de los recursos, como sockets, conexiones de base de datos, identificadores de archivos, etc.
 - Un aumento del uso de la memoria y de la recolección de elementos no utilizados.
 - Un aumento de la actividad de red, del disco o de las bases de datos.
 
@@ -119,7 +123,7 @@ Puede realizar los pasos siguientes para ayudar a identificar este problema:
 3. Realice una prueba de carga de cada operación sospechosa, en un entorno de pruebas controlado en lugar de en el sistema de producción.
 4. Revise el código fuente y examine cómo se administran los objetos de agente.
 
-Observe en los seguimientos de la pila las operaciones que se ejecutan con lentitud o que generan excepciones cuando el sistema está sometido a carga. Esta información puede ayudar a identificar el modo en que estas operaciones usan los recursos. Las excepciones pueden ayudarle a determinar si los errores están provocados porque los recursos compartidos se agotan. 
+Observe en los seguimientos de la pila las operaciones que se ejecutan con lentitud o que generan excepciones cuando el sistema está sometido a carga. Esta información puede ayudar a identificar el modo en que estas operaciones usan los recursos. Las excepciones pueden ayudarle a determinar si los errores están provocados porque los recursos compartidos se agotan.
 
 ## <a name="example-diagnosis"></a>Diagnóstico de ejemplo
 
@@ -127,7 +131,7 @@ En las secciones siguientes se aplican estos pasos para la aplicación de ejempl
 
 ### <a name="identify-points-of-slow-down-or-failure"></a>Identificación de los puntos de ralentización o de error
 
-La siguiente imagen muestra los resultados que se generan mediante [APM de New Relic][new-relic], con las operaciones que tienen un tiempo de respuesta insuficiente. En este caso, merece la pena seguir investigando el método `GetProductAsync` del controlador `NewHttpClientInstancePerRequest`. Tenga en cuenta que la tasa de errores también aumenta cuando estas operaciones se están ejecutando. 
+La siguiente imagen muestra los resultados que se generan mediante [APM de New Relic][new-relic], con las operaciones que tienen un tiempo de respuesta insuficiente. En este caso, merece la pena seguir investigando el método `GetProductAsync` del controlador `NewHttpClientInstancePerRequest`. Tenga en cuenta que la tasa de errores también aumenta cuando estas operaciones se están ejecutando.
 
 ![El panel del monitor de New Relic que muestra la aplicación de ejemplo creando una nueva instancia de un objeto HttpClient para cada solicitud][dashboard-new-HTTPClient-instance]
 
@@ -143,7 +147,7 @@ Use pruebas de carga para simular las operaciones típicas que los usuarios pued
 
 ![Rendimiento de la aplicación de ejemplo que crea una nueva instancia de un objeto HttpClient para cada solicitud][throughput-new-HTTPClient-instance]
 
-En primer lugar, el volumen de solicitudes administradas por segundo aumenta al mismo tiempo que la carga de trabajo. Sin embargo, con aproximadamente 30 usuarios, el volumen de solicitudes correctas alcanza el límite y el sistema empieza a generar excepciones. Desde ese momento, el volumen de excepciones aumenta gradualmente con la carga de usuarios. 
+En primer lugar, el volumen de solicitudes administradas por segundo aumenta al mismo tiempo que la carga de trabajo. Sin embargo, con aproximadamente 30 usuarios, el volumen de solicitudes correctas alcanza el límite y el sistema empieza a generar excepciones. Desde ese momento, el volumen de excepciones aumenta gradualmente con la carga de usuarios.
 
 La prueba de carga notificó estos errores como errores HTTP 500 (servidor interno). Al revisar la telemetría, se evidenció que estos errores eran causados porque el sistema se quedó sin recursos de socket, cada vez más a medida que se creaban más objetos `HttpClient`.
 
@@ -163,11 +167,9 @@ Para la comparación, la siguiente imagen muestra la telemetría de seguimiento 
 
 ![El generador de perfiles de subproceso de New Relic que muestra la aplicación de ejemplo creando una nueva instancia de un objeto HttpClient para cada solicitud][thread-profiler-single-HTTPClient-instance]
 
-El gráfico siguiente muestra una prueba de carga similar con una instancia compartida del objeto `ExpensiveToCreateService`. Una vez más, el volumen de solicitudes tratadas aumenta en consonancia con la carga de usuarios, mientras que el tiempo promedio de respuesta sigue siendo bajo. 
+El gráfico siguiente muestra una prueba de carga similar con una instancia compartida del objeto `ExpensiveToCreateService`. Una vez más, el volumen de solicitudes tratadas aumenta en consonancia con la carga de usuarios, mientras que el tiempo promedio de respuesta sigue siendo bajo.
 
 ![Rendimiento de la aplicación de ejemplo que reutiliza la misma instancia de un objeto HttpClient para cada solicitud][throughput-single-ExpensiveToCreateService-instance]
-
-
 
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/ImproperInstantiation
 [service-bus-messaging]: /azure/service-bus-messaging/service-bus-performance-improvements

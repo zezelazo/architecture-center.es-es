@@ -1,14 +1,16 @@
 ---
 title: Antipatrón Synchronous I/O
+titleSuffix: Performance antipatterns for cloud apps
 description: Bloquear el subproceso que realiza la llamada mientras se completan las operaciones de E/S puede reducir el rendimiento y afectar a la escalabilidad vertical.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 961eacb82344ec7e71aaa96fb4cd8bc530721e96
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 209295cfc911ae168bca2f1c64dc930a27a9a4ba
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429016"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009345"
 ---
 # <a name="synchronous-io-antipattern"></a>Antipatrón Synchronous I/O
 
@@ -27,9 +29,9 @@ Algunos ejemplos comunes de E/S son:
 
 Este antipatrón suele ocurrir porque:
 
-- Parece ser la manera más intuitiva de realizar una operación. 
+- Parece ser la manera más intuitiva de realizar una operación.
 - La aplicación requiere una respuesta de una solicitud.
-- La aplicación utiliza una biblioteca que solo proporciona métodos sincrónicos de E/S. 
+- La aplicación utiliza una biblioteca que solo proporciona métodos sincrónicos de E/S.
 - Una biblioteca externa lleva a cabo internamente operaciones de E/S sincrónicas. Una sola llamada sincrónica de E/S puede bloquear una cadena de llamadas completa.
 
 El siguiente código carga un archivo en Azure Blob Storage. Hay dos lugares donde el código se bloquea en espera de la E/S sincrónica: los métodos `CreateIfNotExists` y `UploadFromStream`.
@@ -77,7 +79,7 @@ Puede encontrar el código completo para ambos ejemplos [aquí][sample-app].
 
 ## <a name="how-to-fix-the-problem"></a>Procedimiento para corregir el problema
 
-Reemplace las operaciones de E/S sincrónicas con operaciones asincrónicas. Así se libera el subproceso actual para continuar realizando el trabajo significativo en lugar de bloquearse y se ayuda a mejorar la utilización de recursos de proceso. Realizar las operaciones de E/S de forma asincrónica es especialmente eficaz para controlar una sobrecarga inesperada en las solicitudes de las aplicaciones cliente. 
+Reemplace las operaciones de E/S sincrónicas con operaciones asincrónicas. Así se libera el subproceso actual para continuar realizando el trabajo significativo en lugar de bloquearse y se ayuda a mejorar la utilización de recursos de proceso. Realizar las operaciones de E/S de forma asincrónica es especialmente eficaz para controlar una sobrecarga inesperada en las solicitudes de las aplicaciones cliente.
 
 Muchas bibliotecas proporcionan versiones sincrónicas y asincrónicas de los métodos. Siempre que sea posible, utilice las asincrónicas. Esta es la versión asincrónica del ejemplo anterior que carga un archivo en Azure Blob Storage.
 
@@ -123,7 +125,7 @@ public class AsyncController : ApiController
 }
 ```
 
-Para las bibliotecas que no proporcionan versiones asincrónicas de las operaciones, es posible crear contenedores asincrónicos en torno a métodos sincrónicos seleccionados. Siga este enfoque con precaución. Aunque puede mejorar la capacidad de respuesta en el subproceso que invoca el contenedor asincrónico, realmente consume más recursos. Puede crear un subproceso adicional y no se asocia ninguna sobrecarga a la sincronización del trabajo realizado por él. Algunos inconvenientes se analizan en esta entrada del blog: [¿Debería exponer los contenedores asincrónicos para los métodos sincrónicos?][async-wrappers]
+Para las bibliotecas que no proporcionan versiones asincrónicas de las operaciones, es posible crear contenedores asincrónicos en torno a métodos sincrónicos seleccionados. Siga este enfoque con precaución. Aunque puede mejorar la capacidad de respuesta en el subproceso que invoca el contenedor asincrónico, realmente consume más recursos. Puede crear un subproceso adicional y no se asocia ninguna sobrecarga a la sincronización del trabajo realizado por él. Algunos de los inconvenientes se analizan en esta entrada del blog: [¿Debería exponer los contenedores asincrónicos para los métodos sincrónicos?][async-wrappers]
 
 Este es un ejemplo de un contenedor asincrónico alrededor de un método sincrónico.
 
@@ -193,16 +195,10 @@ El gráfico siguiente muestra los resultados de la prueba de carga de la versió
 
 El rendimiento es mucho más alto. A lo largo del mismo período que la prueba anterior, el sistema controla correctamente un rendimiento casi diez veces mayor, medido en solicitudes por segundo. Además, el tiempo promedio de respuesta es relativamente constante y permanece unas 25 veces por debajo que la prueba anterior.
 
-
 [sample-app]: https://github.com/mspnp/performance-optimization/tree/master/SynchronousIO
-
-
 [async-wrappers]: https://blogs.msdn.microsoft.com/pfxteam/2012/03/24/should-i-expose-asynchronous-wrappers-for-synchronous-methods/
 [performance-counters]: /azure/cloud-services/cloud-services-dotnet-diagnostics-performance-counters
 [web-sites-monitor]: /azure/app-service-web/web-sites-monitor
 
 [sync-performance]: _images/SyncPerformance.jpg
 [async-performance]: _images/AsyncPerformance.jpg
-
-
-

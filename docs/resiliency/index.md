@@ -2,24 +2,25 @@
 title: Diseño de aplicaciones resistentes de Azure
 description: Cómo crear aplicaciones resistentes de Azure, para alta disponibilidad y recuperación ante desastres.
 author: MikeWasson
-ms.date: 11/26/2018
+ms.date: 12/18/2018
 ms.custom: resiliency
-ms.openlocfilehash: a97a26928002b8248344a239159fe7defa99931c
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 1638bc84b436d3d826f8ad9497ddb5a1310c14da
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53005053"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644264"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Diseño de aplicaciones resistentes de Azure
 
 En un sistema distribuido, se pueden producir errores. Pueden producirse errores de hardware. La red puede tener errores transitorios. En raras ocasiones, todo un servicio o toda una región pueden experimentar interrupciones, pero incluso estas deben planificarse.
 
-Crear una aplicación confiable en la nube es diferente a crear una aplicación confiable en un entorno empresarial. Si bien históricamente puede haber adquirido hardware de gama superior para escalar verticalmente, en un entorno de nube debe escalar horizontalmente en lugar de verticalmente. Los costos de los entornos de nube se mantienen bajos gracias al uso de hardware básico. En lugar de centrarse en la prevención de errores y en la optimización del "tiempo medio entre errores", en este nuevo entorno, el enfoque cambia a "tiempo medio para restaurar". El objetivo es minimizar el efecto de los errores.
+Crear una aplicación confiable en la nube es diferente a crear una aplicación confiable en un entorno empresarial. Si bien históricamente puede haber adquirido hardware de gama superior para escalar verticalmente, en un entorno de nube debe escalar horizontalmente en lugar de verticalmente. Los costos de los entornos de nube se mantienen bajos gracias al uso de hardware básico. En lugar de intentar evitar todos los errores, el objetivo es minimizar los efectos de un error en el sistema.
 
 En este artículo se introduce a la creación de aplicaciones resistentes en Microsoft Azure. Se inicia con una definición del término *resistencia* y conceptos relacionados. Después se describe un proceso para lograr resistencia, mediante un enfoque estructurado durante la vigencia de una aplicación, desde el diseño y la puesta en marcha hasta la implementación y operaciones.
 
 ## <a name="what-is-resiliency"></a>¿Qué es la resistencia?
+
 **Resistencia** es la capacidad de un sistema de recuperarse de los errores y seguir funcionando. No se trata de *evitar* los errores, sino de *responder* a ellos de manera que se evite el tiempo de inactividad o la pérdida de datos. El objetivo de la resistencia es devolver la aplicación a un estado plenamente operativo después de un error.
 
 Dos aspectos importantes de la resistencia son la alta disponibilidad y la recuperación ante desastres.
@@ -38,6 +39,7 @@ Las **copias de seguridad de datos** constituyen una parte fundamental de la rec
 Las copias de seguridad no son lo mismo que la **replicación de datos**. La replicación de datos implica copiar datos casi en tiempo real, por lo que el sistema puede conmutar por error a una réplica rápidamente. Muchos sistemas de bases de datos admiten la replicación; por ejemplo, SQL Server es compatible con Grupos de disponibilidad Always On de SQL Server. La replicación de datos puede reducir el tiempo necesario para recuperarse de una interrupción, ya que garantiza que siempre hay una réplica de datos disponible. Sin embargo, la replicación de datos no sirve de protección frente a los errores humanos. Si los datos resultan dañados por un error humano, se copiarán en las réplicas. Por tanto, necesitará incorporar también las copias de seguridad a largo plazo en la estrategia de recuperación ante desastres.
 
 ## <a name="process-to-achieve-resiliency"></a>Proceso para lograr resistencia
+
 La resistencia no es un complemento. Deberá diseñarse en el sistema y aplicarse en la práctica operativa. Este es un modelo general para seguir:
 
 1. **Defina** sus requisitos de disponibilidad, en función de las necesidades del negocio.
@@ -51,34 +53,47 @@ La resistencia no es un complemento. Deberá diseñarse en el sistema y aplicars
 En el resto de este artículo, se describen estos pasos con más detalle.
 
 ## <a name="define-your-availability-requirements"></a>Definición de sus requisitos de disponibilidad
+
 El planeamiento de la resistencia comienza con los requisitos empresariales. Estos son algunos enfoques para pensar en resistencia en esos términos.
 
 ### <a name="decompose-by-workload"></a>Descomposición por carga de trabajo
+
 Muchas soluciones en la nube constan de varias cargas de trabajo de aplicación. El término "carga de trabajo" en este contexto significa una funcionalidad discreta o tarea de computación, que se puede separar lógicamente de otras tareas, en términos de requisitos de lógica de negocio y de almacenamiento de datos. Por ejemplo, una aplicación de comercio electrónico podría incluir las cargas de trabajo siguientes:
 
 * Examinar y buscar un catálogo de productos.
 * Crear y realizar el seguimiento de pedidos.
 * Ver recomendaciones.
 
-Estas cargas de trabajo pueden tener diferentes requisitos de disponibilidad, escalabilidad, coherencia de los datos o recuperación ante desastres, entre otros. De nuevo, son decisiones empresariales.
+Estas cargas de trabajo pueden tener diferentes requisitos de disponibilidad, escalabilidad, coherencia de datos y recuperación ante desastres. Hay decisiones empresariales que se deben tomar después de analizar los costos en comparación con los riesgos.
 
-Considere también la posibilidad de patrones de uso. ¿Hay ciertos períodos críticos en los que el sistema debe estar disponible? Por ejemplo, un servicio de declaración de impuestos no puede estar inactivo justo antes de la fecha límite de presentación, un servicio de transmisión de vídeo debe estar activo durante un gran evento deportivo y así sucesivamente. Durante los períodos críticos, es posible que tenga implementaciones redundantes en varias regiones, por lo que la aplicación puede conmutar por error si se produce un error en una región. Sin embargo, una implementación en varias regiones es más costosa, por lo que en los momentos menos críticos, se puede ejecutar la aplicación en una única región.
+Considere también la posibilidad de patrones de uso. ¿Hay ciertos períodos críticos en los que el sistema debe estar disponible? Por ejemplo, un servicio de declaración de impuestos no puede estar inactivo justo antes de la fecha límite de presentación, un servicio de transmisión de vídeo debe estar activo durante un gran evento deportivo y así sucesivamente. Durante los períodos críticos, es posible que tenga implementaciones redundantes en varias regiones, por lo que la aplicación puede conmutar por error si se produce un error en una región. Sin embargo, una implementación en varias regiones es posiblemente más costosa, por lo que en los momentos menos críticos, se puede ejecutar la aplicación en una única región. En algunos casos, el gasto adicional se puede mitigar mediante el uso de modernas técnicas sin servidor que usan una facturación basada en el consumo, por lo que no se le cobrará por recursos de proceso que estén infrautilizados.
 
 ### <a name="rto-and-rpo"></a>RTO y RPO
-Dos métricas importantes a tener en cuenta son el objetivo de tiempo de recuperación (RTO) y el objetivo de punto de recuperación (RPO).
 
-* **Objetivo de tiempo de recuperación** (RTO) es el tiempo máximo aceptable que una aplicación puede no estar disponible después de un incidente. Si el RTO es de 90 minutos, debe ser capaz de restaurar la aplicación a un estado en ejecución en un plazo de 90 minutos desde el inicio de un desastre. Si tiene un RTO muy bajo, puede mantener una segunda implementación ejecutándose continuamente en modo de espera, para protegerse contra una interrupción regional.
+Dos métricas importantes a tener en cuenta son el objetivo de tiempo de recuperación (RTO) y el objetivo de punto de recuperación (RPO) ya que hacen referencia a la recuperación ante desastres.
+
+* **Objetivo de tiempo de recuperación** (RTO) es el tiempo máximo aceptable que una aplicación puede no estar disponible después de un incidente. Si el RTO es de 90 minutos, debe ser capaz de restaurar la aplicación a un estado en ejecución en un plazo de 90 minutos desde el inicio de un desastre. Si tiene un RTO muy bajo, puede mantener una segunda implementación regional ejecutándose continuamente con una configuración activo/pasivo en modo de espera, para protegerse contra una interrupción regional. En algunos casos podría implementar una configuración activo/activo para lograr un RTO aún menor.
 
 * **Objetivo de punto de recuperación** (RPO) es la duración máxima de la pérdida de datos que es aceptable durante un desastre. Por ejemplo, si se almacenan datos en una única base de datos, sin replicación en otras bases de datos y se realizan copias de seguridad por hora, se podría perder hasta una hora de datos.
 
-RTO y el RPO son requisitos empresariales. Llevar a cabo una evaluación de riesgos puede ayudarle a definir el RTO y el RPO de la aplicación. Otra medida común es el **tiempo medio para recuperación** (MTTR), que es el tiempo medio que se tarda en restaurar la aplicación después de un error. MTTR es un hecho empírico acerca de un sistema. Si MTTR excede el RTO, un error en el sistema causará una interrupción inaceptable del negocio, porque no será posible restaurar el sistema dentro del RTO definido.
+El RTO y el RPO son requisitos no funcionales de un sistema y los deben dictar las necesidades empresariales. Para obtener estos valores, es una buena idea realizar una evaluación de riesgos y comprender claramente los costos derivados de un tiempo de inactividad o una pérdida de datos.
+
+### <a name="mttr-and-mtbf"></a>MTTR y MTBF
+
+Otras dos medidas habituales de disponibilidad son el tiempo medio para recuperación (MTTR) y el tiempo medio entre errores (MTBF). Los proveedores de servicios usan normalmente estas medidas de forma interna para determinar dónde agregar redundancia a los servicios en la nube y qué Acuerdos de Nivel de Servicio ofrecer a los clientes.
+
+El **tiempo medio para recuperación** (MTTR) es el tiempo medio que se tarda en restaurar un componente después de un error. MTTR es un hecho empírico acerca de un componente. A partir del MTTR de cada componente puede realizar una estimación del MTTR de toda una aplicación. Compilar aplicaciones a partir de varios componentes con valores de MTTR bajos da como resultado una aplicación con un MTTR global bajo, es decir, una aplicación que se recupera rápidamente después de un error.
+
+El **tiempo medio entre errores** (MTBF) es el tiempo de ejecución que se puede esperar razonablemente de un componente entre dos interrupciones. Esta métrica puede ayudarle a calcular la frecuencia con la que un servicio dejará de estar disponible. Un componente no confiable tiene un MTBF bajo, lo que resulta en un número de Acuerdo de Nivel de Servicio bajo para ese componente. No obstante, se puede mitigar un MTBF bajo mediante la implementación de varias instancias del componente y la implementación de conmutación por error entre ellas.
+
+> [!NOTE]
+> Si CUALQUIERA de los valores MTTR de los componentes de una configuración de alta disponibilidad supera el RTO del sistema, un error en el sistema provocará una interrupción de la actividad empresarial inaceptable. No será posible restaurar el sistema dentro del RTO que se ha definido.
 
 ### <a name="slas"></a>SLA
 En Azure, el [Acuerdo de Nivel de Servicio][sla] explica los compromisos de Microsoft en cuanto a tiempo de actividad y conectividad. Si el Acuerdo de Nivel de Servicio para un servicio determinado es del 99,9 %, significa que debe esperar a que el servicio esté disponible un 99,9 % del tiempo.
 
 > [!NOTE]
 > El Acuerdo de Nivel de Servicio de Azure también incluye disposiciones para obtener un crédito de servicio si no se cumpla el Acuerdo, junto con definiciones específicas de "disponibilidad" para cada servicio. Ese aspecto del Acuerdo de Nivel de Servicio actúa como una directiva de cumplimiento.
->
 >
 
 Debe definir sus propios Acuerdos de Nivel de Servicio de destino para cada carga de trabajo de la solución. Un Acuerdo de Nivel de Servicio permite evaluar si la arquitectura cumple con los requisitos empresariales. Por ejemplo, si una carga de trabajo requiere un tiempo de actividad del 99,99 %, pero depende de un servicio con un Acuerdo de Nivel de Servicio del 99,9 %, ese servicio no puede ser un único punto de error en el sistema. Una solución es tener una ruta de reserva en caso de que se produzca un error en el servicio, o bien tomar otras medidas para recuperarse de un error en ese servicio.
@@ -100,6 +115,7 @@ Estas son algunas otras consideraciones al definir un Acuerdo de Nivel de Servic
 * Para lograr cuatro 9 (99,99 %), probablemente no pueda confiar en una intervención manual para recuperarse de errores. La aplicación debe autodiagnosticarse y recuperarse automáticamente.
 * Más allá de cuatro 9, es difícil detectar interrupciones del sistema lo suficientemente rápido como para cumplir con el Acuerdo de Nivel de Servicio.
 * Piense en la ventana de tiempo con la que se mide que el Acuerdo de Nivel de Servicio. Cuanto menor sea la ventana, más estrictas serán las tolerancias. Probablemente no tenga sentido definir el Acuerdo de Nivel de Servicio en términos de tiempo de actividad a cada hora o a diario.
+* Tenga en cuenta las medidas MTBF y MTTR. Cuanto menor sea el Acuerdo de Nivel de Servicio, menos frecuentemente puede estar fuera de servicio el sistema y más rápidamente se debe recuperar.
 
 ### <a name="composite-slas"></a>Acuerdos de Nivel de Servicio compuestos
 Considere una aplicación web de App Service que escribe en Azure SQL Database. En el momento de redactar este artículo, estos servicios de Azure tienen los siguientes Acuerdos de Nivel de Servicio:
@@ -111,7 +127,7 @@ Considere una aplicación web de App Service que escribe en Azure SQL Database. 
 
 ¿Cuál es el tiempo de inactividad máximo que se esperaría para esta aplicación? Si se produce un error en cualquiera de los servicios, se produce un error en toda la aplicación. En general, la probabilidad de que se produzca un error en cada servicio es independiente, por lo que el Acuerdo de Nivel de Servicio compuesto para esta aplicación es del 99,95 % &times; 99,99 % = 99,94 %. Esto es menor que los Acuerdos de Nivel de Servicio individuales, lo cual no es sorprendente, porque una aplicación que depende de varios servicios tiene más puntos de error posibles.
 
-Por otra parte, puede mejorar el Acuerdo de Nivel de Servicio compuesto mediante la creación de rutas de reserva independientes. Por ejemplo, si la instancia de SQL Database no está disponible, coloque las transacciones en una cola para procesarla más adelante.
+Por otra parte, puede mejorar el Acuerdo de Nivel de Servicio compuesto mediante la creación de rutas de reserva independientes. Por ejemplo, si la instancia de SQL Database no está disponible, coloque las transacciones en una cola para procesarla más adelante. 
 
 ![Acuerdo de Nivel de Servicio compuesto](./images/sla2.png)
 
@@ -125,17 +141,18 @@ El Acuerdo de Nivel de Servicio compuesto total es:
 
 Pero este enfoque tiene sus ventajas e inconvenientes. La lógica de aplicación es más compleja, está pagando por la cola y puede haber problemas de coherencia de datos a tener en cuenta.
 
-**Acuerdo de Nivel de Servicio para implementaciones en varias regiones**. Otra técnica de alta disponibilidad consiste en implementar la aplicación en más de una región y usar Azure Traffic Manager para conmutar por error si la aplicación produce un error en una región. Para una implementación de dos regiones, el Acuerdo de Nivel de Servicio compuesto se calcula del siguiente modo.
+**Acuerdo de Nivel de Servicio para implementaciones en varias regiones**. Otra técnica de alta disponibilidad consiste en implementar la aplicación en más de una región y usar Azure Traffic Manager para conmutar por error si la aplicación produce un error en una región. Para una implementación de varias regiones, el Acuerdo de Nivel de Servicio compuesto se calcula del siguiente modo.
 
-Supongamos que *N* es el Acuerdo de Nivel de Servicio compuesto para la aplicación implementada en una región. La probabilidad de que la aplicación produzca un error en ambas regiones al mismo tiempo es (1 &minus; N) &times; (1 &minus; N). Por lo tanto,
+Supongamos que *N* es el Acuerdo de Nivel de Servicio compuesto para la aplicación implementada en una región y que *R* es el número de regiones en el que se implementa la aplicación. La probabilidad de que la aplicación produzca un error en todas las regiones al mismo tiempo es ((1 - N) ^ R).
 
-* Acuerdo de Nivel de Servicio combinado para ambas regiones = 1 &minus; (1 &minus; N)(1 &minus; N) = N + (1 &minus; N)N
+Por ejemplo, si el Acuerdo de Nivel de Servicio para una sola región es del 99,95 %,
 
-Por último, debe tener en cuenta el [Acuerdo de Nivel de Servicio para Traffic Manager][tm-sla]. En el momento de redactar este artículo, el Acuerdo de Nivel de Servicio del de Traffic Manager es 99,99 %.
+* el Acuerdo de Nivel de Servicio combinado para dos regiones = (1 &minus; (0,9995 ^ 2)) = 99,999975 %
+* el Acuerdo de Nivel de Servicio combinado para cuatro regiones = (1 &minus; (0,9995 ^ 4)) = 99,999999 %
 
-* Acuerdo de Nivel de Servicio compuesto = 99,99 % &times; (Acuerdo de Nivel de Servicio combinado para ambas regiones)
+También debe tener en cuenta el [Acuerdo de Nivel de Servicio para Traffic Manager][tm-sla]. En el momento de redactar este artículo, el Acuerdo de Nivel de Servicio del de Traffic Manager es 99,99 %.
 
-Además, la conmutación por error no es instantánea y puede dar lugar un cierto tiempo de inactividad durante ese momento. Consulte [Supervisión de puntos de conexión y de Traffic Manager][tm-failover].
+Además, la conmutación por error no es instantánea en las configuraciones activo/pasivo y puede dar lugar a un cierto tiempo de inactividad durante ese proceso. Consulte [Supervisión de puntos de conexión y de Traffic Manager][tm-failover].
 
 El número calculado del Acuerdo de Nivel de Servicio es una base de referencia útil, pero no indica la historia completa sobre la disponibilidad. A menudo, una aplicación puede degradarse correctamente cuando se produce un error en una ruta no crítica. Considere una aplicación que muestre un catálogo de libros. Si la aplicación no puede recuperar la imagen en miniatura de la portada, puede que muestre una imagen de marcador de posición. En ese caso, no obtener la imagen no reduce el tiempo de actividad de la aplicación, aunque afecta a la experiencia del usuario.  
 
@@ -159,7 +176,6 @@ Para más información sobre el proceso de análisis del modo de error, con reco
 | Autenticación |HTTP 401 (No autorizado) |
 | Respuesta lenta |Tiempo de espera de la solicitud agotado |
 
-
 ### <a name="redundancy-and-designing-for-failure"></a>Redundancia y diseño en caso de error
 
 El alcance de los errores puede variar. Algunos errores de hardware, como un problema en un disco, pueden afectar a un único equipo host. Un error en un conmutador de red podría afectar a todo un bastidor del servidor. Menos frecuentes son los errores que afectan a todo un centro de datos, como los problemas de alimentación. Aún más improbables son los problemas por los que toda una región dejaría de estar disponible.
@@ -168,19 +184,21 @@ Uno de los mecanismos para conseguir que una aplicación sea resistente es la re
 
 Azure dispone de una serie de características que permiten hacer que la aplicación sea redundante sea cual sea el nivel del error, desde los que se producen en una única máquina virtual hasta los que tienen lugar en toda una región.
 
-![](./images/redundancy.svg)
+![Características de resistencia de Azure](./images/redundancy.svg)
 
-**Una única máquina virtual**. Azure proporciona un Acuerdo de Nivel de Servicio de tiempo de actividad para máquinas virtuales individuales. Aunque se puede conseguir un Acuerdo de Nivel de Servicio mayor ejecutando dos o más máquinas virtuales, una única máquina virtual puede resultar suficientemente confiable con algunas cargas de trabajo. En las cargas de trabajo de producción, se recomienda usar dos o más máquinas virtuales para tener redundancia.
+**Una única máquina virtual**. Azure proporciona un [Acuerdo de Nivel de Servicio de tiempo de actividad](https://azure.microsoft.com/support/legal/sla/virtual-machines) para máquinas virtuales individuales. (La máquina virtual debe usar Premium Storage para todos los discos del sistema operativo y los discos de datos). Aunque se puede conseguir un Acuerdo de Nivel de Servicio mayor ejecutando dos o más máquinas virtuales, una única máquina virtual puede resultar suficientemente confiable con algunas cargas de trabajo. No obstante, en las cargas de trabajo de producción, se recomienda usar dos o más máquinas virtuales para tener redundancia.
 
 **Conjuntos de disponibilidad**. Para protegerse frente a errores de hardware localizados, como un error en un conmutador de red o un disco, implemente dos o más máquinas virtuales en un conjunto de disponibilidad. Un conjunto de disponibilidad se compone de dos o más *dominios de error* que comparten una fuente de alimentación y un conmutador de red. Las máquinas virtuales incluidas en un conjunto de disponibilidad se distribuyen entre los dominios de error, por lo que, si un error de hardware afecta a un dominio de error, el tráfico de la red puede enrutarse a las máquinas virtuales de otros dominios de error. Para más información acerca de los conjuntos disponibilidad, consulte [Administración de la disponibilidad de las máquinas virtuales Windows en Azure](/azure/virtual-machines/windows/manage-availability).
 
-**Zonas de disponibilidad**.  Una zona de disponibilidad es una zona separada físicamente dentro de una región de Azure. Cada zona de disponibilidad tiene una fuente de alimentación, una red y un sistema de refrigeración distintos. Cuando las máquinas virtuales están implementadas en diferentes zonas de disponibilidad, es más fácil proteger una aplicación frente a errores que afectan a todo el centro de datos.
+**Zonas de disponibilidad**.  Una zona de disponibilidad es una zona separada físicamente dentro de una región de Azure. Cada zona de disponibilidad tiene una fuente de alimentación, una red y un sistema de refrigeración distintos. Cuando las máquinas virtuales están implementadas en diferentes zonas de disponibilidad, es más fácil proteger una aplicación frente a errores que afectan a todo el centro de datos. No todas las regiones son compatibles con las zonas de disponibilidad. Para obtener una lista de los servicios y las regiones compatibles, consulte [¿Qué son las zonas de disponibilidad en Azure?](/azure/availability-zones/az-overview).
 
-**Azure Site Recovery**.  Replique las máquinas virtuales de Azure en otra región de Azure para satisfacer sus necesidades de continuidad empresarial y recuperación ante desastres. Puede realizar pruebas de recuperación ante desastres periódicas para asegurarse de que satisface los requisitos de cumplimiento. La máquina virtual se replicará en la región seleccionada con la configuración que especifique, de forma que podrá recuperar las aplicaciones en caso de interrupciones del servicio en la región de origen. Para más información, consulte [Replicación de máquinas virtuales de Azure con ASR][site-recovery].
+Si va a usar zonas de disponibilidad en la implementación, compruebe primero que la arquitectura de la aplicación y la base de código sean compatibles con esta configuración. Si va a implementar software de productos comerciales, consulte con el proveedor del software y realice las pruebas adecuadas antes de realizar la implementación en producción. Una aplicación debe ser capaz de conservar el estado y evitar la pérdida de datos durante una interrupción en la zona configurada. La aplicación debe admitir la ejecución en una infraestructura elástica y distribuida con ningún componente de infraestructura codificado de forma rígida especificado en la base de código. 
+
+**Azure Site Recovery**.  Replique las máquinas virtuales de Azure en otra región de Azure para satisfacer sus necesidades de continuidad empresarial y recuperación ante desastres. Puede realizar pruebas de recuperación ante desastres periódicas para asegurarse de que satisface los requisitos de cumplimiento. La máquina virtual se replicará en la región seleccionada con la configuración que especifique, de forma que podrá recuperar las aplicaciones en caso de interrupciones del servicio en la región de origen. Para más información, consulte [Replicación de máquinas virtuales de Azure con ASR][site-recovery]. Tenga en cuenta los valores de RTO y RPO para su solución que se describen aquí y asegúrese de que, al realizar las pruebas, el tiempo de recuperación y el punto de recuperación son adecuados para sus necesidades.
 
 **Regiones emparejadas**. Para proteger una aplicación frente a una interrupción regional, puede implementar la aplicación en varias regiones y utilizar Azure Traffic Manager para distribuir el tráfico de Internet en las distintas regiones. Cada región de Azure está emparejada con otra región. Juntas, forman un [par regional](/azure/best-practices-availability-paired-regions). A excepción del Sur de Brasil, los pares regionales se encuentran en la misma ubicación geográfica para, de este modo, cumplir los requisitos de residencia de datos a efectos de jurisdicción fiscal y aplicación de las leyes.
 
-Si diseña una aplicación para varias regiones, tenga en cuenta que la latencia de red entre regiones es mayor que dentro de una región. Por ejemplo, si va a replicar una base de datos para habilitar la conmutación por error, utilice la replicación de datos sincrónica dentro de una misma región y la replicación asincrónica de datos entre diferentes regiones.
+Si diseña una aplicación para varias regiones, tenga en cuenta que la latencia de red entre regiones es mayor que dentro de una región. Por ejemplo, si va a replicar una base de datos para habilitar la conmutación por error, utilice la replicación de datos sincrónica dentro de una misma región y la replicación asincrónica de datos entre diferentes regiones. 
 
 | &nbsp; | Conjunto de disponibilidad | Zona de disponibilidad | Azure Site Recovery / región emparejada |
 |--------|------------------|-------------------|---------------|
@@ -204,7 +222,7 @@ Cada reintento se suma a la latencia total. Además, demasiadas solicitudes con 
 * Escale horizontalmente una aplicación de Azure App Service en varias instancias. App Service equilibra automáticamente la carga entre instancias. Consulte [Basic web application][ra-basic-web] (Aplicación web básica).
 * Use [Azure Traffic Manager][tm] para distribuir el tráfico a través de un conjunto de puntos de conexión.
 
-**Replique los datos**. La replicación de datos es una estrategia general para tratar errores no transitorios en un almacén de datos. Muchas tecnologías de almacenamiento proporcionan replicación integrada, como Azure SQL Datase y Cosmos DB y Apache Cassandra. Es importante tener en cuenta las rutas de lectura y escritura. Según la tecnología de almacenamiento, puede tener varias réplicas de escritura, o una única réplica de escritura y múltiples réplicas de solo lectura.
+**Replique los datos**. La replicación de datos es una estrategia general para tratar errores no transitorios en un almacén de datos. Muchas tecnologías de almacenamiento proporcionan replicación integrada, como Azure Storage, Azure SQL Datase, Cosmos DB y Apache Cassandra. Es importante tener en cuenta las rutas de lectura y escritura. Según la tecnología de almacenamiento, puede tener varias réplicas de escritura, o una única réplica de escritura y múltiples réplicas de solo lectura.
 
 Para maximizar la disponibilidad, las réplicas pueden colocarse en varias regiones. Sin embargo, esto aumenta la latencia al replicar los datos. Por lo general, la replicación entre las regiones se realiza de forma asincrónica, lo que implica un modelo de coherencia final y la posible pérdida de datos si se produce un error en una réplica.
 
