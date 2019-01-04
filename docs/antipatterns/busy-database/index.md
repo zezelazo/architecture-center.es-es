@@ -1,18 +1,20 @@
 ---
 title: Antipatrón Busy Database
+titleSuffix: Performance antipatterns for cloud apps
 description: Descargar el procesamiento en un servidor de base de datos puede provocar problemas de rendimiento y escalabilidad.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: a14a350aefc1801ae08cb4a8d0eb3d5b248c92bf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 11bce03aed2e988d0a814b3298818715ba42c1c5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428914"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011470"
 ---
 # <a name="busy-database-antipattern"></a>Antipatrón Busy Database
 
-Descargar el procesamiento en un servidor de base de datos puede provocar que se dedique una proporción considerable de tiempo en ejecutar el código, en lugar de responder a las solicitudes para almacenar y recuperar datos. 
+Descargar el procesamiento en un servidor de base de datos puede provocar que se dedique una proporción considerable de tiempo en ejecutar el código, en lugar de responder a las solicitudes para almacenar y recuperar datos.
 
 ## <a name="problem-description"></a>Descripción del problema
 
@@ -217,9 +219,9 @@ using (var command = new SqlCommand(...))
 
 ## <a name="how-to-detect-the-problem"></a>Procedimiento para detectar el problema
 
-Los síntomas de una base de datos ocupada incluyen un descenso desproporcionado en los tiempos de respuesta y el rendimiento de las operaciones que tienen acceso a la base de datos. 
+Los síntomas de una base de datos ocupada incluyen un descenso desproporcionado en los tiempos de respuesta y el rendimiento de las operaciones que tienen acceso a la base de datos.
 
-Puede realizar los pasos siguientes para ayudar a identificar este problema: 
+Puede realizar los pasos siguientes para ayudar a identificar este problema:
 
 1. Utilice la supervisión del rendimiento para identificar cuánto tiempo invierte el sistema de producción en la actividad de base de datos.
 
@@ -261,10 +263,9 @@ El uso de CPU y de DTU muestra que el sistema tardó más tiempo en alcanzar la 
 
 ![Monitor de Azure SQL Database que muestra el rendimiento de la base de datos al realizar el procesamiento en la aplicación cliente][ProcessingInClientApplicationMonitor]
 
-## <a name="related-resources"></a>Recursos relacionados 
+## <a name="related-resources"></a>Recursos relacionados
 
 - [Antipatrón Extraneous Fetching][ExtraneousFetching]
-
 
 [dtu]: /azure/sql-database/sql-database-service-tiers-dtu
 [ExtraneousFetching]: ../extraneous-fetching/index.md

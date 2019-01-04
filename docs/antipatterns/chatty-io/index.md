@@ -1,14 +1,16 @@
 ---
 title: Antipatrón Chatty I/O
+titleSuffix: Performance antipatterns for cloud apps
 description: Un gran número de solicitudes de E/S puede afectar al rendimiento y la capacidad de respuesta.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 17193198918cc742b2e3f30e77dfc5c3f2726ebf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: c018e365d0a6244f77d119ad59f601e9c7ea965c
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428574"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011232"
 ---
 # <a name="chatty-io-antipattern"></a>Antipatrón Chatty I/O
 
@@ -26,7 +28,7 @@ En el ejemplo siguiente se lee de una base de datos de productos. Hay tres tabla
 2. Consulte la tabla `Product` para buscar todos los productos de esa subcategoría.
 3. Para cada producto, consulte los datos de precio en la tabla `ProductPriceListHistory`.
 
-La aplicación usa [Entity Framework][ef] para consultar la base de datos. Puede encontrar el ejemplo completo [aquí][code-sample]. 
+La aplicación usa [Entity Framework][ef] para consultar la base de datos. Puede encontrar el ejemplo completo [aquí][code-sample].
 
 ```csharp
 public async Task<IHttpActionResult> GetProductsInSubCategoryAsync(int subcategoryId)
@@ -57,11 +59,11 @@ public async Task<IHttpActionResult> GetProductsInSubCategoryAsync(int subcatego
 }
 ```
 
-En este ejemplo se muestra el problema de forma explícita, pero, en ocasiones, si captura implícitamente los registros secundarios uno a uno, el asignador relacional de objetos puede enmascarar el problema. Esto se conoce como el "problema N+1". 
+En este ejemplo se muestra el problema de forma explícita, pero, en ocasiones, si captura implícitamente los registros secundarios uno a uno, el asignador relacional de objetos puede enmascarar el problema. Esto se conoce como el "problema N+1".
 
 ### <a name="implementing-a-single-logical-operation-as-a-series-of-http-requests"></a>Implementación de una única operación lógica como serie de solicitudes HTTP
 
-Esto suele ocurrir cuando los desarrolladores intentan seguir un paradigma basado en los objetos y tratan los objetos remotos como si fueran objetos locales en la memoria. Esto puede producir demasiado recorrido de ida y vuelta en la red. Por ejemplo, la siguiente API de web expone las propiedades individuales de los objetos `User` a través de métodos HTTP GET individuales. 
+Esto suele ocurrir cuando los desarrolladores intentan seguir un paradigma basado en los objetos y tratan los objetos remotos como si fueran objetos locales en la memoria. Esto puede producir demasiado recorrido de ida y vuelta en la red. Por ejemplo, la siguiente API de web expone las propiedades individuales de los objetos `User` a través de métodos HTTP GET individuales.
 
 ```csharp
 public class UserController : ApiController
@@ -89,7 +91,7 @@ public class UserController : ApiController
 }
 ```
 
-Aunque técnicamente no hay ningún problema con este enfoque, la mayoría de los clientes probablemente tendrá que obtener varias propiedades para cada `User`, lo cual dará lugar a código de cliente similar al siguiente. 
+Aunque técnicamente no hay ningún problema con este enfoque, la mayoría de los clientes probablemente tendrá que obtener varias propiedades para cada `User`, lo cual dará lugar a código de cliente similar al siguiente.
 
 ```csharp
 HttpResponseMessage response = await client.GetAsync("users/1/username");
@@ -107,7 +109,7 @@ var dob = await response.Content.ReadAsStringAsync();
 
 ### <a name="reading-and-writing-to-a-file-on-disk"></a>Lectura y escritura en un archivo de disco
 
-Las operaciones de E/S de archivos implican la apertura de un archivo y su desplazamiento al punto adecuado para leer o escribir datos. Una vez completada la operación, el archivo podría cerrarse para ahorrar recursos del sistema operativo. Una aplicación que lee y escribe constantemente pequeñas cantidades de información en un archivo generará una sobrecarga de E/S considerable. Las solicitudes de escritura pequeñas también pueden provocar la fragmentación del archivo, lo cual mermará aún más las operaciones de E/S posteriores. 
+Las operaciones de E/S de archivos implican la apertura de un archivo y su desplazamiento al punto adecuado para leer o escribir datos. Una vez completada la operación, el archivo podría cerrarse para ahorrar recursos del sistema operativo. Una aplicación que lee y escribe constantemente pequeñas cantidades de información en un archivo generará una sobrecarga de E/S considerable. Las solicitudes de escritura pequeñas también pueden provocar la fragmentación del archivo, lo cual mermará aún más las operaciones de E/S posteriores.
 
 En el siguiente ejemplo se usa un objeto `FileStream` para escribir un objeto `Customer` en un archivo. Al crear `FileStream`, el archivo se abre y al eliminarlo, se cierra. (La instrucción `using` elimina automáticamente el objeto `FileStream`). Si la aplicación llama a este método varias veces cuando se agregan nuevos clientes, la sobrecarga de E/S puede acumularse rápidamente.
 
@@ -211,7 +213,7 @@ await SaveCustomerListToFileAsync(customers);
 
 - En los dos primeros ejemplos se realizan *menos* llamadas de E/S, pero cada una de ellas recupera *más* información. Debe tener en cuenta el equilibrio entre estos dos factores. La respuesta correcta dependerá de los patrones de uso reales. Por ejemplo, en el ejemplo de API web, puede que los clientes a menudo solo necesiten el nombre de usuario. En ese caso, tendría sentido exponerlo como una llamada API independiente. Para más información, consulte el [antipatrón Extraneous Fetching][extraneous-fetching].
 
-- Al leer datos, no realice solicitudes de E/S demasiado grandes. Las aplicaciones solo deben recuperar la información que sea probable que usen. 
+- Al leer datos, no realice solicitudes de E/S demasiado grandes. Las aplicaciones solo deben recuperar la información que sea probable que usen.
 
 - En ocasiones resulta útil para la partición de la información de un objeto en dos fragmentos, los *datos de acceso frecuente* en la mayoría de las solicitudes y los *datos de acceso menos frecuente* que casi no se usan. A menudo, los datos a los que se accede con más frecuencia son una cantidad relativamente pequeña del total de datos de un objeto, por lo que devolver solo esa parte puede prevenir notablemente la sobrecarga de E/S.
 
@@ -231,7 +233,7 @@ Puede realizar los pasos siguientes para ayudar a identificar la causa de cualqu
 2. Realice pruebas de carga de cada operación identificada en el paso anterior.
 3. Durante las pruebas de carga, recopile datos de telemetría acerca de las solicitudes de acceso de datos realizadas por cada operación.
 4. Recopile estadísticas detalladas de cada solicitud enviada a un almacén de datos.
-5. Genere perfiles de aplicación en el entorno de prueba para establecer dónde se pueden estar produciendo cuellos de botella de E/S. 
+5. Genere perfiles de aplicación en el entorno de prueba para establecer dónde se pueden estar produciendo cuellos de botella de E/S.
 
 Busque alguno de estos síntomas:
 
@@ -246,16 +248,16 @@ En las siguientes secciones se aplican estos pasos al ejemplo anterior donde se 
 
 ### <a name="load-test-the-application"></a>Prueba de carga de la aplicación
 
-En este gráfico se muestran los resultados de las pruebas de carga. La mediana de tiempo de respuesta es de 10 segundos por solicitud. En el gráfico se muestra una latencia muy alta. Con una carga de 1000 usuarios, uno de ellos podría tener que esperar casi un minuto ver los resultados de una consulta. 
+En este gráfico se muestran los resultados de las pruebas de carga. La mediana de tiempo de respuesta es de 10 segundos por solicitud. En el gráfico se muestra una latencia muy alta. Con una carga de 1000 usuarios, uno de ellos podría tener que esperar casi un minuto ver los resultados de una consulta.
 
 ![Resultados de la prueba de carga de los indicadores clave para la aplicación de ejemplo de Chatty I/O][key-indicators-chatty-io]
 
 > [!NOTE]
-> La aplicación se implementó como aplicación web de Azure App Service, con Azure SQL Database. Para la prueba de carga se utilizó una carga de trabajo de pasos simulada de hasta 1000 usuarios simultáneos. La base de datos se configuró con un grupo de conexiones que admitía hasta 1000 conexiones simultáneas, para reducir la posibilidad de que la contención para las conexiones afectara a los resultados. 
+> La aplicación se implementó como aplicación web de Azure App Service, con Azure SQL Database. Para la prueba de carga se utilizó una carga de trabajo de pasos simulada de hasta 1000 usuarios simultáneos. La base de datos se configuró con un grupo de conexiones que admitía hasta 1000 conexiones simultáneas, para reducir la posibilidad de que la contención para las conexiones afectara a los resultados.
 
 ### <a name="monitor-the-application"></a>Supervisión de la aplicación
 
-Puede usar un paquete de supervisión del rendimiento de la aplicación (APM) para capturar y analizar las métricas clave que pueden identificar Chatty I/O. La importancia de las distintas métricas dependerá de la carga de trabajo de E/S. En este ejemplo, las solicitudes de E/S interesantes eran las consultas de base de datos. 
+Puede usar un paquete de supervisión del rendimiento de la aplicación (APM) para capturar y analizar las métricas clave que pueden identificar Chatty I/O. La importancia de las distintas métricas dependerá de la carga de trabajo de E/S. En este ejemplo, las solicitudes de E/S interesantes eran las consultas de base de datos.
 
 En la siguiente imagen se muestran los resultados generados con [New APM Relic][new-relic]. El tiempo de respuesta promedio de la base de datos fue de unos 5,6 segundos por solicitud como máximo durante la carga de trabajo máxima. El sistema admitió un promedio de 410 solicitudes por minuto durante la prueba.
 
@@ -279,7 +281,7 @@ En la imagen siguiente se muestran las instrucciones SQL reales que se han emiti
 
 ![Detalles de consulta para la aplicación de ejemplo sometida a prueba][queries3]
 
-Si usa un asignador relacional de objetos como Entity Framework, el seguimiento de las consultas SQL puede proporcionar una visión general de cómo este convierte las llamadas con programación en instrucciones SQL e indicar las áreas donde se podría optimizar el acceso a los datos. 
+Si usa un asignador relacional de objetos como Entity Framework, el seguimiento de las consultas SQL puede proporcionar una visión general de cómo este convierte las llamadas con programación en instrucciones SQL e indicar las áreas donde se podría optimizar el acceso a los datos.
 
 ### <a name="implement-the-solution-and-verify-the-result"></a>Implementación de la solución y comprobación del resultado
 
@@ -293,7 +295,7 @@ Ahora el sistema admite un promedio de 3970 solicitudes por minuto, en comparaci
 
 ![Información general de las transacciones de la API fragmentada][databasetraffic2]
 
-El seguimiento de la instrucción SQL muestra que todos los datos se capturan en una única instrucción SELECT. Aunque esta consulta es considerablemente más compleja, se realiza solo una vez por operación. Y mientras las combinaciones complejas pueden resultar caras, los sistemas de bases de datos relacionales están optimizados para este tipo de consulta.  
+El seguimiento de la instrucción SQL muestra que todos los datos se capturan en una única instrucción SELECT. Aunque esta consulta es considerablemente más compleja, se realiza solo una vez por operación. Y mientras las combinaciones complejas pueden resultar caras, los sistemas de bases de datos relacionales están optimizados para este tipo de consulta.
 
 ![Detalles de consulta de la API fragmentada][queries4]
 
@@ -322,4 +324,3 @@ El seguimiento de la instrucción SQL muestra que todos los datos se capturan en
 [queries2]: _images/DatabaseQueries2.jpg
 [queries3]: _images/DatabaseQueries3.jpg
 [queries4]: _images/DatabaseQueries4.jpg
-

@@ -1,14 +1,16 @@
 ---
 title: Antipatrón Busy Front End
+titleSuffix: Performance antipatterns for cloud apps
 description: El trabajo asincrónico en un gran número de subprocesos en segundo plano puede privar de recursos a otras tareas de primer plano.
 author: dragon119
 ms.date: 06/05/2017
-ms.openlocfilehash: 89a2d6c41af1e19ca1b9b6a0a5dceac615afd60a
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: f52cedde5a17f098fb9218c48479fae981a2c7df
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428302"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011521"
 ---
 # <a name="busy-front-end-antipattern"></a>Antipatrón Busy Front End
 
@@ -62,11 +64,11 @@ La principal preocupación es la necesidad de recursos del método `Post`. Aunqu
 
 ## <a name="how-to-fix-the-problem"></a>Procedimiento para corregir el problema
 
-Mueva los procesos que consumen muchos recursos a un back-end independiente. 
+Mueva los procesos que consumen muchos recursos a un back-end independiente.
 
 Con este enfoque, el front-end coloca las tareas que consumen muchos recursos en una cola de mensajes. El back-end recoge las tareas para el procesamiento asincrónico. La cola también actúa como un nivelador de la carga, al almacenar en búfer las solicitudes para el back-end. Si la longitud de cola es demasiado larga, puede configurar el escalado automático para escalar horizontalmente el back-end.
 
-Esta es una versión revisada del código anterior. En esta versión, el método `Post` coloca un mensaje en una cola de Service Bus. 
+Esta es una versión revisada del código anterior. En esta versión, el método `Post` coloca un mensaje en una cola de Service Bus.
 
 ```csharp
 public class WorkInBackgroundController : ApiController
@@ -121,7 +123,7 @@ public async Task RunAsync(CancellationToken cancellationToken)
 - Este enfoque agrega cierta complejidad adicional a la aplicación. Incorpore los mensajes a la cola y sáquelos con cuidado para evitar la pérdida de solicitudes en caso de fallo.
 - La aplicación depende de un servicio adicional para la cola de mensajes.
 - El entorno de procesamiento debe ser lo suficientemente escalable para controlar la carga de trabajo esperada y cumplir los objetivos de rendimiento necesarios.
-- Aunque este enfoque debe mejorar la capacidad de respuesta general, las tareas que se han movido al back-end pueden tardar más en completarse. 
+- Aunque este enfoque debe mejorar la capacidad de respuesta general, las tareas que se han movido al back-end pueden tardar más en completarse.
 
 ## <a name="how-to-detect-the-problem"></a>Procedimiento para detectar el problema
 
@@ -130,12 +132,12 @@ Los síntomas de Busy Front End incluyen latencia alta mientras se realizan tare
 Puede realizar los pasos siguientes para ayudar a identificar este problema:
 
 1. Supervise los procesos del sistema de producción para identificar los puntos en los que se ralentizan los tiempos de respuesta.
-2. Examine los datos de telemetría capturados en estos puntos para determinar la combinación de operaciones que se están realizando y los recursos que se utilizan. 
+2. Examine los datos de telemetría capturados en estos puntos para determinar la combinación de operaciones que se están realizando y los recursos que se utilizan.
 3. Busque correlaciones entre los tiempos de respuesta lentos y los volúmenes, y las combinaciones de operaciones que se producen en esos momentos.
-4. Realice una prueba de carga con cada operación sospechosa para identificar las operaciones que consumen recursos y privan de estos a otras operaciones. 
+4. Realice una prueba de carga con cada operación sospechosa para identificar las operaciones que consumen recursos y privan de estos a otras operaciones.
 5. Revise el código fuente de esas operaciones para determinar por qué provocan el exceso de consumo de recursos.
 
-## <a name="example-diagnosis"></a>Diagnóstico de ejemplo 
+## <a name="example-diagnosis"></a>Diagnóstico de ejemplo
 
 En las secciones siguientes se aplican estos pasos para la aplicación de ejemplo descrita anteriormente.
 
@@ -155,18 +157,17 @@ La imagen siguiente muestra algunas de las métricas que se recopilan para super
 
 En este punto, parece que el método `Post` del controlador `WorkInFrontEnd` es un candidato ideal para un examen más minucioso. Es necesario seguir trabajando en un entorno controlado para confirmar la hipótesis.
 
-### <a name="perform-load-testing"></a>Pruebas de carga 
+### <a name="perform-load-testing"></a>Pruebas de carga
 
 El paso siguiente es realizar pruebas en un entorno controlado. Por ejemplo, la ejecución de una serie de pruebas de carga que incluya y luego omita las solicitudes una a una, para ver el resultado.
 
-El gráfico siguiente muestra los resultados de una prueba de carga en una implementación idéntica a la del servicio en la nube utilizado en las pruebas anteriores. Para la prueba se ha utilizado una carga constante de 500 usuarios que realizan la operación `Get` en el controlador `UserProfile`, junto con una carga por pasos de usuarios que realizan la operación `Post` en el controlador `WorkInFrontEnd`. 
+El gráfico siguiente muestra los resultados de una prueba de carga en una implementación idéntica a la del servicio en la nube utilizado en las pruebas anteriores. Para la prueba se ha utilizado una carga constante de 500 usuarios que realizan la operación `Get` en el controlador `UserProfile`, junto con una carga por pasos de usuarios que realizan la operación `Post` en el controlador `WorkInFrontEnd`.
 
 ![Resultados de las pruebas de carga iniciales para el controlador WorkInFrontEnd][Initial-Load-Test-Results-Front-End]
 
 Inicialmente, la carga por pasos es 0, por lo que los únicos usuarios activos realizan solicitudes `UserProfile`. El sistema responde aproximadamente 500 solicitudes por segundo. A los 60 segundos, una carga de 100 usuarios adicionales comienza a enviar solicitudes POST al controlador `WorkInFrontEnd`. Casi de inmediato, la carga de trabajo enviada al controlador `UserProfile` desciende a unas 150 solicitudes por segundo. Esto es debido a la manera en que funciona el ejecutor de pruebas de carga. Para enviar la solicitud siguiente espera una respuesta, por lo que cuanto más tarde en recibirla, menor será la tasa de la solicitud.
 
 Cuantos más usuarios envíen solicitudes POST al controlador `WorkInFrontEnd`, menor será la tasa de respuesta del controlador `UserProfile`. Pero tenga en cuenta que el volumen de solicitudes de las que se ocupa el controlador `WorkInFrontEnd` se mantiene relativamente constante. La saturación del sistema se vuelve evidente a medida que la velocidad global de ambas solicitudes tiende hacia un límite fijo pero bajo.
-
 
 ### <a name="review-the-source-code"></a>Revisión del código fuente
 
@@ -175,11 +176,11 @@ El último paso es observar el código fuente. El equipo de desarrollo tenía co
 Sin embargo, el trabajo que realiza este método sigue consumiendo CPU, memoria y otros recursos. Habilitar este proceso para que se ejecute de forma asincrónica en realidad puede perjudicar al rendimiento, ya que los usuarios pueden desencadenar numerosas operaciones de estas al mismo tiempo, sin control. El número de subprocesos que puede ejecutar un servidor está limitado. Más allá de este límite, es probable que la aplicación reciba una excepción al intentar iniciar un nuevo subproceso.
 
 > [!NOTE]
-> Esto no significa que deba evitar las operaciones asincrónicas. Realizar una asincrónica await en una llamada de red es un procedimiento recomendado. (Consulte el antipatrón [de E/S sincrónico][sync-io]). Este problema es que el trabajo que consume mucha CPU se generó en otro subproceso. 
+> Esto no significa que deba evitar las operaciones asincrónicas. Realizar una asincrónica await en una llamada de red es un procedimiento recomendado. (Consulte el antipatrón [de E/S sincrónico][sync-io]). Este problema es que el trabajo que consume mucha CPU se generó en otro subproceso.
 
 ### <a name="implement-the-solution-and-verify-the-result"></a>Implementación de la solución y comprobación del resultado
 
-En la siguiente imagen se ilustra la supervisión del rendimiento una vez implementada la solución. La carga era similar a la que anterior, pero los tiempos de respuesta para el controlador `UserProfile` ahora son mucho más rápidos. El volumen de solicitudes aumentó de 2759 a 23 565 en el mismo periodo. 
+En la siguiente imagen se ilustra la supervisión del rendimiento una vez implementada la solución. La carga era similar a la que anterior, pero los tiempos de respuesta para el controlador `UserProfile` ahora son mucho más rápidos. El volumen de solicitudes aumentó de 2759 a 23 565 en el mismo periodo.
 
 ![Panel de las transacciones comerciales de AppDynamics que muestra los efectos en los tiempos de respuesta de todas las solicitudes cuando se utiliza el controlador WorkInBackground][AppDynamics-Transactions-Background-Requests]
 
@@ -218,5 +219,3 @@ En el siguiente gráfico se muestran los resultados de una prueba de carga. El v
 [AppDynamics-Transactions-Background-Requests]: ./_images/AppDynamicsBackgroundPerformanceStats.jpg
 [AppDynamics-Metrics-Background-Requests]: ./_images/AppDynamicsBackgroundMetrics.jpg
 [Load-Test-Results-Background]: ./_images/LoadTestResultsBackground.jpg
-
-
