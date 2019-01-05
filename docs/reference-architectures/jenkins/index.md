@@ -5,12 +5,12 @@ description: Arquitectura recomendada que muestra cómo implementar y hacer func
 author: njray
 ms.date: 04/30/2018
 ms.custom: seodec18
-ms.openlocfilehash: 26bf9cadc8db0cd4fcc61023619ca61bb7b87855
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 3500e05631ad34af0abc8e0f7a3e2b4919157746
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644162"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011351"
 ---
 # <a name="run-a-jenkins-server-on-azure"></a>Ejecución de un servidor Jenkins en Azure
 
