@@ -1,26 +1,28 @@
 ---
-title: Uso de Service Fabric para descomponer aplicaciones monolíticas
+title: Uso de Service Fabric para descomponer aplicaciones
+titleSuffix: Azure Example Scenarios
 description: Descomponga una gran aplicación monolítica en microservicios.
 author: timomta
 ms.date: 09/20/2018
 ms.custom: fasttrack
-ms.openlocfilehash: 438d2eabff39356a7593f2da798a74eebe94553a
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 90159b0cbfd3e7af542a79d050d153b4a3435a0d
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004622"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643822"
 ---
 # <a name="using-service-fabric-to-decompose-monolithic-applications"></a>Uso de Service Fabric para descomponer aplicaciones monolíticas
 
 En este escenario de ejemplo, analizaremos un enfoque que usa [Service Fabric](/azure/service-fabric/service-fabric-overview) como plataforma para descomponer una aplicación monolítica difícil de manejar. Se considera un enfoque iterativo para descomponer un sitio web de IIS/ASP.NET en una aplicación formada por varios microservicios fáciles de administrar.
 
 El cambio de una arquitectura monolítica a una arquitectura de microservicios ofrece las siguientes ventajas:
-* Puede cambiar una unidad pequeña y comprensible de código e implementar solo dicha unidad.
-* Cada unidad de código requiere solo unos pocos minutos o menos para su implementación.
-* Si se produce un error en esa unidad pequeña, solo esa unidad deja de funcionar, no toda la aplicación.
-* Las unidades pequeñas de código se pueden distribuir de forma discreta y fácil entre varios equipos de desarrollo.
-* Los nuevos desarrolladores pueden entender rápida y fácilmente la funcionalidad discreta de cada unidad.
+
+- Puede cambiar una unidad pequeña y comprensible de código e implementar solo dicha unidad.
+- Cada unidad de código requiere solo unos pocos minutos o menos para su implementación.
+- Si se produce un error en esa unidad pequeña, solo esa unidad deja de funcionar, no toda la aplicación.
+- Las unidades pequeñas de código se pueden distribuir de forma discreta y fácil entre varios equipos de desarrollo.
+- Los nuevos desarrolladores pueden entender rápida y fácilmente la funcionalidad discreta de cada unidad.
 
 En este ejemplo se usa una aplicación de IIS grande en una granja de servidores, pero los conceptos de descomposición iterativa y de hospedaje se pueden usar para cualquier tipo de aplicación de gran tamaño. Aunque esta solución usa Windows, también se puede ejecutar Service Fabric en Linux. Se puede ejecutar de forma local, en Azure o en nodos de máquina virtual en el proveedor en la nube de su elección.
 

@@ -1,14 +1,15 @@
 ---
-title: Detección de fraudes en tiempo real en Azure
+title: Detección de fraudes en tiempo real
+titleSuffix: Azure Example Scenarios
 description: Detecte actividades fraudulentas en tiempo real con Azure Event Hubs y Stream Analytics.
 author: alexbuckgit
 ms.date: 07/05/2018
-ms.openlocfilehash: bd9eb4d572651c4e57a0043226860623cd8d17e1
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 9e4d8c5d24acc414ab38722d2df59102395250fb
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610624"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643412"
 ---
 # <a name="real-time-fraud-detection-on-azure"></a>Detección de fraudes en tiempo real en Azure
 
@@ -24,9 +25,9 @@ Este ejemplo representa una parte de una estrategia y una arquitectura de proces
 
 Otros casos de uso pertinentes incluyen:
 
-* Detección de llamadas de teléfono móvil fraudulentas en escenarios de telecomunicaciones.
-* Identificación de transacciones fraudulentas de tarjetas de crédito para las instituciones de banca.
-* Identificación de compras fraudulentas en escenarios de comercio físico o electrónico.
+- Detección de llamadas de teléfono móvil fraudulentas en escenarios de telecomunicaciones.
+- Identificación de transacciones fraudulentas de tarjetas de crédito para las instituciones de banca.
+- Identificación de compras fraudulentas en escenarios de comercio físico o electrónico.
 
 ## <a name="architecture"></a>Arquitectura
 
@@ -34,28 +35,28 @@ Otros casos de uso pertinentes incluyen:
 
 Este escenario trata los componentes de back-end de una canalización de análisis en tiempo real. Los datos fluyen por el escenario de la siguiente manera:
 
-1. Los metadatos de las llamadas de teléfono móvil se envían desde el sistema de origen a una instancia de Azure Event Hubs. 
+1. Los metadatos de las llamadas de teléfono móvil se envían desde el sistema de origen a una instancia de Azure Event Hubs.
 2. Se inicia un trabajo de Stream Analytics, que recibe los datos mediante el origen del centro de eventos.
 3. El trabajo de Stream Analytics ejecuta una consulta predefinida para transformar el flujo de entrada y analizarlo según un algoritmo de transacciones fraudulentas. Esta consulta utiliza una ventana de saltos de tamaño constante para segmentar el flujo en distintas unidades temporales.
 4. El trabajo de Stream Analytics escribe el flujo transformado que representa las llamadas fraudulentas detectadas en un receptor de salida en Azure Blob Storage.
 
 ### <a name="components"></a>Componentes
 
-* [Azure Event Hubs][docs-event-hubs] es una plataforma de streaming en tiempo real y un servicio de ingesta de eventos de gran escalabilidad capaz de recibir y procesar millones de eventos por segundo. Event Hubs puede procesar y almacenar eventos, datos o telemetría generados por dispositivos y software distribuido. En este escenario, Event Hubs recibe todos los metadatos de las llamadas de teléfono que se van a analizar en busca de actividades fraudulentas.
-* [Azure Stream Analytics][docs-stream-analytics] es un motor de procesamiento de eventos que permite analizar grandes volúmenes de streaming de datos procedentes de dispositivos y otros orígenes de datos. También permite extraer información de los flujos de datos e identificar patrones y relaciones. Estos patrones pueden desencadenar otras acciones en niveles inferiores. En este escenario, Stream Analytics transforma la secuencia de entrada de Event Hubs para identificar las llamadas fraudulentas.
-* [Blob Storage](/azure/storage/blobs/storage-blobs-introduction) se utiliza en este escenario para almacenar los resultados del trabajo de Stream Analytics.
+- [Azure Event Hubs][docs-event-hubs] es una plataforma de streaming en tiempo real y un servicio de ingesta de eventos de gran escalabilidad capaz de recibir y procesar millones de eventos por segundo. Event Hubs puede procesar y almacenar eventos, datos o telemetría generados por dispositivos y software distribuido. En este escenario, Event Hubs recibe todos los metadatos de las llamadas de teléfono que se van a analizar en busca de actividades fraudulentas.
+- [Azure Stream Analytics][docs-stream-analytics] es un motor de procesamiento de eventos que permite analizar grandes volúmenes de streaming de datos procedentes de dispositivos y otros orígenes de datos. También permite extraer información de los flujos de datos e identificar patrones y relaciones. Estos patrones pueden desencadenar otras acciones en niveles inferiores. En este escenario, Stream Analytics transforma la secuencia de entrada de Event Hubs para identificar las llamadas fraudulentas.
+- [Blob Storage](/azure/storage/blobs/storage-blobs-introduction) se utiliza en este escenario para almacenar los resultados del trabajo de Stream Analytics.
 
 ## <a name="considerations"></a>Consideraciones
 
 ### <a name="alternatives"></a>Alternativas
 
-Existen muchas opciones tecnológicas de ingesta de mensajes en tiempo real, almacenamiento de datos, flujo de procesamiento, almacenamiento de datos análisis e informes. Para obtener información general sobre estas opciones, sus funcionalidades y los principales criterios de selección, consulte [Arquitecturas de macrodatos: Procesamiento en tiempo real](/azure/architecture/data-guide/technology-choices/real-time-ingestion) en la Guía de arquitectura de datos de Azure.
+Existen muchas opciones tecnológicas de ingesta de mensajes en tiempo real, almacenamiento de datos, flujo de procesamiento, almacenamiento de datos análisis e informes. Para obtener información general acerca de estas opciones, sus funcionalidades y los principales criterios de selección de claves, consulte [Arquitecturas de macrodatos: procesamiento en tiempo real](/azure/architecture/data-guide/technology-choices/real-time-ingestion) en la Guía de arquitectura de datos de Azure.
 
 Además, se pueden producir algoritmos más complejos para la detección de fraudes con diversos servicios de aprendizaje automático de Azure. Para obtener información general sobre estas opciones, consulte [Opciones de tecnología: Machine Learning](/azure/architecture/data-guide/technology-choices/data-science-and-machine-learning) en la [Guía de arquitectura de datos de Azure](../../data-guide/index.md).
 
 ### <a name="availability"></a>Disponibilidad
 
-Azure Monitor proporciona interfaces de usuario unificadas para la supervisión de distintos servicios de Azure. Para más información, consulte [Supervisión en Microsoft Azure](/azure/monitoring-and-diagnostics/monitoring-overview). Event Hubs y Stream Analytics se integran ambos con Azure Monitor. 
+Azure Monitor proporciona interfaces de usuario unificadas para la supervisión de distintos servicios de Azure. Para más información, consulte [Supervisión en Microsoft Azure](/azure/monitoring-and-diagnostics/monitoring-overview). Event Hubs y Stream Analytics se integran ambos con Azure Monitor.
 
 Para ver otras consideraciones sobre escalabilidad, consulte la [lista de comprobación de disponibilidad][availability] en el centro de arquitectura de Azure.
 
@@ -85,9 +86,9 @@ Para explorar el costo de ejecutar este escenario, todos los servicios están pr
 
 Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tráfico que se espera obtener:
 
-* [Pequeño][small-pricing]: se procesa un millón de eventos en una unidad de streaming estándar al mes.
-* [Mediano][medium-pricing]: se procesan 100 millones de eventos en cinco unidades de streaming estándar al mes.
-* [Grande][large-pricing]: se procesan 999 millones de eventos en 20 unidades de streaming estándar al mes.
+- [Pequeño][small-pricing]: se procesa un millón de eventos en una unidad de streaming estándar al mes.
+- [Mediano][medium-pricing]: se procesan 100 millones de eventos en cinco unidades de streaming estándar al mes.
+- [Grande][large-pricing]: se procesan 999 millones de eventos en 20 unidades de streaming estándar al mes.
 
 ## <a name="related-resources"></a>Recursos relacionados
 
@@ -110,4 +111,3 @@ Los escenarios de detección de fraudes más complejos pueden beneficiarse de un
 [scalability]: /azure/architecture/checklist/scalability
 [resiliency]: ../../resiliency/index.md
 [security]: /azure/security/
-

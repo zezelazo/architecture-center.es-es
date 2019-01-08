@@ -8,12 +8,12 @@ description: >-
 author: telmosampaio
 ms.date: 05/02/2018
 ms.custom: seodec18
-ms.openlocfilehash: e8ad2efd24286f23698bb8e294b15d88232c1166
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 3e3c3c8ff12bab85a96d4eb879f81195d22e79f8
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120380"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643788"
 ---
 # <a name="create-an-active-directory-domain-services-ad-ds-resource-forest-in-azure"></a>Creación de un bosque de recursos de Active Directory Domain Services (AD DS) en Azure
 
@@ -93,7 +93,21 @@ Hay disponible una implementación de esta arquitectura en [GitHub][github]. Ten
 
 ### <a name="prerequisites"></a>Requisitos previos
 
-[!INCLUDE [ref-arch-prerequisites.md](../../../includes/ref-arch-prerequisites.md)]
+1. Clone, bifurque o descargue el archivo zip del [repositorio de GitHub](https://github.com/mspnp/identity-reference-architectures).
+
+2. Instale la [CLI de Azure 2.0](/cli/azure/install-azure-cli?view=azure-cli-latest).
+
+3. Instale el paquete de npm de [bloques de creación de Azure](https://github.com/mspnp/template-building-blocks/wiki/Install-Azure-Building-Blocks).
+
+   ```bash
+   npm install -g @mspnp/azure-building-blocks
+   ```
+
+4. Desde un símbolo del sistema, un símbolo del sistema de Bash o un símbolo del sistema de PowerShell, inicie sesión en su cuenta de Azure como se indica a continuación:
+
+   ```bash
+   az login
+   ```
 
 ### <a name="deploy-the-simulated-on-premises-datacenter"></a>Implementación del centro de datos local simulado
 

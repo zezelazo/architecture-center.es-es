@@ -1,15 +1,16 @@
 ---
 title: Escritorios virtuales Linux con Citrix
+titleSuffix: Azure Example Scenarios
 description: Cree un entorno VDI para escritorios de Linux mediante Citrix en Azure.
 author: miguelangelopereira
 ms.date: 09/12/2018
 ms.custom: fasttrack
-ms.openlocfilehash: d48163638da05fa075814d3a255ca783610741f8
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: af1cf01cb8b118e829c3870b636018aa5181b180
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004777"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643924"
 ---
 # <a name="linux-virtual-desktops-with-citrix"></a>Escritorios virtuales Linux con Citrix
 
@@ -17,17 +18,18 @@ Este escenario de ejemplo es aplicable a cualquier sector que necesite una infra
 
 A menudo, las organizaciones tienen entornos heterogéneos con empleados que usan varios dispositivos y sistemas operativos. Proporcionar acceso constante a las aplicaciones mientras se mantiene un entorno seguro puede resultar un desafío. Una solución de VDI para escritorios Linux permitirá a la organización proporcionar acceso, independientemente del dispositivo o el sistema operativo utilizado por el usuario final.
 
-Algunas de las ventajas de esta solución de ejemplo incluyen lo siguiente:
-* El retorno de la inversión será superior con escritorios virtuales Linux compartidos al proporcionar a más usuarios acceso a la misma infraestructura. Mediante la consolidación de recursos en un entorno de VDI centralizado, los dispositivos de usuario final no necesitan ser tan potentes.
-* El rendimiento será coherente independientemente del dispositivo del usuario final.
-* Los usuarios pueden acceder a las aplicaciones de Linux desde cualquier dispositivo (incluidos los dispositivos que no son Linux).
-* Los datos confidenciales se pueden proteger en el centro de datos de Azure para todos los empleados distribuidos.
+Algunas de las ventajas de este escenario incluyen:
+
+- El retorno de la inversión será superior con escritorios virtuales Linux compartidos al proporcionar a más usuarios acceso a la misma infraestructura. Mediante la consolidación de recursos en un entorno de VDI centralizado, los dispositivos de usuario final no necesitan ser tan potentes.
+- El rendimiento será coherente independientemente del dispositivo del usuario final.
+- Los usuarios pueden acceder a las aplicaciones de Linux desde cualquier dispositivo (incluidos los dispositivos que no son Linux).
+- Los datos confidenciales se pueden proteger en el centro de datos de Azure para todos los empleados distribuidos.
 
 ## <a name="relevant-use-cases"></a>Casos de uso pertinentes
 
 Tenga en cuenta este escenario para el caso de uso siguiente:
 
-* Proporcionar acceso seguro a escritorios Linux VDI especializados críticos desde dispositivos Linux y que no son Linux
+- Proporcionar acceso seguro a escritorios Linux VDI especializados críticos desde dispositivos Linux y que no son Linux
 
 ## <a name="architecture"></a>Arquitectura
 
@@ -35,13 +37,13 @@ Tenga en cuenta este escenario para el caso de uso siguiente:
 
 Este escenario de ejemplo muestra cómo permitir el acceso a los escritorios virtuales Linux desde la red corporativa:
 
-* Se establece un circuito de ExpressRoute entre el entorno local y Azure para una conectividad rápida y confiable a la nube.
-* La solución XenDesktop de Citrix implementada para VDI.
-* CitrixVDA se ejecuta en Ubuntu (u otra distribución admitida).
-* Los grupos de seguridad de red de Azure aplicarán las listas de control de acceso de red correctas.
-* Citrix ADC (NetScaler) publicará y equilibrará la carga de todos los servicios de Citrix.
-* Se usará Active Directory Domain Services para unir el dominio a los servidores Citrix. Los servidores VDA no estarán unidos al dominio.
-* Azure File Sync híbrido permitirá el almacenamiento compartido en la solución. Por ejemplo, se puede utilizar en soluciones remotas y domésticas.
+- Se establece un circuito de ExpressRoute entre el entorno local y Azure para una conectividad rápida y confiable a la nube.
+- La solución XenDesktop de Citrix implementada para VDI.
+- CitrixVDA se ejecuta en Ubuntu (u otra distribución admitida).
+- Los grupos de seguridad de red de Azure aplicarán las listas de control de acceso de red correctas.
+- Citrix ADC (NetScaler) publicará y equilibrará la carga de todos los servicios de Citrix.
+- Se usará Active Directory Domain Services para unir el dominio a los servidores Citrix. Los servidores VDA no estarán unidos al dominio.
+- Azure File Sync híbrido permitirá el almacenamiento compartido en la solución. Por ejemplo, se puede utilizar en soluciones remotas y domésticas.
 
 En este escenario, se utilizan las SKU siguientes:
 
@@ -63,11 +65,11 @@ En este escenario, se utilizan las SKU siguientes:
 - [Azure Load Balancer](/azure/application-gateway/overview) distribuye el tráfico entrante según reglas y sondeos de mantenimiento. Una instancia de Load Balancer proporciona baja latencia y alto rendimiento, y puede escalar hasta millones de flujos para todas las aplicaciones TCP y UDP. En este escenario se usa un equilibrador de carga interno para distribuir el tráfico en Citrix NetScaler.
 - Se utilizará [Azure File Sync híbrido](https://github.com/MicrosoftDocs/azure-docs/edit/master/articles/storage/files/storage-sync-files-planning.md) para todo el almacenamiento compartido. El almacenamiento se replicará en dos servidores de archivos que usan File Sync híbrido.
 - [Azure SQL Database](/azure/sql-database/sql-database-technical-overview) es un servicio de base de datos relacional (DBaaS) basado en la última versión estable del Motor de base de datos de Microsoft SQL Server. Se usará para hospedar las bases de datos de Citrix.
-- [ExpressRoute](/azure/expressroute/expressroute-introduction) permite ampliar las redes locales en la nube de Microsoft a través de una conexión privada que facilita un proveedor de conectividad. 
+- [ExpressRoute](/azure/expressroute/expressroute-introduction) permite ampliar las redes locales en la nube de Microsoft a través de una conexión privada que facilita un proveedor de conectividad.
 - [Active Directory Domain Services se utiliza para la autenticación de usuarios y los servicios de directorio
-- Los [conjuntos de disponibilidad de Azure](/azure/virtual-machines/windows/tutorial-availability-sets) garantizan que las máquinas virtuales implementadas en Azure se distribuyan entre varios nodos de hardware aislados en un clúster. De este modo, se asegura de que, si se produce un error de hardware o software en Azure, solo un subconjunto de las máquinas virtuales se verá afectado y que la solución seguirá disponible y en funcionamiento. 
-- [Citrix ADC (NetScaler)](https://www.citrix.com/products/citrix-adc) es un controlador de entrega de aplicaciones que realiza un análisis de tráfico específico de la aplicación para distribuir, optimizar y proteger de forma inteligente el tráfico de red de la capa 4 a la capa 7 (L4 – L7) para aplicaciones web. 
-- [Citrix Storefront](https://www.citrix.com/products/citrix-virtual-apps-and-desktops/citrix-storefront.html) es una tienda de aplicaciones empresariales que mejora la seguridad, simplifica las implementaciones y entrega una moderna experiencia de usuario casi nativa de Citrix Receiver en cualquier plataforma. StoreFront facilita la administración de aplicaciones virtuales de Citrix y entornos de escritorio con varios sitios y varias versiones. 
+- Los [conjuntos de disponibilidad de Azure](/azure/virtual-machines/windows/tutorial-availability-sets) garantizan que las máquinas virtuales implementadas en Azure se distribuyan entre varios nodos de hardware aislados en un clúster. De este modo, se asegura de que, si se produce un error de hardware o software en Azure, solo un subconjunto de las máquinas virtuales se verá afectado y que la solución seguirá disponible y en funcionamiento.
+- [Citrix ADC (NetScaler)](https://www.citrix.com/products/citrix-adc) es un controlador de entrega de aplicaciones que realiza un análisis de tráfico específico de la aplicación para distribuir, optimizar y proteger de forma inteligente el tráfico de red de la capa 4 a la capa 7 (L4 – L7) para aplicaciones web.
+- [Citrix Storefront](https://www.citrix.com/products/citrix-virtual-apps-and-desktops/citrix-storefront.html) es una tienda de aplicaciones empresariales que mejora la seguridad, simplifica las implementaciones y entrega una moderna experiencia de usuario casi nativa de Citrix Receiver en cualquier plataforma. StoreFront facilita la administración de aplicaciones virtuales de Citrix y entornos de escritorio con varios sitios y varias versiones.
 - El [Servidor de licencias de Citrix](https://www.citrix.com/buy/licensing/overview.html) administrará las licencias de los productos de Citrix.
 - [Citrix XenDesktops VDA](https://docs.citrix.com/en-us/citrix-virtual-apps-desktops-service) habilita las conexiones a aplicaciones y escritorios. VDA se instala en la máquina que ejecuta las aplicaciones o escritorios virtuales para el usuario. Permite que las máquinas se registren en los controladores de entrega y administra la conexión de la experiencia de alta definición (HDX) con un dispositivo de usuario.
 - El [Controlador de entrega de Citrix](https://docs.citrix.com/en-us/xenapp-and-xendesktop/7-15-ltsr/manage-deployment/delivery-controllers) es el componente de servidor responsable de administrar el acceso de usuario, además de la intermediación y optimización de las conexiones. Los controladores también proporcionan los servicios de creación de máquinas que crean las imágenes de escritorio y del servidor.
@@ -85,15 +87,16 @@ En este escenario, se utilizan las SKU siguientes:
 
 ### <a name="availability-scalability-and-security"></a>Disponibilidad, escalabilidad y seguridad
 
-- Esta solución de ejemplo está diseñada para lograr alta disponibilidad para todos los roles excepto el servidor de licencias. Dado que el entorno sigue funcionando durante un período de gracia de 30 días si el servidor de licencias está sin conexión, no se requiere ninguna redundancia adicional en ese servidor.
+- Este ejemplo se ha diseñado para lograr alta disponibilidad para todos los roles, excepto el servidor de licencias. Dado que el entorno sigue funcionando durante un período de gracia de 30 días si el servidor de licencias está sin conexión, no se requiere ninguna redundancia adicional en ese servidor.
 - Todos los servidores que proporcionan roles similares se deben implementar en [conjuntos de disponibilidad](/azure/virtual-machines/windows/manage-availability#configure-multiple-virtual-machines-in-an-availability-set-for-redundancy).
-- Esta solución de ejemplo no incluye funcionalidades de recuperación ante desastres. [Azure Site Recovery](/azure/site-recovery/site-recovery-overview) podría ser un buen complemento a este diseño.
+- Este escenario de ejemplo no incluye funcionalidades de recuperación ante desastres. [Azure Site Recovery](/azure/site-recovery/site-recovery-overview) podría ser un buen complemento a este diseño.
+- Considere la posibilidad de implementar las instancias de máquinas virtuales en este escenario en [Zonas de disponibilidad](/azure/availability-zones/az-overview). Cada zona de disponibilidad consta de uno o varios centros de datos equipados con alimentación, refrigeración y redes independientes. Cada región habilitada tiene un mínimo de tres zonas de disponibilidad. Esta distribución de instancias de máquinas virtuales en varias zonas proporciona alta disponibilidad para las capas de aplicación. Para más información, consulte [¿Qué son las zonas de disponibilidad en Azure?][azureaz-docs]. También puede implementar [puertas de enlace de VPN Gateway y ExpressRoute en Azure Availability Zones](/azure/vpn-gateway/about-zone-redundant-vnet-gateways).
 - Para una implementación de producción, se debe implementar una solución de administración para la [copia de seguridad](/azure/backup/backup-introduction-to-azure-backup), [supervisión](/azure/monitoring-and-diagnostics/monitoring-overview) y [administración de actualizaciones](/azure/automation/automation-update-management).
-- Esta solución de ejemplo debería funcionar para aproximadamente 250 usuarios simultáneos (aproximadamente 50-60 por cada servidor de VDA) con un uso mixto. Esto depende en gran medida del tipo de aplicaciones que se van a usar. Para su uso en producción, se deben realizar las pruebas de carga más exigentes.
+- Este ejemplo debería servir para aproximadamente 250 usuarios simultáneos (aproximadamente 50-60 por cada servidor de VDA) con un uso mixto. Esto depende en gran medida del tipo de aplicaciones que se van a usar. Para su uso en producción, se deben realizar las pruebas de carga más exigentes.
 
-## <a name="deploy-this-scenario"></a>Implementación de este escenario
+## <a name="deployment"></a>Implementación
 
-Para información sobre la implementación, consulte la [documentación de Citrix](https://docs.citrix.com/en-us/citrix-virtual-apps-desktops/install-configure.html) oficial.
+Para obtener información acerca de la implementación, consulte la [documentación de Citrix](https://docs.citrix.com/en-us/citrix-virtual-apps-desktops/install-configure.html) oficial.
 
 ## <a name="pricing"></a>Precios
 

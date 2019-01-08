@@ -3,12 +3,12 @@ title: Arquitectura de microservicios en Azure Kubernetes Service (AKS)
 description: Implementación de una arquitectura de microservicios en Azure Kubernetes Service (AKS)
 author: MikeWasson
 ms.date: 12/10/2018
-ms.openlocfilehash: c8fa92e012374882e3af89f7ef8f7d800a52dacb
-ms.sourcegitcommit: a0a9981e7586bed8d876a54e055dea1e392118f8
+ms.openlocfilehash: 9e4b607cd7f5b33bbf08ce3af67dd5d4071ae8ef
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/11/2018
-ms.locfileid: "53233921"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644247"
 ---
 # <a name="microservices-architecture-on-azure-kubernetes-service-aks"></a>Arquitectura de microservicios en Azure Kubernetes Service (AKS)
 
@@ -255,7 +255,7 @@ Automatice la aplicación de revisiones de imágenes con ACR Tasks, una caracter
 
 Estos son algunos objetivos de un proceso de CI/CD sólido para una arquitectura de microservicios:
 
-- Cada equipo puede compilar e implementar los servicios que posee de forma independiente, sin afectar ni interrumpir a otros equipos. 
+- Cada equipo puede compilar e implementar los servicios que posee de forma independiente, sin afectar ni interrumpir a otros equipos.
 
 - Antes de implementar en producción una nueva versión de un servicio, se implementa en entornos de desarrollo, pruebas y control de calidad para su validación. Se aplican pruebas de calidad en cada fase.
 
@@ -280,27 +280,85 @@ Considere el uso de Helm para administrar la creación e implementación de serv
 - Seguimiento de actualizaciones y revisiones, con control de versiones semántico, junto con la capacidad de revertir a una versión anterior.
 - El uso de plantillas para evitar la duplicación de información, como etiquetas y selectores, en muchos archivos.
 - Administración de dependencias entre gráficos.
-- Publicación de gráficos en un repositorio de Helm, como Azure Container Registry y su integración con la canalización de compilación. 
+- Publicación de gráficos en un repositorio de Helm, como Azure Container Registry y su integración con la canalización de compilación.
 
 Para más información sobre el uso de Container Registry como un repositorio de Helm, consulte [Uso de Azure Container Registry como un repositorio de Helm para los gráficos de aplicación](/azure/container-registry/container-registry-helm-repos).
 
 ### <a name="cicd-workflow"></a>Flujo de trabajo de CI/CD
 
-El siguiente diagrama muestra un posible flujo de trabajo de CI/CD. En este ejemplo se da por supuesto que hay un rol de control de calidad que es independiente del rol de desarrollador.
+Antes de crear un flujo de trabajo de CI/CD, es preciso saber cómo se va a estructurar y administrar el código base.
 
-![Flujo de trabajo de CI/CD](./_images/aks-cicd.png)
+- ¿Los equipos trabajan en repositorios independientes o en un único repositorio?
+- ¿Cuál es su estrategia de ramificación?
+- ¿Quién puede insertar código en producción? ¿Hay un rol de administrador de versión?
 
-1. El desarrollador confirma un cambio, que
-1. Desencadena la canalización de CI. Esta canalización compila el código, ejecuta las pruebas y crea la imagen de contenedor.
-1. Si se pasan todas las validaciones, la imagen se inserta el repositorio de imágenes.
-1. Cuando una nueva versión de un servicio está lista para su implementación, se agrega una etiqueta, que
-1. Desencadena la canalización de CD de prueba, que ejecuta un comando de actualización de Helm para actualizar el clúster de prueba.
-1. Si la nueva versión está lista para su implementación en producción, el rol de control de calidad desencadena manualmente la canalización de CD de producción.
+El enfoque del repositorio único cada vez tiene más adeptos, pero ambos métodos tienen sus ventajas y desventajas.
 
-### <a name="recommended-cicd-practices"></a>Procedimientos recomendados de CI/CD
+| &nbsp; | Un repositorio | Varios repositorios |
+|--------|----------|----------------|
+| **Ventajas** | Uso compartido de código<br/>Mayor facilidad para estandarizar el código y las herramientas<br/>Mayor facilidad para refactorizar el código<br/>Detectabilidad (vista única del código)<br/> | Propiedad clara por equipo<br/>Posiblemente menos conflictos en la fusión mediante combinación<br/>Ayuda a aplicar el desacoplamiento de los microservicios |
+| **Desafíos** | Los cambios en el código compartido pueden afectar a varios microservicios<br/>Mayor posibilidad de conflictos en la fusión mediante combinación<br/>Las herramientas se deben escalar a un código base grande<br/>Control de acceso<br/>Proceso de implementación más complejo | Mayor dificultad para compartir código<br/>Mayor dificultad para aplicar los estándares de codificación<br/>Administración de dependencias<br/>Código base difuso, mala detectabilidad<br/>Falta de infraestructura compartida
 
-Utilice la directiva imagePullPolicy establecida en Always (Siempre), de manera que Kubernetes siempre extraerá la imagen más reciente del repositorio y no usará una imagen almacenada en caché. Puede aplicar esto en todo el clúster con el controlador de admisión AlwaysPullImages.
+En esta sección, presentamos un posible flujo de trabajo de CI/CD, en función de los siguientes supuestos:
 
-No use la etiqueta `latest` para las imágenes de una especificación de pod. Especifique siempre la versión de la imagen.
+- El repositorio de código es un único y sus carpetas están organizadas por microservicio.
+- La estrategia de ramificación del equipo se basa en el [desarrollo basado en el tronco](https://trunkbaseddevelopment.com/).
+- El equipo usa [Azure Pipelines](/azure/devops/pipelines) para ejecutar el proceso de CI/CD.
+- El equipo usa [espacios de nombres](/azure/container-registry/container-registry-best-practices#repository-namespaces) en Azure Container Registry para aislar las imágenes que están aprobadas para la producción de las imágenes que se siguen probando.
 
-Use espacios de nombres en Azure Container Service para organizar las imágenes de contenedor por microservicio o equipo de desarrollo.
+En este ejemplo, un desarrollador está trabajando en un microservicio denominado Delivery Service (el nombre procede de la implementación de referencia que se describe [aquí](../../microservices/index.md#the-drone-delivery-application)). Al desarrollar una característica nueva, el desarrollador comprueba el código de una rama de características.
+
+![Flujo de trabajo de CI/CD](./_images/aks-cicd-1.png)
+
+Las confirmaciones de inserción en esta rama desencadena una compilación de CI para el microservicio. Por convención, las ramas de características se denominan `feature/*`. El [archivo de definición de compilación](/azure/devops/pipelines/yaml-schema) incluye un desencadenador que filtra por el nombre de rama y la ruta de acceso de origen. Con este enfoque, cada equipo puede tener su propia canalización de compilación.
+
+```yaml
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+    - feature/*
+
+    exclude:
+    - feature/experimental/*
+
+  paths:
+     include:
+     - /src/shipping/delivery/
+```
+
+En este punto del flujo de trabajo, la compilación de CI ejecuta una comprobación mínima del código:
+
+1. Compile el código
+1. Ejecute pruebas unitarias
+
+La idea aquí es que las compilaciones tarden poco en completarse, con el fin de que el desarrollador pueda obtener comentarios rápidamente. Cuando la característica esté lista para combinarse con la maestra, el desarrollador abre una solicitud de inserción. Esto desencadena otra compilación de integración continua que realiza más comprobaciones:
+
+1. Compile el código
+1. Ejecute pruebas unitarias
+1. Compile la imagen de contenedor del runtime
+1. Ejecute exámenes de vulnerabilidades en la imagen
+
+![Flujo de trabajo de CI/CD](./_images/aks-cicd-2.png)
+
+> [!NOTE]
+> En Azure Repos se pueden definir [directivas](/azure/devops/repos/git/branch-policies) para proteger las ramas. Por ejemplo, la directiva puede requerir una compilación de CI correcta, además de que un aprobador cierre sesión para poder realizan la combinación con el maestro.
+
+En algún momento, el equipo estará preparado para implementar una nueva versión del microservicio Delivery Service. Para ello, el administrador de versiones crea una rama a partir de la maestra con este patrón de nomenclatura: `release/<microservice name>/<semver>`. Por ejemplo, `release/delivery/v1.0.2`.
+De esta forma se desencadena una compilación de integración continua completa que ejecuta todos los pasos anteriores y, además, los siguientes:
+
+1. Inserte la imagen de Docker en Azure Container Registry. La imagen se etiqueta con el número de versión tomado del nombre de la rama.
+2. Ejecute `helm package` para empaquetar el gráfico de Helm
+3. Inserte el paquete de Helm en Container Registry mediante la ejecución de `az acr helm push`.
+
+Si esta compilación funciona correctamente, desencadena un proceso de implementación mediante una [canalización de versiones](/azure/devops/pipelines/release/what-is-release-management) de Azure Pipelines. Esta canalización
+
+1. Ejecute `helm upgrade` para implementar el gráfico de Helm en un entorno de control de calidad.
+1. Un aprobador cierra sesión antes de que el paquete pase a producción. Consulte [Release deployment control using approvals](/azure/devops/pipelines/release/approvals/approvals) (Liberación del control de implementación mediante aprobaciones).
+1. Vuelva etiquetar la imagen de Docker para el espacio de nombres de producción en Azure Container Registry. Por ejemplo, si la etiqueta actual es `myrepo.azurecr.io/delivery:v1.0.2`, la etiqueta de producción es `reponame.azurecr.io/prod/delivery:v1.0.2`.
+1. Ejecute `helm upgrade` para implementar el gráfico de Helm en un entorno de producción.
+
+![Flujo de trabajo de CI/CD](./_images/aks-cicd-3.png)
+
+Es importante recordar que incluso en los repositorios únicos, el ámbito de estas tareas pueden ser a los microservicios individuales, con el fin de que los equipos puedan realizar las implementaciones a gran velocidad. Hay varios pasos manuales en el proceso: la aprobación de solicitudes de inserción, la creación de ramas de la versión y la aprobación de implementaciones en el clúster de producción. Estos pasos son manuales debido a la directiva, pero pueden ser completamente automáticos si la organización lo prefiere.

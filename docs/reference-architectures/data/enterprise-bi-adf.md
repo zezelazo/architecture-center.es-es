@@ -5,18 +5,18 @@ description: Automatice un flujo de trabajo de extracción, carga y transformaci
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: d87583802496f8be85e44c896ae7d6a26306cffc
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 8263da7675beb61add371c945aab72b203c2349c
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120346"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644017"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>Inteligencia empresarial automatizada con SQL Data Warehouse y Azure Data Factory
 
 Esta arquitectura de referencia muestra cómo realizar una carga incremental en una canalización de [extracción, carga y transformación (ELT)](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt). Usa Azure Data Factory para automatizar la canalización de ECT. La canalización mueve de forma incremental los datos más recientes de OLTP de una base de datos de SQL Server local a SQL Data Warehouse. Los datos transaccionales se transforman en un modelo tabular para su análisis.
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
+> [!VIDEO <https://www.microsoft.com/videoplayer/embed/RE2Gnz2>]
 
 Hay disponible una implementación de referencia de esta arquitectura en [GitHub][github].
 
@@ -201,7 +201,16 @@ Para la implementación y ejecución de la implementación de referencia, siga l
 - Una instancia de Azure Analysis Services.
 - Azure Data Factory y la canalización de Data Factory para el trabajo de ELT.
 
+## <a name="related-resources"></a>Recursos relacionados
+
+Puede examinar los siguientes [escenarios de ejemplo de Azure](/azure/architecture/example-scenario) que muestran soluciones específicas que usan algunas tecnologías similares:
+
+- [Almacenamiento de datos y análisis de ventas y marketing](/azure/architecture/example-scenario/data/data-warehouse)
+- [Extracción, transformación y carga de datos híbrida con instancias locales ya existentes de SQL Server Integration Services y Azure Data Factory](/azure/architecture/example-scenario/data/hybrid-etl-with-adf)
+
+<!-- links -->
+
 [adf]: /azure/data-factory
-[github]: https://github.com/mspnp/reference-architectures/tree/master/data/enterprise_bi_sqldw_advanced
+[github]: https://github.com/mspnp/azure-data-factory-sqldw-elt-pipeline
 [MergeLocation]: https://github.com/mspnp/reference-architectures/blob/master/data/enterprise_bi_sqldw_advanced/azure/sqldw_scripts/city/%5BIntegration%5D.%5BMergeLocation%5D.sql
 [wwi]: /sql/sample/world-wide-importers/wide-world-importers-oltp-database

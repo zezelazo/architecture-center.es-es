@@ -4,12 +4,12 @@ titleSuffix: Azure Reference Architectures
 description: Implemente una arquitectura de red de sitio a sitio segura que abarque una red virtual de Azure y una red local conectada mediante VPN.
 author: RohitSharma-pnp
 ms.date: 10/22/2018
-ms.openlocfilehash: 5d3c8eeeb04398c29a25e90956888d9f79572e4f
-ms.sourcegitcommit: 8d951fd7e9534054b160be48a1881ae0857561ef
+ms.openlocfilehash: 92a5a12675ca12075bec3c7f59f73a19287fe5d7
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/13/2018
-ms.locfileid: "53329405"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644213"
 ---
 # <a name="connect-an-on-premises-network-to-azure-using-a-vpn-gateway"></a>Conexión de una red local a Azure mediante VPN Gateway
 
@@ -75,7 +75,7 @@ Para obtener una lista de dispositivos VPN compatibles, consulte [Acerca de los 
 > Tras crear la puerta de enlace, no se puede cambiar entre los tipos de puerta de enlace sin antes eliminarla y volverla a crear.
 >
 
-Seleccione la SKU de Azure VPN Gateway que mejor se ajuste a sus requisitos de rendimiento. Consulte [SKU de puertas de enlace][azure-gateway-skus] para más información
+Seleccione la SKU de Azure VPN Gateway que mejor se ajuste a sus requisitos de rendimiento. Para más información, consulte [SKU de puertas de enlace][azure-gateway-skus]
 
 > [!NOTE]
 > La SKU Básica no es compatible con Azure ExpressRoute. También puede [cambiar la SKU][changing-SKUs] tras crear la puerta de enlace.

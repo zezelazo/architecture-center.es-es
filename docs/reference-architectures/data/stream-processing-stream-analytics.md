@@ -5,12 +5,12 @@ description: Cree una canalización de procesamiento de flujos de datos de un ex
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 44eaf51f2180be250defbeb0d141ab24f7f17d4b
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 130f297d3cfdeb1900ada79f1e9c65ec542dc2b7
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119938"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643754"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-stream-analytics"></a>Creación de una canalización de procesamiento de flujos de datos con Azure Stream Analytics
 
@@ -221,4 +221,14 @@ Curiosamente, esto tuvo el efecto secundario de aumentar el uso de las unidades 
 
 Para la implementación y ejecución de la implementación de referencia, siga los pasos del [Léame de GitHub][github].
 
-[github]: https://github.com/mspnp/reference-architectures/tree/master/data/streaming_asa
+## <a name="related-resources"></a>Recursos relacionados
+
+Puede examinar los siguientes [escenarios de ejemplo de Azure](/azure/architecture/example-scenario) que muestran soluciones específicas que usan algunas tecnologías similares:
+
+- [IoT y el análisis de datos en el sector de la construcción](/azure/architecture/example-scenario/data/big-data-with-iot)
+- [Detección de fraudes en tiempo real](/azure/architecture/example-scenario/data/fraud-detection)
+
+<!-- links -->
+
+[github]: https://github.com/mspnp/azure-stream-analytics-data-pipeline
+

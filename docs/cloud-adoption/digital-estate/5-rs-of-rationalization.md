@@ -4,12 +4,12 @@ titleSuffix: Enterprise Cloud Adoption
 description: Se describen las opciones que están disponibles al racionalizar un patrimonio digital.
 author: BrianBlanchard
 ms.date: 12/10/2018
-ms.openlocfilehash: 4e2765198b64c36470adc9fbe35872e4714780e8
-ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
+ms.openlocfilehash: 66eee782b63210bcba3022e3be5b8fdee11716ec
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53179730"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643686"
 ---
 # <a name="enterprise-cloud-adoption-the-5-rs-of-rationalization"></a>Adopción de la nube empresarial: Las 5 "R" de la racionalización
 

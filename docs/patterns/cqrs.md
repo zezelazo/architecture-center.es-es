@@ -9,12 +9,12 @@ pnp.pattern.categories:
 - data-management
 - design-implementation
 - performance-scalability
-ms.openlocfilehash: 9a2eecdff7494fb627ea5c4655e6edc789bd5bdf
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.openlocfilehash: de9530f7dd55c0ce5460cd3b58ab9f216c9b5c8c
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429696"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450877"
 ---
 # <a name="command-and-query-responsibility-segregation-cqrs-pattern"></a>Patrón Command and Query Responsibility Segregation (CQRS).
 
@@ -39,8 +39,6 @@ No obstante, el enfoque CRUD tradicional tiene algunas desventajas:
 - Pone en riesgo la contención de datos cuando los registros están bloqueados en el almacén de datos de un dominio colaborativo, en los que varios actores trabajan en paralelo en el mismo conjunto de datos. O actualiza los conflictos causados por las actualizaciones simultáneas cuando se utiliza el bloqueo optimista. Estos riesgos aumentan a medida que crece la complejidad y el rendimiento del sistema. Además, el enfoque tradicional puede tener un impacto negativo en el rendimiento debido a la carga en el almacén de datos y al nivel de acceso a los datos, y la complejidad de las consultas necesarias para recuperar la información.
 
 - Esto puede hacer que la administración de la seguridad y los permisos sea más compleja ya que cada entidad está sujeta a operaciones de lectura y de escritura, lo cual podría exponer los datos en el contexto equivocado.
-
-> Para una mejor comprensión de los límites del enfoque CRUD, consulte [CRUD, Only When You Can Afford It](https://blogs.msdn.microsoft.com/maarten_mullender/2004/07/23/crud-only-when-you-can-afford-it-revisited/) (CRUD, solo cuando se lo pueda permitir).
 
 ## <a name="solution"></a>Solución
 
@@ -248,6 +246,6 @@ Los patrones y las directrices siguientes son útiles a la hora de implementar e
 
 - [Patrón Materialized View](materialized-view.md). El modelo de lectura de una implementación de CQRS puede contener vistas materializadas de los datos del modelo de escritura o el modelo de lectura se puede utilizar para generar vistas materializadas.
 
-- La guía de patrones y prácticas [CQRS Journey](https://aka.ms/cqrs) (Introducción a CQRS). En particular, [Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Introducción sobre el patrón Command Query Responsibility Segregation) explora el patrón y las situaciones en las que este puede resultar útil, y [Epilogue: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) que le ayudará a comprender algunos de los problemas que surgen al utilizar este patrón.
+- La guía de patrones y prácticas [CQRS Journey](https://aka.ms/cqrs) (Introducción a CQRS). En concreto, [Introducing the Command Query Responsibility Segregation Pattern](https://msdn.microsoft.com/library/jj591573.aspx) (Introducción al patrón de segregación de responsabilidades de la consulta de comandos) explora el patrón y cuándo es útil, y [Epilogue: Lessons Learned](https://msdn.microsoft.com/library/jj591568.aspx) (Epílogo: lecciones aprendidas) le ayudarán a conocer algunos de los problemas que surgen al utilizar este patrón.
 
 - La entrada de blog sobre [CQRS de Martin Fowler](https://martinfowler.com/bliki/CQRS.html), que explica los aspectos básicos del patrón y contiene vínculos a otros recursos útiles.

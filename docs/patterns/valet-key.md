@@ -8,12 +8,12 @@ pnp.series.title: Cloud Design Patterns
 pnp.pattern.categories:
 - data-management
 - security
-ms.openlocfilehash: 791132eabf926cc285567454c60f894efa286433
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.openlocfilehash: 99d3fbe05e34d61edc0d339f34665e557b250b05
+ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542047"
+ms.lasthandoff: 12/16/2018
+ms.locfileid: "53450894"
 ---
 # <a name="valet-key-pattern"></a>Patrón Valet Key
 
@@ -41,7 +41,7 @@ El cliente usa este token para acceder a un recurso concreto en el almacén de d
 
 También es posible configurar una clave que tenga otras dependencias, como el ámbito de los datos. Por ejemplo, según las capacidades del almacén de datos, la clave puede especificar una tabla completa de un almacén de datos o solo filas específicas de una tabla. En sistemas de almacenamiento de nube, la clave puede especificar un contenedor o simplemente un elemento específico dentro de un contenedor.
 
-La clave también se puede invalidar mediante la aplicación. Este enfoque es útil si el cliente notifica al servidor que la operación de transferencia de datos ha finalizado. El servidor puede invalidar luego esa clave para impedir que se siga usando.
+La clave también se puede invalidar mediante la aplicación. Este enfoque es útil si el cliente notifica al servidor que la operación de transferencia de datos ha finalizado. Luego, el servidor puede invalidar dicha clave para impedir que se vuelva a acceder.
 
 Mediante este patrón, puede simplificar la administración del acceso a los recursos porque no hay ningún requisito para crear y autenticar a un usuario, conceder permisos y luego quitar de nuevo el usuario. También permite limitar de forma fácil la ubicación, el permiso y el período de validez&mdash;todo ello mediante la simple generación de una clave en tiempo de ejecución. Los factores importantes son limitar el período de validez, y especialmente la ubicación del recurso, lo más estrictamente posible para que el destinatario solo pueda usarse para el fin que se ha previsto.
 

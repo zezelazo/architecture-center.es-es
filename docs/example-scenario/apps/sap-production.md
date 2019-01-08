@@ -1,15 +1,16 @@
 ---
-title: Ejecución de cargas de trabajo SAP de producción mediante una base de datos de Oracle en Azure
+title: Ejecución de cargas de trabajo de producción de SAP mediante una instancia de Oracle Database
+titleSuffix: Azure Example Scenarios
 description: Ejecute una implementación de producción de SAP en Azure mediante una base de datos de Oracle.
 author: DharmeshBhagat
 ms.date: 9/12/2018
 ms.custom: fasttrack
-ms.openlocfilehash: e345760c69c4d3cc26fe6d4d7cb8a93d183a5818
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: 2f398e98e383053f40fa8debcf5636c609339baf
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004963"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643737"
 ---
 # <a name="running-sap-production-workloads-using-an-oracle-database-on-azure"></a>Ejecución de cargas de trabajo SAP de producción mediante una instancia de Oracle Database en Azure
 
@@ -23,9 +24,9 @@ Este escenario de ejemplo muestra una implementación de SAP en máquinas virtua
 
 Otros casos de uso pertinentes incluyen:
 
-* Cargas de trabajo críticas en ejecución en SAP.
-* Cargas de trabajo SAP no críticas.
-* Entornos de prueba de SAP que simulan un entorno de alta disponibilidad.
+- Cargas de trabajo críticas en ejecución en SAP.
+- Cargas de trabajo SAP no críticas.
+- Entornos de prueba de SAP que simulan un entorno de alta disponibilidad.
 
 ## <a name="architecture"></a>Arquitectura
 
@@ -41,11 +42,11 @@ Este ejemplo incluye una configuración de alta disponibilidad para una base de 
 
 ### <a name="components"></a>Componentes
 
-* Las [redes virtuales](/azure/virtual-network/virtual-networks-overview) se usan en este escenario para crear una topología de tipo hub-and-spoke virtual en Azure.
-* Las [máquinas virtuales](/azure/virtual-machines/windows/overview) proporcionan los recursos de proceso para cada nivel de la solución. Cada clúster de máquinas virtuales está configurado como un [conjunto de disponibilidad](/azure/virtual-machines/windows/regions-and-availability#availability-sets).
-* [ExpressRoute](/azure/expressroute/expressroute-introduction) amplía su red local en la nube de Microsoft mediante una conexión privada que establece un proveedor de conectividad.
-* Los [grupos de seguridad de red](/azure/virtual-network/security-overview) limita el acceso a los recursos en una red virtual. Un grupo de seguridad de red contiene una lista de reglas de seguridad que permiten o deniegan el tráfico de red en función de las direcciones IP de origen o destino, el puerto y el protocolo. 
-* Los [grupos de recursos](/azure/azure-resource-manager/resource-group-overview#resource-groups) actúan como contenedores lógicos de recursos de Azure.
+- Las [redes virtuales](/azure/virtual-network/virtual-networks-overview) se usan en este escenario para crear una topología de tipo hub-and-spoke virtual en Azure.
+- Las [máquinas virtuales](/azure/virtual-machines/windows/overview) proporcionan los recursos de proceso para cada nivel de la solución. Cada clúster de máquinas virtuales está configurado como un [conjunto de disponibilidad](/azure/virtual-machines/windows/regions-and-availability#availability-sets).
+- [ExpressRoute](/azure/expressroute/expressroute-introduction) amplía su red local en la nube de Microsoft mediante una conexión privada que establece un proveedor de conectividad.
+- Los [grupos de seguridad de red](/azure/virtual-network/security-overview) limita el acceso a los recursos en una red virtual. Un grupo de seguridad de red contiene una lista de reglas de seguridad que permiten o deniegan el tráfico de red en función de las direcciones IP de origen o destino, el puerto y el protocolo.
+- Los [grupos de recursos](/azure/azure-resource-manager/resource-group-overview#resource-groups) actúan como contenedores lógicos de recursos de Azure.
 
 ### <a name="alternatives"></a>Alternativas
 
@@ -53,10 +54,11 @@ SAP ofrece opciones flexibles para diferentes combinaciones de sistema operativo
 
 ## <a name="considerations"></a>Consideraciones
 
-Hay definidos procedimientos recomendados para la creación de entornos de SAP de alta disponibilidad en Azure. Para más información, consulte [Escenarios y arquitectura de alta disponibilidad para SAP NetWeaver](/azure/virtual-machines/workloads/sap/sap-high-availability-architecture-scenarios).
-Para más información, consulte [Alta disponibilidad de aplicaciones de SAP en máquinas virtuales de Azure](/azure/virtual-machines/workloads/sap/high-availability-guide).
-* Las bases de datos de Oracle también tienen procedimientos recomendados para Azure. Para más información, consulte [Diseño e implementación de una base de datos de Oracle en Azure](/azure/virtual-machines/workloads/oracle/oracle-design). 
-* Oracle Data Guard se usa para eliminar únicos puntos de error de bases de datos de Oracle críticas. Para más información, consulte [Implementación de Oracle Data Guard en una máquina virtual Linux en Azure](/azure/virtual-machines/workloads/oracle/configure-oracle-dataguard).
+Hay definidos procedimientos recomendados para la creación de entornos de SAP de alta disponibilidad en Azure. Para más información, consulte [Escenarios y arquitectura de alta disponibilidad para SAP NetWeaver](/azure/virtual-machines/workloads/sap/sap-high-availability-architecture-scenarios). Consulte también [Alta disponibilidad de las aplicaciones de SAP en máquinas virtuales de Azure](/azure/virtual-machines/workloads/sap/high-availability-guide).
+
+Las bases de datos de Oracle también tienen procedimientos recomendados para Azure. Para más información, consulte [Diseño e implementación de una base de datos de Oracle en Azure](/azure/virtual-machines/workloads/oracle/oracle-design).
+
+Oracle Data Guard se usa para eliminar únicos puntos de error de bases de datos de Oracle críticas. Para más información, consulte [Implementación de Oracle Data Guard en una máquina virtual Linux en Azure](/azure/virtual-machines/workloads/oracle/configure-oracle-dataguard).
 
 Microsoft Azure ofrece servicios de infraestructura que pueden usarse para implementar productos de SAP con una base de datos de Oracle. Para más información, consulte [Implementación de Oracle DBMS en Azure para una carga de trabajo de SAP](/azure/virtual-machines/workloads/sap/dbms_guide_oracle).
 
@@ -76,22 +78,26 @@ Extragrande|250000|M64s|6xP30, 1xP30|DS11_v2|1x P10|10x DS14_v2|1x P10|[Extragra
 > [!NOTE]
 > Estos precios son una guía que solo indica los costos de las máquinas virtuales y el almacenamiento. Se excluyen las redes, el almacenamiento de copia de seguridad y los cargos de entrada y salida de datos.
 
-* [Pequeño](https://azure.com/e/45880ba0bfdf47d497851a7cf2650c7c): un sistema pequeño consta de una máquina virtual del tipo DS13_v2 para el servidor de bases de datos con 8 vCPU, 56 GB de RAM y almacenamiento temporal de 112 GB, además de cinco discos de almacenamiento Premium de 512 GB. Un servidor de instancia central de SAP que usa una máquina virtual del tipo DS11_v2 con 2 vCPU, 14 GB de RAM y almacenamiento temporal de 28 GB. Una única máquina virtual del tipo DS13_v2 para el servidor de aplicaciones de SAP con 8 vCPU, 56 GB de RAM y almacenamiento temporal de 400 GB, además de un disco de almacenamiento premium de 128 GB.
+- [Pequeño](https://azure.com/e/45880ba0bfdf47d497851a7cf2650c7c): un sistema pequeño consta de una máquina virtual del tipo DS13_v2 para el servidor de bases de datos con 8 vCPU, 56 GB de RAM y almacenamiento temporal de 112 GB, además de cinco discos de almacenamiento Premium de 512 GB. Un servidor de instancia central de SAP que usa una máquina virtual del tipo DS11_v2 con 2 vCPU, 14 GB de RAM y almacenamiento temporal de 28 GB. Una única máquina virtual del tipo DS13_v2 para el servidor de aplicaciones de SAP con 8 vCPU, 56 GB de RAM y almacenamiento temporal de 400 GB, además de un disco de almacenamiento premium de 128 GB.
 
-* [Mediano](https://azure.com/e/9a523f79591347ca9a48c3aaa1406f8a): un sistema mediano consta de una máquina virtual del tipo DS14_v2 para el servidor de bases de datos con 16 vCPU, 112 GB de RAM y almacenamiento temporal de 800 GB, además de siete discos de almacenamiento Premium de 512 GB. Un servidor de instancia central de SAP que usa una máquina virtual del tipo DS11_v2 con 2 vCPU, 14 GB de RAM y almacenamiento temporal de 28 GB. Cuatro máquinas virtuales del tipo DS13_v2 para el servidor de aplicaciones de SAP con 8 vCPU, 56 GB de RAM y almacenamiento temporal de 400 GB, además de un disco de almacenamiento premium de 128 GB.
+- [Mediano](https://azure.com/e/9a523f79591347ca9a48c3aaa1406f8a): un sistema mediano consta de una máquina virtual del tipo DS14_v2 para el servidor de bases de datos con 16 vCPU, 112 GB de RAM y almacenamiento temporal de 800 GB, además de siete discos de almacenamiento Premium de 512 GB. Un servidor de instancia central de SAP que usa una máquina virtual del tipo DS11_v2 con 2 vCPU, 14 GB de RAM y almacenamiento temporal de 28 GB. Cuatro máquinas virtuales del tipo DS13_v2 para el servidor de aplicaciones de SAP con 8 vCPU, 56 GB de RAM y almacenamiento temporal de 400 GB, además de un disco de almacenamiento premium de 128 GB.
 
-* [Grande](https://azure.com/e/f70fccf571e948c4b37d4fecc07cbf42): un sistema grande consta de una máquina virtual del tipo E32s_v3 para el servidor de bases de datos con 32 vCPU, 256 GB de RAM y almacenamiento temporal de 800 GB, además de tres discos de 512 GB y uno de almacenamiento Premium de 128 GB. Un servidor de instancia central de SAP que usa una máquina virtual del tipo DS11_v2 con 2 vCPU, 14 GB de RAM y almacenamiento temporal de 28 GB. Seis máquinas virtuales del tipo DS14_v2 para el servidor de aplicaciones de SAP con 16 vCPU, 112 GB de RAM y almacenamiento temporal de 224 GB, además de seis discos de almacenamiento premium de 128 GB.
+- [Grande](https://azure.com/e/f70fccf571e948c4b37d4fecc07cbf42): un sistema grande consta de una máquina virtual del tipo E32s_v3 para el servidor de bases de datos con 32 vCPU, 256 GB de RAM y almacenamiento temporal de 800 GB, además de tres discos de 512 GB y uno de almacenamiento Premium de 128 GB. Un servidor de instancia central de SAP que usa una máquina virtual del tipo DS11_v2 con 2 vCPU, 14 GB de RAM y almacenamiento temporal de 28 GB. Seis máquinas virtuales del tipo DS14_v2 para el servidor de aplicaciones de SAP con 16 vCPU, 112 GB de RAM y almacenamiento temporal de 224 GB, además de seis discos de almacenamiento premium de 128 GB.
 
-* [Extra-grande](https://azure.com/e/58c636922cf94faf9650f583ff35e97b): un sistema extra-grande consta de una máquina virtual del tipo M64s para el servidor de bases de datos con 64 vCPU, 1024 GB de RAM y almacenamiento temporal de 2000 GB, además de siete discos de almacenamiento Premium de 1024 GB. Un servidor de instancia central de SAP que usa una máquina virtual del tipo DS11_v2 con 2 vCPU, 14 GB de RAM y almacenamiento temporal de 28 GB. 10 máquinas virtuales del tipo DS14_v2 para el servidor de aplicaciones de SAP con 16 vCPU, 112 GB de RAM y almacenamiento temporal de 224 GB, además de 10 discos de almacenamiento premium de 128 GB.
+- [Extra-grande](https://azure.com/e/58c636922cf94faf9650f583ff35e97b): un sistema extra-grande consta de una máquina virtual del tipo M64s para el servidor de bases de datos con 64 vCPU, 1024 GB de RAM y almacenamiento temporal de 2000 GB, además de siete discos de almacenamiento Premium de 1024 GB. Un servidor de instancia central de SAP que usa una máquina virtual del tipo DS11_v2 con 2 vCPU, 14 GB de RAM y almacenamiento temporal de 28 GB. 10 máquinas virtuales del tipo DS14_v2 para el servidor de aplicaciones de SAP con 16 vCPU, 112 GB de RAM y almacenamiento temporal de 224 GB, además de 10 discos de almacenamiento premium de 128 GB.
 
 ## <a name="deployment"></a>Implementación
 
 Use el vínculo siguiente para implementar la infraestructura subyacente para este escenario.
 
+<!-- markdownlint-disable MD033 -->
+
 <a
 href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Fsolution-architectures%2Fmaster%2Fapps%2Fsap-3tier-distributed-ora%2Fazuredeploy.json" target="_blank">
     <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>
+
+<!-- markdownlint-enable MD033 -->
 
 > [!NOTE]
 > SAP y Oracle no se instalan durante esta implementación. Debe implementar estos componentes por separado.
@@ -99,9 +105,10 @@ href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.
 ## <a name="related-resources"></a>Recursos relacionados
 
 Para más información sobre la ejecución de cargas de trabajo de producción de SAP en Azure, revise las arquitecturas de referencia siguientes:
-* [SAP NetWeaver para AnyDB](/azure/architecture/reference-architectures/sap/sap-netweaver) 
-* [SAP S/4HANA](/azure/architecture/reference-architectures/sap/sap-s4hana)
-* [Instancias grandes de SAP HANA](/azure/architecture/reference-architectures/sap/hana-large-instances)
+
+- [SAP NetWeaver para AnyDB](/azure/architecture/reference-architectures/sap/sap-netweaver)
+- [SAP S/4HANA](/azure/architecture/reference-architectures/sap/sap-s4hana)
+- [Instancias grandes de SAP HANA](/azure/architecture/reference-architectures/sap/hana-large-instances)
 
 <!-- links -->
 [architecture]: media/architecture-sap-production.png

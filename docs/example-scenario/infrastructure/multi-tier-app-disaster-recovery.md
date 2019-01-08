@@ -1,15 +1,16 @@
 ---
-title: Aplicación web de varios niveles creada para lograr alta disponibilidad y recuperación ante desastres en Azure
+title: Aplicación web de varios niveles creada para alta disponibilidad y recuperación ante desastres
+titleSuffix: Azure Example Scenarios
 description: Cree una aplicación web de varios niveles para lograr una alta disponibilidad y recuperación ante desastres en Azure mediante máquinas virtuales, conjuntos de disponibilidad y zonas de disponibilidad de Azure, Azure Site Recovery y Azure Traffic Manager
 author: sujayt
 ms.date: 11/16/2018
 ms.custom: product-team
-ms.openlocfilehash: 71534dc095d5fba137a0e610d4e725c2efc6b432
-ms.sourcegitcommit: a0e8d11543751d681953717f6e78173e597ae207
+ms.openlocfilehash: baa468697b4a72975e3b192efc9bdf1861a0c0da
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/06/2018
-ms.locfileid: "53004595"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53644058"
 ---
 # <a name="multitier-web-application-built-for-high-availability-and-disaster-recovery-on-azure"></a>Aplicación web de varios niveles creada para lograr alta disponibilidad y recuperación ante desastres en Azure
 
@@ -25,9 +26,9 @@ Entre los escenarios de aplicación se incluye cualquier aplicación crítica qu
 
 Otros casos de uso pertinentes incluyen:
 
-* Implementación de aplicaciones altamente resistentes, como SAP y SharePoint
-* Diseño de un plan de continuidad empresarial y recuperación ante desastres para aplicaciones de línea de negocio
-* Configuración de la recuperación ante desastres y realización de maniobras relacionadas con fines de cumplimiento normativo
+- Implementación de aplicaciones altamente resistentes, como SAP y SharePoint
+- Diseño de un plan de continuidad empresarial y recuperación ante desastres para aplicaciones de línea de negocio
+- Configuración de la recuperación ante desastres y realización de maniobras relacionadas con fines de cumplimiento normativo
 
 ## <a name="architecture"></a>Arquitectura
 
@@ -49,17 +50,17 @@ Este escenario muestra una aplicación de varios niveles que usa ASP.NET y Micro
 
 ### <a name="components"></a>Componentes
 
-* Los [conjuntos de disponibilidad][docs-availability-sets] garantizan que las máquinas virtuales implementadas en Azure se distribuyan entre varios nodos de hardware aislados en un clúster. Si se produce un error de hardware o software en Azure, solo un subconjunto de las máquinas virtuales se verá afectado y toda la solución seguirá disponible y en funcionamiento.
-* Las [zonas de disponibilidad][docs-availability-zones] protegen las aplicaciones y los datos de errores del centro de datos. Las zonas de disponibilidad son ubicaciones físicas independientes dentro de una región de Azure. Cada zona de disponibilidad consta de uno o varios centros de datos equipados con alimentación, refrigeración y redes independientes. 
-* [Azure Site Recovery (ASR)][docs-azure-site-recovery] le permite replicar las máquinas virtuales en otra región de Azure para satisfacer sus necesidades de continuidad empresarial y recuperación ante desastres. Puede realizar pruebas de recuperación ante desastres periódicas para asegurarse de que satisface los requisitos de cumplimiento. La máquina virtual se replicará en la región seleccionada con la configuración que especifique, de forma que podrá recuperar las aplicaciones en caso de interrupciones del servicio en la región de origen.
-* [Azure Traffic Manager][docs-traffic-manager] es un equilibrador de carga de tráfico basado en DNS que distribuye el tráfico de forma óptima a servicios de regiones de Azure globales, al tiempo que proporciona una alta disponibilidad y capacidad de respuesta.
-* [Azure Load Balancer][docs-load-balancer] distribuye el tráfico entrante según reglas y sondeos de mantenimiento definidos. Una instancia de Load Balancer proporciona baja latencia y alto rendimiento, y puede escalar hasta millones de flujos para todas las aplicaciones TCP y UDP. Se utiliza un equilibrador de carga público en este escenario para distribuir el tráfico entrante del cliente en el nivel web. Se usa un equilibrador de carga interno en este escenario para distribuir el tráfico desde el nivel empresarial al clúster de SQL Server de back-end.
+- Los [conjuntos de disponibilidad][docs-availability-sets] garantizan que las máquinas virtuales implementadas en Azure se distribuyan entre varios nodos de hardware aislados en un clúster. Si se produce un error de hardware o software en Azure, solo un subconjunto de las máquinas virtuales se verá afectado y toda la solución seguirá disponible y en funcionamiento.
+- Las [zonas de disponibilidad][docs-availability-zones] protegen las aplicaciones y los datos de errores del centro de datos. Las zonas de disponibilidad son ubicaciones físicas independientes dentro de una región de Azure. Cada zona de disponibilidad consta de uno o varios centros de datos equipados con alimentación, refrigeración y redes independientes.
+- [Azure Site Recovery (ASR)][docs-azure-site-recovery] le permite replicar las máquinas virtuales en otra región de Azure para satisfacer sus necesidades de continuidad empresarial y recuperación ante desastres. Puede realizar pruebas de recuperación ante desastres periódicas para asegurarse de que satisface los requisitos de cumplimiento. La máquina virtual se replicará en la región seleccionada con la configuración que especifique, de forma que podrá recuperar las aplicaciones en caso de interrupciones del servicio en la región de origen.
+- [Azure Traffic Manager][docs-traffic-manager] es un equilibrador de carga de tráfico basado en DNS que distribuye el tráfico de forma óptima a servicios de regiones de Azure globales, al tiempo que proporciona una alta disponibilidad y capacidad de respuesta.
+- [Azure Load Balancer][docs-load-balancer] distribuye el tráfico entrante según reglas y sondeos de mantenimiento definidos. Una instancia de Load Balancer proporciona baja latencia y alto rendimiento, y puede escalar hasta millones de flujos para todas las aplicaciones TCP y UDP. Se utiliza un equilibrador de carga público en este escenario para distribuir el tráfico entrante del cliente en el nivel web. Se usa un equilibrador de carga interno en este escenario para distribuir el tráfico desde el nivel empresarial al clúster de SQL Server de back-end.
 
 ### <a name="alternatives"></a>Alternativas
 
-* Windows se puede reemplazar fácilmente por otros sistemas operativos ya que nada en la infraestructura depende del sistema operativo.
-* [SQL Server para Linux][docs-sql-server-linux] puede reemplazar el almacén de datos de back-end.
-* La base de datos puede sustituirse por cualquier aplicación estándar de base de datos disponible.
+- Windows se puede reemplazar fácilmente por otros sistemas operativos ya que nada en la infraestructura depende del sistema operativo.
+- [SQL Server para Linux][docs-sql-server-linux] puede reemplazar el almacén de datos de back-end.
+- La base de datos puede sustituirse por cualquier aplicación estándar de base de datos disponible.
 
 ## <a name="other-considerations"></a>Otras consideraciones
 

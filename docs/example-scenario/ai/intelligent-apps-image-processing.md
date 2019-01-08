@@ -1,14 +1,15 @@
 ---
-title: Clasificación de imágenes de reclamaciones de seguros en Azure
+title: Clasificación de imágenes de reclamaciones de seguros
+titleSuffix: Azure Example Scenarios
 description: Compile el procesamiento de imágenes en sus aplicaciones de Azure.
 author: david-stanford
 ms.date: 07/05/2018
-ms.openlocfilehash: 9640f8b5454891ed00f669bada9f7c9c69b89734
-ms.sourcegitcommit: 0a31fad9b68d54e2858314ca5fe6cba6c6b95ae4
+ms.openlocfilehash: 12dd197c6df4a8d7a90a09436d86ce4a9e5ccc72
+ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51610539"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53643452"
 ---
 # <a name="image-classification-for-insurance-claims-on-azure"></a>Clasificación de imágenes de reclamaciones de seguros en Azure
 
@@ -22,8 +23,8 @@ Con los servicios de Azure tales como Computer Vision API y Azure Functions, las
 
 Otros casos de uso pertinentes incluyen:
 
-* Clasificar las imágenes en un sitio web de moda.
-* Clasificar los datos de telemetría de las capturas de pantalla de juegos.
+- Clasificar las imágenes en un sitio web de moda.
+- Clasificar los datos de telemetría de las capturas de pantalla de juegos.
 
 ## <a name="architecture"></a>Arquitectura
 
@@ -39,22 +40,22 @@ Este escenario trata los componentes de back-end de una aplicación web o móvil
 
 ### <a name="components"></a>Componentes
 
-* [Computer Vision API](/azure/cognitive-services/computer-vision/home) es parte del conjunto de productos Cognitive Services y se usa para recuperar información acerca de cada imagen.
-* [Azure Functions](/azure/azure-functions/functions-overview) proporciona la API de back-end para la aplicación web, así como el procesamiento de eventos de las imágenes cargadas.
-* [Event Grid](/azure/event-grid/overview) desencadena un evento cuando se carga una nueva imagen en Blob Storage. A continuación, la imagen se procesa con Azure Functions.
-* [Blob Storage](/azure/storage/blobs/storage-blobs-introduction) almacena todos los archivos de imagen que se cargan en la aplicación web, así como también los archivos estáticos que consume la aplicación web.
-* [Cosmos DB](/azure/cosmos-db/introduction) almacena los metadatos de cada imagen que se haya cargado, incluidos los resultados del procesamiento de Computer Vision API.
+- [Computer Vision API](/azure/cognitive-services/computer-vision/home) es parte del conjunto de productos Cognitive Services y se usa para recuperar información acerca de cada imagen.
+- [Azure Functions](/azure/azure-functions/functions-overview) proporciona la API de back-end para la aplicación web, así como el procesamiento de eventos de las imágenes cargadas.
+- [Event Grid](/azure/event-grid/overview) desencadena un evento cuando se carga una nueva imagen en Blob Storage. A continuación, la imagen se procesa con Azure Functions.
+- [Blob Storage](/azure/storage/blobs/storage-blobs-introduction) almacena todos los archivos de imagen que se cargan en la aplicación web, así como también los archivos estáticos que consume la aplicación web.
+- [Cosmos DB](/azure/cosmos-db/introduction) almacena los metadatos de cada imagen que se haya cargado, incluidos los resultados del procesamiento de Computer Vision API.
 
 ## <a name="alternatives"></a>Alternativas
 
-* [Custom Vision Service](/azure/cognitive-services/custom-vision-service/home). Computer Vision API devuelve un conjunto de [categorías basadas en la taxonomía][cv-categories]. Si necesita procesar la información que Computer Vision API no devuelve, considere la posibilidad de usar Custom Vision Service, que permite crear clasificadores de imágenes personalizados.
-* [Azure Search](/azure/search/search-what-is-azure-search). Si su caso de usuario implica consultar los metadatos para buscar las imágenes que cumplen determinados criterios, considere la posibilidad de usar Azure Search. Actualmente en versión preliminar, [Cognitive Search](/azure/search/cognitive-search-concept-intro) se integra sin problemas en este flujo de trabajo.
+- [Custom Vision Service](/azure/cognitive-services/custom-vision-service/home). Computer Vision API devuelve un conjunto de [categorías basadas en la taxonomía][cv-categories]. Si necesita procesar la información que Computer Vision API no devuelve, considere la posibilidad de usar Custom Vision Service, que permite crear clasificadores de imágenes personalizados.
+- [Azure Search](/azure/search/search-what-is-azure-search). Si su caso de usuario implica consultar los metadatos para buscar las imágenes que cumplen determinados criterios, considere la posibilidad de usar Azure Search. Actualmente en versión preliminar, [Cognitive Search](/azure/search/cognitive-search-concept-intro) se integra sin problemas en este flujo de trabajo.
 
 ## <a name="considerations"></a>Consideraciones
 
 ### <a name="scalability"></a>Escalabilidad
 
-La mayoría de los componentes usados en este escenario de ejemplo son servicios administrados que escalan automáticamente. Hay dos excepciones destacables: Azure Functions tiene un límite máximo de 200 instancias. Si necesita escalar más allá de este límite, considere la posibilidad de usar varias regiones o planes de aplicación.
+La mayoría de los componentes usados en este escenario de ejemplo son servicios administrados que escalan automáticamente. Dos excepciones destacables: Azure Functions tiene un límite máximo de 200 instancias. Si necesita escalar más allá de este límite, considere la posibilidad de usar varias regiones o planes de aplicación.
 
 Cosmos DB no realiza escalabilidad automática en términos de unidades de solicitud (RU) aprovisionadas. Para obtener instrucciones sobre cómo calcular los requisitos, consulte [unidades de solicitud](/azure/cosmos-db/request-units) en nuestra documentación. Para aprovechar al máximo el escalado en Cosmos DB, sepa cómo funcionan las [claves de partición](/azure/cosmos-db/partition-data) en CosmosDB.
 
@@ -80,9 +81,9 @@ Para explorar el costo de ejecutar este escenario, todos los servicios están pr
 
 Hemos proporcionado tres ejemplos de perfiles de costo según la cantidad de tráfico (hemos dado por hecho que todas las imágenes tienen un tamaño de 100 KB):
 
-* [Pequeño][small-pricing]: se corresponde con un procesamiento de menos de 5000 imágenes al mes.
-* [Mediano][medium-pricing]: se corresponde con un procesamiento de menos de 500 000 imágenes al mes.
-* [Grande][large-pricing]: se corresponde con un procesamiento de menos de 50 millones de imágenes al mes.
+- [Pequeño][small-pricing]: se corresponde con un procesamiento de menos de 5000 imágenes al mes.
+- [Mediano][medium-pricing]: se corresponde con un procesamiento de menos de 500 000 imágenes al mes.
+- [Grande][large-pricing]: se corresponde con un procesamiento de menos de 50 millones de imágenes al mes.
 
 ## <a name="related-resources"></a>Recursos relacionados
 
