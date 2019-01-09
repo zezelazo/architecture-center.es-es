@@ -2,12 +2,12 @@
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: a1cac753d384c0fee0af204cddaeea1e63213b9f
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.openlocfilehash: ce1642f237cfae579cc987777c61c8d6eabff571
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325866"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113882"
 ---
 # <a name="azure-application-architecture-guide"></a>Guía de la arquitectura de aplicaciones en Azure
 
@@ -15,9 +15,11 @@ Esta guía presenta un enfoque estructurado para diseñar aplicaciones de Azure 
 
 ## <a name="introduction"></a>Introducción
 
-La nube está cambiando la forma en que se diseñan las aplicaciones. En lugar de ser monolitos, las aplicaciones se descomponen en servicios menores y descentralizados. Estos servicios se comunican a través de API o mediante el uso de eventos o de mensajería asincrónica. Las aplicaciones se escalan horizontalmente, agregando nuevas instancias, tal y como exigen las necesidades. 
+La nube está cambiando la forma en que se diseñan las aplicaciones. En lugar de ser monolitos, las aplicaciones se descomponen en servicios menores y descentralizados. Estos servicios se comunican a través de API o mediante el uso de eventos o de mensajería asincrónica. Las aplicaciones se escalan horizontalmente, agregando nuevas instancias, tal y como exigen las necesidades.
 
-Estas tendencias agregan nuevos desafíos. El estado de las aplicaciones se distribuye. Las operaciones se realizan en paralelo y de forma asincrónica. El sistema como un todo debe ser resistente cuando se producen errores. Las implementaciones deben estar automatizadas y ser predecibles. La supervisión y la telemetría son fundamentales para obtener una visión general del sistema. La Guía de la arquitectura de aplicaciones de Azure está diseñada para ayudarle a sortear estos cambios. 
+Estas tendencias agregan nuevos desafíos. El estado de las aplicaciones se distribuye. Las operaciones se realizan en paralelo y de forma asincrónica. El sistema como un todo debe ser resistente cuando se producen errores. Las implementaciones deben estar automatizadas y ser predecibles. La supervisión y la telemetría son fundamentales para obtener una visión general del sistema. La Guía de la arquitectura de aplicaciones de Azure está diseñada para ayudarle a sortear estos cambios.
+
+<!-- markdownlint-disable MD033 -->
 
 <table>
 <thead>
@@ -47,6 +49,8 @@ Infraestructura inmutable<br/>
 </tbody>
 </table>
 
+<!-- markdownlint-enable MD033 -->
+
 Esta guía está destinada a los arquitectos de aplicaciones, los desarrolladores y los equipos de operaciones. No es una guía de procedimientos para usar servicios individuales de Azure. Después de leerla, comprenderá los patrones arquitectónicos y las prácticas recomendadas que se aplican al crear en la plataforma de nube de Azure. También puede descargar una [versión de la guía para libro electrónico][ebook].
 
 ## <a name="how-this-guide-is-structured"></a>Cómo se estructura esta guía
@@ -63,7 +67,7 @@ Más información:
 
 ### <a name="technology-choices"></a>Opciones de tecnología
 
-Dos opciones de tecnología deben decidirse en una fase temprana, ya que afectan a toda la arquitectura. Se trata de la elección del servicio de proceso y de los almacenes de datos. *Proceso* hace referencia al modelo de hospedaje para los recursos informáticos en los que las aplicaciones se ejecutan. Los *almacenes de datos* incluyen las bases de datos y también el almacenamiento destinado a las colas de mensajes, las memorias caché, los datos de registros y cualquier otro que una aplicación pueda conservar en algún tipo de almacenamiento. 
+Dos opciones de tecnología deben decidirse en una fase temprana, ya que afectan a toda la arquitectura. Se trata de la elección del servicio de proceso y de los almacenes de datos. *Proceso* hace referencia al modelo de hospedaje para los recursos informáticos en los que las aplicaciones se ejecutan. Los *almacenes de datos* incluyen las bases de datos y también el almacenamiento destinado a las colas de mensajes, las memorias caché, los datos de registros y cualquier otro que una aplicación pueda conservar en algún tipo de almacenamiento.
 
 Más información:
 
@@ -78,12 +82,10 @@ Más información:
 
 - [Principios de diseño](./design-principles/index.md)
 
-
 ### <a name="quality-pillars"></a>Fundamentos de calidad
 
-Una aplicación correcta en la nube se centrará en cinco fundamentos de calidad del software: la escalabilidad, la disponibilidad, la resistencia, la administración y la seguridad. Utilice nuestras listas de comprobación de la revisión del diseño para revisar la arquitectura de acuerdo con estos fundamentos de calidad.
+Una aplicación de éxito en la nube se centrará en cinco fundamentos de calidad del software: Escalabilidad, disponibilidad, resistencia, administración y seguridad. Utilice nuestras listas de comprobación de la revisión del diseño para revisar la arquitectura de acuerdo con estos fundamentos de calidad.
 
 - [Fundamentos de calidad](./pillars.md)
-
 
 [ebook]: https://azure.microsoft.com/campaigns/cloud-application-architecture-guide/
