@@ -7,16 +7,16 @@ tags: azure-resource-manager
 ms.service: virtual-network
 ms.date: 11/28/2018
 ms.author: jonor
-ms.openlocfilehash: 1d8a9e860ab1a66104dc4133eb5f22ffb4706b84
-ms.sourcegitcommit: 5a3fa0bf35376bbe4a6dd668f2d7d44f9cf9c806
+ms.openlocfilehash: f02cc7df1e90ba3de97a1c25777ab6d27bfdf697
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53411691"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011204"
 ---
 # <a name="azure-virtual-datacenter-a-network-perspective"></a>Centro de datos virtual de Azure: Una perspectiva de la red
 
-## <a name="overview"></a>Introducción
+## <a name="overview"></a>Información general
 
 La migración de aplicaciones locales a Azure proporciona a las organizaciones las ventajas de una infraestructura segura y rentable, aunque las aplicaciones se migren con unos cambios mínimos. Sin embargo, para sacar el máximo partido de la agilidad de la informática en la nube, las empresas deben evolucionar sus arquitecturas para aprovechar las funcionalidades de Azure. 
 
@@ -51,15 +51,6 @@ La implementación de un centro de datos virtual puede ayudar a que las empresas
 -   Implementación de requisitos de seguridad y acceso compartido o centralizado para las cargas de trabajo.
 -   Combinación de Azure DevOps y TI centralizada adecuada para una gran empresa.
 
-La clave para desbloquear las ventajas del centro de datos virtual es una topología en estrella tipo hub-and-spoke centralizada, con una mezcla de características de Azure: 
-
-- [Azure Virtual Network][VNet]. 
-- [Grupos de seguridad de red (NSG)][NSG].
-- [Emparejamiento de redes virtuales][VNetPeering]. 
-- [Rutas definidas por el usuario (UDR)][UDR].
-- Servicios de identidad de Azure con el [control de acceso basado en rol (RBAC)][RBAC]. 
-- Opcionalmente, [Azure Firewall][AzFW], [Azure DNS][DNS], [Azure Front Door][AFD] y [Azure Virtual WAN][vWAN].
-
 La clave para desbloquear las ventajas del centro de datos virtual es una topología en estrella del tipo hub-and-spoke centralizada, con una mezcla de servicios y características de Azure:
 
 * [Azure Virtual Network][VNet],
@@ -79,9 +70,6 @@ Las organizaciones que recurren a DevOps también pueden usar los conceptos del 
 ## <a name="considerations-for-implementing-a-virtual-datacenter"></a>Consideraciones para la implementación de un centro de datos virtual
 
 Al diseñar una implementación de un centro de datos virtual, hay varios problemas esenciales que se deben tener en cuenta:
-
-### <a name="identity-and-directory-services"></a>Servicios de identidad y directorio
-Los servicios de identidad y directorio son un aspecto clave de todos los centros de datos, tanto en local como en la nube. La identidad está relacionada con todos los aspectos de acceso y autorización a los servicios dentro del centro de datos virtual. Para garantizar que solo los usuarios y procesos autorizados tienen acceso a la cuenta de Azure y los recursos, Azure usa varios tipos de credenciales para la autenticación. Estos incluyen contraseñas (para acceder a la cuenta de Azure), claves de cifrado, firmas digitales y certificados. 
 
 ### <a name="identity-and-directory-service"></a>Servicios de identidad y directorio
 
@@ -340,7 +328,7 @@ Las posibilidades de cargas de trabajo son infinitas. Estos son solo algunos de 
 
 **Macrodatos y análisis**: Cuando los datos tengan que escalarse verticalmente a volumen grande, es posible que las bases de datos no se escalen correctamente. La tecnología de Hadoop ofrece un sistema para ejecutar consultas distribuidas en paralelo en un gran número de nodos. Los clientes tienen la opción de ejecutar las cargas de trabajo de datos en máquinas virtuales IaaS o bien en PaaS ([HDInsight][HDI]). HDInsight admite la implementación en una red virtual basada en la ubicación y se puede implementar en un clúster en un radio del centro de datos virtual.
 
-**Eventos y mensajería**: [Azure Event Hubs][EventHubs] es un servicio de ingestión de datos de telemetría a hiperescala que recopila, transforma y almacena millones de eventos. Como plataforma de streaming distribuida, ofrece retención de tiempo configurable y baja latencia, lo que permite recopilar grandes cantidades de datos de telemetría en Azure y leer los datos desde varias aplicaciones. Con Event Hubs, una única transmisión puede admitir canalizaciones en tiempo real y basadas en lotes.
+**Eventos y mensajería**: Azure Event Hubs[EventHubs] es un servicio de ingestión de datos de telemetría a hiperescala que recopila, transforma y almacena millones de eventos. Como plataforma de streaming distribuida, ofrece retención de tiempo configurable y baja latencia, lo que permite recopilar grandes cantidades de datos de telemetría en Azure y leer los datos desde varias aplicaciones. Con Event Hubs, una única transmisión puede admitir canalizaciones en tiempo real y basadas en lotes.
 
 Puede implementar un servicio de mensajería altamente confiable en la nube entre aplicaciones y servicios mediante [Azure Service Bus][ServiceBus]. Este ofrece mensajería asincrónica entre cliente y servidor, además de mensajería estructurada de tipo FIFO (primero en entrar, primero en salir) y funcionalidades de publicación y suscripción.
 

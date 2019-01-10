@@ -5,12 +5,12 @@ description: Arquitectura recomendada para una aplicación web sin servidor y un
 author: MikeWasson
 ms.date: 10/16/2018
 ms.custom: seodec18
-ms.openlocfilehash: ee735ac4f23cc2a819e2322bd9c4fb3b5adf5f3b
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 71c6bcdb35ba19435566086386ba7260581fec19
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120319"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011402"
 ---
 # <a name="serverless-web-application-on-azure"></a>Aplicación web sin servidor en Azure
 
