@@ -5,12 +5,12 @@ description: Cree una canalización de procesamiento de flujos de datos de un ex
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 130f297d3cfdeb1900ada79f1e9c65ec542dc2b7
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: abd020fa12883ae3d23623c53e15fe025590de6f
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53643754"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011589"
 ---
 # <a name="create-a-stream-processing-pipeline-with-azure-stream-analytics"></a>Creación de una canalización de procesamiento de flujos de datos con Azure Stream Analytics
 
@@ -40,13 +40,13 @@ La arquitectura consta de los siguientes componentes:
 
 ## <a name="data-ingestion"></a>Ingesta de datos
 
-<!-- markdownlint-disable MD033 MD034 -->
+<!-- markdownlint-disable MD033 -->
 
 Para simular un origen de datos, esta arquitectura de referencia usa el conjunto de datos [New York City Taxi Data](https://uofi.app.box.com/v/NYCtaxidata/folder/2332218797)<sup>[[1]](#note1)</sup>. Este conjunto de datos contiene datos acerca de carreras de taxi en la ciudad de Nueva York durante un período de 4 años (de 2010 a 2013). Contiene dos tipos de registros: datos de carreras y datos de tarifas. Los datos de carreras incluyen la duración del viaje, la distancia de viaje y la ubicación de recogida y destino. Los datos de tarifas incluyen las tarifas, los impuestos y las propinas. Los campos comunes en ambos tipos de registro son la placa y el número de licencia, y el identificador del proveedor. Juntos, estos tres campos identifican un taxi además del conductor. Los datos se almacenan en formato CSV.
 
-[1] <span id="note1">Donovan, Brian; Trabajo, Dan (2016): New York City Taxi Trip Data (2010-2013). Universidad de Illinois en Urbana-Champaign. https://doi.org/10.13012/J8PN93H8
+[1] <span id="note1">Donovan, Brian; Trabajo, Dan (2016): New York City Taxi Trip Data (2010-2013). Universidad de Illinois en Urbana-Champaign. <https://doi.org/10.13012/J8PN93H8>
 
-<!-- markdownlint-enable MD033 MD034 -->
+<!-- markdownlint-enable MD033 -->
 
 El generador de datos es una aplicación de .NET Core que lee los registros y los envía a Azure Event Hubs. El generador envía los datos de carreras en formato JSON y los datos de tarifas en formato CSV.
 

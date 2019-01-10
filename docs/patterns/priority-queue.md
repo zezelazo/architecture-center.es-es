@@ -1,19 +1,17 @@
 ---
-title: Cola con prioridad
+title: Patrón de cola de prioridad
+titleSuffix: Cloud Design Patterns
 description: Clasifica por orden de prioridad las solicitudes enviadas a los servicios para que aquellas con una prioridad más alta se reciban y procesen más rápidamente que las que tienen una prioridad más baja.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-- performance-scalability
-ms.openlocfilehash: 400bfbc03cf5640ff32a551636b01d60e6c0ec50
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: ddd9cc9ec85c6ed23fabaaa58424736ba1aa9421
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428506"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011130"
 ---
 # <a name="priority-queue-pattern"></a>Patrón de cola de prioridad
 
@@ -31,12 +29,11 @@ Una cola suele tener una estructura basada en el criterio primero en entrar, pri
 
 ![Figura 1: Uso de un mecanismo de cola que admite la asignación de prioridad a los mensajes](./_images/priority-queue-pattern.png)
 
-> La mayoría de las implementaciones de cola de mensajes admiten varios consumidores (siguiendo el [patrón de consumidores en competencia](https://msdn.microsoft.com/library/dn568101.aspx)), y el número de procesos de consumidor se puede escalar o reducir verticalmente en función de la demanda.
+> La mayoría de las implementaciones de cola de mensajes admiten varios consumidores (siguiendo el [patrón de consumidores en competencia](./competing-consumers.md)), y el número de procesos de consumidor se puede escalar o reducir verticalmente en función de la demanda.
 
 En los sistemas que no admiten colas de mensajes basadas en prioridad, una solución alternativa consiste en mantener una cola independiente para cada prioridad. La aplicación es responsable de enviar mensajes a la cola adecuada. Cada cola puede tener un grupo independiente de consumidores. Las colas de más prioridad pueden tener un grupo más grande de consumidores en ejecución en hardware más rápido que las colas de menor prioridad. En la ilustración siguiente se muestra cómo utilizar las colas de mensajes independientes para cada prioridad.
 
 ![Figura 2: Uso de las colas de mensajes independientes para cada prioridad](./_images/priority-queue-separate.png)
-
 
 Una variación de esta estrategia es disponer de un único grupo de consumidores que primero comprueba los mensajes en las colas de alta prioridad, y solo después inicia la captura de los mensajes de colas de prioridad más baja. Hay algunas diferencias semánticas entre una solución que utiliza un único grupo de procesos de consumidor (ya sea con una sola cola que admite mensajes con prioridades diferentes o con varias colas donde cada una controla los mensajes de una única prioridad) y una solución que usa varias colas con un grupo independiente para cada cola.
 
@@ -88,7 +85,6 @@ Una solución de Azure puede implementar un tema de Service Bus en el que una ap
 
 ![Figura 3: Implementación de una cola de prioridad con temas y suscripciones de Azure Service Bus](./_images/priority-queue-service-bus.png)
 
-
 En la figura anterior, la aplicación crea varios mensajes y asigna una propiedad personalizada denominada `Priority` en cada mensaje con un valor, `High` o `Low`. La aplicación envía estos mensajes a un tema. El tema tiene dos suscripciones asociadas que filtran los mensajes examinando la propiedad `Priority`. Una suscripción acepta mensajes donde la propiedad `Priority` está establecida en `High`, y la otra acepta mensajes donde la propiedad `Priority` está establecida en `Low`. Un grupo de consumidores lee los mensajes de cada suscripción. La suscripción de alta prioridad tiene un grupo más grande, y estos consumidores podrían estar ejecutándose en equipos más eficaces con más recursos disponibles que los consumidores del grupo de prioridad baja.
 
 Tenga en cuenta que no hay nada especial acerca de la designación de mensajes con prioridad alta y baja en este ejemplo. Son simplemente etiquetas especificadas como propiedades en cada mensaje, que se utilizan para dirigir mensajes a una suscripción específica. Si se requieren prioridades adicionales, es relativamente fácil crear más suscripciones y grupos de procesos de consumidor para controlar estas prioridades.
@@ -121,6 +117,7 @@ public class PriorityWorkerRole : RoleEntryPoint
   }
 }
 ```
+
 Los roles de trabajo `PriorityQueue.High` y `PriorityQueue.Low` invalidan la funcionalidad predeterminada del método `ProcessMessage`. El código siguiente muestra el método `ProcessMessage` para el rol de trabajo `PriorityQueue.High`.
 
 ```csharp
@@ -170,11 +167,10 @@ Los patrones y las directrices siguientes también pueden ser importantes a la h
 
 - [Manual de mensajería asincrónica](https://msdn.microsoft.com/library/dn589781.aspx). Un servicio de consumidor que procesa una solicitud puede necesitar enviar una respuesta a la instancia de la aplicación que publicó la solicitud. Proporciona información sobre las estrategias que puede usar para implementar la mensajería de solicitud/respuesta.
 
-- [Patrón de consumidores de la competencia](competing-consumers.md). Para mejorar el rendimiento de las colas, es posible tener varios consumidores que escuchen en la misma cola y procesen las tareas en paralelo. Estos consumidores competirán por los mensajes, pero solo uno debe ser capaz de procesar cada mensaje. Proporciona más información sobre las ventajas y los inconvenientes de la implementación de este enfoque.
+- [Patrón de consumidores de la competencia](./competing-consumers.md). Para mejorar el rendimiento de las colas, es posible tener varios consumidores que escuchen en la misma cola y procesen las tareas en paralelo. Estos consumidores competirán por los mensajes, pero solo uno debe ser capaz de procesar cada mensaje. Proporciona más información sobre las ventajas y los inconvenientes de la implementación de este enfoque.
 
-- [Patrón de limitación](throttling.md). Puede implementar la limitación mediante el uso de colas. La mensajería de prioridad puede usarse para asegurarse de que se concede prioridad a las solicitudes que proceden de aplicaciones críticas o de aplicaciones ejecutadas por clientes de alto valor con respecto a las solicitudes de aplicaciones menos importantes.
+- [Patrón de limitación](./throttling.md). Puede implementar la limitación mediante el uso de colas. La mensajería de prioridad puede usarse para asegurarse de que se concede prioridad a las solicitudes que proceden de aplicaciones críticas o de aplicaciones ejecutadas por clientes de alto valor con respecto a las solicitudes de aplicaciones menos importantes.
 
 - [Guía de escalado automático](https://msdn.microsoft.com/library/dn589774.aspx). Es posible escalar el tamaño del grupo de procesos de consumidor que controlan una cola en función de la longitud de la cola. Esta estrategia puede ayudar a mejorar el rendimiento, especialmente para los grupos que controlan los mensajes con prioridad alta.
 
 - [Patrones de Integración empresarial con Service Bus](https://abhishekrlal.com/2013/01/11/enterprise-integration-patterns-with-service-bus-part-2/) en el blog de Abhishek Lal.
-

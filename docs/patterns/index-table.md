@@ -1,19 +1,17 @@
 ---
-title: Index Table
+title: Patrón Index Table
+titleSuffix: Cloud Design Patterns
 description: Crea índices en los campos de los almacenes de datos a los que suelen hacer referencia las consultas.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: 24a1061349af84d13f05f88a1698b4efe4b0f449
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 206d064b80dd980c9b5fdfb1233ff2dd8baafbaf
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24541791"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011008"
 ---
 # <a name="index-table-pattern"></a>Patrón Index Table
 
@@ -26,7 +24,6 @@ Crea índices en los campos de los almacenes de datos a los que suelen hacer ref
 Muchos almacenes de datos organizan los datos de una colección de entidades mediante la clave principal. Una aplicación puede usar esta clave para buscar y recuperar datos. La ilustración muestra un ejemplo de un almacén de datos que contiene información del cliente. La clave principal es el identificador del cliente. La ilustración muestra la información del cliente organizada por la clave principal (identificador del cliente).
 
 ![Figura 1: Información del cliente organizada por la clave principal (identificador del cliente)](./_images/index-table-figure-1.png)
-
 
 Aunque la clave principal es útil para consultas que capturan datos basados en el valor de esta clave, es posible que una aplicación no pueda usarla si necesita recuperar datos basados en algún otro campo. En el ejemplo de los clientes, una aplicación no puede usar la clave principal de identificador del cliente para recuperar clientes si consulta los datos haciendo referencia únicamente al valor de algún otro atributo, como la ciudad en la que está ubicado el cliente. Para realizar una consulta como esta, puede que la aplicación tenga que capturar y examinar todos los registros de los clientes, lo cual podría ser un proceso lento.
 
@@ -44,13 +41,11 @@ La primera estrategia consiste en duplicar los datos de cada tabla de índice pe
 
 ![Figura 2: Los datos se duplican en cada tabla de índice](./_images/index-table-figure-2.png)
 
-
 Esta estrategia es adecuada si los datos son relativamente estáticos en comparación con el número de veces que se consulta mediante cada clave. Si los datos son más dinámicos, la sobrecarga de procesamiento que supone mantener cada tabla de índice resulta demasiado grande para que este enfoque sea útil. Además, si el volumen de datos es muy grande, la cantidad de espacio necesario para almacenar los datos duplicados es significativa.
 
 La segunda estrategia consiste en crear tablas de índice normalizadas organizadas por diferentes claves y hacer referencia a los datos originales mediante la clave principal en lugar de duplicarla, como se indica en la siguiente ilustración. Los datos originales se denominan tabla de hechos.
 
 ![Figura 3: Se hace referencia a los datos por cada tabla de índice](./_images/index-table-figure-3.png)
-
 
 Esta técnica ahorra espacio y reduce la sobrecarga que supone mantener los datos duplicados. La desventaja es que una aplicación tiene que realizar dos operaciones de búsqueda para buscar datos mediante una clave secundaria. Debe buscar la clave principal de los datos de la tabla de índice y, después, usar la clave principal para buscar los datos en la tabla de hechos.
 
@@ -58,18 +53,15 @@ La tercera estrategia consiste en crear tablas de índices parcialmente normaliz
 
 ![Figura 4: Duplicación de los datos a los que se accede habitualmente en cada tabla de índice](./_images/index-table-figure-4.png)
 
-
 Con esta estrategia, puede lograr un equilibrio entre los dos primeros enfoques. Los datos de las consultas habituales se pueden recuperar rápidamente mediante una sola búsqueda, mientras que la sobrecarga de espacio y de mantenimiento no es tan significativa como la que se produce al duplicar todo el conjunto de datos.
 
 Si una aplicación realiza consultas frecuentes de datos mediante la especificación de una combinación de valores (por ejemplo, "Buscar todos los clientes que viven en Redmond y que tienen el apellido Smith"), puede implementar las claves para los elementos de la tabla de índice como una concatenación del atributo Town y del atributo LastName. La ilustración siguiente muestra una tabla de índice basada en claves compuestas. Las claves se ordenan por ciudad, y luego por apellidos en el caso de aquellos registros que tienen el mismo valor para la ciudad.
 
 ![Ilustración 5: Una tabla de índice basada en claves compuestas](./_images/index-table-figure-5.png)
 
-
 Las tablas de índice pueden acelerar las operaciones de consulta en datos con particiones y son especialmente útiles en los casos en los que a la clave de partición se le aplica un algoritmo hash. En la ilustración siguiente se muestra un ejemplo en el que la clave de partición es un hash del identificador de cliente. La tabla de índice puede organizar los datos por el valor al que no se ha aplicado el algoritmo hash (Town y LastName) y proporcionar la clave de partición con hash como los datos de búsqueda. Esto puede ahorrar a la aplicación el tener que calcular repetidamente las claves hash (una operación costosa) si necesita recuperar los datos que se encuentran dentro de un intervalo, o si necesita capturar datos para la clave sin algoritmo hash. Por ejemplo, una consulta como "Buscar todos los clientes que viven en Redmond" se puede resolver rápidamente localizando los elementos coincidentes en la tabla de índice, en la que están todos almacenados en un bloque contiguo. Después, siga las referencias a los datos del cliente mediante las claves de partición almacenadas en la tabla de índice.
 
 ![Figura 6: Una tabla de índice que proporciona una búsqueda rápida para datos con particiones](./_images/index-table-figure-6.png)
-
 
 ## <a name="issues-and-considerations"></a>Problemas y consideraciones
 
@@ -104,18 +96,16 @@ Por ejemplo, piense en una aplicación que almacena información acerca de pelí
 
 ![Figura 7: Datos de la película almacenados en una tabla de Azure](./_images/index-table-figure-7.png)
 
-
 Este enfoque es menos efectivo si la aplicación también necesita consultar películas por el actor principal. En este caso, puede crear una tabla independiente de Azure que actúa como una tabla de índice. La clave de partición es el actor y la clave de fila es el nombre de la película. Los datos de cada actor se almacenan en particiones independientes. Si una película tiene más de un protagonista, la misma película aparecerá en varias particiones.
 
 Puede duplicar los datos de la película en los valores mantenidos en cada partición mediante el primer enfoque descrito en la sección anterior de soluciones. Sin embargo, es probable que cada película se replique varias veces (una vez por cada actor), por lo que podría resultar más eficaz desnormalizar parcialmente los datos para admitir las consultas más habituales (por ejemplo, los nombres de los otros actores) y habilitar una aplicación para recuperar los restantes detalles mediante la inclusión de la clave de partición necesaria para buscar la información completa en las particiones por género. Este enfoque se describe en la tercera opción de la sección de soluciones. La ilustración siguiente muestra este enfoque.
 
 ![Figura 8: Las particiones por actor actúan como tablas de índice para los datos de las películas](./_images/index-table-figure-8.png)
 
-
 ## <a name="related-patterns-and-guidance"></a>Orientación y patrones relacionados
 
 Los patrones y las directrices siguientes también pueden ser importantes a la hora de implementar este modelo:
 
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Manual básico de coherencia de datos). Una tabla de índice se debe mantener a medida que cambian los datos que indexa. En la nube, puede que no sea posible ni adecuado realizar operaciones que actualicen un índice como parte de la misma transacción que modifica los datos. En ese caso, un enfoque con coherencia final es más adecuado. Proporciona información sobre los problemas que pueden surgir con la coherencia final.
-- [Sharding pattern](https://msdn.microsoft.com/library/dn589797.aspx) (Patrón de particionamiento). El patrón de tabla de índice se utiliza con frecuencia junto con datos con particiones mediante el uso de particiones. El patrón Sharding proporciona más información acerca de cómo dividir un almacén de datos en un conjunto de particiones.
-- [Patrón Materialized View](materialized-view.md). En lugar de indexar los datos para admitir consultas que resuman los datos, puede ser más adecuado crear una vista materializada de estos. Describe cómo admitir consultas de resumen eficaces mediante la generación de vistas rellenadas previamente con datos.
+- [Sharding pattern](./sharding.md) (Patrón de particionamiento). El patrón de tabla de índice se utiliza con frecuencia junto con datos con particiones mediante el uso de particiones. El patrón Sharding proporciona más información acerca de cómo dividir un almacén de datos en un conjunto de particiones.
+- [Patrón Materialized View](./materialized-view.md). En lugar de indexar los datos para admitir consultas que resuman los datos, puede ser más adecuado crear una vista materializada de estos. Describe cómo admitir consultas de resumen eficaces mediante la generación de vistas rellenadas previamente con datos.

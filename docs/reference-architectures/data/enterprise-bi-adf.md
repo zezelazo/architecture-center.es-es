@@ -5,18 +5,18 @@ description: Automatice un flujo de trabajo de extracción, carga y transformaci
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 8263da7675beb61add371c945aab72b203c2349c
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 579ef0361ec44d0eb82b9076490eed5a6d88df35
+ms.sourcegitcommit: cd3de23543f739a95a1daf38886561f67add9d64
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644017"
+ms.lasthandoff: 01/10/2019
+ms.locfileid: "54183599"
 ---
 # <a name="automated-enterprise-bi-with-sql-data-warehouse-and-azure-data-factory"></a>Inteligencia empresarial automatizada con SQL Data Warehouse y Azure Data Factory
 
 Esta arquitectura de referencia muestra cómo realizar una carga incremental en una canalización de [extracción, carga y transformación (ELT)](../../data-guide/relational-data/etl.md#extract-load-and-transform-elt). Usa Azure Data Factory para automatizar la canalización de ECT. La canalización mueve de forma incremental los datos más recientes de OLTP de una base de datos de SQL Server local a SQL Data Warehouse. Los datos transaccionales se transforman en un modelo tabular para su análisis.
 
-> [!VIDEO <https://www.microsoft.com/videoplayer/embed/RE2Gnz2>]
+> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2Gnz2]
 
 Hay disponible una implementación de referencia de esta arquitectura en [GitHub][github].
 

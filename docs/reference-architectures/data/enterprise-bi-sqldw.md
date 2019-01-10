@@ -5,12 +5,12 @@ description: Use Azure para obtener perspectivas empresariales de datos relacion
 author: MikeWasson
 ms.date: 11/06/2018
 ms.custom: seodec18
-ms.openlocfilehash: 3808cc5d09e2e0a5aaee1a6cfcb050b98a0ef2ee
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 2f15b8d4376638e6e8e522e5150a3b3c247cba8f
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644230"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010297"
 ---
 # <a name="enterprise-bi-in-azure-with-sql-data-warehouse"></a>Inteligencia empresarial en Azure con SQL Data Warehouse
 
@@ -72,7 +72,7 @@ En las secciones siguientes se describe en detalle cada una de estas etapas.
 
 La utilidad [bcp](/sql/tools/bcp-utility) (programa de copia masiva) es una forma rápida de crear archivos planos de texto a partir de tablas SQL. En este paso, seleccione las columnas que desea exportar, pero no transforme los datos. Las transformaciones de datos deben realizarse en SQL Data Warehouse.
 
-**Recomendaciones**
+**Recomendaciones:**
 
 Si es posible, programe la extracción de datos durante las horas de poca actividad con el fin de minimizar la contención de recursos en el entorno de producción.
 
@@ -84,7 +84,7 @@ Puede acelerar la transferencia de red si guarda los datos exportados en un form
 
 La utilidad [AzCopy](/azure/storage/common/storage-use-azcopy) está diseñada para la copia de alto rendimiento de datos en Azure Blob Storage.
 
-**Recomendaciones**
+**Recomendaciones:**
 
 Cree la cuenta de almacenamiento en una región cerca de la ubicación del origen de datos. Implemente la cuenta de almacenamiento y la instancia de SQL Data Warehouse en la misma región.
 
@@ -105,7 +105,7 @@ La carga de datos es un proceso de dos pasos:
 1. Creación de un conjunto de tablas externas para los datos. Una tabla externa es una definición de tabla que apunta a los datos almacenados fuera del almacén &mdash; en este caso, a los archivos planos en Blob Storage. Este paso no mueve ningún dato al almacenamiento.
 2. Creación de tablas de almacenamiento provisional y carga de los datos en las tablas de almacenamiento provisional. Este paso copia los datos en el almacenamiento.
 
-**Recomendaciones**
+**Recomendaciones:**
 
 Considere la posibilidad de usar SQL Data Warehouse cuando tenga grandes cantidades de datos (más de 1 TB) y esté ejecutando una carga de trabajo de análisis que aprovecharía el paralelismo. SQL Data Warehouse no es una buena opción para cargas de trabajo OLTP o conjuntos de datos más pequeños (< 250 GB). Para conjuntos de datos de un tamaño inferior a 250 GB, considere la posibilidad de usar Azure SQL Database o SQL Server. Para más información, consulte el artículo sobre [Almacenamiento de datos](../../data-guide/relational-data/data-warehousing.md).
 
@@ -155,7 +155,7 @@ Power BI admite dos opciones para la conexión a Azure Analysis Services:
 
 Se recomienda la conexión dinámica, ya que no requiere copiar los datos en el modelo de Power BI. Además, al usar DirectQuery se garantiza que los resultados siempre sean coherentes con los últimos datos de origen. Para más información, consulte [Conexión con Power BI](/azure/analysis-services/analysis-services-connect-pbi).
 
-**Recomendaciones**
+**Recomendaciones:**
 
 Evite ejecutar consultas de panel de BI directamente en el almacenamiento de datos. Los paneles BI requieren tiempos de respuesta muy bajos, es posible que las consultas directas realizadas en el almacenamiento no pueden satisfacer esta necesidad. Además, la actualización del panel se reflejará en el número de consultas simultáneas, lo que podría afectar al rendimiento.
 

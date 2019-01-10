@@ -1,20 +1,17 @@
 ---
-title: Supervisión del punto de conexión de mantenimiento
+title: Patrón Health Endpoint Monitoring (supervisión de puntos de conexión de estado)
+titleSuffix: Cloud Design Patterns
 description: Implementa comprobaciones funcionales en una aplicación a la que pueden acceder herramientas externas a través de los puntos de conexión expuestos en intervalos regulares.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- availability
-- management-monitoring
-- resiliency
-ms.openlocfilehash: 22a4e47c4dd8dd3dd11a4238e859acbea49f9d1b
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 85a1355ff47e6fce80d9b2ed114024651eb994db
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428982"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114256"
 ---
 # <a name="health-endpoint-monitoring-pattern"></a>Patrón Health Endpoint Monitoring (supervisión de puntos de conexión de estado)
 
@@ -42,6 +39,7 @@ El código de respuesta indica el estado de la aplicación y, opcionalmente, el 
 ![Información general del patrón](./_images/health-endpoint-monitoring-pattern.png)
 
 Otras comprobaciones que el código de seguimiento del estado puede llevar a cabo incluyen:
+
 - La comprobación del almacenamiento en la nube o de una base de datos para ver su disponibilidad y el tiempo de respuesta.
 - La comprobación de otros servicios o recursos ubicados en la aplicación, o situados en otro lugar pero que la aplicación utiliza.
 
@@ -67,7 +65,7 @@ Tenga en cuenta los puntos siguientes al decidir cómo implementar este patrón:
 
 Validación de la respuesta. Por ejemplo, ¿basta con solo un único código de estado 200 (OK) para comprobar que la aplicación funciona correctamente? Aunque este proporciona la medida más básica de disponibilidad de las aplicaciones y es la implementación mínima de este patrón, proporciona poca información sobre las operaciones, tendencias y posibles problemas futuros de la aplicación.
 
-   >  Asegúrese de que la aplicación devuelve correctamente un 200 (OK) solo si se encuentra y procesa el recurso de destino. En algunos escenarios, como cuando se usa una página maestra para hospedar la página web de destino, el servidor devuelve un código de estado 200 (OK) en lugar de un código 404 (no encontrado), incluso aunque no se encuentre la página de contenido de destino.
+   > Asegúrese de que la aplicación devuelve correctamente un 200 (OK) solo si se encuentra y procesa el recurso de destino. En algunos escenarios, como cuando se usa una página maestra para hospedar la página web de destino, el servidor devuelve un código de estado 200 (OK) en lugar de un código 404 (no encontrado), incluso aunque no se encuentre la página de contenido de destino.
 
 El número de puntos de conexión a exponer para una aplicación. Un enfoque consiste en exponer al menos un punto de conexión para los servicios básicos que utiliza la aplicación y otro para los servicios de prioridad inferior, lo que permite que haya diferentes niveles de importancia que se asignarán a cada resultado de la supervisión. Considere también la posibilidad de exponer más puntos de conexión como, por ejemplo, uno para cada servicio básico, para conseguir granularidad adicional en la supervisión. Por ejemplo, una comprobación de estado puede comprobar la base de datos, el almacenamiento y un servicio de geocodificación externo que use una aplicación, cada uno de ellos con un nivel diferente de tiempo de actividad y de tiempo de respuesta. El estado de la aplicación puede seguir siendo correcto incluso aunque el servicio de geocodificación, o alguna otra tarea en segundo plano, no esté disponible durante algunos minutos.
 
@@ -98,6 +96,7 @@ Configuración de la seguridad de los puntos de conexión de supervisión para p
 ## <a name="when-to-use-this-pattern"></a>Cuándo usar este patrón
 
 Este patrón es útil para:
+
 - Supervisar sitios web y aplicaciones web para comprobar la disponibilidad.
 - Supervisar sitios web y aplicaciones web para comprobar para que funcionan correctamente.
 - Supervisar servicios de nivel intermedio o compartidos para detectar y aislar un error que pueda afectar a otras aplicaciones.
@@ -134,6 +133,7 @@ public ActionResult CoreServices()
   return new HttpStatusCodeResult((int)HttpStatusCode.OK);
 }
 ```
+
 El método `ObscurePath` muestra cómo puede leer una ruta desde la configuración de la aplicación y utilizarla como punto de conexión para las pruebas. Este ejemplo, en C#, también muestra cómo puede aceptar un identificador como parámetro y usarlo para comprobar las solicitudes válidas.
 
 ```csharp
@@ -178,6 +178,7 @@ public ActionResult TestResponseFromConfig()
   return new HttpStatusCodeResult(returnStatusCode);
 }
 ```
+
 ## <a name="monitoring-endpoints-in-azure-hosted-applications"></a>Supervisión de puntos de conexión en aplicaciones hospedadas en Azure
 
 Algunas opciones para la supervisión de puntos de conexión en las aplicaciones de Azure son:
@@ -192,7 +193,7 @@ Algunas opciones para la supervisión de puntos de conexión en las aplicaciones
 
 Las condiciones que se pueden supervisar varían según el mecanismo de hospedaje que elija para su aplicación (por ejemplo, Web Sites, Cloud Services, Virtual Machines, o Mobile Services), pero todos estos incluyen la capacidad de crear una regla de alerta que utiliza un punto de conexión web que especifica en la configuración del servicio. Este punto de conexión debe responder de forma puntual para que el sistema de alerta pueda detectar que la aplicación está funcionando correctamente.
 
->  Lea más información acerca de la [creación de notificaciones de alerta][portal-alerts].
+> Lea más información acerca de la [creación de notificaciones de alerta][portal-alerts].
 
 Si hospeda la aplicación en la web o en los roles de trabajo de Azure Cloud Services, o en Virtual Machines, puede aprovechar uno de los servicios integrados en Azure que se llama Traffic Manager. Traffic Manager es un servicio de enrutamiento y equilibrio de carga que puede distribuir las solicitudes a instancias específicas de la aplicación hospedada en Cloud Services según un intervalo de reglas y opciones.
 
@@ -200,13 +201,14 @@ Además de enrutar las solicitudes, Traffic Manager hace ping de forma regular e
 
 Sin embargo, Traffic Manager solo esperará diez segundos a recibir una respuesta desde la dirección URL de supervisión. Por lo tanto, debe asegurarse de que el código de comprobación de estado se ejecute en ese tiempo, lo que permite la latencia de red para el recorrido de ida desde Traffic Manager a la aplicación y a la inversa.
 
->  Lea más información sobre el uso de [Traffic Manager para supervisar las aplicaciones](https://azure.microsoft.com/documentation/services/traffic-manager/). Traffic Manager también se analiza en [Multiple Datacenter Deployment Guidance](https://msdn.microsoft.com/library/dn589779.aspx) (Guía para la implementación de varios centros de datos).
+> Lea más información sobre el uso de [Traffic Manager para supervisar las aplicaciones](/azure/traffic-manager/). Traffic Manager también se analiza en [Multiple Datacenter Deployment Guidance](https://msdn.microsoft.com/library/dn589779.aspx) (Guía para la implementación de varios centros de datos).
 
 ## <a name="related-guidance"></a>Instrucciones relacionadas
 
 Las directrices siguientes pueden ser útiles a la hora de implementar este patrón:
+
 - [Orientación sobre instrumentación y telemetría](https://msdn.microsoft.com/library/dn589775.aspx). La comprobación del estado de los servicios y componentes se suele realizar mediante sondeo, pero también es útil tener información de contexto para supervisar el rendimiento de la aplicación y detectar los eventos que se producen en el tiempo de ejecución. Estos datos se pueden transmitir a herramientas de supervisión como información adicional para la supervisión de estado. La orientación sobre instrumentación y telemetría explora la recopilación de información remota de diagnósticos que la instrumentación recopila en las aplicaciones.
 - [Recepción de notificaciones de alerta][portal-alerts].
 - Este patrón incluye una [aplicación de ejemplo](https://github.com/mspnp/cloud-design-patterns/tree/master/health-endpoint-monitoring) descargable.
 
-[portal-alerts]: https://azure.microsoft.com/documentation/articles/insights-receive-alert-notifications/
+[portal-alerts]: /azure/azure-monitor/platform/alerts-metric

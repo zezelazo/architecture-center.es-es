@@ -1,19 +1,17 @@
 ---
-title: Elección del responsable
+title: Patrón Leader Election
+titleSuffix: Cloud Design Patterns
 description: Coordina las acciones realizadas por una colección de instancias de tareas de colaboración de una aplicación distribuida mediante la elección de una instancia como líder que asume la responsabilidad de administrar las demás instancias.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- resiliency
-ms.openlocfilehash: 6cc4b19e889cc9fc692e388498cc16ea56b1c981
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: cfc29e3490735c16b41c494e6cecbb8972cdc705
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429203"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010146"
 ---
 # <a name="leader-election-pattern"></a>Patrón Leader Election
 
@@ -41,6 +39,7 @@ Se debe elegir una única instancia de tarea para que actúe como líder, y esta
 El sistema debe proporcionar un mecanismo eficaz para seleccionar el líder. Este método tiene que hacer frente a eventos, como interrupciones de red o errores de proceso. En muchas de las soluciones, las instancias de tarea subordinadas supervisan el líder a través de algún tipo de método de latido o mediante sondeo. Si el líder designado termina de forma inesperada, o un error de red hace que el líder no esté disponible para las instancias de tarea subordinadas, será necesario elegir un nuevo líder.
 
 Existen varias estrategias para elegir un líder entre un conjunto de tareas en un entorno distribuido, como son:
+
 - Seleccionar la instancia de tarea con el identificador de proceso o de instancia peor clasificados.
 - Competir para adquirir una exclusión mutua compartida y distribuida. La primera instancia de tarea que adquiere la exclusión mutua es el líder. Sin embargo, el sistema debe asegurarse de que, si el líder finaliza o se desconecta del resto del sistema, se libere la exclusión mutua para permitir que otra instancia de tarea se convierta en el líder.
 - Implementar uno de los algoritmos de Leader Electrion comunes como el [algoritmo Bully](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/BullyExample.html) o el [algoritmo Ring](https://www.cs.colostate.edu/~cs551/CourseNotes/Synchronization/RingElectExample.html). Estos algoritmos dan por supuesto que cada candidato de la elección tiene un identificador único y que puede comunicarse con los otros candidatos de manera confiable.
@@ -48,6 +47,7 @@ Existen varias estrategias para elegir un líder entre un conjunto de tareas en 
 ## <a name="issues-and-considerations"></a>Problemas y consideraciones
 
 Tenga en cuenta los puntos siguientes al decidir cómo implementar este patrón:
+
 - El proceso de elegir un líder debería ser resistente a errores transitorios y persistentes.
 - Tiene que ser posible detectar cuándo el líder ha generado un error o ha dejado de estar disponible (por ejemplo, debido a un error de comunicación). La rapidez con que se necesite la detección depende del sistema. Algunos sistemas podrían funcionar durante un corto espacio de tiempo sin un líder, en cuyo transcurso un error transitorio podría corregirse. En otros casos, podría ser necesario detectar el error del líder inmediatamente y desencadenar una nueva elección.
 - En un sistema que implementa el escalado automático horizontal, el líder podría finalizarse si el sistema se reduce y cierra algunos de los recursos de computación.
@@ -59,9 +59,10 @@ Tenga en cuenta los puntos siguientes al decidir cómo implementar este patrón:
 
 Use este patrón cuando las tareas de una aplicación distribuida, como una solución hospedada en las nube, necesiten una cuidadosa coordinación y no haya un líder natural.
 
->  Evite convertir el líder en un cuello de botella en el sistema. La finalidad del líder es coordinar el trabajo de las tareas subordinadas, y no tiene que participar necesariamente en este trabajo&mdash;aunque debería poder hacerlo si la tarea no se elige como líder.
+> Evite convertir el líder en un cuello de botella en el sistema. La finalidad del líder es coordinar el trabajo de las tareas subordinadas, y no tiene que participar necesariamente en este trabajo&mdash;aunque debería poder hacerlo si la tarea no se elige como líder.
 
 Este patrón puede ser útil en los siguientes casos:
+
 - Hay un líder natural o un proceso dedicado que puede actuar siempre como líder. Por ejemplo, podría implementarse un proceso de singleton que coordine las instancias de tarea. Si se produce un error en este proceso o su estado no es correcto, el sistema puede cerrarlo y reiniciarlo.
 - La coordinación entre las tareas se puede lograr con un método más ligero. Por ejemplo, si varias instancias de tarea solo necesitan acceso coordinado a un recurso compartido, una solución mejor es usar bloqueo optimista o pesimista para controlar el acceso.
 - Una solución de terceros es más adecuada. Por ejemplo, el servicio Microsoft Azure HDInsight (basado en Apache Hadoop) usa los servicios que proporciona Apache Zookeeper para coordinar las tareas de asignación y reducción que recopilan y resumen los datos.
@@ -70,8 +71,8 @@ Este patrón puede ser útil en los siguientes casos:
 
 El proyecto DistributedMutex de la solución LeaderElection (se puede encontrar un ejemplo que demuestra este patrón en [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election)) muestra cómo usar una concesión en un blob de Azure Storage para proporcionar un mecanismo a fin de implementar una exclusión mutua distribuida compartida. Esta exclusión mutua puede usarse para elegir un líder entre un grupo de instancias de rol de un servicio en la nube de Azure. La primera instancia de rol en adquirir la concesión se elige como líder y lo sigue siendo hasta que libera la concesión o es incapaz de renovarla. Otras instancias de rol pueden continuar con la supervisión de la concesión del blob en caso de que el líder ya no esté disponible.
 
->  Una concesión de blob es un bloqueo exclusivo de escritura sobre un blob. Un único blob solo puede ser el sujeto de una concesión en cualquier momento en el tiempo. Una instancia de rol puede solicitar una concesión sobre un blob especificado y se le concederá la concesión si ninguna otra instancia de rol mantiene una concesión sobre el mismo blob. En caso contrario, la solicitud inicia una excepción.
-> 
+> Una concesión de blob es un bloqueo exclusivo de escritura sobre un blob. Un único blob solo puede ser el sujeto de una concesión en cualquier momento en el tiempo. Una instancia de rol puede solicitar una concesión sobre un blob especificado y se le concederá la concesión si ninguna otra instancia de rol mantiene una concesión sobre el mismo blob. En caso contrario, la solicitud inicia una excepción.
+>
 > Para evitar que una instancia de rol con errores conserve la concesión de forma indefinida, especifique una duración para la concesión. Cuando expire, la concesión estará disponible. Sin embargo, mientras una instancia de rol mantenga la concesión puede solicitar que ésta se renueve, así que se le otorgará durante un periodo de tiempo adicional. La instancia de rol puede repetir continuamente este proceso si desea conservar la concesión.
 > Para más información sobre cómo conceder un blob, consulte [Lease Blob (API de REST)](https://msdn.microsoft.com/library/azure/ee691972.aspx).
 
@@ -167,7 +168,6 @@ El método `KeepRenewingLease` es otro método auxiliar que usa el objeto `BlobL
 
 ![La figura 1 muestra las funciones de la clase BlobDistributedMutex.](./_images/leader-election-diagram.png)
 
-
 En el código de ejemplo siguiente se muestra cómo usar la clase `BlobDistributedMutex` en un rol de trabajo. Este código adquiere una concesión sobre un blob denominado `MyLeaderCoordinatorTask` en el contenedor de la concesión en el almacenamiento de desarrollo y especifica que el código definido en el método `MyLeaderCoordinatorTask` debe ejecutarse si la instancia de rol se elige como líder.
 
 ```csharp
@@ -186,6 +186,7 @@ private static async Task MyLeaderCoordinatorTask(CancellationToken token)
 ```
 
 Tenga en cuenta los siguientes puntos acerca de la solución de ejemplo:
+
 - El blob es un posible único punto de error. Si el servicio de blob deja de estar disponible, o no es accesible, el líder no podrá renovar la concesión y ninguna otra instancia de rol podrá adquirirla. En este caso, ninguna instancia de rol podrá funcionar como líder. Sin embargo, el servicio de blob está diseñado para ser resistente, por lo que se considera improbable el error completo de dicho servicio.
 - Si la tarea que realiza el líder se detiene, el líder puede continuar y renovar la concesión, lo que impide que cualquier otra instancia de rol pueda adquirirla y asuma el rol de líder para coordinar las tareas. En el mundo real, se debe comprobar el mantenimiento del líder a intervalos frecuentes.
 - El proceso de elección es no determinista. No se puede realizar ninguna suposición acerca de qué instancia de rol adquirirá la concesión del blob y se convertirá en líder.
@@ -194,6 +195,7 @@ Tenga en cuenta los siguientes puntos acerca de la solución de ejemplo:
 ## <a name="related-patterns-and-guidance"></a>Orientación y patrones relacionados
 
 Las directrices siguientes también pueden ser importantes a la hora de implementar este patrón:
+
 - Este patrón tiene una [aplicación de ejemplo](https://github.com/mspnp/cloud-design-patterns/tree/master/leader-election) descargable.
 - [Guía de escalado automático](https://msdn.microsoft.com/library/dn589774.aspx). Es posible iniciar y detener instancias de los hosts de las tareas a medida que varía la carga de la aplicación. El escalado automático puede ayudar a mantener el rendimiento y la capacidad de proceso durante los períodos de procesamiento máximo.
 - [Compute Partitioning Guidance](https://msdn.microsoft.com/library/dn589773.aspx) (Orientación sobre la creación de particiones de proceso). En esta guía se describe cómo asignar tareas a los hosts de un servicio en la nube de tal forma que ayude a reducir los costes de ejecución mientras se mantiene la escalabilidad, el rendimiento, la disponibilidad y la seguridad del servicio.

@@ -1,18 +1,17 @@
 ---
-title: Identidad federada
+title: Patrón Federated Identity
+titleSuffix: Cloud Design Patterns
 description: La autenticación se delega a un proveedor de identidad externo.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- security
-ms.openlocfilehash: a1edbdd080309383201d33e73602e2f18928c080
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: b268000a81edbb2f224a9244d5949def75854f04
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542639"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110364"
 ---
 # <a name="federated-identity-pattern"></a>Patrón Federated Identity
 
@@ -41,7 +40,6 @@ Entre los proveedores de identidades de confianza se incluyen directorios corpor
 En la siguiente figura se ilustra el patrón Federated Identity (Identidad federada) cuando una aplicación cliente necesita acceder a un servicio que requiere autentificación. La autenticación se realiza mediante un IdP que trabaja en combinación con un STS. El IdP emite tokens de seguridad que proporcionan información sobre el usuario autenticado. Esta información, conocida como notificaciones, incluye la identidad del usuario y podría incluir también otra información como la pertenencia a roles y derechos de acceso más específicos.
 
 ![Introducción a la autenticación federada](./_images/federated-identity-overview.png)
-
 
 Este modelo se conoce a menudo como control de acceso basado en notificaciones. Las aplicaciones y los servicios autorizarán el acceso a las características y funcionalidades en función de las notificaciones contenidas en el token. El servicio que requiere autenticación debe confiar en el IdP. La aplicación cliente se pone en contacto el IdP que realiza la autenticación. Si la autenticación es correcta, el IdP devuelve un token que contiene las notificaciones que identifican al usuario en el STS (tenga en cuenta que el IdP y el STS pueden ser el mismo servicio). El STS puede transformar y aumentar las notificaciones en el token según reglas predefinidas, antes de devolverlo al cliente. La aplicación cliente puede luego pasar este token al servicio como prueba de su identidad.
 
@@ -85,7 +83,6 @@ Una organización hospeda una aplicación de software como servicio (SaaS) multi
 
 ![Cómo los usuarios de un suscriptor de una gran empresa acceden a la aplicación](./_images/federated-identity-multitenat.png)
 
-
 En la ilustración se muestra cómo los inquilinos se autentican con su propio proveedor de identidades (paso 1), en este caso ADFS. Después de autenticar correctamente un inquilino, ADFS emite un token. El explorador cliente reenvía este token al proveedor de federación de la aplicación de SaaS, que confía en los tokens emitidos por el ADFS del inquilino, con el fin de devolver un token que sea válido para el proveedor de federación de SaaS (paso 2). Si es necesario, el proveedor de federación de SaaS realiza una transformación de las notificaciones del token en notificaciones que la aplicación reconoce (paso 3) antes de devolver el nuevo token al explorador cliente. La aplicación confía en los tokens emitidos por el proveedor de federación de SaaS y usa las notificaciones del token para aplicar las reglas de autorización (paso 4).
 
 Los inquilinos no tienen que recordar distintas credenciales para acceder a la aplicación, y un administrador de la empresa del inquilino puede configurar en su propio ADFS la lista de usuarios que pueden acceder a la aplicación.
@@ -95,5 +92,5 @@ Los inquilinos no tienen que recordar distintas credenciales para acceder a la a
 - [Microsoft Azure Active Directory](https://azure.microsoft.com/services/active-directory/)
 - [Active Directory Domain Services](https://msdn.microsoft.com/library/bb897402.aspx)
 - [Servicios de federación de Active Directory](https://msdn.microsoft.com/library/bb897402.aspx)
-- [Administración de identidades para aplicaciones multiinquilino en Microsoft Azure](https://azure.microsoft.com/documentation/articles/guidance-multitenant-identity/)
-- [Aplicaciones multiempresa en Azure](https://azure.microsoft.com/documentation/articles/dotnet-develop-multitenant-applications/)
+- [Administración de identidades para aplicaciones multiinquilino en Microsoft Azure](/azure/architecture/multitenant-identity)
+- [Aplicaciones multiempresa en Azure](/azure/dotnet-develop-multitenant-applications)

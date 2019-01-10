@@ -1,19 +1,17 @@
 ---
-title: External Configuration Store
+title: Patrón External Configuration Store
+titleSuffix: Cloud Design Patterns
 description: Extrae la información de configuración del paquete de implementación de la aplicación y la lleva a una ubicación centralizada.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- management-monitoring
-ms.openlocfilehash: 733ca979903d1526d3a1a6b281a8903893e19fda
-ms.sourcegitcommit: b0482d49aab0526be386837702e7724c61232c60
+ms.custom: seodec18
+ms.openlocfilehash: 7e37e5bc052a9d8e8747a3a4ac3d79a311185ea4
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/14/2017
-ms.locfileid: "24542287"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011317"
 ---
 # <a name="external-configuration-store-pattern"></a>Patrón External Configuration Store
 
@@ -40,7 +38,6 @@ La memoria auxiliar que elija para la información de configuración debe tener 
 > Muchos sistemas de configuración integrados leen los datos cuando se inicia la aplicación y los almacenan en caché en memoria para proporcionar acceso rápido y minimizar el impacto en el rendimiento de la aplicación. Según el tipo de memoria auxiliar usado y la latencia de este almacén, podría resultar útil implementar un mecanismo de almacenamiento en caché en el almacén de configuración externo. Para obtener más información, consulte [Caching Guidance](https://msdn.microsoft.com/library/dn589802.aspx)(Guía de almacenamiento en caché). La ilustración muestra información general sobre el patrón de almacén de configuración externo con caché local opcional.
 
 ![Información general sobre el patrón External Configuration Store con caché local opcional](./_images/external-configuration-store-overview.png)
-
 
 ## <a name="issues-and-considerations"></a>Problemas y consideraciones
 
@@ -101,7 +98,7 @@ La clase `ExternalConfigurationManager` proporciona un contenedor alrededor de u
 
 Tenga en cuenta que toda la configuración también se almacena en caché en un objeto `Dictionary` dentro de la clase `ExternalConfigurationManager` para un fácil acceso. El método `GetSetting` usado para recuperar un valor de configuración lee los datos de la caché. Si el valor de configuración no se encuentra en la caché, se recupera en su lugar del objeto `BlobSettingsStore`.
 
-El método `GetSettings` invoca el método `CheckForConfigurationChanges` para detectar si se ha cambiado la información de configuración en el almacenamiento de blobs. Para ello, examina el número de versión y lo compara con el número de versión actual que contiene el objeto `ExternalConfigurationManager`. Si se han producido uno o más cambios, se genera el evento `Changed` y se actualizan los valores de configuración almacenados en caché en el objeto `Dictionary`. Esta es una aplicación del [patrón Cache-Aside](cache-aside.md).
+El método `GetSettings` invoca el método `CheckForConfigurationChanges` para detectar si se ha cambiado la información de configuración en el almacenamiento de blobs. Para ello, examina el número de versión y lo compara con el número de versión actual que contiene el objeto `ExternalConfigurationManager`. Si se han producido uno o más cambios, se genera el evento `Changed` y se actualizan los valores de configuración almacenados en caché en el objeto `Dictionary`. Esta es una aplicación del [patrón Cache-Aside](./cache-aside.md).
 
 El siguiente código de ejemplo se muestra cómo se implementa el evento `Changed` eventos, el método `GetSettings` y el método `CheckForConfigurationChanges`:
 
@@ -130,7 +127,7 @@ public class ExternalConfigurationManager : IDisposable
   public string GetAppSetting(string key)
   {
     ...
-    // Try to get the value from the settings cache. 
+    // Try to get the value from the settings cache.
     // If there's a cache miss, get the setting from the settings store and refresh the settings cache.
 
     string value;

@@ -3,18 +3,22 @@ title: Elección de una tecnología de procesamiento de lenguaje natural
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: b1cb019164285d16b6e9d34eae220801785adab9
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 699e01bc9905d02fc8ec1113039087189f6e8caf
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902316"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114120"
 ---
 # <a name="choosing-a-natural-language-processing-technology-in-azure"></a>Elección de una tecnología de procesamiento de lenguaje natural en Azure
 
 El procesamiento de texto de forma libre se realiza en documentos que contienen párrafos de texto, normalmente con el propósito de ayudar a las búsquedas, pero también se usa para realizar otras tareas de procesamiento de lenguaje natural (NLP) como, por ejemplo, análisis de opiniones, detección de temas, detección de idioma, extracción de frases clave y clasificación de documentos. Este artículo se centra en las opciones de tecnología que actúan en apoyo de las tareas de procesamiento del lenguaje natural (NLP).
 
+<!-- markdownlint-disable MD026 -->
+
 ## <a name="what-are-your-options-when-choosing-an-nlp-service"></a>¿Cuáles son las opciones al elegir un servicio NLP?
+
+<!-- markdownlint-enable MD026 -->
 
 En Azure, los servicios siguientes proporcionan funcionalidades de procesamiento de lenguaje natural (NLP):
 
@@ -36,7 +40,7 @@ Para restringir las opciones, empiece por responder a estas preguntas:
 
 ## <a name="capability-matrix"></a>Matriz de funcionalidades
 
-En las tablas siguientes se resumen las diferencias clave en cuanto a funcionalidades.  
+En las tablas siguientes se resumen las diferencias clave en cuanto a funcionalidades.
 
 ### <a name="general-capabilities"></a>Funcionalidades generales
 
@@ -50,7 +54,7 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 ### <a name="low-level-natural-language-processing-capabilities"></a>Funcionalidades de procesamiento de lenguaje natural de bajo nivel
 
 | | HDInsight de Azure | Microsoft Cognitive Services |  
-| --- | --- | --- | 
+| --- | --- | --- |
 | Tokenizador | Sí (Spark NLP) | Sí (Linguistic Analysis API) |
 | Lematizador | Sí (Spark NLP) | Sin  |
 | Lematizador | Sí (Spark NLP) | Sin  |
@@ -63,8 +67,8 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 ### <a name="high-level-natural-language-processing-capabilities"></a>Funcionalidades de procesamiento de lenguaje natural de alto nivel
 
 | | HDInsight de Azure | Microsoft Cognitive Services |
-| --- | --- | --- | 
-| Identificación y extracción de entidades o intenciones | Sin  | Sí (Language Understanding Intelligent Service (LUIS) API) |    
+| --- | --- | --- |
+| Identificación y extracción de entidades o intenciones | Sin  | Sí (Language Understanding Intelligent Service (LUIS) API) |
 | Detección de temas | Sí (Spark NLP) | Sí (Text Analytics API) |
 | Corrector ortográfico | Sí (Spark NLP) | Sí (Bing Spell Check API) |
 | análisis de opiniones | Sí (Spark NLP) | Sí (Text Analytics API) |

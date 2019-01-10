@@ -1,19 +1,17 @@
 ---
-title: Particionamiento
+title: Patrón de particionamiento
+titleSuffix: Cloud Design Patterns
 description: Divida un almacén de datos en un conjunto de particiones horizontales o particiones de base de datos.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: bc2b6aeb6966d14327a21849adbbfe635eae59df
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 52c0579e4b08aa18456e0cc5a26742aab39a1a7e
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428863"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54010331"
 ---
 # <a name="sharding-pattern"></a>Patrón de particionamiento
 
@@ -57,7 +55,7 @@ La abstracción de la ubicación física de los datos en la lógica de particion
 
 Para asegurar una escalabilidad y un rendimiento óptimos, es importante dividir los datos de una forma adecuada para los tipos de consultas que realiza la aplicación. En muchos casos, es improbable que el esquema de particionamiento coincida exactamente con los requisitos de cada consulta. Por ejemplo, en un sistema multiinquilino, una aplicación podría necesitar recuperar datos del inquilino mediante su identificador, pero también puede que se necesiten buscar estos datos en función de algún otro atributo, como el nombre o la ubicación del inquilino. Para tratar estas situaciones, implemente una estrategia de particionamiento con una clave de partición que admita las consultas que se realizan más frecuentemente.
 
-Si las consultas recuperan datos regularmente mediante una combinación de valores de atributo, es probable que pueda definir una clave de partición compuesta mediante la vinculación de atributos. Como alternativa, use un patrón como el [Patrón Index Table](index-table.md) para proporcionar una búsqueda rápida de datos basada en los atributos que no cubre la clave de partición.
+Si las consultas recuperan datos regularmente mediante una combinación de valores de atributo, es probable que pueda definir una clave de partición compuesta mediante la vinculación de atributos. Como alternativa, use un patrón como el [Patrón Index Table](./index-table.md) para proporcionar una búsqueda rápida de datos basada en los atributos que no cubre la clave de partición.
 
 ## <a name="sharding-strategies"></a>Estrategias de particionamiento
 
@@ -67,8 +65,7 @@ Se suelen usar tres estrategias a la hora de seleccionar la clave de partición 
 
    ![Ilustración 1: Datos de inquilinos de particionamiento basados en identificadores de inquilino](./_images/sharding-tenant.png)
 
-
-   La asignación entre la clave de partición y el almacenamiento físico puede basarse en particiones físicas donde cada clave de partición se asigna a una partición física. O bien, una técnica más flexible para reequilibrar particiones es el particionamiento virtual, donde las claves de partición se asignan al mismo número de particiones virtuales, que a su vez se asignan a menos particiones físicas. En este enfoque, una aplicación busca datos con una clave de partición que hace referencia a una partición virtual, y el sistema asigna de forma transparente particiones virtuales a particiones físicas. La asignación entre una partición virtual y una partición física puede cambiar sin necesidad de modificar el código de la aplicación para usar un conjunto diferente de claves de partición.
+La asignación entre la clave de partición y el almacenamiento físico puede basarse en particiones físicas donde cada clave de partición se asigna a una partición física. O bien, una técnica más flexible para reequilibrar particiones es el particionamiento virtual, donde las claves de partición se asignan al mismo número de particiones virtuales, que a su vez se asignan a menos particiones físicas. En este enfoque, una aplicación busca datos con una clave de partición que hace referencia a una partición virtual, y el sistema asigna de forma transparente particiones virtuales a particiones físicas. La asignación entre una partición virtual y una partición física puede cambiar sin necesidad de modificar el código de la aplicación para usar un conjunto diferente de claves de partición.
 
 **Estrategia de rango**. Esta estrategia agrupa los elementos relacionados en la misma partición y los ordena por clave de partición (las claves de partición son secuenciales). Esto es útil para aplicaciones que suelen recuperar conjuntos de elementos mediante consultas por rango (consultas que devuelven un conjunto de elementos de datos de una clave de partición que se encuentra dentro de un rango determinado). Por ejemplo, si una aplicación suele necesitar buscar todos los pedidos realizados en un determinado mes, estos datos puede recuperarse más rápidamente si todos los pedidos de un mes se almacenan por orden de fecha y hora en la misma partición. Si cada uno de los pedido se almacena en una partición diferente, tendrán que recuperarse individualmente mediante la realización de un gran número de consultas de punto (consultas que devuelven un único elemento de datos). En la siguiente ilustración se muestra cómo se almacenan conjuntos secuenciales (rangos) de datos en particiones.
 
@@ -124,7 +121,7 @@ Tenga en cuenta los puntos siguientes al decidir cómo implementar este patrón:
 
     >  Los valores de incremento automático de otros campos que no son claves de partición también pueden causar problemas. Por ejemplo, si usa campos de incremento automático para generar identificadores únicos, es posible que dos elementos diferentes que se encuentran en diferentes particiones se asignen al mismo identificador.
 
-- Puede que no sea posible diseñar una clave de partición que coincida con los requisitos de cada consulta posible en relación con los datos. Particione los datos para que admitan las consultas que más se realizan y, si es necesario, cree tablas de índice secundarias para admitir las consultas que recuperan datos mediante criterios basados en atributos que no forman parte de la clave de partición. Para obtener más información, consulte [Patrón Index Table](index-table.md).
+- Puede que no sea posible diseñar una clave de partición que coincida con los requisitos de cada consulta posible en relación con los datos. Particione los datos para que admitan las consultas que más se realizan y, si es necesario, cree tablas de índice secundarias para admitir las consultas que recuperan datos mediante criterios basados en atributos que no forman parte de la clave de partición. Para obtener más información, consulte [Patrón Index Table](./index-table.md).
 
 - Las consultas que solo tienen acceso a una partición son más eficaces que las que recuperan datos de varias particiones, así que evite la implementación de un sistema de particionamiento que dé como resultado aplicaciones que realicen un gran número de consultas para combinar datos contenidos en diferentes particiones. Recuerde que una sola partición puede contener datos de varios tipos de entidades. Considere la posibilidad de desnormalizar sus datos para mantener las entidades relacionadas que suelen consultarse juntas (por ejemplo, los detalles de los clientes y los pedidos que han realizado) en la misma partición, a fin de reducir el número de lecturas independientes que realiza una aplicación.
 
@@ -150,7 +147,8 @@ Tenga en cuenta los puntos siguientes al decidir cómo implementar este patrón:
 
 Utilice este patrón cuando sea probable que un almacén de datos necesite escalar más allá de los recursos disponibles para un único nodo de almacenamiento o para mejorar el rendimiento mediante la reducción de la contención en un almacén de datos.
 
->  El objetivo principal del particionamiento es mejorar el rendimiento y la escalabilidad de un sistema, pero, en consecuencia, puede mejorar la disponibilidad debido a la forma en la que los datos se dividen en particiones independientes. Un error en una partición no impide necesariamente que una aplicación acceda a los datos contenidos en otras particiones y un operador puede realizar las tareas de mantenimiento o recuperación de una o más particiones sin hacer que todos los datos de una aplicación sean inaccesibles. Para obtener más información, consulte [Guía de creación de particiones de datos](https://msdn.microsoft.com/library/dn589795.aspx).
+> [!NOTE]
+El objetivo principal del particionamiento es mejorar el rendimiento y la escalabilidad de un sistema, pero, en consecuencia, puede mejorar la disponibilidad debido a la forma en la que los datos se dividen en particiones independientes. Un error en una partición no impide necesariamente que una aplicación acceda a los datos contenidos en otras particiones y un operador puede realizar las tareas de mantenimiento o recuperación de una o más particiones sin hacer que todos los datos de una aplicación sean inaccesibles. Para obtener más información, consulte [Guía de creación de particiones de datos](https://msdn.microsoft.com/library/dn589795.aspx).
 
 ## <a name="example"></a>Ejemplo
 
@@ -215,7 +213,8 @@ Trace.TraceInformation("Fanout query complete - Record Count: {0}",
 ## <a name="related-patterns-and-guidance"></a>Orientación y patrones relacionados
 
 Los patrones y las directrices siguientes también pueden ser importantes a la hora de implementar este modelo:
+
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Manual básico de coherencia de datos). Podría ser necesario mantener la coherencia de los datos distribuidos en diferentes particiones. Resume los problemas relacionados al mismo tiempo que mantiene la coherencia sobre los datos distribuidos y describe las ventajas e inconvenientes de los diferentes modelos de coherencia.
 - [Guía de creación de particiones de datos](https://msdn.microsoft.com/library/dn589795.aspx). El particionamiento de un almacén de datos puede introducir diferentes problemas adicionales. Describe estos problemas en relación con el particionamiento de los almacenes de datos en la nube para mejorar la escalabilidad, reducir la contención y optimizar el rendimiento.
-- [Patrón Index Table](index-table.md). A veces no es posible dar soporte completo a las consultas solo con el diseño de la clave de partición. Permite que una aplicación recupere rápidamente los datos de un almacén de datos de gran tamaño mediante la especificación de una clave distinta de la clave de partición.
-- [Patrón Materialized View](materialized-view.md). Para mantener el rendimiento de algunas operaciones de consulta, es útil crear vistas materializadas que agreguen y resuman los datos, especialmente si estos datos de resumen se basan en información que se distribuye entre las particiones. Describe cómo generar y rellenar estas vistas.
+- [Patrón Index Table](./index-table.md). A veces no es posible dar soporte completo a las consultas solo con el diseño de la clave de partición. Permite que una aplicación recupere rápidamente los datos de un almacén de datos de gran tamaño mediante la especificación de una clave distinta de la clave de partición.
+- [Patrón Materialized View](./materialized-view.md). Para mantener el rendimiento de algunas operaciones de consulta, es útil crear vistas materializadas que agreguen y resuman los datos, especialmente si estos datos de resumen se basan en información que se distribuye entre las particiones. Describe cómo generar y rellenar estas vistas.

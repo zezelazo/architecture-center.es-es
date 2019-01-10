@@ -2,14 +2,14 @@
 title: Puntuación en tiempo real de los modelos de Machine Learning para R
 description: Implemente un servicio de predicción en tiempo real en R mediante una instancia de Machine Learning Server que se ejecuta en Azure Kubernetes Service (AKS).
 author: njray
-ms.date: 12/12/18
+ms.date: 12/12/2018
 ms.custom: azcat-ai
-ms.openlocfilehash: a6069704c48fbc1f1a1e4b5df428011d6b5b883d
-ms.sourcegitcommit: 62d2211badd1d6950e8cb819d70c9a4ab1ee01d9
+ms.openlocfilehash: 6f3447d1dcab801ccdaf4cf88611725cc00eb68d
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53318999"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112284"
 ---
 # <a name="real-time-scoring-of-r-machine-learning-models"></a>Puntuación en tiempo real de los modelos de Machine Learning para R
 
@@ -51,7 +51,7 @@ La [operacionalización de modelos][operationalization] de Machine Learning Serv
 
 Para que la operacionalización del modelo funcione correctamente con Machine Learning Server en contenedores, debe instalar un certificado JSON Web Token (JWT). Esta implementación utiliza un certificado proporcionado por Microsoft. En un entorno de producción, proporcione los suyos propios.
 
-Para el tráfico entre Container Registry y AKS, considere la posibilidad de habilitar [un control de acceso basado en rol][rbac] (RBAC) para limitar los privilegios de acceso solo a los necesarios. 
+Para el tráfico entre Container Registry y AKS, considere la posibilidad de habilitar [un control de acceso basado en rol][rbac] (RBAC) para limitar los privilegios de acceso solo a los necesarios.
 
 ### <a name="separate-storage"></a>Almacenamiento independiente
 

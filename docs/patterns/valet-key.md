@@ -1,19 +1,17 @@
 ---
-title: Valet Key
+title: Patrón Valet Key
+titleSuffix: Cloud Design Patterns
 description: Usa un token o clave que proporciona a los clientes acceso directo restringido a un recurso o servicio específico.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- security
-ms.openlocfilehash: 99d3fbe05e34d61edc0d339f34665e557b250b05
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.custom: seodec18
+ms.openlocfilehash: 09173717d499d524d4d5dad2c1202c1bf361b1e5
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450894"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009872"
 ---
 # <a name="valet-key-pattern"></a>Patrón Valet Key
 
@@ -105,7 +103,7 @@ Azure admite firmas de acceso compartido en Azure Storage que permiten un mejor 
 
 Las firmas de acceso compartido de Azure también admiten directivas de acceso almacenadas por el servidor que se pueden asociar a un recurso específico, como una tabla o un blob. Esta característica proporciona mayor control y flexibilidad en comparación con los tokens de firma de acceso compartido generados por la aplicación, y debe utilizarse siempre que sea posible. La configuración definida en una directiva almacenada por el servidor se puede cambiar y se refleja en el token sin necesidad de emitir uno nuevo, pero la configuración definida en el token no se puede cambiar sin emitir uno nuevo. Este enfoque también permite revocar un token de firma de acceso compartido válido antes de que haya expirado.
 
-> Para más información, consulte [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/) (Introducción a SAS [firma de acceso compartido] de Table, SAS de Queue y actualización a SAS de Blob) y [Uso de firmas de acceso compartido](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/) en MSDN.
+> Para más información, consulte [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/) (Introducción a SAS [firma de acceso compartido] de Table, SAS de Queue y actualización a SAS de Blob) y [Uso de firmas de acceso compartido](/azure/storage/common/storage-dotnet-shared-access-signature-part-1) en MSDN.
 
 El código siguiente muestra cómo crear un token de firma de acceso compartido que sea válido durante cinco minutos. El método `GetSharedAccessReferenceForUpload` devuelve un token de firmas de acceso compartido que puede usarse para cargar un archivo en Azure Blob Storage.
 
@@ -162,9 +160,10 @@ public class ValuesController : ApiController
 ## <a name="next-steps"></a>Pasos siguientes
 
 Los patrones y las directrices siguientes también pueden ser importantes a la hora de implementar este modelo:
+
 - Se encuentra disponible un ejemplo que demuestra este patrón en [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/valet-key).
-- [Patrón Gatekeeper](gatekeeper.md). Este patrón se puede usar junto con el patrón Valet Key para proteger las aplicaciones y los servicios mediante una instancia de host dedicada que actúa como intermediario entre los clientes y la aplicación o el servicio. El equipo selector valida y corrige las solicitudes y pasa las solicitudes y los datos entre el cliente y la aplicación. Esto puede proporcionar una capa de seguridad adicional y reducir la superficie expuesta a ataques del sistema.
-- [Patrón Static Content Hosting](static-content-hosting.md). Describe cómo implementar recursos estáticos en un servicio de almacenamiento basado en la nube que puede proporcionar estos recursos directamente al cliente para reducir la necesidad de instancias de proceso costosas. Cuando la finalidad de los recursos no es que estén públicamente disponibles, el patrón Vale Key se puede usar para protegerlos.
+- [Patrón Gatekeeper](./gatekeeper.md). Este patrón se puede usar junto con el patrón Valet Key para proteger las aplicaciones y los servicios mediante una instancia de host dedicada que actúa como intermediario entre los clientes y la aplicación o el servicio. El equipo selector valida y corrige las solicitudes y pasa las solicitudes y los datos entre el cliente y la aplicación. Esto puede proporcionar una capa de seguridad adicional y reducir la superficie expuesta a ataques del sistema.
+- [Patrón Static Content Hosting](./static-content-hosting.md). Describe cómo implementar recursos estáticos en un servicio de almacenamiento basado en la nube que puede proporcionar estos recursos directamente al cliente para reducir la necesidad de instancias de proceso costosas. Cuando la finalidad de los recursos no es que estén públicamente disponibles, el patrón Vale Key se puede usar para protegerlos.
 - [Introducing Table SAS (Shared Access Signature), Queue SAS and update to Blob SAS](https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas/) (Introducción a SAS [firma de acceso compartido] de Table, SAS de Queue y actualización a SAS de Blob)
-- [Uso de firmas de acceso compartido](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1/)
-- [Autenticación con firma de acceso compartido en Service Bus](https://azure.microsoft.com/documentation/articles/service-bus-shared-access-signature-authentication/)
+- [Uso de firmas de acceso compartido](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)
+- [Autenticación con firma de acceso compartido en Service Bus](/azure/service-bus-messaging/service-bus-sas)

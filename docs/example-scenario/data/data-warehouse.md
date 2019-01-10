@@ -4,12 +4,12 @@ titleSuffix: Azure Example Scenarios
 description: Consolide datos de varios orígenes y optimice el análisis de datos.
 author: alexbuckgit
 ms.date: 09/15/2018
-ms.openlocfilehash: 5727b6ab475224541e272c6da6243cabe851b919
-ms.sourcegitcommit: bb7fcffbb41e2c26a26f8781df32825eb60df70c
+ms.openlocfilehash: 2ac06fcd0805b66371fcc004794b123c46a6ce0e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53644009"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112386"
 ---
 # <a name="data-warehousing-and-analytics-for-sales-and-marketing"></a>Almacenamiento de datos y análisis de ventas y marketing
 
@@ -103,6 +103,7 @@ Revise un [precio de ejemplo para un escenario de almacenamiento de datos][calcu
 - En la [Guía de arquitectura de datos de Azure](/azure/architecture/data-guide) encontrará información estructural completa sobre las canalizaciones de datos, el almacenamiento de datos, el procesamiento analítico en línea (OLAP) y los macrodatos.
 
 <!-- links -->
+
 [source-document]: https://customers.microsoft.com/story/maritz
 [calculator]: https://azure.com/e/b798fb70c53e4dd19fdeacea4db78276
 [architecture]: ./media/architecture-data-warehouse.png

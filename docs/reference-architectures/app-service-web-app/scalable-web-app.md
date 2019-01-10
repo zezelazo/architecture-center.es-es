@@ -5,12 +5,12 @@ description: Mejore la escalabilidad en una aplicación web que se ejecuta en Mi
 author: MikeWasson
 ms.date: 10/25/2018
 ms.custom: seodec18
-ms.openlocfilehash: ab38864e7135777f205b39d0a86897559fc061b9
-ms.sourcegitcommit: e7f8676bbffe500fc4d6deb603b7c0b7ba1884a6
+ms.openlocfilehash: aa4579b45c5ecf090a896e252f2d2e460f282c0e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/10/2018
-ms.locfileid: "53179304"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110976"
 ---
 # <a name="improve-scalability-in-an-azure-web-application"></a>Mejora de la escalabilidad en una aplicación web de Azure
 
@@ -81,7 +81,7 @@ Las aplicaciones modernas suelen procesan grandes cantidades de datos. Para esca
 | Datos no relacionales con un esquema flexible que requiere consulta básica |Catálogo de productos |Base de datos de documentos, como Azure Cosmos DB, MongoDB o Apache CouchDB |
 | Datos relacionales que requieren compatibilidad más completa con consultas, un esquemas estricto o fuerte coherencia |Inventario de productos |Azure SQL Database |
 
- Consulte [Elección del almacén de datos apropiado][datastore].
+Consulte [Elección del almacén de datos apropiado][datastore].
 
 ## <a name="scalability-considerations"></a>Consideraciones sobre escalabilidad
 
@@ -132,7 +132,7 @@ Use [Cifrado de datos transparente][sql-encryption] si necesita cifrar los datos
 [azure-cdn]: https://azure.microsoft.com/services/cdn/
 [azure-dns]: /azure/dns/dns-overview
 [azure-redis]: https://azure.microsoft.com/services/cache/
-[azure-search]: https://azure.microsoft.com/documentation/services/search/
+[azure-search]: /azure/search
 [azure-search-scaling]: /azure/search/search-capacity-planning
 [basic-web-app]: basic-web-app.md
 [basic-web-app-scalability]: basic-web-app.md#scalability-considerations
@@ -149,7 +149,7 @@ Use [Cifrado de datos transparente][sql-encryption] si necesita cifrar los datos
 [queue-storage]: /azure/storage/storage-dotnet-how-to-use-queues
 [queues-compared]: /azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted
 [resource-group]: /azure/azure-resource-manager/resource-group-overview#resource-groups
-[sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
+[sql-db]: /azure/sql-database/
 [sql-elastic]: /azure/sql-database/sql-database-elastic-scale-introduction
 [sql-encryption]: https://msdn.microsoft.com/library/dn948096.aspx
 [tm]: https://azure.microsoft.com/services/traffic-manager/

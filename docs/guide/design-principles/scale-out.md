@@ -1,14 +1,16 @@
 ---
 title: Diseño de escalado horizontal
+titleSuffix: Azure Application Architecture Guide
 description: Las aplicaciones en la nube deben diseñarse para el escalado horizontal.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 9b57f4e6a17eece4f5283436e104c286602bb54f
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: 9e8a36146c711fda2b03e00dfeb3554caf1fd5f0
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43325661"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113066"
 ---
 # <a name="design-to-scale-out"></a>Diseño de escalado horizontal
 
@@ -18,11 +20,11 @@ Una ventaja importante de la nube es el escalado elástico: la capacidad de usar
 
 ## <a name="recommendations"></a>Recomendaciones
 
-**Evite la permanencia de las instancias**. La permanencia, o *la afinidad de la sesión*, se produce cuando las solicitudes del mismo cliente se enrutan siempre al mismo servidor. La permanencia limita la capacidad de la aplicación de escalar horizontalmente. Por ejemplo, el tráfico de un usuario de gran volumen no se distribuirá entre las instancias. Entre las causas de esta permanencia está el almacenamiento del estado de sesión en la memoria y el uso de claves específicas del equipo para el cifrado. Asegúrese de que cualquier instancia puede controlar cualquier solicitud. 
+**Evite la permanencia de las instancias**. La permanencia, o *la afinidad de la sesión*, se produce cuando las solicitudes del mismo cliente se enrutan siempre al mismo servidor. La permanencia limita la capacidad de la aplicación de escalar horizontalmente. Por ejemplo, el tráfico de un usuario de gran volumen no se distribuirá entre las instancias. Entre las causas de esta permanencia está el almacenamiento del estado de sesión en la memoria y el uso de claves específicas del equipo para el cifrado. Asegúrese de que cualquier instancia puede controlar cualquier solicitud.
 
-**Identifique los cuellos de botella**. El escalado horizontal no es una solución mágica para todos los problemas de rendimiento. Por ejemplo, si la base de datos de back-end es el cuello de botella, no ayudará el hecho de agregar más servidores web. Identifique y resuelva los cuellos de botella del equipo antes de lanzar más instancias al problema. Los elementos con estado del sistema son la causa más probable de los cuellos de botella. 
+**Identifique los cuellos de botella**. El escalado horizontal no es una solución mágica para todos los problemas de rendimiento. Por ejemplo, si la base de datos de back-end es el cuello de botella, no ayudará el hecho de agregar más servidores web. Identifique y resuelva los cuellos de botella del equipo antes de lanzar más instancias al problema. Los elementos con estado del sistema son la causa más probable de los cuellos de botella.
 
-**Descomponga las cargas de trabajo de acuerdo con los requisitos de escalabilidad.**  A menudo, las aplicaciones constan de varias cargas de trabajo, con diferentes requisitos para el escalado. Por ejemplo, una aplicación podría tener un sitio orientado al público y un sitio de administración independiente. El sitio público puede experimentar un repentino aumento de tráfico, mientras que el sitio de administración tiene una carga más pequeña y predecible. 
+**Descomponga las cargas de trabajo de acuerdo con los requisitos de escalabilidad.**  A menudo, las aplicaciones constan de varias cargas de trabajo, con diferentes requisitos para el escalado. Por ejemplo, una aplicación podría tener un sitio orientado al público y un sitio de administración independiente. El sitio público puede experimentar un repentino aumento de tráfico, mientras que el sitio de administración tiene una carga más pequeña y predecible.
 
 **Descargue tareas que consumen muchos recursos.** Las tareas que requieren una gran cantidad de CPU o recursos de E/S se deben mover a [trabajos en segundo plano][background-jobs] cuando sea posible, a fin de reducir la carga en el front-end que está controlando las solicitudes de usuario.
 
@@ -32,11 +34,10 @@ Una ventaja importante de la nube es el escalado elástico: la capacidad de usar
 
 **Aplique un diseño para la reducción horizontal**.  Recuerde que con el escalado elástico, la aplicación tendrá períodos de reducción horizontal durante los cuales se quitan instancias. La aplicación debe administrar correctamente las instancias que se quitan. Aquí se muestran algunas maneras de controlar la reducción horizontal:
 
-- Escuche los eventos de apagado (cuando estén disponibles) y apague correctamente. 
-- Los clientes o los consumidores de un servicio deben admitir el control de errores transitorios y el reintento. 
-- Para las tareas de ejecución prolongada, considere la posibilidad de dividir el trabajo, utilizando los puntos de control o el patrón [Pipes and Filters][pipes-filters-pattern]. 
-- Coloque los elementos de trabajo en una cola para que otra instancia puede recoger el trabajo, en caso de que se quite una instancia en medio de procesamiento. 
-
+- Escuche los eventos de apagado (cuando estén disponibles) y apague correctamente.
+- Los clientes o los consumidores de un servicio deben admitir el control de errores transitorios y el reintento.
+- Para las tareas de ejecución prolongada, considere la posibilidad de dividir el trabajo, utilizando los puntos de control o el patrón [Pipes and Filters][pipes-filters-pattern].
+- Coloque los elementos de trabajo en una cola para que otra instancia puede recoger el trabajo, en caso de que se quite una instancia en medio de procesamiento.
 
 <!-- links -->
 

@@ -401,6 +401,8 @@ items:
       href: reference-architectures/identity/adds-forest.md
     - name: Extensión de AD FS a Azure
       href: reference-architectures/identity/adfs.md
+  - name: Internet de las cosas
+    href: reference-architectures/iot/index.md
   - name: Red perimetral
     items:
     - name: Red perimetral entre Azure y una red local
@@ -583,9 +585,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: Implementación de plantillas scaffold de Azure Enterprise
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: fd164df3f7b0416d4bbef85ce920e7f28c1002f4
-ms.sourcegitcommit: 032f402482762f4e674aeebbc122ad18dfba11eb
+ms.openlocfilehash: eba799444e767ab6d0a3196f714edd8bc2df09e1
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53396477"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160849"

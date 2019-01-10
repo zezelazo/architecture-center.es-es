@@ -3,12 +3,12 @@ title: Elección de una tecnología de servicios cognitivos
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 0551bf05cb47cb3972b0d5f2e5226e23cbdacc68
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 13d510056e4b1ce6eeec603427658215691e48ab
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902557"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110993"
 ---
 # <a name="choosing-a-microsoft-cognitive-services-technology"></a>Elección de una tecnología de servicios cognitivos de Microsoft
 
@@ -16,26 +16,33 @@ Los servicios cognitivos de Microsoft son API basadas en la nube que puede usar 
 
 Los servicios cognitivos incluyen:
 
-* Análisis de texto
-* Visión del equipo
-* Análisis de vídeo
-* Reconocimiento y generación de voz
-* Comprensión del lenguaje natural
-* Búsqueda inteligente
+- Análisis de texto
+- Visión del equipo
+- Análisis de vídeo
+- Reconocimiento y generación de voz
+- Comprensión del lenguaje natural
+- Búsqueda inteligente
 
 Ventajas principales:
 
-* Con un esfuerzo mínimo de desarrollo se logran servicios de AI de última generación.
-* Fácil integración en aplicaciones a través de interfaces de REST de HTTP.
-* Compatibilidad integrada para consumir servicios cognitivos en Azure Data Lake Analytics.
+- Con un esfuerzo mínimo de desarrollo se logran servicios de AI de última generación.
+- Fácil integración en aplicaciones a través de interfaces de REST de HTTP.
+- Compatibilidad integrada para consumir servicios cognitivos en Azure Data Lake Analytics.
 
 Consideraciones:
 
-* Solo está disponible a través de Internet. Por lo general se requiere conectividad a Internet. Una excepción es Custom Vision Service, cuyo modelo entrenado se puede exportar para la predicción en dispositivos y en el borde de IoT.
-* Aunque se admite una personalización considerable, es posible que los servicios disponibles no se ajusten a todos los requisitos de análisis predictivo.
+- Solo está disponible a través de Internet. Por lo general se requiere conectividad a Internet. Una excepción es Custom Vision Service, cuyo modelo entrenado se puede exportar para la predicción en dispositivos y en el borde de IoT.
+
+- Aunque se admite una personalización considerable, es posible que los servicios disponibles no se ajusten a todos los requisitos de análisis predictivo.
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-when-choosing-amongst-the-cognitive-services"></a>¿Qué opciones tiene al elegir entre los servicios cognitivos?
+
+<!-- markdownlint-disable MD026 -->
+
 En Azure, existen docenas de servicios cognitivos disponibles. La lista actual de ellos está disponible en un directorio y están clasificados por el área funcional que admiten:
+
 - [Visión](https://azure.microsoft.com/services/cognitive-services/directory/vision/)
 - [Voz](https://azure.microsoft.com/services/cognitive-services/directory/speech/)
 - [Conocimiento](https://azure.microsoft.com/services/cognitive-services/directory/know/)
@@ -46,13 +53,13 @@ En Azure, existen docenas de servicios cognitivos disponibles. La lista actual d
 
 Para restringir las opciones, empiece por responder a estas preguntas:
 
-- ¿Con qué tipo de datos trata? Puede limitar las opciones en función del tipo de datos de entrada con el que trabaje. Por ejemplo, si la entrada es texto, seleccione uno de los servicios que tenga un tipo de entrada de texto. 
+- ¿Con qué tipo de datos trata? Puede limitar las opciones en función del tipo de datos de entrada con el que trabaje. Por ejemplo, si la entrada es texto, seleccione uno de los servicios que tenga un tipo de entrada de texto.
 
-- ¿Tiene los datos necesarios para entrenar un modelo? En caso afirmativo, considere los servicios personalizados que le permiten entrenar sus modelos subyacentes con los datos que proporcione, con el fin de mejorar la precisión y el rendimiento. 
+- ¿Tiene los datos necesarios para entrenar un modelo? En caso afirmativo, considere los servicios personalizados que le permiten entrenar sus modelos subyacentes con los datos que proporcione, con el fin de mejorar la precisión y el rendimiento.
 
 ## <a name="capability-matrix"></a>Matriz de funcionalidades
 
-En las tablas siguientes se resumen las diferencias clave en cuanto a funcionalidades. 
+En las tablas siguientes se resumen las diferencias clave en cuanto a funcionalidades.
 
 ### <a name="uses-prebuilt-models"></a>Usa modelos creados previamente
 
@@ -89,7 +96,6 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 | | Tipo de entrada | Principal ventaja |
 | --- | --- | --- |
 | Custom Vision Service | Imágenes (o fotogramas de vídeo) | Personalice sus propios modelos de visión del equipo. |
-| Custom Speech Service | Voz | Elimine las barreras del reconocimiento de voz, como el estilo en que se habla, el ruido de fondo y el vocabulario. | 
+| Custom Speech Service | Voz | Elimine las barreras del reconocimiento de voz, como el estilo en que se habla, el ruido de fondo y el vocabulario. |
 | Custom Decision Service | Contenido web (por ejemplo, fuente RSS) | Use el aprendizaje automático para seleccionar automáticamente el contenido adecuado para la página principal |
 | Bing Custom Search API | Texto (consulta de búsqueda web) | Herramienta de búsqueda comercial. |
-

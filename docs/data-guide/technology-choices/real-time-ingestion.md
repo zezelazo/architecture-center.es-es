@@ -3,18 +3,22 @@ title: Elección de una tecnología de ingesta de mensajes en tiempo real
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 64d6fca0a8ffac45f605e90a11cd2b3e53db287f
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 961e377591f67aec995c8495fa9188c851e464fc
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52901633"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111247"
 ---
 # <a name="choosing-a-real-time-message-ingestion-technology-in-azure"></a>Elección de una tecnología de ingesta de mensajes en tiempo real en Azure
 
-El procesamiento en tiempo real trata sobre los flujos de datos que se capturan en tiempo real y se procesan con una latencia mínima. Muchas soluciones de procesamiento en tiempo real necesitan un almacén de ingesta de mensajes para que actúe como búfer de mensajes y para admitir el procesamiento de escalabilidad horizontal, la entrega confiable y otra semántica de puesta en cola de mensajes. 
+El procesamiento en tiempo real trata sobre los flujos de datos que se capturan en tiempo real y se procesan con una latencia mínima. Muchas soluciones de procesamiento en tiempo real necesitan un almacén de ingesta de mensajes para que actúe como búfer de mensajes y para admitir el procesamiento de escalabilidad horizontal, la entrega confiable y otra semántica de puesta en cola de mensajes.
+
+<!-- markdownlint-disable MD026 -->
 
 ## <a name="what-are-your-options-for-real-time-message-ingestion"></a>¿Cuáles son las opciones de ingesta de mensajes en tiempo real?
+
+<!-- markdownlint-enable MD026 -->
 
 - [Azure Event Hubs](/azure/event-hubs/)
 - [Azure IoT Hub](/azure/iot-hub/)
@@ -30,24 +34,24 @@ El procesamiento en tiempo real trata sobre los flujos de datos que se capturan 
 
 Entre las características de IoT Hub se incluyen:
 
-* Varias opciones de comunicación de dispositivo a nube y de nube a dispositivo. Dichas opciones incluyen la mensajería unidireccional, la transferencia de archivos y los métodos de solicitud y respuesta.
-* Enrutamiento de mensajes a otros servicios de Azure.
-* Almacenamiento consultable para metadatos del dispositivo e información de estado sincronizada.
-* Comunicaciones seguras y control de acceso mediante claves de seguridad por dispositivo o certificados X.509.
-* Supervisión exhaustiva para la conectividad de dispositivos y los eventos de administración de identidad de dispositivos.
+- Varias opciones de comunicación de dispositivo a nube y de nube a dispositivo. Dichas opciones incluyen la mensajería unidireccional, la transferencia de archivos y los métodos de solicitud y respuesta.
+- Enrutamiento de mensajes a otros servicios de Azure.
+- Almacenamiento consultable para metadatos del dispositivo e información de estado sincronizada.
+- Comunicaciones seguras y control de acceso mediante claves de seguridad por dispositivo o certificados X.509.
+- Supervisión exhaustiva para la conectividad de dispositivos y los eventos de administración de identidad de dispositivos.
 
-En términos de ingesta de mensajes, IoT Hub es similar a Event Hubs. Sin embargo, IoT Hub se ha diseñado específicamente para administrar la conectividad de dispositivos de IoT, no solo la ingesta de mensajes. Para más información, consulte [Comparación entre Azure IoT Hub y Azure Event Hubs](/azure/iot-hub/iot-hub-compare-event-hubs). 
+En términos de ingesta de mensajes, IoT Hub es similar a Event Hubs. Sin embargo, IoT Hub se ha diseñado específicamente para administrar la conectividad de dispositivos de IoT, no solo la ingesta de mensajes. Para más información, consulte [Comparación entre Azure IoT Hub y Azure Event Hubs](/azure/iot-hub/iot-hub-compare-event-hubs).
 
 ## <a name="kafka-on-hdinsight"></a>Kafka en HDInsight
 
-[Apache Kafka](https://kafka.apache.org/) es una plataforma de streaming distribuido de código abierto que se puede utilizar para compilar canalizaciones de datos en tiempo real y aplicaciones de streaming. Kafka también proporciona funcionalidad de agente de mensajería similar a una cola de mensajes, donde puede publicar y suscribirse a las transmisiones de datos con nombre. Es escalable horizontalmente, con tolerancia a errores y extremadamente rápido. [Kafka en HDInsight](/azure/hdinsight/kafka/apache-kafka-get-started) proporciona una instancia de Kafka como un servicio administrado, altamente escalable y de alta disponibilidad en Azure. 
+[Apache Kafka](https://kafka.apache.org/) es una plataforma de streaming distribuido de código abierto que se puede utilizar para compilar canalizaciones de datos en tiempo real y aplicaciones de streaming. Kafka también proporciona funcionalidad de agente de mensajería similar a una cola de mensajes, donde puede publicar y suscribirse a las transmisiones de datos con nombre. Es escalable horizontalmente, con tolerancia a errores y extremadamente rápido. [Kafka en HDInsight](/azure/hdinsight/kafka/apache-kafka-get-started) proporciona una instancia de Kafka como un servicio administrado, altamente escalable y de alta disponibilidad en Azure.
 
 Algunos casos de uso habituales de Kafka son:
 
-* **Mensajería**. Como admite el patrón de publicación de mensajes y suscripción, Kafka a menudo se utiliza como agente de mensajería.
-* **Seguimiento de actividad**. Como Kafka proporciona un registro en orden, este se puede utilizar para realizar un seguimiento y volver a crear actividades como acciones de usuario en un sitio web.
-* **Agregación**. Mediante el procesamiento de los flujos, puede agregar información de distintos flujos para combinar y centralizar la información en datos operativos.
-* **Transformación**. Mediante el procesamiento de los flujos, puede combinar y enriquecer los datos de varios temas de entrada en uno o más temas de salida.
+- **Mensajería**. Como admite el patrón de publicación de mensajes y suscripción, Kafka a menudo se utiliza como agente de mensajería.
+- **Seguimiento de actividad**. Como Kafka proporciona un registro en orden, este se puede utilizar para realizar un seguimiento y volver a crear actividades como acciones de usuario en un sitio web.
+- **Agregación**. Mediante el procesamiento de los flujos, puede agregar información de distintos flujos para combinar y centralizar la información en datos operativos.
+- **Transformación**. Mediante el procesamiento de los flujos, puede combinar y enriquecer los datos de varios temas de entrada en uno o más temas de salida.
 
 ## <a name="key-selection-criteria"></a>Principales criterios de selección
 
@@ -59,7 +63,9 @@ Para restringir las opciones, empiece por responder a estas preguntas:
 
 ## <a name="capability-matrix"></a>Matriz de funcionalidades
 
-En las tablas siguientes se resumen las diferencias clave en cuanto a funcionalidades. 
+En las tablas siguientes se resumen las diferencias clave en cuanto a funcionalidades.
+
+<!-- markdownlint-disable MD033 -->
 
 | | IoT Hub | Event Hubs | Kafka en HDInsight |
 | --- | --- | --- | --- |
@@ -68,6 +74,8 @@ En las tablas siguientes se resumen las diferencias clave en cuanto a funcionali
 | Información de estado de dispositivo | [Dispositivos gemelos](/azure/iot-hub/iot-hub-devguide-device-twins) | Sin  | Sin  |
 | Compatibilidad con protocolos | MQTT, AMQP, HTTPS <sup>1</sup> | AMQP, HTTPS | [Kafka Protocol](https://cwiki.apache.org/confluence/display/KAFKA/A+Guide+To+The+Kafka+Protocol) |
 | Seguridad | Identidad por dispositivo y control de acceso revocable. | Directivas de acceso compartido, revocación limitada a través de las directivas de publicador. | Compatible con la autenticación mediante SASL, autorización conectable, integración con servicios de autenticación externos. |
+
+<!-- markdownlint-enable MD026 -->
 
 [1] Puede usar la [Puerta de enlace de protocolos de Azure IoT](/azure/iot-hub/iot-hub-protocol-gateway) como puerta de enlace personalizada para permitir la adaptación de protocolos para IoT Hub.
 

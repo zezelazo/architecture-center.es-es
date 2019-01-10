@@ -1,21 +1,21 @@
 ---
 title: Patrones de diseño e implementación
+titleSuffix: Cloud Design Patterns
 description: Un buen diseño incluye factores como la coherencia en el diseño e implementación de los componentes, el mantenimiento para simplificar la administración y el desarrollo, y la reutilización para permitir que los componentes y subsistemas se puedan utilizar en otras aplicaciones y escenarios. Las decisiones tomadas durante la fase de diseño e implementación tienen un gran impacto en la calidad y el costo total de propiedad de las aplicaciones y servicios hospedados en la nube.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-ms.openlocfilehash: 861445ceeca62e5b1e62fd4cb33924c35e10c0b0
-ms.sourcegitcommit: e67b751f230792bba917754d67789a20810dc76b
+ms.custom: seodec18
+ms.openlocfilehash: 38b20fad513109051d40c1b9556f75fa86e03dd7
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/06/2018
-ms.locfileid: "30847805"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54009804"
 ---
 # <a name="design-and-implementation-patterns"></a>Patrones de diseño e implementación
 
 Un buen diseño incluye factores como la coherencia en el diseño e implementación de los componentes, el mantenimiento para simplificar la administración y el desarrollo, y la reutilización para permitir que los componentes y subsistemas se puedan utilizar en otras aplicaciones y escenarios. Las decisiones tomadas durante la fase de diseño e implementación tienen un gran impacto en la calidad y el costo total de propiedad de las aplicaciones y servicios hospedados en la nube.
-
 
 |                                Patrón                                 |                                                                                                      Resumen                                                                                                       |
 |------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -30,7 +30,6 @@ Un buen diseño incluye factores como la coherencia en el diseño e implementaci
 |                [Gateway Routing](../gateway-routing.md)                |                                                                            Enruta las solicitudes a varios servicios mediante un solo punto de conexión.                                                                            |
 |                [Leader Election](../leader-election.md)                | Coordina las acciones realizadas por una colección de instancias de tareas de colaboración de una aplicación distribuida mediante la elección de una instancia como líder que asume la responsabilidad de administrar las demás instancias. |
 |              [Pipes and Filters](../pipes-and-filters.md)              |                                                     Desglosa una tarea que realiza un procesamiento complejo en una serie de elementos independientes que se pueden volver a utilizar.                                                      |
-|                        [Sidecar](../sidecar.md)                        |                                                  Implemente componentes de una aplicación en un proceso o contenedor independientes para proporcionar aislamiento y encapsulación.                                                  |
+|                        [Sidecar](../sidecar.md)                        |                                                  Implementa componentes de una aplicación en un proceso o contenedor independientes para proporcionar aislamiento y encapsulación.                                                  |
 |         [Static Content Hosting](../static-content-hosting.md)         |                                                        Implementa contenido estático en un servicio de almacenamiento basado en la nube que puede enviarlo directamente al cliente.                                                        |
 |                      [Strangler](../strangler.md)                      |                                         Migra de forma incremental un sistema heredado reemplazando gradualmente funciones específicas por los servicios y aplicaciones nuevas.                                          |
-

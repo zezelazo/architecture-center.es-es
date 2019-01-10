@@ -2,14 +2,14 @@
 title: Puntuación por lotes de modelos de Python en Azure
 description: Cree una solución escalable para los modelos de puntuación por lotes en una programación en paralelo mediante Azure Batch AI.
 author: njray
-ms.date: 12/13/18
+ms.date: 12/13/2018
 ms.custom: azcat-ai
-ms.openlocfilehash: 93fc0c81663931c0a8b0f54b41934287056e6953
-ms.sourcegitcommit: fb22348f917a76e30a6c090fcd4a18decba0b398
+ms.openlocfilehash: 4c43a3dadab11cb8dcf163cf63618795299283ad
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/16/2018
-ms.locfileid: "53450839"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111058"
 ---
 # <a name="batch-scoring-of-python-models-on-azure"></a>Puntuación por lotes de modelos de Python en Azure
 
@@ -43,7 +43,7 @@ En los modelos de Python estándar, se suele aceptar que las CPU son suficientes
 
 ### <a name="parallelizing-across-vms-vs-cores"></a>Poner en paralelo las máquinas virtuales con los núcleos
 
-Al ejecutar los procesos de puntuación de muchos modelos de puntuación en modo por lotes, es preciso que los trabajos se ejecuten en paralelo en las máquinas virtuales. Hay dos enfoques posibles: 
+Al ejecutar los procesos de puntuación de muchos modelos de puntuación en modo por lotes, es preciso que los trabajos se ejecuten en paralelo en las máquinas virtuales. Son posibles dos enfoques:
 
 * Crear un clúster mayor mediante máquinas virtuales de bajo costo.
 

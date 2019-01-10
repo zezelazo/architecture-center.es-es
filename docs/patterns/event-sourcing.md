@@ -1,19 +1,17 @@
 ---
-title: Aprovisionamiento de eventos
+title: Patrón Event Sourcing
+titleSuffix: Cloud Design Patterns
 description: Usa un almacén de solo anexar para registrar la serie completa de eventos que describen las acciones realizadas en los datos de un dominio.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: 1cb63b61f5eb97726e266f797dfe13011907c95f
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 56db321e33ecef17704eda4eda971ff3c7e44133
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429339"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011640"
 ---
 # <a name="event-sourcing-pattern"></a>Patrón Event Sourcing
 
@@ -42,14 +40,13 @@ El patrón Event Sourcing define un enfoque para controlar las operaciones basad
 
 Los eventos se conservan en un almacén de eventos que actúa como sistema de registro (origen de datos acreditado) del estado actual de los datos. Normalmente, el almacén de eventos publica estos eventos para que los consumidores pueden recibir notificaciones y controlarlos si lo necesitan. Los consumidores podrían, por ejemplo, iniciar tareas que se aplican las operaciones en los eventos a otros sistemas o realizar cualquier acción asociada que se necesita para completar la operación. Tenga en cuenta que el código de aplicación que genera los eventos es independiente de los sistemas que se suscriben a los eventos.
 
-Los usos típicos de los eventos publicados por el almacén de eventos son el mantenimiento de vistas materializadas de entidades según las cambian las acciones de la aplicación y la integración con sistemas externos. Por ejemplo, un sistema puede mantener una vista materializada de todos los pedidos de cliente que se usa para rellenar elementos de la interfaz de usuario. Cuando la aplicación agrega pedidos nuevos, agrega o quita elementos del pedido y agrega información de envío, los eventos que describen estos cambios pueden se controlan y se utilizan para actualizar la [vista materializada](materialized-view.md).
+Los usos típicos de los eventos publicados por el almacén de eventos son el mantenimiento de vistas materializadas de entidades según las cambian las acciones de la aplicación y la integración con sistemas externos. Por ejemplo, un sistema puede mantener una vista materializada de todos los pedidos de cliente que se usa para rellenar elementos de la interfaz de usuario. Cuando la aplicación agrega pedidos nuevos, agrega o quita elementos del pedido y agrega información de envío, los eventos que describen estos cambios pueden se controlan y se utilizan para actualizar la [vista materializada](./materialized-view.md).
 
 Además, las aplicaciones pueden leer el historial de eventos en cualquier momento y usarlo para materializar el estado actual de una entidad al reproducir y consumir todos los eventos relacionados con esa entidad. Esto puede ocurrir a petición para materializar un objeto de dominio al controlar una solicitud, o a través de una tarea programada para que se puede almacenar el estado de la entidad como vista materializada para admitir la capa de presentación.
 
 La ilustración muestra una introducción al patrón, incluidas algunas de las opciones de uso del flujo de eventos, como la creación de una vista materializada, la integración de eventos con aplicaciones y sistemas externos y la reproducción de eventos para crear proyecciones del estado actual de entidades específicas.
 
 ![Introducción y ejemplo del patrón Event Sourcing](./_images/event-sourcing-overview.png)
-
 
 El patrón Event Sourcing proporciona las siguientes ventajas:
 
@@ -128,7 +125,6 @@ El siguiente diagrama ilustra cómo se podría implementar con Event Sourcing el
 
 ![Captura de información sobre las reservas de plaza en un sistema de administración de conferencias con Event Sourcing](./_images/event-sourcing-bounded-context.png)
 
-
 La secuencia de acciones para reservar dos plazas es la siguiente:
 
 1. La interfaz de usuario emite un comando para reservar plaza a dos asistentes. El comando lo controla un controlador de comandos independiente. Se separa una parte de la lógica de la interfaz de usuario y es responsable de controlar las solicitudes que se publican como comandos.
@@ -153,11 +149,11 @@ Además de proporcionar un ámbito más escalabilidad, un almacén de eventos ta
 
 Los patrones y las directrices siguientes también pueden ser importantes a la hora de implementar este modelo:
 
-- [Patrón Command and Query Responsibility Segregation (CQRS)](cqrs.md). El almacén de escritura que proporciona el origen de información permanente para una implementación de CQRS a menudo se basa en una implementación del patrón Event Sourcing. Describe cómo se segregan las operaciones de lectura de las de actualización de datos mediante interfaces independientes en una aplicación.
+- [Patrón Command and Query Responsibility Segregation (CQRS)](./cqrs.md). El almacén de escritura que proporciona el origen de información permanente para una implementación de CQRS a menudo se basa en una implementación del patrón Event Sourcing. Describe cómo se segregan las operaciones de lectura de las de actualización de datos mediante interfaces independientes en una aplicación.
 
-- [Patrón Materialized View](materialized-view.md). Normalmente, el almacén de datos que se utiliza en un sistema basado en Event Sourcing no se adapta perfectamente para una consulta eficaz. En su lugar, un enfoque común consiste en generar vistas rellenadas previamente con los datos a intervalos regulares o cuando los datos cambian. Muestra la manera de hacerlo.
+- [Patrón Materialized View](./materialized-view.md). Normalmente, el almacén de datos que se utiliza en un sistema basado en Event Sourcing no se adapta perfectamente para una consulta eficaz. En su lugar, un enfoque común consiste en generar vistas rellenadas previamente con los datos a intervalos regulares o cuando los datos cambian. Muestra la manera de hacerlo.
 
-- [Patrón Compensating Transaction](compensating-transaction.md). Los datos existentes en un almacén de Event Sourcing no se actualizan; en su lugar, se agregan entradas nuevas de transición del estado de las entidades a los nuevos valores. Para invertir un cambio, se usan las entradas de compensación, puesto que no es posible revertir simplemente el cambio. Describe cómo deshacer el trabajo que realizó una operación anterior.
+- [Patrón Compensating Transaction](./compensating-transaction.md). Los datos existentes en un almacén de Event Sourcing no se actualizan; en su lugar, se agregan entradas nuevas de transición del estado de las entidades a los nuevos valores. Para invertir un cambio, se usan las entradas de compensación, puesto que no es posible revertir simplemente el cambio. Describe cómo deshacer el trabajo que realizó una operación anterior.
 
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Manual básico de coherencia de datos). Al usar Event Sourcing con otro almacén de lectura o vistas materializadas independientes, los datos de lectura no serán coherentes de manera inmediata, sino que tendrán coherencia final. Resume los problemas que pueden surgir sobre el mantenimiento de la coherencia en los datos distribuidos.
 

@@ -1,14 +1,16 @@
 ---
 title: Partición alrededor de límites
-description: Uso de particiones para evitar los limites en bases de datos, redes y procesos.
+titleSuffix: Azure Application Architecture Guide
+description: Use particiones para evitar los limites en la base de datos, la red y el proceso.
 author: MikeWasson
 ms.date: 08/30/2018
-ms.openlocfilehash: 2f6bf797c2c7e5af7c487635c19eaf77eee77dec
-ms.sourcegitcommit: ae8a1de6f4af7a89a66a8339879843d945201f85
+ms.custom: seojan19
+ms.openlocfilehash: f6c0daa1b1ea469413156fdf3cd6969f98528fb3
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/31/2018
-ms.locfileid: "43326303"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54110499"
 ---
 # <a name="partition-around-limits"></a>Partición alrededor de límites
 
@@ -22,7 +24,7 @@ Existen muchas maneras de crear particiones de un sistema, como:
 
 - Crear particiones de una cola o un bus de mensajes para evitar límites en el número de solicitudes o el número de conexiones simultáneas.
 
-- Crear particiones de una aplicación web de App Service para evitar límites en el número de instancias por plan de App Service. 
+- Crear particiones de una aplicación web de App Service para evitar límites en el número de instancias por plan de App Service.
 
 Se pueden crear particiones en una base de datos *horizontalmente*, *verticalmente* o *funcionalmente*.
 
@@ -40,14 +42,12 @@ Para obtener instrucciones más detalladas, consulte [Data partitioning][data-pa
 
 **Diseñar la clave de partición para evitar zonas activas**. Si se crean particiones de una base de datos, pero una partición todavía obtiene la mayoría de las solicitudes, el problema sigue ahí. Lo mejor es que la carga se distribuya de manera uniforme entre todas las particiones. Por ejemplo, código hash por id. de cliente y no la primera letra del nombre del cliente, ya que algunas letras son más frecuentes. El mismo principio se aplica al crear particiones de una cola de mensajes. Elija una clave de partición que lleve a una distribución uniforme de los mensajes en el conjunto de colas. Para más información, consulte [Particionamiento][sharding].
 
-**Partición alrededor de los límites de suscripción y servicio de Azure**. Los servicios y componentes individuales tienen límites, pero también los hay para las suscripciones y los grupos de recursos. En el caso de aplicaciones muy grandes, puede que deba crear particiones en torno a esos límites.  
+**Partición alrededor de los límites de suscripción y servicio de Azure**. Los servicios y componentes individuales tienen límites, pero también los hay para las suscripciones y los grupos de recursos. En el caso de aplicaciones muy grandes, puede que deba crear particiones en torno a esos límites.
 
-**Partición en niveles diferentes**. Considere un servidor de base de datos implementado en una máquina virtual. La máquina virtual tiene un disco duro virtual que está respaldado por Azure Storage. La cuenta de almacenamiento pertenece a una suscripción de Azure. Tenga en cuenta que cada paso de la jerarquía tiene límites. El servidor de base de datos puede tener un límite de grupo de conexiones. Las máquinas virtuales tienen límites de CPU y red. El almacenamiento tiene límites de IOPS. La suscripción tiene límites en el número de núcleos de la máquina virtual. Por lo general, es más fácil crear particiones en los niveles inferiores de la jerarquía. Solo las aplicaciones de gran tamaño deben crear particiones en el nivel de suscripción. 
+**Partición en niveles diferentes**. Considere un servidor de base de datos implementado en una máquina virtual. La máquina virtual tiene un disco duro virtual que está respaldado por Azure Storage. La cuenta de almacenamiento pertenece a una suscripción de Azure. Tenga en cuenta que cada paso de la jerarquía tiene límites. El servidor de base de datos puede tener un límite de grupo de conexiones. Las máquinas virtuales tienen límites de CPU y red. El almacenamiento tiene límites de IOPS. La suscripción tiene límites en el número de núcleos de la máquina virtual. Por lo general, es más fácil crear particiones en los niveles inferiores de la jerarquía. Solo las aplicaciones de gran tamaño deben crear particiones en el nivel de suscripción.
 
 <!-- links -->
 
 [azure-limits]: /azure/azure-subscription-service-limits
 [data-partitioning-guidance]: ../../best-practices/data-partitioning.md
 [sharding]: ../../patterns/sharding.md
-
- 

@@ -1,19 +1,17 @@
 ---
-title: Cache-Aside
-description: Carga datos a petición en una memoria caché desde un almacén de datos
+title: Patrón Cache-Aside
+titleSuffix: Cloud Design Patterns
+description: Carga datos a petición en una caché desde un almacén de datos
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 11/01/2018
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- data-management
-- performance-scalability
-ms.openlocfilehash: 4c93ed02ff28e79cedc26f83364592baba96821d
-ms.sourcegitcommit: dbbf914757b03cdee7a274204f9579fa63d7eed2
+ms.custom: seodec18
+ms.openlocfilehash: 96dee3ca766414a3a17ea161f13c9fcd15001b4d
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916391"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114171"
 ---
 # <a name="cache-aside-pattern"></a>Patrón Cache-Aside
 
@@ -35,14 +33,13 @@ Una aplicación puede emular la funcionalidad de almacenamiento en caché de lec
 
 ![Uso del patrón Cache-Aside para almacenar los datos en la caché](./_images/cache-aside-diagram.png)
 
-
 Si una aplicación actualiza la información, puede seguir la estrategia de escritura simultánea mediante la modificación del almacén de datos y la invalidación del elemento correspondiente en la caché.
 
 Cuando luego se necesite el elemento, el uso de la estrategia de reserva de caché provocará que los datos actualizados se recuperen del almacén de datos y se agreguen de nuevo a la caché.
 
 ## <a name="issues-and-considerations"></a>Problemas y consideraciones
 
-Tenga en cuenta los puntos siguientes al decidir cómo implementar este patrón: 
+Tenga en cuenta los puntos siguientes al decidir cómo implementar este patrón:
 
 **Duración de los datos almacenados en caché**. Muchas de las memorias caché implementan una directiva de expiración que invalida los datos y los quita de la caché si no se accede a ellos durante un período especificado. Para que la reserva de caché sea eficaz, asegúrese de que la directiva de expiración coincida con el patrón de acceso en las aplicaciones que usan los datos. No conviene que el período de expiración sea demasiado corto, ya que puede provocar que las aplicaciones recuperen los datos continuamente del almacén de datos y los agreguen a la caché. De igual forma, tampoco debe ser tan largo que los datos almacenados en caché puedan volverse obsoletos. Recuerde que el almacenamiento en caché es más eficaz con datos relativamente estáticos o datos que se leen frecuentemente.
 
@@ -68,9 +65,9 @@ Este patrón podría no ser útil en los siguientes casos:
 
 ## <a name="example"></a>Ejemplo
 
-En Microsoft Azure puede usar Azure Redis Cache para crear una caché distribuida que se pueda compartir entre varias instancias de una aplicación. 
+En Microsoft Azure puede usar Azure Redis Cache para crear una caché distribuida que se pueda compartir entre varias instancias de una aplicación.
 
-Los siguientes ejemplos de código usan el cliente [StackExchange.Redis], que es una biblioteca cliente de Redis escrita para. NET. Para conectarse a una instancia de Azure Redis Cache, llame a método estático `ConnectionMultiplexer.Connect` y pase la cadena de conexión. El método devuelve un elemento `ConnectionMultiplexer` que representa la conexión. Un enfoque para compartir una instancia de `ConnectionMultiplexer` en su aplicación es tener una propiedad estática que devuelva una instancia conectada, como en el ejemplo siguiente. Este enfoque proporciona una manera segura para subprocesos de inicializar una sola instancia conectada.
+Los siguientes ejemplos de código usan el cliente [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis), que es una biblioteca cliente de Redis escrita para. NET. Para conectarse a una instancia de Azure Redis Cache, llame a método estático `ConnectionMultiplexer.Connect` y pase la cadena de conexión. El método devuelve un elemento `ConnectionMultiplexer` que representa la conexión. Un enfoque para compartir una instancia de `ConnectionMultiplexer` en su aplicación es tener una propiedad estática que devuelva una instancia conectada, como en el ejemplo siguiente. Este enfoque proporciona una manera segura para subprocesos de inicializar una sola instancia conectada.
 
 ```csharp
 private static ConnectionMultiplexer Connection;
@@ -89,7 +86,6 @@ El método `GetMyEntityAsync` del código de ejemplo siguiente muestra una imple
 
 Un objeto se identifica mediante un identificador de número entero como clave. El método `GetMyEntityAsync` intenta recuperar un elemento con esta clave de la caché. Si se encuentra un elemento coincidente, se devuelve. Si no hay ninguna coincidencia en la caché, el método `GetMyEntityAsync` recupera el objeto de un almacén de datos, lo agrega a la caché y luego lo devuelve. El código que realmente lee los datos del almacén de datos no se muestra aquí, ya que depende del almacén de datos. Tenga en cuenta que el elemento en caché está configurado para que expire a fin de evitar que se vuelva obsoleto si se actualiza en otro lugar.
 
-
 ```csharp
 // Set five minute expiration as a default
 private const double DefaultExpirationTimeInMinutes = 5.0;
@@ -99,23 +95,23 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
   // Define a unique key for this method and its parameters.
   var key = $"MyEntity:{id}";
   var cache = Connection.GetDatabase();
-  
+
   // Try to get the entity from the cache.
   var json = await cache.StringGetAsync(key).ConfigureAwait(false);
-  var value = string.IsNullOrWhiteSpace(json) 
-                ? default(MyEntity) 
+  var value = string.IsNullOrWhiteSpace(json)
+                ? default(MyEntity)
                 : JsonConvert.DeserializeObject<MyEntity>(json);
-  
+
   if (value == null) // Cache miss
   {
     // If there's a cache miss, get the entity from the original store and cache it.
-    // Code has been omitted because it's data store dependent.  
+    // Code has been omitted because it is data store dependent.
     value = ...;
 
     // Avoid caching a null value.
     if (value != null)
     {
-      // Put the item in the cache with a custom expiration time that 
+      // Put the item in the cache with a custom expiration time that
       // depends on how critical it is to have stale data.
       await cache.StringSetAsync(key, JsonConvert.SerializeObject(value)).ConfigureAwait(false);
       await cache.KeyExpireAsync(key, TimeSpan.FromMinutes(DefaultExpirationTimeInMinutes)).ConfigureAwait(false);
@@ -126,7 +122,7 @@ public async Task<MyEntity> GetMyEntityAsync(int id)
 }
 ```
 
->  En los ejemplos se usa Redis Cache para acceder al almacén y recuperar información de la caché. Para más información, consulte [Uso de Microsoft Azure Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache) y [Creación de una aplicación web con Caché en Redis](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto).
+> En los ejemplos se usa Redis Cache para acceder al almacén y recuperar información de la caché. Para más información, consulte [Uso de Microsoft Azure Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-dotnet-how-to-use-azure-redis-cache) y [Creación de una aplicación web con Caché en Redis](https://docs.microsoft.com/azure/redis-cache/cache-web-app-howto).
 
 El método `UpdateEntityAsync` que se muestra a continuación ilustra cómo invalidar un objeto en la caché cuando la aplicación cambia su valor. El código actualiza el almacén de datos original y, a continuación, quita el elemento en caché de la caché.
 
@@ -134,7 +130,7 @@ El método `UpdateEntityAsync` que se muestra a continuación ilustra cómo inva
 public async Task UpdateEntityAsync(MyEntity entity)
 {
     // Update the object in the original data store.
-    await this.store.UpdateEntityAsync(entity).ConfigureAwait(false); 
+    await this.store.UpdateEntityAsync(entity).ConfigureAwait(false);
 
     // Invalidate the current cache object.
     var cache = Connection.GetDatabase();
@@ -147,14 +143,10 @@ public async Task UpdateEntityAsync(MyEntity entity)
 > [!NOTE]
 > Es importante el orden de los pasos. Actualice el almacén de datos *antes* de quitar el elemento de la caché. Si quita primero el elemento en caché, hay una pequeña ventana de tiempo en que un cliente podría recuperar el elemento antes de que se actualice el almacén de datos. Como resultado, se producirá un error de la caché (porque el elemento se ha quitado de ella), que hará que la versión anterior del elemento se recupere del almacén de datos y se vuelva a agregar a la caché. Los datos de la caché, por lo tanto, estarán obsoletos.
 
-
-## <a name="related-guidance"></a>Instrucciones relacionadas 
+## <a name="related-guidance"></a>Instrucciones relacionadas
 
 La siguiente información puede resultarle de interés al implementar este patrón:
 
 - [Guía sobre el almacenamiento en caché](https://docs.microsoft.com/azure/architecture/best-practices/caching). Proporciona información adicional sobre cómo se pueden almacenar en caché los datos de una solución de nube y los problemas que se deben considerar al implementar una caché.
 
 - [Data Consistency Primer](https://msdn.microsoft.com/library/dn589800.aspx) (Manual básico de coherencia de datos). Las aplicaciones de nube usan normalmente datos que se distribuyen entre los almacenes de datos. Administrar y mantener la coherencia de los datos en este entorno son un aspecto fundamental del sistema, en especial por los problemas de simultaneidad y disponibilidad que puedan surgir. En este manual básico se describen los problemas de coherencia entre los datos distribuidos y se resume cómo una aplicación puede implementar coherencia definitiva para mantener la disponibilidad de datos.
-
-
-[StackExchange.Redis]: https://github.com/StackExchange/StackExchange.Redis

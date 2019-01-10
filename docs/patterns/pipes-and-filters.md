@@ -1,19 +1,17 @@
 ---
-title: Canalizaciones y filtros
+title: Patrón Pipes and Filters
+titleSuffix: Cloud Design Patterns
 description: Desglosa una tarea que realiza un procesamiento complejo en una serie de elementos independientes que se pueden volver a utilizar.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-- messaging
-ms.openlocfilehash: fd616676f9487bdfe1bf23b3d0fec6c65b97a8f4
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 7084b538159f7104d2322e35f94f43e905f700bf
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47429577"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011691"
 ---
 # <a name="pipes-and-filters-pattern"></a>Patrón Pipes and Filters
 
@@ -39,7 +37,6 @@ Desglose el procesamiento que requiere cada flujo en un conjunto de componentes 
 
 ![Figura 2: Una solución implementada mediante canalizaciones y filtros](./_images/pipes-and-filters-solution.png)
 
-
 El tiempo que tarda en procesarse una única solicitud depende de la velocidad del filtro más lento de la canalización. Uno o más filtros podrían formar un cuello de botella, en especial si un gran número de solicitudes aparece en un flujo de un origen de datos en particular. Una de las principales ventajas de la estructura de canalizaciones es que ofrece oportunidades para ejecutar instancias en paralelo de filtros lentos, que permite que el sistema reparta la carga y mejore el rendimiento.
 
 Los filtros que forman una canalización se pueden ejecutar en equipos diferentes, de forma que se pueden escalar de manera independiente y aprovechar la elasticidad que proporcionan muchos entornos de nube. Un filtro que consuma muchos recursos informáticos se puede ejecutar en hardware de alto rendimiento, mientras que otros filtros menos exigentes se pueden hospedar en hardware básico menos costoso. Los filtros no tienen que estar siquiera en el mismo centro de datos o la misma ubicación geográfica, lo que permite que cada elemento de una canalización se ejecute en un entorno próximo a los recursos que necesita.  En la ilustración siguiente se muestra un ejemplo aplicado a la canalización de los datos desde el origen 1.
@@ -50,11 +47,12 @@ Si la entrada y la salida de un filtro se estructuran como un flujo, se puede re
 
 Otra ventaja es la resistencia que puede proporcionar este modelo. Si se produce un error en un filtro o la máquina en la que se ejecuta ya no está disponible, la canalización puede volver a programar el trabajo que estaba realizando el filtro y dirigir este trabajo a otra instancia del componente. El error de un único filtro no da lugar necesariamente a un error de la canalización entera.
 
-El uso del patrón Pipes and Filters en combinación con el [patrón Compensating Transaction](compensating-transaction.md) es un enfoque alternativo a la implementación de transacciones distribuidas. Una transacción distribuida se puede dividir en tareas independientes compensables, cada una de los cuales se puede implementar mediante un filtro que también implementa el patrón Compensating Transaction. Los filtros de una canalización se pueden implementar como tareas hospedadas diferentes que se ejecutan cerca de los datos que mantienen.
+El uso del patrón Pipes and Filters en combinación con el [patrón Compensating Transaction](./compensating-transaction.md) es un enfoque alternativo a la implementación de transacciones distribuidas. Una transacción distribuida se puede dividir en tareas independientes compensables, cada una de los cuales se puede implementar mediante un filtro que también implementa el patrón Compensating Transaction. Los filtros de una canalización se pueden implementar como tareas hospedadas diferentes que se ejecutan cerca de los datos que mantienen.
 
 ## <a name="issues-and-considerations"></a>Problemas y consideraciones
 
 A la hora de decidir cómo implementar este patrón, debe considerar los siguientes puntos:
+
 - **Complejidad**. La mayor flexibilidad que proporciona este patrón también puede presentar complejidad, especialmente si los filtros de una canalización se distribuyen entre diferentes servidores.
 
 - **Confiabilidad**. Use una infraestructura que garantice que el flujo de datos entre los filtros de una canalización no se pierda.
@@ -70,11 +68,12 @@ A la hora de decidir cómo implementar este patrón, debe considerar los siguien
 ## <a name="when-to-use-this-pattern"></a>Cuándo usar este patrón
 
 Use este patrón en los siguientes supuestos:
+
 - El procesamiento que requiera una aplicación se pueda desglosar fácilmente en un conjunto de pasos independientes.
 
 - Los pasos de procesamiento que realiza una aplicación tengan requisitos de escalabilidad diferentes.
 
-    >  Los filtros que se van a escalar juntos se pueden agrupar en el mismo proceso. Para más información, consulte [Compute Resource Consolidation pattern](compute-resource-consolidation.md) (Patrón Compute Resource Consolidation).
+    >  Los filtros que se van a escalar juntos se pueden agrupar en el mismo proceso. Para más información, consulte [Compute Resource Consolidation pattern](./compute-resource-consolidation.md) (Patrón Compute Resource Consolidation).
 
 - Se requiere flexibilidad para permitir la reordenación de los pasos de procesamiento que realiza una aplicación o la funcionalidad para agregar y quitar pasos.
 
@@ -83,6 +82,7 @@ Use este patrón en los siguientes supuestos:
 - Se requiere una solución confiable que minimice los efectos de los errores en un paso durante el procesamiento de los datos.
 
 Este modelo podría no ser útil en las situaciones siguientes:
+
 - Los pasos de procesamiento que realiza una aplicación no son independientes, o se deben realizar juntos como parte de la misma transacción.
 
 - La cantidad de información de contexto o estado que requiera un paso convierte a este enfoque en ineficaz. Podría ser posible conservar la información de estado en una base de datos, pero no use esta estrategia si la carga adicional en la base de datos provoca una contención excesiva.
@@ -93,10 +93,9 @@ Puede usar una secuencia de colas de mensajes para proporcionar la infraestructu
 
 ![Figura 4: Implementación de una canalización mediante colas de mensajes](./_images/pipes-and-filters-message-queues.png)
 
-
 Si va a compilar una solución en Azure, puede usar colas de Service Bus para proporcionar un mecanismo de puesta en cola confiable y escalable. La clase `ServiceBusPipeFilter` que se muestra a continuación en C# ilustra cómo puede implementar un filtro que recibe mensajes de entrada de una cola, procesa estos mensajes y publica los resultados en otra cola.
 
->  La clase `ServiceBusPipeFilter` se define en el proyecto PipesAndFilters.Shared disponible en [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters).
+> La clase `ServiceBusPipeFilter` se define en el proyecto PipesAndFilters.Shared disponible en [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters).
 
 ```csharp
 public class ServiceBusPipeFilter
@@ -278,8 +277,9 @@ public class FinalReceiverRoleEntry : RoleEntryPoint
 ## <a name="related-patterns-and-guidance"></a>Orientación y patrones relacionados
 
 Los patrones y las directrices siguientes también pueden ser importantes a la hora de implementar este modelo:
+
 - Se encuentra disponible un ejemplo que demuestra este patrón en [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/pipes-and-filters).
-- [Patrón de consumidores de la competencia](competing-consumers.md). Una canalización puede contener varias instancias de uno o varios filtros. Este enfoque es útil para la ejecución en paralelo de instancias de filtros lentos, que permiten que el sistema reparta la carga y mejore el rendimiento. Cada instancia de un filtro competirá por la entrada con las demás instancias; dos instancias de un filtro nunca deberían poder procesar los mismos datos. Proporciona una explicación de este enfoque.
-- [Patrón Compute Resource Consolidation](compute-resource-consolidation.md). Los filtros que podrían escalarse juntos, se pueden agrupar en el mismo proceso. Proporciona más información sobre las ventajas e inconvenientes de esta estrategia.
-- [Patrón Compensating Transaction](compensating-transaction.md). Un filtro puede implementarse como una operación que se puede invertir o que tiene una operación de compensación que restaura el estado a una versión anterior en caso de error. Explica cómo se puede implementar para mantener o lograr coherencia definitiva.
+- [Patrón de consumidores de la competencia](./competing-consumers.md). Una canalización puede contener varias instancias de uno o varios filtros. Este enfoque es útil para la ejecución en paralelo de instancias de filtros lentos, que permiten que el sistema reparta la carga y mejore el rendimiento. Cada instancia de un filtro competirá por la entrada con las demás instancias; dos instancias de un filtro nunca deberían poder procesar los mismos datos. Proporciona una explicación de este enfoque.
+- [Patrón Compute Resource Consolidation](./compute-resource-consolidation.md). Los filtros que podrían escalarse juntos, se pueden agrupar en el mismo proceso. Proporciona más información sobre las ventajas e inconvenientes de esta estrategia.
+- [Patrón Compensating Transaction](./compensating-transaction.md). Un filtro puede implementarse como una operación que se puede invertir o que tiene una operación de compensación que restaura el estado a una versión anterior en caso de error. Explica cómo se puede implementar para mantener o lograr coherencia definitiva.
 - [Patrones de idempotencia](https://blog.jonathanoliver.com/idempotency-patterns/) en el blog de Jonathan Oliver.

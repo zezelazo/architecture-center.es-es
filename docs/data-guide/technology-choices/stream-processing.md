@@ -3,12 +3,12 @@ title: Selección de una tecnología de procesamiento de flujos
 description: ''
 author: zoinerTejada
 ms.date: 02/12/2018
-ms.openlocfilehash: 2e0d142bc5cd462703ef1ca4530a2104efdf3be3
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: 51129bd09974151ef66a1d660ee3cfa8f79eeb0c
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902634"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111519"
 ---
 # <a name="choosing-a-stream-processing-technology-in-azure"></a>Selección de una tecnología de procesamiento de flujos
 
@@ -16,8 +16,14 @@ Este artículo compara las opciones de tecnología para procesamiento de flujos 
 
 El procesamiento de flujos en tiempo real usa mensajes de una cola o almacenamiento basado en archivos, procesa los mensajes y reenvía el resultado a otra cola de mensajes, almacén de archivos o base de datos. El procesamiento puede incluir la consulta, el filtrado y la agregación de mensajes. Los motores de procesamiento de flujos deben poder utilizar un flujo ilimitado de datos y generar resultados con una latencia mínima. Para más información, consulte [Procesamiento en tiempo real](../big-data/real-time-processing.md).
 
+<!-- markdownlint-disable MD026 -->
+
 ## <a name="what-are-your-options-when-choosing-a-technology-for-real-time-processing"></a>¿De qué opciones dispone a la hora de elegir una tecnología de procesamiento en tiempo real?
+
+<!-- markdownlint-enable MD026 -->
+
 En Azure, los almacenes de datos siguientes cumplirán los requisitos principales para el procesamiento en tiempo real:
+
 - [Azure Stream Analytics](/azure/stream-analytics/)
 - [HDInsight con Spark Streaming](/azure/hdinsight/spark/apache-spark-streaming-overview)
 - [Apache Spark en Azure Databricks](/azure/azure-databricks/)
@@ -35,34 +41,34 @@ En escenarios de procesamiento en tiempo real, seleccione primero el servicio ad
 
 - ¿Recibe datos en formatos distintos a Avro, JSON o CSV? Si es así, considere la posibilidad de utilizar opciones que admitan cualquier formato que use código personalizado.
 
-- ¿Necesita escalar el procesamiento más allá de 1 GB/s? En caso afirmativo, considere la posibilidad de usar opciones que se escalan con el tamaño del clúster. 
+- ¿Necesita escalar el procesamiento más allá de 1 GB/s? En caso afirmativo, considere la posibilidad de usar opciones que se escalan con el tamaño del clúster.
 
 ## <a name="capability-matrix"></a>Matriz de funcionalidades
 
-En las tablas siguientes se resumen las diferencias clave en cuanto a funcionalidades. 
+En las tablas siguientes se resumen las diferencias clave en cuanto a funcionalidades.
 
 ### <a name="general-capabilities"></a>Funcionalidades generales
 
 | | Azure Stream Analytics | HDInsight con Spark Streaming | Apache Spark en Azure Databricks | HDInsight con Storm | Azure Functions | Azure App Service WebJobs |
-| --- | --- | --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- | --- | --- |
 | Capacidad de programación | Lenguaje de consulta de Stream Analytics, JavaScript | Scala, Python, Java | Scala, Python, Java, R | Java, C# | C#, F#, Node.js | C#, Node.js, PHP, Java, Python |
-| Paradigma de programación | Declarativa | Mezcla de declarativa e imperativa | Mezcla de declarativa e imperativa | Imperativa | Imperativa | Imperativa |    
+| Paradigma de programación | Declarativa | Mezcla de declarativa e imperativa | Mezcla de declarativa e imperativa | Imperativa | Imperativa | Imperativa |
 | Modelo de precios | [Unidades de streaming](https://azure.microsoft.com/pricing/details/stream-analytics/) | Por hora de clúster | [Unidades de Databricks](https://azure.microsoft.com/pricing/details/databricks/) | Por hora de clúster | Por ejecución de funciones y consumo de recursos | Por hora de plan de App Service |  
 
 ### <a name="integration-capabilities"></a>Funcionalidades de integración
 
 | | Azure Stream Analytics | HDInsight con Spark Streaming | Apache Spark en Azure Databricks | HDInsight con Storm | Azure Functions | Azure App Service WebJobs |
-| --- | --- | --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- | --- | --- |
 | Entradas | Azure Event Hubs, Azure IoT Hub, Azure Blob Storage  | Event Hubs, IoT Hub, Kafka, HDFS, blobs de Storage, Azure Data Lake Store  | Event Hubs, IoT Hub, Kafka, HDFS, blobs de Storage, Azure Data Lake Store  | Event Hubs, IoT Hub, blobs de Storage, Azure Data Lake Store  | [Enlaces admitidos](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | Service Bus, colas de Storage, blobs de Storage, Event Hubs, WebHooks, Cosmos DB, Files |
-| Receptores |  Azure Data Lake Store, Azure SQL Database, Storage Blobs, Event Hubs, Power BI, Table Storage, Service Bus Queues, Service Bus Topics, Cosmos DB, Azure Functions  | HDFS, Kafka, blobs de Storage, Azure Data Lake Store, Cosmos DB | HDFS, Kafka, blobs de Storage, Azure Data Lake Store, Cosmos DB | Event Hubs, Service Bus, Kafka | [Enlaces admitidos](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | Service Bus, colas de Storage, blobs de Storage, Event Hubs, WebHooks, Cosmos DB, Files | 
+| Receptores |  Azure Data Lake Store, Azure SQL Database, Storage Blobs, Event Hubs, Power BI, Table Storage, Service Bus Queues, Service Bus Topics, Cosmos DB, Azure Functions  | HDFS, Kafka, blobs de Storage, Azure Data Lake Store, Cosmos DB | HDFS, Kafka, blobs de Storage, Azure Data Lake Store, Cosmos DB | Event Hubs, Service Bus, Kafka | [Enlaces admitidos](/azure/azure-functions/functions-triggers-bindings#supported-bindings) | Service Bus, colas de Storage, blobs de Storage, Event Hubs, WebHooks, Cosmos DB, Files |
 
 ### <a name="processing-capabilities"></a>Funcionalidades de procesamiento
 
 | | Azure Stream Analytics | HDInsight con Spark Streaming | Apache Spark en Azure Databricks | HDInsight con Storm | Azure Functions | Azure App Service WebJobs |
-| --- | --- | --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- | --- | --- |
 | Compatibilidad integrada con almacenamiento temporal o basado en ventanas | SÍ | Sí | Sí | SÍ | No | Sin  |
 | Formatos de datos de entrada | Avro, JSON o CSV, con codificación UTF-8 | Cualquier formato que use código personalizado | Cualquier formato que use código personalizado | Cualquier formato que use código personalizado | Cualquier formato que use código personalizado | Cualquier formato que use código personalizado |
-| Escalabilidad | [Particiones de consulta](/azure/stream-analytics/stream-analytics-parallelization) | Limitada por el tamaño del clúster | Limitado por la configuración de escalado del clúster de Databricks | Limitada por el tamaño del clúster | Hasta 200 instancias de aplicación de función procesándose en paralelo | Limitada por la capacidad del plan de App Service | 
+| Escalabilidad | [Particiones de consulta](/azure/stream-analytics/stream-analytics-parallelization) | Limitada por el tamaño del clúster | Limitado por la configuración de escalado del clúster de Databricks | Limitada por el tamaño del clúster | Hasta 200 instancias de aplicación de función procesándose en paralelo | Limitada por la capacidad del plan de App Service |
 | Compatibilidad con control de eventos desordenados y llegada tardía | SÍ | Sí | Sí | SÍ | No | Sin  |
 
 Consulte también:

@@ -5,12 +5,12 @@ description: Implementación de aplicaciones virtuales de red con alta disponibi
 author: telmosampaio
 ms.date: 12/08/2018
 ms.custom: seodec18
-ms.openlocfilehash: d3f9017db1bbf9741b10db16eb5a3dbab78f1160
-ms.sourcegitcommit: 7d21aec9d9de0004ac777c1d1e364f53aac2350d
+ms.openlocfilehash: 646721f80d19f493b7674884f8108762d743201b
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53120759"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011096"
 ---
 # <a name="deploy-highly-available-network-virtual-appliances"></a>Implementación de aplicaciones virtuales de red de alta disponibilidad
 
@@ -30,6 +30,8 @@ Para conseguir que una aplicación virtual de red tenga una alta disponibilidad,
 
 Las arquitecturas siguientes describen los recursos y la configuración que son necesarios para dotar a las aplicaciones virtuales de red de una alta disponibilidad:
 
+<!-- markdownlint-disable MD033 -->
+
 | Solución | Ventajas | Consideraciones |
 | --- | --- | --- |
 | [Entrada con NVA de capa 7][ingress-with-layer-7] |Todos los nodos NVA están activos. |Requiere una aplicación virtual de red que pueda terminar las conexiones y usar SNAT.<br/> Requiere un conjunto independiente de NVA para el tráfico procedente de Internet y de Azure. <br/> Solo puede usarse con el tráfico que se origina fuera de Azure. |
@@ -37,6 +39,8 @@ Las arquitecturas siguientes describen los recursos y la configuración que son 
 | [Entrada y salida con NVA de capa 7][ingress-egress-with-layer-7] |Todos los nodos están activos.<br/>Puede controlar el tráfico que se origina en Azure. |Requiere una aplicación virtual de red que pueda terminar las conexiones y usar SNAT.<br/>Requiere un conjunto independiente de NVA para el tráfico procedente de Internet y de Azure. |
 | [Conmutador PIP-UDR][pip-udr-switch] |Un solo conjunto de NVA para todo el tráfico.<br/>Puede controlar todo el tráfico (sin límite en las reglas de puerto). |Activo-pasivo<br/>Requiere un proceso de conmutación por error. |
 | [PIP-UDR sin SNAT](#pip-udr-nvas-without-snat) | Un solo conjunto de NVA para todo el tráfico.<br/>Puede controlar todo el tráfico (sin límite en las reglas de puerto).<br/>No requiere la configuración de SNAT para las solicitudes entrantes |Activo-pasivo<br/>Requiere un proceso de conmutación por error.<br/>La lógica de sondeo y de conmutación por error se ejecutan fuera de la red virtual |
+
+<!-- markdown-enable MD033 -->
 
 ## <a name="ingress-with-layer-7-nvas"></a>Entrada con NVA de capa 7
 

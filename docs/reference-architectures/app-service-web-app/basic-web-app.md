@@ -5,12 +5,12 @@ description: Arquitectura recomendada para una aplicación web básica que se ej
 author: MikeWasson
 ms.date: 12/12/2017
 ms.custom: seodec18
-ms.openlocfilehash: 17750a57835f017d13eb205a7b4e821a5834b741
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 2b985052e8799a8aa108fc6921d48cb8e003e480
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53120261"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114307"
 ---
 # <a name="run-a-basic-web-application-in-azure"></a>Ejecución de una aplicación web básica de Azure
 
@@ -232,7 +232,7 @@ Para más información, consulte [Implementación de recursos con las plantillas
 [aad-auth]: /azure/app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication
 [app-insights]: /azure/application-insights/app-insights-overview
 [app-insights-data-rate]: /azure/application-insights/app-insights-pricing
-[app-service]: https://azure.microsoft.com/documentation/services/app-service/
+[app-service]: /azure/app-service/
 [app-service-auth]: /azure/app-service-api/app-service-api-authentication
 [app-service-plans]: /azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview
 [app-service-plans-tiers]: https://azure.microsoft.com/pricing/details/app-service/
@@ -256,7 +256,7 @@ Para más información, consulte [Implementación de recursos con las plantillas
 [sla]: https://azure.microsoft.com/support/legal/sla/
 [sql-audit]: /azure/sql-database/sql-database-auditing-get-started
 [sql-backup]: /azure/sql-database/sql-database-business-continuity
-[sql-db]: https://azure.microsoft.com/documentation/services/sql-database/
+[sql-db]: /azure/sql-database/
 [sql-db-overview]: /azure/sql-database/sql-database-technical-overview
 [sql-db-scale]: /azure/sql-database/sql-database-service-tiers#scaling-up-or-scaling-down-a-single-database
 [sql-db-service-tiers]: /azure/sql-database/sql-database-service-tiers

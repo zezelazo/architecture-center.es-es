@@ -5,16 +5,12 @@ description: Cómo implementar una arquitectura de red híbrida segura con acces
 author: telmosampaio
 ms.date: 10/22/2018
 ms.custom: seodec18
-pnp.series.title: Network DMZ
-pnp.series.next: nva-ha
-pnp.series.prev: secure-vnet-hybrid
-cardTitle: DMZ between Azure and the Internet
-ms.openlocfilehash: ec87cf9aa69bbfea9e40f740fe27e3183bc45fc7
-ms.sourcegitcommit: 88a68c7e9b6b772172b7faa4b9fd9c061a9f7e9d
+ms.openlocfilehash: 10c8a23ab09da0555de6a51bc082deceb8c462ff
+ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/08/2018
-ms.locfileid: "53119989"
+ms.lasthandoff: 01/04/2019
+ms.locfileid: "54011538"
 ---
 # <a name="implement-a-dmz-between-azure-and-the-internet"></a>Implementación de una zona DMZ entre Azure e Internet
 

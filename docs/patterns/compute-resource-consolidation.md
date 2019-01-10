@@ -1,18 +1,17 @@
 ---
-title: Compute Resource Consolidation
+title: Patrón Compute Resource Consolidation
+titleSuffix: Cloud Design Patterns
 description: Consolida varias tareas u operaciones en una sola unidad de cálculo.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- design-implementation
-ms.openlocfilehash: bd212b8b4406a08058f811db030843f732e08cdc
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 0f787537fb97f52ad69df7f0784b7fca3c45d7d1
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428846"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54111485"
 ---
 # <a name="compute-resource-consolidation-pattern"></a>Patrón Compute Resource Consolidation
 
@@ -27,7 +26,6 @@ Con frecuencia una aplicación en la nube implementa diversas operaciones. En al
 Por ejemplo, en la ilustración se muestra la estructura simplificada de una solución hospedada en la nube que se implementa mediante más de una unidad de cálculo. Cada unidad de cálculo se ejecuta en su propio entorno virtual. Cada función se ha implementado como una tarea independiente (etiquetadas de la tarea A-a la tarea E) que se ejecuta en su propia unidad de cálculo.
 
 ![Ejecución de tareas en un entorno de nube mediante un conjunto de unidades de cálculo dedicadas](./_images/compute-resource-consolidation-diagram.png)
-
 
 Cada unidad de cálculo consume recursos facturables, incluso cuando está inactiva o se usa poco. Por lo tanto, esta solución no es siempre la más rentable.
 
@@ -67,7 +65,7 @@ Tenga en cuenta los puntos siguientes al implementar este patrón:
 **Contención**. Evite la introducción de contención entre tareas que compiten por los recursos de la misma unidad de cálculo. Lo ideal es que las tareas que comparten la misma unidad de cálculo presenten características diferentes en el uso de los recursos. Por ejemplo, dos tareas de proceso intensivo no deberían residir probablemente en la misma unidad de cálculo, y tampoco dos tareas que consuman grandes cantidades de memoria. Sin embargo, mezclar una tarea de proceso intensivo y una tarea que requiere una gran cantidad de memoria es una combinación factible.
 
 > [!NOTE]
->  Considere la posibilidad de consolidar los recursos de proceso solo en sistemas que han estado en producción durante un período de tiempo, de forma que los operadores y los desarrolladores puedan supervisar los sistemas y crear un _mapa térmico_ que identifique el modo en que cada tarea usa recursos diferentes. Este mapa se puede utilizar para determinar qué tareas son buenas candidatas a compartir recursos de proceso.
+> Considere la posibilidad de consolidar los recursos de proceso solo en sistemas que han estado en producción durante un período de tiempo, de forma que los operadores y los desarrolladores puedan supervisar los sistemas y crear un _mapa térmico_ que identifique el modo en que cada tarea usa recursos diferentes. Este mapa se puede utilizar para determinar qué tareas son buenas candidatas a compartir recursos de proceso.
 
 **Complejidad**. Combinar varias tareas en una sola unidad de cálculo agrega complejidad al código de la unidad, de modo que posiblemente sea más difícil de probar, depurar y mantener.
 
@@ -85,7 +83,7 @@ Este patrón podría no ser adecuado con tareas que realizan operaciones crític
 
 Al crear un servicio en la nube en Azure, es posible consolidar el procesamiento que realizan varias tareas en un único rol. Normalmente, es el rol de trabajo el encargado de realizar las tareas de procesamiento en segundo plano o asincrónicas.
 
-> En algunos casos, es posible incluir dichas tareas en el rol web. Esta técnica ayuda reducir los costes y a simplificar la implementación, pero puede afectar a la escalabilidad y la capacidad de respuesta de la interfaz de acceso público proporcionada por el rol web. 
+> En algunos casos, es posible incluir dichas tareas en el rol web. Esta técnica ayuda reducir los costes y a simplificar la implementación, pero puede afectar a la escalabilidad y la capacidad de respuesta de la interfaz de acceso público proporcionada por el rol web.
 
 El rol es responsable de iniciar y detener las tareas. Cuando el controlador de tejido de Azure carga un rol, se genera el evento `Start` para el rol. Puede invalidar el método `OnStart` de `WebRole` o la clase `WorkerRole` para tratar este evento, quizás para inicializar los datos y otros recursos de los que dependen las tareas de este método.
 
@@ -104,7 +102,6 @@ Cuando un rol se apaga o se recicla, el controlador de tejido impide que se reci
 Las tareas se inician mediante el método `Run` que espera a que finalicen las tareas. Las tareas implementan la lógica de negocios del servicio en la nube, y pueden responder a los mensajes publicados en el rol a través del equilibrador de carga de Azure. En la ilustración se muestra el ciclo de vida de las tareas y los recursos de un rol en un servicio en la nube de Azure.
 
 ![El ciclo de vida de las tareas y los recursos de un rol en un servicio en la nube de Azure](./_images/compute-resource-consolidation-lifecycle.png)
-
 
 El archivo _WorkerRole.cs_ del proyecto _ComputeResourceConsolidation.Worker_ muestra un ejemplo de cómo podría implementar este patrón en un servicio en la nube de Azure.
 

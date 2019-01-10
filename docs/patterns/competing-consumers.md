@@ -1,18 +1,17 @@
 ---
-title: Consumidores de la competencia
+title: Patrón de consumidores de la competencia
+titleSuffix: Cloud Design Patterns
 description: Permite que varios consumidores simultáneos procesen los mensajes recibidos en el mismo canal de mensajería.
 keywords: Patrón de diseño
 author: dragon119
 ms.date: 06/23/2017
-pnp.series.title: Cloud Design Patterns
-pnp.pattern.categories:
-- messaging
-ms.openlocfilehash: aea172dcdb33c0d8513fb69715f1549b4a20f5e6
-ms.sourcegitcommit: 94d50043db63416c4d00cebe927a0c88f78c3219
+ms.custom: seodec18
+ms.openlocfilehash: 77459ff42422969acdc83e66535197547d555de1
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47428387"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112114"
 ---
 # <a name="competing-consumers-pattern"></a>Patrón de consumidores de la competencia
 
@@ -34,7 +33,7 @@ Use una cola de mensajes para implementar el canal de comunicación entre la apl
 
 Esta solución tiene las siguientes ventajas:
 
-- Proporciona un sistema de redistribución de la carga que puede administrar grandes variaciones en el volumen de solicitudes enviadas por las instancias de la aplicación. La cola actúa como búfer entre las instancias de la aplicación y las instancias de servicio de consumidor. Esto puede ayudar a reducir el impacto sobre la disponibilidad y la capacidad de respuesta de las instancias de aplicación y las de servicio, como se describe en [Queue-based Load Leveling pattern](queue-based-load-leveling.md) (Patrón Queue-based Load Leveling). Administrar un mensaje que requiere un procesamiento de ejecución prolongada no impide que otras instancias del servicio de consumidor administren simultáneamente otros mensajes.
+- Proporciona un sistema de redistribución de la carga que puede administrar grandes variaciones en el volumen de solicitudes enviadas por las instancias de la aplicación. La cola actúa como búfer entre las instancias de la aplicación y las instancias de servicio de consumidor. Esto puede ayudar a reducir el impacto sobre la disponibilidad y la capacidad de respuesta de las instancias de aplicación y las de servicio, como se describe en [Queue-based Load Leveling pattern](./queue-based-load-leveling.md) (Patrón Queue-based Load Leveling). Administrar un mensaje que requiere un procesamiento de ejecución prolongada no impide que otras instancias del servicio de consumidor administren simultáneamente otros mensajes.
 
 - Mejora la confiabilidad. Si un productor se comunica directamente con un consumidor en lugar de usar este patrón, pero no supervisa el consumidor, existe una alta probabilidad de que los mensajes se pierdan o no puedan procesarse si se produce un error en el consumidor. En este patrón, no se envían mensajes a una instancia de servicio específica. Una instancia de servicio que ha dado error no bloqueará a un productor y cualquier instancia de servicio de trabajo podrá procesar los mensajes.
 
@@ -85,8 +84,9 @@ Este modelo podría no ser útil en las situaciones siguientes:
 
 Azure proporciona colas de almacenamiento y colas de Service Bus que pueden funcionar como un mecanismo para implementar este patrón. La lógica de la aplicación puede publicar los mensajes en una cola, y los consumidores implementados como tareas en uno o varios roles pueden recuperar los mensajes de esta cola y procesarlos. Para lograr resistencia, una cola de Service Bus permite que un consumidor use el modo `PeekLock` cuando recupera un mensaje de la cola. Este modo no quita realmente el mensaje, sino que simplemente lo oculta a otros consumidores. El consumidor original puede eliminar el mensaje cuando haya terminado de procesarlo. Si se produce un error en el consumidor, el bloque de inspección agotará el tiempo de espera y el mensaje estará visible de nuevo, de forma que otro consumidor pueda recuperarlo.
 
-> Para más información sobre el uso de colas de Azure Service Bus, consulte [Colas, temas y suscripciones de Service Bus](https://msdn.microsoft.com/library/windowsazure/hh367516.aspx).
-Para más información sobre el uso de colas de almacenamiento de Azure, consulte [Introducción a Azure Queue Storage mediante .NET](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-queues/).
+Para más información sobre el uso de colas de Azure Service Bus, consulte [Colas, temas y suscripciones de Service Bus](https://msdn.microsoft.com/library/windowsazure/hh367516.aspx).
+
+Para más información sobre el uso de colas de almacenamiento de Azure, consulte [Introducción a Azure Queue Storage mediante .NET](/azure/storage/queues/storage-dotnet-how-to-use-queues).
 
 El siguiente código de la clase `QueueManager` de la solución CompetingConsumers disponible en [GitHub](https://github.com/mspnp/cloud-design-patterns/tree/master/competing-consumers) muestra cómo puede crear una cola mediante una instancia `QueueClient` en el controlador de eventos `Start` en un rol web o de trabajo.
 
@@ -174,7 +174,7 @@ private void OptionsOnExceptionReceived(object sender,
 }
 ```
 
-Tenga en cuenta que las características de escalado automática, como los que están disponibles en Azure, pueden utilizarse para iniciar y detener instancias de rol a medida que varía la longitud de cola. Para más información, consulte [Guía de escalado automático](https://msdn.microsoft.com/library/dn589774.aspx). Además, no es necesario mantener una correspondencia uno a uno entre las instancias de rol y los procesos de trabajo&mdash;una única instancia de rol puede implementar varios procesos de trabajo. Para más información, consulte [Compute Resource Consolidation pattern](compute-resource-consolidation.md) (Patrón Compute Resource Consolidation).
+Tenga en cuenta que las características de escalado automática, como los que están disponibles en Azure, pueden utilizarse para iniciar y detener instancias de rol a medida que varía la longitud de cola. Para más información, consulte [Guía de escalado automático](https://msdn.microsoft.com/library/dn589774.aspx). Además, no es necesario mantener una correspondencia uno a uno entre las instancias de rol y los procesos de trabajo&mdash;una única instancia de rol puede implementar varios procesos de trabajo. Para más información, consulte [Compute Resource Consolidation pattern](./compute-resource-consolidation.md) (Patrón Compute Resource Consolidation).
 
 ## <a name="related-patterns-and-guidance"></a>Orientación y patrones relacionados
 
@@ -184,8 +184,8 @@ Los patrones y las directrices siguientes podrían ser importantes a la hora de 
 
 - [Guía de escalado automático](https://msdn.microsoft.com/library/dn589774.aspx). Se podrían iniciar y detener instancias de un servicio de consumidor dado que la longitud de la cola en la que las aplicaciones publican los mensajes varía. El escalado automático puede ayudar a mantener el rendimiento durante los períodos de procesamiento de máximo.
 
-- [Patrón Compute Resource Consolidation](compute-resource-consolidation.md). Se podrían consolidar varias instancias de un servicio de consumidor en un único proceso para reducir los costes y la sobrecarga de administración. El patrón de consolidación de los recursos de proceso describe las ventajas e inconvenientes de este enfoque.
+- [Patrón Compute Resource Consolidation](./compute-resource-consolidation.md). Se podrían consolidar varias instancias de un servicio de consumidor en un único proceso para reducir los costes y la sobrecarga de administración. El patrón de consolidación de los recursos de proceso describe las ventajas e inconvenientes de este enfoque.
 
-- [Patrón Queue-based Load Leveling](queue-based-load-leveling.md). La introducción de una cola de mensajes puede agregar resistencia al sistema, al permitir que las instancias de servicio administren volúmenes muy diversos de solicitudes desde instancias de aplicación. La cola de mensajes actúa como búfer, que redistribuye la carga. El patrón de redistribución de carga basada en colas describe este escenario con mayor detalle.
+- [Patrón Queue-Based Load Leveling](./queue-based-load-leveling.md). La introducción de una cola de mensajes puede agregar resistencia al sistema, al permitir que las instancias de servicio administren volúmenes muy diversos de solicitudes desde instancias de aplicación. La cola de mensajes actúa como búfer, que redistribuye la carga. El patrón de redistribución de carga basada en colas describe este escenario con mayor detalle.
 
 - Este patrón lleva asociada una [aplicación de ejemplo](https://github.com/mspnp/cloud-design-patterns/tree/master/competing-consumers).

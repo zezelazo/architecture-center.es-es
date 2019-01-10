@@ -5,12 +5,12 @@ description: Lista de comprobación que proporciona una orientación sobre la re
 author: petertaylor9999
 ms.date: 11/26/2018
 ms.custom: resiliency, checklist
-ms.openlocfilehash: 55f17d3b24af4be4f313c66923f4153296041545
-ms.sourcegitcommit: 4ba3304eebaa8c493c3e5307bdd9d723cd90b655
+ms.openlocfilehash: e1fb780cf9f54a5078cc5d3c6b597b351f93e05e
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53307187"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54112675"
 ---
 # <a name="resiliency-checklist-for-specific-azure-services"></a>Lista de comprobación de resistencia para servicios de Azure específicos
 
@@ -124,7 +124,7 @@ Si usa Redis Cache como caché de datos temporal y no como almacén persistente,
 
 **Replique la base de datos.** Use los Grupos de disponibilidad Always On de SQL Server para replicar la base de datos. Proporciona alta disponibilidad si se produce un error en una instancia de SQL Server. Para más información, consulte [Ejecución de máquinas virtuales Windows para una arquitectura de n niveles](../reference-architectures/virtual-machines-windows/n-tier.md).
 
-**Realice una copia de seguridad de la base de datos**. Si ya utiliza [Azure Backup](https://azure.microsoft.com/documentation/services/backup/) para realizar copias de seguridad de sus máquinas virtuales, considere la posibilidad de usar [Azure Backup para cargas de trabajo de SQL Server con DPM](/azure/backup/backup-azure-backup-sql/). Con este enfoque, hay un rol de administrador de copias de seguridad para la organización y un procedimiento unificado de recuperación para máquinas virtuales y SQL Server. En caso contrario, consulte [Copia de seguridad administrada de SQL Server en Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx).
+**Realice una copia de seguridad de la base de datos**. Si ya utiliza [Azure Backup](/azure/backup/) para realizar copias de seguridad de sus máquinas virtuales, considere la posibilidad de usar [Azure Backup para cargas de trabajo de SQL Server con DPM](/azure/backup/backup-azure-backup-sql/). Con este enfoque, hay un rol de administrador de copias de seguridad para la organización y un procedimiento unificado de recuperación para máquinas virtuales y SQL Server. En caso contrario, consulte [Copia de seguridad administrada de SQL Server en Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx).
 
 ## <a name="traffic-manager"></a>Traffic Manager
 
