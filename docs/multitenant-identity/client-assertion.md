@@ -6,18 +6,19 @@ ms.date: 07/21/2017
 pnp.series.title: Manage Identity in Multitenant Applications
 pnp.series.prev: adfs
 pnp.series.next: key-vault
-ms.openlocfilehash: 58eed82c982fe1c6cba0f04b237d92d117a26fd4
-ms.sourcegitcommit: e7e0e0282fa93f0063da3b57128ade395a9c1ef9
+ms.openlocfilehash: b5951153fff109b648e7e4f74daac0f414240fe4
+ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/05/2018
-ms.locfileid: "52902279"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54113151"
 ---
 # <a name="use-client-assertion-to-get-access-tokens-from-azure-ad"></a>Uso de aserción de cliente para obtener tokens de acceso de Azure AD
 
 [![GitHub](../_images/github.png) Código de ejemplo][sample application]
 
 ## <a name="background"></a>Fondo
+
 Al usar el flujo de código de autorización o flujo híbrido en OpenID Connect, el cliente intercambia un código de autorización para un token de acceso. Durante este paso, el cliente tiene que autenticarse en el servidor.
 
 ![Secreto del cliente](./images/client-secret.png)
@@ -26,7 +27,7 @@ Una manera de autenticar el cliente es mediante un secreto de cliente. Así es c
 
 Esta es una solicitud de ejemplo desde el cliente al IDP, que solicita un token de acceso. Tenga en cuenta el parámetro `client_secret` .
 
-```
+```http
 POST https://login.microsoftonline.com/b9bd2162xxx/oauth2/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
@@ -45,7 +46,7 @@ Para obtener seguridad adicional, puede usar [aserción cliente] en lugar de un 
 
 A continuación figura una solicitud de token utilizando aserción de cliente:
 
-```
+```http
 POST https://login.microsoftonline.com/b9bd2162xxx/oauth2/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
@@ -61,8 +62,6 @@ Observe que el parámetro `client_secret` ya no se usa. En su lugar, el parámet
 
 > [!NOTE]
 > Los certificados X.509 no son la única forma de aserción de cliente; nos centraremos en ella aquí porque es compatible con Azure AD.
-> 
-> 
 
 En tiempo de ejecución, la aplicación web lee el certificado del almacén de certificados. El certificado debe estar instalado en la misma máquina que la aplicación web.
 
@@ -100,7 +99,8 @@ Para información sobre cómo configurar la aserción de cliente en la aplicaci�
 
 [**Siguiente**][key vault]
 
-<!-- Links -->
+<!-- links -->
+
 [configure-web-app]: /azure/app-service-web/web-sites-configure/
 [azure-management-portal]: https://portal.azure.com
 [aserción cliente]: https://tools.ietf.org/html/rfc7521
