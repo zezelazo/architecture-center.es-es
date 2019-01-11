@@ -4,12 +4,12 @@ description: Cómo crear aplicaciones resistentes de Azure, para alta disponibil
 author: MikeWasson
 ms.date: 12/18/2018
 ms.custom: resiliency
-ms.openlocfilehash: 28ad589c6d54a1574b5cd5c4f08e3c6adfe349c3
-ms.sourcegitcommit: 1f4cdb08fe73b1956e164ad692f792f9f635b409
+ms.openlocfilehash: ef8fd64756c483528aa83048e23f6387dedb74d6
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54113134"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160866"
 ---
 # <a name="designing-resilient-applications-for-azure"></a>Diseño de aplicaciones resistentes de Azure
 
@@ -148,7 +148,7 @@ Pero este enfoque tiene sus ventajas e inconvenientes. La lógica de aplicación
 
 **Acuerdo de Nivel de Servicio para implementaciones en varias regiones**. Otra técnica de alta disponibilidad consiste en implementar la aplicación en más de una región y usar Azure Traffic Manager para conmutar por error si la aplicación produce un error en una región. Para una implementación de varias regiones, el Acuerdo de Nivel de Servicio compuesto se calcula del siguiente modo.
 
-Supongamos que *N* es el Acuerdo de Nivel de Servicio compuesto para la aplicación implementada en una región y que *R* es el número de regiones en el que se implementa la aplicación. La probabilidad de que la aplicación produzca un error en todas las regiones al mismo tiempo es ((1 - N) ^ R).
+Supongamos que *N* es el Acuerdo de Nivel de Servicio compuesto para la aplicación implementada en una región y que *R* es el número de regiones en el que se implementa la aplicación. La probabilidad de que la aplicación produzca un error en todas las regiones al mismo tiempo es ((1 &minus; N) ^ R).
 
 Por ejemplo, si el Acuerdo de Nivel de Servicio para una sola región es del 99,95 %,
 

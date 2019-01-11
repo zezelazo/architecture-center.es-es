@@ -4,18 +4,18 @@ description: Arquitecturas de referencia, planos y guía de implementación prec
 layout: LandingPage
 ms.topic: landing-page
 ms.date: 08/30/2018
-ms.openlocfilehash: 173698aee0a67578beaa806a59e1c7b0265cdd61
-ms.sourcegitcommit: 680c9cef945dff6fee5e66b38e24f07804510fa9
+ms.openlocfilehash: 4e0f3b32abc8d2e0da9b139b0e6aae1d48152a37
+ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/04/2019
-ms.locfileid: "54011810"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54160781"
 ---
 # <a name="azure-reference-architectures"></a>Arquitecturas de referencia de Azure
 
 Nuestras arquitecturas de referencia se organizan por escenario, agrupando juntas aquellas arquitecturas relacionadas. Cada arquitectura incluye procedimientos recomendados junto con consideraciones sobre escalabilidad, disponibilidad, capacidad de administración y seguridad. La mayoría también incluye una solución que se puede implementar.
 
-Vaya a: [AI](#ai-and-machine-learning) | [Macrodatos](#big-data-solutions) | [Sin servidor](#serverless-applications) | [Redes virtuales](#virtual-networks) | [Cargas de trabajo de máquinas virtuales](#vm-workloads) | [SAP](#sap) | [Aplicaciones web](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
+Vaya a: [IA](#ai-and-machine-learning) | [Macrodatos](#big-data-solutions) | [IoT](#internet-of-things) | [Sin servidor](#serverless-applications) | [Redes virtuales](#virtual-networks) | [Cargas de trabajo de máquinas virtuales](#vm-workloads) | [SAP](#sap) | [Aplicaciones web](#web-applications) | [Active Directory](#extend-on-premises-active-directory-to-azure)
 
 <!-- markdownlint-disable MD033 -->
 
@@ -201,6 +201,31 @@ Vaya a: [AI](#ai-and-machine-learning) | [Macrodatos](#big-data-solutions) | [Si
                     <div class="cardText">
                         <h3>Procesamiento de flujos de datos con Azure Stream Analytics</h3>
                         <p>Canalización de procesamiento de flujos de un extremo a otro que correlaciona registros de dos flujos de datos para calcular una media acumulada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+</ul>
+
+## <a name="internet-of-things"></a>Internet de las cosas
+
+<ul class="panelContent cardsF">
+<!-- IoT reference architecture -->
+<li style="display: flex; flex-direction: column;">
+    <a href="./iot/index.md" style="display: flex; flex-direction: column; flex: 1 0 auto;">
+        <div class="cardSize" style="flex: 1 0 auto; display: flex;">
+            <div class="cardPadding" style="display: flex;">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="./iot/_images/iot.svg" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Arquitectura de referencia de Azure IoT</h3>
+                        <p>Arquitectura recomendada para aplicaciones de IoT en Azure que usa componentes de PaaS (plataforma como servicio).</p>
                     </div>
                 </div>
             </div>
