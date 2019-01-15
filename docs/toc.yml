@@ -347,11 +347,13 @@ items:
     href: reference-architectures/index.md
   - name: AI
     items:
+    - name: Entrenamiento distribuido de modelos de aprendizaje profundo
+      href: reference-architectures/ai/training-deep-learning.md
     - name: Puntuación de Batch para modelos de aprendizaje profundo
       href: reference-architectures/ai/batch-scoring-deep-learning.md
     - name: Puntuación de Batch para modelos de Python
       href: reference-architectures/ai/batch-scoring-python.md
-    - name: Puntuación en tiempo real de los modelos de Python
+    - name: Puntuación en tiempo real de Python y modelos de aprendizaje profundo
       href: reference-architectures/ai/realtime-scoring-python.md
     - name: Puntuación en tiempo real de los modelos de Machine Learning para R
       href: reference-architectures/ai/realtime-scoring-r.md
@@ -585,9 +587,9 @@ items:
       href: cloud-adoption/appendix/azure-scaffold.md
     - name: Implementación de plantillas scaffold de Azure Enterprise
       href: cloud-adoption/appendix/azure-scaffold-examples.md
-ms.openlocfilehash: eba799444e767ab6d0a3196f714edd8bc2df09e1
-ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
+ms.openlocfilehash: ffb510612e852bf0736102dbe1dc3e159719f37f
+ms.sourcegitcommit: d5ea427c25f9f7799cc859b99f328739ca2d8c1c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/09/2019
-ms.locfileid: "54160849"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54307729"
