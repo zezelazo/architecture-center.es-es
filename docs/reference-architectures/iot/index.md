@@ -4,12 +4,12 @@ description: Arquitectura recomendada para aplicaciones de IoT en Azure que usa 
 titleSuffix: Azure Reference Architectures
 author: MikeWasson
 ms.date: 01/09/2019
-ms.openlocfilehash: bde507527262a722219edba534275fb7ab499069
-ms.sourcegitcommit: 7d9efe716e8c9e99f3fafa9d0213d48c23d9713d
+ms.openlocfilehash: c0aa1771abc99b1f17f1e553c9626e50a386f34c
+ms.sourcegitcommit: d5ea427c25f9f7799cc859b99f328739ca2d8c1c
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/09/2019
-ms.locfileid: "54166042"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54307695"
 ---
 # <a name="azure-iot-reference-architecture"></a>Arquitectura de referencia de Azure IoT
 
@@ -35,7 +35,7 @@ Esta arquitectura consta de los siguientes componentes. Puede que algunas aplica
 
 **Dispositivos IoT**. Dispositivos se pueden registrar de forma segura con la nube y pueden conectarse a esta para enviar y recibir datos. Algunos dispositivos pueden ser **dispositivos perimetrales** que realizan algún tipo de procesamiento de datos en el propio dispositivo o en una puerta de enlace de campo. Se recomienda usar [Azure IoT Edge](/azure/iot-edge/) para el procesamiento perimetral.
 
-**Puerta de enlace en la nube**. Una puerta de enlace en la nube proporciona un centro en la nube para que los dispositivos se conecten de forma segura a la nube y envíen datos. También proporciona administración de dispositivos y funcionalidades como comandos o el control de dispositivos. Para la puerta de enlace en la nube, se recomienda [IoT Hub](/azure/iot-hub/). IoT Hub es un servicio hospedado en la nube que ingiere eventos de dispositivos y que actúa como un mensaje roto entre los dispositivos y los servicios back-end. IoT Hub proporciona conectividad segura, ingesta de eventos, comunicación bidireccional y administración de dispositivos.
+**Puerta de enlace en la nube**. Una puerta de enlace en la nube proporciona un centro en la nube para que los dispositivos se conecten de forma segura a la nube y envíen datos. También proporciona administración de dispositivos y funcionalidades como comandos o el control de dispositivos. Para la puerta de enlace en la nube, se recomienda [IoT Hub](/azure/iot-hub/). IoT Hub es un servicio hospedado en la nube que ingiere eventos de dispositivos y que actúa como un agente de mensajes entre los dispositivos y los servicios back-end. IoT Hub proporciona conectividad segura, ingesta de eventos, comunicación bidireccional y administración de dispositivos.
 
 **Aprovisionamiento de dispositivos**. Para registrar y conectar grandes conjuntos de dispositivos, se recomienda usar [IoT Hub Device Provisioning Service](/azure/iot-dps/) (DPS). DPS le permite asignar y registrar dispositivos en determinados puntos de conexión de Azure IoT Hub a escala.
 
